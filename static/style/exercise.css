@@ -1,0 +1,100 @@
+body {
+    background-color: #eee;
+}
+
+.exercise-holder {
+    background-color: #fff;
+    border-radius: 20px;
+    margin-top: 4em;
+    box-shadow: 0 0 30px rgba(0,0,0,0.08);
+}
+
+.exercise-holder .body {
+    padding: 2em;
+}
+
+/* Exercises */
+.exercise-holder .alternative {
+    font-size: 1.2em;
+    margin-top: -20px;
+}
+
+.exercise-holder .list-group-item {
+    cursor: pointer;
+    color: #333;
+}
+
+.exercise-holder .list-group-item:hover {
+    color: #000;
+}
+
+.exercise-holder .list-group-item.selected {
+    color: #999;
+}
+
+/* Footer */
+.exercise-holder .footer {
+    padding: 2em 3em;
+    min-height: 7em;
+    border-radius: 0 0 20px 20px;
+    background-color: #ddd;
+}
+
+.exercise-holder .footer.correct {
+    background-color: #def0a5;
+}
+
+.exercise-holder .footer.incorrect {
+    background-color: #ffd4cc;
+}
+
+.exercise-holder .footer .msg {
+    font-size: 1.6em;
+    font-weight: bold;
+}
+
+.exercise-holder .footer.correct .msg {
+    color: #769c00;
+}
+
+.exercise-holder .footer.incorrect .msg {
+    color: #dd381d;
+}
+
+/* Buttons */
+.exercise-holder button {
+    border: none;
+    padding: .6em 1em;
+    min-width: 10em;
+    border-radius: 40px;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.exercise-holder button.skip {
+    border: solid #aaa 1.5px;
+    color: #888;
+}
+
+.exercise-holder button.skip:hover {
+    background-color: #aaa;
+    color: #333;
+}
+
+.exercise-holder button.success {
+    float: right;
+    background-color: #7eb530;
+    color: #fff;
+    border: solid #7eb530 1px;
+}
+
+.exercise-holder button.success:disabled {
+    background-color: #bbb !important;
+    color: #fff;
+    border: solid #bbb 1px;
+}
+
+.exercise-holder button.success:hover {
+    background-color: #94c500;
+}
+
