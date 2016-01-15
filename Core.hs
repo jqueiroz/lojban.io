@@ -4,26 +4,7 @@ module Core where
 import qualified Data.Text as T
 import qualified Data.Map as M
 
--- Vocabulary
-data Vocabulary = Vocabulary
-    { vocabularyWords :: WordList
-    , vocabularyCategorizedSelbri :: M.Map T.Text [T.Text]
-    , vocabularyCategorizedSumti :: M.Map T.Text [T.Text]
-    } --TODO: write function to validate vocabulary
-    --TODO: replace functions with map
-
-getVocabularySelbri :: Vocabulary -> T.Text -> [T.Text]
-getVocabularySelbri vocabulary key = M.findWithDefault [] key $ vocabularyCategorizedSelbri vocabulary
-
-getVocabularySumti :: Vocabulary -> T.Text -> [T.Text]
-getVocabularySumti vocabulary key = M.findWithDefault [] key $ vocabularyCategorizedSumti vocabulary
-
-data WordList = WordList
-    { gismuList :: [Gismu]
-    , cmavoList :: [Cmavo]
-    , cmevlaList :: [T.Text]
-    } deriving (Show)
-
+-- Dictionary
 data Dictionary = Dictionary
     { dictGismu :: M.Map T.Text Gismu
     , dictCmavo :: M.Map T.Text Cmavo
@@ -37,6 +18,8 @@ data Gismu = Gismu
     , gismuEnglishDefinition :: T.Text
     , gismuEnglishNotes :: T.Text
     , gismuConfer :: [T.Text]
+    , gismuTeachingCode :: T.Text
+    , gismuOldFrequencyCount :: Int
     } deriving (Show)
 
 data Cmavo = Cmavo
@@ -54,38 +37,40 @@ instance Eq Gismu where
 instance Eq Cmavo where
     x == y = (cmavoText x) == (cmavoText y)
 
-buildVocabulary :: Dictionary -> [T.Text] -> [T.Text] -> [T.Text] -> [(T.Text, [T.Text])] -> [(T.Text, [T.Text])] -> Vocabulary
-buildVocabulary dictionary gismu cmavo cmevla selbri sumti = Vocabulary (WordList gismu' cmavo' cmevla) selbriMap sumtiMap where
-    gismu' = map ((dictGismu dictionary) M.!) gismu
-    cmavo' = map ((dictCmavo dictionary) M.!) cmavo
-    selbriMap = M.fromList selbri
-    sumtiMap = M.fromList sumti
-
 -- Exercises
+data ExerciseSentence = ExerciseSentence
+    { esLojbanic :: Bool
+    , esText :: T.Text
+    } deriving (Show)
+
 data Exercise = 
     MultipleChoiceExercise
-        { mceText :: T.Text
+        { mceTitle :: T.Text
+        , mceSentence :: Maybe ExerciseSentence
         , mceCorrectAlternatives :: [T.Text]
         , mceIncorrectAlternatives :: [T.Text]
         , mceFixedOrdering :: Bool
         } |
     SingleChoiceExercise
-        { sceText :: T.Text
+        { sceTitle :: T.Text
+        , sceSentence :: Maybe ExerciseSentence
         , sceCorrectAlternative :: T.Text
         , sceIncorrectAlternatives :: [T.Text]
         , sceFixedOrdering :: Bool
         } |
     MatchingExercise
-        { mteText :: T.Text
+        { mteTitle :: T.Text
+        , mteSentence :: Maybe ExerciseSentence
         , mteItems :: [(T.Text, T.Text)]
         } |
     TypingExercise
-        { tpeText :: T.Text
+        { tpeTitle :: T.Text
+        , tpeSentence :: Maybe ExerciseSentence
         , tpeValidate :: T.Text -> Bool
         }
 
 instance Show Exercise where
-    show (MultipleChoiceExercise text correctAlternatives incorrectAlternatives fixedOrdering) = "MultipleChoiceExercise { mceText = " ++ (show text) ++ ", mceCorrectAlternatives = " ++ (show correctAlternatives) ++ ", mceIncorrectAlternatives = " ++ (show incorrectAlternatives) ++ ", fixedOrdering = " ++ (show fixedOrdering) ++ "}"
-    show (SingleChoiceExercise text correctAlternative incorrectAlternatives fixedOrdering) = "SingleChoiceExercise { sceText = " ++ (show text) ++ ", sceCorrectAlternatives = " ++ (show correctAlternative) ++ ", sceIncorrectAlternatives = " ++ (show incorrectAlternatives) ++ ", fixedOrdering = " ++ (show fixedOrdering) ++ "}"
-    show (MatchingExercise text items) = "MatchingExercise { mteText = " ++ (show text) ++ ", mteItems = " ++ (show items) ++ "}"
-    show (TypingExercise text _) = "TypingExercise {tpeText = " ++ (show text) ++ "}"
+    show (MultipleChoiceExercise title sentence correctAlternatives incorrectAlternatives fixedOrdering) = "MultipleChoiceExercise { mceTitle = " ++ (show title) ++ ", mceSentence = " ++ (show sentence) ++ ", mceCorrectAlternatives = " ++ (show correctAlternatives) ++ ", mceIncorrectAlternatives = " ++ (show incorrectAlternatives) ++ ", fixedOrdering = " ++ (show fixedOrdering) ++ "}"
+    show (SingleChoiceExercise title sentence correctAlternative incorrectAlternatives fixedOrdering) = "SingleChoiceExercise { sceTitle = " ++ (show title) ++ ", sceSentence = " ++ (show sentence) ++ ", sceCorrectAlternatives = " ++ (show correctAlternative) ++ ", sceIncorrectAlternatives = " ++ (show incorrectAlternatives) ++ ", fixedOrdering = " ++ (show fixedOrdering) ++ "}"
+    show (MatchingExercise title sentence items) = "MatchingExercise { mteTitle = " ++ (show title) ++ ", mteSentence = " ++ (show sentence) ++ ", mteItems = " ++ (show items) ++ "}"
+    show (TypingExercise title sentence _) = "TypingExercise {tpeTitle = " ++ (show title) ++ "tpeSentence = " ++ (show sentence) ++ "}"

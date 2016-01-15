@@ -13,6 +13,18 @@ body {
     padding: 2em;
 }
 
+.exercise-holder .body .title {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 1em;
+    font-family: "Times New Roman";
+}
+
+.exercise-holder .body .sentence {
+    font-size: 2em;
+    font-style: italic;
+}
+
 /* Exercises */
 .exercise-holder .alternative {
     font-size: 1.2em;

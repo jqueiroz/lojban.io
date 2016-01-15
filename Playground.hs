@@ -11,6 +11,13 @@ import qualified Data.Map as M
 
 import Dictionary (loadDictionary)
 
+allGismu = do
+    dict <- loadDictionary
+    return $ map snd $ M.toList $ dictGismu dict
+
+popularGismu = filter ((>=200) . gismuFrequencyCount) <$> allGismu
+popularGismuWords = map gismuText <$> popularGismu
+
 loadGismuFromText :: Dictionary -> T.Text -> [Gismu]
 loadGismuFromText dict t = catMaybes $ map lookup words where
     gismu = dictGismu dict

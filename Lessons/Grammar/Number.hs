@@ -1,5 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
-module Number where
+module Lessons.Grammar.Number where
 
 import Text.Read (readMaybe)
 import Control.Applicative ((<$>), (<*>), liftA)
@@ -35,17 +35,9 @@ lojbanToDigit _ = Nothing
 numberToSimpleLojban :: Integer -> T.Text
 numberToSimpleLojban = T.concat . map digitToLojban . show
 
-extract :: [Maybe a] -> Maybe [a]
-extract [] = Just []
-extract (Nothing:_) = Nothing
-extract ((Just x):xs) =
-    case extract xs of
-        Nothing -> Nothing
-        Just zs -> Just (x:zs)
-
 lojbanToNumber :: T.Text -> Maybe Integer
 lojbanToNumber t =
-    case extract subnumbers of
+    case sequence subnumbers of
         Just subnumbers' -> readMaybe $ T.unpack $ T.concat subnumbers'
         Nothing -> Nothing
     where subnumbers = map (liftA $ T.justifyRight 3 '0') $ map simpleLojbanToNumberText $ T.splitOn "ki'o" t

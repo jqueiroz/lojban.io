@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 module Dictionary where
 
-import Core (Gismu(..), Cmavo(..), Dictionary(..))
+import Core
 import Util (subfield)
 import Control.Applicative ((<$>), (<*>))
 import qualified Data.Text as T
@@ -19,11 +19,12 @@ englishSumtiPlacesBase = M.fromList
 
 loadDictionary :: IO Dictionary
 loadDictionary = do
-    gismu <- loadGismuFromFile
     cmavo <- loadCmavoFromFile
-    let gismu' = map (\g -> (gismuText g, g)) gismu
-    let cmavo' = map (\c -> (cmavoText c, c)) cmavo
-    return $ Dictionary (M.fromList gismu') (M.fromList cmavo')
+    let cmavoMap = M.fromList $ map (\c -> (cmavoText c, c)) cmavo
+    let isReallyGismu gismu = M.lookup (gismuText gismu) cmavoMap == Nothing
+    gismu <- filter isReallyGismu <$> loadGismuFromFile
+    let gismuMap = M.fromList $ map (\g -> (gismuText g, g)) gismu
+    return $ Dictionary gismuMap cmavoMap
 
 loadGismuFromLine :: T.Text -> Gismu
 loadGismuFromLine line =
@@ -34,14 +35,16 @@ loadGismuFromLine line =
         englishSumtiPlaces = M.findWithDefault [] text englishSumtiPlacesBase
         englishKeyword1 = subfield 20 41 line
         englishKeyword2 = T.replace "'" "" $ subfield 41 62 line
-        englishDefinition = subfield 62 159 line
-        englishFullNotes = T.strip $ T.drop 169 line
+        englishDefinition = subfield 62 158 line
+        teachingCode = subfield 159 161 line
+        oldFrequencyCount = (read . T.unpack $ subfield 161 165 line) :: Int
+        englishFullNotes = T.strip $ T.drop 165 line
         (englishNotes, confer) = parseNotes englishFullNotes
-    in Gismu text (filter (/=T.empty) [rafsi1, rafsi2, rafsi3]) englishSumtiPlaces (filter (/=T.empty) [englishKeyword1, englishKeyword2]) englishDefinition englishNotes confer
+    in Gismu text (filter (/=T.empty) [rafsi1, rafsi2, rafsi3]) englishSumtiPlaces (filter (/=T.empty) [englishKeyword1, englishKeyword2]) englishDefinition englishNotes confer teachingCode oldFrequencyCount
 loadGismuFromText :: T.Text -> [Gismu]
 loadGismuFromText = fmap loadGismuFromLine . tail . T.lines
 loadGismuFromFile :: IO [Gismu]
-loadGismuFromFile = loadGismuFromText <$> TIO.readFile "/usr/share/lojban/gismu.txt"
+loadGismuFromFile = loadGismuFromText <$> TIO.readFile "resources/gismu.txt"
 
 loadCmavoFromLine :: T.Text -> Cmavo
 loadCmavoFromLine line =
@@ -55,7 +58,7 @@ loadCmavoFromLine line =
 loadCmavoFromText :: T.Text -> [Cmavo]
 loadCmavoFromText = fmap loadCmavoFromLine . tail . T.lines
 loadCmavoFromFile :: IO [Cmavo]
-loadCmavoFromFile = loadCmavoFromText <$> TIO.readFile "/usr/share/lojban/cmavo.txt"
+loadCmavoFromFile = loadCmavoFromText <$> TIO.readFile "resources/cmavo.txt"
 
 parseNotes :: T.Text -> (T.Text, [T.Text])
 parseNotes englishFullNotes =

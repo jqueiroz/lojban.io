@@ -12,31 +12,35 @@ generateGismuMeaningExercise :: [Gismu] -> StdGen -> Exercise
 generateGismuMeaningExercise gismuList = combineFunctions [(4, f1), (1, f2), (7, f3), (3, f4)] where
         -- Exercise: match gismu with keyword
         f1 :: StdGen -> Exercise
-        f1 r0 = MatchingExercise text items where
+        f1 r0 = MatchingExercise title sentence items where
             (chosenGismu, _) = chooseItemsUniformly r0 3 $ gismuList
             item gismu = (gismuText gismu, gismuEnglishKeywords gismu !! 0)
-            text = "Match gismu with keyword"
+            title = "Match gismu with keyword"
+            sentence = Nothing
             items = map item chosenGismu
         -- Exercise: match gismu with full definition
         f2 :: StdGen -> Exercise
-        f2 r0 = MatchingExercise text items where
+        f2 r0 = MatchingExercise title sentence items where
             (chosenGismu, _) = chooseItemsUniformly r0 3 $ gismuList
             item gismu = (gismuText gismu, gismuEnglishDefinition gismu)
-            text = "Match gismu with definition"
+            title = "Match gismu with definition"
+            sentence = Nothing
             items = map item chosenGismu
         -- Exercise: choose the correct keyword for a gismu
         f3 :: StdGen -> Exercise
-        f3 r0 = SingleChoiceExercise text correctAlternative incorrectAlternatives False where
+        f3 r0 = SingleChoiceExercise title sentence correctAlternative incorrectAlternatives False where
             (chosenGismu, _) = chooseItemsUniformly r0 4 $ gismuList
-            text = "Select keyword for **" `T.append` (gismuText $ head chosenGismu) `T.append` "**"
+            title = "Select keyword for \"" `T.append` (gismuText $ head chosenGismu) `T.append` "\""
+            sentence = Nothing
             alternative gismu = gismuEnglishKeywords gismu !! 0
             correctAlternative = alternative $ head chosenGismu
             incorrectAlternatives = map alternative $ tail chosenGismu
         -- Exercise: choose the correct definition for a gismu
         f4 :: StdGen -> Exercise
-        f4 r0 = SingleChoiceExercise text correctAlternative incorrectAlternatives False where
+        f4 r0 = SingleChoiceExercise title sentence correctAlternative incorrectAlternatives False where
             (chosenGismu, _) = chooseItemsUniformly r0 4 $ gismuList
-            text = "Select definition for **" `T.append` (gismuText $ head chosenGismu) `T.append` "**"
+            title = "Select definition for \"" `T.append` (gismuText $ head chosenGismu) `T.append` "\""
+            sentence = Nothing
             alternative gismu = gismuEnglishDefinition gismu
             correctAlternative = alternative $ head chosenGismu
             incorrectAlternatives = map alternative $ tail chosenGismu
@@ -47,37 +51,41 @@ generateGismuMeaningExercise gismuList = combineFunctions [(4, f1), (1, f2), (7,
 generateBasicGismuPlacesExercise :: [Gismu] -> StdGen -> Exercise
 generateBasicGismuPlacesExercise gismuList = combineFunctionsUniformly [f1, f2] where
     f1 :: StdGen -> Exercise
-    f1 r0 = MatchingExercise text items where
+    f1 r0 = MatchingExercise title sentence items where
         (chosenGismu, _) = chooseItemUniformly r0 . filter ((>=3) . length . gismuEnglishPlaces) $ gismuList
         placeTags = map T.pack . map (\n -> 'x' : show n) $ [1..]
         placeKeywords = gismuEnglishPlaces chosenGismu
-        text = "Identify place structure of **" `T.append` (gismuText chosenGismu) `T.append` "**"
+        title = "Identify place structure of \"" `T.append` (gismuText chosenGismu) `T.append` "\""
+        sentence = Nothing
         items = zip placeTags placeKeywords
     f2 :: StdGen -> Exercise
-    f2 r0 = SingleChoiceExercise text (displayPlaceStructure correctAlternative) (map displayPlaceStructure incorrectAlternatives) False where
+    f2 r0 = SingleChoiceExercise title sentence (displayPlaceStructure correctAlternative) (map displayPlaceStructure incorrectAlternatives) False where
         (chosenGismu, r1) = chooseItemUniformly r0 . filter ((>=3) . length . gismuEnglishPlaces) $ gismuList
         correctAlternative = gismuEnglishPlaces chosenGismu
         (incorrectAlternatives, _) = reorderSumtiPlaces correctAlternative r0
-        text = "Select place structure of **" `T.append` (gismuText chosenGismu) `T.append` "**"
+        title = "Select place structure of \"" `T.append` (gismuText chosenGismu) `T.append` "\""
+        sentence = Nothing
 
 generateAdvancedGismuPlacesExercise :: [Gismu] -> StdGen -> Exercise
 generateAdvancedGismuPlacesExercise gismuList = combineFunctionsUniformly [f1, f2] where
     f1 :: StdGen -> Exercise
-    f1 r0 = MatchingExercise text items where
+    f1 r0 = MatchingExercise title sentence items where
         (chosenGismu, r1) = chooseItemUniformly r0 . filter ((>=3) . length . gismuEnglishPlaces) $ gismuList
         placeGismu = map ((`T.append` (gismuText chosenGismu)) . (`T.append` " ") . displayPlacePrefix) [1..]
         placeKeywords = take 5 $ gismuEnglishPlaces chosenGismu
-        text = "Identify the place structure of **" `T.append` (gismuText chosenGismu) `T.append` "**"
+        title = "Identify the place structure of \"" `T.append` (gismuText chosenGismu) `T.append` "\""
+        sentence = Nothing
         items = zip placeGismu placeKeywords
     f2 :: StdGen -> Exercise
-    f2 r0 = SingleChoiceExercise text (snd correctAlternative) (map snd incorrectAlternatives) False where
+    f2 r0 = SingleChoiceExercise title sentence (snd correctAlternative) (map snd incorrectAlternatives) False where
         (chosenGismu, r1) = chooseItemUniformly r0 . filter ((>=3) . length . gismuEnglishPlaces) $ gismuList
         placeGismu = map ((`T.append` (gismuText chosenGismu)) . (`T.append` " ") . displayPlacePrefix) [1..]
         placeKeywords = take 5 $ gismuEnglishPlaces chosenGismu
         allAlternatives = zip placeGismu placeKeywords
         (correctAlternative, _) = chooseItemUniformly r1 $ allAlternatives
         incorrectAlternatives = filter (/= correctAlternative) allAlternatives
-        text = "Select keyword for **" `T.append` (fst correctAlternative)
+        title = "Select keyword for \"" `T.append` (fst correctAlternative) `T.append` "\""
+        senttence = Nothing
 
 reorderSumtiPlaces :: [T.Text] -> StdGen -> ([[T.Text]], StdGen)
 reorderSumtiPlaces [x1, x2, x3] r0 = (l, r0) where

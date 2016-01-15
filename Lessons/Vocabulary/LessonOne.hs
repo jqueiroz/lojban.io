@@ -16,7 +16,7 @@ import qualified Data.Map as M
 vocabulary11 :: Dictionary -> Vocabulary
 vocabulary11 dictionary = buildVocabulary dictionary
     -- Gismu
-    ["tavla", "dunda", "klama", "prenu", "melbi", "sutra", "zdani", "mlatu", "gerku", "pelxu", "nelci"]
+    ["tavla", "dunda", "klama", "prenu", "melbi", "sutra", "zdani", "mlatu", "gerku", "pelxu", "nelci", "citka", "catlu", "djica", "djuno", "drata", "kumfa", "mutce", "cusku", "troci", "viska", "xamgu", "gleki"]
     -- Cmavo
     ["zo'e", "mi", "do", "ti"]
     -- Cmevla

@@ -12,7 +12,7 @@ import Data.ByteString.Lazy as BS
 import qualified Data.Map as M
 import qualified Data.Aeson as A
 import qualified Data.Text as T
-import qualified Lessons.LessonOne as LO
+import qualified Lessons.Grammar.Lesson as GrammarLesson
 import System.Random (newStdGen, mkStdGen)
 import qualified Text.Blaze as B
 import qualified Text.Blaze.Html4.Strict as H
@@ -69,7 +69,7 @@ handleHome dictionary = ok $ toResponse $
 
 handleExercises :: Dictionary -> ServerPart Response
 handleExercises dictionary = do
-    let lesson = LO.lesson11 dictionary
+    let lesson = GrammarLesson.lesson2 dictionary
     gen <- liftIO $ newStdGen
     path $ \n -> let exercise = lesson (mkStdGen n) in msum
         [ dir "get" $ do

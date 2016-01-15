@@ -69,7 +69,7 @@ var createExercisesManager = function(holder) {
 
     var nextExercise = function() {
         exercise_id = Math.floor(Math.random()*1000);
-        //exercise_id = 774;
+        //exercise_id = 485;
         show();
     };
 
@@ -83,9 +83,6 @@ var createExercisesManager = function(holder) {
         });
     };
     // UI
-    var formatText = function(text) {
-        return text;
-    }
     var displayFeedbackFooter = function(correct) {
         keyMap.clear();
         footer.empty();
@@ -114,9 +111,16 @@ var createExercisesManager = function(holder) {
         // Body
         body.empty();
         if (data.type === 'single-choice') {
-            // Question
-            var text = $("<h3/>").text(formatText(data.text));
-            body.append(text);
+            // Title
+            var title = $("<div/>").addClass("title").html(data.title);
+            body.append(title);
+            // Sentence
+            if (data.sentence !== null) {
+                var sentence = $("<div/>").addClass("sentence").html(data.sentence.text);
+                body.append(sentence);
+            }
+            // Linebreak
+            body.append("<br/><br/>");
             // Alternatives
             var radioGroup = $("<div/>").addClass("funkyradio");
             body.append(radioGroup);
@@ -230,10 +234,16 @@ var createExercisesManager = function(holder) {
                 keyMap.number(i+1, selectRightItem(i));
             btnCheck.click(send);
             keyMap.enter(send);
-            // Text
-            var text = $("<h3/>").text(formatText(data.text));
-            body.append(text);
-            body.append("<br/>");
+            // Title
+            var title = $("<div/>").addClass("title").html(data.title);
+            body.append(title);
+            // Sentence
+            if (data.sentence !== null) {
+                var sentence = $("<div/>").addClass("sentence").html(data.sentence.text);
+                body.append(sentence);
+            }
+            // Linebreak
+            body.append("<br/><br/>");
             // Left items
             var left = $("<div/>").addClass("left").addClass("list-group").addClass("list-group-horizontal");
             body.append(left);
