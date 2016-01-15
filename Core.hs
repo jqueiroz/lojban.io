@@ -20,6 +20,7 @@ data Gismu = Gismu
     , gismuConfer :: [T.Text]
     , gismuTeachingCode :: T.Text
     , gismuOldFrequencyCount :: Int
+    , gismuIRCFrequencyCount :: Int
     } deriving (Show)
 
 data Cmavo = Cmavo
@@ -29,6 +30,7 @@ data Cmavo = Cmavo
     , cmavoEnglishDefinition :: T.Text
     , cmavoEnglishNotes :: T.Text
     , cmavoEnglishConfer :: [T.Text]
+    , cmavoIRCFrequencyCount :: Int
     } deriving (Show)
 
 instance Eq Gismu where
