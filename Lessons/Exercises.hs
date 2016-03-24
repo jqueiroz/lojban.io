@@ -51,14 +51,14 @@ generateBasicGismuPlacesExercise gismuList = combineFunctionsUniformly [f1, f2] 
         (chosenGismu, _) = chooseItemUniformly r0 . filter ((>=3) . length . gismuEnglishPlaces) $ gismuList
         placeTags = map T.pack . map (\n -> 'x' : show n) $ [1..]
         placeKeywords = gismuEnglishPlaces chosenGismu
-        text = "Identify place structure of **" `T.append` (gismuText chosenGismu) `T.append` "**"
+        text = "Identify the place structure of **" `T.append` (gismuText chosenGismu) `T.append` "**"
         items = zip placeTags placeKeywords
     f2 :: StdGen -> Exercise
     f2 r0 = SingleChoiceExercise text (displayPlaceStructure correctAlternative) (map displayPlaceStructure incorrectAlternatives) False where
         (chosenGismu, r1) = chooseItemUniformly r0 . filter ((>=3) . length . gismuEnglishPlaces) $ gismuList
         correctAlternative = gismuEnglishPlaces chosenGismu
         (incorrectAlternatives, _) = reorderSumtiPlaces correctAlternative r0
-        text = "Select place structure of **" `T.append` (gismuText chosenGismu) `T.append` "**"
+        text = "Select the place structure of **" `T.append` (gismuText chosenGismu) `T.append` "**"
 
 generateAdvancedGismuPlacesExercise :: [Gismu] -> StdGen -> Exercise
 generateAdvancedGismuPlacesExercise gismuList = combineFunctionsUniformly [f1, f2] where
@@ -77,7 +77,7 @@ generateAdvancedGismuPlacesExercise gismuList = combineFunctionsUniformly [f1, f
         allAlternatives = zip placeGismu placeKeywords
         (correctAlternative, _) = chooseItemUniformly r1 $ allAlternatives
         incorrectAlternatives = filter (/= correctAlternative) allAlternatives
-        text = "Select keyword for **" `T.append` (fst correctAlternative)
+        text = "Select the keyword for **" `T.append` (fst correctAlternative)
 
 reorderSumtiPlaces :: [T.Text] -> StdGen -> ([[T.Text]], StdGen)
 reorderSumtiPlaces [x1, x2, x3] r0 = (l, r0) where
