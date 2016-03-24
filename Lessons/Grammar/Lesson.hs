@@ -94,10 +94,10 @@ basicVocabulary' dictionary = buildVocabulary dictionary
 lesson1 :: Dictionary -> StdGen -> Exercise
 lesson1 dictionary =
     combineFunctions
-        [ (15, generateBridiJufraExercise vocabulary displayTrivialBridi)
+        [ (20, generateGrammaticalClassExercise vocabulary)
+        , (15, generateBridiJufraExercise vocabulary displayTrivialBridi)
         , (20, generateSelbriIdentificationExercise vocabulary displayTrivialBridi)
         , (30, generateEasyGismuPlacesExercise dictionary vocabulary displayTrivialBridi)
-        , (20, generateGrammaticalClassExercise vocabulary)
         ]
     where
         vocabulary = trivialVocabulary dictionary
@@ -105,10 +105,10 @@ lesson1 dictionary =
 lesson2 :: Dictionary -> StdGen -> Exercise
 lesson2 dictionary =
     combineFunctions
-        [ (15, generateBridiJufraExercise vocabulary displaySimpleBridi)
+        [ (20, generateGrammaticalClassExercise vocabulary)
+        , (15, generateBridiJufraExercise vocabulary displaySimpleBridi)
         , (20, generateSelbriIdentificationExercise vocabulary displaySimpleBridi)
         , (30, generateEasyGismuPlacesExercise dictionary vocabulary displaySimpleBridi)
-        , (20, generateGrammaticalClassExercise vocabulary)
         ]
     where
         vocabulary = basicVocabulary dictionary
