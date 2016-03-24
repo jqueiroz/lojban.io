@@ -52,9 +52,7 @@ englishSentences "only jufra" =
     , "Almost, but not quite, entirely unlike tea."
     ]
 englishSentences "bridi and jufra" = 
-    [ "Studies." --not according to the wave lessons, but are they correct?
-    , "Walks." --not according to the wave lessons, but are they correct?
-    , "I would like to see you."
+    [ "I would like to see you."
     , "Most people don't like him."
     , "They don't care about us."
     , "Be happy!"
