@@ -12,6 +12,20 @@ import Control.Arrow (first)
 import qualified Data.Text as T
 import qualified Data.Map as M
 
+-- Exercise: tell grammatical class of a word
+generateGrammaticalClassExercise :: Vocabulary -> StdGen -> Exercise
+generateGrammaticalClassExercise vocabulary r0 = SingleChoiceExercise title sentence correctAlternative incorrectAlternatives True where
+    wordList = vocabularyWords vocabulary
+    words "gismu" = map gismuText $ gismuList wordList
+    words "cmavo" = map cmavoText $ cmavoList wordList
+    words "cmevla" = cmevlaList wordList
+    allAlternatives = filter (not . null . words) ["gismu", "cmavo", "cmevla"]
+    (correctAlternative, r1) = chooseItemUniformly r0 allAlternatives
+    incorrectAlternatives = filter (/= correctAlternative) allAlternatives
+    (word, _) = chooseItemUniformly r1 $ words correctAlternative
+    title = "Classify <b>" `T.append` word `T.append` "</b>"
+    sentence = Nothing
+
 -- Exercise: jufra vs bridi
 generateBridiJufraExercise :: Vocabulary -> SimpleBridiDisplayer -> StdGen -> Exercise
 generateBridiJufraExercise vocabulary displayBridi = combineFunctionsUniformly [generateEnglishBridiJufraExercise, generateLojbanBridiJufraExercise vocabulary displayBridi]
@@ -127,20 +141,6 @@ generateEasyGismuPlacesExercise dictionary vocabulary displayBridi = combineFunc
             (sentenceText, _) = displayBridi bridi r2
             sentence = Just . ExerciseSentence True $ sentenceText
         in SingleChoiceExercise title sentence correctAlternative incorrectAlternatives False
-
--- Exercise: tell grammatical class of a word
-generateGrammaticalClassExercise :: Vocabulary -> StdGen -> Exercise
-generateGrammaticalClassExercise vocabulary r0 = SingleChoiceExercise title sentence correctAlternative incorrectAlternatives True where
-    wordList = vocabularyWords vocabulary
-    words "gismu" = map gismuText $ gismuList wordList
-    words "cmavo" = map cmavoText $ cmavoList wordList
-    words "cmevla" = cmevlaList wordList
-    allAlternatives = filter (not . null . words) ["gismu", "cmavo", "cmevla"]
-    (correctAlternative, r1) = chooseItemUniformly r0 allAlternatives
-    incorrectAlternatives = filter (/= correctAlternative) allAlternatives
-    (word, _) = chooseItemUniformly r1 $ words correctAlternative
-    title = "Classify <b>" `T.append` word `T.append` "</b>"
-    sentence = Nothing
 
 -- Exercise: convert numbers to and from lojban
 generateBasicNumberExercise :: StdGen -> Exercise
