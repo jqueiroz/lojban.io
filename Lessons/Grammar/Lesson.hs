@@ -13,18 +13,35 @@ import qualified Data.Map as M
 import Control.Applicative ((<$>), (<*>))
 import Dictionary (loadDictionary)
 
--- Sentence displayers
-displayTrivialBridi :: SimpleBridi -> StdGen  -> (T.Text, StdGen)
-displayTrivialBridi (SimpleBridi selbri sumti) r0 = (T.unwords . replace "" "zo'e" . stripRight "" $ sumti' ++ [selbri] ++ sumti'', r0) where
-    (sumti', sumti'') = splitAt 1 sumti
+-------- Sentence displayers
+buildSentenceDisplayer :: (SimpleBridi -> StdGen -> ([T.Text], StdGen)) -> (SimpleBridi -> StdGen -> (T.Text, StdGen))
+buildSentenceDisplayer sentenceDisplayer (SimpleBridi selbri sumti) r0 = (T.unwords $ replace "" "zo'e" sentence, r1) where
+    (sentence, r1) = sentenceDisplayer
 
+-- Ellisis occurs in the first place and in the last places
+-- All other missing places are filled with "zo'e"
 displaySimpleBridi :: SimpleBridi -> StdGen -> (T.Text, StdGen)
-displaySimpleBridi (SimpleBridi selbri sumti) r0 = (T.unwords $ sumtiBefore ++ [selbri] ++ sumtiAfter, r1) where
-    sumti' = replace "" "zo'e" . stripRight "" $ sumti
-    (beforeCount, r1) = chooseItemUniformly r0 [1..length sumti']
-    (sumtiBefore, sumtiAfter) = splitAt beforeCount sumti'
+displaySimpleBridi = buildSentenceDisplayer $ \(SimpleBridi selbri sumti) r0 -> (sentence, r0)
+    where
+        (sumtiHead, sumtiTail) = splitAt 1 sumti
+        sentence = (if sumtiHead == [""] then [] else sumtiHead) ++ [selbri] ++ sumtiTail)
 
--- Vocabulary
+-- A random number of places is displayed before the selbri
+-- (Except if the first place is missing, in which case this function behaves as displaySimpleBridi)
+displayVariantBridi :: SimpleBridi -> StdGen -> (T.Text, StdGen)
+displayVariantBridi = buildSentenceDisplayer $ \(SimpleBridi selbri sumti) r0 ->
+    if sumtiHead == [""] then
+        (selbri : sumtiTail, r0)
+    else
+        let
+            (beforeCount, r1) = chooseItemUniformly r0 [1..length sumti]
+            (sumtiBefore, sumtiAfter) = splitAt beforeCount sumti
+        in
+            (sumtiBefore ++ [selbri] ++ sumtiAfter, r1)
+    where
+        (sumtiHead, sumtiTail) = splitAt 1 sumti
+
+-------- Vocabulary
 trivialVocabulary :: Dictionary -> Vocabulary
 trivialVocabulary dictionary = buildVocabulary dictionary
     -- Gismu
@@ -89,26 +106,26 @@ basicVocabulary' dictionary = buildVocabulary dictionary
         ("pointable", ["ti", "ta", "tu"])
     ]
 
--- Lessons
--- TODO: variant bridi structure
+-------- Lessons
 lesson1 :: Dictionary -> StdGen -> Exercise
 lesson1 dictionary =
-    combineFunctions
-        [ (20, generateGrammaticalClassExercise vocabulary)
-        , (15, generateBridiJufraExercise vocabulary displayTrivialBridi)
-        , (20, generateSelbriIdentificationExercise vocabulary displayTrivialBridi)
-        , (30, generateEasyGismuPlacesExercise dictionary vocabulary displayTrivialBridi)
-        ]
-    where
-        vocabulary = trivialVocabulary dictionary
-
-lesson2 :: Dictionary -> StdGen -> Exercise
-lesson2 dictionary =
     combineFunctions
         [ (20, generateGrammaticalClassExercise vocabulary)
         , (15, generateBridiJufraExercise vocabulary displaySimpleBridi)
         , (20, generateSelbriIdentificationExercise vocabulary displaySimpleBridi)
         , (30, generateEasyGismuPlacesExercise dictionary vocabulary displaySimpleBridi)
+        ]
+    where
+        vocabulary = trivialVocabulary dictionary
+
+-- TODO: se, te, ...
+lesson2 :: Dictionary -> StdGen -> Exercise
+lesson2 dictionary =
+    combineFunctions
+        [ (20, generateGrammaticalClassExercise vocabulary)
+        , (15, generateBridiJufraExercise vocabulary displayVariantBridi)
+        , (20, generateSelbriIdentificationExercise vocabulary displayVariantBridi)
+        , (30, generateEasyGismuPlacesExercise dictionary vocabulary displayVariantBridi)
         ]
     where
         vocabulary = basicVocabulary dictionary
