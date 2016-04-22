@@ -1,0 +1,29 @@
+name:                lojto
+version:             0.1.0.0
+synopsis:            Lojban learning tool
+description:         Please see README.md
+homepage:            None
+license:             None
+license-file:        LICENSE
+author:              Jonathan Queiroz
+maintainer:          dev@johnjq.com
+copyright:           2016 Jonathan Queiroz
+category:            Web
+build-type:          Simple
+cabal-version:       >=1.10
+
+executable lojto
+  hs-source-dirs:      src
+  main-is:             Main.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+                     , text
+                     , bytestring
+                     , containers
+                     , transformers
+                     , aeson
+                     , random
+                     , random-shuffle
+                     , blaze-html
+                     , blaze-markup
+                     , happstack-server
