@@ -98,6 +98,9 @@ validateAnswer (MatchingExercise title sentence items) s = do
         [ ("correct", A.Bool $ meaOrderedAlternatives answer == map snd items)
         ]
 
-{-validateAnswer (TypingExercise text validate) s = do-}
-    {-answer <- A.decode s-}
-    {-return $ validate (teaText answer)-}
+validateAnswer (TypingExercise text sentence validate cannonicalAnswer) s = do
+    answer <- A.decode s
+    return $ A.object
+        [ ("correct", A.Bool $ validate (teaText answer))
+        , ("cannonicalAnswer", A.String $ cannonicalAnswer)
+        ]

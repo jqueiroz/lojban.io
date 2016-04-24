@@ -3,19 +3,16 @@ module Lessons.Grammar.Lesson where
 
 import Core
 import Lessons.Grammar.Vocabulary
-import Lessons.Grammar.Sentences (displaySimpleBridi, displayVariantBridi)
+import Lessons.Grammar.Sentences (displaySimpleBridi, displayVariantBridi, basicSentenceCannonicalizer)
 import Lessons.Grammar.Exercises
 import Util (combineFunctions, combineFunctionsUniformly)
 import System.Random (StdGen)
-
-import Control.Applicative ((<$>), (<*>))
-import Dictionary (loadDictionary)
 
 -------- Vocabulary
 trivialVocabulary :: Dictionary -> Vocabulary
 trivialVocabulary dictionary = buildVocabulary dictionary
     -- Gismu
-    ["tavla", "dunda", "prenu", "pendo", "citka", "plise", "melbi", "zdani", "mlatu", "gerku", "nelci"]
+    ["tavla", "dunda", "prenu", "pendo", "melbi", "mlatu", "gerku", "nelci"]
     -- Cmavo
     ["zo'e", "mi", "do", "ti"]
     -- Cmevla
@@ -78,6 +75,23 @@ basicVocabulary' dictionary = buildVocabulary dictionary
         ("pointable", ["ti", "ta", "tu"])
     ]
 
+-------- Translations
+translations1 :: [Translation]
+translations1 =
+    [ ("I have a house.", "zdani mi")
+    , ("You are my friend.", "do pendo mi")
+    , ("You gave this to me.", "do dunda ti mi")
+    , ("I gave this to you.", "mi dunda ti do")
+    ]
+
+translations2 :: [Translation]
+translations2 = translations1 ++
+    [ ("The house is yellow.", "lo zdani ku pelxu")
+    , ("A person is talking to a dog.", "lo prenu ku tavla lo gerku ku")
+    , ("The dog likes the cat.", "lo gerku ku nelci lo mlatu ku")
+    , ("The house is beautiful!", "lo zdani ku melbi")
+    ]
+
 -------- Lessons
 lesson1 :: Dictionary -> StdGen -> Exercise
 lesson1 dictionary =
@@ -86,6 +100,7 @@ lesson1 dictionary =
         , (15, generateBridiJufraExercise vocabulary displaySimpleBridi)
         , (20, generateSelbriIdentificationExercise vocabulary displaySimpleBridi)
         , (30, generateEasyGismuPlacesExercise dictionary vocabulary displaySimpleBridi)
+        , (40, generateTranslationExercise basicSentenceCannonicalizer translations1)
         ]
     where
         vocabulary = trivialVocabulary dictionary
@@ -98,6 +113,7 @@ lesson2 dictionary =
         , (15, generateBridiJufraExercise vocabulary displayVariantBridi)
         , (20, generateSelbriIdentificationExercise vocabulary displayVariantBridi)
         , (30, generateEasyGismuPlacesExercise dictionary vocabulary displayVariantBridi)
+        , (50, generateTranslationExercise basicSentenceCannonicalizer translations2)
         ]
     where
         vocabulary = basicVocabulary dictionary

@@ -3,15 +3,35 @@ module Lessons.Grammar.Sentences where
 
 import Core
 import Lessons.Grammar.Vocabulary
-import Util (replace, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly)
-import System.Random (StdGen)
+import Util (replace, stripRight, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly)
+import System.Random (StdGen, mkStdGen)
 import qualified Data.Text as T
 import qualified Data.Map as M
+import qualified Language.Lojban.Parser.ZasniGerna as ZG
 
 data SimpleBridi = SimpleBridi
     { simpleBridiSelbri :: T.Text
     , simpleBridiSumti :: [T.Text]
     } deriving (Show)
+
+swapSimpleBridiArguments "se" (SimpleBridi selbri (a:b:cs)) = SimpleBridi selbri (b:a:cs)
+swapSimpleBridiArguments "se" (SimpleBridi selbri (a:[])) = SimpleBridi selbri ("":[a])
+swapSimpleBridiArguments "se" (SimpleBridi selbri []) = SimpleBridi selbri []
+swapSimpleBridiArguments "te" (SimpleBridi selbri (a:b:c:ds)) = SimpleBridi selbri (c:b:a:ds)
+swapSimpleBridiArguments "te" (SimpleBridi selbri (a:b:[])) = SimpleBridi selbri ("":b:[a])
+swapSimpleBridiArguments "te" (SimpleBridi selbri (a:[])) = SimpleBridi selbri ("":"":[a])
+swapSimpleBridiArguments "te" (SimpleBridi selbri []) = SimpleBridi selbri []
+swapSimpleBridiArguments "ve" (SimpleBridi selbri (a:b:c:d:es)) = SimpleBridi selbri (d:b:c:a:es)
+swapSimpleBridiArguments "ve" (SimpleBridi selbri (a:b:c:[])) = SimpleBridi selbri ("":b:c:[a])
+swapSimpleBridiArguments "ve" (SimpleBridi selbri (a:b:[])) = SimpleBridi selbri ("":b:"":[a])
+swapSimpleBridiArguments "ve" (SimpleBridi selbri (a:[])) = SimpleBridi selbri ("":"":"":[a])
+swapSimpleBridiArguments "ve" (SimpleBridi selbri []) = SimpleBridi selbri []
+swapSimpleBridiArguments "xe" (SimpleBridi selbri (a:b:c:d:e:fs)) = SimpleBridi selbri (e:b:c:d:a:fs)
+swapSimpleBridiArguments "xe" (SimpleBridi selbri (a:b:c:d:[])) = SimpleBridi selbri ("":b:c:d:[a])
+swapSimpleBridiArguments "xe" (SimpleBridi selbri (a:b:c:[])) = SimpleBridi selbri ("":b:c:"":[a])
+swapSimpleBridiArguments "xe" (SimpleBridi selbri (a:b:[])) = SimpleBridi selbri ("":b:"":"":[a])
+swapSimpleBridiArguments "xe" (SimpleBridi selbri (a:[])) = SimpleBridi selbri ("":"":"":"":[a])
+swapSimpleBridiArguments "xe" (SimpleBridi selbri []) = SimpleBridi selbri []
 
 ------------------------- ------------------------ Sentence displayers
 -- TODO: other display modes (place some sumti before the selbri, introduce fa/fe/fi/fo/fu, introduce se/te/ve/..., etc.)
@@ -47,6 +67,41 @@ displayVariantBridi = buildSentenceDisplayer $ \(SimpleBridi selbri sumti) r0 ->
                 (sumtiBefore, sumtiAfter) = splitAt beforeCount sumti
             in
                 (sumtiBefore ++ [selbri] ++ sumtiAfter, r1)
+
+
+------------------------- ----------------------- Sentence cannonicalizers
+--TODO: check whether se/te/ve/xe are left-associative or right-associative
+
+cannonicalizeArgument :: ZG.Text -> Either String T.Text
+cannonicalizeArgument (ZG.LE (ZG.Init i) _ _ (ZG.BRIVLA b) _) = Right $ T.pack (i ++ " " ++ b ++ " ku")
+cannonicalizeArgument (ZG.KOhA "zo'e") = Right $ ""
+cannonicalizeArgument (ZG.KOhA k) = Right $ T.pack k
+cannonicalizeArgument _ = Left "unrecognized pattern in function cannonicalizeArgument"
+
+cannonicalizeArguments :: [ZG.Text] -> Either String [T.Text]
+cannonicalizeArguments [] = Right []
+cannonicalizeArguments (x:xs) = do
+    x' <- cannonicalizeArgument x
+    xs' <- cannonicalizeArguments xs
+    return $ x':xs'
+
+cannonicalizeText :: ZG.Text -> Either String SimpleBridi
+cannonicalizeText (ZG.BridiTail (ZG.BRIVLA selbri) (ZG.Terms sumti _)) = SimpleBridi (T.pack selbri) <$> (("":) <$> (cannonicalizeArguments sumti))
+cannonicalizeText (ZG.BridiTail (ZG.Prefix (ZG.SE se) brivla) (ZG.Terms sumti x)) = swapSimpleBridiArguments se <$> cannonicalizeText (ZG.BridiTail brivla (ZG.Terms sumti x))
+cannonicalizeText (ZG.Bridi (ZG.Terms sumti1 _) (ZG.BridiTail (ZG.BRIVLA selbri) (ZG.Terms sumti2 _))) = SimpleBridi (T.pack selbri) <$> (cannonicalizeArguments $ sumti1 ++ sumti2)
+cannonicalizeText (ZG.Bridi (ZG.Terms sumti1 _) (ZG.BRIVLA selbri)) = SimpleBridi (T.pack selbri) <$> (cannonicalizeArguments $ sumti1)
+cannonicalizeText (ZG.Bridi (ZG.Terms sumti1 x) (ZG.Prefix (ZG.SE se) bridiTail)) = swapSimpleBridiArguments se <$> cannonicalizeText (ZG.Bridi (ZG.Terms sumti1 x) bridiTail)
+cannonicalizeText (ZG.Bridi (ZG.Terms sumti1 x) (ZG.BridiTail (ZG.Prefix (ZG.SE se) bridiTail) (ZG.Terms sumti2 y))) = swapSimpleBridiArguments se <$> cannonicalizeText (ZG.Bridi (ZG.Terms sumti1 x) (ZG.BridiTail bridiTail (ZG.Terms sumti2 y)))
+cannonicalizeText (ZG.BRIVLA selbri) = Right $ SimpleBridi (T.pack selbri) []
+cannonicalizeText (ZG.Prefix (ZG.SE se) x) = swapSimpleBridiArguments se <$> cannonicalizeText x
+cannonicalizeText _ = Left "unrecognized pattern in function cannonicalizeText"
+
+type SentenceCannonicalizer = T.Text -> Either String T.Text
+basicSentenceCannonicalizer :: T.Text -> Either String T.Text
+basicSentenceCannonicalizer sentence = do
+    (_, x, _) <- ZG.parse (T.unpack sentence)
+    y <- cannonicalizeText x
+    return . fst $ displaySimpleBridi y (mkStdGen 42)
 
 ------------------------- ----------------------- Sentence generators
 generateNonbridi :: Vocabulary -> StdGen -> (T.Text, StdGen)

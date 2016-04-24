@@ -15,7 +15,7 @@ allGismu = do
     dict <- loadDictionary
     return $ map snd $ M.toList $ dictGismu dict
 
-popularGismu = filter ((>=200) . gismuIRCFrequencyCount) <$> allGismu
+popularGismu = filter ((>=200) . gismuFrequencyCount) <$> allGismu
 popularGismuWords = map gismuText <$> popularGismu
 
 loadGismuFromText :: Dictionary -> T.Text -> [Gismu]

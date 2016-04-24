@@ -12,6 +12,21 @@ import Control.Arrow (first)
 import qualified Data.Text as T
 import qualified Data.Map as M
 
+-- Exercise: translate a sentence from English to Lojban
+type Translation = (EnglishSentence, LojbanSentence)
+type EnglishSentence = T.Text
+type LojbanSentence = T.Text
+
+generateTranslationExercise :: SentenceCannonicalizer -> [Translation] -> StdGen -> Exercise
+generateTranslationExercise cannonicalizer translations r0 = TypingExercise title (Just $ ExerciseSentence True english_sentence) validate lojban_sentence where
+    ((english_sentence, lojban_sentence), r1) = chooseItemUniformly r0 translations
+    title = "Translate this sentence"
+    validate x = case cannonicalizer x of
+        Left _ -> False
+        Right x' -> case cannonicalizer lojban_sentence of
+            Left _ -> False
+            Right lojban_sentence' -> x' == lojban_sentence'
+
 -- Exercise: tell grammatical class of a word
 generateGrammaticalClassExercise :: Vocabulary -> StdGen -> Exercise
 generateGrammaticalClassExercise vocabulary r0 = SingleChoiceExercise title sentence correctAlternative incorrectAlternatives True where

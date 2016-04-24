@@ -83,13 +83,24 @@ var createExercisesManager = function(holder) {
         });
     };
     // UI
-    var displayFeedbackFooter = function(correct) {
+    var displayFeedbackFooter = function(data) {
         keyMap.clear();
         footer.empty();
-        footer.addClass(correct ? "correct" : "incorrect");
+        footer.addClass(data.correct ? "correct" : "incorrect");
+        // Contents
+        var contents = $("<div/>").addClass("contents");
+        footer.append(contents);
+        // Title
+        var title = $("<span/>").addClass("title").text(data.correct ? "You are correct" : "You made a mistake");
+        contents.append(title);
         // Message
-        var msg = $("<span/>").addClass("msg").text(correct ? "You are correct" : "You made a mistake");
-        footer.append(msg);
+        if (data.correct && data.alternativeAnswer) {
+            var alternative_answer = $("<p/>").addClass("answer").text("Alternative answer: " + data.alternativeAnswer);
+            contents.append(alternative_answer);
+        } else if (!data.correct && data.correctAnswer) {
+            var correct_answer = $("<p/>").addClass("answer").text("Correct answer: " + data.correctAnswer);
+            contents.append(correct_answer);
+        }
         // Button
         var btnContinue = $("<button/>").addClass("success").text("Continue");
         footer.append(btnContinue);
@@ -157,7 +168,7 @@ var createExercisesManager = function(holder) {
                         console.log("Failure to submit answer");
                         return;
                     }
-                    displayFeedbackFooter(response.data.correct);
+                    displayFeedbackFooter({'correct': response.data.correct});
                     radioGroup.children().each(function() {
                         var value = $(this).find("input").attr("value");
                         if (value === response.data.correctAlternative)
@@ -224,7 +235,7 @@ var createExercisesManager = function(holder) {
                 }
                 if (orderedAlternatives !== null) {
                     submit({'orderedAlternatives': orderedAlternatives}).done(function(response) {
-                        displayFeedbackFooter(response.data.correct);
+                        displayFeedbackFooter({'correct': response.data.correct});
                         //TODO: display the correct order
                     });
                 }
@@ -271,6 +282,46 @@ var createExercisesManager = function(holder) {
             }
             // Initialize
             selectLeftItem(0)();
+        } else if (data.type === "typing") {
+            // Title
+            var title = $("<div/>").addClass("title").html(data.title);
+            body.append(title);
+            // Table
+            var table = $("<div/>").addClass("table");
+            body.append(table);
+            // Sentence
+            if (data.sentence !== null) {
+                var sentence = $("<div/>").addClass("sentence").html(data.sentence.text);
+                table.append(sentence);
+            }
+            // Answer
+            var textarea = $("<textarea/>");
+            table.append(textarea);
+            textarea.focus();
+            // Submit
+            var send = function() {
+                submit({'text': textarea.val()}).done(function(response) {
+                    if (!response.success) {
+                        console.log("Failure to submit answer");
+                        return;
+                    }
+                    if (response.data.correct) {
+                        if (textarea.val() === response.data.cannonicalAnswer)
+                            displayFeedbackFooter({'correct': true});
+                        else
+                            displayFeedbackFooter({'correct': true, 'alternativeAnswer': response.data.cannonicalAnswer});
+                    } else {
+                        displayFeedbackFooter({'correct': false, 'correctAnswer': response.data.cannonicalAnswer});
+                    }
+                });
+            };
+            keyMap.enter(send);
+            textarea.keydown(function(e) {
+                if (e.keyCode == 13) {
+                    send();
+                    return false;
+                }
+            });
         }
     };
 
