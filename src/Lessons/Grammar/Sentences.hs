@@ -3,7 +3,7 @@ module Lessons.Grammar.Sentences where
 
 import Core
 import Lessons.Grammar.Vocabulary
-import Util (chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly)
+import Util (replace, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly)
 import System.Random (StdGen)
 import qualified Data.Text as T
 import qualified Data.Map as M
@@ -13,12 +13,42 @@ data SimpleBridi = SimpleBridi
     , simpleBridiSumti :: [T.Text]
     } deriving (Show)
 
-type SimpleBridiDisplayer = SimpleBridi -> StdGen -> (T.Text, StdGen)
-
+------------------------- ------------------------ Sentence displayers
 -- TODO: other display modes (place some sumti before the selbri, introduce fa/fe/fi/fo/fu, introduce se/te/ve/..., etc.)
 -- TODO: create functions that use the variant bridi structure (eg. x1 x2 selbri x3 ...), different ways of skipping (fa/fe/... vs se/te/...) according to some randomness, perhaps even unnecessarily sometimes (there should be parameters to control the preferences between fa/fe/... and se/te/... and the level of unnecessary use of fa/fe/..., variant bridi structure, etc.)
+type SimpleBridiDisplayer = SimpleBridi -> StdGen -> (T.Text, StdGen)
 
--- Sentence generators
+buildSentenceDisplayer :: (SimpleBridi -> StdGen -> ([T.Text], StdGen)) -> (SimpleBridi -> StdGen -> (T.Text, StdGen))
+buildSentenceDisplayer sentenceDisplayer simpleBridi r0 = (T.unwords $ replace "" "zo'e" sentence, r1) where
+    (sentence, r1) = sentenceDisplayer simpleBridi r0
+
+-- Ellisis occurs in the first place and in the last places
+-- All other missing places are filled with "zo'e"
+displaySimpleBridi :: SimpleBridi -> StdGen -> (T.Text, StdGen)
+displaySimpleBridi = buildSentenceDisplayer $ \(SimpleBridi selbri sumti) r0 ->
+    let
+        (sumtiHead, sumtiTail) = splitAt 1 sumti
+        sentence = (if sumtiHead == [""] then [] else sumtiHead) ++ [selbri] ++ sumtiTail
+    in
+        (sentence, r0)
+
+-- A random number of places is displayed before the selbri
+-- (Except if the first place is missing, in which case this function behaves as displaySimpleBridi)
+displayVariantBridi :: SimpleBridi -> StdGen -> (T.Text, StdGen)
+displayVariantBridi = buildSentenceDisplayer $ \(SimpleBridi selbri sumti) r0 ->
+    let
+        (sumtiHead, sumtiTail) = splitAt 1 sumti
+    in
+        if sumtiHead == [""] then
+            (selbri : sumtiTail, r0)
+        else
+            let
+                (beforeCount, r1) = chooseItemUniformly r0 [1..length sumti]
+                (sumtiBefore, sumtiAfter) = splitAt beforeCount sumti
+            in
+                (sumtiBefore ++ [selbri] ++ sumtiAfter, r1)
+
+------------------------- ----------------------- Sentence generators
 generateNonbridi :: Vocabulary -> StdGen -> (T.Text, StdGen)
 generateNonbridi vocabulary r0 = chooseItemUniformly r0 . concat . map (getVocabularySumti vocabulary) $ ["persons", "pointable", "places", "subjects"]
 
