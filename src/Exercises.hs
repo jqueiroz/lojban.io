@@ -41,7 +41,7 @@ exerciseToJSON r0 (MatchingExercise title sentence items) = A.object
     , "right_items" A..= shuffleList r0 (map snd items)
     ]
 
-exerciseToJSON r0 (TypingExercise title sentence _) = A.object
+exerciseToJSON r0 (TypingExercise title sentence _ _) = A.object
     [ "type" A..= ("typing" :: T.Text)
     , "title" A..= title
     , "sentence" A..= (exerciseSentenceToJSON sentence)
