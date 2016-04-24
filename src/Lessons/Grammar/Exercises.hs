@@ -152,7 +152,7 @@ generateNumberToTextExercise r0 =
         v = \text -> case lojbanToNumber text of
             Nothing -> False
             Just x' -> x' == x
-    in TypingExercise ("Number to text: <b>" `T.append` (T.pack $ show x) `T.append` "</b>") Nothing v
+    in TypingExercise ("Number to text: <b>" `T.append` (T.pack $ show x) `T.append` "</b>") Nothing v (numberToSimpleLojban x)
 
 generateTextToNumberExercise :: StdGen -> Exercise
 generateTextToNumberExercise r0 =
@@ -160,5 +160,5 @@ generateTextToNumberExercise r0 =
         v = \text -> case readMaybe (T.unpack text) of
             Nothing -> False
             Just x' -> x' == x
-    in TypingExercise ("Text to number: <b>" `T.append` (numberToSimpleLojban x) `T.append` "</b>") Nothing v
+    in TypingExercise ("Text to number: <b>" `T.append` (numberToSimpleLojban x) `T.append` "</b>") Nothing v (T.pack . show $ x)
 
