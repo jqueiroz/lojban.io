@@ -1,5 +1,15 @@
 {-# LANGUAGE OverloadedStrings #-}
-module Lessons.Grammar.Exercises where
+module Lessons.Grammar.Exercises
+( Translation
+, generateTranslationExercise
+, generateGrammaticalClassExercise
+, generateBridiJufraExercise
+, generateLojbanBridiJufraExercise
+, generateEnglishBridiJufraExercise
+, generateSelbriIdentificationExercise
+, generateEasyGismuPlacesExercise
+, generateBasicNumberExercise
+) where
 
 import Core
 import Lessons.Grammar.Vocabulary

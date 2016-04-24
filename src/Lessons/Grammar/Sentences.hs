@@ -1,5 +1,19 @@
 {-# LANGUAGE OverloadedStrings #-}
-module Lessons.Grammar.Sentences where
+module Lessons.Grammar.Sentences
+( SimpleBridi
+, SimpleBridiDisplayer
+, SentenceCannonicalizer
+, simpleBridiSelbri
+, simpleBridiSumti
+, displaySimpleBridi
+, displayVariantBridi
+, basicSentenceCannonicalizer
+, generateNonbridi
+, generateSimpleBridi
+, generatePropertyBridi
+, generateRelationBridi
+, generateActionBridi
+) where
 
 import Core
 import Lessons.Grammar.Vocabulary

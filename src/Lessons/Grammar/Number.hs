@@ -1,5 +1,8 @@
 {-# LANGUAGE OverloadedStrings #-}
-module Lessons.Grammar.Number where
+module Lessons.Grammar.Number
+( numberToSimpleLojban
+, lojbanToNumber
+) where
 
 import Text.Read (readMaybe)
 import Control.Applicative ((<$>), (<*>), liftA)

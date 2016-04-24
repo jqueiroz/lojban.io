@@ -1,5 +1,17 @@
 {-# LANGUAGE OverloadedStrings #-}
-module Lessons.Grammar.Vocabulary where
+module Lessons.Grammar.Vocabulary
+( Vocabulary
+, WordList
+, vocabularyWords
+, vocabularyCategorizedSumti
+, vocabularyCategorizedSelbri
+, gismuList
+, cmavoList
+, cmevlaList
+, getVocabularySelbri
+, getVocabularySumti
+, buildVocabulary
+) where
 
 import Core
 import qualified Data.Text as T

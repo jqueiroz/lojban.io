@@ -1,5 +1,8 @@
 {-# LANGUAGE OverloadedStrings #-}
-module Lessons.Grammar.Lesson where
+module Lessons.Grammar.Lesson
+( lesson1
+, lesson2
+) where
 
 import Core
 import Lessons.Grammar.Vocabulary
