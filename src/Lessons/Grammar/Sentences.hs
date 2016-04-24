@@ -121,6 +121,9 @@ basicSentenceCannonicalizer sentence = do
 generateNonbridi :: Vocabulary -> StdGen -> (T.Text, StdGen)
 generateNonbridi vocabulary r0 = chooseItemUniformly r0 . concat . map (getVocabularySumti vocabulary) $ ["persons", "pointable", "places", "subjects"]
 
+generateSimpleBridi :: Vocabulary -> StdGen -> (SimpleBridi, StdGen)
+generateSimpleBridi vocabulary = combineFunctionsUniformly [generatePropertyBridi vocabulary, generateRelationBridi vocabulary, generateActionBridi vocabulary]
+
 generatePropertyBridi :: Vocabulary -> StdGen -> (SimpleBridi, StdGen)
 generatePropertyBridi vocabulary r0 = (SimpleBridi property [object], r2) where
     (property, r1) = chooseItemUniformly r0 properties
@@ -209,6 +212,3 @@ generateActionBridi vocabulary r0 = (SimpleBridi action objects, r2) where
             in
                 ([actor, destination], r2))
         ]
-
-generateSimpleBridi :: Vocabulary -> StdGen -> (SimpleBridi, StdGen)
-generateSimpleBridi vocabulary = combineFunctionsUniformly [generatePropertyBridi vocabulary, generateRelationBridi vocabulary, generateActionBridi vocabulary]

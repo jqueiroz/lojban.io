@@ -15,23 +15,21 @@ import System.Random (StdGen)
 trivialVocabulary :: Dictionary -> Vocabulary
 trivialVocabulary dictionary = buildVocabulary dictionary
     -- Gismu
-    ["tavla", "dunda", "prenu", "pendo", "melbi", "mlatu", "gerku", "nelci"]
+    ["tavla", "dunda", "prenu", "zdani", "pendo", "mlatu"]
     -- Cmavo
     ["zo'e", "mi", "do", "ti"]
     -- Cmevla
     []
     -- Selbri
     [
-        ("actions", ["tavla", "dunda", "citka"]),
-        ("properties", ["prenu", "melbi", "plise", "zdani", "mlatu", "gerku"]),
-        ("relations", ["nelci", "pendo"])
+        ("actions", ["tavla", "dunda"]),
+        ("properties", ["prenu", "zdani", "mlatu"]),
+        ("relations", ["pendo"])
     ]
     -- Sumti
     [
         ("persons", ["mi", "do"]),
-        ("pointable", ["ti"]),
-        ("subjects", ["ti"]),
-        ("aliments", ["ti"])
+        ("pointable", ["ti", "ta"])
     ]
 
 basicVocabulary :: Dictionary -> Vocabulary
@@ -79,16 +77,24 @@ basicVocabulary' dictionary = buildVocabulary dictionary
     ]
 
 -------- Translations
-translations1 :: [Translation]
-translations1 =
+translations1_nice :: [Translation]
+translations1_nice =
     [ ("I have a house.", "zdani mi")
-    , ("You are my friend.", "do pendo mi")
-    , ("You gave this to me.", "do dunda ti mi")
-    , ("I gave this to you.", "mi dunda ti do")
+    , ("You gave me this.", "do dunda ti mi")
+    , ("I gave you that.", "mi dunda ta do")
+    , ("I will talk to you about that.", "mi tavla do ta")
+    ]
+
+translations1 :: [Translation]
+translations1 = translations1_nice ++
+    [ ("You are my friend.", "do pendo mi")
+    , ("I am your friend.", "mi pendo do")
+    , ("You are a person.", "do prenu")
+    , ("That is a cat.", "ta mlatu")
     ]
 
 translations2 :: [Translation]
-translations2 = translations1 ++
+translations2 = translations1_nice ++
     [ ("The house is yellow.", "lo zdani ku pelxu")
     , ("A person is talking to a dog.", "lo prenu ku tavla lo gerku ku")
     , ("The dog likes the cat.", "lo gerku ku nelci lo mlatu ku")
