@@ -53,7 +53,7 @@ generateEnglishBridiJufraExercise r0 = SingleChoiceExercise title sentence corre
         sentence = Just . ExerciseSentence True $ sentenceText
 
 englishSentences :: T.Text -> [T.Text]
-englishSentences "only jufra" = 
+englishSentences "only jufra" =
     [ "Yes."
     , "No."
     , "Ouch!"
@@ -65,7 +65,7 @@ englishSentences "only jufra" =
     , "Forty-two."
     , "Almost, but not quite, entirely unlike tea."
     ]
-englishSentences "bridi and jufra" = 
+englishSentences "bridi and jufra" =
     [ "I would like to see you."
     , "Most people don't like him."
     , "They don't care about us."
@@ -161,4 +161,3 @@ generateTextToNumberExercise r0 =
             Nothing -> False
             Just x' -> x' == x
     in TypingExercise ("Text to number: <b>" `T.append` (numberToSimpleLojban x) `T.append` "</b>") Nothing v (T.pack . show $ x)
-
