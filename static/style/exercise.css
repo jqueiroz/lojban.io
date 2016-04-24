@@ -73,8 +73,7 @@ body {
     color: #dd381d;
 }
 
-/* Buttons */
-.exercise-holder button {
+.exercise-holder .footer button {
     border: none;
     padding: .6em 1em;
     min-width: 10em;
@@ -83,30 +82,29 @@ body {
     font-size: 1.1em;
 }
 
-.exercise-holder button.skip {
+.exercise-holder .footer button.skip {
     border: solid #aaa 1.5px;
     color: #888;
 }
 
-.exercise-holder button.skip:hover {
+.exercise-holder .footer button.skip:hover {
     background-color: #aaa;
     color: #333;
 }
 
-.exercise-holder button.success {
+.exercise-holder .footer button.success {
     float: right;
     background-color: #7eb530;
     color: #fff;
     border: solid #7eb530 1px;
 }
 
-.exercise-holder button.success:disabled {
+.exercise-holder .footer button.success:disabled {
     background-color: #bbb !important;
     color: #fff;
     border: solid #bbb 1px;
 }
 
-.exercise-holder button.success:hover {
+.exercise-holder .footer button.success:hover {
     background-color: #94c500;
 }
-
