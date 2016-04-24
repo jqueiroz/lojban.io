@@ -1,0 +1,54 @@
+build-type:	Simple
+cabal-version:	>= 1.8
+
+name:		papillon
+version:	0.1.0.3
+stability:	Experimental
+author:		Yoshikuni Jujo <PAF01143@nifty.ne.jp>
+maintainer:	Yoshikuni Jujo <PAF01143@nifty.ne.jp>
+homepage:	https://skami.iocikun.jp/haskell/packages/papillon
+
+license:	BSD3
+license-file:	LICENSE
+
+category:	Parsing
+synopsis:	packrat parser
+description:
+	see examples directory
+
+extra-source-files:
+  examples/arith.hs
+  examples/config.hs
+  examples/test.config
+
+source-repository	head
+  type:		git
+  location:	git://github.com/YoshikuniJujo/papillon.git
+
+source-repository	this
+  type:		git
+  location:	git://github.com/YoshikuniJujo/papillon.git
+  tag:		0.1.0.2
+
+library
+  hs-source-dirs:	src
+  exposed-modules:	Text.Papillon, Text.Papillon.Core
+  other-modules:
+    Text.Papillon.Parser,
+    Text.Papillon.Papillon,
+    Text.Papillon.Papillon,
+    Text.Papillon.List
+  build-depends:
+    base > 3 && < 5, template-haskell == 2.10.*,
+    monads-tf == 0.1.*, transformers == 0.4.*,
+    bytestring == 0.10.*
+  ghc-options:		-Wall
+
+executable	papillon
+  hs-source-dirs:	bin
+  main-is:		papillon.hs
+  other-modules:	Class
+  build-depends:
+    directory, filepath, base > 3 && < 5, template-haskell == 2.10.*,
+    monads-tf == 0.1.*, transformers == 0.4.*, papillon
+  ghc-options:		-Wall

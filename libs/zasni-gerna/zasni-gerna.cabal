@@ -1,0 +1,33 @@
+build-type:	Simple
+cabal-version:	>= 1.8
+
+name:		zasni-gerna
+version:	0.0.7
+stability:	Experimental
+author:		Yoshikuni Jujo <PAF01143@nifty.ne.jp>
+maintainer:	Yoshikuni Jujo <PAF01143@nifty.ne.jp>
+homepage:	https://skami.iocikun.jp/haskell/packages/zasni-gerna
+
+license:	BSD3
+license-file:	LICENSE
+
+category:	Language
+synopsis:	lojban parser (zasni gerna)
+description:
+	lojban zasni gerna parser
+
+source-repository	head
+  type:		git
+  location:	git://github.com/YoshikuniJujo/zasni-gerna.git
+
+source-repository	this
+  type:		git
+  location:	git://github.com/YoshikuniJujo/zasni-gerna.git
+  tag:		0.0.7
+
+library
+  hs-source-dirs:	src
+  exposed-modules:	Language.Lojban.Parser.ZasniGerna
+  other-modules:	Language.Lojban.Parser.ZasniGerna.Parser
+  build-depends:	base > 3 && < 5, papillon
+  ghc-options:		-Wall
