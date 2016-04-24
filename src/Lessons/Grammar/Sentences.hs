@@ -28,7 +28,7 @@ displaySimpleBridi :: SimpleBridi -> StdGen -> (T.Text, StdGen)
 displaySimpleBridi = buildSentenceDisplayer $ \(SimpleBridi selbri sumti) r0 ->
     let
         (sumtiHead, sumtiTail) = splitAt 1 sumti
-        sentence = (if sumtiHead == [""] then [] else sumtiHead) ++ [selbri] ++ sumtiTail
+        sentence = (if sumtiHead == [""] then [] else sumtiHead) ++ [selbri] ++ (stripRight "" sumtiTail)
     in
         (sentence, r0)
 
