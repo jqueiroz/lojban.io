@@ -15,37 +15,38 @@ import Dictionary (loadDictionary)
 trivialVocabulary :: Dictionary -> Vocabulary
 trivialVocabulary dictionary = buildVocabulary dictionary
     -- Gismu
-    ["tavla", "dunda", "prenu", "melbi", "zdani", "mlatu", "gerku", "nelci"]
+    ["tavla", "dunda", "prenu", "pendo", "citka", "plise", "melbi", "zdani", "mlatu", "gerku", "nelci"]
     -- Cmavo
     ["zo'e", "mi", "do", "ti"]
     -- Cmevla
     []
     -- Selbri
     [
-        ("actions", ["tavla", "dunda"]),
-        ("properties", ["prenu", "melbi", "zdani", "mlatu", "gerku"]),
-        ("relations", ["nelci"])
+        ("actions", ["tavla", "dunda", "citka"]),
+        ("properties", ["prenu", "melbi", "plise", "zdani", "mlatu", "gerku"]),
+        ("relations", ["nelci", "pendo"])
     ]
     -- Sumti
     [
         ("persons", ["mi", "do"]),
         ("pointable", ["ti"]),
-        ("subjects", ["ti"])
+        ("subjects", ["ti"]),
+        ("aliments", ["ti"])
     ]
 
 basicVocabulary :: Dictionary -> Vocabulary
 basicVocabulary dictionary = buildVocabulary dictionary
     -- Gismu
-    ["tavla", "dunda", "klama", "prenu", "melbi", "sutra", "zdani", "mlatu", "gerku", "nelci"]
+    ["tavla", "dunda", "klama", "prenu", "pendo", "citka", "plise", "melbi", "zdani", "sutra", "mlatu", "gerku", "nelci"]
     -- Cmavo
     ["zo'e", "lo", "mi", "do", "ti"]
     -- Cmevla
     []
     -- Selbri
     [
-        ("actions", ["tavla", "dunda", "klama"]),
-        ("properties", ["prenu", "melbi", "sutra", "zdani", "mlatu", "gerku", "pelxu"]),
-        ("relations", ["nelci"])
+        ("actions", ["tavla", "dunda", "citka", "klama"]),
+        ("properties", ["prenu", "melbi", "plise", "zdani", "mlatu", "gerku", "pelxu", "sutra"]),
+        ("relations", ["nelci", "pendo"])
     ]
     -- Sumti
     [
@@ -53,7 +54,8 @@ basicVocabulary dictionary = buildVocabulary dictionary
         ("animals", ["lo mlatu ku", "lo gerku ku"]),
         ("pointable", ["ti"]),
         ("places", ["lo zdani ku"]),
-        ("subjects", ["lo zdani ku", "lo mlatu ku", "lo gerku ku"])
+        ("subjects", ["lo zdani ku", "lo mlatu ku", "lo gerku ku"]),
+        ("aliments", ["lo plise ku"])
     ]
 
 basicVocabulary' :: Dictionary -> Vocabulary

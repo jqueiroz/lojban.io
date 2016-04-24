@@ -93,6 +93,11 @@ generateRelationBridi vocabulary r0 = (SimpleBridi relation objects, r2) where
                 (x1, r1) = chooseItemUniformly r0 persons
                 (x2, r2) = chooseItemUniformly r1 $ filter (/= x1) (persons++animals)
             in ([x1, x2], r2))
+        , ("pendo", \ro ->
+            let
+                (x1, r1) = chooseItemUniformly r0 (persons++animals)
+                (x2, y2) = chooseItemUniformly r1 $ filter (/= x1) persons
+            in ([x1, x2], r2))
         ]
 
 generateActionBridi :: Vocabulary -> StdGen -> (SimpleBridi, StdGen)
@@ -106,6 +111,7 @@ generateActionBridi vocabulary r0 = (SimpleBridi action objects, r2) where
     places = getVocabularySumti vocabulary "places"
     animals = getVocabularySumti vocabulary "animals"
     subjects = getVocabularySumti vocabulary "subjects"
+    aliments = getVocabularySumti vocabulary "aliments"
     -- Generators
     actionObjectsGenerators :: M.Map T.Text (StdGen -> ([T.Text], StdGen))
     actionObjectsGenerators = M.fromList
@@ -122,6 +128,11 @@ generateActionBridi vocabulary r0 = (SimpleBridi action objects, r2) where
                 (receiver, r3) = chooseItemUniformly r2 (filter (/= donor) persons)
             in
                 ([donor, gift, receiver], r3))
+        , ("citka", \r0 ->
+            let
+                (subject, r1) = chooseItemUniformly r0 (persons++animals)
+                (aliment, r2) = chooseItemUniformly r1 (aliments)
+            in ([subject, aliment], r2))
         , ("klama", \r0 ->
             let
                 (actor, r1) = chooseItemUniformly r0 persons
