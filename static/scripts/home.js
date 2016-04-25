@@ -127,7 +127,7 @@ var createExercisesManager = function(holder) {
             body.append(title);
             // Sentence
             if (data.sentence !== null) {
-                var sentence = $("<div/>").addClass("sentence").html(data.sentence.text);
+                var sentence = $("<div/>").addClass("sentence").addClass("single").html(data.sentence.text);
                 body.append(sentence);
             }
             // Linebreak
@@ -250,7 +250,7 @@ var createExercisesManager = function(holder) {
             body.append(title);
             // Sentence
             if (data.sentence !== null) {
-                var sentence = $("<div/>").addClass("sentence").html(data.sentence.text);
+                var sentence = $("<div/>").addClass("sentence").addClass("single").html(data.sentence.text);
                 body.append(sentence);
             }
             // Linebreak

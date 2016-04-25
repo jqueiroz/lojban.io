@@ -42,6 +42,12 @@ body {
     font-style: italic;
 }
 
+.exercise-holder .body .sentence.single {
+    width: 23em;
+    box-shadow: 0 0 20px #92e2ff;
+    border: 2px solid #1caff6;
+}
+
 /* Exercises */
 /*TODO: force both textareas to have the same height */
 .exercise-holder textarea {
@@ -52,7 +58,6 @@ body {
     box-shadow: 0 0 8px rgba(0,0,0,0.12);
     border: 2px solid #e9e9e9;
     border-radius: 10px;
-    outline: none;
     vertical-align: top;
     font-size: 1.5em;
 }
