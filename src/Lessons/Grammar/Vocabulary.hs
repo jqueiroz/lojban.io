@@ -1,6 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 module Lessons.Grammar.Vocabulary
 ( Vocabulary
+, VocabularyGenerator
 , WordList
 , vocabularyWords
 , vocabularyCategorizedSumti
@@ -10,7 +11,7 @@ module Lessons.Grammar.Vocabulary
 , cmevlaList
 , getVocabularySelbri
 , getVocabularySumti
-, buildVocabulary
+, buildVocabularyGenerator
 ) where
 
 import Core
@@ -24,6 +25,8 @@ data Vocabulary = Vocabulary
     , vocabularyCategorizedSumti :: M.Map T.Text [T.Text]
     }
 
+type VocabularyGenerator = Dictionary -> Vocabulary
+
 data WordList = WordList
     { gismuList :: [Gismu]
     , cmavoList :: [Cmavo]
@@ -36,8 +39,8 @@ getVocabularySelbri vocabulary key = M.findWithDefault [] key $ vocabularyCatego
 getVocabularySumti :: Vocabulary -> T.Text -> [T.Text]
 getVocabularySumti vocabulary key = M.findWithDefault [] key $ vocabularyCategorizedSumti vocabulary
 
-buildVocabulary :: Dictionary -> [T.Text] -> [T.Text] -> [T.Text] -> [(T.Text, [T.Text])] -> [(T.Text, [T.Text])] -> Vocabulary
-buildVocabulary dictionary gismu cmavo cmevla selbri sumti = Vocabulary (WordList gismu' cmavo' cmevla) selbriMap sumtiMap where
+buildVocabularyGenerator :: [T.Text] -> [T.Text] -> [T.Text] -> [(T.Text, [T.Text])] -> [(T.Text, [T.Text])] -> VocabularyGenerator
+buildVocabularyGenerator gismu cmavo cmevla selbri sumti dictionary = Vocabulary (WordList gismu' cmavo' cmevla) selbriMap sumtiMap where
     gismu' = map ((dictGismu dictionary) M.!) gismu
     cmavo' = map ((dictCmavo dictionary) M.!) cmavo
     selbriMap = M.fromList selbri
