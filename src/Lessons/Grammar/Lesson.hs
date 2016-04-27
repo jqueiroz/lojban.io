@@ -12,8 +12,8 @@ import Util (combineFunctions, combineFunctionsUniformly)
 import System.Random (StdGen)
 
 -------- Vocabulary
-trivialVocabulary :: Dictionary -> Vocabulary
-trivialVocabulary dictionary = buildVocabulary dictionary
+vocabulary1 :: Dictionary -> Vocabulary
+vocabulary1 dictionary = buildVocabulary dictionary
     -- Gismu
     ["tavla", "dunda", "prenu", "zdani", "pendo", "mlatu"]
     -- Cmavo
@@ -32,8 +32,8 @@ trivialVocabulary dictionary = buildVocabulary dictionary
         ("genericPointable", ["ti", "ta"])
     ]
 
-basicVocabulary :: Dictionary -> Vocabulary
-basicVocabulary dictionary = buildVocabulary dictionary
+vocabulary2 :: Dictionary -> Vocabulary
+vocabulary2 dictionary = buildVocabulary dictionary
     -- Gismu
     ["tavla", "dunda", "prenu", "zdani", "pendo", "mlatu", "gerku", "citka", "plise", "melbi", "sutra", "nelci"]
     -- Cmavo
@@ -56,8 +56,8 @@ basicVocabulary dictionary = buildVocabulary dictionary
         ("aliments", ["lo plise ku"])
     ]
 
-basicVocabulary' :: Dictionary -> Vocabulary
-basicVocabulary' dictionary = buildVocabulary dictionary
+vocabulary3 :: Dictionary -> Vocabulary
+vocabulary3 dictionary = buildVocabulary dictionary
     -- Gismu
     ["tavla", "dunda", "klama", "prenu", "melbi", "sutra", "zdani", "mlatu", "gerku", "pelxu", "nelci", "citka", "catlu", "djica", "djuno", "drata", "kumfa", "mutce", "cusku", "troci", "viska", "xamgu", "gleki"]
     -- Cmavo
@@ -117,7 +117,7 @@ lesson1 dictionary =
         , (40, generateTranslationExercise basicSentenceCannonicalizer translations1)
         ]
     where
-        vocabulary = trivialVocabulary dictionary
+        vocabulary = vocabulary1 dictionary
 
 -- TODO: se, te, ...
 lesson2 :: Dictionary -> StdGen -> Exercise
@@ -130,4 +130,4 @@ lesson2 dictionary =
         , (50, generateTranslationExercise basicSentenceCannonicalizer translations2)
         ]
     where
-        vocabulary = basicVocabulary dictionary
+        vocabulary = vocabulary2 dictionary
