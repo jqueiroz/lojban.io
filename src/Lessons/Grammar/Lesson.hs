@@ -17,7 +17,7 @@ trivialVocabulary dictionary = buildVocabulary dictionary
     -- Gismu
     ["tavla", "dunda", "prenu", "zdani", "pendo", "mlatu"]
     -- Cmavo
-    ["zo'e", "mi", "do", "ti"]
+    ["zo'e", "mi", "do", "ti", "ta"]
     -- Cmevla
     []
     -- Selbri
@@ -35,14 +35,14 @@ trivialVocabulary dictionary = buildVocabulary dictionary
 basicVocabulary :: Dictionary -> Vocabulary
 basicVocabulary dictionary = buildVocabulary dictionary
     -- Gismu
-    ["tavla", "dunda", "klama", "prenu", "pendo", "citka", "plise", "melbi", "zdani", "sutra", "mlatu", "gerku", "nelci"]
+    ["tavla", "dunda", "prenu", "zdani", "pendo", "mlatu", "gerku", "citka", "plise", "melbi", "sutra", "nelci"]
     -- Cmavo
-    ["zo'e", "lo", "mi", "do", "ti"]
+    ["zo'e", "lo", "mi", "do", "ti", "ta"]
     -- Cmevla
     []
     -- Selbri
     [
-        ("actions", ["tavla", "dunda", "citka", "klama"]),
+        ("actions", ["tavla", "dunda", "citka"]),
         ("properties", ["prenu", "melbi", "plise", "zdani", "mlatu", "gerku", "pelxu", "sutra"]),
         ("relations", ["nelci", "pendo"])
     ]
@@ -82,14 +82,19 @@ translations1_nice =
     [ ("I have a house.", "zdani mi")
     , ("You gave me this.", "do dunda ti mi")
     , ("I gave you that.", "mi dunda ta do")
-    , ("I will talk to you about that.", "mi tavla do ta")
+    , ("I am talking to myself", "mi tavla mi")
     ]
 
 translations1 :: [Translation]
 translations1 = translations1_nice ++
     [ ("You are my friend.", "do pendo mi")
     , ("I am your friend.", "mi pendo do")
+    , ("I am talking to you.", "mi tavla do")
+    , ("You are talking to me.", "do tavla mi")
+    , ("You are talking to yourself.", "do tavla do")
+    , ("I am a person.", "mi prenu")
     , ("You are a person.", "do prenu")
+    , ("That is a house", "ta zdani")
     , ("That is a cat.", "ta mlatu")
     ]
 
