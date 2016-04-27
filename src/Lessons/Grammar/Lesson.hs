@@ -29,7 +29,7 @@ trivialVocabulary dictionary = buildVocabulary dictionary
     -- Sumti
     [
         ("persons", ["mi", "do"]),
-        ("pointable", ["ti", "ta"])
+        ("genericPointable", ["ti", "ta"])
     ]
 
 basicVocabulary :: Dictionary -> Vocabulary
@@ -50,7 +50,7 @@ basicVocabulary dictionary = buildVocabulary dictionary
     [
         ("persons", ["mi", "do", "lo prenu ku"]),
         ("animals", ["lo mlatu ku", "lo gerku ku"]),
-        ("pointable", ["ti"]),
+        ("genericPointable", ["ti", "ta"]),
         ("places", ["lo zdani ku"]),
         ("subjects", ["lo zdani ku", "lo mlatu ku", "lo gerku ku"]),
         ("aliments", ["lo plise ku"])
@@ -73,7 +73,7 @@ basicVocabulary' dictionary = buildVocabulary dictionary
     -- Sumti
     [
         ("persons", ["mi", "do"]),
-        ("pointable", ["ti", "ta", "tu"])
+        ("genericPintable", ["ti", "ta", "tu"])
     ]
 
 -------- Translations

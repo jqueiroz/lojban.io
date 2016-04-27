@@ -119,7 +119,7 @@ basicSentenceCannonicalizer sentence = do
 
 ------------------------- ----------------------- Sentence generators
 generateNonbridi :: Vocabulary -> StdGen -> (T.Text, StdGen)
-generateNonbridi vocabulary r0 = chooseItemUniformly r0 . concat . map (getVocabularySumti vocabulary) $ ["persons", "pointable", "places", "subjects"]
+generateNonbridi vocabulary r0 = chooseItemUniformly r0 . concat . map (getVocabularySumti vocabulary) $ ["persons", "genericPointable", "places", "subjects"]
 
 generateSimpleBridi :: Vocabulary -> StdGen -> (SimpleBridi, StdGen)
 generateSimpleBridi vocabulary = combineFunctionsUniformly [generatePropertyBridi vocabulary, generateRelationBridi vocabulary, generateActionBridi vocabulary]
@@ -131,18 +131,18 @@ generatePropertyBridi vocabulary r0 = (SimpleBridi property [object], r2) where
     -- Vocabulary
     properties = getVocabularySelbri vocabulary "properties"
     persons = getVocabularySumti vocabulary "persons"
-    pointable = getVocabularySumti vocabulary "pointable"
+    genericPointable = getVocabularySumti vocabulary "genericPointable"
     places = getVocabularySumti vocabulary "places"
     subjects = getVocabularySumti vocabulary "subjects"
     -- Properties
     propertyObjects = M.fromList
         [ ("prenu", persons)
-        , ("melbi", persons ++ pointable ++ places)
-        , ("sutra", persons ++ pointable)
-        , ("zdani", pointable)
-        , ("mlatu", pointable)
-        , ("gerku", pointable)
-        , ("pelxu", pointable)
+        , ("melbi", persons ++ genericPointable ++ places)
+        , ("sutra", persons ++ genericPointable)
+        , ("zdani", genericPointable)
+        , ("mlatu", genericPointable)
+        , ("gerku", genericPointable)
+        , ("pelxu", genericPointable)
         , ("cinri", subjects)
         ]
 
@@ -154,7 +154,7 @@ generateRelationBridi vocabulary r0 = (SimpleBridi relation objects, r2) where
     relations = getVocabularySelbri vocabulary "relations"
     persons = getVocabularySumti vocabulary "persons"
     animals = getVocabularySumti vocabulary "animals"
-    pointable = getVocabularySumti vocabulary "pointable"
+    genericPointable = getVocabularySumti vocabulary "genericPointable"
     places = getVocabularySumti vocabulary "places"
     subjects = getVocabularySumti vocabulary "subjects"
     -- Generators
@@ -179,7 +179,7 @@ generateActionBridi vocabulary r0 = (SimpleBridi action objects, r2) where
     -- Vocabulary
     actions = getVocabularySelbri vocabulary "actions"
     persons = getVocabularySumti vocabulary "persons"
-    pointable = getVocabularySumti vocabulary "pointable"
+    genericPointable = getVocabularySumti vocabulary "genericPointable"
     places = getVocabularySumti vocabulary "places"
     animals = getVocabularySumti vocabulary "animals"
     subjects = getVocabularySumti vocabulary "subjects"
@@ -196,7 +196,7 @@ generateActionBridi vocabulary r0 = (SimpleBridi action objects, r2) where
         , ("dunda", \r0 ->
             let
                 (donor, r1) = chooseItemUniformly r0 persons
-                (gift, r2) = chooseItemUniformly r1 (pointable++animals)
+                (gift, r2) = chooseItemUniformly r1 (genericPointable++animals)
                 (receiver, r3) = chooseItemUniformly r2 (filter (/= donor) persons)
             in
                 ([donor, gift, receiver], r3))
