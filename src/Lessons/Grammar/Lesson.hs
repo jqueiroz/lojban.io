@@ -111,9 +111,9 @@ lesson1 :: Dictionary -> StdGen -> Exercise
 lesson1 dictionary =
     combineFunctions
         [ (20, generateGrammaticalClassExercise vocabulary)
-        , (15, generateBridiJufraExercise vocabulary displaySimpleBridi)
-        , (20, generateSelbriIdentificationExercise vocabulary displaySimpleBridi)
-        , (30, generateEasyGismuPlacesExercise dictionary vocabulary displaySimpleBridi)
+        , (15, generateBridiJufraExercise vocabulary displayVariantBridi)
+        , (20, generateSelbriIdentificationExercise vocabulary displayVariantBridi)
+        , (30, generateEasyGismuPlacesExercise dictionary vocabulary displayVariantBridi)
         , (40, generateTranslationExercise basicSentenceCannonicalizer translations1)
         ]
     where
