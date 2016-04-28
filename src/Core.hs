@@ -41,11 +41,6 @@ instance Eq Cmavo where
     x == y = (cmavoText x) == (cmavoText y)
 
 -- Exercises
-data ExerciseSentence = ExerciseSentence
-    { esLojbanic :: Bool
-    , esText :: T.Text
-    } deriving (Show)
-
 data Exercise =
     MultipleChoiceExercise
         { mceTitle :: T.Text
@@ -80,3 +75,8 @@ instance Show Exercise where
     show (SingleChoiceExercise title sentence correctAlternative incorrectAlternatives fixedOrdering) = "SingleChoiceExercise { sceTitle = " ++ (show title) ++ ", sceSentence = " ++ (show sentence) ++ ", sceCorrectAlternatives = " ++ (show correctAlternative) ++ ", sceIncorrectAlternatives = " ++ (show incorrectAlternatives) ++ ", fixedOrdering = " ++ (show fixedOrdering) ++ "}"
     show (MatchingExercise title sentence items) = "MatchingExercise { mteTitle = " ++ (show title) ++ ", mteSentence = " ++ (show sentence) ++ ", mteItems = " ++ (show items) ++ "}"
     show (TypingExercise title sentence _ cannonicalAnswer) = "TypingExercise {tpeTitle = " ++ (show title) ++ ", tpeSentence = " ++ (show sentence) ++ ", cannonicalAnswer = " ++ (show cannonicalAnswer) ++ "}"
+
+data ExerciseSentence = ExerciseSentence
+    { esLojbanic :: Bool
+    , esText :: T.Text
+    } deriving (Show)
