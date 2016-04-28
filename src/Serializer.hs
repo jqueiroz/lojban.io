@@ -1,22 +1,18 @@
 {-# LANGUAGE OverloadedStrings #-}
-module Exercises where
+module Serializer
+( exerciseToJSON
+, validateExerciseAnswer
+) where
 
 import Core
 import Util (shuffleList)
-import Control.Applicative ((<$>), (<*>))
 import qualified Data.ByteString.Lazy.Char8 as BS
 import qualified Data.Text as T
 import qualified Data.Aeson as A
 import Data.List (sort)
 import System.Random (StdGen)
 
-exerciseSentenceToJSON :: Maybe ExerciseSentence -> A.Value
-exerciseSentenceToJSON Nothing = A.Null
-exerciseSentenceToJSON (Just (ExerciseSentence lojbanic text)) = A.object
-    [ "text" A..= text
-    , "lojbanic" A..= lojbanic
-    ]
-
+-- Serialization of exercises
 exerciseToJSON :: StdGen -> Exercise -> A.Value
 
 exerciseToJSON r0 (MultipleChoiceExercise title sentence correctAlternatives incorrectAlternatives fixedOrdering) = A.object
@@ -47,6 +43,14 @@ exerciseToJSON r0 (TypingExercise title sentence _ _) = A.object
     , "sentence" A..= (exerciseSentenceToJSON sentence)
     ]
 
+exerciseSentenceToJSON :: Maybe ExerciseSentence -> A.Value
+exerciseSentenceToJSON Nothing = A.Null
+exerciseSentenceToJSON (Just (ExerciseSentence lojbanic text)) = A.object
+    [ "text" A..= text
+    , "lojbanic" A..= lojbanic
+    ]
+
+-- Deserialization of answers
 data MultipleChoiceExerciseAnswer = MultipleChoiceExerciseAnswer {
     mceaCorrectAlternatives :: [T.Text]
 }
@@ -79,26 +83,27 @@ instance A.FromJSON TypingExerciseAnswer where
     parseJSON (A.Object v) = TypingExerciseAnswer
         <$> v A..: "text"
 
-validateAnswer :: Exercise -> BS.ByteString -> Maybe A.Value
+-- Validation of answers
+validateExerciseAnswer :: Exercise -> BS.ByteString -> Maybe A.Value
 
-{-validateAnswer (MultipleChoiceExercise text correctAlternatives incorrectAlternatives)  s = do-}
+{-validateExerciseAnswer (MultipleChoiceExercise text correctAlternatives incorrectAlternatives)  s = do-}
     {-answer <- A.decode s-}
     {-return $ (sort $ mceaCorrectAlternatives answer) == (sort correctAlternatives)-}
 
-validateAnswer (SingleChoiceExercise title sentence correctAlternative incorrectAlternatives fixedOrdering) s = do
+validateExerciseAnswer (SingleChoiceExercise title sentence correctAlternative incorrectAlternatives fixedOrdering) s = do
     answer <- A.decode s
     return $ A.object
         [ ("correct", A.Bool $ sceaCorrectAlternative answer == correctAlternative)
         , ("correctAlternative", A.String correctAlternative)
         ]
 
-validateAnswer (MatchingExercise title sentence items) s = do
+validateExerciseAnswer (MatchingExercise title sentence items) s = do
     answer <- A.decode s
     return $ A.object
         [ ("correct", A.Bool $ meaOrderedAlternatives answer == map snd items)
         ]
 
-validateAnswer (TypingExercise text sentence validate cannonicalAnswer) s = do
+validateExerciseAnswer (TypingExercise text sentence validate cannonicalAnswer) s = do
     answer <- A.decode s
     return $ A.object
         [ ("correct", A.Bool $ validate (teaText answer))

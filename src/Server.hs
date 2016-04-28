@@ -4,7 +4,7 @@ module Server where
 
 import Core
 import Dictionary (loadDictionary)
-import Exercises (exerciseToJSON, validateAnswer)
+import Serializer (exerciseToJSON, validateExerciseAnswer)
 import Control.Monad
 import Control.Monad.IO.Class (liftIO)
 import Happstack.Server
@@ -76,7 +76,7 @@ handleExercises dictionary = do
             ok $ toResponse (A.encode $ exerciseToJSON gen exercise)
         , dir "submit" $ do
             body <- getBody
-            ok . toResponse . A.encode . A.object $ case validateAnswer exercise body of
+            ok . toResponse . A.encode . A.object $ case validateExerciseAnswer exercise body of
                 Nothing -> [("success", A.Bool False)]
                 Just data' -> [("success", A.Bool True), ("data", data')]
         ]
