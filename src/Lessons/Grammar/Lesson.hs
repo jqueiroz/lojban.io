@@ -7,7 +7,7 @@ module Lessons.Grammar.Lesson
 import Core
 import Lessons.Grammar.Vocabulary
 import Lessons.Grammar.Sentences (displaySimpleBridi, displayVariantBridi, basicSentenceCannonicalizer)
-import Lessons.Grammar.Exercises
+import Lessons.Grammar.ExerciseGenerators
 import Util (combineFunctions, combineFunctionsUniformly)
 
 -------- Vocabulary

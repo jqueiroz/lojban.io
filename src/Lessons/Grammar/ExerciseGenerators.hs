@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
-module Lessons.Grammar.Exercises
+
+module Lessons.Grammar.ExerciseGenerators
 ( Translation
 , generateTranslationExercise
 , generateGrammaticalClassExercise
