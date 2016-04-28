@@ -1,5 +1,8 @@
 {-# LANGUAGE OverloadedStrings #-}
-module Dictionary where
+
+module DictionaryLoader
+( loadDictionary
+) where
 
 import Core
 import Util (subfield)

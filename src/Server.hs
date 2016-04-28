@@ -3,7 +3,7 @@
 module Server where
 
 import Core
-import Dictionary (loadDictionary)
+import DictionaryLoader (loadDictionary)
 import Serializer (exerciseToJSON, validateExerciseAnswer)
 import Control.Monad
 import Control.Monad.IO.Class (liftIO)
