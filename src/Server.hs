@@ -69,7 +69,7 @@ handleHome dictionary = ok $ toResponse $
 
 handleExercises :: Dictionary -> ServerPart Response
 handleExercises dictionary = do
-    let lesson = GrammarLesson.lesson2 dictionary
+    let lesson = GrammarLesson.exercises2 dictionary
     gen <- liftIO $ newStdGen
     path $ \n -> let exercise = lesson (mkStdGen n) in msum
         [ dir "get" $ do

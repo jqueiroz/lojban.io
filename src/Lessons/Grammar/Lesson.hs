@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 module Lessons.Grammar.Lesson
-( lesson1
-, lesson2
+( exercises1
+, exercises2
 ) where
 
 import Core
@@ -105,9 +105,9 @@ translations2 = translations1_nice ++
     , ("The house is beautiful!", "lo zdani ku melbi")
     ]
 
--------- Lessons
-lesson1 :: Dictionary -> ExerciseGenerator
-lesson1 dictionary =
+-------- Exercises
+exercises1 :: Dictionary -> ExerciseGenerator
+exercises1 dictionary =
     combineFunctions
         [ (20, generateGrammaticalClassExercise vocabulary)
         , (15, generateBridiJufraExercise vocabulary displayVariantBridi)
@@ -119,8 +119,8 @@ lesson1 dictionary =
         vocabulary = vocabularyGenerator1 dictionary
 
 -- TODO: se, te, ...
-lesson2 :: Dictionary -> ExerciseGenerator
-lesson2 dictionary =
+exercises2 :: Dictionary -> ExerciseGenerator
+exercises2 dictionary =
     combineFunctions
         [ (20, generateGrammaticalClassExercise vocabulary)
         , (15, generateBridiJufraExercise vocabulary displayVariantBridi)
