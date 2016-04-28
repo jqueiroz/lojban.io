@@ -9,7 +9,6 @@ import Lessons.Grammar.Vocabulary
 import Lessons.Grammar.Sentences (displaySimpleBridi, displayVariantBridi, basicSentenceCannonicalizer)
 import Lessons.Grammar.Exercises
 import Util (combineFunctions, combineFunctionsUniformly)
-import System.Random (StdGen)
 
 -------- Vocabulary
 vocabularyGenerator1 :: VocabularyGenerator
@@ -107,7 +106,7 @@ translations2 = translations1_nice ++
     ]
 
 -------- Lessons
-lesson1 :: Dictionary -> StdGen -> Exercise
+lesson1 :: Dictionary -> ExerciseGenerator
 lesson1 dictionary =
     combineFunctions
         [ (20, generateGrammaticalClassExercise vocabulary)
@@ -120,7 +119,7 @@ lesson1 dictionary =
         vocabulary = vocabularyGenerator1 dictionary
 
 -- TODO: se, te, ...
-lesson2 :: Dictionary -> StdGen -> Exercise
+lesson2 :: Dictionary -> ExerciseGenerator
 lesson2 dictionary =
     combineFunctions
         [ (20, generateGrammaticalClassExercise vocabulary)

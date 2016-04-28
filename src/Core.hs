@@ -1,6 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 module Core where
 
+import System.Random (StdGen)
 import qualified Data.Text as T
 import qualified Data.Map as M
 
@@ -71,6 +72,8 @@ data Exercise =
         , tpeValidate :: T.Text -> Bool
         , tpeCannonicalAnswer :: T.Text
         }
+
+type ExerciseGenerator = StdGen -> Exercise
 
 instance Show Exercise where
     show (MultipleChoiceExercise title sentence correctAlternatives incorrectAlternatives fixedOrdering) = "MultipleChoiceExercise { mceTitle = " ++ (show title) ++ ", mceSentence = " ++ (show sentence) ++ ", mceCorrectAlternatives = " ++ (show correctAlternatives) ++ ", mceIncorrectAlternatives = " ++ (show incorrectAlternatives) ++ ", fixedOrdering = " ++ (show fixedOrdering) ++ "}"

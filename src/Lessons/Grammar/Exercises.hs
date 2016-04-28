@@ -27,7 +27,7 @@ type Translation = (EnglishSentence, LojbanSentence)
 type EnglishSentence = T.Text
 type LojbanSentence = T.Text
 
-generateTranslationExercise :: SentenceCannonicalizer -> [Translation] -> StdGen -> Exercise
+generateTranslationExercise :: SentenceCannonicalizer -> [Translation] -> ExerciseGenerator
 generateTranslationExercise cannonicalizer translations r0 = TypingExercise title (Just $ ExerciseSentence True english_sentence) validate lojban_sentence where
     ((english_sentence, lojban_sentence), r1) = chooseItemUniformly r0 translations
     title = "Translate this sentence"
@@ -38,7 +38,7 @@ generateTranslationExercise cannonicalizer translations r0 = TypingExercise titl
             Right lojban_sentence' -> x' == lojban_sentence'
 
 -- Exercise: tell grammatical class of a word
-generateGrammaticalClassExercise :: Vocabulary -> StdGen -> Exercise
+generateGrammaticalClassExercise :: Vocabulary -> ExerciseGenerator
 generateGrammaticalClassExercise vocabulary r0 = SingleChoiceExercise title sentence correctAlternative incorrectAlternatives True where
     wordList = vocabularyWords vocabulary
     words "gismu" = map gismuText $ gismuList wordList
@@ -52,10 +52,10 @@ generateGrammaticalClassExercise vocabulary r0 = SingleChoiceExercise title sent
     sentence = Nothing
 
 -- Exercise: jufra vs bridi
-generateBridiJufraExercise :: Vocabulary -> SimpleBridiDisplayer -> StdGen -> Exercise
+generateBridiJufraExercise :: Vocabulary -> SimpleBridiDisplayer -> ExerciseGenerator
 generateBridiJufraExercise vocabulary displayBridi = combineFunctionsUniformly [generateEnglishBridiJufraExercise, generateLojbanBridiJufraExercise vocabulary displayBridi]
 
-generateLojbanBridiJufraExercise :: Vocabulary -> SimpleBridiDisplayer -> StdGen -> Exercise
+generateLojbanBridiJufraExercise :: Vocabulary -> SimpleBridiDisplayer -> ExerciseGenerator
 generateLojbanBridiJufraExercise vocabulary displayBridi r0 = SingleChoiceExercise title sentence correctAlternative incorrectAlternatives True where
     chooseLojbanSentence :: T.Text -> StdGen -> (T.Text, StdGen)
     chooseLojbanSentence "only jufra" r0 = generateNonbridi vocabulary r0
@@ -68,7 +68,7 @@ generateLojbanBridiJufraExercise vocabulary displayBridi r0 = SingleChoiceExerci
     title = "Bridi or jufra?"
     sentence = Just $ ExerciseSentence True sentenceText
 
-generateEnglishBridiJufraExercise :: StdGen -> Exercise
+generateEnglishBridiJufraExercise :: ExerciseGenerator
 generateEnglishBridiJufraExercise r0 = SingleChoiceExercise title sentence correctAlternative incorrectAlternatives True where
         allAlternatives = ["only jufra", "bridi and jufra"]
         (correctAlternative, r1) = chooseItemUniformly r0 allAlternatives
@@ -108,7 +108,7 @@ englishSentences "bridi and jufra" =
     ]
 
 -- Exercise: identify the selbri
-generateSelbriIdentificationExercise :: Vocabulary -> SimpleBridiDisplayer -> StdGen -> Exercise
+generateSelbriIdentificationExercise :: Vocabulary -> SimpleBridiDisplayer -> ExerciseGenerator
 generateSelbriIdentificationExercise vocabulary displayBridi r0 = SingleChoiceExercise title sentence correctAlternative incorrectAlternatives False where
     (bridi, r1) = generateSimpleBridi vocabulary r0
     correctAlternative = simpleBridiSelbri bridi
@@ -118,7 +118,7 @@ generateSelbriIdentificationExercise vocabulary displayBridi r0 = SingleChoiceEx
     sentence = Just . ExerciseSentence True $ sentenceText
 
 -- Exercise: tell gismu places of a sentence (TODO: typing exercises?)
-generateEasyGismuPlacesExercise :: Dictionary -> Vocabulary -> SimpleBridiDisplayer -> StdGen -> Exercise
+generateEasyGismuPlacesExercise :: Dictionary -> Vocabulary -> SimpleBridiDisplayer -> ExerciseGenerator
 generateEasyGismuPlacesExercise dictionary vocabulary displayBridi = combineFunctions [(0, f1), (3, f2), (0, f3), (5, f4)] where
     f1 r0 =
         let
@@ -168,10 +168,10 @@ generateEasyGismuPlacesExercise dictionary vocabulary displayBridi = combineFunc
         in SingleChoiceExercise title sentence correctAlternative incorrectAlternatives False
 
 -- Exercise: convert numbers to and from lojban
-generateBasicNumberExercise :: StdGen -> Exercise
+generateBasicNumberExercise :: ExerciseGenerator
 generateBasicNumberExercise = combineFunctionsUniformly [generateNumberToTextExercise, generateTextToNumberExercise]
 
-generateNumberToTextExercise :: StdGen -> Exercise
+generateNumberToTextExercise :: ExerciseGenerator
 generateNumberToTextExercise r0 =
     let (x, _) = first (`mod` 1000) $ random r0 :: (Integer, StdGen)
         v = \text -> case lojbanToNumber text of
@@ -179,7 +179,7 @@ generateNumberToTextExercise r0 =
             Just x' -> x' == x
     in TypingExercise ("Number to text: <b>" `T.append` (T.pack $ show x) `T.append` "</b>") Nothing v (numberToSimpleLojban x)
 
-generateTextToNumberExercise :: StdGen -> Exercise
+generateTextToNumberExercise :: ExerciseGenerator
 generateTextToNumberExercise r0 =
     let (x, _) = first (`mod` 999) $ random r0 :: (Integer, StdGen)
         v = \text -> case readMaybe (T.unpack text) of
