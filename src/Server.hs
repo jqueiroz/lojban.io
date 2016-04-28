@@ -83,11 +83,11 @@ handleExercises dictionary = do
 
 getBody :: ServerPart BS.ByteString
 getBody = do
-    req  <- askRq 
-    body <- liftIO $ takeRequestBody req 
-    case body of 
-        Just rqbody -> return . unBody $ rqbody 
-        Nothing     -> return "" 
+    req  <- askRq
+    body <- liftIO $ takeRequestBody req
+    case body of
+        Just rqbody -> return . unBody $ rqbody
+        Nothing     -> return ""
 
 {-handleExercises :: (ToMessage a) => ServerPartT IO a-}
 {-handleExercises = ok ("oi" :: T.Text)-}
