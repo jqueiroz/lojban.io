@@ -3,7 +3,7 @@ version:             0.1.0.0
 synopsis:            Lojban learning tool
 description:         Please see README.md
 homepage:            None
-license:             None
+license:             AllRightsReserved
 license-file:        LICENSE
 author:              Jonathan Queiroz
 maintainer:          dev@johnjq.com
