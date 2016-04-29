@@ -56,16 +56,17 @@ externalScript src =
 handleHome :: Dictionary -> ServerPart Response
 handleHome dictionary = ok $ toResponse $
     H.html $ do
-      H.head $ do
-        H.title (H.toHtml ("Lojto" :: T.Text))
-        internalStylesheet "bootstrap.min.css"
-        internalStylesheet "main.css"
-        internalStylesheet "funkyradio.css"
-        internalStylesheet "list-group-horizontal.css"
-        internalStylesheet "exercise.css"
-        externalStylesheet "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
-        internalScript "jquery-2.1.4.min.js"
-        internalScript "bootstrap.min.js"
+        H.head $ do
+            H.title (H.toHtml ("Lojto" :: T.Text))
+            internalStylesheet "bootstrap.min.css"
+            internalStylesheet "main.css"
+            internalStylesheet "funkyradio.css"
+            internalStylesheet "list-group-horizontal.css"
+            internalStylesheet "exercise.css"
+            externalStylesheet "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
+            internalScript "jquery-2.1.4.min.js"
+            internalScript "bootstrap.min.js"
+        H.body $ do
           H.div ""
             B.! A.id "exercise-holder"
 
