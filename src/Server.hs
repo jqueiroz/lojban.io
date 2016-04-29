@@ -39,9 +39,6 @@ handleHome dictionary = ok $ toResponse $
           B.! A.href "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
           B.! A.rel "stylesheet"
         H.link
-          B.! A.href "/static/style/bootstrap-theme.css"
-          B.! A.rel "stylesheet"
-        H.link
           B.! A.href "/static/style/funkyradio.css"
           B.! A.rel "stylesheet"
         H.link
