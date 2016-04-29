@@ -83,12 +83,9 @@ handleLesson dictionary lesson = msum
     , dir "exercises" $ msum
         [ forceSlash . ok . toResponse $ displayExercise
         , path $ \n -> let exercise = lessonExercises lesson (mkStdGen n) in msum
-            [ dir "get" $ do
-                gen <- liftIO $ newStdGen
-                ok $ toResponse (A.encode $ exerciseToJSON gen exercise)
-            , dir "submit" $ do
-                body <- getBody
-                ok . toResponse . A.encode . A.object $ case validateExerciseAnswer exercise body of
+            [ dir "get" $ (liftIO $ newStdGen) >>= ok . toResponse . A.encode . exerciseToJSON exercise
+            , dir "submit" $ getBody >>= \body -> ok . toResponse . A.encode . A.object $
+                case validateExerciseAnswer exercise body of
                     Nothing -> [("success", A.Bool False)]
                     Just data' -> [("success", A.Bool True), ("data", data')]
             ]

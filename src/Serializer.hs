@@ -13,23 +13,23 @@ import Data.List (sort)
 import System.Random (StdGen)
 
 -- Serialization of exercises
-exerciseToJSON :: StdGen -> Exercise -> A.Value
+exerciseToJSON :: Exercise -> StdGen -> A.Value
 
-exerciseToJSON r0 (MultipleChoiceExercise title sentence correctAlternatives incorrectAlternatives fixedOrdering) = A.object
+exerciseToJSON (MultipleChoiceExercise title sentence correctAlternatives incorrectAlternatives fixedOrdering) r0 = A.object
     [ "type" A..= ("multiple-choice" :: T.Text)
     , "title" A..= title
     , "sentence" A..= (exerciseSentenceToJSON sentence)
     , "alternatives" A..= (if fixedOrdering then sort else shuffleList r0) (correctAlternatives ++ incorrectAlternatives)
     ]
 
-exerciseToJSON r0 (SingleChoiceExercise title sentence correctAlternative incorrectAlternatives fixedOrdering) = A.object
+exerciseToJSON (SingleChoiceExercise title sentence correctAlternative incorrectAlternatives fixedOrdering) r0 = A.object
     [ "type" A..= ("single-choice" :: T.Text)
     , "title" A..= title
     , "sentence" A..= (exerciseSentenceToJSON sentence)
     , "alternatives" A..= (if fixedOrdering then sort else shuffleList r0) (correctAlternative : incorrectAlternatives)
     ]
 
-exerciseToJSON r0 (MatchingExercise title sentence items) = A.object
+exerciseToJSON (MatchingExercise title sentence items) r0 = A.object
     [ "type" A..= ("matching" :: T.Text)
     , "title" A..= title
     , "sentence" A..= (exerciseSentenceToJSON sentence)
@@ -37,7 +37,7 @@ exerciseToJSON r0 (MatchingExercise title sentence items) = A.object
     , "right_items" A..= shuffleList r0 (map snd items)
     ]
 
-exerciseToJSON r0 (TypingExercise title sentence _ _) = A.object
+exerciseToJSON (TypingExercise title sentence _ _) r0 = A.object
     [ "type" A..= ("typing" :: T.Text)
     , "title" A..= title
     , "sentence" A..= (exerciseSentenceToJSON sentence)
