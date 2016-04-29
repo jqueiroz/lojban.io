@@ -27,40 +27,45 @@ main = do
         , handleHome dictionary
         ]
 
+-- Utility functions
+internalStylesheet :: String -> H.Html
+internalStylesheet src =
+    H.link
+      B.! A.href (H.stringValue $ "/static/style/" ++ src)
+      B.! A.rel "stylesheet"
+
+externalStylesheet :: String -> H.Html
+externalStylesheet src =
+    H.link
+      B.! A.href (H.stringValue src)
+      B.! A.rel "stylesheet"
+
+internalScript :: String -> H.Html
+internalScript src =
+    H.script ""
+      B.! A.type_ "text/javascript"
+      B.! A.src (H.stringValue $ "/static/scripts/" ++ src)
+
+externalScript :: String -> H.Html
+externalScript src =
+    H.script ""
+      B.! A.type_ "text/javascript"
+      B.! A.src (H.stringValue src)
+
+-- Home page
 handleHome :: Dictionary -> ServerPart Response
 handleHome dictionary = ok $ toResponse $
     H.html $ do
       H.head $ do
         H.title (H.toHtml ("Lojto" :: T.Text))
-        H.link
-          B.! A.href "/static/style/bootstrap.min.css"
-          B.! A.rel "stylesheet"
-        H.link
-          B.! A.href "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
-          B.! A.rel "stylesheet"
-        H.link
-          B.! A.href "/static/style/funkyradio.css"
-          B.! A.rel "stylesheet"
-        H.link
-          B.! A.href "/static/style/list-group-horizontal.css"
-          B.! A.rel "stylesheet"
-        H.link
-          B.! A.href "/static/style/main.css"
-          B.! A.rel "stylesheet"
-        H.link
-          B.! A.href "/static/style/exercise.css"
-          B.! A.rel "stylesheet"
-        H.script ""
-          B.! A.type_ "text/javascript"
-          B.! A.src "/static/scripts/jquery-2.1.4.min.js"
-        H.script ""
-          B.! A.type_ "text/javascript"
-          B.! A.src "/static/scripts/bootstrap.min.js"
-        H.script ""
-          B.! A.type_ "text/javascript"
-          B.! A.src "/static/scripts/home.js"
-      H.body $ do
-        H.div B.! A.class_ "container" $
+        internalStylesheet "bootstrap.min.css"
+        internalStylesheet "main.css"
+        internalStylesheet "funkyradio.css"
+        internalStylesheet "list-group-horizontal.css"
+        internalStylesheet "exercise.css"
+        externalStylesheet "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
+        internalScript "jquery-2.1.4.min.js"
+        internalScript "bootstrap.min.js"
           H.div ""
             B.! A.id "exercise-holder"
 
