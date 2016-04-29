@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings, ScopedTypeVariables #-}
 
-module Server where
+module Server (main) where
 
 import Core
 import DictionaryLoader (loadDictionary)
@@ -21,18 +21,11 @@ import qualified Text.Blaze.Html5.Attributes as A
 main :: IO ()
 main = do
     dictionary <- loadDictionary
-    simpleHTTP nullConf $ msum
-        [ dir "static" $ serveDirectory EnableBrowsing [] "static"
-        , dir "exercises" $ handleExercises dictionary
-        , handleHome dictionary
-        ]
+    simpleHTTP nullConf $ handleRoot dictionary
 
 -- Utility functions
 internalStylesheet :: String -> H.Html
-internalStylesheet src =
-    H.link
-      B.! A.href (H.stringValue $ "/static/style/" ++ src)
-      B.! A.rel "stylesheet"
+internalStylesheet = externalStylesheet . ("/static/style/"++)
 
 externalStylesheet :: String -> H.Html
 externalStylesheet src =
@@ -41,10 +34,7 @@ externalStylesheet src =
       B.! A.rel "stylesheet"
 
 internalScript :: String -> H.Html
-internalScript src =
-    H.script ""
-      B.! A.type_ "text/javascript"
-      B.! A.src (H.stringValue $ "/static/scripts/" ++ src)
+internalScript = externalScript . ("/static/scripts/"++)
 
 externalScript :: String -> H.Html
 externalScript src =
@@ -52,45 +42,106 @@ externalScript src =
       B.! A.type_ "text/javascript"
       B.! A.src (H.stringValue src)
 
--- Home page
-handleHome :: Dictionary -> ServerPart Response
-handleHome dictionary = ok $ toResponse $
-    H.html $ do
-        H.head $ do
-            H.title (H.toHtml ("Lojto" :: T.Text))
-            internalStylesheet "bootstrap.min.css"
-            internalStylesheet "main.css"
-            internalStylesheet "funkyradio.css"
-            internalStylesheet "list-group-horizontal.css"
-            internalStylesheet "exercise.css"
-            externalStylesheet "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
-            internalScript "jquery-2.1.4.min.js"
-            internalScript "bootstrap.min.js"
-        H.body $ do
-          H.div ""
-            B.! A.id "exercise-holder"
+universalStylesheets = do
+    internalStylesheet "bootstrap.min.css"
+    internalStylesheet "main.css"
+    externalStylesheet "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
 
-handleExercises :: Dictionary -> ServerPart Response
-handleExercises dictionary = do
-    let lesson = GrammarLesson.exercises2 dictionary
-    gen <- liftIO $ newStdGen
-    path $ \n -> let exercise = lesson (mkStdGen n) in msum
-        [ dir "get" $ do
-            ok $ toResponse (A.encode $ exerciseToJSON gen exercise)
-        , dir "submit" $ do
-            body <- getBody
-            ok . toResponse . A.encode . A.object $ case validateExerciseAnswer exercise body of
-                Nothing -> [("success", A.Bool False)]
-                Just data' -> [("success", A.Bool True), ("data", data')]
-        ]
+universalScripts = do
+    internalScript "jquery-2.1.4.min.js"
+    internalScript "bootstrap.min.js"
+
+forceSlash :: ServerPart Response -> ServerPart Response
+forceSlash x = nullDir >> msum [trailingSlash >> x, askRq >>= \rq -> seeOther (rqUri rq ++ "/") (toResponse ())]
 
 getBody :: ServerPart BS.ByteString
-getBody = do
-    req  <- askRq
-    body <- liftIO $ takeRequestBody req
+getBody = askRq >>= liftIO . takeRequestBody >>= \body ->
     case body of
         Just rqbody -> return . unBody $ rqbody
         Nothing     -> return ""
 
-{-handleExercises :: (ToMessage a) => ServerPartT IO a-}
-{-handleExercises = ok ("oi" :: T.Text)-}
+-- Handlers
+handleRoot :: Dictionary -> ServerPart Response
+handleRoot dictionary = msum
+    [ forceSlash . ok . toResponse $ displayHome
+    , dir "static" $ serveDirectory EnableBrowsing [] "static"
+    , dir "course" $ handleCourse dictionary GrammarLesson.course
+    ]
+
+handleCourse :: Dictionary -> CourseBuilder -> ServerPart Response
+handleCourse dictionary courseBuilder =
+    let course = courseBuilder dictionary
+        lessons = courseLessons course
+    in msum
+        [ forceSlash . ok . toResponse . displayCourseHome $ course
+        , path $ \n -> (guard $ 1 <= n && n <= (length lessons)) >> (handleLesson dictionary $ lessons !! (n-1))
+        ]
+
+handleLesson :: Dictionary -> Lesson -> ServerPart Response
+handleLesson dictionary lesson = msum
+    [ forceSlash . ok . toResponse . displayLessonHome $ lesson
+    , dir "exercises" $ msum
+        [ forceSlash . ok . toResponse $ displayExercise
+        , path $ \n -> let exercise = lessonExercises lesson (mkStdGen n) in msum
+            [ dir "get" $ do
+                gen <- liftIO $ newStdGen
+                ok $ toResponse (A.encode $ exerciseToJSON gen exercise)
+            , dir "submit" $ do
+                body <- getBody
+                ok . toResponse . A.encode . A.object $ case validateExerciseAnswer exercise body of
+                    Nothing -> [("success", A.Bool False)]
+                    Just data' -> [("success", A.Bool True), ("data", data')]
+            ]
+        ]
+    ]
+
+-- Home page
+displayHome =
+    H.html ""
+
+-- Course page
+displayCourseHome :: Course -> H.Html
+displayCourseHome course = do
+    let title = courseTitle course
+    let lessons = courseLessons course
+    H.html $ do
+        H.head $ do
+            H.title $ H.toHtml title
+            universalStylesheets
+            universalScripts
+        H.body $ do
+            H.h1 $ H.toHtml title
+            H.ul $ forM_ (zip [1..] lessons) displayLessonItem
+
+displayLessonItem :: (Integer, Lesson) -> H.Html
+displayLessonItem (lessonNumber, lesson) = do
+    H.li $ do
+        H.a (H.toHtml $ lessonTitle lesson)
+            B.! A.href (H.stringValue . (++"/") . show $ lessonNumber)
+
+-- Lesson page
+displayLessonHome :: Lesson -> H.Html
+displayLessonHome lesson = do
+    let title = lessonTitle lesson
+    H.html $ do
+        H.head $ do
+            H.title $ H.toHtml title
+            universalStylesheets
+            universalScripts
+        H.body $ do
+            H.h1 $ H.toHtml title
+
+-- Exercise page
+displayExercise =
+    H.html $ do
+        H.head $ do
+            H.title (H.toHtml ("Lojto" :: T.Text))
+            universalStylesheets
+            internalStylesheet "funkyradio.css"
+            internalStylesheet "list-group-horizontal.css"
+            internalStylesheet "exercise.css"
+            universalScripts
+            internalScript "exercise.js"
+        H.body $ do
+          H.div ""
+            B.! A.id "exercise-holder"

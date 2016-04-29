@@ -1,8 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
-module Lessons.Grammar.Lesson
-( exercises1
-, exercises2
-) where
+
+module Lessons.Grammar.Lesson (course) where
 
 import Core
 import Lessons.Grammar.Vocabulary
@@ -130,3 +128,14 @@ exercises2 dictionary =
         ]
     where
         vocabulary = vocabularyGenerator2 dictionary
+
+-------- Lessons
+lesson1 :: LessonBuilder
+lesson1 dictionary = Lesson "Basics 1" (exercises1 dictionary)
+
+lesson2 :: LessonBuilder
+lesson2 dictionary = Lesson "Basics 2" (exercises2 dictionary)
+
+-------- Course
+course :: CourseBuilder
+course = createCourseBuilder "Introductory Lojban for English speakers" [lesson1, lesson2]

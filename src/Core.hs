@@ -40,6 +40,25 @@ instance Eq Gismu where
 instance Eq Cmavo where
     x == y = (cmavoText x) == (cmavoText y)
 
+-- Course
+type CourseBuilder = Dictionary -> Course
+data Course = Course
+    { courseTitle :: String
+    , courseLessons :: [Lesson]
+    } deriving (Show)
+
+type LessonBuilder = Dictionary -> Lesson
+data Lesson = Lesson
+    { lessonTitle :: String
+    , lessonExercises :: ExerciseGenerator
+    }
+
+instance Show Lesson where
+    show lesson = "Lesson { title = " ++ show (lessonTitle lesson) ++ " }"
+
+createCourseBuilder :: String -> [LessonBuilder] -> CourseBuilder
+createCourseBuilder title lessons dictionary = Course title (lessons <*> [dictionary])
+
 -- Exercises
 data Exercise =
     MultipleChoiceExercise

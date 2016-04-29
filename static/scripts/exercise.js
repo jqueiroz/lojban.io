@@ -50,7 +50,7 @@ var createExercisesManager = function(holder) {
     // Requests
     var retrieve = function() {
         return $.ajax({
-            'url': "/exercises/" + exercise_id + "/get",
+            'url': exercise_id + "/get",
             'method': 'GET',
             'dataType': 'json',
         });
@@ -58,7 +58,7 @@ var createExercisesManager = function(holder) {
 
     var submit = function(data) {
         return $.ajax({
-            'url': "/exercises/" + exercise_id + "/submit",
+            'url': exercise_id + "/submit",
             'method': 'POST',
             'dataType': 'json',
             'data': JSON.stringify(data),
