@@ -8,7 +8,7 @@ import Serializer (exerciseToJSON, validateExerciseAnswer)
 import Control.Monad
 import Control.Monad.IO.Class (liftIO)
 import Happstack.Server
-import Data.ByteString.Lazy as BS
+import qualified Data.ByteString.Lazy as BS
 import qualified Data.Map as M
 import qualified Data.Aeson as A
 import qualified Data.Text as T
