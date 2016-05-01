@@ -117,7 +117,6 @@ var createExercisesManager = function(holder) {
         footer.append(btnSkip);
         var btnCheck = $("<button/>").addClass("success").text("Check");
         footer.append(btnCheck);
-        btnCheck.focus();
         btnSkip.click(nextExercise);
         // Body
         body.empty();
