@@ -21,6 +21,8 @@ executable lojto
                      , bytestring
                      , containers
                      , transformers
+                     , file-embed
+                     , pandoc
                      , aeson
                      , random
                      , random-shuffle

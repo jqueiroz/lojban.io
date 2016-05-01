@@ -1,32 +1,26 @@
-body {
-    background-color: #eee;
-}
-
 .exercise-holder {
-    margin-left: auto;
-    margin-right: auto;
     background-color: #fff;
     border-radius: 20px;
-    margin-top: 2em;
-    max-width: 60em;
     box-shadow: 0 0 30px rgba(0,0,0,0.08);
 }
 
 .exercise-holder .body {
-    min-height: 25em;
+    min-height: 24em;
     padding: 1em 2em;
 }
 
 .exercise-holder .body .title {
     text-align: center;
     font-size: 2.5em;
-    margin-bottom: 1em;
+    margin-bottom: .2em;
     font-family: "Times New Roman";
 }
 
 .exercise-holder .body .table {
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
     width: auto;
+    margin-top: 3em;
     display: table;
 }
 
@@ -69,7 +63,6 @@ body {
 
 .exercise-holder .alternative {
     font-size: 1.1em;
-    margin-top: -20px;
 }
 
 .exercise-holder .list-group-item {
@@ -83,6 +76,10 @@ body {
 
 .exercise-holder .list-group-item.selected {
     color: #999;
+}
+
+.exercise-holder .funkyradio {
+    margin-top: 1em;
 }
 
 /* Footer */

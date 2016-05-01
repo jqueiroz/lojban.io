@@ -1,0 +1,102 @@
+body {
+    background-color: #e9e9e9;
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.topbar {
+    /* Position */
+    position: fixed;
+    vertical-align: middle;
+    width: 100%;
+    z-index: 1000;
+    /* Style */
+    background-color: #20a8e9;
+    vertical-align: middle;
+    /* Text */
+    padding: 0 3em 0 3em;
+    color: #fff;
+}
+
+.topbar h1 {
+    /* Position */
+    margin: 0;
+    line-height: 3.5em;
+    /* Text */
+    font-size: 1.5em;
+    font-family: open sans;
+    color: #fff;
+    height: 100%;
+    vertical-align: middle;
+}
+
+h3 {
+    border-bottom: solid 1px #000;
+    margin-bottom: 1em;
+    color: #000;
+}
+
+.lesson {
+    position: relative;
+    top: calc(5em + 30px);
+    background-color: red;
+}
+
+.lesson-contents {
+    /* Position */
+    position: absolute;
+    left: 7%;
+    width: 60%;
+    /* Border */
+    border-radius: 10px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.04);
+    /* Style */
+    line-height: 1.5em;
+    background-color: #fff;
+    padding: 10px 30px 30px 30px;
+    /* Text */
+    font-size: 1.1em;
+    color: #333;
+}
+
+.exercise-holder {
+    /* Position */
+    position: absolute;
+    left: 7%;
+    width: 60%;
+}
+
+.lesson-menu {
+    /* Position */
+    position: fixed;
+    top: calc(5em + 30px);
+    right: 7%;
+    width: 22%;
+    /* Border */
+    border-radius: 10px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.04);
+    /* Style */
+    line-height: 1.5em;
+    padding: 10px 30px 30px 30px;
+    background-color: #fff;
+}
+
+.lesson-menu h4 {
+    font-size: 1.8em;
+}
+
+.lesson-menu a.button {
+    /* Position */
+    display: inline-block;
+    margin-top: 0.5em;
+    width: 100%;
+    text-align: center;
+    /* Style */
+    background-color: #1caff6;
+    border-radius: 10px;
+    padding: 0.5em 1em;
+    /* Text */
+    font-size: 1.4em;
+    color: #fff;
+}

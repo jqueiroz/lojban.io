@@ -1,4 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE TemplateHaskell #-}
 
 module Lessons.Grammar.Lesson (course) where
 
@@ -7,6 +8,15 @@ import Lessons.Grammar.Vocabulary
 import Lessons.Grammar.Sentences (displaySimpleBridi, displayVariantBridi, basicSentenceCannonicalizer)
 import Lessons.Grammar.ExerciseGenerators
 import Util (combineFunctions, combineFunctionsUniformly)
+import qualified Text.Pandoc as P
+import Data.FileEmbed (embedStringFile)
+
+------- Lesson plans
+plan1 :: P.Pandoc
+Right plan1 = P.readMarkdown P.def $ $(embedStringFile "courses/english/introduction/planning/1.md")
+
+plan2 :: P.Pandoc
+Right plan2 = P.readMarkdown P.def $ $(embedStringFile "courses/english/introduction/planning/2.md")
 
 -------- Vocabulary
 vocabularyGenerator1 :: VocabularyGenerator
@@ -131,10 +141,10 @@ exercises2 dictionary =
 
 -------- Lessons
 lesson1 :: LessonBuilder
-lesson1 dictionary = Lesson "Basics 1" (exercises1 dictionary)
+lesson1 dictionary = Lesson "Basics 1" (exercises1 dictionary) plan1
 
 lesson2 :: LessonBuilder
-lesson2 dictionary = Lesson "Basics 2" (exercises2 dictionary)
+lesson2 dictionary = Lesson "Basics 2" (exercises2 dictionary) plan2
 
 -------- Course
 course :: CourseBuilder

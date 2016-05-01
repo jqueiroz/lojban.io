@@ -130,8 +130,6 @@ var createExercisesManager = function(holder) {
                 var sentence = $("<div/>").addClass("sentence").addClass("single").html(data.sentence.text);
                 body.append(sentence);
             }
-            // Linebreak
-            body.append("<br/><br/>");
             // Alternatives
             var radioGroup = $("<div/>").addClass("funkyradio");
             body.append(radioGroup);

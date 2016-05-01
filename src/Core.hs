@@ -4,6 +4,7 @@ module Core where
 import System.Random (StdGen)
 import qualified Data.Text as T
 import qualified Data.Map as M
+import qualified Text.Pandoc as P
 
 -- Dictionary
 data Dictionary = Dictionary
@@ -51,6 +52,7 @@ type LessonBuilder = Dictionary -> Lesson
 data Lesson = Lesson
     { lessonTitle :: String
     , lessonExercises :: ExerciseGenerator
+    , lessonPlan :: P.Pandoc
     }
 
 instance Show Lesson where

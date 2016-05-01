@@ -17,6 +17,8 @@ import System.Random (newStdGen, mkStdGen)
 import qualified Text.Blaze as B
 import qualified Text.Blaze.Html5 as H
 import qualified Text.Blaze.Html5.Attributes as A
+import qualified Text.Pandoc as P
+import qualified Text.Pandoc.Writers.HTML as PWH
 
 main :: IO ()
 main = do
@@ -74,14 +76,14 @@ handleCourse dictionary courseBuilder =
         lessons = courseLessons course
     in msum
         [ forceSlash . ok . toResponse . displayCourseHome $ course
-        , path $ \n -> (guard $ 1 <= n && n <= (length lessons)) >> (handleLesson dictionary $ lessons !! (n-1))
+        , path $ \n -> (guard $ 1 <= n && n <= (length lessons)) >> (handleLesson dictionary course $ lessons !! (n-1))
         ]
 
-handleLesson :: Dictionary -> Lesson -> ServerPart Response
-handleLesson dictionary lesson = msum
-    [ forceSlash . ok . toResponse . displayLessonHome $ lesson
+handleLesson :: Dictionary -> Course -> Lesson -> ServerPart Response
+handleLesson dictionary course lesson = msum
+    [ forceSlash . ok . toResponse $ displayLessonHome course lesson
     , dir "exercises" $ msum
-        [ forceSlash . ok . toResponse $ displayExercise
+        [ forceSlash . ok . toResponse $ displayExercise course
         , path $ \n -> let exercise = lessonExercises lesson (mkStdGen n) in msum
             [ dir "get" $ (liftIO $ newStdGen) >>= ok . toResponse . A.encode . exerciseToJSON exercise
             , dir "submit" $ getBody >>= \body -> ok . toResponse . A.encode . A.object $
@@ -117,28 +119,53 @@ displayLessonItem (lessonNumber, lesson) = do
             B.! A.href (H.stringValue . (++"/") . show $ lessonNumber)
 
 -- Lesson page
-displayLessonHome :: Lesson -> H.Html
-displayLessonHome lesson = do
-    let title = lessonTitle lesson
+displayTopbar :: Course -> H.Html
+displayTopbar course = do
+    H.div B.! A.class_ (H.stringValue "topbar") $ do
+        H.h1 $ H.toHtml (courseTitle course)
+
+displayLessonHome :: Course -> Lesson -> H.Html
+displayLessonHome course lesson = do
     H.html $ do
         H.head $ do
-            H.title $ H.toHtml title
+            H.title $ H.toHtml (lessonTitle lesson)
             universalStylesheets
             universalScripts
+            internalStylesheet "course.css"
         H.body $ do
-            H.h1 $ H.toHtml title
+            displayTopbar course
+            H.div B.! A.class_ (H.stringValue "lesson") $ do
+                H.div B.! A.class_ (H.stringValue "lesson-contents") $ do
+                    H.h3 $ H.toHtml (lessonTitle lesson)
+                    H.div $ do
+                        H.h4 $ H.toHtml ("Lesson plan" :: String)
+                        PWH.writeHtml P.def (lessonPlan lesson)
+                H.div B.! A.class_ (H.stringValue "lesson-menu") $ do
+                    H.h4 $ H.toHtml ("Menu" :: String)
+                    H.ul $ do
+                        H.li $ H.a B.! A.href (H.stringValue "../") $ (H.toHtml ("Course index" :: String))
+                        H.li $ H.a B.! A.href (H.stringValue "../pending") $ (H.toHtml ("Vocabulary" :: String))
+                    H.a B.! A.href (H.stringValue "exercises") B.! A.class_ (H.stringValue "button") $ (H.toHtml ("Practice" :: String))
 
 -- Exercise page
-displayExercise =
+displayExercise course =
     H.html $ do
         H.head $ do
             H.title (H.toHtml ("Lojto" :: T.Text))
             universalStylesheets
+            internalStylesheet "course.css"
             internalStylesheet "funkyradio.css"
             internalStylesheet "list-group-horizontal.css"
             internalStylesheet "exercise.css"
             universalScripts
             internalScript "exercise.js"
         H.body $ do
-          H.div ""
-            B.! A.id "exercise-holder"
+            displayTopbar course
+            H.div B.! A.class_ (H.stringValue "lesson") $ do
+                H.div B.! A.id (H.stringValue "exercise-holder") $ H.toHtml ("" :: String)
+                H.div B.! A.class_ (H.stringValue "lesson-menu") $ do
+                    H.h4 $ H.toHtml ("Menu" :: String)
+                    H.ul $ do
+                        H.li $ H.a B.! A.href (H.stringValue "../../") $ (H.toHtml ("Course index" :: String))
+                        H.li $ H.a B.! A.href (H.stringValue "../pending") $ (H.toHtml ("Vocabulary" :: String))
+                    H.a B.! A.href (H.stringValue "../") B.! A.class_ (H.stringValue "button") $ (H.toHtml ("Back to lesson" :: String))
