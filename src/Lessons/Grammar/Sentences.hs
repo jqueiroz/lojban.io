@@ -143,6 +143,7 @@ generatePropertyBridi vocabulary r0 = (SimpleBridi property [object], r2) where
         , ("mlatu", genericPointable)
         , ("gerku", genericPointable)
         , ("pelxu", genericPointable)
+        , ("plise", genericPointable)
         ]
 
 generateRelationBridi :: Vocabulary -> StdGen -> (SimpleBridi, StdGen)
