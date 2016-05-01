@@ -144,7 +144,7 @@ displayLessonHome course lesson = do
                     H.h4 $ H.toHtml ("Menu" :: String)
                     H.ul $ do
                         H.li $ H.a B.! A.href (H.stringValue "../") $ (H.toHtml ("Course index" :: String))
-                        H.li $ H.a B.! A.href (H.stringValue "../pending") $ (H.toHtml ("Vocabulary" :: String))
+                        H.li $ H.a B.! A.href (H.stringValue "pending") $ (H.toHtml ("Vocabulary" :: String))
                     H.a B.! A.href (H.stringValue "exercises") B.! A.class_ (H.stringValue "button") $ (H.toHtml ("Practice" :: String))
 
 -- Exercise page
