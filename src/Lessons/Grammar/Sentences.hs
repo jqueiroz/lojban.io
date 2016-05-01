@@ -1,4 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
+
 module Lessons.Grammar.Sentences
 ( SimpleBridi
 , SimpleBridiDisplayer
@@ -127,7 +128,7 @@ generateSimpleBridi vocabulary = combineFunctionsUniformly [generatePropertyBrid
 generatePropertyBridi :: Vocabulary -> StdGen -> (SimpleBridi, StdGen)
 generatePropertyBridi vocabulary r0 = (SimpleBridi property [object], r2) where
     (property, r1) = chooseItemUniformly r0 properties
-    (object, r2) = chooseItemUniformly r1 $ propertyObjects M.! property
+    (object, r2) = chooseItemUniformly r1 $ retrievePropertyObjects property
     -- Vocabulary
     properties = getVocabularySelbri vocabulary "properties"
     persons = getVocabularySumti vocabulary "persons"
@@ -145,11 +146,16 @@ generatePropertyBridi vocabulary r0 = (SimpleBridi property [object], r2) where
         , ("pelxu", genericPointable)
         , ("plise", genericPointable)
         ]
+    retrievePropertyObjects property =
+        let objects = M.findWithDefault [] property propertyObjects
+        in if objects == []
+            then error $ "No property objects are available for '" ++ (T.unpack property) ++ "'"
+            else objects
 
 generateRelationBridi :: Vocabulary -> StdGen -> (SimpleBridi, StdGen)
 generateRelationBridi vocabulary r0 = (SimpleBridi relation objects, r2) where
     (relation, r1) = chooseItemUniformly r0 relations
-    (objects, r2) = (relationObjectsGenerators M.! relation) r1
+    (objects, r2) = (retrieveRelationObjectsGenerator relation) r1
     -- Vocabulary
     relations = getVocabularySelbri vocabulary "relations"
     persons = getVocabularySumti vocabulary "persons"
@@ -171,6 +177,10 @@ generateRelationBridi vocabulary r0 = (SimpleBridi relation objects, r2) where
                 (x2, r2) = chooseItemUniformly r1 $ filter (/= x1) persons
             in ([x1, x2], r2))
         ]
+    retrieveRelationObjectsGenerator relation =
+        case M.lookup relation relationObjectsGenerators of
+            Just x -> x
+            Nothing -> error $ "No relation objects generator are available for '" ++ (T.unpack relation) ++ "'"
 
 generateActionBridi :: Vocabulary -> StdGen -> (SimpleBridi, StdGen)
 generateActionBridi vocabulary r0 = (SimpleBridi action objects, r2) where
@@ -214,3 +224,7 @@ generateActionBridi vocabulary r0 = (SimpleBridi action objects, r2) where
             in
                 ([actor, destination], r2))
         ]
+    retrieveActionObjectsGenerator action =
+        case M.lookup action actionObjectsGenerators of
+            Just x -> x
+            Nothing -> error $ "No action objects generator are available for '" ++ (T.unpack action) ++ "'"
