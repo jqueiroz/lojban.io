@@ -143,7 +143,6 @@ generatePropertyBridi vocabulary r0 = (SimpleBridi property [object], r2) where
         , ("mlatu", genericPointable)
         , ("gerku", genericPointable)
         , ("pelxu", genericPointable)
-        , ("cinri", subjects)
         ]
 
 generateRelationBridi :: Vocabulary -> StdGen -> (SimpleBridi, StdGen)
@@ -191,8 +190,9 @@ generateActionBridi vocabulary r0 = (SimpleBridi action objects, r2) where
             let
                 (speaker, r1) = chooseItemUniformly r0 persons
                 (listener, r2) = chooseItemUniformly r1 $ filter (/= speaker) persons
-                (subject, r3) = chooseItemUniformly r2 subjects
-            in ([speaker, listener, subject], r3))
+                (subject, r3) = if null subjects then ("", r2) else chooseItemUniformly r2 subjects
+            in
+                ([speaker, listener, subject], r3))
         , ("dunda", \r0 ->
             let
                 (donor, r1) = chooseItemUniformly r0 persons
@@ -204,7 +204,8 @@ generateActionBridi vocabulary r0 = (SimpleBridi action objects, r2) where
             let
                 (subject, r1) = chooseItemUniformly r0 (persons++animals)
                 (aliment, r2) = chooseItemUniformly r1 (aliments)
-            in ([subject, aliment], r2))
+            in
+                ([subject, aliment], r2))
         , ("klama", \r0 ->
             let
                 (actor, r1) = chooseItemUniformly r0 persons
