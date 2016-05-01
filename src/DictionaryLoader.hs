@@ -32,7 +32,7 @@ loadGismuFromLine frequencyMap line =
         rafsi1 = subfield 7 10 line
         rafsi2 = subfield 11 14 line
         rafsi3 = subfield 15 19 line
-        englishSumtiPlaces = M.findWithDefault [] text englishSumtiPlacesBase
+        englishSumtiPlaces = retrieveEnglishSumtiPlaces text
         englishKeyword1 = subfield 20 41 line
         englishKeyword2 = T.replace "'" "" $ subfield 41 62 line
         englishDefinition = subfield 62 158 line
@@ -83,6 +83,13 @@ englishSumtiPlacesBase = M.fromList
     , ("klama", ["traveler", "destination", "origin", "route", "means/vehicle"])
     , ("bridi", ["predicate relationship", "relation", "arguments"])
     ] -- TODO: ask people to build a database
+
+retrieveEnglishSumtiPlaces :: T.Text -> [T.Text]
+retrieveEnglishSumtiPlaces sumti =
+    let places = M.findWithDefault [] sumti englishSumtiPlacesBase
+    in if places == []
+        then error $ "Missing sumti places for '" ++ (T.unpack sumti) ++ "'"
+        else places
 
 -- Frequency map
 type FrequencyMap = M.Map T.Text Int
