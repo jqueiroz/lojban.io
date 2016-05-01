@@ -16,7 +16,7 @@ import Core
 import Lessons.Grammar.Vocabulary
 import Lessons.Grammar.Sentences
 import Lessons.Grammar.Number
-import Util (chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly)
+import Util (replace, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly)
 import Text.Read (readMaybe)
 import System.Random (StdGen, random)
 import Control.Arrow (first)
@@ -149,7 +149,7 @@ generateEasyGismuPlacesExercise dictionary vocabulary displayBridi = combineFunc
             (bridi, r1) = generateActionBridi vocabulary r0
             placesNumeric = map (('x' `T.cons`) . T.pack . show) $ [1..]
             placesLojban = simpleBridiSumti $ bridi
-            places = zip placesNumeric placesLojban
+            places = zip placesNumeric (replace "" "zo'e" placesLojban)
             title = "Match the places"
             (sentenceText, _) = displayBridi bridi r1
             sentence = Just . ExerciseSentence True $ sentenceText
@@ -159,7 +159,7 @@ generateEasyGismuPlacesExercise dictionary vocabulary displayBridi = combineFunc
             (bridi, r1) = generateSimpleBridi vocabulary r0
             placesNumeric = map (('x' `T.cons`) . T.pack . show) $ [1..]
             placesLojban = simpleBridiSumti $ bridi
-            places = zip placesNumeric placesLojban
+            places = zip placesNumeric (replace "" "zo'e" placesLojban)
             (place, r2) = chooseItemUniformly r1 places
             correctAlternative = snd place
             incorrectAlternatives = (simpleBridiSelbri bridi) : (filter (/= correctAlternative) . map snd $ places)
