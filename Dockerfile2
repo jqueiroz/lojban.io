@@ -1,0 +1,38 @@
+FROM ubuntu:16.04
+
+####################### Install dependencies #######################
+
+RUN apt-get update && \
+    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 575159689BEFB442 && \
+    echo 'deb http://download.fpcomplete.com/ubuntu xenial main'| tee /etc/apt/sources.list.d/fpco.list && \
+    apt-get install -y netbase ca-certificates xz-utils gcc clang haskell-stack
+
+####################### Configure the project #######################
+
+# Copy project configuration files
+COPY stack.yaml /lojto/stack.yaml
+COPY lojto.cabal /lojto/lojto.cabal
+
+# Setup GHC
+RUN cd /lojto && stack setup
+
+# Install dependencies
+COPY libs /lojto/libs
+RUN apt-get install -y zlib1g-dev
+RUN cd /lojto && stack install --only-dependencies
+
+# Copy source code and other resources
+COPY resources /lojto/resources
+COPY static /lojto/static
+COPY courses /lojto/courses
+COPY src /lojto/src
+COPY LICENSE /lojto/LICENSE
+
+# Build the project
+RUN cd /lojto && stack build
+
+####################### Expose ports #######################
+EXPOSE 8000/tcp
+
+####################### Default command #######################
+CMD stack exec lojto
