@@ -167,7 +167,7 @@ generateRelationBridi vocabulary r0 = (SimpleBridi relation objects, r2) where
         , ("pendo", \ro ->
             let
                 (x1, r1) = chooseItemUniformly r0 (persons++animals)
-                (x2, y2) = chooseItemUniformly r1 $ filter (/= x1) persons
+                (x2, r2) = chooseItemUniformly r1 $ filter (/= x1) persons
             in ([x1, x2], r2))
         ]
 
