@@ -24,6 +24,10 @@ var createExercisesManager = function(holder) {
             'clear': function() {
                 map = {};
             },
+            'clearNumber': function () {
+                for (var num = 0; num <= 9; ++num)
+                    delete map[48+num];
+            },
             'number': function(num, callback) {
                 if (num < 0 || num > 9)
                     throw new Error("Illegal argument.");
@@ -160,6 +164,7 @@ var createExercisesManager = function(holder) {
             // Logic
             var send = function() {
                 var chosenAlternative = radioGroup.find("input:checked").attr("value");
+                keyMap.clearNumber();
                 submit({'correctAlternative': chosenAlternative}).done(function(response) {
                     if (!response.success) {
                         console.log("Failure to submit answer");
