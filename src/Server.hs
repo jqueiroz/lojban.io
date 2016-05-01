@@ -151,7 +151,7 @@ displayLessonHome course lesson = do
 displayExercise course =
     H.html $ do
         H.head $ do
-            H.title (H.toHtml ("Lojto" :: T.Text))
+            H.title (H.toHtml ("Practice" :: T.Text))
             universalStylesheets
             internalStylesheet "course.css"
             internalStylesheet "funkyradio.css"
