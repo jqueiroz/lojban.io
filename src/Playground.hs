@@ -1,5 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
-module Lessons.LessonOne where
+module Playground where
 
 import Core
 import Control.Applicative ((<$>), (<*>))
@@ -9,7 +9,7 @@ import qualified Data.Text.IO as TIO
 import qualified Data.Text as T
 import qualified Data.Map as M
 
-import Dictionary (loadDictionary)
+import DictionaryLoader (loadDictionary)
 
 allGismu = do
     dict <- loadDictionary
