@@ -1,2 +1,3 @@
 *.swp
+.docker-binary
 .stack-work
