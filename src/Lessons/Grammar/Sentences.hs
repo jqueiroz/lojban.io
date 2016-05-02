@@ -8,6 +8,7 @@ module Lessons.Grammar.Sentences
 , simpleBridiSumti
 , displaySimpleBridi
 , displayVariantBridi
+, displayReorderedVariantBridi
 , basicSentenceCannonicalizer
 , generateNonbridi
 , generateSimpleBridi
@@ -19,6 +20,7 @@ module Lessons.Grammar.Sentences
 import Core
 import Lessons.Grammar.Vocabulary
 import Util (replace, stripRight, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly)
+import Control.Exception (assert)
 import System.Random (StdGen, mkStdGen)
 import qualified Data.Text as T
 import qualified Data.Map as M
@@ -48,6 +50,12 @@ swapSimpleBridiArguments "xe" (SimpleBridi selbri (a:b:[])) = SimpleBridi selbri
 swapSimpleBridiArguments "xe" (SimpleBridi selbri (a:[])) = SimpleBridi selbri ("":"":"":"":[a])
 swapSimpleBridiArguments "xe" (SimpleBridi selbri []) = SimpleBridi selbri []
 
+swapArguments :: T.Text -> [T.Text] -> [T.Text]
+swapArguments "se" (a:b:cs) = (b:a:cs)
+swapArguments "te" (a:b:c:ds) = (c:b:a:ds)
+swapArguments "ve" (a:b:c:d:es) = (d:b:c:a:es)
+swapArguments "xe" (a:b:c:d:e:fs) = (e:b:c:d:a:fs)
+
 ------------------------- ------------------------ Sentence displayers
 -- TODO: other display modes (place some sumti before the selbri, introduce fa/fe/fi/fo/fu, introduce se/te/ve/..., etc.)
 -- TODO: create functions that use the variant bridi structure (eg. x1 x2 selbri x3 ...), different ways of skipping (fa/fe/... vs se/te/...) according to some randomness, perhaps even unnecessarily sometimes (there should be parameters to control the preferences between fa/fe/... and se/te/... and the level of unnecessary use of fa/fe/..., variant bridi structure, etc.)
@@ -68,7 +76,7 @@ displaySimpleBridi = buildSentenceDisplayer $ \r0 (SimpleBridi selbri sumti) ->
         (sentence, r0)
 
 -- A random number of places is displayed before the selbri
--- (Except if the first place is missing, in which case this function behaves as displaySimpleBridi)
+-- (Except if the first place is empty, in which case this function behaves as displaySimpleBridi)
 displayVariantBridi :: StdGen -> SimpleBridi -> (T.Text, StdGen)
 displayVariantBridi = buildSentenceDisplayer $ \r0 (SimpleBridi selbri sumti) ->
     let
@@ -83,6 +91,23 @@ displayVariantBridi = buildSentenceDisplayer $ \r0 (SimpleBridi selbri sumti) ->
             in
                 (sumtiBefore ++ [selbri] ++ sumtiAfter, r1)
 
+-- A single swap is made using se/te/ve/xe
+-- (Except if the first place is empty or there are fewer than two places, in which case this function behaevs as displaySimpleBridi)
+displayReorderedVariantBridi :: StdGen -> SimpleBridi -> (T.Text, StdGen)
+displayReorderedVariantBridi r0 (bridi@(SimpleBridi selbri sumti))
+    | length sumti <= 1 = displayVariantBridi r0 bridi
+    | head sumti == ""  = displayVariantBridi r0 bridi
+    | otherwise         = displayReorderedVariantBridi' r0 bridi
+
+displayReorderedVariantBridi' :: StdGen -> SimpleBridi -> (T.Text, StdGen)
+displayReorderedVariantBridi' = buildSentenceDisplayer $ \r0 (SimpleBridi selbri sumti) ->
+    let
+        particles = take (length sumti - 1) ["se", "te", "ve", "xe"]
+        (particle, r1) = chooseItemUniformly r0 particles
+        sumti' = swapArguments particle sumti
+        sentence = head sumti' : particle : selbri : tail sumti'
+    in
+        assert (length sumti >= 2 && head sumti /= "") $ (sentence, r1)
 
 ------------------------- ----------------------- Sentence cannonicalizers
 --TODO: check whether se/te/ve/xe are left-associative or right-associative
