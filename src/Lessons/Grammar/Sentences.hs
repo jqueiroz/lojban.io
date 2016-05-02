@@ -126,14 +126,22 @@ cannonicalizeArguments (x:xs) = do
     return $ x':xs'
 
 cannonicalizeText :: ZG.Text -> Either String SimpleBridi
-cannonicalizeText (ZG.BridiTail (ZG.BRIVLA selbri) (ZG.Terms sumti _)) = SimpleBridi (T.pack selbri) <$> (("":) <$> (cannonicalizeArguments sumti))
-cannonicalizeText (ZG.BridiTail (ZG.Prefix (ZG.SE se) brivla) (ZG.Terms sumti x)) = swapSimpleBridiArguments se <$> cannonicalizeText (ZG.BridiTail brivla (ZG.Terms sumti x))
-cannonicalizeText (ZG.Bridi (ZG.Terms sumti1 _) (ZG.BridiTail (ZG.BRIVLA selbri) (ZG.Terms sumti2 _))) = SimpleBridi (T.pack selbri) <$> (cannonicalizeArguments $ sumti1 ++ sumti2)
-cannonicalizeText (ZG.Bridi (ZG.Terms sumti1 _) (ZG.BRIVLA selbri)) = SimpleBridi (T.pack selbri) <$> (cannonicalizeArguments $ sumti1)
-cannonicalizeText (ZG.Bridi (ZG.Terms sumti1 x) (ZG.Prefix (ZG.SE se) bridiTail)) = swapSimpleBridiArguments se <$> cannonicalizeText (ZG.Bridi (ZG.Terms sumti1 x) bridiTail)
-cannonicalizeText (ZG.Bridi (ZG.Terms sumti1 x) (ZG.BridiTail (ZG.Prefix (ZG.SE se) bridiTail) (ZG.Terms sumti2 y))) = swapSimpleBridiArguments se <$> cannonicalizeText (ZG.Bridi (ZG.Terms sumti1 x) (ZG.BridiTail bridiTail (ZG.Terms sumti2 y)))
-cannonicalizeText (ZG.BRIVLA selbri) = Right $ SimpleBridi (T.pack selbri) []
-cannonicalizeText (ZG.Prefix (ZG.SE se) x) = swapSimpleBridiArguments se <$> cannonicalizeText x
+cannonicalizeText (ZG.BridiTail (ZG.BRIVLA selbri) (ZG.Terms sumti _)) =
+    SimpleBridi (T.pack selbri) <$> (("":) <$> (cannonicalizeArguments sumti))
+cannonicalizeText (ZG.BridiTail (ZG.Prefix (ZG.SE se) brivla) (ZG.Terms sumti x)) =
+    swapSimpleBridiArguments se <$> cannonicalizeText (ZG.BridiTail brivla (ZG.Terms sumti x))
+cannonicalizeText (ZG.Bridi (ZG.Terms sumti1 _) (ZG.BridiTail (ZG.BRIVLA selbri) (ZG.Terms sumti2 _))) =
+    SimpleBridi (T.pack selbri) <$> (cannonicalizeArguments $ sumti1 ++ sumti2)
+cannonicalizeText (ZG.Bridi (ZG.Terms sumti1 _) (ZG.BRIVLA selbri)) =
+    SimpleBridi (T.pack selbri) <$> (cannonicalizeArguments $ sumti1)
+cannonicalizeText (ZG.Bridi (ZG.Terms sumti1 x) (ZG.Prefix (ZG.SE se) bridiTail)) =
+    swapSimpleBridiArguments se <$> cannonicalizeText (ZG.Bridi (ZG.Terms sumti1 x) bridiTail)
+cannonicalizeText (ZG.Bridi (ZG.Terms sumti1 x) (ZG.BridiTail (ZG.Prefix (ZG.SE se) bridiTail) (ZG.Terms sumti2 y))) =
+    swapSimpleBridiArguments se <$> cannonicalizeText (ZG.Bridi (ZG.Terms sumti1 x) (ZG.BridiTail bridiTail (ZG.Terms sumti2 y)))
+cannonicalizeText (ZG.BRIVLA selbri) =
+    Right $ SimpleBridi (T.pack selbri) []
+cannonicalizeText (ZG.Prefix (ZG.SE se) x) =
+    swapSimpleBridiArguments se <$> cannonicalizeText x
 cannonicalizeText _ = Left "unrecognized pattern in function cannonicalizeText"
 
 type SentenceCannonicalizer = T.Text -> Either String T.Text
