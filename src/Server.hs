@@ -76,21 +76,25 @@ handleCourse dictionary courseBuilder =
         lessons = courseLessons course
     in msum
         [ forceSlash . ok . toResponse . displayCourseHome $ course
-        , path $ \n -> (guard $ 1 <= n && n <= (length lessons)) >> (handleLesson dictionary course $ lessons !! (n-1))
+        , path $ \n -> (guard $ 1 <= n && n <= (length lessons)) >> (handleLesson dictionary course n)
         ]
 
-handleLesson :: Dictionary -> Course -> Lesson -> ServerPart Response
-handleLesson dictionary course lesson = msum
-    [ forceSlash . ok . toResponse $ displayLessonHome course lesson
+handleLesson :: Dictionary -> Course -> Int -> ServerPart Response
+handleLesson dictionary course lessonNumber = msum
+    [ forceSlash . ok . toResponse $ displayLessonHome course lessonNumber
     , dir "exercises" $ msum
-        [ forceSlash . ok . toResponse $ displayExercise course
-        , path $ \n -> let exercise = lessonExercises lesson (mkStdGen n) in msum
-            [ dir "get" $ (liftIO $ newStdGen) >>= ok . toResponse . A.encode . exerciseToJSON exercise
-            , dir "submit" $ getBody >>= \body -> ok . toResponse . A.encode . A.object $
-                case validateExerciseAnswer exercise body of
-                    Nothing -> [("success", A.Bool False)]
-                    Just data' -> [("success", A.Bool True), ("data", data')]
-            ]
+        [ forceSlash . ok . toResponse $ displayExercise course lessonNumber
+        , path $ \n ->
+            let
+                lesson = (courseLessons course) !! (lessonNumber - 1)
+                exercise = lessonExercises lesson (mkStdGen n)
+            in msum
+                [ dir "get" $ (liftIO $ newStdGen) >>= ok . toResponse . A.encode . exerciseToJSON exercise
+                , dir "submit" $ getBody >>= \body -> ok . toResponse . A.encode . A.object $
+                    case validateExerciseAnswer exercise body of
+                        Nothing -> [("success", A.Bool False)]
+                        Just data' -> [("success", A.Bool True), ("data", data')]
+                ]
         ]
     ]
 
@@ -112,11 +116,27 @@ displayCourseHome course = do
             H.h1 $ H.toHtml title
             H.ul $ forM_ (zip [1..] lessons) displayLessonItem
 
-displayLessonItem :: (Integer, Lesson) -> H.Html
+displayLessonItem :: (Int, Lesson) -> H.Html
 displayLessonItem (lessonNumber, lesson) = do
     H.li $ do
         H.a (H.toHtml $ lessonTitle lesson)
             B.! A.href (H.stringValue . (++"/") . show $ lessonNumber)
+
+-- Lesson menu
+displayLessonMenuItems :: String -> Course -> Int -> H.Html
+displayLessonMenuItems baseUrl course lessonNumber = do
+    let lessonsCount = length $ courseLessons course
+    H.li $ H.a B.! A.href (H.stringValue "../") $ (H.toHtml ("Course index" :: String))
+    if lessonNumber <= 1 || lessonNumber <= lessonsCount
+        then H.ul $ do
+            if lessonNumber >= 2
+                then H.li $ H.a B.! A.href (H.stringValue . ("../"++) . (baseUrl++) . show $ lessonNumber - 1) $ (H.toHtml ("Previous lesson" :: String))
+                else return ()
+            if lessonNumber < lessonsCount
+                then H.li $ H.a B.! A.href (H.stringValue . ("../"++) . (baseUrl++) . show $ lessonNumber + 1) $ (H.toHtml ("Next lesson" :: String))
+                else return ()
+        else return ()
+    H.li $ H.a B.! A.href (H.stringValue "pending") $ (H.toHtml ("Vocabulary" :: String))
 
 -- Lesson page
 displayTopbar :: Course -> H.Html
@@ -124,8 +144,9 @@ displayTopbar course = do
     H.div B.! A.class_ (H.stringValue "topbar") $ do
         H.h1 $ H.toHtml (courseTitle course)
 
-displayLessonHome :: Course -> Lesson -> H.Html
-displayLessonHome course lesson = do
+displayLessonHome :: Course -> Int -> H.Html
+displayLessonHome course lessonNumber = do
+    let lesson = (courseLessons course) !! (lessonNumber - 1)
     H.html $ do
         H.head $ do
             H.title $ H.toHtml (lessonTitle lesson)
@@ -142,13 +163,12 @@ displayLessonHome course lesson = do
                         PWH.writeHtml P.def (lessonPlan lesson)
                 H.div B.! A.class_ (H.stringValue "lesson-menu") $ do
                     H.h4 $ H.toHtml ("Menu" :: String)
-                    H.ul $ do
-                        H.li $ H.a B.! A.href (H.stringValue "../") $ (H.toHtml ("Course index" :: String))
-                        H.li $ H.a B.! A.href (H.stringValue "pending") $ (H.toHtml ("Vocabulary" :: String))
+                    H.ul $ displayLessonMenuItems "" course lessonNumber
                     H.a B.! A.href (H.stringValue "exercises") B.! A.class_ (H.stringValue "button") $ (H.toHtml ("Practice" :: String))
 
 -- Exercise page
-displayExercise course =
+displayExercise :: Course -> Int -> H.Html
+displayExercise course lessonNumber =
     H.html $ do
         H.head $ do
             H.title (H.toHtml ("Practice" :: T.Text))
@@ -165,7 +185,7 @@ displayExercise course =
                 H.div B.! A.id (H.stringValue "exercise-holder") $ H.toHtml ("" :: String)
                 H.div B.! A.class_ (H.stringValue "lesson-menu") $ do
                     H.h4 $ H.toHtml ("Menu" :: String)
-                    H.ul $ do
-                        H.li $ H.a B.! A.href (H.stringValue "../../") $ (H.toHtml ("Course index" :: String))
-                        H.li $ H.a B.! A.href (H.stringValue "../pending") $ (H.toHtml ("Vocabulary" :: String))
+                    H.ul $ displayLessonMenuItems "../" course lessonNumber
                     H.a B.! A.href (H.stringValue "../") B.! A.class_ (H.stringValue "button") $ (H.toHtml ("Back to lesson" :: String))
+    where
+        lesson = (courseLessons course) !! (lessonNumber - 1)
