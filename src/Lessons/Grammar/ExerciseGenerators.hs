@@ -60,7 +60,7 @@ generateLojbanBridiJufraExercise :: Vocabulary -> SimpleBridiDisplayer -> Exerci
 generateLojbanBridiJufraExercise vocabulary displayBridi r0 = SingleChoiceExercise title sentence correctAlternative incorrectAlternatives True where
     chooseLojbanSentence :: T.Text -> StdGen -> (T.Text, StdGen)
     chooseLojbanSentence "only jufra" r0 = generateNonbridi vocabulary r0
-    chooseLojbanSentence "bridi and jufra" r0 = displayBridi simpleBridi r1 where
+    chooseLojbanSentence "bridi and jufra" r0 = displayBridi r1 simpleBridi where
         (simpleBridi, r1) = generateSimpleBridi vocabulary r0
     allAlternatives = ["only jufra", "bridi and jufra"]
     (correctAlternative, r1) = chooseItemUniformly r0 allAlternatives
@@ -115,7 +115,7 @@ generateSelbriIdentificationExercise vocabulary displayBridi r0 = SingleChoiceEx
     correctAlternative = simpleBridiSelbri bridi
     incorrectAlternatives = take 4 $ simpleBridiSumti bridi
     title = "Identify the <b>selbri</b>"
-    (sentenceText, _) = displayBridi bridi r1
+    (sentenceText, _) = displayBridi r1 bridi
     sentence = Just . ExerciseSentence True $ sentenceText
 
 -- Exercise: tell gismu places of a sentence (TODO: typing exercises?)
@@ -128,7 +128,7 @@ generateEasyGismuPlacesExercise dictionary vocabulary displayBridi = combineFunc
             placesLojban = simpleBridiSumti $ bridi
             places = zip placesEnglish placesLojban
             title = "Match the places"
-            (sentenceText, _) = displayBridi bridi r1
+            (sentenceText, _) = displayBridi r1 bridi
             sentence = Just . ExerciseSentence True $ sentenceText
         in MatchingExercise title sentence places
     f2 r0 =
@@ -141,7 +141,7 @@ generateEasyGismuPlacesExercise dictionary vocabulary displayBridi = combineFunc
             correctAlternative = snd place
             incorrectAlternatives = (simpleBridiSelbri bridi) : (filter (/= correctAlternative) . map snd $ places)
             title = "Select the " `T.append` "<b>" `T.append` (fst place) `T.append` "</b>"
-            (sentenceText, _) = displayBridi bridi r2
+            (sentenceText, _) = displayBridi r2 bridi
             sentence = Just . ExerciseSentence True $ sentenceText
         in SingleChoiceExercise title sentence correctAlternative incorrectAlternatives False
     f3 r0 =
@@ -151,7 +151,7 @@ generateEasyGismuPlacesExercise dictionary vocabulary displayBridi = combineFunc
             placesLojban = simpleBridiSumti $ bridi
             places = zip placesNumeric (replace "" "zo'e" placesLojban)
             title = "Match the places"
-            (sentenceText, _) = displayBridi bridi r1
+            (sentenceText, _) = displayBridi r1 bridi
             sentence = Just . ExerciseSentence True $ sentenceText
         in MatchingExercise title sentence places
     f4 r0 =
@@ -164,7 +164,7 @@ generateEasyGismuPlacesExercise dictionary vocabulary displayBridi = combineFunc
             correctAlternative = snd place
             incorrectAlternatives = (simpleBridiSelbri bridi) : (filter (/= correctAlternative) . map snd $ places)
             title = "Select the <b>" `T.append` (fst place) `T.append` "</b>"
-            (sentenceText, _) = displayBridi bridi r2
+            (sentenceText, _) = displayBridi r2 bridi
             sentence = Just . ExerciseSentence True $ sentenceText
         in SingleChoiceExercise title sentence correctAlternative incorrectAlternatives False
 

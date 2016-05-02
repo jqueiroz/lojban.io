@@ -51,16 +51,16 @@ swapSimpleBridiArguments "xe" (SimpleBridi selbri []) = SimpleBridi selbri []
 ------------------------- ------------------------ Sentence displayers
 -- TODO: other display modes (place some sumti before the selbri, introduce fa/fe/fi/fo/fu, introduce se/te/ve/..., etc.)
 -- TODO: create functions that use the variant bridi structure (eg. x1 x2 selbri x3 ...), different ways of skipping (fa/fe/... vs se/te/...) according to some randomness, perhaps even unnecessarily sometimes (there should be parameters to control the preferences between fa/fe/... and se/te/... and the level of unnecessary use of fa/fe/..., variant bridi structure, etc.)
-type SimpleBridiDisplayer = SimpleBridi -> StdGen -> (T.Text, StdGen)
+type SimpleBridiDisplayer = StdGen -> SimpleBridi -> (T.Text, StdGen)
 
-buildSentenceDisplayer :: (SimpleBridi -> StdGen -> ([T.Text], StdGen)) -> (SimpleBridi -> StdGen -> (T.Text, StdGen))
-buildSentenceDisplayer sentenceDisplayer simpleBridi r0 = (T.unwords $ replace "" "zo'e" sentence, r1) where
-    (sentence, r1) = sentenceDisplayer simpleBridi r0
+buildSentenceDisplayer :: (StdGen -> SimpleBridi -> ([T.Text], StdGen)) -> SimpleBridiDisplayer
+buildSentenceDisplayer sentenceDisplayer r0 simpleBridi = (T.unwords $ replace "" "zo'e" sentence, r1) where
+    (sentence, r1) = sentenceDisplayer r0 simpleBridi
 
 -- Ellisis occurs in the first place and in the last places
 -- All other missing places are filled with "zo'e"
-displaySimpleBridi :: SimpleBridi -> StdGen -> (T.Text, StdGen)
-displaySimpleBridi = buildSentenceDisplayer $ \(SimpleBridi selbri sumti) r0 ->
+displaySimpleBridi :: StdGen -> SimpleBridi -> (T.Text, StdGen)
+displaySimpleBridi = buildSentenceDisplayer $ \r0 (SimpleBridi selbri sumti) ->
     let
         (sumtiHead, sumtiTail) = splitAt 1 sumti
         sentence = (if sumtiHead == [""] then [] else sumtiHead) ++ [selbri] ++ (stripRight "" sumtiTail)
@@ -69,8 +69,8 @@ displaySimpleBridi = buildSentenceDisplayer $ \(SimpleBridi selbri sumti) r0 ->
 
 -- A random number of places is displayed before the selbri
 -- (Except if the first place is missing, in which case this function behaves as displaySimpleBridi)
-displayVariantBridi :: SimpleBridi -> StdGen -> (T.Text, StdGen)
-displayVariantBridi = buildSentenceDisplayer $ \(SimpleBridi selbri sumti) r0 ->
+displayVariantBridi :: StdGen -> SimpleBridi -> (T.Text, StdGen)
+displayVariantBridi = buildSentenceDisplayer $ \r0 (SimpleBridi selbri sumti) ->
     let
         (sumtiHead, sumtiTail) = splitAt 1 sumti
     in
@@ -116,7 +116,7 @@ basicSentenceCannonicalizer :: T.Text -> Either String T.Text
 basicSentenceCannonicalizer sentence = do
     (_, x, _) <- ZG.parse (T.unpack sentence)
     y <- cannonicalizeText x
-    return . fst $ displaySimpleBridi y (mkStdGen 42)
+    return . fst $ displaySimpleBridi (mkStdGen 42) y
 
 ------------------------- ----------------------- Sentence generators
 generateNonbridi :: Vocabulary -> StdGen -> (T.Text, StdGen)
