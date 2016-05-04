@@ -42,15 +42,15 @@ vocabularyGenerator1 = buildVocabularyGenerator
 vocabularyGenerator2 :: VocabularyGenerator
 vocabularyGenerator2 = buildVocabularyGenerator
     -- Gismu
-    ["tavla", "dunda", "prenu", "zdani", "pendo", "mlatu", "gerku", "citka", "plise", "melbi", "sutra", "nelci"]
+    ["tavla", "dunda", "prenu", "zdani", "pendo", "mlatu", "gerku", "melbi", "nelci"]
     -- Cmavo
     ["zo'e", "lo", "mi", "do", "ti", "ta"]
     -- Cmevla
     []
     -- Selbri
     [
-        ("actions", ["tavla", "dunda", "citka"]),
-        ("properties", ["prenu", "melbi", "plise", "zdani", "mlatu", "gerku", "pelxu", "sutra"]),
+        ("actions", ["tavla", "dunda"]),
+        ("properties", ["prenu", "melbi", "zdani", "mlatu", "gerku"]),
         ("relations", ["nelci", "pendo"])
     ]
     -- Sumti
@@ -59,8 +59,7 @@ vocabularyGenerator2 = buildVocabularyGenerator
         ("animals", ["lo mlatu ku", "lo gerku ku"]),
         ("genericPointable", ["ti", "ta"]),
         ("places", ["lo zdani ku"]),
-        ("subjects", ["lo zdani ku", "lo mlatu ku", "lo gerku ku"]),
-        ("aliments", ["lo plise ku"])
+        ("subjects", ["lo zdani ku", "lo mlatu ku", "lo gerku ku", "lo se dunda ku"])
     ]
 
 vocabulary3 :: VocabularyGenerator
@@ -105,8 +104,16 @@ translations1 = translations1_nice ++
     , ("That is a cat.", "ta mlatu")
     ]
 
+translations2_nice :: [Translation]
+translations2_nice =
+    [ ("I like the donor.", "mi nelci lo dunda ku")
+    , ("The gift is beautiful.", "lo se dunda ku melbi")
+    , ("The listener is a person.", "lo se tavla ku prenu") -- is "listener" a good choice?
+    , ("The speaker is my friend.", "lo tavla ku pendo mi") -- is "speaker" a good choice? maybe it implies voice...
+    ]
+
 translations2 :: [Translation]
-translations2 = translations1_nice ++
+translations2 = translations1_nice ++ translations2_nice ++
     [ ("I have a house.", "mi se zdani")
     , ("The house is yellow.", "lo zdani ku pelxu")
     , ("A person is talking to a dog.", "lo prenu ku tavla lo gerku ku")
