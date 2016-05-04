@@ -9,6 +9,7 @@ module Lessons.Grammar.ExerciseGenerators
 , generateEnglishBridiJufraExercise
 , generateSelbriIdentificationExercise
 , generateContextualizedGismuPlacesExercise
+, generateIsolatedGismuPlacesExercise
 , generateBasicNumberExercise
 ) where
 
@@ -167,6 +168,21 @@ generateContextualizedGismuPlacesExercise dictionary vocabulary displayBridi = c
             (sentenceText, _) = displayBridi r2 bridi
             sentence = Just . ExerciseSentence True $ sentenceText
         in SingleChoiceExercise title sentence correctAlternative incorrectAlternatives False
+
+-- Exercise: tell gismu places using se/te/ve/xe
+generateIsolatedGismuPlacesExercise :: Dictionary -> Vocabulary -> ExerciseGenerator
+generateIsolatedGismuPlacesExercise dictionary vocabulary r0 =
+    let
+        (selbri, r1) = chooseItemUniformly r0 $ getVocabularySelbri vocabulary "actions"
+        placesLojban = map (\x -> x `T.append` " " `T.append` selbri `T.append` " ku") ["lo", "lo se", "lo te", "lo ve", "lo xe"]
+        placesEnglish = gismuEnglishPlaces $ (dictGismu dictionary) M.! selbri
+        places = zip placesLojban placesEnglish
+        (place, _) = chooseItemUniformly r1 places
+        correctAlternative = snd place
+        incorrectAlternatives = filter (/= correctAlternative) . map snd $ places
+        title = "Identify <b>" `T.append` (fst place) `T.append` "</b>"
+        sentence = Nothing
+    in SingleChoiceExercise title sentence correctAlternative incorrectAlternatives False
 
 -- Exercise: convert numbers to and from lojban
 generateBasicNumberExercise :: ExerciseGenerator

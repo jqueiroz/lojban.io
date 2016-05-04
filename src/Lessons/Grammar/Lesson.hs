@@ -127,8 +127,7 @@ exercises1 dictionary =
     where
         vocabulary = vocabularyGenerator1 dictionary
 
--- TODO: se, te, ...
-exercises2 :: Dictionary -> ExerciseGenerator
+dexercises2 :: Dictionary -> ExerciseGenerator
 exercises2 dictionary =
     combineFunctions
         [ (20, generateGrammaticalClassExercise vocabulary)
@@ -136,6 +135,7 @@ exercises2 dictionary =
         , (20, generateSelbriIdentificationExercise vocabulary displayBridi)
         , (30, generateContextualizedGismuPlacesExercise dictionary vocabulary displayBridi)
         , (50, generateTranslationExercise basicSentenceCannonicalizer translations2)
+        , (30, generateIsolatedGismuPlacesExercise dictionary vocabulary)
         ]
     where
         vocabulary = vocabularyGenerator2 dictionary
