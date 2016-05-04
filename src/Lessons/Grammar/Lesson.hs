@@ -127,7 +127,7 @@ exercises1 dictionary =
     where
         vocabulary = vocabularyGenerator1 dictionary
 
-dexercises2 :: Dictionary -> ExerciseGenerator
+exercises2 :: Dictionary -> ExerciseGenerator
 exercises2 dictionary =
     combineFunctions
         [ (20, generateGrammaticalClassExercise vocabulary)
