@@ -35,7 +35,7 @@ vocabularyGenerator1 = buildVocabularyGenerator
     ]
     -- Sumti
     [
-        ("persons", ["mi", "do"]),
+        ("genericPersons", ["mi", "do"]),
         ("genericPointable", ["ti", "ta"])
     ]
 
@@ -55,7 +55,7 @@ vocabularyGenerator2 = buildVocabularyGenerator
     ]
     -- Sumti
     [
-        ("persons", ["mi", "do", "lo prenu ku"]),
+        ("genericPersons", ["mi", "do", "lo prenu ku"]),
         ("animals", ["lo mlatu ku", "lo gerku ku"]),
         ("genericPointable", ["ti", "ta"]),
         ("places", ["lo zdani ku"]),
@@ -79,7 +79,7 @@ vocabulary3 = buildVocabularyGenerator
     ]
     -- Sumti
     [
-        ("persons", ["mi", "do"]),
+        ("genericPersons", ["mi", "do"]),
         ("genericPintable", ["ti", "ta", "tu"])
     ]
 
