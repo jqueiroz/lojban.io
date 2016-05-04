@@ -8,7 +8,7 @@ module Lessons.Grammar.ExerciseGenerators
 , generateLojbanBridiJufraExercise
 , generateEnglishBridiJufraExercise
 , generateSelbriIdentificationExercise
-, generateEasyGismuPlacesExercise
+, generateContextualizedGismuPlacesExercise
 , generateBasicNumberExercise
 ) where
 
@@ -119,8 +119,8 @@ generateSelbriIdentificationExercise vocabulary displayBridi r0 = SingleChoiceEx
     sentence = Just . ExerciseSentence True $ sentenceText
 
 -- Exercise: tell gismu places of a sentence (TODO: typing exercises?)
-generateEasyGismuPlacesExercise :: Dictionary -> Vocabulary -> SimpleBridiDisplayer -> ExerciseGenerator
-generateEasyGismuPlacesExercise dictionary vocabulary displayBridi = combineFunctions [(0, f1), (3, f2), (0, f3), (5, f4)] where
+generateContextualizedGismuPlacesExercise :: Dictionary -> Vocabulary -> SimpleBridiDisplayer -> ExerciseGenerator
+generateContextualizedGismuPlacesExercise dictionary vocabulary displayBridi = combineFunctions [(0, f1), (3, f2), (0, f3), (5, f4)] where
     f1 r0 =
         let
             (bridi, r1) = generateActionBridi vocabulary r0

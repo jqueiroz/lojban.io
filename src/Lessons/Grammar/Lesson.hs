@@ -121,7 +121,7 @@ exercises1 dictionary =
         [ (20, generateGrammaticalClassExercise vocabulary)
         , (15, generateBridiJufraExercise vocabulary displayVariantBridi)
         , (20, generateSelbriIdentificationExercise vocabulary displayVariantBridi)
-        , (30, generateEasyGismuPlacesExercise dictionary vocabulary displayVariantBridi)
+        , (30, generateContextualizedGismuPlacesExercise dictionary vocabulary displayVariantBridi)
         , (40, generateTranslationExercise basicSentenceCannonicalizer translations1)
         ]
     where
@@ -134,7 +134,7 @@ exercises2 dictionary =
         [ (20, generateGrammaticalClassExercise vocabulary)
         , (15, generateBridiJufraExercise vocabulary displayBridi)
         , (20, generateSelbriIdentificationExercise vocabulary displayBridi)
-        , (30, generateEasyGismuPlacesExercise dictionary vocabulary displayBridi)
+        , (30, generateContextualizedGismuPlacesExercise dictionary vocabulary displayBridi)
         , (50, generateTranslationExercise basicSentenceCannonicalizer translations2)
         ]
     where
