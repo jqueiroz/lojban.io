@@ -31,26 +31,14 @@ data SimpleBridi = SimpleBridi
     , simpleBridiSumti :: [T.Text]
     } deriving (Show)
 
-swapSimpleBridiArguments "se" (SimpleBridi selbri (a:b:cs)) = SimpleBridi selbri (b:a:cs)
-swapSimpleBridiArguments "se" (SimpleBridi selbri (a:[])) = SimpleBridi selbri ("":[a])
-swapSimpleBridiArguments "se" (SimpleBridi selbri []) = SimpleBridi selbri []
-swapSimpleBridiArguments "te" (SimpleBridi selbri (a:b:c:ds)) = SimpleBridi selbri (c:b:a:ds)
-swapSimpleBridiArguments "te" (SimpleBridi selbri (a:b:[])) = SimpleBridi selbri ("":b:[a])
-swapSimpleBridiArguments "te" (SimpleBridi selbri (a:[])) = SimpleBridi selbri ("":"":[a])
-swapSimpleBridiArguments "te" (SimpleBridi selbri []) = SimpleBridi selbri []
-swapSimpleBridiArguments "ve" (SimpleBridi selbri (a:b:c:d:es)) = SimpleBridi selbri (d:b:c:a:es)
-swapSimpleBridiArguments "ve" (SimpleBridi selbri (a:b:c:[])) = SimpleBridi selbri ("":b:c:[a])
-swapSimpleBridiArguments "ve" (SimpleBridi selbri (a:b:[])) = SimpleBridi selbri ("":b:"":[a])
-swapSimpleBridiArguments "ve" (SimpleBridi selbri (a:[])) = SimpleBridi selbri ("":"":"":[a])
-swapSimpleBridiArguments "ve" (SimpleBridi selbri []) = SimpleBridi selbri []
-swapSimpleBridiArguments "xe" (SimpleBridi selbri (a:b:c:d:e:fs)) = SimpleBridi selbri (e:b:c:d:a:fs)
-swapSimpleBridiArguments "xe" (SimpleBridi selbri (a:b:c:d:[])) = SimpleBridi selbri ("":b:c:d:[a])
-swapSimpleBridiArguments "xe" (SimpleBridi selbri (a:b:c:[])) = SimpleBridi selbri ("":b:c:"":[a])
-swapSimpleBridiArguments "xe" (SimpleBridi selbri (a:b:[])) = SimpleBridi selbri ("":b:"":"":[a])
-swapSimpleBridiArguments "xe" (SimpleBridi selbri (a:[])) = SimpleBridi selbri ("":"":"":"":[a])
-swapSimpleBridiArguments "xe" (SimpleBridi selbri []) = SimpleBridi selbri []
+-- The following function keeps trailing empty places, if present
+swapSimpleBridiArguments :: String -> SimpleBridi -> SimpleBridi
+swapSimpleBridiArguments particle (SimpleBridi selbri sumti) = SimpleBridi selbri sumti''' where
+    sumti' = sumti ++ replicate 5 (T.pack "///")
+    sumti'' = swapArguments particle sumti'
+    sumti''' = replace (T.pack "///") (T.pack "") . stripRight "///" $ sumti''
 
-swapArguments :: T.Text -> [T.Text] -> [T.Text]
+swapArguments :: String -> [T.Text] -> [T.Text]
 swapArguments "se" (a:b:cs) = (b:a:cs)
 swapArguments "te" (a:b:c:ds) = (c:b:a:ds)
 swapArguments "ve" (a:b:c:d:es) = (d:b:c:a:es)
@@ -105,7 +93,7 @@ displayReorderedVariantBridi' = buildSentenceDisplayer $ \r0 (SimpleBridi selbri
         particles = take (length sumti - 1) ["se", "te", "ve", "xe"]
         (particle, r1) = chooseItemUniformly r0 particles
         sumti' = swapArguments particle sumti
-        sentence = head sumti' : particle : selbri : tail sumti'
+        sentence = head sumti' : (T.pack particle) : selbri : tail sumti'
     in
         assert (length sumti >= 2 && head sumti /= "") $ (sentence, r1)
 
