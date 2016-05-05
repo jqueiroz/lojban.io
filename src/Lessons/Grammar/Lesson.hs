@@ -122,7 +122,7 @@ translations2 = translations1_nice ++ translations2_nice ++
     , ("The dog likes the cat.", "lo gerku ku nelci lo mlatu ku")
     , ("The house is beautiful!", "lo zdani ku melbi")
     , ("I will teach you.", "mi ctuca do")
-    , ("Somebody teached me.", "ctuca mi")
+    , ("Somebody teached me.", "mi se ctuca")
     ]
 
 -------- Exercises
