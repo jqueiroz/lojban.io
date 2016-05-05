@@ -99,9 +99,17 @@ displayReorderedVariantBridi' = buildSentenceDisplayer $ \r0 (SimpleBridi selbri
 
 ------------------------- ----------------------- Sentence cannonicalizers
 --TODO: check whether se/te/ve/xe are left-associative or right-associative
+--TODO: create LOTS of unit tests
+
+cannonicalizeArgumentInternally :: ZG.Text -> Either String T.Text
+cannonicalizeArgumentInternally (ZG.BRIVLA b) = Right $ T.pack b
+cannonicalizeArgumentInternally (ZG.Prefix (ZG.SE se) b) = T.append (T.pack $ se ++ " ") <$> cannonicalizeArgumentInternally b
+cannonicalizeArgumentInternally _ = Left "unrecognized pattern in function cannonicalizeArgumentInternally"
 
 cannonicalizeArgument :: ZG.Text -> Either String T.Text
-cannonicalizeArgument (ZG.LE (ZG.Init i) _ _ (ZG.BRIVLA b) _) = Right $ T.pack (i ++ " " ++ b ++ " ku")
+cannonicalizeArgument (ZG.LE (ZG.Init i) _ _ x _) = insertPrefix . insertSuffix <$> cannonicalizeArgumentInternally x where
+    insertPrefix = ((T.pack $ i ++ " ") `T.append`)
+    insertSuffix = (`T.append` " ku")
 cannonicalizeArgument (ZG.KOhA "zo'e") = Right $ ""
 cannonicalizeArgument (ZG.KOhA k) = Right $ T.pack k
 cannonicalizeArgument _ = Left "unrecognized pattern in function cannonicalizeArgument"
