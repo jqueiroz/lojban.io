@@ -42,14 +42,14 @@ vocabularyGenerator1 = buildVocabularyGenerator
 vocabularyGenerator2 :: VocabularyGenerator
 vocabularyGenerator2 = buildVocabularyGenerator
     -- Gismu
-    ["tavla", "dunda", "prenu", "zdani", "pendo", "mlatu", "gerku", "melbi", "nelci"]
+    ["tavla", "dunda", "prenu", "zdani", "pendo", "mlatu", "gerku", "melbi", "nelci", "ctuca"]
     -- Cmavo
     ["zo'e", "lo", "mi", "do", "ti", "ta"]
     -- Cmevla
     []
     -- Selbri
     [
-        ("actions", ["tavla", "dunda"]),
+        ("actions", ["tavla", "dunda", "ctuca"]),
         ("properties", ["prenu", "melbi", "zdani", "mlatu", "gerku"]),
         ("relations", ["nelci", "pendo"])
     ]
@@ -108,6 +108,8 @@ translations2_nice :: [Translation]
 translations2_nice =
     [ ("I like the donor.", "mi nelci lo dunda ku")
     , ("The gift is beautiful.", "lo se dunda ku melbi")
+    , ("The instructor has a house.", "lo ctuca ku se zdani")
+    , ("I like the teaching method.", "mi nelci lo xe ctuca")
     , ("The listener is a person.", "lo se tavla ku prenu") -- is "listener" a good choice?
     , ("The speaker is my friend.", "lo tavla ku pendo mi") -- is "speaker" a good choice? maybe it implies voice...
     ]
@@ -119,6 +121,8 @@ translations2 = translations1_nice ++ translations2_nice ++
     , ("A person is talking to a dog.", "lo prenu ku tavla lo gerku ku")
     , ("The dog likes the cat.", "lo gerku ku nelci lo mlatu ku")
     , ("The house is beautiful!", "lo zdani ku melbi")
+    , ("I will teach you.", "mi ctuca do")
+    , ("Somebody teached me.", "ctuca mi")
     ]
 
 -------- Exercises

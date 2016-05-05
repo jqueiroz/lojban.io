@@ -232,6 +232,13 @@ generateActionBridi vocabulary r0 = (SimpleBridi action objects, r2) where
                 (receiver, r3) = chooseItemUniformly r2 (filter (/= donor) genericPersons)
             in
                 ([donor, gift, receiver], r3))
+        , ("ctuca", \r0 ->
+            --TODO: complete this bridi with more sumti when they are available
+            let
+                (instructor, r1) = chooseItemUniformly r0 genericPersons
+                (audience, r2) = chooseItemUniformly r1 (filter (/= instructor) genericPersons)
+            in
+                ([instructor, audience], r1))
         , ("citka", \r0 ->
             let
                 (subject, r1) = chooseItemUniformly r0 (genericPersons++animals)
