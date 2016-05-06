@@ -164,6 +164,7 @@ var createExercisesManager = function(holder) {
             // Logic
             var send = function() {
                 var chosenAlternative = radioGroup.find("input:checked").attr("value");
+                if (chosenAlternative === undefined) return;
                 keyMap.clearNumber();
                 submit({'correctAlternative': chosenAlternative}).done(function(response) {
                     if (!response.success) {
