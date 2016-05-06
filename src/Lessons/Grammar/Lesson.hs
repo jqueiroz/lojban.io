@@ -50,7 +50,7 @@ vocabularyGenerator2 = buildVocabularyGenerator
     -- Selbri
     [
         ("actions", ["tavla", "dunda", "ctuca"]),
-        ("properties", ["prenu", "melbi", "zdani", "mlatu", "gerku"]),
+        ("properties", ["prenu", "zdani", "mlatu", "gerku", "melbi"]),
         ("relations", ["nelci", "pendo"])
     ]
     -- Sumti
@@ -110,7 +110,7 @@ translations2_nice =
     , ("The gift is beautiful.", "lo se dunda ku melbi")
     , ("I was given a dog.", "mi te dunda lo gerku ku")
     , ("The instructor has a house.", "lo ctuca ku se zdani")
-    , ("I like the teaching method.", "mi nelci lo xe ctuca")
+    , ("I like the teaching method.", "mi nelci lo xe ctuca ku")
     , ("The listener is a person.", "lo se tavla ku prenu") -- is "listener" a good choice?
     , ("The speaker is my friend.", "lo tavla ku pendo mi") -- is "speaker" a good choice? maybe it implies voice...
     ]
@@ -118,7 +118,6 @@ translations2_nice =
 translations2 :: [Translation]
 translations2 = translations1_nice ++ translations2_nice ++
     [ ("I have a house.", "mi se zdani")
-    , ("The house is yellow.", "lo zdani ku pelxu")
     , ("A person is talking to a dog.", "lo prenu ku tavla lo gerku ku")
     , ("The dog likes the cat.", "lo gerku ku nelci lo mlatu ku")
     , ("The house is beautiful!", "lo zdani ku melbi")
