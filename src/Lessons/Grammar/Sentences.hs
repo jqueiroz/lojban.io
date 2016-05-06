@@ -19,7 +19,7 @@ module Lessons.Grammar.Sentences
 
 import Core
 import Lessons.Grammar.Vocabulary
-import Util (replace, stripRight, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly)
+import Util (replace, stripRight, filterOutWord, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly)
 import Control.Exception (assert)
 import System.Random (StdGen, mkStdGen)
 import qualified Data.Text as T
@@ -149,26 +149,29 @@ basicSentenceCannonicalizer sentence = do
 
 ------------------------- ----------------------- Sentence generators
 generateNonbridi :: Vocabulary -> StdGen -> (T.Text, StdGen)
-generateNonbridi vocabulary r0 = chooseItemUniformly r0 . concat . map (getVocabularySumti vocabulary) $ ["genericPersons", "genericPointable", "places", "subjects"]
+generateNonbridi vocabulary r0 = chooseItemUniformly r0 . concat . map (getVocabularySumti vocabulary) $
+    ["genericPersons", "semiGenericPersons", "animals", "genericPointable", "places", "subjects"]
 
 generateSimpleBridi :: Vocabulary -> StdGen -> (SimpleBridi, StdGen)
-generateSimpleBridi vocabulary = combineFunctionsUniformly [generatePropertyBridi vocabulary, generateRelationBridi vocabulary, generateActionBridi vocabulary]
+generateSimpleBridi vocabulary = combineFunctionsUniformly
+    [generatePropertyBridi vocabulary, generateRelationBridi vocabulary, generateActionBridi vocabulary]
 
 generatePropertyBridi :: Vocabulary -> StdGen -> (SimpleBridi, StdGen)
 generatePropertyBridi vocabulary r0 = (SimpleBridi property [object], r2) where
     (property, r1) = chooseItemUniformly r0 properties
-    (object, r2) = chooseItemUniformly r1 $ retrievePropertyObjects property
+    (object, r2) = chooseItemUniformly r1 . filterOutWord property . retrievePropertyObjects $ property
     -- Vocabulary
     properties = getVocabularySelbri vocabulary "properties"
     genericPersons = getVocabularySumti vocabulary "genericPersons"
+    semiGenericPersons = getVocabularySumti vocabulary "semiGenericPersons"
     genericPointable = getVocabularySumti vocabulary "genericPointable"
     places = getVocabularySumti vocabulary "places"
     subjects = getVocabularySumti vocabulary "subjects"
     -- Properties
     propertyObjects = M.fromList
-        [ ("prenu", genericPersons)
-        , ("melbi", genericPersons ++ genericPointable ++ places)
-        , ("sutra", genericPersons ++ genericPointable)
+        [ ("prenu", genericPersons ++ semiGenericPersons)
+        , ("melbi", genericPersons ++ semiGenericPersons ++ genericPointable ++ places)
+        , ("sutra", genericPersons ++ semiGenericPersons ++ genericPointable)
         , ("zdani", genericPointable)
         , ("mlatu", genericPointable)
         , ("gerku", genericPointable)
@@ -188,6 +191,7 @@ generateRelationBridi vocabulary r0 = (SimpleBridi relation objects, r2) where
     -- Vocabulary
     relations = getVocabularySelbri vocabulary "relations"
     genericPersons = getVocabularySumti vocabulary "genericPersons"
+    semiGenericPersons = getVocabularySumti vocabulary "semiGenericPersons"
     animals = getVocabularySumti vocabulary "animals"
     genericPointable = getVocabularySumti vocabulary "genericPointable"
     places = getVocabularySumti vocabulary "places"
@@ -197,13 +201,15 @@ generateRelationBridi vocabulary r0 = (SimpleBridi relation objects, r2) where
     relationObjectsGenerators = M.fromList
         [ ("nelci", \r0 ->
             let
-                (x1, r1) = chooseItemUniformly r0 genericPersons
-                (x2, r2) = chooseItemUniformly r1 $ filter (/= x1) (genericPersons++animals)
+                persons = filterOutWord "nelci" $ genericPersons ++ semiGenericPersons
+                (x1, r1) = chooseItemUniformly r0 persons
+                (x2, r2) = chooseItemUniformly r1 $ filter (/= x1) (persons++animals)
             in ([x1, x2], r2))
         , ("pendo", \ro ->
             let
-                (x1, r1) = chooseItemUniformly r0 (genericPersons++animals)
-                (x2, r2) = chooseItemUniformly r1 $ filter (/= x1) genericPersons
+                persons = filterOutWord "pendo" $ genericPersons ++ semiGenericPersons
+                (x1, r1) = chooseItemUniformly r0 (persons++animals)
+                (x2, r2) = chooseItemUniformly r1 $ filter (/= x1) persons
             in ([x1, x2], r2))
         ]
     retrieveRelationObjectsGenerator relation =
@@ -218,6 +224,7 @@ generateActionBridi vocabulary r0 = (SimpleBridi action objects, r2) where
     -- Vocabulary
     actions = getVocabularySelbri vocabulary "actions"
     genericPersons = getVocabularySumti vocabulary "genericPersons"
+    semiGenericPersons = getVocabularySumti vocabulary "semiGenericPersons"
     genericPointable = getVocabularySumti vocabulary "genericPointable"
     places = getVocabularySumti vocabulary "places"
     animals = getVocabularySumti vocabulary "animals"
@@ -228,34 +235,39 @@ generateActionBridi vocabulary r0 = (SimpleBridi action objects, r2) where
     actionObjectsGenerators = M.fromList
         [ ("tavla", \r0 ->
             let
-                (speaker, r1) = chooseItemUniformly r0 genericPersons
-                (listener, r2) = chooseItemUniformly r1 $ filter (/= speaker) genericPersons
+                persons = filterOutWord "tavla" $ genericPersons ++ semiGenericPersons
+                (speaker, r1) = chooseItemUniformly r0 persons
+                (listener, r2) = chooseItemUniformly r1 $ filter (/= speaker) persons
                 (subject, r3) = if null subjects then ("", r2) else chooseItemUniformly r2 subjects
             in
                 ([speaker, listener, subject], r3))
         , ("dunda", \r0 ->
             let
-                (donor, r1) = chooseItemUniformly r0 genericPersons
+                persons = filterOutWord "dunda" $ genericPersons ++ semiGenericPersons
+                (donor, r1) = chooseItemUniformly r0 persons
                 (gift, r2) = chooseItemUniformly r1 (genericPointable++animals)
-                (receiver, r3) = chooseItemUniformly r2 (filter (/= donor) genericPersons)
+                (receiver, r3) = chooseItemUniformly r2 (filter (/= donor) persons)
             in
                 ([donor, gift, receiver], r3))
         , ("ctuca", \r0 ->
             --TODO: complete this bridi with more sumti when they are available
             let
-                (instructor, r1) = chooseItemUniformly r0 genericPersons
-                (audience, r2) = chooseItemUniformly r1 (filter (/= instructor) genericPersons)
+                persons = filterOutWord "ctuca" $ genericPersons ++ semiGenericPersons
+                (instructor, r1) = chooseItemUniformly r0 persons
+                (audience, r2) = chooseItemUniformly r1 (filter (/= instructor) persons)
             in
                 ([instructor, audience], r1))
         , ("citka", \r0 ->
             let
-                (subject, r1) = chooseItemUniformly r0 (genericPersons++animals)
+                persons = filterOutWord "citka" $ genericPersons ++ semiGenericPersons
+                (subject, r1) = chooseItemUniformly r0 (persons++animals)
                 (aliment, r2) = chooseItemUniformly r1 (aliments)
             in
                 ([subject, aliment], r2))
         , ("klama", \r0 ->
             let
-                (actor, r1) = chooseItemUniformly r0 genericPersons
+                persons = filterOutWord "klama" $ genericPersons ++ semiGenericPersons
+                (actor, r1) = chooseItemUniformly r0 persons
                 (destination, r2) = chooseItemUniformly r1 places
             in
                 ([actor, destination], r2))

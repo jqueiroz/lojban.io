@@ -23,6 +23,12 @@ replace :: (Eq a) => a -> a -> [a] -> [a]
 replace x y = map r where
     r z = if z == x then y else z
 
+filterOutWords :: [T.Text] -> [T.Text] -> [T.Text]
+filterOutWords forbiddenWords expressions = foldr filterOutWord expressions forbiddenWords
+
+filterOutWord :: T.Text -> [T.Text] -> [T.Text]
+filterOutWord forbiddenWord = filter $ not . (T.isInfixOf forbiddenWord)
+
 -- String manipulation
 substr :: Int -> Int -> T.Text -> T.Text
 substr beg end = T.drop beg . T.take end
