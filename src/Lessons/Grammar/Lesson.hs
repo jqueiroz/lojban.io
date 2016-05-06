@@ -19,8 +19,8 @@ plan2 :: P.Pandoc
 Right plan2 = P.readMarkdown P.def $ $(embedStringFile "courses/english/introduction/planning/2.md")
 
 -------- Vocabulary
-vocabularyGenerator1 :: VocabularyGenerator
-vocabularyGenerator1 = buildVocabularyGenerator
+vocabularyGenerator1 :: VocabularyBuilder
+vocabularyGenerator1 = createVocabularyBuilder
     -- Gismu
     ["tavla", "dunda", "prenu", "zdani", "pendo", "mlatu"]
     -- Cmavo
@@ -39,8 +39,8 @@ vocabularyGenerator1 = buildVocabularyGenerator
         ("genericPointable", ["ti", "ta"])
     ]
 
-vocabularyGenerator2 :: VocabularyGenerator
-vocabularyGenerator2 = buildVocabularyGenerator
+vocabularyGenerator2 :: VocabularyBuilder
+vocabularyGenerator2 = createVocabularyBuilder
     -- Gismu
     ["tavla", "dunda", "prenu", "zdani", "pendo", "mlatu", "gerku", "melbi", "nelci", "ctuca"]
     -- Cmavo
@@ -63,8 +63,8 @@ vocabularyGenerator2 = buildVocabularyGenerator
         ("subjects", ["lo zdani ku", "lo mlatu ku", "lo gerku ku", "lo se dunda ku"])
     ]
 
-vocabulary3 :: VocabularyGenerator
-vocabulary3 = buildVocabularyGenerator
+vocabulary3 :: VocabularyBuilder
+vocabulary3 = createVocabularyBuilder
     -- Gismu
     ["tavla", "dunda", "klama", "prenu", "melbi", "sutra", "zdani", "mlatu", "gerku", "pelxu", "nelci", "citka", "catlu", "djica", "djuno", "drata", "kumfa", "mutce", "cusku", "troci", "viska", "xamgu", "gleki"]
     -- Cmavo
