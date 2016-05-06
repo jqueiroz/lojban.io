@@ -108,6 +108,7 @@ translations2_nice :: [Translation]
 translations2_nice =
     [ ("I like the donor.", "mi nelci lo dunda ku")
     , ("The gift is beautiful.", "lo se dunda ku melbi")
+    , ("I was given a dog.", "mi te dunda lo gerku ku")
     , ("The instructor has a house.", "lo ctuca ku se zdani")
     , ("I like the teaching method.", "mi nelci lo xe ctuca")
     , ("The listener is a person.", "lo se tavla ku prenu") -- is "listener" a good choice?
@@ -121,6 +122,7 @@ translations2 = translations1_nice ++ translations2_nice ++
     , ("A person is talking to a dog.", "lo prenu ku tavla lo gerku ku")
     , ("The dog likes the cat.", "lo gerku ku nelci lo mlatu ku")
     , ("The house is beautiful!", "lo zdani ku melbi")
+    , ("I was given a cat.", "mi te dunda lo mlatu ku")
     , ("I will teach you.", "mi ctuca do")
     , ("Somebody teached me.", "mi se ctuca")
     ]
@@ -141,9 +143,9 @@ exercises1 dictionary =
 exercises2 :: Dictionary -> ExerciseGenerator
 exercises2 dictionary =
     combineFunctions
-        [ (20, generateGrammaticalClassExercise vocabulary)
+        [ (15, generateGrammaticalClassExercise vocabulary)
         , (15, generateBridiJufraExercise vocabulary displayBridi)
-        , (20, generateSelbriIdentificationExercise vocabulary displayBridi)
+        , (15, generateSelbriIdentificationExercise vocabulary displayBridi)
         , (30, generateContextualizedGismuPlacesExercise dictionary vocabulary displayBridi)
         , (50, generateTranslationExercise basicSentenceCannonicalizer translations2)
         , (30, generateIsolatedGismuPlacesExercise dictionary vocabulary)
