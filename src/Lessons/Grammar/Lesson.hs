@@ -44,7 +44,7 @@ vocabularyGenerator2 = buildVocabularyGenerator
     -- Gismu
     ["tavla", "dunda", "prenu", "zdani", "pendo", "mlatu", "gerku", "melbi", "nelci", "ctuca"]
     -- Cmavo
-    ["zo'e", "lo", "mi", "do", "ti", "ta"]
+    ["zo'e", "lo", "ku", "mi", "do", "ti", "ta"]
     -- Cmevla
     []
     -- Selbri
@@ -67,7 +67,7 @@ vocabulary3 = buildVocabularyGenerator
     -- Gismu
     ["tavla", "dunda", "klama", "prenu", "melbi", "sutra", "zdani", "mlatu", "gerku", "pelxu", "nelci", "citka", "catlu", "djica", "djuno", "drata", "kumfa", "mutce", "cusku", "troci", "viska", "xamgu", "gleki"]
     -- Cmavo
-    ["zo'e", "mi", "do", "ti"]
+    ["zo'e", "lo", "ku", "mi", "do", "ti", "ta"]
     -- Cmevla
     []
     -- Selbri
