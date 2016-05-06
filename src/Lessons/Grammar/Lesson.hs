@@ -163,4 +163,4 @@ lesson2 dictionary = Lesson "Basics 2" (exercises2 dictionary) plan2
 
 -------- Course
 course :: CourseBuilder
-course = createCourseBuilder "Introductory Lojban for English speakers" [lesson1, lesson2]
+course = createCourseBuilder "Introduction to Lojban for English speakers" [lesson1, lesson2]
