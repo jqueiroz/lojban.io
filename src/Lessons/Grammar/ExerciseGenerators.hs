@@ -127,7 +127,7 @@ generateContextualizedGismuPlacesExercise dictionary vocabulary displayBridi = c
             (bridi, r1) = generateActionBridi vocabulary r0
             placesEnglish = gismuEnglishPlaces $ (dictGismu dictionary) M.! (simpleBridiSelbri bridi)
             placesLojban = simpleBridiSumti $ bridi
-            places = zip placesEnglish placesLojban
+            places = zip placesEnglish (replace "" "zo'e" placesLojban)
             title = "Match the places"
             (sentenceText, _) = displayBridi r1 bridi
             sentence = Just . ExerciseSentence True $ sentenceText
@@ -137,7 +137,7 @@ generateContextualizedGismuPlacesExercise dictionary vocabulary displayBridi = c
             (bridi, r1) = generateActionBridi vocabulary r0
             placesEnglish = gismuEnglishPlaces $ (dictGismu dictionary) M.! (simpleBridiSelbri bridi)
             placesLojban = simpleBridiSumti $ bridi
-            places = zip placesEnglish placesLojban
+            places = zip placesEnglish (replace "" "zo'e" placesLojban)
             (place, r2) = chooseItemUniformly r1 places
             correctAlternative = snd place
             incorrectAlternatives = (simpleBridiSelbri bridi) : (filter (/= correctAlternative) . map snd $ places)
