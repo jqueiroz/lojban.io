@@ -31,3 +31,14 @@ executable lojto
                      , happstack-server
                      , papillon
                      , zasni-gerna
+  other-modules:       Core
+                     , DictionaryLoader
+                     , Serializer
+                     , Lessons.Grammar.ExerciseGenerators
+                     , Lessons.Grammar.Lesson
+                     , Lessons.Grammar.Number
+                     , Lessons.Grammar.Sentences
+                     , Lessons.Grammar.Vocabulary
+                     , Server
+                     , Util
+                     , Playground
