@@ -56,6 +56,7 @@ vocabularyGenerator2 = buildVocabularyGenerator
     -- Sumti
     [
         ("genericPersons", ["mi", "do", "lo prenu ku"]),
+        ("semiGenericPersons", ["lo tavla ku", "lo se tavla ku", "lo dunda ku", "lo te dunda ku"]),
         ("animals", ["lo mlatu ku", "lo gerku ku"]),
         ("genericPointable", ["ti", "ta"]),
         ("places", ["lo zdani ku"]),
