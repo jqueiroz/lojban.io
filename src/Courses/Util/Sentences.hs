@@ -89,7 +89,7 @@ displayReorderedStandardSimpleBridi r0 bridi
     | length sumti <= 1 = displayStandardSimpleBridi r0 bridi
     | head sumti == ""  = displayStandardSimpleBridi r0 bridi
     | otherwise         = displayReorderedStandardSimpleBridi' r0 bridi
-    where sumti = simpleBridiSumti bridi
+    where sumti = stripRight "" $ simpleBridiSumti bridi
 
 displayReorderedStandardSimpleBridi' :: StdGen -> SimpleBridi -> (T.Text, StdGen)
 displayReorderedStandardSimpleBridi' = buildSentenceDisplayer $ \r0 (SimpleBridi selbri sumti) ->
@@ -99,7 +99,7 @@ displayReorderedStandardSimpleBridi' = buildSentenceDisplayer $ \r0 (SimpleBridi
         sumti' = swapArguments particle sumti
         sentence = head sumti' : (T.pack particle) : selbri : tail sumti'
     in
-        assert (length sumti >= 2 && head sumti /= "") $ (sentence, r1)
+        assert (length sumti >= 2 && head sumti /= "" && last sumti /= "") $ (sentence, r1)
 
 ------------------------- ----------------------- Sentence cannonicalizers
 --TODO: check whether se/te/ve/xe are left-associative or right-associative
