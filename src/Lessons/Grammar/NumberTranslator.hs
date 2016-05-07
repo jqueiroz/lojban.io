@@ -1,5 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
-module Lessons.Grammar.Number
+module Lessons.Grammar.NumberTranslator
 ( numberToSimpleLojban
 , lojbanToNumber
 ) where

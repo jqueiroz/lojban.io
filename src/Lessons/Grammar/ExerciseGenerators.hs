@@ -16,7 +16,7 @@ module Lessons.Grammar.ExerciseGenerators
 import Core
 import Lessons.Grammar.Vocabulary
 import Lessons.Grammar.Sentences
-import Lessons.Grammar.Number
+import Lessons.Grammar.NumberTranslator
 import Util (replace, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly)
 import Text.Read (readMaybe)
 import System.Random (StdGen, random)
