@@ -6,6 +6,7 @@ import Control.Applicative ((<$>), (<*>))
 import System.Random (StdGen, random)
 import qualified Data.Text as T
 import Data.Text.Encoding (decodeUtf8)
+import Data.List (group, sort)
 import System.Random
 import System.Random.Shuffle (shuffle')
 
@@ -28,6 +29,15 @@ filterOutWords forbiddenWords expressions = foldr filterOutWord expressions forb
 
 filterOutWord :: T.Text -> [T.Text] -> [T.Text]
 filterOutWord forbiddenWord = filter $ not . (T.isInfixOf forbiddenWord)
+
+sortUniq :: (Ord a) => [a] -> [a]
+sortUniq = (map head) . group . sort
+
+infixr 5 ?:
+(?:) :: (Eq a) => a -> [a] -> [a]
+x ?: xs
+    | x `elem` xs = xs
+    | otherwise   = x:xs
 
 -- String manipulation
 substr :: Int -> Int -> T.Text -> T.Text

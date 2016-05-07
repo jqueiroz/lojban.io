@@ -21,12 +21,6 @@ Right plan2 = P.readMarkdown P.def $ $(embedStringFile "courses/english/introduc
 -------- Vocabulary
 vocabularyGenerator1 :: VocabularyBuilder
 vocabularyGenerator1 = createVocabularyBuilder
-    -- Gismu
-    ["tavla", "dunda", "prenu", "zdani", "pendo", "mlatu"]
-    -- Cmavo
-    ["zo'e", "mi", "do", "ti", "ta"]
-    -- Cmevla
-    []
     -- Selbri
     [
         ("actions", ["tavla", "dunda"]),
@@ -41,12 +35,6 @@ vocabularyGenerator1 = createVocabularyBuilder
 
 vocabularyGenerator2 :: VocabularyBuilder
 vocabularyGenerator2 = createVocabularyBuilder
-    -- Gismu
-    ["tavla", "dunda", "prenu", "zdani", "pendo", "mlatu", "gerku", "melbi", "nelci", "ctuca"]
-    -- Cmavo
-    ["zo'e", "lo", "ku", "mi", "do", "ti", "ta"]
-    -- Cmevla
-    []
     -- Selbri
     [
         ("actions", ["tavla", "dunda", "ctuca"]),
@@ -65,12 +53,6 @@ vocabularyGenerator2 = createVocabularyBuilder
 
 vocabulary3 :: VocabularyBuilder
 vocabulary3 = createVocabularyBuilder
-    -- Gismu
-    ["tavla", "dunda", "klama", "prenu", "melbi", "sutra", "zdani", "mlatu", "gerku", "pelxu", "nelci", "citka", "catlu", "djica", "djuno", "drata", "kumfa", "mutce", "cusku", "troci", "viska", "xamgu", "gleki"]
-    -- Cmavo
-    ["zo'e", "lo", "ku", "mi", "do", "ti", "ta"]
-    -- Cmevla
-    []
     -- Selbri
     [
         ("actions", ["tavla", "dunda", "klama"]),
