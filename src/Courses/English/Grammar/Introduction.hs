@@ -72,50 +72,50 @@ vocabulary3 = createVocabularyBuilder
 -------- Translations
 translations1_nice :: [Translation]
 translations1_nice =
-    [ ("You gave me this.", "do dunda ti mi")
-    , ("I gave you that.", "mi dunda ta do")
-    , ("I am talking to myself", "mi tavla mi")
+    [ ("do dunda ti mi", "You gave me this.")
+    , ("mi dunda ta do", "I gave you that.")
+    , ("mi tavla mi", "I am talking to myself")
     ]
 
 translations1 :: [Translation]
 translations1 = translations1_nice ++
-    [ ("I have a house.", "zdani mi")
-    , ("You are my friend.", "do pendo mi")
-    , ("I am your friend.", "mi pendo do")
-    , ("I am talking to you.", "mi tavla do")
-    , ("You are talking to me.", "do tavla mi")
-    , ("You are talking to yourself.", "do tavla do")
-    , ("I am a person.", "mi prenu")
-    , ("You are a person.", "do prenu")
-    , ("That is a house", "ta zdani")
-    , ("That is a cat.", "ta mlatu")
+    [ ("zdani mi", "I have a house.")
+    , ("do pendo mi", "You are my friend.")
+    , ("mi pendo do", "I am your friend.")
+    , ("mi tavla do", "I am talking to you.")
+    , ("do tavla mi", "You are talking to me.")
+    , ("do tavla do", "You are talking to yourself.")
+    , ("mi prenu", "I am a person.")
+    , ("do prenu", "You are a person.")
+    , ("ta zdani", "That is a house")
+    , ("ta mlatu", "That is a cat.")
     ]
 
 translations2_nice :: [Translation]
 translations2_nice =
-    [ ("I like the donor.", "mi nelci lo dunda ku")
-    , ("The gift is beautiful.", "lo se dunda ku melbi")
-    , ("I was given a dog.", "mi te dunda lo gerku ku")
-    , ("The instructor has a house.", "lo ctuca ku se zdani")
-    , ("I like the teaching method.", "mi nelci lo xe ctuca ku")
-    , ("The listener is a person.", "lo se tavla ku prenu") -- is "listener" a good choice?
-    , ("The speaker is my friend.", "lo tavla ku pendo mi") -- is "speaker" a good choice? maybe it implies voice...
+    [ ("mi nelci lo dunda ku", "I like the donor.")
+    , ("lo se dunda ku melbi", "The gift is beautiful.")
+    , ("mi te dunda lo gerku ku", "I was given a dog.")
+    , ("lo ctuca ku se zdani", "The instructor has a house.")
+    , ("mi nelci lo xe ctuca ku", "I like the teaching method.")
+    , ("lo se tavla ku prenu", "The listener is a person.") -- is "listener" a good choice?
+    , ("lo tavla ku pendo mi", "The speaker is my friend.") -- is "speaker" a good choice? maybe it implies voice...
     ]
 
 translations2 :: [Translation]
 translations2 = translations1_nice ++ translations2_nice ++
-    [ ("I have a house.", "mi se zdani")
-    , ("A person is talking to a dog.", "lo prenu ku tavla lo gerku ku")
-    , ("The dog likes the cat.", "lo gerku ku nelci lo mlatu ku")
-    , ("The house is beautiful!", "lo zdani ku melbi")
-    , ("I was given a cat.", "mi te dunda lo mlatu ku")
-    , ("I will teach you.", "mi ctuca do")
-    , ("Somebody teached me.", "mi se ctuca")
+    [ ("mi se zdani", "I have a house.")
+    , ("lo prenu ku tavla lo gerku ku", "A person is talking to a dog.")
+    , ("lo gerku ku nelci lo mlatu ku", "The dog likes the cat.")
+    , ("lo zdani ku melbi", "The house is beautiful!")
+    , ("mi te dunda lo mlatu ku", "I was given a cat.")
+    , ("mi ctuca do", "I will teach you.")
+    , ("mi se ctuca", "Somebody teached me.")
     ]
 
 translations3 :: [Translation]
 translations3 =
-    [ ("The person talks quickly,", "lo prenu ku sutra tavla")
+    [ ("lo prenu ku sutra tavla", "The person talks quickly")
     ]
 
 -------- Exercises

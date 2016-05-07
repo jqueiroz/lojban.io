@@ -25,13 +25,13 @@ import qualified Data.Text as T
 import qualified Data.Map as M
 
 -- Exercise: translate a sentence from English to Lojban
-type Translation = (EnglishSentence, LojbanSentence)
+type Translation = (LojbanSentence, EnglishSentence)
 type EnglishSentence = T.Text
 type LojbanSentence = T.Text
 
 generateTranslationExercise :: SentenceCannonicalizer -> [Translation] -> ExerciseGenerator
 generateTranslationExercise cannonicalizer translations r0 = TypingExercise title (Just $ ExerciseSentence True english_sentence) validate lojban_sentence where
-    ((english_sentence, lojban_sentence), r1) = chooseItemUniformly r0 translations
+    ((lojban_sentence, english_sentence), r1) = chooseItemUniformly r0 translations
     title = "Translate this sentence"
     validate x = case cannonicalizer x of
         Left _ -> False
