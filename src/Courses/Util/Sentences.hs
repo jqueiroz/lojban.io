@@ -80,12 +80,13 @@ displayVariantSimpleBridi = buildSentenceDisplayer $ \r0 (SimpleBridi selbri sum
                 (sumtiBefore ++ [selbri] ++ sumtiAfter, r1)
 
 -- A single swap is made using se/te/ve/xe
--- (Except if the first place is empty or there are fewer than two places, in which case this function behaevs as displayStandardSimpleBridi)
+-- (Except if the first place is empty or there are fewer than two places, in which case this function behaevs as displayVariantSimpleBridi)
 displayReorderedVariantSimpleBridi :: StdGen -> SimpleBridi -> (T.Text, StdGen)
-displayReorderedVariantSimpleBridi r0 (bridi@(SimpleBridi selbri sumti))
+displayReorderedVariantSimpleBridi r0 bridi
     | length sumti <= 1 = displayVariantSimpleBridi r0 bridi
     | head sumti == ""  = displayVariantSimpleBridi r0 bridi
     | otherwise         = displayReorderedVariantSimpleBridi' r0 bridi
+    where sumti = simpleBridiSumti bridi
 
 displayReorderedVariantSimpleBridi' :: StdGen -> SimpleBridi -> (T.Text, StdGen)
 displayReorderedVariantSimpleBridi' = buildSentenceDisplayer $ \r0 (SimpleBridi selbri sumti) ->
