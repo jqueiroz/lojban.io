@@ -55,14 +55,18 @@ vocabulary3 :: VocabularyBuilder
 vocabulary3 = createVocabularyBuilder
     -- Selbri
     [
-        ("actions", ["tavla", "dunda", "klama"]),
-        ("properties", ["prenu", "melbi", "sutra", "zdani", "mlatu", "gerku", "pelxu"]),
-        ("relations", ["nelci"])
+        ("actions", ["tavla", "dunda", "ctuca"]),
+        ("properties", ["prenu", "zdani", "mlatu", "gerku", "melbi", "sutra", "pelxu"]),
+        ("relations", ["nelci", "pendo"])
     ]
     -- Sumti
     [
-        ("genericPersons", ["mi", "do"]),
-        ("genericPintable", ["ti", "ta", "tu"])
+        ("genericPersons", ["mi", "do", "lo prenu ku"]),
+        ("semiGenericPersons", ["lo tavla ku", "lo se tavla ku", "lo dunda ku", "lo te dunda ku"]),
+        ("animals", ["lo mlatu ku", "lo gerku ku"]),
+        ("genericPointable", ["ti", "ta"]),
+        ("places", ["lo zdani ku"]),
+        ("subjects", ["lo zdani ku", "lo mlatu ku", "lo gerku ku", "lo se dunda ku"])
     ]
 
 -------- Translations
@@ -107,6 +111,11 @@ translations2 = translations1_nice ++ translations2_nice ++
     , ("I was given a cat.", "mi te dunda lo mlatu ku")
     , ("I will teach you.", "mi ctuca do")
     , ("Somebody teached me.", "mi se ctuca")
+    ]
+
+translations3 :: [Translation]
+translations3 =
+    [ ("The person talks quickly,", "lo prenu ku sutra tavla")
     ]
 
 -------- Exercises
