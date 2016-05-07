@@ -8,7 +8,7 @@ module Courses.Util.Sentences
 , simpleBridiSumti
 , displayStandardSimpleBridi
 , displayVariantSimpleBridi
-, displayReorderedVariantSimpleBridi
+, displayReorderedStandardSimpleBridi
 , basicSentenceCannonicalizer
 , generateNonbridi
 , generateSimpleBridi
@@ -80,16 +80,16 @@ displayVariantSimpleBridi = buildSentenceDisplayer $ \r0 (SimpleBridi selbri sum
                 (sumtiBefore ++ [selbri] ++ sumtiAfter, r1)
 
 -- A single swap is made using se/te/ve/xe
--- (Except if the first place is empty or there are fewer than two places, in which case this function behaevs as displayVariantSimpleBridi)
-displayReorderedVariantSimpleBridi :: StdGen -> SimpleBridi -> (T.Text, StdGen)
-displayReorderedVariantSimpleBridi r0 bridi
-    | length sumti <= 1 = displayVariantSimpleBridi r0 bridi
-    | head sumti == ""  = displayVariantSimpleBridi r0 bridi
-    | otherwise         = displayReorderedVariantSimpleBridi' r0 bridi
+-- (Except if the first place is empty or there are fewer than two places, in which case this function behaves as displayStandardSimpleBridi)
+displayReorderedStandardSimpleBridi :: StdGen -> SimpleBridi -> (T.Text, StdGen)
+displayReorderedStandardSimpleBridi r0 bridi
+    | length sumti <= 1 = displayStandardSimpleBridi r0 bridi
+    | head sumti == ""  = displayStandardSimpleBridi r0 bridi
+    | otherwise         = displayReorderedStandardSimpleBridi' r0 bridi
     where sumti = simpleBridiSumti bridi
 
-displayReorderedVariantSimpleBridi' :: StdGen -> SimpleBridi -> (T.Text, StdGen)
-displayReorderedVariantSimpleBridi' = buildSentenceDisplayer $ \r0 (SimpleBridi selbri sumti) ->
+displayReorderedStandardSimpleBridi' :: StdGen -> SimpleBridi -> (T.Text, StdGen)
+displayReorderedStandardSimpleBridi' = buildSentenceDisplayer $ \r0 (SimpleBridi selbri sumti) ->
     let
         particles = take (length sumti - 1) ["se", "te", "ve", "xe"]
         (particle, r1) = chooseItemUniformly r0 particles

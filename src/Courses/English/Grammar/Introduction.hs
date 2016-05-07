@@ -145,7 +145,7 @@ exercises2 dictionary =
         ]
     where
         vocabulary = vocabularyGenerator2 dictionary
-        displayBridi = combineFunctionsUniformly [displayVariantSimpleBridi, displayReorderedVariantSimpleBridi]
+        displayBridi = combineFunctionsUniformly [displayVariantSimpleBridi, displayReorderedStandardSimpleBridi]
 
 -------- Lessons
 lesson1 :: LessonBuilder
