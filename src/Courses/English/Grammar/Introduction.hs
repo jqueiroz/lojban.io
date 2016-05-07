@@ -8,8 +8,8 @@ import Courses.Util.Vocabulary
 import Courses.Util.Sentences
 import Courses.Util.ExerciseGenerators
 import Util (combineFunctions, combineFunctionsUniformly)
-import qualified Text.Pandoc as P
 import Data.FileEmbed (embedStringFile)
+import qualified Text.Pandoc as P
 
 ------- Lesson plans
 plan1 :: P.Pandoc

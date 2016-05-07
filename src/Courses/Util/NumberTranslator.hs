@@ -1,4 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
+
 module Courses.Util.NumberTranslator
 ( numberToSimpleLojban
 , lojbanToNumber
