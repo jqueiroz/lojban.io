@@ -1,12 +1,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE TemplateHaskell #-}
 
-module Lessons.Grammar.Lesson (course) where
+module Courses.English.Grammar.Introduction (course) where
 
 import Core
-import Lessons.Grammar.Vocabulary
-import Lessons.Grammar.Sentences
-import Lessons.Grammar.ExerciseGenerators
+import Courses.Util.Vocabulary
+import Courses.Util.Sentences
+import Courses.Util.ExerciseGenerators
 import Util (combineFunctions, combineFunctionsUniformly)
 import qualified Text.Pandoc as P
 import Data.FileEmbed (embedStringFile)

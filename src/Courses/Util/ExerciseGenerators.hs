@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Lessons.Grammar.ExerciseGenerators
+module Courses.Util.ExerciseGenerators
 ( Translation
 , generateTranslationExercise
 , generateGrammaticalClassExercise
@@ -14,9 +14,9 @@ module Lessons.Grammar.ExerciseGenerators
 ) where
 
 import Core
-import Lessons.Grammar.Vocabulary
-import Lessons.Grammar.Sentences
-import Lessons.Grammar.NumberTranslator
+import Courses.Util.Vocabulary
+import Courses.Util.Sentences
+import Courses.Util.NumberTranslator
 import Util (replace, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly)
 import Text.Read (readMaybe)
 import System.Random (StdGen, random)

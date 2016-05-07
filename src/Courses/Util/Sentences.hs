@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Lessons.Grammar.Sentences
+module Courses.Util.Sentences
 ( SimpleBridi
 , SimpleBridiDisplayer
 , SentenceCannonicalizer
@@ -18,7 +18,7 @@ module Lessons.Grammar.Sentences
 ) where
 
 import Core
-import Lessons.Grammar.Vocabulary
+import Courses.Util.Vocabulary
 import Util (replace, stripRight, filterOutWord, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly)
 import Control.Exception (assert)
 import System.Random (StdGen, mkStdGen)

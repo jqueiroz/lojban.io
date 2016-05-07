@@ -12,7 +12,7 @@ import qualified Data.ByteString.Lazy as BS
 import qualified Data.Map as M
 import qualified Data.Aeson as A
 import qualified Data.Text as T
-import qualified Lessons.Grammar.Lesson as GrammarLesson
+import qualified Courses.English.Grammar.Introduction
 import System.Random (newStdGen, mkStdGen)
 import qualified Text.Blaze as B
 import qualified Text.Blaze.Html5 as H
@@ -67,7 +67,7 @@ handleRoot :: Dictionary -> ServerPart Response
 handleRoot dictionary = msum
     [ forceSlash . ok . toResponse $ displayHome
     , dir "static" $ serveDirectory EnableBrowsing [] "static"
-    , dir "course" $ handleCourse dictionary GrammarLesson.course
+    , dir "course" $ handleCourse dictionary Courses.English.Grammar.Introduction.course
     ]
 
 handleCourse :: Dictionary -> CourseBuilder -> ServerPart Response

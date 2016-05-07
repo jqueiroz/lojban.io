@@ -1,5 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
-module Lessons.Grammar.Vocabulary
+module Courses.Util.Vocabulary
 ( Vocabulary
 , VocabularyBuilder
 , WordList

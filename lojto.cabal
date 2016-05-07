@@ -34,11 +34,11 @@ executable lojto
   other-modules:       Core
                      , DictionaryLoader
                      , Serializer
-                     , Lessons.Grammar.ExerciseGenerators
-                     , Lessons.Grammar.Lesson
-                     , Lessons.Grammar.Number
-                     , Lessons.Grammar.Sentences
-                     , Lessons.Grammar.Vocabulary
+                     , Courses.Util.ExerciseGenerators
+                     , Courses.Util.NumberTranslator
+                     , Courses.Util.Sentences
+                     , Courses.Util.Vocabulary
+                     , Courses.English.Grammar.Introduction
                      , Server
                      , Util
                      , Playground
