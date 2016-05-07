@@ -53,8 +53,9 @@ buildSentenceDisplayer :: (StdGen -> SimpleBridi -> ([T.Text], StdGen)) -> Simpl
 buildSentenceDisplayer sentenceDisplayer r0 simpleBridi = (T.unwords $ replace "" "zo'e" sentence, r1) where
     (sentence, r1) = sentenceDisplayer r0 simpleBridi
 
--- Ellisis occurs in the first place and in the last places
--- All other missing places are filled with "zo'e"
+-- The bridi is displayed in standard order ([x1] selbri x2 x3 x4 x5)
+--   * Ellisis occurs in the first place and in the last places
+--   * All other missing places are filled with "zo'e"
 displayStandardSimpleBridi :: StdGen -> SimpleBridi -> (T.Text, StdGen)
 displayStandardSimpleBridi = buildSentenceDisplayer $ \r0 (SimpleBridi selbri sumti) ->
     let
@@ -63,15 +64,17 @@ displayStandardSimpleBridi = buildSentenceDisplayer $ \r0 (SimpleBridi selbri su
     in
         (sentence, r0)
 
--- A random number of places is displayed before the selbri
--- (Except if the first place is empty, in which case this function behaves as displayStandardSimpleBridi)
+-- The bridi is displayed with a random number of places before the selbri
+--   * Exception: if the first place is empty, then this function behaves as displayStandardSimpleBridi
+--   * Ellisis occurs in the last places
+--   * All other missing places are filled with "zo'e"
 displayVariantSimpleBridi :: StdGen -> SimpleBridi -> (T.Text, StdGen)
 displayVariantSimpleBridi = buildSentenceDisplayer $ \r0 (SimpleBridi selbri sumti) ->
     let
         (sumtiHead, sumtiTail) = splitAt 1 sumti
     in
         if sumtiHead == [""] then
-            (selbri : sumtiTail, r0)
+            (selbri : (stripRight "" sumtiTail), r0)
         else
             let
                 (beforeCount, r1) = chooseItemUniformly r0 [1..length sumti]
@@ -79,8 +82,8 @@ displayVariantSimpleBridi = buildSentenceDisplayer $ \r0 (SimpleBridi selbri sum
             in
                 (sumtiBefore ++ [selbri] ++ sumtiAfter, r1)
 
--- A single swap is made using se/te/ve/xe
--- (Except if the first place is empty or there are fewer than two places, in which case this function behaves as displayStandardSimpleBridi)
+-- The bridi is displayed with a single place swap
+--   * Exception: if the first place is empty or there are fewer than two places, then this function behaves as displayStandardSimpleBridi
 displayReorderedStandardSimpleBridi :: StdGen -> SimpleBridi -> (T.Text, StdGen)
 displayReorderedStandardSimpleBridi r0 bridi
     | length sumti <= 1 = displayStandardSimpleBridi r0 bridi
