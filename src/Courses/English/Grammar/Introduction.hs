@@ -124,13 +124,14 @@ exercises1 :: Dictionary -> ExerciseGenerator
 exercises1 dictionary =
     combineFunctions
         [ (20, generateGrammaticalClassExercise vocabulary)
-        , (15, generateBridiJufraExercise vocabulary displayVariantBridi)
-        , (20, generateSelbriIdentificationExercise vocabulary displayVariantBridi)
-        , (30, generateContextualizedGismuPlacesExercise dictionary vocabulary displayVariantBridi)
+        , (15, generateBridiJufraExercise vocabulary displayBridi)
+        , (20, generateSelbriIdentificationExercise vocabulary displayBridi)
+        , (30, generateContextualizedGismuPlacesExercise dictionary vocabulary displayBridi)
         , (40, generateTranslationExercise basicSentenceCannonicalizer translations1)
         ]
     where
         vocabulary = vocabularyGenerator1 dictionary
+        displayBridi = displayVariantSimpleBridi
 
 exercises2 :: Dictionary -> ExerciseGenerator
 exercises2 dictionary =
@@ -144,7 +145,7 @@ exercises2 dictionary =
         ]
     where
         vocabulary = vocabularyGenerator2 dictionary
-        displayBridi = combineFunctionsUniformly [displayVariantBridi, displayReorderedVariantBridi]
+        displayBridi = combineFunctionsUniformly [displayVariantSimpleBridi, displayReorderedVariantSimpleBridi]
 
 -------- Lessons
 lesson1 :: LessonBuilder

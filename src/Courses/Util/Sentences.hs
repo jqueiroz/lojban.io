@@ -6,9 +6,9 @@ module Courses.Util.Sentences
 , SentenceCannonicalizer
 , simpleBridiSelbri
 , simpleBridiSumti
-, displaySimpleBridi
-, displayVariantBridi
-, displayReorderedVariantBridi
+, displayStandardSimpleBridi
+, displayVariantSimpleBridi
+, displayReorderedVariantSimpleBridi
 , basicSentenceCannonicalizer
 , generateNonbridi
 , generateSimpleBridi
@@ -55,8 +55,8 @@ buildSentenceDisplayer sentenceDisplayer r0 simpleBridi = (T.unwords $ replace "
 
 -- Ellisis occurs in the first place and in the last places
 -- All other missing places are filled with "zo'e"
-displaySimpleBridi :: StdGen -> SimpleBridi -> (T.Text, StdGen)
-displaySimpleBridi = buildSentenceDisplayer $ \r0 (SimpleBridi selbri sumti) ->
+displayStandardSimpleBridi :: StdGen -> SimpleBridi -> (T.Text, StdGen)
+displayStandardSimpleBridi = buildSentenceDisplayer $ \r0 (SimpleBridi selbri sumti) ->
     let
         (sumtiHead, sumtiTail) = splitAt 1 sumti
         sentence = (if sumtiHead == [""] then [] else sumtiHead) ++ [selbri] ++ (stripRight "" sumtiTail)
@@ -64,9 +64,9 @@ displaySimpleBridi = buildSentenceDisplayer $ \r0 (SimpleBridi selbri sumti) ->
         (sentence, r0)
 
 -- A random number of places is displayed before the selbri
--- (Except if the first place is empty, in which case this function behaves as displaySimpleBridi)
-displayVariantBridi :: StdGen -> SimpleBridi -> (T.Text, StdGen)
-displayVariantBridi = buildSentenceDisplayer $ \r0 (SimpleBridi selbri sumti) ->
+-- (Except if the first place is empty, in which case this function behaves as displayStandardSimpleBridi)
+displayVariantSimpleBridi :: StdGen -> SimpleBridi -> (T.Text, StdGen)
+displayVariantSimpleBridi = buildSentenceDisplayer $ \r0 (SimpleBridi selbri sumti) ->
     let
         (sumtiHead, sumtiTail) = splitAt 1 sumti
     in
@@ -80,15 +80,15 @@ displayVariantBridi = buildSentenceDisplayer $ \r0 (SimpleBridi selbri sumti) ->
                 (sumtiBefore ++ [selbri] ++ sumtiAfter, r1)
 
 -- A single swap is made using se/te/ve/xe
--- (Except if the first place is empty or there are fewer than two places, in which case this function behaevs as displaySimpleBridi)
-displayReorderedVariantBridi :: StdGen -> SimpleBridi -> (T.Text, StdGen)
-displayReorderedVariantBridi r0 (bridi@(SimpleBridi selbri sumti))
-    | length sumti <= 1 = displayVariantBridi r0 bridi
-    | head sumti == ""  = displayVariantBridi r0 bridi
-    | otherwise         = displayReorderedVariantBridi' r0 bridi
+-- (Except if the first place is empty or there are fewer than two places, in which case this function behaevs as displayStandardSimpleBridi)
+displayReorderedVariantSimpleBridi :: StdGen -> SimpleBridi -> (T.Text, StdGen)
+displayReorderedVariantSimpleBridi r0 (bridi@(SimpleBridi selbri sumti))
+    | length sumti <= 1 = displayVariantSimpleBridi r0 bridi
+    | head sumti == ""  = displayVariantSimpleBridi r0 bridi
+    | otherwise         = displayReorderedVariantSimpleBridi' r0 bridi
 
-displayReorderedVariantBridi' :: StdGen -> SimpleBridi -> (T.Text, StdGen)
-displayReorderedVariantBridi' = buildSentenceDisplayer $ \r0 (SimpleBridi selbri sumti) ->
+displayReorderedVariantSimpleBridi' :: StdGen -> SimpleBridi -> (T.Text, StdGen)
+displayReorderedVariantSimpleBridi' = buildSentenceDisplayer $ \r0 (SimpleBridi selbri sumti) ->
     let
         particles = take (length sumti - 1) ["se", "te", "ve", "xe"]
         (particle, r1) = chooseItemUniformly r0 particles
@@ -145,7 +145,7 @@ basicSentenceCannonicalizer :: T.Text -> Either String T.Text
 basicSentenceCannonicalizer sentence = do
     (_, x, _) <- ZG.parse (T.unpack sentence)
     y <- cannonicalizeText x
-    return . fst $ displaySimpleBridi (mkStdGen 42) y
+    return . fst $ displayStandardSimpleBridi (mkStdGen 42) y
 
 ------------------------- ----------------------- Sentence generators
 generateNonbridi :: Vocabulary -> StdGen -> (T.Text, StdGen)
