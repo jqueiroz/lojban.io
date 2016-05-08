@@ -140,8 +140,8 @@ exercises2 dictionary =
         , (15, generateBridiJufraExercise vocabulary displayBridi)
         , (15, generateSelbriIdentificationExercise vocabulary displayBridi)
         , (30, generateContextualizedGismuPlacesExercise dictionary vocabulary displayBridi)
-        , (50, generateTranslationExercise basicSentenceCannonicalizer translations2)
         , (30, generateIsolatedGismuPlacesExercise dictionary vocabulary)
+        , (50, generateTranslationExercise basicSentenceCannonicalizer translations2)
         ]
     where
         vocabulary = vocabularyGenerator2 dictionary
