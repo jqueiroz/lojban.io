@@ -74,7 +74,7 @@ translations1_nice :: [Translation]
 translations1_nice =
     [ ("do dunda ti mi", ["You gave me this.", "You gave us this."])
     , ("mi dunda ta do", ["I gave you that.", "We gave you that."])
-    , ("mi tavla mi", ["I am talking to myself.", "I was talking to myself", "We were talking to ourselves."])
+    , ("mi tavla mi", ["I am talking to myself.", "I was talking to myself.", "We were talking to ourselves."])
     ]
 
 translations1 :: [Translation]
@@ -95,7 +95,7 @@ translations1 = translations1_nice ++
 translations2_nice :: [Translation]
 translations2_nice =
     [ ("mi nelci lo dunda ku", ["I like the donor.", "I like the donors."])
-    , ("lo se dunda ku melbi", ["The gift is beautiful.", "The gifts are beautiful"])
+    , ("lo se dunda ku melbi", ["The gift is beautiful.", "The gifts are beautiful."])
     , ("mi te dunda lo gerku ku", ["I was given a dog.", "We were given a dog.", "We were given dogs.", "Somebody gave me a dog.", "Somebody gave us a dog.", "Somebody gave us dogs."])
     , ("lo ctuca ku se zdani", ["The instructor has a house."])
     , ("mi nelci lo xe ctuca ku", ["I like the teaching method."])
