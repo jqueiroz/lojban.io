@@ -82,12 +82,31 @@ displayVariantSimpleBridi = buildSentenceDisplayer $ \r0 (SimpleBridi selbri sum
             in
                 (sumtiBefore ++ [selbri] ++ sumtiAfter, r1)
 
+-- The bridi is displayed as in "displayStandardBridi", but if the x1 is missing then its position is used to hold last place
+--   * Exception: if there are more than five sumti places, then "displayStandardBridi" is used after all
+displayPossiblyReorderedStandardSimpleBridi :: StdGen -> SimpleBridi -> (T.Text, StdGen)
+displayPossiblyReorderedStandardSimpleBridi r0 bridi
+    | length sumti <= 1 = displayStandardSimpleBridi r0 bridi
+    | length sumti >= 6 = displayStandardSimpleBridi r0 bridi
+    | head sumti == ""  = displayPossiblyReorderedStandardSimpleBridi' r0 bridi
+    | otherwise         = displayStandardSimpleBridi r0 bridi
+    where sumti = stripRight "" $ simpleBridiSumti bridi
+
+displayPossiblyReorderedStandardSimpleBridi' :: StdGen -> SimpleBridi -> (T.Text, StdGen)
+displayPossiblyReorderedStandardSimpleBridi' = buildSentenceDisplayer $ \r0 (SimpleBridi selbri sumti) ->
+    let
+        particle = ["se", "te", "ve", "xe"] !! (length sumti - 2)
+        sumti' = stripRight "" $ swapArguments particle sumti
+        sentence = head sumti' : (T.pack particle) : selbri : (tail sumti')
+    in
+        assert (length sumti >= 2 && length sumti <= 5 && head sumti == "" && last sumti /= "") $ (sentence, r0)
+
 -- The bridi is displayed with a single place swap
 --   * Exception: if the first place is empty or there are fewer than two places, then this function behaves as displayStandardSimpleBridi
 displayReorderedStandardSimpleBridi :: StdGen -> SimpleBridi -> (T.Text, StdGen)
 displayReorderedStandardSimpleBridi r0 bridi
     | length sumti <= 1 = displayStandardSimpleBridi r0 bridi
-    | head sumti == ""  = displayStandardSimpleBridi r0 bridi
+    | head sumti == ""  = displayPossiblyReorderedStandardSimpleBridi r0 bridi
     | otherwise         = displayReorderedStandardSimpleBridi' r0 bridi
     where sumti = stripRight "" $ simpleBridiSumti bridi
 
