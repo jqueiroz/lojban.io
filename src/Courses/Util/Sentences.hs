@@ -120,6 +120,12 @@ displayReorderedStandardSimpleBridi' = buildSentenceDisplayer $ \r0 (SimpleBridi
     in
         assert (length sumti >= 2 && head sumti /= "" && last sumti /= "") $ (sentence, r1)
 
+------------------------- ----------------------- Terminator ellisis
+-- removeTerminators :: ZG.Text -> Either String T.Text
+-- removeTerminators (ZG.LE (ZG.Init i) _ _ x _) =
+-- removeTerminators (ZG.Terms terms _) =
+-- removeTerminators (ZG.BridiTail (ZG.BRIVLA selbri) terms) = selbri `T.append` removeTerminators terms
+
 ------------------------- ----------------------- Sentence cannonicalizers
 --TODO: check whether se/te/ve/xe are left-associative or right-associative
 --TODO: create LOTS of unit tests

@@ -11,6 +11,8 @@ import Util (combineFunctions, combineFunctionsUniformly)
 import Data.FileEmbed (embedStringFile)
 import qualified Text.Pandoc as P
 
+--TODO: differenciate "le" and "lo"? I think that a lot of translations here are misleading
+
 ------- Lesson plans
 plan1 :: P.Pandoc
 Right plan1 = P.readMarkdown P.def $ $(embedStringFile "courses/english/introduction/planning/1.md")
@@ -51,6 +53,7 @@ vocabularyGenerator2 = createVocabularyBuilder
         ("subjects", ["lo zdani ku", "lo mlatu ku", "lo gerku ku", "lo se dunda ku"])
     ]
 
+-- TODO: should "ctuca" really be here? does it denote any kind of teaching or only teaching in formal settings with an instructor and and audience?
 vocabulary3 :: VocabularyBuilder
 vocabulary3 = createVocabularyBuilder
     -- Selbri
@@ -116,8 +119,12 @@ translations2 = translations1_nice ++ translations2_nice ++
 
 translations3 :: [Translation]
 translations3 =
-    [ ("lo prenu ku sutra tavla", ["The person talks quickly.", "The person is talking quickly.", "A person is talking quickly."])
+    [ ("lo prenu ku sutra tavla", ["The person talks quickly.", "The person is talking quickly.", "A person is talking quickly.", "People talk quickly"])
     ]
+
+
+-------- Tanru
+-- lo melbi prenu, lo sutra mlatu, lo sutra gerku
 
 -------- Exercises
 exercises1 :: Dictionary -> ExerciseGenerator
