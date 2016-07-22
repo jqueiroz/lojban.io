@@ -82,8 +82,8 @@ displayVariantSimpleBridi = buildSentenceDisplayer $ \r0 (SimpleBridi selbri sum
             in
                 (sumtiBefore ++ [selbri] ++ sumtiAfter, r1)
 
--- The bridi is displayed as in "displayStandardBridi", but if the x1 is missing then its position is used to hold last place
---   * Exception: if there are more than five sumti places, then "displayStandardBridi" is used after all
+-- The bridi is displayed as in "displayStandardSimpleBridi", but if the x1 is missing then its position is used to hold last place
+--   * Exception: if there are more than five sumti places, then "displayStandardSimpleBridi" is used after all
 displayPossiblyReorderedStandardSimpleBridi :: StdGen -> SimpleBridi -> (T.Text, StdGen)
 displayPossiblyReorderedStandardSimpleBridi r0 bridi
     | length sumti <= 1 = displayStandardSimpleBridi r0 bridi
