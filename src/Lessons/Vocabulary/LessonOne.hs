@@ -12,7 +12,6 @@ import qualified Data.Text as T
 import qualified Data.Map as M
 
 -- Lesson 1.1
---TODO: there's no zo'e in Lesson 1 exercises
 vocabulary11 :: Dictionary -> Vocabulary
 vocabulary11 dictionary = buildVocabulary dictionary
     -- Gismu

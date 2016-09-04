@@ -75,7 +75,9 @@ vocabulary3 = createVocabularyBuilder
 -------- Translations
 translations1_nice :: [Translation]
 translations1_nice =
-    [ ("do dunda ti mi", ["You gave me this.", "You gave us this."])
+    [ ("mi tavla zo'e do", ["I was talking about you.", "We were talking about you.", "I am talking about you.", "We are talking about you.", "I will talk about you.", "We will talk about you."])
+    , ("mi dunda zo'e do", ["I gave you something.", "I will give you something."])
+    , ("do dunda ti mi", ["You gave me this.", "You gave us this."])
     , ("mi dunda ta do", ["I gave you that.", "We gave you that."])
     , ("mi tavla mi", ["I am talking to myself.", "I was talking to myself.", "We were talking to ourselves."])
     ]
@@ -97,7 +99,9 @@ translations1 = translations1_nice ++
 
 translations2_nice :: [Translation]
 translations2_nice =
-    [ ("mi nelci lo dunda ku", ["I like the donor.", "I like the donors."])
+    [ ("mi tavla zo'e lo mlatu ku", ["I was talking about the cat.", "I was talking about the cats.", "I am talking about the cat.", "I am talking about the cats."])
+    , ("tavla lo mlatu ku", ["Somebody was talking about the cat.", "Somebody was talking about the cats."])
+    , ("mi nelci lo dunda ku", ["I like the donor.", "I like the donors."])
     , ("lo se dunda ku melbi", ["The gift is beautiful.", "The gifts are beautiful."])
     , ("mi te dunda lo gerku ku", ["I was given a dog.", "We were given a dog.", "We were given dogs.", "Somebody gave me a dog.", "Somebody gave us a dog.", "Somebody gave us dogs."])
     , ("lo ctuca ku se zdani", ["The instructor has a house."])
