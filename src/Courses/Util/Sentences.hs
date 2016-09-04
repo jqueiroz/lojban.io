@@ -15,6 +15,7 @@ module Courses.Util.Sentences
 , generatePropertyBridi
 , generateRelationBridi
 , generateActionBridi
+, removeElidableTerminators
 ) where
 
 import Core
@@ -121,10 +122,18 @@ displayReorderedStandardSimpleBridi' = buildSentenceDisplayer $ \r0 (SimpleBridi
         assert (length sumti >= 2 && head sumti /= "" && last sumti /= "") $ (sentence, r1)
 
 ------------------------- ----------------------- Terminator ellisis
--- removeTerminators :: ZG.Text -> Either String T.Text
--- removeTerminators (ZG.LE (ZG.Init i) _ _ x _) =
--- removeTerminators (ZG.Terms terms _) =
--- removeTerminators (ZG.BridiTail (ZG.BRIVLA selbri) terms) = selbri `T.append` removeTerminators terms
+-- removeElidableTerminators :: ZG.Text -> Either String T.Text
+-- removeElidableTerminators (ZG.LE (ZG.Init i) _ _ x _) =
+-- removeElidableTerminators (ZG.Terms terms _) =
+-- removeElidableTerminators (ZG.BridiTail (ZG.BRIVLA selbri) terms) = selbri `T.append` removeTerminators terms
+-- TODO: make this function way more efficient and use the following brute-force version only in unit tests
+
+removeElidableTerminators :: T.Text -> T.Text
+removeElidableTerminators t = f [] (T.words t) where
+    originalCannonicalization = basicSentenceCannonicalizer t
+    f :: [T.Text] -> [T.Text] -> T.Text
+    f x [] = T.unwords x
+    f x (y:ys) = if basicSentenceCannonicalizer (T.unwords $ x++ys) == originalCannonicalization then f x ys else f (x++[y]) ys
 
 ------------------------- ----------------------- Sentence cannonicalizers
 --TODO: check whether se/te/ve/xe are left-associative or right-associative
