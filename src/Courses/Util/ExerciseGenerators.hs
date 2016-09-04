@@ -34,11 +34,11 @@ generateTranslationExercise cannonicalizer translations r0 = TypingExercise titl
     ((lojban_sentence, english_sentences), r1) = chooseItemUniformly r0 translations
     (english_sentence, r2) = chooseItemUniformly r1 english_sentences
     title = "Translate this sentence"
-    validate x = case cannonicalizer x of
+    validate x = case cannonicalizer (T.toLower x) of
         Left _ -> False
         Right x' -> case cannonicalizer (T.toLower lojban_sentence) of
             Left _ -> False
-            Right lojban_sentence' -> (T.toLower x') == lojban_sentence'
+            Right lojban_sentence' -> x' == lojban_sentence'
 
 -- Exercise: tell grammatical class of a word
 generateGrammaticalClassExercise :: Vocabulary -> ExerciseGenerator
