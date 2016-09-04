@@ -113,10 +113,15 @@ translations2_nice =
 translations2 :: [Translation]
 translations2 = translations1_nice ++ translations2_nice ++
     [ ("mi se zdani", ["I have a house."])
+    , ("mi tavla zo'e lo gerku ku", ["I was talking about the dog.", "I was talking about the dogs.", "I am talking about the dog.", "I am talking about the dogs."])
+    , ("tavla lo gerku ku", ["Somebody was talking about the dog.", "Somebody was talking about the dogs."])
     , ("lo prenu ku tavla lo gerku ku", ["A person is talking to a dog.", "The person talks to dogs."])
-    , ("lo gerku ku nelci lo mlatu ku", ["The dog likes the cat."])
+    , ("lo prenu ku tavla lo mlatu ku", ["A person is talking to a cat.", "The person talks to cats."])
+    , ("lo gerku ku nelci lo mlatu ku", ["The dog likes the cat.", "Dogs like cats."])
+    , ("lo mlatu ku nelci lo gerku ku", ["The cat likes the dog.", "Cats like dogs."])
     , ("lo zdani ku melbi", ["The house is beautiful!", "The houses are beautiful!"])
     , ("mi te dunda lo mlatu ku", ["I was given a cat.", "We were given a cat.", "We were given cats.", "Somebody gave me a cat.", "Somebody gave us a cat.", "Somebody gave us cats."])
+    , ("mi te dunda lo gerku ku", ["I was given a dog.", "We were given a dog.", "We were given dogs.", "Somebody gave me a dog.", "Somebody gave us a dog.", "Somebody gave us dogs."])
     , ("mi ctuca do", ["I will teach you."])
     , ("mi se ctuca", ["Somebody teached me."])
     ]
