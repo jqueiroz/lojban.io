@@ -139,6 +139,9 @@ removeElidableTerminators t = f [] (T.words t) where
 --TODO: check whether se/te/ve/xe are left-associative or right-associative
 --TODO: create LOTS of unit tests
 
+displayCannonicalBridi :: SimpleBridi -> T.Text
+displayCannonicalBridi = fst . displayStandardSimpleBridi (mkStdGen 42)
+
 cannonicalizeArgumentInternally :: ZG.Text -> Either String T.Text
 cannonicalizeArgumentInternally (ZG.BRIVLA b) = Right $ T.pack b
 cannonicalizeArgumentInternally (ZG.Prefix (ZG.SE se) b) = T.append (T.pack $ se ++ " ") <$> cannonicalizeArgumentInternally b
@@ -183,7 +186,7 @@ basicSentenceCannonicalizer :: T.Text -> Either String T.Text
 basicSentenceCannonicalizer sentence = do
     (_, x, _) <- ZG.parse (T.unpack sentence)
     y <- cannonicalizeText x
-    return . fst $ displayStandardSimpleBridi (mkStdGen 42) y
+    return $ displayCannonicalBridi y
 
 ------------------------- ----------------------- Sentence generators
 generateNonbridi :: Vocabulary -> StdGen -> (T.Text, StdGen)
