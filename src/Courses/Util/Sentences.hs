@@ -144,6 +144,9 @@ displayCannonicalBridi = fst . displayStandardSimpleBridi (mkStdGen 42)
 
 cannonicalizeArgumentInternally :: ZG.Text -> Either String T.Text
 cannonicalizeArgumentInternally (ZG.BRIVLA b) = Right $ T.pack b
+cannonicalizeArgumentInternally (ZG.NU (ZG.Init init) text (ZG.Term term)) = do
+    x <- cannonicalizeText text
+    return . T.unwords $ [T.pack init, displayCannonicalBridi x, T.pack term]
 cannonicalizeArgumentInternally (ZG.Prefix (ZG.SE se) b) = T.append (T.pack $ se ++ " ") <$> cannonicalizeArgumentInternally b
 cannonicalizeArgumentInternally _ = Left "unrecognized pattern in function cannonicalizeArgumentInternally"
 
