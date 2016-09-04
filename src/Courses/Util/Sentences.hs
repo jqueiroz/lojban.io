@@ -279,9 +279,13 @@ generateActionBridi vocabulary r0 = (SimpleBridi action objects, r2) where
                 persons = filterOutWord "tavla" $ genericPersons ++ semiGenericPersons
                 (speaker, r1) = chooseItemUniformly r0 persons
                 (listener, r2) = chooseItemUniformly r1 $ filter (/= speaker) persons
-                (subject, r3) = if null subjects then ("", r2) else chooseItemUniformly r2 subjects
+                availableSubjects = filter (/= speaker) . filter (/= listener) $ subjects
             in
-                ([speaker, listener, subject], r3))
+                if null availableSubjects then
+                    ([speaker, listener], r2)
+                else
+                    let  (subject, r3) = chooseItemUniformly r2 availableSubjects
+                    in ([speaker, listener, subject], r3))
         , ("dunda", \r0 ->
             let
                 persons = filterOutWord "dunda" $ genericPersons ++ semiGenericPersons
