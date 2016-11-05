@@ -112,6 +112,12 @@ var createExercisesManager = function(holder) {
         // Events
         btnContinue.click(nextExercise);
         keyMap.enter(nextExercise);
+        // Sound
+        if (data.correct) {
+            new Audio("/static/audio/correct.mp3").play();
+        } else {
+            new Audio("/static/audio/incorrect.mp3").play();
+        }
     };
 
     var displayExercise = function(data) {
