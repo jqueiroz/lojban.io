@@ -325,6 +325,7 @@ var createExercisesManager = function(holder) {
                 });
             };
             keyMap.enter(send);
+            btnCheck.click(send);
             textarea.keydown(function(e) {
                 if (e.keyCode == 13) {
                     send();
