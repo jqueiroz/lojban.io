@@ -8,5 +8,6 @@ if [ -z "$1" ]; then
     echo ""
     echo ""
 elif [ "$1" == "from-source" ]; then
+    rm -f .docker-binary
     docker $DOCKER_OPTS build -t lojto-server -f Dockerfile2 .
 fi
