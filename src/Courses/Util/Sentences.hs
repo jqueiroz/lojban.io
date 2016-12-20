@@ -138,6 +138,8 @@ removeElidableTerminators t = f [] (T.words t) where
 ------------------------- ----------------------- Sentence cannonicalizers
 --TODO: check whether se/te/ve/xe are left-associative or right-associative
 --TODO: create LOTS of unit tests
+--ZasniGerna documentation: https://hackage.haskell.org/package/zasni-gerna-0.0.7/docs/Language-Lojban-Parser-ZasniGerna.html
+--TODO: exercises involving su'u -- first replace with (the more general cmavo here) and then cannonicalize? this way the specific word will be accepted whenever the more general is -- problem: what about the use of an incorrect, more restrictive word instead?
 
 displayCannonicalBridi :: SimpleBridi -> T.Text
 displayCannonicalBridi = fst . displayStandardSimpleBridi (mkStdGen 42)
