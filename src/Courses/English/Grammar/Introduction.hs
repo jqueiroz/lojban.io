@@ -20,6 +20,9 @@ Right plan1 = P.readMarkdown P.def $ $(embedStringFile "courses/english/introduc
 plan2 :: P.Pandoc
 Right plan2 = P.readMarkdown P.def $ $(embedStringFile "courses/english/introduction/planning/2.md")
 
+plan3 :: P.Pandoc
+Right plan3 = P.readMarkdown P.def $ $(embedStringFile "courses/english/introduction/planning/3.md")
+
 -------- Vocabulary
 vocabularyGenerator1 :: VocabularyBuilder
 vocabularyGenerator1 = createVocabularyBuilder
@@ -60,7 +63,7 @@ vocabulary3 = createVocabularyBuilder
     [
         ("actions", ["tavla", "dunda", "ctuca"]),
         ("properties", ["prenu", "zdani", "mlatu", "gerku", "melbi", "sutra", "pelxu"]),
-        ("relations", ["nelci", "pendo"])
+        ("relations", ["nelci", "pendo", "gleki"])
     ]
     -- Sumti
     [
@@ -126,8 +129,18 @@ translations2 = translations1_nice ++ translations2_nice ++
     , ("mi se ctuca", ["Somebody teached me.", "Somebody teached us."])
     ]
 
+-- TODO: "talk" is a bit hard -- people have to remember to use "zo'e"
 translations3 :: [Translation]
 translations3 =
+    [ ("mi gleki lo nu do pendo mi kei ku", ["I am happy that you are my friend."])
+    , ("mi gleki lo nu do dunda lo mlatu ku mi kei ku", ["I am happy that you gave me the cat."])
+    , ("mi gleki lo nu do dunda lo gerku ku mi kei ku", ["I am happy that you gave me the dog."]) -- nu vs du'u?
+    , ("mi tavla zo'e lo nu do se zdani kei ku", ["I talked about you having a house."]) -- nu vs du'u?
+    , ("do tavla zo'e lo nu lo mlatu ku nelci lo gerku ku kei ku", ["You talked about cats liking dogs."]) -- nu vs du'u?
+    ]
+
+translations4 :: [Translation]
+translations4 =
     [ ("lo prenu ku sutra tavla", ["The person talks quickly.", "The person is talking quickly.", "A person is talking quickly.", "People talk quickly"])
     ]
 
@@ -143,6 +156,7 @@ exercises1 dictionary =
         , (15, generateBridiJufraExercise vocabulary displayBridi)
         , (20, generateSelbriIdentificationExercise vocabulary displayBridi)
         , (30, generateContextualizedGismuPlacesExercise dictionary vocabulary displayBridi)
+        -- Any reason for isolated gismu place exercises not being present here?
         , (40, generateTranslationExercise basicSentenceCannonicalizer translations1)
         ]
     where
@@ -163,6 +177,20 @@ exercises2 dictionary =
         vocabulary = vocabularyGenerator2 dictionary
         displayBridi = combineFunctionsUniformly [displayVariantSimpleBridi, displayReorderedStandardSimpleBridi]
 
+exercises3 :: Dictionary -> ExerciseGenerator
+exercises3 dictionary =
+    combineFunctions
+        [ (10, generateGrammaticalClassExercise vocabulary)
+        , (10, generateBridiJufraExercise vocabulary displayBridi)
+        , (10, generateSelbriIdentificationExercise vocabulary displayBridi)
+        , (30, generateContextualizedGismuPlacesExercise dictionary vocabulary displayBridi)
+        , (30, generateIsolatedGismuPlacesExercise dictionary vocabulary)
+        , (99999, generateTranslationExercise basicSentenceCannonicalizer translations3)
+        ]
+    where
+        vocabulary = vocabularyGenerator2 dictionary
+        displayBridi = combineFunctionsUniformly [displayVariantSimpleBridi, displayReorderedStandardSimpleBridi]
+
 -------- Lessons
 lesson1 :: LessonBuilder
 lesson1 dictionary = Lesson "Basics 1" (exercises1 dictionary) plan1
@@ -170,6 +198,9 @@ lesson1 dictionary = Lesson "Basics 1" (exercises1 dictionary) plan1
 lesson2 :: LessonBuilder
 lesson2 dictionary = Lesson "Basics 2" (exercises2 dictionary) plan2
 
+lesson3 :: LessonBuilder
+lesson3 dictionary = Lesson "Abstractions" (exercises3 dictionary) plan3
+
 -------- Course
 course :: CourseBuilder
-course = createCourseBuilder "Introduction to Lojban for English speakers" [lesson1, lesson2]
+course = createCourseBuilder "Introduction to Lojban for English speakers" [lesson1, lesson2, lesson3]
