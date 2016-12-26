@@ -57,8 +57,8 @@ vocabularyGenerator2 = createVocabularyBuilder
     ]
 
 -- TODO: should "ctuca" really be here? does it denote any kind of teaching or only teaching in formal settings with an instructor and and audience?
-vocabulary3 :: VocabularyBuilder
-vocabulary3 = createVocabularyBuilder
+vocabularyGenerator3 :: VocabularyBuilder
+vocabularyGenerator3 = createVocabularyBuilder
     -- Selbri
     [
         ("actions", ["tavla", "dunda", "ctuca"]),
@@ -188,7 +188,7 @@ exercises3 dictionary =
         , (99999, generateTranslationExercise basicSentenceCannonicalizer translations3)
         ]
     where
-        vocabulary = vocabularyGenerator2 dictionary
+        vocabulary = vocabularyGenerator3 dictionary
         displayBridi = combineFunctionsUniformly [displayVariantSimpleBridi, displayReorderedStandardSimpleBridi]
 
 -------- Lessons
