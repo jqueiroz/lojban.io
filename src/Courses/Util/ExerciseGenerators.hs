@@ -29,14 +29,14 @@ type Translation = (LojbanSentence, [EnglishSentence])
 type EnglishSentence = T.Text
 type LojbanSentence = T.Text
 
-generateTranslationExercise :: SentenceCannonicalizer -> [Translation] -> ExerciseGenerator
-generateTranslationExercise cannonicalizer translations r0 = TypingExercise title (Just $ ExerciseSentence True english_sentence) validate lojban_sentence where
+generateTranslationExercise :: SentenceCanonicalizer -> [Translation] -> ExerciseGenerator
+generateTranslationExercise canonicalizer translations r0 = TypingExercise title (Just $ ExerciseSentence True english_sentence) validate lojban_sentence where
     ((lojban_sentence, english_sentences), r1) = chooseItemUniformly r0 translations
     (english_sentence, r2) = chooseItemUniformly r1 english_sentences
     title = "Translate this sentence"
-    validate x = case cannonicalizer (T.toLower x) of
+    validate x = case canonicalizer (T.toLower x) of
         Left _ -> False
-        Right x' -> case cannonicalizer (T.toLower lojban_sentence) of
+        Right x' -> case canonicalizer (T.toLower lojban_sentence) of
             Left _ -> False
             Right lojban_sentence' -> x' == lojban_sentence'
 

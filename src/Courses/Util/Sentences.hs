@@ -3,13 +3,13 @@
 module Courses.Util.Sentences
 ( SimpleBridi
 , SimpleBridiDisplayer
-, SentenceCannonicalizer
+, SentenceCanonicalizer
 , simpleBridiSelbri
 , simpleBridiSumti
 , displayStandardSimpleBridi
 , displayVariantSimpleBridi
 , displayReorderedStandardSimpleBridi
-, basicSentenceCannonicalizer
+, basicSentenceCanonicalizer
 , generateNonbridi
 , generateSimpleBridi
 , generatePropertyBridi
@@ -20,8 +20,9 @@ module Courses.Util.Sentences
 
 import Core
 import Courses.Util.Vocabulary
-import Util (replace, stripRight, filterOutWord, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly)
+import Util (replace, stripRight, filterOutWord, headOrDefault, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly)
 import Control.Exception (assert)
+import Control.Applicative (liftA2)
 import System.Random (StdGen, mkStdGen)
 import qualified Data.Text as T
 import qualified Data.Map as M
@@ -130,71 +131,108 @@ displayReorderedStandardSimpleBridi' = buildSentenceDisplayer $ \r0 (SimpleBridi
 
 removeElidableTerminators :: T.Text -> T.Text
 removeElidableTerminators t = f [] (T.words t) where
-    originalCannonicalization = basicSentenceCannonicalizer t
+    originalCanonicalization = basicSentenceCanonicalizer t
     f :: [T.Text] -> [T.Text] -> T.Text
     f x [] = T.unwords x
-    f x (y:ys) = if basicSentenceCannonicalizer (T.unwords $ x++ys) == originalCannonicalization then f x ys else f (x++[y]) ys
+    f x (y:ys) = if basicSentenceCanonicalizer (T.unwords $ x++ys) == originalCanonicalization then f x ys else f (x++[y]) ys
 
-------------------------- ----------------------- Sentence cannonicalizers
+------------------------- ----------------------- Sentence canonicalizers
 --TODO: check whether se/te/ve/xe are left-associative or right-associative
 --TODO: create LOTS of unit tests
 --ZasniGerna documentation: https://hackage.haskell.org/package/zasni-gerna-0.0.7/docs/Language-Lojban-Parser-ZasniGerna.html
---TODO: exercises involving su'u -- first replace with (the more general cmavo here) and then cannonicalize? this way the specific word will be accepted whenever the more general is -- problem: what about the use of an incorrect, more restrictive word instead?
+--TODO: exercises involving su'u -- first replace with (the more general cmavo here) and then canonicalize? this way the specific word will be accepted whenever the more general is -- problem: what about the use of an incorrect, more restrictive word instead?
+--TODO: conversion mode that replaces all "NU" words with "nu"?
+--TODO: write tests using equivalence classes + canonical output for the class
+--TODO: support tanru
 
-displayCannonicalBridi :: SimpleBridi -> T.Text
-displayCannonicalBridi = fst . displayStandardSimpleBridi (mkStdGen 42)
+---------- Parsing
+parse :: T.Text -> Either String ZG.Text
+parse sentence = ZG.parse (T.unpack sentence) >>= \(_, x, _) -> return x
 
-cannonicalizeArgumentInternally :: ZG.Text -> Either String T.Text
-cannonicalizeArgumentInternally (ZG.BRIVLA b) = Right $ T.pack b
-cannonicalizeArgumentInternally (ZG.NU (ZG.Init init) text (ZG.Term term)) = do
-    x <- cannonicalizeText text
-    return . T.unwords $ [T.pack init, displayCannonicalBridi x, T.pack term]
-cannonicalizeArgumentInternally (ZG.NU (ZG.Init init) text (ZG.NT)) = do
-    x <- cannonicalizeText text
-    return . T.unwords $ [T.pack init, displayCannonicalBridi x, T.pack "kei"]
-cannonicalizeArgumentInternally (ZG.Prefix (ZG.SE se) b) = T.append (T.pack $ se ++ " ") <$> cannonicalizeArgumentInternally b
-cannonicalizeArgumentInternally _ = Left "unrecognized pattern in function cannonicalizeArgumentInternally"
+---------- Types
+type StructuredSelbri = ZG.Text
+type StructuredTerm = ZG.Text
+type StructuredBridi = (StructuredSelbri, [(Int, StructuredTerm)])
 
-cannonicalizeArgument :: ZG.Text -> Either String T.Text
-cannonicalizeArgument (ZG.LE (ZG.Init i) _ _ x _) = insertPrefix . insertSuffix <$> cannonicalizeArgumentInternally x where
-    insertPrefix = ((T.pack $ i ++ " ") `T.append`)
+---------- Handle place permutations (se/te/ve/xe)
+swapTerms :: Int -> Int -> [(Int, StructuredTerm)] -> [(Int, StructuredTerm)]
+swapTerms x y terms = assert (x /= y) $ map f terms where
+    f (k, t) = (if k == x then y else if k == y then x else k, t)
+swapTerms2 :: String -> [(Int, StructuredTerm)] -> [(Int, StructuredTerm)]
+swapTerms2 "se" = swapTerms 1 2
+swapTerms2 "te" = swapTerms 1 3
+swapTerms2 "ve" = swapTerms 1 4
+swapTerms2 "xe" = swapTerms 1 5
+
+handlePlacePermutations :: StructuredBridi -> Either String StructuredBridi
+handlePlacePermutations (ZG.BRIVLA brivla, terms) = Right $ (ZG.BRIVLA brivla, terms)
+handlePlacePermutations (ZG.Prefix (ZG.SE x) y, terms) = do
+    (selbri, terms2) <- handlePlacePermutations (y, terms)
+    return $ (selbri, swapTerms2 x terms2)
+handlePlacePermutations _ = Left "unrecognized pattern in function handlePlacePermutations"
+
+---------- Retrieve structured bridi
+retrieveStructuredBridi :: ZG.Text -> Either String StructuredBridi
+------- with x1
+-- prami
+retrieveStructuredBridi (ZG.BRIVLA brivla) = Right $ (ZG.BRIVLA brivla, [])
+-- se prami
+retrieveStructuredBridi (ZG.Prefix x y) = Right $ (ZG.Prefix x y, [])
+-- prami do / se prami do
+retrieveStructuredBridi (ZG.BridiTail selbri (ZG.Terms terms _)) = Right $ (selbri, zip [2..] terms)
+------- without x1
+-- mi prami
+retrieveStructuredBridi (ZG.Bridi (ZG.Terms terms _) (ZG.BRIVLA brivla)) = Right $ (ZG.BRIVLA brivla, zip [1..] terms)
+-- mi se prami
+retrieveStructuredBridi (ZG.Bridi (ZG.Terms terms _) (ZG.Prefix x y)) = Right $ (ZG.Prefix x y, zip [1..] terms)
+-- mi prami do / mi se prami do
+retrieveStructuredBridi (ZG.Bridi (ZG.Terms terms1 _) (ZG.BridiTail selbri (ZG.Terms terms2 _))) = Right $ (selbri, zip [1..] $ terms1 ++ terms2)
+------- invalid
+retrieveStructuredBridi _ = Left "unrecognized pattern in function retrieveStructuredBridi"
+
+---------- Convert structured bridi to simple bridi
+-- The structured bridi must already have correct place structure (no place tags, no place reordering)
+convertStructuredBridi :: StructuredBridi -> Either String SimpleBridi
+convertStructuredBridi (selbri, terms) = do
+    selbri2 <- convertStructuredSelbri selbri
+    terms2 <- convertStructuredTerms terms
+    return $ SimpleBridi selbri2 terms2
+
+convertStructuredSelbri :: StructuredSelbri -> Either String T.Text
+convertStructuredSelbri (ZG.BRIVLA brivla) = Right $ T.pack brivla
+
+convertStructuredTerms :: [(Int, StructuredTerm)] -> Either String [T.Text]
+convertStructuredTerms terms = do
+    let terms2 = map (fmap convertStructuredTerm) terms :: [(Int, Either String T.Text)]
+    let terms3 = map (\(i, v) -> case v of Right x -> Right (i, x); Left x -> Left x) terms2 :: [Either String (Int, T.Text)]
+    terms4 <- foldr (liftA2 (:)) (Right []) terms3 :: Either String [(Int, T.Text)]
+    let terms5 = filter ((/= "zo'e") . snd) terms4
+    let lastTermNumber = maximum $ map fst terms5
+    let retrieveTerm i = headOrDefault (T.pack "") $ map snd $ filter ((== i) . fst) terms5
+    return $ map retrieveTerm [1..lastTermNumber]
+
+convertStructuredTerm :: StructuredTerm -> Either String T.Text
+convertStructuredTerm (ZG.KOhA x) = Right $ T.pack x
+convertStructuredTerm (ZG.BRIVLA x) = Right $ T.pack x
+convertStructuredTerm (ZG.Prefix (ZG.SE x) y) = insertPrefix <$> convertStructuredTerm y where
+    insertPrefix = ((T.pack $ x ++ " ") `T.append`)
+convertStructuredTerm (ZG.NU (ZG.Init x) y _) = insertPrefix . insertSuffix <$> displayCanonicalBridi <$> canonicalizeText y where
+    insertPrefix = ((T.pack $ x ++ " ") `T.append`)
+    insertSuffix = (`T.append` " kei")
+convertStructuredTerm (ZG.LE (ZG.Init x) ZG.NR ZG.NQ y _) = insertPrefix . insertSuffix <$> convertStructuredTerm y where
+    insertPrefix = ((T.pack $ x ++ " ") `T.append`)
     insertSuffix = (`T.append` " ku")
-cannonicalizeArgument (ZG.KOhA "zo'e") = Right $ ""
-cannonicalizeArgument (ZG.KOhA k) = Right $ T.pack k
-cannonicalizeArgument _ = Left "unrecognized pattern in function cannonicalizeArgument"
 
-cannonicalizeArguments :: [ZG.Text] -> Either String [T.Text]
-cannonicalizeArguments [] = Right []
-cannonicalizeArguments (x:xs) = do
-    x' <- cannonicalizeArgument x
-    xs' <- cannonicalizeArguments xs
-    return $ x':xs'
+---------- Canonicalization
+type SentenceCanonicalizer = T.Text -> Either String T.Text
+basicSentenceCanonicalizer :: T.Text -> Either String T.Text
+basicSentenceCanonicalizer sentence = displayCanonicalBridi <$> (parse sentence >>= canonicalizeText)
 
-cannonicalizeText :: ZG.Text -> Either String SimpleBridi
-cannonicalizeText (ZG.BridiTail (ZG.BRIVLA selbri) (ZG.Terms sumti _)) =
-    SimpleBridi (T.pack selbri) <$> (("":) <$> (cannonicalizeArguments sumti))
-cannonicalizeText (ZG.BridiTail (ZG.Prefix (ZG.SE se) brivla) (ZG.Terms sumti x)) =
-    swapSimpleBridiArguments se <$> cannonicalizeText (ZG.BridiTail brivla (ZG.Terms sumti x))
-cannonicalizeText (ZG.Bridi (ZG.Terms sumti1 _) (ZG.BridiTail (ZG.BRIVLA selbri) (ZG.Terms sumti2 _))) =
-    SimpleBridi (T.pack selbri) <$> (cannonicalizeArguments $ sumti1 ++ sumti2)
-cannonicalizeText (ZG.Bridi (ZG.Terms sumti1 _) (ZG.BRIVLA selbri)) =
-    SimpleBridi (T.pack selbri) <$> (cannonicalizeArguments $ sumti1)
-cannonicalizeText (ZG.Bridi (ZG.Terms sumti1 x) (ZG.Prefix (ZG.SE se) bridiTail)) =
-    swapSimpleBridiArguments se <$> cannonicalizeText (ZG.Bridi (ZG.Terms sumti1 x) bridiTail)
-cannonicalizeText (ZG.Bridi (ZG.Terms sumti1 x) (ZG.BridiTail (ZG.Prefix (ZG.SE se) bridiTail) (ZG.Terms sumti2 y))) =
-    swapSimpleBridiArguments se <$> cannonicalizeText (ZG.Bridi (ZG.Terms sumti1 x) (ZG.BridiTail bridiTail (ZG.Terms sumti2 y)))
-cannonicalizeText (ZG.BRIVLA selbri) =
-    Right $ SimpleBridi (T.pack selbri) []
-cannonicalizeText (ZG.Prefix (ZG.SE se) x) =
-    swapSimpleBridiArguments se <$> cannonicalizeText x
-cannonicalizeText _ = Left "unrecognized pattern in function cannonicalizeText"
+canonicalizeText :: ZG.Text -> Either String SimpleBridi
+canonicalizeText text = retrieveStructuredBridi text >>= handlePlacePermutations >>= convertStructuredBridi
 
-type SentenceCannonicalizer = T.Text -> Either String T.Text
-basicSentenceCannonicalizer :: T.Text -> Either String T.Text
-basicSentenceCannonicalizer sentence = do
-    (_, x, _) <- ZG.parse (T.unpack sentence)
-    y <- cannonicalizeText x
-    return $ displayCannonicalBridi y
+displayCanonicalBridi :: SimpleBridi -> T.Text
+displayCanonicalBridi = fst . displayStandardSimpleBridi (mkStdGen 42)
 
 ------------------------- ----------------------- Sentence generators
 generateNonbridi :: Vocabulary -> StdGen -> (T.Text, StdGen)

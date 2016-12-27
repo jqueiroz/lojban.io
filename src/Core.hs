@@ -86,7 +86,7 @@ data Exercise =
         { tpeTitle :: T.Text
         , tpeSentence :: Maybe ExerciseSentence
         , tpeValidate :: T.Text -> Bool
-        , tpeCannonicalAnswer :: T.Text
+        , tpeCanonicalAnswer :: T.Text
         }
 
 type ExerciseGenerator = StdGen -> Exercise
@@ -95,7 +95,7 @@ instance Show Exercise where
     show (MultipleChoiceExercise title sentence correctAlternatives incorrectAlternatives fixedOrdering) = "MultipleChoiceExercise { mceTitle = " ++ (show title) ++ ", mceSentence = " ++ (show sentence) ++ ", mceCorrectAlternatives = " ++ (show correctAlternatives) ++ ", mceIncorrectAlternatives = " ++ (show incorrectAlternatives) ++ ", fixedOrdering = " ++ (show fixedOrdering) ++ "}"
     show (SingleChoiceExercise title sentence correctAlternative incorrectAlternatives fixedOrdering) = "SingleChoiceExercise { sceTitle = " ++ (show title) ++ ", sceSentence = " ++ (show sentence) ++ ", sceCorrectAlternatives = " ++ (show correctAlternative) ++ ", sceIncorrectAlternatives = " ++ (show incorrectAlternatives) ++ ", fixedOrdering = " ++ (show fixedOrdering) ++ "}"
     show (MatchingExercise title sentence items) = "MatchingExercise { mteTitle = " ++ (show title) ++ ", mteSentence = " ++ (show sentence) ++ ", mteItems = " ++ (show items) ++ "}"
-    show (TypingExercise title sentence _ cannonicalAnswer) = "TypingExercise {tpeTitle = " ++ (show title) ++ ", tpeSentence = " ++ (show sentence) ++ ", cannonicalAnswer = " ++ (show cannonicalAnswer) ++ "}"
+    show (TypingExercise title sentence _ canonicalAnswer) = "TypingExercise {tpeTitle = " ++ (show title) ++ ", tpeSentence = " ++ (show sentence) ++ ", canonicalAnswer = " ++ (show canonicalAnswer) ++ "}"
 
 data ExerciseSentence = ExerciseSentence
     { esLojbanic :: Bool

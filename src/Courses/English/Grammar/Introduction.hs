@@ -157,7 +157,7 @@ exercises1 dictionary =
         , (20, generateSelbriIdentificationExercise vocabulary displayBridi)
         , (30, generateContextualizedGismuPlacesExercise dictionary vocabulary displayBridi)
         -- Any reason for isolated gismu place exercises not being present here?
-        , (40, generateTranslationExercise basicSentenceCannonicalizer translations1)
+        , (40, generateTranslationExercise basicSentenceCanonicalizer translations1)
         ]
     where
         vocabulary = vocabularyGenerator1 dictionary
@@ -171,7 +171,7 @@ exercises2 dictionary =
         , (15, generateSelbriIdentificationExercise vocabulary displayBridi)
         , (30, generateContextualizedGismuPlacesExercise dictionary vocabulary displayBridi)
         , (30, generateIsolatedGismuPlacesExercise dictionary vocabulary)
-        , (50, generateTranslationExercise basicSentenceCannonicalizer translations2)
+        , (50, generateTranslationExercise basicSentenceCanonicalizer translations2)
         ]
     where
         vocabulary = vocabularyGenerator2 dictionary
@@ -185,7 +185,7 @@ exercises3 dictionary =
         , (10, generateSelbriIdentificationExercise vocabulary displayBridi)
         , (30, generateContextualizedGismuPlacesExercise dictionary vocabulary displayBridi)
         , (30, generateIsolatedGismuPlacesExercise dictionary vocabulary)
-        , (99999, generateTranslationExercise basicSentenceCannonicalizer translations3)
+        , (99999, generateTranslationExercise basicSentenceCanonicalizer translations3)
         ]
     where
         vocabulary = vocabularyGenerator3 dictionary

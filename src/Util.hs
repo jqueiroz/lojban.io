@@ -33,6 +33,10 @@ filterOutWord forbiddenWord = filter $ not . (T.isInfixOf forbiddenWord)
 sortUniq :: (Ord a) => [a] -> [a]
 sortUniq = (map head) . group . sort
 
+headOrDefault :: a -> [a] -> a
+headOrDefault d [] = d
+headOrDefault _ (h:_) = h
+
 infixr 5 ?:
 (?:) :: (Eq a) => a -> [a] -> [a]
 x ?: xs

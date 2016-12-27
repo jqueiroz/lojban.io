@@ -315,12 +315,12 @@ var createExercisesManager = function(holder) {
                         return;
                     }
                     if (response.data.correct) {
-                        if (textarea.val() === response.data.cannonicalAnswer)
+                        if (textarea.val() === response.data.canonicalAnswer)
                             displayFeedbackFooter({'correct': true});
                         else
-                            displayFeedbackFooter({'correct': true, 'alternativeAnswer': response.data.cannonicalAnswer});
+                            displayFeedbackFooter({'correct': true, 'alternativeAnswer': response.data.canonicalAnswer});
                     } else {
-                        displayFeedbackFooter({'correct': false, 'correctAnswer': response.data.cannonicalAnswer});
+                        displayFeedbackFooter({'correct': false, 'correctAnswer': response.data.canonicalAnswer});
                     }
                 });
             };

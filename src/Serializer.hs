@@ -103,9 +103,9 @@ validateExerciseAnswer (MatchingExercise title sentence items) s = do
         [ ("correct", A.Bool $ meaOrderedAlternatives answer == map snd items)
         ]
 
-validateExerciseAnswer (TypingExercise text sentence validate cannonicalAnswer) s = do
+validateExerciseAnswer (TypingExercise text sentence validate canonicalAnswer) s = do
     answer <- A.decode s
     return $ A.object
         [ ("correct", A.Bool $ validate (teaText answer))
-        , ("cannonicalAnswer", A.String $ cannonicalAnswer)
+        , ("canonicalAnswer", A.String $ canonicalAnswer)
         ]
