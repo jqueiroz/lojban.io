@@ -204,3 +204,6 @@ generateTextToNumberExercise r0 =
             Nothing -> False
             Just x' -> x' == x
     in TypingExercise ("Text to number: <b>" `T.append` (numberToSimpleLojban x) `T.append` "</b>") Nothing v (T.pack . show $ x)
+
+---------- Exercise ideas
+-- 1) fill bridi with fa/fe/fi/fo/fu (this probably requires images for context)
