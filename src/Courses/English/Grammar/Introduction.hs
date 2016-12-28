@@ -170,7 +170,7 @@ exercises1 dictionary =
         ]
     where
         vocabulary = vocabularyGenerator1 dictionary
-        displayBridi = displayVariantSimpleBridi
+        displayBridi = combineFunctions [(7, displayStandardSimpleBridi), (3, displayVariantSimpleBridi)]
 
 exercises2 :: Dictionary -> ExerciseGenerator
 exercises2 dictionary =
@@ -184,7 +184,7 @@ exercises2 dictionary =
         ]
     where
         vocabulary = vocabularyGenerator2 dictionary
-        displayBridi = combineFunctionsUniformly [displayVariantSimpleBridi, displayReorderedStandardSimpleBridi]
+        displayBridi = combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
 
 exercises3 :: Dictionary -> ExerciseGenerator
 exercises3 dictionary =
@@ -198,7 +198,7 @@ exercises3 dictionary =
         ]
     where
         vocabulary = vocabularyGenerator3 dictionary
-        displayBridi = combineFunctionsUniformly [displayVariantSimpleBridi, displayReorderedStandardSimpleBridi]
+        displayBridi = combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
 
 -------- Lessons
 lesson1 :: LessonBuilder
