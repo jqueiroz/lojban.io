@@ -78,16 +78,16 @@ vocabularyGenerator3 = createVocabularyBuilder
 -------- Translations
 translations1_nice :: [Translation]
 translations1_nice =
-    [ ("mi tavla zo'e do", ["I was talking about you.", "We were talking about you.", "I am talking about you.", "We are talking about you.", "I will talk about you.", "We will talk about you."])
-    , ("mi dunda zo'e do", ["I gave you something.", "I will give you something."])
-    , ("do dunda ti mi", ["You gave me this.", "You gave us this."])
+    [ ("do dunda ti mi", ["You gave me this.", "You gave us this."])
     , ("mi dunda ta do", ["I gave you that.", "We gave you that."])
     , ("mi tavla mi", ["I am talking to myself.", "I was talking to myself.", "We were talking to ourselves."])
     ]
 
 translations1 :: [Translation]
 translations1 = translations1_nice ++
-    [ ("zdani mi", ["I have a house.", "We have a house."])
+    [ ("mi tavla zo'e do", ["I was talking about you.", "We were talking about you.", "I am talking about you.", "We are talking about you.", "I will talk about you.", "We will talk about you."])
+    , ("mi dunda zo'e do", ["I gave you something.", "I will give you something."])
+    , ("zdani mi", ["I have a house.", "We have a house."])
     , ("do pendo mi", ["You are my friend."])
     , ("mi pendo do", ["I am your friend."])
     , ("mi tavla do", ["I am talking to you.", "I was talking to you.", "We are talking to you.", "We were talking to you."])
@@ -102,8 +102,10 @@ translations1 = translations1_nice ++
 
 translations2_nice :: [Translation]
 translations2_nice =
-    [ ("mi tavla zo'e lo mlatu ku", ["I was talking about the cat.", "I was talking about the cats.", "I am talking about the cat.", "I am talking about the cats."])
-    , ("tavla zo'e lo mlatu ku", ["Somebody was talking about the cat.", "Somebody was talking about the cats."])
+    [ ("mi tavla fi do", ["I was talking about you.", "We were talking about you.", "I am talking about you.", "We are talking about you.", "I will talk about you.", "We will talk about you."])
+    , ("mi dunda fi do", ["I gave you something.", "I will give you something."])
+    , ("mi tavla fi lo mlatu ku", ["I was talking about the cat.", "I was talking about the cats.", "I am talking about the cat.", "I am talking about the cats."])
+    , ("tavla fi lo mlatu ku", ["Somebody was talking about the cat.", "Somebody was talking about the cats."])
     , ("mi nelci lo dunda ku", ["I like the donor.", "I like the donors."])
     , ("lo se dunda ku melbi", ["The gift is beautiful.", "The gifts are beautiful."])
     , ("mi te dunda lo gerku ku", ["I was given a dog.", "We were given a dog.", "We were given dogs.", "Somebody gave me a dog.", "Somebody gave us a dog.", "Somebody gave us dogs."])
@@ -116,8 +118,8 @@ translations2_nice =
 translations2 :: [Translation]
 translations2 = translations1_nice ++ translations2_nice ++
     [ ("mi se zdani", ["I have a house.", "We have a house."])
-    , ("mi tavla zo'e lo gerku ku", ["I was talking about the dog.", "I was talking about the dogs.", "I am talking about the dog.", "I am talking about the dogs."])
-    , ("tavla zo'e lo gerku ku", ["Somebody was talking about the dog.", "Somebody was talking about the dogs."])
+    , ("mi tavla fi lo gerku ku", ["I was talking about the dog.", "I was talking about the dogs.", "I am talking about the dog.", "I am talking about the dogs."])
+    , ("tavla fi lo gerku ku", ["Somebody was talking about the dog.", "Somebody was talking about the dogs."])
     , ("lo prenu ku tavla lo gerku ku", ["A person is talking to a dog.", "The person talks to dogs."])
     , ("lo prenu ku tavla lo mlatu ku", ["A person is talking to a cat.", "The person talks to cats."])
     , ("lo gerku ku nelci lo mlatu ku", ["The dog likes the cat.", "Dogs like cats."])
@@ -135,8 +137,8 @@ translations3 =
     [ ("mi gleki lo nu do pendo mi kei ku", ["I am happy that you are my friend."])
     , ("mi gleki lo nu do dunda lo mlatu ku mi kei ku", ["I am happy that you gave me the cat."])
     , ("mi gleki lo nu do dunda lo gerku ku mi kei ku", ["I am happy that you gave me the dog."]) -- nu vs du'u?
-    , ("mi tavla zo'e lo nu do se zdani kei ku", ["I talked about you having a house."]) -- nu vs du'u?
-    , ("do tavla zo'e lo nu lo mlatu ku nelci lo gerku ku kei ku", ["You talked about cats liking dogs."]) -- nu vs du'u?
+    , ("mi tavla fi lo nu do se zdani kei ku", ["I talked about you having a house."]) -- nu vs du'u?
+    , ("do tavla fi lo nu lo mlatu ku nelci lo gerku ku kei ku", ["You talked about cats liking dogs."]) -- nu vs du'u?
     ]
 
 translations4 :: [Translation]
