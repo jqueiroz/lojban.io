@@ -105,11 +105,14 @@ translations2_nice =
     [ ("mi tavla fi do", ["I was talking about you.", "We were talking about you.", "I am talking about you.", "We are talking about you.", "I will talk about you.", "We will talk about you."])
     , ("mi dunda fi do", ["I gave you something.", "I will give you something."])
     , ("mi tavla fi lo mlatu ku", ["I was talking about the cat.", "I was talking about the cats.", "I am talking about the cat.", "I am talking about the cats."])
+    , ("mi dunda lo mlatu ku lo pendo ku", ["I gave the cat to somebody's friend.", "I gave the cats to somebody's friend."])
     , ("tavla fi lo mlatu ku", ["Somebody was talking about the cat.", "Somebody was talking about the cats."])
     , ("mi nelci lo dunda ku", ["I like the donor.", "I like the donors."])
     , ("lo se dunda ku melbi", ["The gift is beautiful.", "The gifts are beautiful."])
     , ("mi te dunda lo gerku ku", ["I was given a dog.", "We were given a dog.", "We were given dogs.", "Somebody gave me a dog.", "Somebody gave us a dog.", "Somebody gave us dogs."])
     , ("lo ctuca ku se zdani", ["The instructor has a house."])
+    , ("lo ctuca ku dunda lo mlatu ku mi", ["The instructor gave me a cat.", "The instructor gave me cats."])
+    , ("dunda lo mlatu ku lo ctuca ku", ["Somebody gave a cat to the instructor", "Somebody gave cats to the instructor"])
     , ("mi nelci lo xe ctuca ku", ["I like the teaching method."])
     , ("lo se tavla ku prenu", ["The listener is a person.", "The listeners are persons."]) -- is "listener" a good choice?
     , ("lo tavla ku pendo mi", ["The speaker is my friend.", "The speakers are my friends."]) -- is "speaker" a good choice? maybe it implies voice...
@@ -120,6 +123,7 @@ translations2 = translations1_nice ++ translations2_nice ++
     [ ("mi se zdani", ["I have a house.", "We have a house."])
     , ("mi tavla fi lo gerku ku", ["I was talking about the dog.", "I was talking about the dogs.", "I am talking about the dog.", "I am talking about the dogs."])
     , ("tavla fi lo gerku ku", ["Somebody was talking about the dog.", "Somebody was talking about the dogs."])
+    , ("mi dunda lo gerku ku lo pendo ku", ["I gave the dog to somebody's friend.", "I gave the dogs to somebody's friend."])
     , ("lo prenu ku tavla lo gerku ku", ["A person is talking to a dog.", "The person talks to dogs."])
     , ("lo prenu ku tavla lo mlatu ku", ["A person is talking to a cat.", "The person talks to cats."])
     , ("lo gerku ku nelci lo mlatu ku", ["The dog likes the cat.", "Dogs like cats."])
@@ -127,6 +131,8 @@ translations2 = translations1_nice ++ translations2_nice ++
     , ("lo zdani ku melbi", ["The house is beautiful!", "The houses are beautiful!"])
     , ("mi te dunda lo mlatu ku", ["I was given a cat.", "We were given a cat.", "We were given cats.", "Somebody gave me a cat.", "Somebody gave us a cat.", "Somebody gave us cats."])
     , ("mi te dunda lo gerku ku", ["I was given a dog.", "We were given a dog.", "We were given dogs.", "Somebody gave me a dog.", "Somebody gave us a dog.", "Somebody gave us dogs."])
+    , ("lo ctuca ku dunda lo gerku ku mi", ["The instructor gave me a dog.", "The instructor gave me dogs."])
+    , ("dunda lo gerku ku lo ctuca ku", ["Somebody gave a dog to the instructor", "Somebody gave dogs to the instructor"])
     , ("mi ctuca do", ["I will teach you.", "We will teach you."])
     , ("mi se ctuca", ["Somebody teached me.", "Somebody teached us."])
     ]
