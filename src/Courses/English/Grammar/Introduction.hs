@@ -78,63 +78,64 @@ vocabularyGenerator3 = createVocabularyBuilder
 -------- Translations
 translations1_nice :: [Translation]
 translations1_nice =
-    [ ("do dunda ti mi", ["You gave me this.", "You gave us this."])
+    [ ("mi tavla mi", ["I am talking to myself.", "I was talking to myself.", "We were talking to ourselves."])
+    , ("do dunda ti mi", ["You gave me this.", "You gave us this."])
     , ("mi dunda ta do", ["I gave you that.", "We gave you that."])
-    , ("mi tavla mi", ["I am talking to myself.", "I was talking to myself.", "We were talking to ourselves."])
     ]
 
 translations1 :: [Translation]
 translations1 = translations1_nice ++
     [ ("mi tavla zo'e do", ["I was talking about you.", "We were talking about you.", "I am talking about you.", "We are talking about you.", "I will talk about you.", "We will talk about you."])
-    , ("mi dunda zo'e do", ["I gave you something.", "I will give you something."])
-    , ("zdani mi", ["I have a house.", "We have a house."])
-    , ("do pendo mi", ["You are my friend."])
-    , ("mi pendo do", ["I am your friend."])
     , ("mi tavla do", ["I am talking to you.", "I was talking to you.", "We are talking to you.", "We were talking to you."])
     , ("do tavla mi", ["You are talking to me.", "You are talking to us."])
     , ("do tavla do", ["You are talking to yourself."])
+    , ("mi dunda zo'e do", ["I gave you something.", "I will give you something."])
+    , ("do pendo mi", ["You are my friend."])
+    , ("mi pendo do", ["I am your friend."])
     , ("mi prenu", ["I am a person.", "We are persons."])
     , ("do prenu", ["You are a person.", "You are persons."])
-    , ("ta zdani", ["That is a house.", "Those are houses."])
     , ("ti mlatu", ["This is a cat.", "These are cats."])
     , ("ta mlatu", ["That is a cat.", "Those are cats."])
+    , ("ta zdani", ["That is a house.", "Those are houses."])
+    , ("zdani mi", ["I have a house.", "We have a house."])
     ]
 
 translations2_nice :: [Translation]
 translations2_nice =
     [ ("mi tavla fi do", ["I was talking about you.", "We were talking about you.", "I am talking about you.", "We are talking about you.", "I will talk about you.", "We will talk about you."])
-    , ("mi dunda fi do", ["I gave you something.", "I will give you something."])
     , ("mi tavla fi lo mlatu ku", ["I was talking about the cat.", "I was talking about the cats.", "I am talking about the cat.", "I am talking about the cats."])
-    , ("mi dunda lo mlatu ku lo pendo ku", ["I gave the cat to somebody's friend.", "I gave the cats to somebody's friend."])
     , ("tavla fi lo mlatu ku", ["Somebody was talking about the cat.", "Somebody was talking about the cats."])
-    , ("mi nelci lo dunda ku", ["I like the donor.", "I like the donors."])
-    , ("lo se dunda ku melbi", ["The gift is beautiful.", "The gifts are beautiful."])
-    , ("mi te dunda lo gerku ku", ["I was given a dog.", "We were given a dog.", "We were given dogs.", "Somebody gave me a dog.", "Somebody gave us a dog.", "Somebody gave us dogs."])
-    , ("lo ctuca ku se zdani", ["The instructor has a house."])
-    , ("lo ctuca ku dunda lo mlatu ku mi", ["The instructor gave me a cat.", "The instructor gave me cats."])
+    , ("mi dunda fi do", ["I gave you something.", "I will give you something."])
+    , ("mi dunda lo mlatu ku lo pendo ku", ["I gave the cat to somebody's friend.", "I gave the cats to somebody's friend."])
     , ("dunda lo mlatu ku lo ctuca ku", ["Somebody gave a cat to the instructor", "Somebody gave cats to the instructor"])
-    , ("mi nelci lo xe ctuca ku", ["I like the teaching method."])
-    , ("lo se tavla ku prenu", ["The listener is a person.", "The listeners are persons."]) -- is "listener" a good choice?
+    , ("lo ctuca ku dunda lo mlatu ku mi", ["The instructor gave me a cat.", "The instructor gave me cats."])
+    , ("mi te dunda lo gerku ku", ["I was given a dog.", "We were given a dog.", "We were given dogs.", "Somebody gave me a dog.", "Somebody gave us a dog.", "Somebody gave us dogs."])
     , ("lo tavla ku pendo mi", ["The speaker is my friend.", "The speakers are my friends."]) -- is "speaker" a good choice? maybe it implies voice...
+    , ("mi nelci lo dunda ku", ["I like the donor.", "I like the donors."])
+    , ("mi nelci lo xe ctuca ku", ["I like the teaching method."])
+    , ("lo se dunda ku melbi", ["The gift is beautiful.", "The gifts are beautiful."])
+    , ("lo ctuca ku se zdani", ["The instructor has a house."])
+    , ("lo se tavla ku prenu", ["The listener is a person.", "The listeners are persons."]) -- is "listener" a good choice?
     ]
 
 translations2 :: [Translation]
 translations2 = translations1_nice ++ translations2_nice ++
-    [ ("mi se zdani", ["I have a house.", "We have a house."])
-    , ("mi tavla fi lo gerku ku", ["I was talking about the dog.", "I was talking about the dogs.", "I am talking about the dog.", "I am talking about the dogs."])
-    , ("tavla fi lo gerku ku", ["Somebody was talking about the dog.", "Somebody was talking about the dogs."])
-    , ("mi dunda lo gerku ku lo pendo ku", ["I gave the dog to somebody's friend.", "I gave the dogs to somebody's friend."])
+    [ ("mi tavla fi lo gerku ku", ["I was talking about the dog.", "I was talking about the dogs.", "I am talking about the dog.", "I am talking about the dogs."])
     , ("lo prenu ku tavla lo gerku ku", ["A person is talking to a dog.", "The person talks to dogs."])
     , ("lo prenu ku tavla lo mlatu ku", ["A person is talking to a cat.", "The person talks to cats."])
-    , ("lo gerku ku nelci lo mlatu ku", ["The dog likes the cat.", "Dogs like cats."])
-    , ("lo mlatu ku nelci lo gerku ku", ["The cat likes the dog.", "Cats like dogs."])
-    , ("lo zdani ku melbi", ["The house is beautiful!", "The houses are beautiful!"])
+    , ("tavla fi lo gerku ku", ["Somebody was talking about the dog.", "Somebody was talking about the dogs."])
+    , ("mi dunda lo gerku ku lo pendo ku", ["I gave the dog to somebody's friend.", "I gave the dogs to somebody's friend."])
     , ("mi te dunda lo mlatu ku", ["I was given a cat.", "We were given a cat.", "We were given cats.", "Somebody gave me a cat.", "Somebody gave us a cat.", "Somebody gave us cats."])
     , ("mi te dunda lo gerku ku", ["I was given a dog.", "We were given a dog.", "We were given dogs.", "Somebody gave me a dog.", "Somebody gave us a dog.", "Somebody gave us dogs."])
     , ("lo ctuca ku dunda lo gerku ku mi", ["The instructor gave me a dog.", "The instructor gave me dogs."])
     , ("dunda lo gerku ku lo ctuca ku", ["Somebody gave a dog to the instructor", "Somebody gave dogs to the instructor"])
-    , ("mi ctuca do", ["I will teach you.", "We will teach you."])
+    , ("mi ctuca do", ["I will teach you.", "We will teach you.", "I taught you.", "We taught you."])
+    , ("do ctuca mi", ["You will teach me.", "You will teach us.", "You taught me.", "You taught us."])
+    , ("lo gerku ku nelci lo mlatu ku", ["The dog likes the cat.", "Dogs like cats."])
+    , ("lo mlatu ku nelci lo gerku ku", ["The cat likes the dog.", "Cats like dogs."])
+    , ("lo zdani ku melbi", ["The house is beautiful!", "The houses are beautiful!"])
     , ("mi se ctuca", ["Somebody teached me.", "Somebody teached us."])
+    , ("mi se zdani", ["I have a house.", "We have a house."])
     ]
 
 -- TODO: "talk" is a bit hard -- people have to remember to use "zo'e"
