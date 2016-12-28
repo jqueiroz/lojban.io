@@ -37,6 +37,9 @@ headOrDefault :: a -> [a] -> a
 headOrDefault d [] = d
 headOrDefault _ (h:_) = h
 
+isContiguousSequence :: (Integral a) => [a] -> Bool
+isContiguousSequence xs = all (== 1) $ zipWith (-) (tail xs) xs
+
 infixr 5 ?:
 (?:) :: (Eq a) => a -> [a] -> [a]
 x ?: xs

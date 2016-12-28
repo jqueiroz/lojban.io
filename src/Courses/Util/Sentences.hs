@@ -20,7 +20,7 @@ module Courses.Util.Sentences
 
 import Core
 import Courses.Util.Vocabulary
-import Util (replace, stripRight, filterOutWord, headOrDefault, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly)
+import Util (replace, stripRight, filterOutWord, headOrDefault, isContiguousSequence, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly)
 import Control.Exception (assert)
 import Control.Applicative (liftA2)
 import System.Random (StdGen, mkStdGen)
@@ -154,6 +154,26 @@ type StructuredSelbri = ZG.Text
 type StructuredTerm = ZG.Text
 type StructuredBridi = (StructuredSelbri, [(Int, StructuredTerm)])
 
+---------- Handle place tags (fa/fe/fi/fo/fu)
+handlePlaceTags :: StructuredBridi -> Either String StructuredBridi
+handlePlaceTags (selbri, []) = Right $ (selbri, [])
+handlePlaceTags (selbri, terms) = assert (isContiguousSequence $ map fst terms) $ Right (selbri, f firstPosition terms) where
+    firstPosition = fst $ head terms
+    f :: Int -> [(Int, StructuredTerm)] -> [(Int, StructuredTerm)]
+    f _ [] = []
+    f defaultPosition (h:t) = let (tag, term) = retrieveTag (snd h)
+                                  position = case tag of Just x -> retrievePosition x; Nothing -> defaultPosition
+                              in (position, term) : f (position+1) t
+    retrievePosition :: String -> Int
+    retrievePosition "fa" = 1
+    retrievePosition "fe" = 2
+    retrievePosition "fi" = 3
+    retrievePosition "fo" = 4
+    retrievePosition "fu" = 5
+    retrieveTag :: ZG.Text -> (Maybe String, ZG.Text)
+    retrieveTag (ZG.Tag (ZG.FA x) y) = (Just x, y)
+    retrieveTag x = (Nothing, x)
+
 ---------- Handle place permutations (se/te/ve/xe)
 swapTerms :: Int -> Int -> [(Int, StructuredTerm)] -> [(Int, StructuredTerm)]
 swapTerms x y terms = assert (x /= y) $ map f terms where
@@ -229,7 +249,7 @@ basicSentenceCanonicalizer :: T.Text -> Either String T.Text
 basicSentenceCanonicalizer sentence = displayCanonicalBridi <$> (parse sentence >>= canonicalizeText)
 
 canonicalizeText :: ZG.Text -> Either String SimpleBridi
-canonicalizeText text = retrieveStructuredBridi text >>= handlePlacePermutations >>= convertStructuredBridi
+canonicalizeText text = retrieveStructuredBridi text >>= handlePlaceTags >>= handlePlacePermutations >>= convertStructuredBridi
 
 displayCanonicalBridi :: SimpleBridi -> T.Text
 displayCanonicalBridi = fst . displayStandardSimpleBridi (mkStdGen 42)
