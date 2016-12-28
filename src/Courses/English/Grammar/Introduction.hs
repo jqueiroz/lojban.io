@@ -156,7 +156,6 @@ exercises1 dictionary =
         , (15, generateBridiJufraExercise vocabulary displayBridi)
         , (20, generateSelbriIdentificationExercise vocabulary displayBridi)
         , (30, generateContextualizedGismuPlacesExercise dictionary vocabulary displayBridi)
-        -- Any reason for isolated gismu place exercises not being present here?
         , (40, generateTranslationExercise basicSentenceCanonicalizer translations1)
         ]
     where
