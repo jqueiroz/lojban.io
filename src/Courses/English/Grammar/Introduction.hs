@@ -177,11 +177,11 @@ exercises1 dictionary =
 exercises2 :: Dictionary -> ExerciseGenerator
 exercises2 dictionary =
     combineFunctions
-        [ (15, generateGrammaticalClassExercise vocabulary)
+        [ (10, generateGrammaticalClassExercise vocabulary)
         , (10, generateBridiJufraExercise vocabulary displayBridi)
-        , (15, generateSelbriIdentificationExercise vocabulary displayBridi)
-        , (15, generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBridi)
-        , (15, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
+        , (10, generateSelbriIdentificationExercise vocabulary displayBridi)
+        , (10, generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBridi)
+        , (20, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
         , (30, generateIsolatedGismuPlacesExercise dictionary vocabulary)
         , (50, generateTranslationExercise basicSentenceCanonicalizer translations2)
         ]
@@ -192,13 +192,13 @@ exercises2 dictionary =
 exercises3 :: Dictionary -> ExerciseGenerator
 exercises3 dictionary =
     combineFunctions
-        [ (10, generateGrammaticalClassExercise vocabulary)
+        [ (5, generateGrammaticalClassExercise vocabulary)
         , (5, generateBridiJufraExercise vocabulary displayBridi)
-        , (10, generateSelbriIdentificationExercise vocabulary displayBridi)
-        , (10, generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBridi)
+        , (5, generateSelbriIdentificationExercise vocabulary displayBridi)
+        , (5, generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBridi)
         , (20, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
         , (30, generateIsolatedGismuPlacesExercise dictionary vocabulary)
-        , (60, generateTranslationExercise basicSentenceCanonicalizer translations3)
+        , (70, generateTranslationExercise basicSentenceCanonicalizer translations3)
         ]
     where
         vocabulary = vocabularyGenerator3 dictionary
