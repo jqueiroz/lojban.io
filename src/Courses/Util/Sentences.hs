@@ -297,7 +297,7 @@ generateRelationBridi vocabulary r0 = (SimpleBridi relation objects, r2) where
     (relation, r1) = chooseItemUniformly r0 relations
     (objects, r2) = (retrieveRelationObjectsGenerator relation) r1
     -- Vocabulary
-    relations = getVocabularySelbri vocabulary "relations"
+    relations = filterOutWord "gleki" $ getVocabularySelbri vocabulary "relations"
     genericPersons = getVocabularySumti vocabulary "genericPersons"
     semiGenericPersons = getVocabularySumti vocabulary "semiGenericPersons"
     animals = getVocabularySumti vocabulary "animals"
