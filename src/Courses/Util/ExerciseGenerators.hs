@@ -8,7 +8,8 @@ module Courses.Util.ExerciseGenerators
 , generateLojbanBridiJufraExercise
 , generateEnglishBridiJufraExercise
 , generateSelbriIdentificationExercise
-, generateContextualizedGismuPlacesExercise
+, generateContextualizedGismuPlacePositionExercise
+, generateContextualizedGismuPlaceMeaningExercise
 , generateIsolatedGismuPlacesExercise
 , generateBasicNumberExercise
 ) where
@@ -120,9 +121,9 @@ generateSelbriIdentificationExercise vocabulary displayBridi r0 = SingleChoiceEx
     (sentenceText, _) = displayBridi r1 bridi
     sentence = Just . ExerciseSentence True $ sentenceText
 
--- Exercise: tell gismu places of a sentence (TODO: typing exercises?)
-generateContextualizedGismuPlacesExercise :: Dictionary -> Vocabulary -> SimpleBridiDisplayer -> ExerciseGenerator
-generateContextualizedGismuPlacesExercise dictionary vocabulary displayBridi = combineFunctions [(0, f1), (3, f2), (0, f3), (5, f4)] where
+-- Exercises: tell gismu places of a sentence (TODO: typing exercises?)
+generateContextualizedGismuPlacePositionExercise :: Dictionary -> Vocabulary -> SimpleBridiDisplayer -> ExerciseGenerator
+generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBridi = combineFunctions [(0, f1), (1, f2)] where
     f1 r0 =
         let
             (bridi, r1) = generateActionBridi vocabulary r0
@@ -146,7 +147,10 @@ generateContextualizedGismuPlacesExercise dictionary vocabulary displayBridi = c
             (sentenceText, _) = displayBridi r2 bridi
             sentence = Just . ExerciseSentence True $ sentenceText
         in SingleChoiceExercise title sentence correctAlternative incorrectAlternatives False
-    f3 r0 =
+
+generateContextualizedGismuPlaceMeaningExercise :: Dictionary -> Vocabulary -> SimpleBridiDisplayer -> ExerciseGenerator
+generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi = combineFunctions [(0, f1), (1, f2)] where
+    f1 r0 =
         let
             (bridi, r1) = generateActionBridi vocabulary r0
             placesNumeric = map (('x' `T.cons`) . T.pack . show) $ [1..]
@@ -156,7 +160,7 @@ generateContextualizedGismuPlacesExercise dictionary vocabulary displayBridi = c
             (sentenceText, _) = displayBridi r1 bridi
             sentence = Just . ExerciseSentence True $ sentenceText
         in MatchingExercise title sentence places
-    f4 r0 =
+    f2 r0 =
         let
             (bridi, r1) = generateSimpleBridi vocabulary r0
             placesNumeric = map (('x' `T.cons`) . T.pack . show) $ [1..]

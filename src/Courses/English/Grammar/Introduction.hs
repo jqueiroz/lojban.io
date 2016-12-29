@@ -166,7 +166,8 @@ exercises1 dictionary =
         [ (20, generateGrammaticalClassExercise vocabulary)
         , (15, generateBridiJufraExercise vocabulary displayBridi)
         , (20, generateSelbriIdentificationExercise vocabulary displayBridi)
-        , (30, generateContextualizedGismuPlacesExercise dictionary vocabulary displayBridi)
+        , (20, generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBridi)
+        , (10, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
         , (40, generateTranslationExercise basicSentenceCanonicalizer translations1)
         ]
     where
@@ -179,7 +180,8 @@ exercises2 dictionary =
         [ (15, generateGrammaticalClassExercise vocabulary)
         , (10, generateBridiJufraExercise vocabulary displayBridi)
         , (15, generateSelbriIdentificationExercise vocabulary displayBridi)
-        , (30, generateContextualizedGismuPlacesExercise dictionary vocabulary displayBridi)
+        , (15, generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBridi)
+        , (15, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
         , (30, generateIsolatedGismuPlacesExercise dictionary vocabulary)
         , (50, generateTranslationExercise basicSentenceCanonicalizer translations2)
         ]
@@ -193,7 +195,8 @@ exercises3 dictionary =
         [ (10, generateGrammaticalClassExercise vocabulary)
         , (5, generateBridiJufraExercise vocabulary displayBridi)
         , (10, generateSelbriIdentificationExercise vocabulary displayBridi)
-        , (30, generateContextualizedGismuPlacesExercise dictionary vocabulary displayBridi)
+        , (10, generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBridi)
+        , (20, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
         , (30, generateIsolatedGismuPlacesExercise dictionary vocabulary)
         , (60, generateTranslationExercise basicSentenceCanonicalizer translations3)
         ]
