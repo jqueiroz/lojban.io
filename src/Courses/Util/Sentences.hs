@@ -313,7 +313,7 @@ generateRelationBridi vocabulary r0 = (SimpleBridi relation objects, r2) where
                 (x1, r1) = chooseItemUniformly r0 persons
                 (x2, r2) = chooseItemUniformly r1 $ filter (/= x1) (persons++animals)
             in ([x1, x2], r2))
-        , ("pendo", \ro ->
+        , ("pendo", \r0 ->
             let
                 persons = filterOutWord "pendo" $ genericPersons ++ semiGenericPersons
                 (x1, r1) = chooseItemUniformly r0 (persons++animals)
