@@ -136,7 +136,7 @@ translations2 = translations1_nice ++ translations2_nice ++
     , ("lo gerku ku nelci lo mlatu ku", ["The dog likes the cat.", "Dogs like cats."])
     , ("lo mlatu ku nelci lo gerku ku", ["The cat likes the dog.", "Cats like dogs."])
     , ("lo zdani ku melbi", ["The house is beautiful!", "The houses are beautiful!"])
-    , ("mi se ctuca", ["Somebody teached me.", "Somebody teached us."])
+    , ("ctuca mi", ["Somebody taught me.", "Somebody taught us."])
     , ("mi se zdani", ["I have a house.", "We have a house."])
     ]
 
