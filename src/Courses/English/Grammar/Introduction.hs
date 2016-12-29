@@ -114,6 +114,7 @@ translations2_nice =
     , ("lo tavla ku pendo mi", ["The speaker is my friend.", "The speakers are my friends."]) -- is "speaker" a good choice? maybe it implies voice...
     , ("mi nelci lo dunda ku", ["I like the donor.", "I like the donors."])
     , ("mi nelci lo xe ctuca ku", ["I like the teaching method."])
+    , ("lo te dunda ku nelci lo se dunda ku", ["The recipient liked the gift.", "The recipient will like the gift.", "The recipients liked the gifts."])
     , ("lo se dunda ku melbi", ["The gift is beautiful.", "The gifts are beautiful."])
     , ("lo ctuca ku se zdani", ["The instructor has a house."])
     , ("lo se tavla ku prenu", ["The listener is a person.", "The listeners are persons."]) -- is "listener" a good choice?
