@@ -177,7 +177,7 @@ exercises2 :: Dictionary -> ExerciseGenerator
 exercises2 dictionary =
     combineFunctions
         [ (15, generateGrammaticalClassExercise vocabulary)
-        , (15, generateBridiJufraExercise vocabulary displayBridi)
+        , (10, generateBridiJufraExercise vocabulary displayBridi)
         , (15, generateSelbriIdentificationExercise vocabulary displayBridi)
         , (30, generateContextualizedGismuPlacesExercise dictionary vocabulary displayBridi)
         , (30, generateIsolatedGismuPlacesExercise dictionary vocabulary)
@@ -191,11 +191,11 @@ exercises3 :: Dictionary -> ExerciseGenerator
 exercises3 dictionary =
     combineFunctions
         [ (10, generateGrammaticalClassExercise vocabulary)
-        , (10, generateBridiJufraExercise vocabulary displayBridi)
+        , (5, generateBridiJufraExercise vocabulary displayBridi)
         , (10, generateSelbriIdentificationExercise vocabulary displayBridi)
         , (30, generateContextualizedGismuPlacesExercise dictionary vocabulary displayBridi)
         , (30, generateIsolatedGismuPlacesExercise dictionary vocabulary)
-        , (99999, generateTranslationExercise basicSentenceCanonicalizer translations3)
+        , (60, generateTranslationExercise basicSentenceCanonicalizer translations3)
         ]
     where
         vocabulary = vocabularyGenerator3 dictionary
