@@ -118,6 +118,12 @@ translations2_nice =
     , ("lo se dunda ku melbi", ["The gift is beautiful.", "The gifts are beautiful."])
     , ("lo ctuca ku se zdani", ["The instructor has a house."])
     , ("lo se tavla ku prenu", ["The listener is a person.", "The listeners are persons."]) -- is "listener" a good choice?
+    , ("lo prenu ku se zdani", ["The person has a house."])
+    , ("lo tavla ku se zdani", ["The speaker has a house."])
+    , ("lo se tavla ku se zdani", ["The listener has a house."])
+    , ("lo ctuca ku se zdani", ["The instructor has a house."])
+    , ("lo dunda ku se zdani", ["The donor has a house."])
+    , ("lo te dunda ku se zdani", ["The recipient has a house."])
     ]
 
 translations2 :: [Translation]
