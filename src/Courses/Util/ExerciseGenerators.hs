@@ -26,20 +26,21 @@ import qualified Data.Text as T
 import qualified Data.Map as M
 
 -- Exercise: translate a sentence from English to Lojban
-type Translation = (LojbanSentence, [EnglishSentence])
+type Translation = ([LojbanSentence], [EnglishSentence])
 type EnglishSentence = T.Text
 type LojbanSentence = T.Text
 
 generateTranslationExercise :: SentenceCanonicalizer -> [Translation] -> ExerciseGenerator
-generateTranslationExercise canonicalizer translations r0 = TypingExercise title (Just $ ExerciseSentence True english_sentence) validate lojban_sentence where
-    ((lojban_sentence, english_sentences), r1) = chooseItemUniformly r0 translations
+generateTranslationExercise canonicalizer translations r0 = TypingExercise title (Just $ ExerciseSentence True english_sentence) validateAll (head lojban_sentences) where
+    ((lojban_sentences, english_sentences), r1) = chooseItemUniformly r0 translations
     (english_sentence, r2) = chooseItemUniformly r1 english_sentences
     title = "Translate this sentence"
-    validate x = case canonicalizer (T.toLower x) of
+    validateAll typed_sentence = or $ map (validateSingle typed_sentence) lojban_sentences
+    validateSingle typed_sentence lojban_sentence = case canonicalizer (T.toLower typed_sentence) of
         Left _ -> False
-        Right x' -> case canonicalizer (T.toLower lojban_sentence) of
+        Right typed_sentence' -> case canonicalizer (T.toLower lojban_sentence) of
             Left _ -> False
-            Right lojban_sentence' -> x' == lojban_sentence'
+            Right lojban_sentence' -> typed_sentence' == lojban_sentence'
 
 -- Exercise: tell grammatical class of a word
 generateGrammaticalClassExercise :: Vocabulary -> ExerciseGenerator
