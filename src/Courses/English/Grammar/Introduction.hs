@@ -61,8 +61,8 @@ vocabularyGenerator3 :: VocabularyBuilder
 vocabularyGenerator3 = createVocabularyBuilder
     -- Selbri
     [
-        ("actions", ["tavla", "dunda", "ctuca"]),
-        ("properties", ["prenu", "zdani", "mlatu", "gerku", "melbi", "sutra", "pelxu"]),
+        ("actions", ["tavla", "dunda", "ctuca", "nupre"]),
+        ("properties", ["prenu", "zdani", "mlatu", "gerku", "melbi"]),
         ("relations", ["nelci", "pendo", "gleki"])
     ]
     -- Sumti
@@ -149,11 +149,29 @@ translations2 = translations1_nice ++ translations2_nice ++
 -- TODO: "talk" is a bit hard -- people have to remember to use "zo'e"
 translations3 :: [Translation]
 translations3 =
-    [ ("mi gleki lo nu do pendo mi kei ku", ["I am happy that you are my friend."])
-    , ("mi gleki lo nu do dunda lo mlatu ku mi kei ku", ["I am happy that you gave me the cat."])
-    , ("mi gleki lo nu do dunda lo gerku ku mi kei ku", ["I am happy that you gave me the dog."]) -- nu vs du'u?
-    , ("mi tavla fi lo nu do se zdani kei ku", ["I talked about you having a house."]) -- nu vs du'u?
-    , ("do tavla fi lo nu lo mlatu ku nelci lo gerku ku kei ku", ["You talked about cats liking dogs."]) -- nu vs du'u?
+    [ ("mi gleki lo nu do tavla mi fi lo mlatu ku kei ku", ["I am happy that you talked to me about cats."])
+    , ("mi gleki lo nu do pendo mi kei ku", ["I am happy that you are my friend."])
+    , ("mi gleki lo nu do dunda lo mlatu ku mi kei ku", ["I am happy that you gave me the cat.", "I am happy that you gave me cats."])
+    , ("mi gleki lo nu do dunda lo gerku ku mi kei ku", ["I am happy that you gave me the dog.", "I am happy that you gave me dogs."])
+    , ("mi gleki lo nu mi te dunda lo mlatu ku kei ku", ["I am happy that I was given a cat.", "I am happy that I was given cats."])
+    , ("mi gleki lo nu mi te dunda lo gerku ku kei ku", ["I am happy that I was given a dog.", "I am happy that I was given dogs."])
+    , ("mi gleki lo nu do tavla mi kei ku", ["I am happy that you talked to me."])
+    , ("mi gleki lo nu do ctuca mi kei ku", ["I am happy that you taught me."])
+    , ("mi gleki lo nu do gleki kei ku", ["I am happy that you are happy."])
+    , ("mi gleki lo nu mi prenu kei ku", ["I am happy that I am a person."])
+    , ("mi gleki lo nu do prenu kei ku", ["I am happy that you are a person."])
+    , ("mi gleki lo nu mi se zdani kei ku", ["I am happy that I have a house."])
+    , ("mi gleki lo nu do se zdani kei ku", ["I am happy that you have a house."])
+    , ("mi gleki lo nu lo te dunda ku pendo mi kei ku", ["I am happy that the recipient is my friend."])
+    , ("mi tavla fi lo nu do se zdani kei ku", ["I talked about you having a house."])
+    , ("do tavla fi lo nu lo mlatu ku nelci lo gerku ku kei ku", ["You talked about cats liking dogs."])
+    , ("do tavla fi lo nu lo gerku ku nelci lo mlatu ku kei ku", ["You talked about dogs liking cats."])
+    --, (["mi nelci lo nu tavla do kei ku", "mi nelci lo nu mi tavla do kei ku"], ["I like to talk to you."]) -- both options are correct, only differing in the level of detail -- TODO: support this later
+    , ("do nupre lo nu do dunda lo mlatu ku kei ku", ["You promised to donate the cat.", "You promised to donate the cats."])
+    , ("do nupre lo nu do dunda lo gerku ku kei ku", ["You promised to donate the dog.", "You promised to donate the dogs."])
+    , ("do nupre lo nu do dunda lo mlatu ku mi kei ku", ["You promised to donate the cat to me.", "You promised to donate the cats to me."])
+    , ("do nupre lo nu do dunda lo gerku ku mi kei ku", ["You promised to donate the dog to me.", "You promised to donate the dogs to me."])
+    , ("do nupre lo nu do pendo kei ku", ["You promised to be friendly."])
     ]
 
 translations4 :: [Translation]
@@ -163,7 +181,8 @@ translations4 =
 
 
 -------- Tanru
--- lo melbi prenu, lo sutra mlatu, lo sutra gerku
+-- useful gismu: sutra, pelxu
+-- lo melbi prenu, lo sutra mlatu, lo sutra gerku, lo gleki prenu
 
 -------- Exercises
 exercises1 :: Dictionary -> ExerciseGenerator
