@@ -9,6 +9,7 @@ import Courses.Util.Sentences
 import Courses.Util.ExerciseGenerators
 import Util (combineFunctions, combineFunctionsUniformly)
 import Data.FileEmbed (embedStringFile)
+import Control.Applicative ((<$>))
 import qualified Text.Pandoc as P
 
 --TODO: differenciate "le" and "lo"? I think that a lot of translations here are misleading
