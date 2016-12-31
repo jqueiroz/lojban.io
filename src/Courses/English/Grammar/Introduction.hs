@@ -185,7 +185,7 @@ translations3 = generateTranslationExercise basicSentenceCanonicalizer <$>
     , (["do nupre lo nu dunda lo gerku ku mi kei ku", "do nupre lo nu do dunda lo gerku ku mi kei ku"], ["You promised to donate the dog to me.", "You promised to donate the dogs to me."])
     , (["do nupre lo nu dunda lo mlatu ku kei ku mi", "do nupre lo nu do dunda lo mlatu ku kei ku mi"], ["You promised me to donate the cat.", "You promised me to donate the cats."])
     , (["do nupre lo nu dunda lo gerku ku kei ku mi", "do nupre lo nu do dunda lo gerku ku kei ku mi"], ["You promised me to donate the dog.", "You promised me to donate the dogs."])
-    , (["do nupre lo nu do pendo kei ku"], ["You promised to be friendly."])
+    , (["do nupre lo nu do pendo kei ku", "do nupre lo nu pendo kei ku"], ["You promised to be friendly."])
     , (["do nupre fi mi"], ["You promised me.", "You promised us."])
     , (["mi nupre fi do"], ["I promised you."])
     ]
