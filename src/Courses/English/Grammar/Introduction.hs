@@ -76,15 +76,15 @@ vocabularyGenerator3 = createVocabularyBuilder
     ]
 
 -------- Translations
-translations1_nice :: [Translation]
-translations1_nice =
+translations1_nice :: [ExerciseGenerator]
+translations1_nice = generateTranslationExercise basicSentenceCanonicalizer <$>
     [ (["mi tavla mi"], ["I am talking to myself.", "I was talking to myself.", "We were talking to ourselves."])
     , (["do dunda ti mi"], ["You gave me this.", "You gave us this."])
     , (["mi dunda ta do"], ["I gave you that.", "We gave you that."])
     ]
 
-translations1 :: [Translation]
-translations1 = translations1_nice ++
+translations1 :: [ExerciseGenerator]
+translations1 = (++) translations1_nice $ generateTranslationExercise basicSentenceCanonicalizer <$>
     [ (["mi tavla zo'e do"], ["I was talking about you.", "We were talking about you.", "I am talking about you.", "We are talking about you.", "I will talk about you.", "We will talk about you."])
     , (["mi tavla do"], ["I am talking to you.", "I was talking to you.", "We are talking to you.", "We were talking to you."])
     , (["do tavla mi"], ["You are talking to me.", "You are talking to us."])
@@ -100,8 +100,8 @@ translations1 = translations1_nice ++
     , (["zdani mi"], ["I have a house.", "We have a house.", "We have houses."])
     ]
 
-translations2_nice :: [Translation]
-translations2_nice =
+translations2_nice :: [ExerciseGenerator]
+translations2_nice = generateTranslationExercise basicSentenceCanonicalizer <$>
     [ (["mi tavla fi do"], ["I was talking about you.", "We were talking about you.", "I am talking about you.", "We are talking about you.", "I will talk about you.", "We will talk about you."])
     , (["mi tavla fi lo mlatu ku"], ["I was talking about the cat.", "I was talking about the cats.", "I am talking about the cat.", "I am talking about the cats."])
     , (["tavla fi lo mlatu ku"], ["Somebody was talking about the cat.", "Somebody was talking about the cats."])
@@ -126,8 +126,8 @@ translations2_nice =
     , (["lo te dunda ku se zdani"], ["The recipient has a house."])
     ]
 
-translations2 :: [Translation]
-translations2 = translations1_nice ++ translations2_nice ++
+translations2 :: [ExerciseGenerator]
+translations2 = (++) translations1_nice . (++) translations2_nice $ generateTranslationExercise basicSentenceCanonicalizer <$>
     [ (["mi tavla fi lo gerku ku"], ["I was talking about the dog.", "I was talking about the dogs.", "I am talking about the dog.", "I am talking about the dogs."])
     , (["lo prenu ku tavla lo gerku ku"], ["A person is talking to a dog.", "The person talks to dogs."])
     , (["lo prenu ku tavla lo mlatu ku"], ["A person is talking to a cat.", "The person talks to cats."])
@@ -146,9 +146,8 @@ translations2 = translations1_nice ++ translations2_nice ++
     , (["mi se zdani"], ["I have a house.", "We have a house."])
     ]
 
--- TODO: "talk" is a bit hard -- people have to remember to use "zo'e"
-translations3 :: [Translation]
-translations3 =
+translations3 :: [ExerciseGenerator]
+translations3 = generateTranslationExercise basicSentenceCanonicalizer <$>
     [ (["mi gleki lo nu do tavla mi fi lo mlatu ku kei ku"], ["I am happy that you talked to me about cats."])
     , (["mi gleki lo nu do pendo mi kei ku"], ["I am happy that you are my friend."])
     , (["mi gleki lo nu do dunda lo mlatu ku mi kei ku"], ["I am happy that you gave me the cat.", "I am happy that you gave me cats."])
@@ -180,8 +179,8 @@ translations3 =
     , (["mi nupre fi do"], ["I promised you."])
     ]
 
-translations4 :: [Translation]
-translations4 =
+translations4 :: [ExerciseGenerator]
+translations4 = generateTranslationExercise basicSentenceCanonicalizer <$>
     [ (["lo prenu ku sutra tavla"], ["The person talks quickly.", "The person is talking quickly.", "A person is talking quickly.", "People talk quickly"])
     ]
 
@@ -199,7 +198,7 @@ exercises1 dictionary =
         , (20, generateSelbriIdentificationExercise vocabulary displayBridi)
         , (20, generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBridi)
         , (10, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
-        , (40, generateTranslationExercise basicSentenceCanonicalizer translations1)
+        , (40, combineFunctionsUniformly translations1)
         ]
     where
         vocabulary = vocabularyGenerator1 dictionary
@@ -214,7 +213,7 @@ exercises2 dictionary =
         , (10, generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBridi)
         , (20, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
         , (30, generateIsolatedGismuPlacesExercise dictionary vocabulary)
-        , (50, generateTranslationExercise basicSentenceCanonicalizer translations2)
+        , (50, combineFunctionsUniformly translations2)
         ]
     where
         vocabulary = vocabularyGenerator2 dictionary
@@ -229,7 +228,7 @@ exercises3 dictionary =
         , (5, generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBridi)
         , (20, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
         , (30, generateIsolatedGismuPlacesExercise dictionary vocabulary)
-        , (70, generateTranslationExercise basicSentenceCanonicalizer translations3)
+        , (70, combineFunctionsUniformly translations3)
         ]
     where
         vocabulary = vocabularyGenerator3 dictionary
