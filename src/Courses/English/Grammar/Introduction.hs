@@ -171,13 +171,18 @@ translations3 = generateTranslationExercise basicSentenceCanonicalizer <$>
     , (["mi gleki lo nu do prenu kei ku"], ["I am happy that you are a person."])
     , (["mi gleki lo nu mi se zdani kei ku"], ["I am happy that I have a house."])
     , (["mi gleki lo nu do se zdani kei ku"], ["I am happy that you have a house."])
+    , (["mi gleki lo nu do nelci mi kei ku"], ["I am happy that you like me.", "I am happy that you like us.", "We are happy that you like us."])
+    , (["mi gleki lo nu lo prenu ku nelci mi kei ku"], ["I am happy that people like me.", "I am happy that people like us.", "We are happy that people like us."])
+    , (["mi gleki lo nu lo prenu ku nelci do kei ku"], ["I am happy that people like you.", "We are happy that people like you."])
     , (["mi gleki lo nu lo te dunda ku pendo mi kei ku"], ["I am happy that the recipient is my friend."])
     , (["mi tavla fi lo nu do se zdani kei ku"], ["I talked about you having a house."])
     , (["do tavla fi lo nu lo mlatu ku nelci lo gerku ku kei ku"], ["You talked about cats liking dogs."])
     , (["do tavla fi lo nu lo gerku ku nelci lo mlatu ku kei ku"], ["You talked about dogs liking cats."])
     , (["do tavla mi lo nu lo gerku ku nelci lo mlatu ku kei ku"], ["You talked to me about dogs liking cats."])
     , (["do tavla mi lo nu lo mlatu ku nelci lo gerku ku kei ku"], ["You talked to me about cats liking dogs."])
-    , (["mi nelci lo nu tavla do kei ku", "mi nelci lo nu mi tavla do kei ku"], ["I like to talk to you."])
+    , (["mi nelci lo nu tavla do kei ku", "mi nelci lo nu mi tavla do kei ku"], ["I like to talk to you."]) -- is nelci really adequate?
+    , (["do nelci lo nu nupre kei ku", "do nelci lo nu do nupre kei ku"], ["You like to make promises."]) -- is nelci really adequate?
+    , (["lo prenu ku nelci lo nu nupre kei ku"], ["People like to make promises."]) -- is nelci really adequate?
     , (["do nupre lo nu dunda lo mlatu ku kei ku", "do nupre lo nu do dunda lo mlatu ku kei ku"], ["You promised to donate the cat.", "You promised to donate the cats."])
     , (["do nupre lo nu dunda lo gerku ku kei ku", "do nupre lo nu do dunda lo gerku ku"], ["You promised to donate the dog.", "You promised to donate the dogs."])
     , (["do nupre lo nu dunda lo mlatu ku mi kei ku", "do nupre lo nu do dunda lo mlatu ku mi kei ku"], ["You promised to donate the cat to me.", "You promised to donate the cats to me."])
@@ -185,8 +190,10 @@ translations3 = generateTranslationExercise basicSentenceCanonicalizer <$>
     , (["do nupre lo nu dunda lo mlatu ku kei ku mi", "do nupre lo nu do dunda lo mlatu ku kei ku mi"], ["You promised me to donate the cat.", "You promised me to donate the cats."])
     , (["do nupre lo nu dunda lo gerku ku kei ku mi", "do nupre lo nu do dunda lo gerku ku kei ku mi"], ["You promised me to donate the dog.", "You promised me to donate the dogs."])
     , (["do nupre lo nu do pendo kei ku", "do nupre lo nu pendo kei ku"], ["You promised to be friendly."])
+    , (["lo prenu ku nupre"], ["People make promises."])
+    , (["do nupre"], ["You made a promise."])
     , (["do nupre fi mi"], ["You promised me.", "You promised us."])
-    , (["mi nupre fi do"], ["I promised you."])
+    , (["mi nupre fi do"], ["I promised you.", "We promised you."])
     ]
 
 translations4 :: [ExerciseGenerator]
