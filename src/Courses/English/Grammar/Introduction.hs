@@ -129,6 +129,14 @@ translations2_nice = t1 ++ t2 where
         , (["lo ctuca ku se zdani"], ["The instructor has a house."])
         , (["lo dunda ku se zdani"], ["The donor has a house."])
         , (["lo te dunda ku se zdani"], ["The recipient has a house."])
+        , (["lo zdani ku melbi mi"], ["The house is beautiful to me.", "The houses are beautiful to me."])
+        , (["lo se dunda ku melbi mi"], ["The gift is beautiful to me.", "The gifts are beautiful to me."])
+        , (["lo mlatu ku melbi mi"], ["The cat is beautiful to me.", "The cats are beautiful to me."])
+        , (["lo gerku ku melbi mi"], ["The dog is beautiful to me.", "The dogs are beautiful to me."])
+        , (["lo zdani ku melbi"], ["The house is beautiful.", "The houses are beautiful."])
+        , (["lo se dunda ku melbi"], ["The gift is beautiful.", "The gifts are beautiful."])
+        , (["lo mlatu ku melbi"], ["The cat is beautiful.", "The cats are beautiful."])
+        , (["lo gerku ku melbi"], ["The dog is beautiful.", "The dogs are beautiful."])
         ]
     t2 = generateRestrictedTranslationExercise "Translate without using \"zo'e\"" (not . containsWord (T.pack "zo'e")) basicSentenceCanonicalizer <$> special
 
@@ -153,6 +161,8 @@ translations2 =  translations1_nice ++ translations2_nice ++ t1 ++ t2 where
         , (["lo zdani ku melbi"], ["The house is beautiful!", "The houses are beautiful!"])
         , (["ctuca mi"], ["Somebody taught me.", "Somebody taught us."])
         , (["mi se zdani"], ["I have a house.", "We have a house."])
+        , (["do melbi mi"], ["You are beautiful to me."])
+        , (["do melbi"], ["You are beautiful."])
         ]
     t2 = generateRestrictedTranslationExercise "Translate without using \"zo'e\"" (not . containsWord (T.pack "zo'e")) basicSentenceCanonicalizer <$> special
 
