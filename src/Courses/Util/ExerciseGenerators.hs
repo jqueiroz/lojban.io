@@ -21,6 +21,7 @@ import Courses.Util.NumberTranslator
 import Util (replace, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly)
 import Text.Read (readMaybe)
 import System.Random (StdGen, random)
+import Control.Applicative (liftA2)
 import Control.Arrow (first)
 import qualified Data.Text as T
 import qualified Data.Map as M
@@ -31,7 +32,10 @@ type EnglishSentence = T.Text
 type LojbanSentence = T.Text
 
 generateTranslationExercise :: SentenceCanonicalizer -> Translation -> ExerciseGenerator
-generateTranslationExercise canonicalizer translation r0 = TypingExercise title (Just $ ExerciseSentence True english_sentence) validateAll (head lojban_sentences) where
+generateTranslationExercise = generateRestrictedTranslationExercise "Translate this sentence" (\_ -> True)
+
+generateRestrictedTranslationExercise :: T.Text -> (T.Text -> Bool) -> SentenceCanonicalizer -> Translation -> ExerciseGenerator
+generateRestrictedTranslationExercise title validator canonicalizer translation r0 = TypingExercise title (Just $ ExerciseSentence True english_sentence) (liftA2 (&&) validator validateAll) (head lojban_sentences) where
     (lojban_sentences, english_sentences) = translation
     (english_sentence, r1) = chooseItemUniformly r0 english_sentences
     title = "Translate this sentence"
