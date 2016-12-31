@@ -3,6 +3,7 @@
 module Courses.Util.ExerciseGenerators
 ( Translation
 , generateTranslationExercise
+, generateRestrictedTranslationExercise
 , generateGrammaticalClassExercise
 , generateBridiJufraExercise
 , generateLojbanBridiJufraExercise

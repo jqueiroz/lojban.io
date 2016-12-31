@@ -156,7 +156,6 @@ translations2 =  translations1_nice ++ translations2_nice ++ t1 ++ t2 where
         ]
     t2 = generateRestrictedTranslationExercise "Translate without using \"zo'e\"" (not . containsWord (T.pack "zo'e")) basicSentenceCanonicalizer <$> special
 
-
 translations3 :: [ExerciseGenerator]
 translations3 = generateTranslationExercise basicSentenceCanonicalizer <$>
     [ (["mi gleki lo nu do tavla mi fi lo mlatu ku kei ku"], ["I am happy that you talked to me about cats."])

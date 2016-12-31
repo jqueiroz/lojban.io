@@ -53,6 +53,9 @@ substr beg end = T.drop beg . T.take end
 subfield :: Int -> Int -> T.Text -> T.Text
 subfield beg end = T.strip . substr beg end
 
+containsWord :: T.Text -> T.Text -> Bool
+containsWord word = not . null . filter (== word) . T.words
+
 -- Random (TODO: assert that sum > 0)
 shuffleList :: StdGen -> [a] -> [a]
 shuffleList r0 xs = shuffle' xs (length xs) r0
