@@ -38,7 +38,6 @@ generateRestrictedTranslationExercise :: T.Text -> (T.Text -> Bool) -> SentenceC
 generateRestrictedTranslationExercise title validator canonicalizer translation r0 = TypingExercise title (Just $ ExerciseSentence True english_sentence) (liftA2 (&&) validator validateAll) (head lojban_sentences) where
     (lojban_sentences, english_sentences) = translation
     (english_sentence, r1) = chooseItemUniformly r0 english_sentences
-    title = "Translate this sentence"
     validateAll typed_sentence = or $ map (validateSingle typed_sentence) lojban_sentences
     validateSingle typed_sentence lojban_sentence = case canonicalizer (T.toLower typed_sentence) of
         Left _ -> False
