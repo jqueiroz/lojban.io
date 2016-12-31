@@ -7,9 +7,10 @@ import Core
 import Courses.Util.Vocabulary
 import Courses.Util.Sentences
 import Courses.Util.ExerciseGenerators
-import Util (combineFunctions, combineFunctionsUniformly)
+import Util (combineFunctions, combineFunctionsUniformly, containsWord)
 import Data.FileEmbed (embedStringFile)
 import Control.Applicative ((<$>))
+import qualified Data.Text as T
 import qualified Text.Pandoc as P
 
 --TODO: differenciate "le" and "lo"? I think that a lot of translations here are misleading
@@ -102,50 +103,59 @@ translations1 = (++) translations1_nice $ generateTranslationExercise basicSente
     ]
 
 translations2_nice :: [ExerciseGenerator]
-translations2_nice = generateTranslationExercise basicSentenceCanonicalizer <$>
-    [ (["mi tavla fi do"], ["I was talking about you.", "We were talking about you.", "I am talking about you.", "We are talking about you.", "I will talk about you.", "We will talk about you."])
-    , (["mi tavla fi lo mlatu ku"], ["I was talking about the cat.", "I was talking about the cats.", "I am talking about the cat.", "I am talking about the cats."])
-    , (["tavla fi lo mlatu ku"], ["Somebody was talking about the cat.", "Somebody was talking about the cats."])
-    , (["mi dunda fi do"], ["I gave you something.", "I will give you something."])
-    , (["mi dunda lo mlatu ku lo pendo ku"], ["I gave the cat to somebody's friend.", "I gave the cats to somebody's friend."])
-    , (["dunda lo mlatu ku lo ctuca ku"], ["Somebody gave a cat to the instructor", "Somebody gave cats to the instructor"])
-    , (["lo ctuca ku dunda lo mlatu ku mi"], ["The instructor gave me a cat.", "The instructor gave me cats.", "The instructor gave us a cat.", "The instructor gave us cats."])
-    , (["mi te dunda lo mlatu ku"], ["I was given a cat.", "I was given cats.", "We were given a cat.", "We were given cats."])
-    , (["dunda lo mlatu ku mi"], ["Somebody gave me a cat.", "Somebody gave me cats.", "Somebody gave us a cat.", "Somebody gave us cats."])
-    , (["lo tavla ku pendo mi"], ["The speaker is my friend.", "The speakers are my friends."]) -- is "speaker" a good choice? maybe it implies voice...
-    , (["mi nelci lo dunda ku"], ["I like the donor.", "I like the donors."])
-    , (["mi nelci lo xe ctuca ku"], ["I like the teaching method."])
-    , (["lo te dunda ku nelci lo se dunda ku"], ["The recipient liked the gift.", "The recipient will like the gift.", "The recipients liked the gifts."])
-    , (["lo se dunda ku melbi"], ["The gift is beautiful.", "The gifts are beautiful."])
-    , (["lo ctuca ku se zdani"], ["The instructor has a house."])
-    , (["lo se tavla ku prenu"], ["The listener is a person.", "The listeners are persons."]) -- is "listener" a good choice?
-    , (["lo prenu ku se zdani"], ["The person has a house."])
-    , (["lo tavla ku se zdani"], ["The speaker has a house."])
-    , (["lo se tavla ku se zdani"], ["The listener has a house."])
-    , (["lo ctuca ku se zdani"], ["The instructor has a house."])
-    , (["lo dunda ku se zdani"], ["The donor has a house."])
-    , (["lo te dunda ku se zdani"], ["The recipient has a house."])
-    ]
+translations2_nice = t1 ++ t2 where
+    special =
+        [ (["mi tavla fi do"], ["I was talking about you.", "We were talking about you.", "I am talking about you.", "We are talking about you.", "I will talk about you.", "We will talk about you."])
+        , (["mi tavla fi lo mlatu ku"], ["I was talking about the cat.", "I was talking about the cats.", "I am talking about the cat.", "I am talking about the cats."])
+        , (["tavla fi lo mlatu ku"], ["Somebody was talking about the cat.", "Somebody was talking about the cats."])
+        , (["mi dunda fi do"], ["I gave you something.", "I will give you something."])
+        ]
+    t1 = generateTranslationExercise basicSentenceCanonicalizer <$> special ++
+        [ (["mi dunda lo mlatu ku lo pendo ku"], ["I gave the cat to somebody's friend.", "I gave the cats to somebody's friend."])
+        , (["mi te dunda lo mlatu ku"], ["I was given a cat.", "I was given cats.", "We were given a cat.", "We were given cats."])
+        , (["lo te dunda ku nelci lo se dunda ku"], ["The recipient liked the gift.", "The recipient will like the gift.", "The recipients liked the gifts."])
+        , (["dunda lo mlatu ku lo ctuca ku"], ["Somebody gave a cat to the instructor", "Somebody gave cats to the instructor"])
+        , (["lo ctuca ku dunda lo mlatu ku mi"], ["The instructor gave me a cat.", "The instructor gave me cats.", "The instructor gave us a cat.", "The instructor gave us cats."])
+        , (["dunda lo mlatu ku mi"], ["Somebody gave me a cat.", "Somebody gave me cats.", "Somebody gave us a cat.", "Somebody gave us cats."])
+        , (["lo tavla ku pendo mi"], ["The speaker is my friend.", "The speakers are my friends."]) -- is "speaker" a good choice? maybe it implies voice...
+        , (["mi nelci lo dunda ku"], ["I like the donor.", "I like the donors."])
+        , (["mi nelci lo xe ctuca ku"], ["I like the teaching method."])
+        , (["lo se dunda ku melbi"], ["The gift is beautiful.", "The gifts are beautiful."])
+        , (["lo ctuca ku se zdani"], ["The instructor has a house."])
+        , (["lo se tavla ku prenu"], ["The listener is a person.", "The listeners are persons."]) -- is "listener" a good choice?
+        , (["lo prenu ku se zdani"], ["The person has a house."])
+        , (["lo tavla ku se zdani"], ["The speaker has a house."])
+        , (["lo se tavla ku se zdani"], ["The listener has a house."])
+        , (["lo ctuca ku se zdani"], ["The instructor has a house."])
+        , (["lo dunda ku se zdani"], ["The donor has a house."])
+        , (["lo te dunda ku se zdani"], ["The recipient has a house."])
+        ]
+    t2 = generateRestrictedTranslationExercise "Translate without using \"zo'e\"" (not . containsWord (T.pack "zo'e")) basicSentenceCanonicalizer <$> special
 
 translations2 :: [ExerciseGenerator]
-translations2 = (++) translations1_nice . (++) translations2_nice $ generateTranslationExercise basicSentenceCanonicalizer <$>
-    [ (["mi tavla fi lo gerku ku"], ["I was talking about the dog.", "I was talking about the dogs.", "I am talking about the dog.", "I am talking about the dogs."])
-    , (["lo prenu ku tavla lo gerku ku"], ["A person is talking to a dog.", "The person talks to dogs."])
-    , (["lo prenu ku tavla lo mlatu ku"], ["A person is talking to a cat.", "The person talks to cats."])
-    , (["tavla fi lo gerku ku"], ["Somebody was talking about the dog.", "Somebody was talking about the dogs."])
-    , (["mi dunda lo gerku ku lo pendo ku"], ["I gave the dog to somebody's friend.", "I gave the dogs to somebody's friend."])
-    , (["mi te dunda lo gerku ku"], ["I was given a dog.", "I was given dogs.", "We were given a dog.", "We were given dogs."])
-    , (["dunda lo gerku ku mi"], ["Somebody gave me a dog.", "Somebody gave me dogs.", "Somebody gave us a dog.", "Somebody gave us dogs."])
-    , (["lo ctuca ku dunda lo gerku ku mi"], ["The instructor gave me a dog.", "The instructor gave me dogs."])
-    , (["dunda lo gerku ku lo ctuca ku"], ["Somebody gave a dog to the instructor", "Somebody gave dogs to the instructor"])
-    , (["mi ctuca do"], ["I will teach you.", "We will teach you.", "I taught you.", "We taught you."])
-    , (["do ctuca mi"], ["You will teach me.", "You will teach us.", "You taught me.", "You taught us."])
-    , (["lo gerku ku nelci lo mlatu ku"], ["The dog likes the cat.", "Dogs like cats."])
-    , (["lo mlatu ku nelci lo gerku ku"], ["The cat likes the dog.", "Cats like dogs."])
-    , (["lo zdani ku melbi"], ["The house is beautiful!", "The houses are beautiful!"])
-    , (["ctuca mi"], ["Somebody taught me.", "Somebody taught us."])
-    , (["mi se zdani"], ["I have a house.", "We have a house."])
-    ]
+translations2 =  translations1_nice ++ translations2_nice ++ t1 ++ t2 where
+    special =
+        [ (["mi tavla fi lo gerku ku"], ["I was talking about the dog.", "I was talking about the dogs.", "I am talking about the dog.", "I am talking about the dogs."])
+        , (["tavla fi lo gerku ku"], ["Somebody was talking about the dog.", "Somebody was talking about the dogs."])
+        ]
+    t1 =  generateTranslationExercise basicSentenceCanonicalizer <$> special ++
+        [ (["lo prenu ku tavla lo gerku ku"], ["A person is talking to a dog.", "The person talks to dogs."])
+        , (["lo prenu ku tavla lo mlatu ku"], ["A person is talking to a cat.", "The person talks to cats."])
+        , (["mi te dunda lo gerku ku"], ["I was given a dog.", "I was given dogs.", "We were given a dog.", "We were given dogs."])
+        , (["mi dunda lo gerku ku lo pendo ku"], ["I gave the dog to somebody's friend.", "I gave the dogs to somebody's friend."])
+        , (["dunda lo gerku ku mi"], ["Somebody gave me a dog.", "Somebody gave me dogs.", "Somebody gave us a dog.", "Somebody gave us dogs."])
+        , (["lo ctuca ku dunda lo gerku ku mi"], ["The instructor gave me a dog.", "The instructor gave me dogs."])
+        , (["dunda lo gerku ku lo ctuca ku"], ["Somebody gave a dog to the instructor", "Somebody gave dogs to the instructor"])
+        , (["mi ctuca do"], ["I will teach you.", "We will teach you.", "I taught you.", "We taught you."])
+        , (["do ctuca mi"], ["You will teach me.", "You will teach us.", "You taught me.", "You taught us."])
+        , (["lo gerku ku nelci lo mlatu ku"], ["The dog likes the cat.", "Dogs like cats."])
+        , (["lo mlatu ku nelci lo gerku ku"], ["The cat likes the dog.", "Cats like dogs."])
+        , (["lo zdani ku melbi"], ["The house is beautiful!", "The houses are beautiful!"])
+        , (["ctuca mi"], ["Somebody taught me.", "Somebody taught us."])
+        , (["mi se zdani"], ["I have a house.", "We have a house."])
+        ]
+    t2 = generateRestrictedTranslationExercise "Translate without using \"zo'e\"" (not . containsWord (T.pack "zo'e")) basicSentenceCanonicalizer <$> special
+
 
 translations3 :: [ExerciseGenerator]
 translations3 = generateTranslationExercise basicSentenceCanonicalizer <$>
