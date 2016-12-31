@@ -330,7 +330,7 @@ generateActionBridi vocabulary r0 = (SimpleBridi action objects, r2) where
     (action, r1) = chooseItemUniformly r0 actions
     (objects, r2) = (actionObjectsGenerators M.! action) r1
     -- Vocabulary
-    actions = getVocabularySelbri vocabulary "actions"
+    actions = filterOutWord "nupre" $ getVocabularySelbri vocabulary "actions"
     genericPersons = getVocabularySumti vocabulary "genericPersons"
     semiGenericPersons = getVocabularySumti vocabulary "semiGenericPersons"
     genericPointable = getVocabularySumti vocabulary "genericPointable"
