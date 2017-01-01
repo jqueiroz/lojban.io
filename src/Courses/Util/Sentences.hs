@@ -388,3 +388,6 @@ generateActionBridi vocabulary r0 = (SimpleBridi action objects, r2) where
         case M.lookup action actionObjectsGenerators of
             Just x -> x
             Nothing -> error $ "No action objects generator are available for '" ++ (T.unpack action) ++ "'"
+
+-- TODO: write tests
+-- Hard tests: "lo se se prenu ku", "mi tavla fa fi do"
