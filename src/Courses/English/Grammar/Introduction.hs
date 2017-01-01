@@ -14,6 +14,7 @@ import qualified Data.Text as T
 import qualified Text.Pandoc as P
 
 --TODO: differenciate "le" and "lo"? I think that a lot of translations here are misleading
+--Interesting words: jinga, sidju
 
 ------- Lesson plans
 plan1 :: P.Pandoc
@@ -166,6 +167,11 @@ translations2 =  translations1_nice ++ translations2_nice ++ t1 ++ t2 where
         ]
     t2 = generateRestrictedTranslationExercise "Translate without using \"zo'e\"" (not . containsWord (T.pack "zo'e")) basicSentenceCanonicalizer <$> special
 
+-- Are the sentences involving tavla really sensible?
+-- Teach nu and du'u, but not su'u
+-- words common enough: gleki, tavla, dunda, nelci, mlatu, gerku, prenu, nupre, zdani
+-- pending words: ctuca, melbi, pendo?
+-- consider using: ciksi (useful for teaching du'u)
 translations3 :: [ExerciseGenerator]
 translations3 = generateTranslationExercise basicSentenceCanonicalizer <$>
     [ (["mi gleki lo nu do tavla mi fi lo mlatu ku kei ku"], ["I am happy that you talked to me about cats."])
