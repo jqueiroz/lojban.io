@@ -190,6 +190,10 @@ translations3 = generateTranslationExercise basicSentenceCanonicalizer <$>
     , (["do tavla fi lo nu lo gerku ku nelci lo mlatu ku kei ku"], ["You talked about dogs liking cats."])
     , (["do tavla mi lo nu lo gerku ku nelci lo mlatu ku kei ku"], ["You talked to me about dogs liking cats."])
     , (["do tavla mi lo nu lo mlatu ku nelci lo gerku ku kei ku"], ["You talked to me about cats liking dogs."])
+    , (["mi tavla fi lo se nupre ku"], ["I talked about the promise."])
+    , (["do tavla fi lo se nupre ku"], ["You talked about the promise."])
+    , (["mi tavla do lo se nupre ku"], ["I talked to you about the promise.", "We talked to you about the promise."])
+    , (["do tavla mi lo se nupre ku"], ["You talked to me about the promise.", "You talked to us about the promise."])
     , (["mi nelci lo nu tavla do kei ku", "mi nelci lo nu mi tavla do kei ku"], ["I like to talk to you."]) -- is nelci really adequate?
     , (["do nelci lo nu nupre kei ku", "do nelci lo nu do nupre kei ku"], ["You like to make promises."]) -- is nelci really adequate?
     , (["lo prenu ku nelci lo nu nupre kei ku"], ["People like to make promises."]) -- is nelci really adequate?
