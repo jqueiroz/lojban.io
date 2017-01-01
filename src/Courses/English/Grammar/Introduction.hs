@@ -227,7 +227,10 @@ translations4 = generateTranslationExercise basicSentenceCanonicalizer <$>
 
 -------- Tanru
 -- useful gismu: sutra, pelxu
--- lo melbi prenu, lo sutra mlatu, lo sutra gerku, lo gleki prenu
+-- lo melbi prenu, lo sutra mlatu, lo sutra gerku, lo gleki prenu, lo melbi prenu, mi mutce gleki
+-------- Questions
+-- useful gismu: melbi
+-- xu [...] melbi do
 
 -------- Exercises
 exercises1 :: Dictionary -> ExerciseGenerator
