@@ -64,7 +64,7 @@ vocabularyGenerator3 :: VocabularyBuilder
 vocabularyGenerator3 = createVocabularyBuilder
     -- Selbri
     [
-        ("actions", ["tavla", "dunda", "ctuca", "nupre"]),
+        ("actions", ["tavla", "dunda", "ctuca", "nupre", "cusku"]),
         ("properties", ["prenu", "zdani", "mlatu", "gerku", "melbi"]),
         ("relations", ["nelci", "pendo", "gleki"])
     ]
@@ -218,11 +218,45 @@ translations3 = generateTranslationExercise basicSentenceCanonicalizer <$>
     , (["do nupre lo nu dunda lo gerku ku kei ku mi", "do nupre lo nu do dunda lo gerku ku kei ku mi"], ["You promised me to donate the dog.", "You promised me to donate the dogs.", "You promised us to donate the dog.", "You promised us to donate the dogs."])
     , (["do nupre lo nu dunda lo zdani ku kei ku mi", "do nupre lo nu do dunda lo zdani ku kei ku mi"], ["You promised me to donate the house.", "You promised me to donate the houses.", "You promised us to donate the house.", "You promised us to donate the houses."])
     , (["do nupre lo nu dunda lo zdani ku mi kei ku mi", "do nupre lo nu do dunda lo zdani ku mi kei ku mi"], ["You promised to donate the house to me.", "You promised to donate the houses to us."])
-    , (["do nupre lo nu do pendo kei ku", "do nupre lo nu pendo kei ku"], ["You promised to be friendly."])
+    , (["do nupre lo nu pendo kei ku", "do nupre lo nu do pendo kei ku"], ["You promised to be friendly."])
+    , (["do nupre lo nu ctuca mi kei ku", "do nupre lo nu do ctuca mi kei ku"], ["You promised to teach me."])
+    , (["mi nupre lo nu ctuca do kei ku", "mi nupre lo nu mi ctuca do kei ku"], ["I promised to teach you."])
     , (["lo prenu ku nupre"], ["People make promises."])
     , (["do nupre"], ["You made a promise."])
     , (["do nupre fi mi"], ["You promised me.", "You promised us."])
     , (["mi nupre fi do"], ["I promised you.", "We promised you."])
+    , (["mi cusku"], ["I said something.", "I was saying something.", "I will say something."])
+    , (["do cusku"], ["You said something.", "You were saying something."])
+    , (["lo prenu ku cusku"], ["The person said something.", "The person was saying something."])
+    , (["mi cusku lo se du'u do melbi kei ku"], ["I said that you are beautiful."])
+    , (["mi cusku lo se du'lo prenu ku melbi kei ku"], ["I said that the person is beautiful."])
+    , (["do cusku lo se du'u mi melbi kei ku"], ["You said that I am beautiful."])
+    , (["do cusku lo se du'u lo prenu ku melbi kei ku"], ["You said that the person is beautiful."])
+    , (["mi cusku lo se du'u mi nelci do kei ku", "mi cusku lo se du'u nelci do kei ku"], ["I said that I like you."])
+    , (["do cusku lo se du'u do nelci mi kei ku", "do cusku lo se du'u nelci mi kei ku"], ["You said that you like me."])
+    , (["lo prenu ku cusku lo se du'u mi nelci do kei ku"], ["The person said that I like you."])
+    , (["lo prenu ku cusku lo se du'u do nelci mi kei ku"], ["The person said that you like me."])
+    , (["lo prenu ku cusku lo se du'u nelci mi kei ku"], ["The person said that she likes me."])
+    , (["lo prenu ku cusku lo se du'u nelci do kei ku"], ["The person said that she likes you."])
+    , (["mi cusku lo se du'u mi dunda lo mlatu ku kei ku", "mi cusku lo se du'u dunda lo mlatu ku kei ku"], ["I said that I would donate the cat.", "I said that I would donate the cats."])
+    , (["do cusku lo se du'u do dunda lo mlatu ku kei ku", "do cusku lo se du'u dunda lo mlatu ku kei ku"], ["You said that you would donate the cat.", "You said that you would donate the cats."])
+    , (["lo prenu ku cusku lo se du'u dunda lo mlatu ku kei ku"], ["The person said said that she would donate the cat.", "The person said that she would donate the cats."])
+    , (["mi cusku lo se du'u mi dunda lo mlatu ku do kei ku", "mi cusku lo se du'u dunda lo mlatu ku do kei ku"], ["I said that I would give you the cat.", "I said that I would give you the cats."])
+    , (["do cusku lo se du'u do dunda lo mlatu ku mi kei ku", "do cusku lo se du'u dunda lo mlatu ku mi kei ku"], ["You said that you would give me the cat.", "You said that you would give me the cats."])
+    , (["mi cusku lo se du'u mi dunda lo gerku ku do kei ku", "mi cusku lo se du'u dunda lo gerku ku do kei ku"], ["I said that I would give you the dog.", "I said that I would give you the dogs."])
+    , (["do cusku lo se du'u do dunda lo gerku ku mi kei ku", "do cusku lo se du'u dunda lo gerku ku mi kei ku"], ["You said that you would give me the dog.", "You said that you would give me the dogs."])
+    , (["lo prenu ku cusku lo se du'u dunda lo mlatu ku mi kei ku"], ["The person said that she would give me the cat.", "The person said that she would give me the cats."])
+    , (["lo prenu ku cusku lo se du'u dunda lo mlatu ku do kei ku"], ["The person said that she would give you the cat.", "The person said that she would give you the cats."])
+    , (["lo prenu ku cusku lo se du'u dunda lo gerku ku mi kei ku"], ["The person said that she would give me the dog.", "The person said that she would give me the dogs."])
+    , (["lo prenu ku cusku lo se du'u dunda lo gerku ku do kei ku"], ["The person said that she would give you the dog.", "The person said that she would give you the dogs."])
+    , (["lo prenu ku cusku lo se du'u do dunda lo mlatu ku mi kei ku"], ["The person said that you would give me the cat.", "The person said that you would give me the cats."])
+    , (["lo prenu ku cusku lo se du'u do dunda lo gerku ku mi kei ku"], ["The person said that you would give me the dog.", "The person said that you would give me the dogs."])
+    , (["mi cusku lo se du'u pendo kei ku", "mi cusku lo se du'u mi pendo kei ku"], ["I said that I would be friendly."])
+    , (["do cusku lo se du'u pendo kei ku", "do cusku lo se du'u do pendo kei ku"], ["You said that you would be friendly."])
+    , (["mi cusku lo se du'u do pendo kei ku"], ["I said that you would be friendly."])
+    -- Wait until terminator ellision has been explained to use the following sentences
+    {-, (["mi cusku lo se du'u mi nelci lo nu tavla do kei ku kei ku", "mi cusku lo se du'u mi nelci lo nu mi tavla do kei ku kei ku"], ["I said that I like to talk to you."])-}
+    {-, (["mi cusku lo se du'u do nelci lo nu tavla mi kei ku kei ku", "mi cusku lo se du'u do nelci lo nu do tavla mi kei ku kei ku"], ["I said that you like to talk to me."])-}
     ]
 
 translations4 :: [ExerciseGenerator]
