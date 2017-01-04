@@ -228,7 +228,7 @@ convertStructuredTerms terms = do
     let terms3 = map (\(i, v) -> case v of Right x -> Right (i, x); Left x -> Left x) terms2 :: [Either String (Int, T.Text)]
     terms4 <- foldr (liftA2 (:)) (Right []) terms3 :: Either String [(Int, T.Text)]
     let terms5 = filter ((/= "zo'e") . snd) terms4 :: [(Int, T.Text)]
-    let lastTermNumber = maximum $ map fst terms5
+    let lastTermNumber = if null terms5 then 0 else maximum (map fst terms5)
     let retrieveTerm i = headOrDefault (T.pack "") $ map snd $ filter ((== i) . fst) terms5
     return $ map retrieveTerm [1..lastTermNumber]
 
