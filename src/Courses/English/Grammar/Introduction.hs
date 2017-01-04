@@ -171,7 +171,10 @@ translations2 =  translations1_nice ++ translations2_nice ++ t1 ++ t2 where
 -- Teach nu and du'u, but not su'u
 -- words common enough: gleki, tavla, dunda, nelci, mlatu, gerku, prenu, nupre, zdani
 -- pending words: ctuca, melbi, pendo?
--- consider using: ciksi (useful for teaching du'u)
+-- consider using: morji, ciksi, jijnu (useful for teaching du'u)
+-- TODO: teach ko'a?
+-- TODO: nonuniform translations -- separate by selbri and then separate even more
+-- TODO: programmatic translation generation
 translations3 :: [ExerciseGenerator]
 translations3 = generateTranslationExercise basicSentenceCanonicalizer <$>
     [ (["mi gleki lo nu do tavla mi fi lo mlatu ku kei ku"], ["I am happy that you talked to me about cats."])
