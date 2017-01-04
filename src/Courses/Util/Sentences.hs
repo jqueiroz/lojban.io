@@ -20,7 +20,7 @@ module Courses.Util.Sentences
 
 import Core
 import Courses.Util.Vocabulary
-import Util (replace, stripRight, filterOutWord, headOrDefault, isContiguousSequence, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly)
+import Util (replace, stripRight, filterOutWord, filterOutWords, headOrDefault, isContiguousSequence, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly)
 import Control.Exception (assert)
 import Control.Applicative (liftA2)
 import System.Random (StdGen, mkStdGen)
