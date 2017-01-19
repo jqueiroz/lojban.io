@@ -13,7 +13,6 @@ import Control.Applicative ((<$>))
 import qualified Data.Text as T
 import qualified Text.Pandoc as P
 
---TODO: differenciate "le" and "lo"? I think that a lot of translations here are misleading
 --Interesting words: jinga, sidju
 
 ------- Lesson plans
