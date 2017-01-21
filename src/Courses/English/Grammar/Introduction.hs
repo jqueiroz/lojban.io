@@ -174,6 +174,7 @@ translations2 =  translations1_nice ++ translations2_nice ++ t1 ++ t2 where
 -- TODO: teach ko'a?
 -- TODO: nonuniform translations -- separate by selbri and then separate even more
 -- TODO: programmatic translation generation
+-- TODO: indicate optional words using parenthesis
 translations3 :: [ExerciseGenerator]
 translations3 = generateTranslationExercise basicSentenceCanonicalizer <$>
     [ (["mi gleki lo nu do tavla mi fi lo mlatu ku kei ku"], ["I am happy that you talked to me about cats."])
