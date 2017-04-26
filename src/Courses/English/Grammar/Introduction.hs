@@ -267,6 +267,8 @@ translations4 = generateTranslationExercise basicSentenceCanonicalizer <$>
     [ (["lo prenu ku sutra tavla"], ["The person talks quickly.", "The person is talking quickly.", "A person is talking quickly.", "People talk quickly"])
     ]
 
+--TODO: pause immediately after lesson 4
+
 
 -------- Tanru
 -- useful gismu: sutra, pelxu
