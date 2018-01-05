@@ -111,7 +111,7 @@ translations2_nice = t1 ++ t2 where
         , (["mi dunda fi do"], ["I gave you something.", "I will give you something."])
         ]
     t1 = generateTranslationExercise basicSentenceCanonicalizer <$> special ++
-        [ (["mi dunda lo mlatu ku lo pendo ku"], ["I gave the cat to somebody's friend.", "I gave the cats to somebody's friend."])
+        [ (["mi dunda lo mlatu ku lo pendo ku"], ["I gave the cat to a friend.", "I gave the cats to a friend."])
         , (["mi te dunda lo mlatu ku"], ["I was given a cat.", "I was given cats.", "We were given a cat.", "We were given cats."])
         , (["lo te dunda ku nelci lo se dunda ku"], ["The recipient liked the gift.", "The recipient will like the gift.", "The recipients liked the gifts."])
         , (["dunda lo mlatu ku lo ctuca ku"], ["Somebody gave a cat to the instructor", "Somebody gave cats to the instructor"])
