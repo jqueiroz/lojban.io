@@ -127,6 +127,7 @@ translations2_nice = combineFunctions [(1, restricted_translations), (5, normal_
         talkingAbout = generatorFromList
             [ (["mi tavla fi mi"], ["I was talking about myself.", "We were talking about ourselves.", "I will talk about myself."])
             , (["mi tavla fi do"], ["I was talking about you.", "We were talking about you.", "I am talking about you.", "We are talking about you.", "I will talk about you.", "We will talk about you."])
+            , (["tavla fi mi"], ["Somebody was talking about me."])
             , (["tavla fi do"], ["Somebody was talking about you."])
             , (["mi tavla fi lo mlatu ku"], ["I was talking about the cat.", "I was talking about the cats.", "I am talking about the cat.", "I am talking about the cats."])
             , (["tavla fi lo mlatu ku"], ["Somebody was talking about the cat.", "Somebody was talking about the cats."])
