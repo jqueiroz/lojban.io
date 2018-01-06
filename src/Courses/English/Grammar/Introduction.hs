@@ -233,7 +233,7 @@ translations3 = generateTranslationExercise basicSentenceCanonicalizer <$> gener
     , (["do cusku"], ["You said something.", "You were saying something."])
     , (["lo prenu ku cusku"], ["The person said something.", "The person was saying something."])
     , (["mi cusku lo se du'u do melbi kei ku"], ["I said that you are beautiful."])
-    , (["mi cusku lo se du'lo prenu ku melbi kei ku"], ["I said that the person is beautiful."])
+    , (["mi cusku lo se du'u lo prenu ku melbi kei ku"], ["I said that the person is beautiful."])
     , (["do cusku lo se du'u mi melbi kei ku"], ["You said that I am beautiful."])
     , (["do cusku lo se du'u lo prenu ku melbi kei ku"], ["You said that the person is beautiful."])
     , (["mi cusku lo se du'u mi nelci do kei ku", "mi cusku lo se du'u nelci do kei ku"], ["I said that I like you."])
