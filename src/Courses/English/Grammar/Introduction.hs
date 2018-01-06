@@ -143,7 +143,7 @@ translations2_nice = combineFunctions [(1, restricted_translations), (5, normal_
             , (["do dunda fi mi"], ["You gave me something."])
             ]
     restricted_translations = generateRestrictedTranslationExercise "Translate without using \"zo'e\"" (not . containsWord (T.pack "zo'e")) basicSentenceCanonicalizer special
-    normal_translations = generateTranslationExercise basicSentenceCanonicalizer $ combineFunctionsUniformly [special, hasHouse, niceGift, giftingAnimal, others] where
+    normal_translations = generateTranslationExercise basicSentenceCanonicalizer $ combineFunctionsUniformly [special, hasHouse, niceGift, giftingAnimal, teaching, others] where
         hasHouse = generatorFromList
             [ (["lo ctuca ku se zdani"], ["The instructor has a house."])
             , (["lo prenu ku se zdani"], ["The person has a house."])
@@ -176,6 +176,15 @@ translations2_nice = combineFunctions [(1, restricted_translations), (5, normal_
             , (["lo ctuca ku dunda lo gerku ku mi"], ["The instructor gave me a dog.", "The instructor gave me dogs.", "The instructor gave us a dog.", "The instructor gave us dogs."])
             , (["dunda lo gerku ku mi"], ["Somebody gave me a dog.", "Somebody gave me dogs.", "Somebody gave us a dog.", "Somebody gave us dogs."])
             ]
+        teaching = generatorFromList
+            [ (["mi ctuca lo mlatu ku"], ["I am teaching the cat.", "I am teaching the cats.", "I taught the cat.", "I taught the cats.", "We are teaching the cat.", "We are teaching the cats."])
+            , (["mi ctuca lo gerku ku"], ["I am teaching the dog.", "I am teaching the dogs.", "I taught the dog.", "I taught the dogs.", "We are teaching the dog.", "We are teaching the dogs."])
+            , (["mi ctuca do"], ["I will teach you.", "We will teach you.", "I taught you.", "We taught you."])
+            , (["do ctuca mi"], ["You will teach me.", "You will teach us.", "You taught me.", "You taught us."])
+            , (["mi ctuca mi"], ["I taught myself."])
+            , (["ctuca mi"], ["Somebody taught me.", "Somebody taught us."])
+            , (["ctuca do"], ["Somebody taught you."])
+            ]
         others = generatorFromList
             [ (["lo tavla ku pendo mi"], ["The speaker is my friend.", "The speakers are my friends."]) -- is "speaker" a good choice? maybe it implies voice or authority...
             , (["mi nelci lo dunda ku"], ["I like the donor.", "I like the donors."])
@@ -184,15 +193,11 @@ translations2_nice = combineFunctions [(1, restricted_translations), (5, normal_
             ]
 
 translations2 :: ExerciseGenerator
-translations2 =  combineFunctions [(1, translations1_nice), (8, translations2_nice), (4, translations2)] where
-    t1 =  generateTranslationExercise basicSentenceCanonicalizer <$> [talkingToAnimal, teachingSecondPerson, likingAnimals, beautiful, others] where
+translations2 =  combineFunctions [(1, translations1_nice), (10, translations2_nice), (4, translations2)] where
+    t1 =  generateTranslationExercise basicSentenceCanonicalizer <$> [talkingToAnimal, likingAnimals, beautiful, others] where
         talkingToAnimal = generatorFromList
             [ (["lo prenu ku tavla lo mlatu ku"], ["A person is talking to a cat.", "The person talks to cats."])
             , (["lo prenu ku tavla lo gerku ku"], ["A person is talking to a dog.", "The person talks to dogs."])
-            ]
-        teachingSecondPerson = generatorFromList
-            [ (["mi ctuca do"], ["I will teach you.", "We will teach you.", "I taught you.", "We taught you."])
-            , (["do ctuca mi"], ["You will teach me.", "You will teach us.", "You taught me.", "You taught us."])
             ]
         likingAnimals = generatorFromList
             [ (["mi nelci lo mlatu ku"], ["I like the cat.", "I like cats."])
@@ -209,8 +214,7 @@ translations2 =  combineFunctions [(1, translations1_nice), (8, translations2_ni
             , (["lo gerku ku melbi mi"], ["The dog is beautiful to me.", "The dogs are beautiful to me."])
             ]
         others = generatorFromList
-            [ (["ctuca mi"], ["Somebody taught me.", "Somebody taught us."])
-            , (["mi se zdani"], ["I have a house.", "We have a house.", "We have houses."])
+            [ (["mi se zdani"], ["I have a house.", "We have a house.", "We have houses."])
             , (["do se zdani"], ["You have a house.", "You have houses."])
             , (["do melbi mi"], ["You are beautiful to me."])
             , (["do melbi"], ["You are beautiful."])
