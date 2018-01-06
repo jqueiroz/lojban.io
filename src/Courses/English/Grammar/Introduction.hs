@@ -208,7 +208,7 @@ translations2 =  combineFunctions [(1, translations1_nice), (8, translations2_ni
             ]
         others = generatorFromList
             [ (["ctuca mi"], ["Somebody taught me.", "Somebody taught us."])
-            , (["mi se zdani"], ["I have a house.", "We have a house."])
+            , (["mi se zdani"], ["I have a house.", "We have a house.", "We have houses."])
             , (["do melbi mi"], ["You are beautiful to me."])
             , (["do melbi"], ["You are beautiful."])
             ]
