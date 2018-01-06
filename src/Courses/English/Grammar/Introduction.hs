@@ -142,16 +142,7 @@ translations2_nice = combineFunctions [(1, restricted_translations), (5, normal_
             [ (["mi dunda fi do"], ["I gave you something.", "I will give you something."])
             , (["do dunda fi mi"], ["You gave me something."])
             ]
-    normal_translations = generateTranslationExercise basicSentenceCanonicalizer $ combineFunctionsUniformly [special, beautifulToMe, beautifulGift, hasHouse, likedGift, giftingAnimal, others] where
-        beautifulToMe = generatorFromList
-            [ (["lo zdani ku melbi mi"], ["The house is beautiful to me.", "The houses are beautiful to me."])
-            , (["lo mlatu ku melbi mi"], ["The cat is beautiful to me.", "The cats are beautiful to me."])
-            , (["lo gerku ku melbi mi"], ["The dog is beautiful to me.", "The dogs are beautiful to me."])
-            ]
-        beautifulGift = generatorFromList
-            [ (["lo se dunda ku melbi mi"], ["The gift is beautiful to me.", "The gifts are beautiful to me."])
-            , (["lo se dunda ku melbi"], ["The gift is beautiful.", "The gifts are beautiful."])
-            ]
+    normal_translations = generateTranslationExercise basicSentenceCanonicalizer $ combineFunctionsUniformly [special, hasHouse, beautifulGift, likedGift, giftingAnimal, others] where
         hasHouse = generatorFromList
             [ (["lo ctuca ku se zdani"], ["The instructor has a house."])
             , (["lo prenu ku se zdani"], ["The person has a house."])
@@ -160,6 +151,10 @@ translations2_nice = combineFunctions [(1, restricted_translations), (5, normal_
             , (["lo ctuca ku se zdani"], ["The instructor has a house."])
             , (["lo dunda ku se zdani"], ["The donor has a house."])
             , (["lo te dunda ku se zdani"], ["The recipient has a house."])
+            ]
+        beautifulGift = generatorFromList
+            [ (["lo se dunda ku melbi mi"], ["The gift is beautiful to me.", "The gifts are beautiful to me."])
+            , (["lo se dunda ku melbi"], ["The gift is beautiful.", "The gifts are beautiful."])
             ]
         likedGift = generatorFromList
             [ (["lo te dunda ku nelci lo se dunda ku"], ["The recipient liked the gift.", "The recipient will like the gift.", "The recipients liked the gifts."])
@@ -206,9 +201,11 @@ translations2 =  combineFunctions [(1, translations1_nice), (8, translations2_ni
             ]
         beautiful = generatorFromList
             [ (["lo zdani ku melbi"], ["The house is beautiful.", "The houses are beautiful."])
-            , (["lo se dunda ku melbi"], ["The gift is beautiful.", "The gifts are beautiful."])
             , (["lo mlatu ku melbi"], ["The cat is beautiful.", "The cats are beautiful."])
             , (["lo gerku ku melbi"], ["The dog is beautiful.", "The dogs are beautiful."])
+            , (["lo zdani ku melbi mi"], ["The house is beautiful to me.", "The houses are beautiful to me."])
+            , (["lo mlatu ku melbi mi"], ["The cat is beautiful to me.", "The cats are beautiful to me."])
+            , (["lo gerku ku melbi mi"], ["The dog is beautiful to me.", "The dogs are beautiful to me."])
             ]
         others = generatorFromList
             [ (["ctuca mi"], ["Somebody taught me.", "Somebody taught us."])
