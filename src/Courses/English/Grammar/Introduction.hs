@@ -79,8 +79,8 @@ vocabularyGenerator3 = createVocabularyBuilder
     ]
 
 -------- Translations
-translations1_nice :: [ExerciseGenerator]
-translations1_nice = generateTranslationExercise basicSentenceCanonicalizer <$> [tavlaReflexive, dundaReordered] where
+translations1_nice :: ExerciseGenerator
+translations1_nice = generateTranslationExercise basicSentenceCanonicalizer $ combineFunctionsUniformly [tavlaReflexive, dundaReordered] where
     tavlaReflexive = generatorFromList
         [ (["mi tavla mi"], ["I am talking to myself.", "I was talking to myself.", "We were talking to ourselves."])
         , (["do tavla do"], ["You are talking to yourself."])
@@ -90,37 +90,38 @@ translations1_nice = generateTranslationExercise basicSentenceCanonicalizer <$> 
         , (["mi dunda ta do"], ["I gave you that.", "We gave you that."])
         ]
 
-translations1 :: [ExerciseGenerator]
-translations1 = (++) translations1_nice $ generateTranslationExercise basicSentenceCanonicalizer <$> others ++ [talkingWithSecondPerson, pendo, prenu, demonstrative] where
-    talkingWithSecondPerson = generatorFromList
-        [ (["mi tavla do"], ["I am talking to you.", "I was talking to you.", "We are talking to you.", "We were talking to you."])
-        , (["do tavla mi"], ["You are talking to me.", "You are talking to us."])
-        ]
-    pendo = generatorFromList
-        [ (["do pendo mi"], ["You are my friend."])
-        , (["mi pendo do"], ["I am your friend."])
-        ]
-    prenu = generatorFromList
-        [ (["mi prenu"], ["I am a person.", "We are persons."])
-        , (["do prenu"], ["You are a person.", "You are persons."])
-        ]
-    demonstrative = generatorFromList
-        [ (["ti mlatu"], ["This is a cat.", "These are cats."])
-        , (["ta mlatu"], ["That is a cat.", "Those are cats."])
-        , (["ta zdani"], ["That is a house.", "Those are houses."])
-        ]
-    others = generatorFromSingleton <$>
-        -- not marked as "nice" because it becomes a special exercise in the next lesson ("translate without zo'e")
-        [ (["mi tavla zo'e do"], ["I was talking about you.", "We were talking about you.", "I am talking about you.", "We are talking about you.", "I will talk about you.", "We will talk about you."])
-        -- not marked as "nice" because it becomes a special exercise in the next lesson ("translate without zo'e")
-        , (["mi dunda zo'e do"], ["I gave you something.", "I will give you something."])
-        -- not marked as "nice" because the cannonical answer changes to "mi se zdani" in the next lesson
-        , (["zdani mi"], ["I have a house.", "We have a house.", "We have houses."])
-        ]
+translations1 :: ExerciseGenerator
+translations1 = combineFunctions [(1, translations1_nice), (4, more_translations)] where
+    more_translations = generateTranslationExercise basicSentenceCanonicalizer $ combineFunctionsUniformly $ others ++ [talkingWithSecondPerson, pendo, prenu, demonstrative] where
+        talkingWithSecondPerson = generatorFromList
+            [ (["mi tavla do"], ["I am talking to you.", "I was talking to you.", "We are talking to you.", "We were talking to you."])
+            , (["do tavla mi"], ["You are talking to me.", "You are talking to us."])
+            ]
+        pendo = generatorFromList
+            [ (["do pendo mi"], ["You are my friend."])
+            , (["mi pendo do"], ["I am your friend."])
+            ]
+        prenu = generatorFromList
+            [ (["mi prenu"], ["I am a person.", "We are persons."])
+            , (["do prenu"], ["You are a person.", "You are persons."])
+            ]
+        demonstrative = generatorFromList
+            [ (["ti mlatu"], ["This is a cat.", "These are cats."])
+            , (["ta mlatu"], ["That is a cat.", "Those are cats."])
+            , (["ta zdani"], ["That is a house.", "Those are houses."])
+            ]
+        others = generatorFromSingleton <$>
+            -- not marked as "nice" because it becomes a special exercise in the next lesson ("translate without zo'e")
+            [ (["mi tavla zo'e do"], ["I was talking about you.", "We were talking about you.", "I am talking about you.", "We are talking about you.", "I will talk about you.", "We will talk about you."])
+            -- not marked as "nice" because it becomes a special exercise in the next lesson ("translate without zo'e")
+            , (["mi dunda zo'e do"], ["I gave you something.", "I will give you something."])
+            -- not marked as "nice" because the cannonical answer changes to "mi se zdani" in the next lesson
+            , (["zdani mi"], ["I have a house.", "We have a house.", "We have houses."])
+            ]
 
-translations2_nice :: [ExerciseGenerator]
-translations2_nice = t1 ++ t2 where
-    special = [talkingAbout, gaveSomething] where
+translations2_nice :: ExerciseGenerator
+translations2_nice = combineFunctions [(1, restricted_translations), (5, normal_translations)] where
+    special = combineFunctions [(2, talkingAbout), (1, gaveSomething)] where
         talkingAbout = generatorFromList
             [ (["mi tavla fi do"], ["I was talking about you.", "We were talking about you.", "I am talking about you.", "We are talking about you.", "I will talk about you.", "We will talk about you."])
             , (["tavla fi do"], ["Somebody was talking about you."])
@@ -132,7 +133,7 @@ translations2_nice = t1 ++ t2 where
         gaveSomething = generatorFromList
             [ (["mi dunda fi do"], ["I gave you something.", "I will give you something."])
             ]
-    t1 = generateTranslationExercise basicSentenceCanonicalizer <$> special ++ [beautifulToMe, beautifulGift, hasHouse, likedGift, giftingAnimal, others] where
+    normal_translations = generateTranslationExercise basicSentenceCanonicalizer $ combineFunctionsUniformly [special, beautifulToMe, beautifulGift, hasHouse, likedGift, giftingAnimal, others] where
         beautifulToMe = generatorFromList
             [ (["lo zdani ku melbi mi"], ["The house is beautiful to me.", "The houses are beautiful to me."])
             , (["lo mlatu ku melbi mi"], ["The cat is beautiful to me.", "The cats are beautiful to me."])
@@ -175,10 +176,10 @@ translations2_nice = t1 ++ t2 where
             , (["mi nelci lo xe ctuca ku"], ["I like the teaching method."])
             , (["lo se tavla ku prenu"], ["The listener is a person.", "The listeners are persons."]) -- is "listener" a good choice?
             ]
-    t2 = generateRestrictedTranslationExercise "Translate without using \"zo'e\"" (not . containsWord (T.pack "zo'e")) basicSentenceCanonicalizer <$> special
+    restricted_translations = generateRestrictedTranslationExercise "Translate without using \"zo'e\"" (not . containsWord (T.pack "zo'e")) basicSentenceCanonicalizer special
 
-translations2 :: [ExerciseGenerator]
-translations2 =  translations1_nice ++ translations2_nice ++ t1 where
+translations2 :: ExerciseGenerator
+translations2 =  combineFunctions [(1, translations1_nice), (8, translations2_nice), (4, translations2)] where
     t1 =  generateTranslationExercise basicSentenceCanonicalizer <$> [talkingToAnimal, teachingSecondPerson, likingAnimals, beautiful, others] where
         talkingToAnimal = generatorFromList
             [ (["lo prenu ku tavla lo gerku ku"], ["A person is talking to a dog.", "The person talks to dogs."])
@@ -216,8 +217,8 @@ translations2 =  translations1_nice ++ translations2_nice ++ t1 where
 -- TODO: nonuniform translations -- separate by selbri and then separate even more
 -- TODO: programmatic translation generation
 -- TODO: indicate optional words using parenthesis
-translations3 :: [ExerciseGenerator]
-translations3 = generateTranslationExercise basicSentenceCanonicalizer <$> generatorFromSingleton <$>
+translations3 :: ExerciseGenerator
+translations3 = combineFunctionsUniformly $ generateTranslationExercise basicSentenceCanonicalizer <$> generatorFromSingleton <$>
     [ (["mi gleki lo nu do tavla mi fi lo mlatu ku kei ku"], ["I am happy that you talked to me about cats."])
     , (["mi gleki lo nu do pendo mi kei ku"], ["I am happy that you are my friend."])
     , (["mi gleki lo nu do dunda lo mlatu ku mi kei ku"], ["I am happy that you gave me the cat.", "I am happy that you gave me cats."])
@@ -327,7 +328,7 @@ exercises1 dictionary =
         , (20, generateSelbriIdentificationExercise vocabulary displayBridi)
         , (20, generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBridi)
         , (10, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
-        , (40, combineFunctionsUniformly translations1)
+        , (40, translations1)
         ]
     where
         vocabulary = vocabularyGenerator1 dictionary
@@ -342,7 +343,7 @@ exercises2 dictionary =
         , (10, generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBridi)
         , (20, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
         , (30, generateIsolatedGismuPlacesExercise dictionary vocabulary)
-        , (50, combineFunctionsUniformly translations2)
+        , (50, translations2)
         ]
     where
         vocabulary = vocabularyGenerator2 dictionary
@@ -357,7 +358,7 @@ exercises3 dictionary =
         , (5, generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBridi)
         , (20, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
         , (30, generateIsolatedGismuPlacesExercise dictionary vocabulary)
-        , (70, combineFunctionsUniformly translations3)
+        , (70, translations3)
         ]
     where
         vocabulary = vocabularyGenerator3 dictionary
