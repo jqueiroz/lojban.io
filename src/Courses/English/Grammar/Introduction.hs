@@ -132,6 +132,7 @@ translations2_nice = combineFunctions [(1, restricted_translations), (5, normal_
             ]
         gaveSomething = generatorFromList
             [ (["mi dunda fi do"], ["I gave you something.", "I will give you something."])
+            , (["do dunda fi mi"], ["You gave me something."])
             ]
     normal_translations = generateTranslationExercise basicSentenceCanonicalizer $ combineFunctionsUniformly [special, beautifulToMe, beautifulGift, hasHouse, likedGift, giftingAnimal, others] where
         beautifulToMe = generatorFromList
