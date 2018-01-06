@@ -29,16 +29,18 @@ import qualified Data.Map as M
 
 -- Exercise: translate a sentence from English to Lojban
 type Translation = ([LojbanSentence], [EnglishSentence])
+type TranslationGenerator = StdGen -> (Translation, StdGen)
 type EnglishSentence = T.Text
 type LojbanSentence = T.Text
 
-generateTranslationExercise :: SentenceCanonicalizer -> Translation -> ExerciseGenerator
+generateTranslationExercise :: SentenceCanonicalizer -> TranslationGenerator -> ExerciseGenerator
 generateTranslationExercise = generateRestrictedTranslationExercise "Translate this sentence" (\_ -> True)
 
-generateRestrictedTranslationExercise :: T.Text -> (T.Text -> Bool) -> SentenceCanonicalizer -> Translation -> ExerciseGenerator
-generateRestrictedTranslationExercise title validator canonicalizer translation r0 = TypingExercise title (Just $ ExerciseSentence True english_sentence) (liftA2 (&&) validator validateAll) (head lojban_sentences) where
+generateRestrictedTranslationExercise :: T.Text -> (T.Text -> Bool) -> SentenceCanonicalizer -> TranslationGenerator -> ExerciseGenerator
+generateRestrictedTranslationExercise title validator canonicalizer translationGenerator r0 = TypingExercise title (Just $ ExerciseSentence True english_sentence) (liftA2 (&&) validator validateAll) (head lojban_sentences) where
+    (translation, r1) = translationGenerator r0
     (lojban_sentences, english_sentences) = translation
-    (english_sentence, r1) = chooseItemUniformly r0 english_sentences
+    (english_sentence, r2) = chooseItemUniformly r1 english_sentences
     validateAll typed_sentence = or $ map (validateSingle typed_sentence) lojban_sentences
     validateSingle typed_sentence lojban_sentence = case canonicalizer (T.toLower typed_sentence) of
         Left _ -> False

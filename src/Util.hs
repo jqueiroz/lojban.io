@@ -79,6 +79,9 @@ chooseItemsUniformly r0 q xs = (y:ys, r2) where
     (y, r1) = chooseItemUniformly r0 xs
     (ys, r2) = chooseItemsUniformly r1 (q-1) (filter (/= y) xs)
 
+generatorFromSingleton :: a -> StdGen -> (a, StdGen)
+generatorFromSingleton x r0 = (x, r0)
+
 -- combineSimpleFunctions :: [(Int, a)] -> (StdGen -> a)
 
 combineFunctions :: [(Int, StdGen -> a)] -> (StdGen -> a)

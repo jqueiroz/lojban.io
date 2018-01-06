@@ -7,7 +7,7 @@ import Core
 import Courses.Util.Vocabulary
 import Courses.Util.Sentences
 import Courses.Util.ExerciseGenerators
-import Util (combineFunctions, combineFunctionsUniformly, containsWord)
+import Util (combineFunctions, combineFunctionsUniformly, generatorFromSingleton, containsWord)
 import Data.FileEmbed (embedStringFile)
 import Control.Applicative ((<$>))
 import qualified Data.Text as T
@@ -80,14 +80,14 @@ vocabularyGenerator3 = createVocabularyBuilder
 
 -------- Translations
 translations1_nice :: [ExerciseGenerator]
-translations1_nice = generateTranslationExercise basicSentenceCanonicalizer <$>
+translations1_nice = generateTranslationExercise basicSentenceCanonicalizer <$> generatorFromSingleton <$>
     [ (["mi tavla mi"], ["I am talking to myself.", "I was talking to myself.", "We were talking to ourselves."])
     , (["do dunda ti mi"], ["You gave me this.", "You gave us this."])
     , (["mi dunda ta do"], ["I gave you that.", "We gave you that."])
     ]
 
 translations1 :: [ExerciseGenerator]
-translations1 = (++) translations1_nice $ generateTranslationExercise basicSentenceCanonicalizer <$>
+translations1 = (++) translations1_nice $ generateTranslationExercise basicSentenceCanonicalizer <$> generatorFromSingleton <$>
     [ (["mi tavla zo'e do"], ["I was talking about you.", "We were talking about you.", "I am talking about you.", "We are talking about you.", "I will talk about you.", "We will talk about you."])
     , (["mi tavla do"], ["I am talking to you.", "I was talking to you.", "We are talking to you.", "We were talking to you."])
     , (["do tavla mi"], ["You are talking to me.", "You are talking to us."])
@@ -111,7 +111,7 @@ translations2_nice = t1 ++ t2 where
         , (["tavla fi lo mlatu ku"], ["Somebody was talking about the cat.", "Somebody was talking about the cats."])
         , (["mi dunda fi do"], ["I gave you something.", "I will give you something."])
         ]
-    t1 = generateTranslationExercise basicSentenceCanonicalizer <$> special ++
+    t1 = generateTranslationExercise basicSentenceCanonicalizer <$> generatorFromSingleton <$> special ++
         [ (["mi dunda lo mlatu ku lo pendo ku"], ["I gave the cat to a friend.", "I gave the cats to a friend."])
         , (["mi te dunda lo mlatu ku"], ["I was given a cat.", "I was given cats.", "We were given a cat.", "We were given cats."])
         , (["lo te dunda ku nelci lo se dunda ku"], ["The recipient liked the gift.", "The recipient will like the gift.", "The recipients liked the gifts."])
@@ -139,7 +139,7 @@ translations2_nice = t1 ++ t2 where
         , (["lo mlatu ku melbi"], ["The cat is beautiful.", "The cats are beautiful."])
         , (["lo gerku ku melbi"], ["The dog is beautiful.", "The dogs are beautiful."])
         ]
-    t2 = generateRestrictedTranslationExercise "Translate without using \"zo'e\"" (not . containsWord (T.pack "zo'e")) basicSentenceCanonicalizer <$> special
+    t2 = generateRestrictedTranslationExercise "Translate without using \"zo'e\"" (not . containsWord (T.pack "zo'e")) basicSentenceCanonicalizer <$> generatorFromSingleton <$> special
 
 translations2 :: [ExerciseGenerator]
 translations2 =  translations1_nice ++ translations2_nice ++ t1 ++ t2 where
@@ -147,7 +147,7 @@ translations2 =  translations1_nice ++ translations2_nice ++ t1 ++ t2 where
         [ (["mi tavla fi lo gerku ku"], ["I was talking about the dog.", "I was talking about the dogs.", "I am talking about the dog.", "I am talking about the dogs."])
         , (["tavla fi lo gerku ku"], ["Somebody was talking about the dog.", "Somebody was talking about the dogs."])
         ]
-    t1 =  generateTranslationExercise basicSentenceCanonicalizer <$> special ++
+    t1 =  generateTranslationExercise basicSentenceCanonicalizer <$> generatorFromSingleton <$> special ++
         [ (["lo prenu ku tavla lo gerku ku"], ["A person is talking to a dog.", "The person talks to dogs."])
         , (["lo prenu ku tavla lo mlatu ku"], ["A person is talking to a cat.", "The person talks to cats."])
         , (["mi te dunda lo gerku ku"], ["I was given a dog.", "I was given dogs.", "We were given a dog.", "We were given dogs."])
@@ -165,7 +165,7 @@ translations2 =  translations1_nice ++ translations2_nice ++ t1 ++ t2 where
         , (["do melbi mi"], ["You are beautiful to me."])
         , (["do melbi"], ["You are beautiful."])
         ]
-    t2 = generateRestrictedTranslationExercise "Translate without using \"zo'e\"" (not . containsWord (T.pack "zo'e")) basicSentenceCanonicalizer <$> special
+    t2 = generateRestrictedTranslationExercise "Translate without using \"zo'e\"" (not . containsWord (T.pack "zo'e")) basicSentenceCanonicalizer <$> generatorFromSingleton <$> special
 
 -- Are the sentences involving tavla really sensible?
 -- Teach nu and du'u, but not su'u
@@ -177,7 +177,7 @@ translations2 =  translations1_nice ++ translations2_nice ++ t1 ++ t2 where
 -- TODO: programmatic translation generation
 -- TODO: indicate optional words using parenthesis
 translations3 :: [ExerciseGenerator]
-translations3 = generateTranslationExercise basicSentenceCanonicalizer <$>
+translations3 = generateTranslationExercise basicSentenceCanonicalizer <$> generatorFromSingleton <$>
     [ (["mi gleki lo nu do tavla mi fi lo mlatu ku kei ku"], ["I am happy that you talked to me about cats."])
     , (["mi gleki lo nu do pendo mi kei ku"], ["I am happy that you are my friend."])
     , (["mi gleki lo nu do dunda lo mlatu ku mi kei ku"], ["I am happy that you gave me the cat.", "I am happy that you gave me cats."])
@@ -264,7 +264,7 @@ translations3 = generateTranslationExercise basicSentenceCanonicalizer <$>
     ]
 
 translations4 :: [ExerciseGenerator]
-translations4 = generateTranslationExercise basicSentenceCanonicalizer <$>
+translations4 = generateTranslationExercise basicSentenceCanonicalizer <$> generatorFromSingleton <$>
     [ (["lo prenu ku sutra tavla"], ["The person talks quickly.", "The person is talking quickly.", "A person is talking quickly.", "People talk quickly"])
     ]
 
