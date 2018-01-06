@@ -182,8 +182,8 @@ translations2 :: ExerciseGenerator
 translations2 =  combineFunctions [(1, translations1_nice), (8, translations2_nice), (4, translations2)] where
     t1 =  generateTranslationExercise basicSentenceCanonicalizer <$> [talkingToAnimal, teachingSecondPerson, likingAnimals, beautiful, others] where
         talkingToAnimal = generatorFromList
-            [ (["lo prenu ku tavla lo gerku ku"], ["A person is talking to a dog.", "The person talks to dogs."])
-            , (["lo prenu ku tavla lo mlatu ku"], ["A person is talking to a cat.", "The person talks to cats."])
+            [ (["lo prenu ku tavla lo mlatu ku"], ["A person is talking to a cat.", "The person talks to cats."])
+            , (["lo prenu ku tavla lo gerku ku"], ["A person is talking to a dog.", "The person talks to dogs."])
             ]
         teachingSecondPerson = generatorFromList
             [ (["mi ctuca do"], ["I will teach you.", "We will teach you.", "I taught you.", "We taught you."])
