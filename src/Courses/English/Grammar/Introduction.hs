@@ -80,11 +80,12 @@ vocabularyGenerator3 = createVocabularyBuilder
 
 -------- Translations
 translations1_nice :: [ExerciseGenerator]
-translations1_nice = generateTranslationExercise basicSentenceCanonicalizer <$> [tavla, dunda] where
-    tavla = generatorFromList
+translations1_nice = generateTranslationExercise basicSentenceCanonicalizer <$> [tavlaReflexive, dundaReordered] where
+    tavlaReflexive = generatorFromList
         [ (["mi tavla mi"], ["I am talking to myself.", "I was talking to myself.", "We were talking to ourselves."])
+        , (["do tavla do"], ["You are talking to yourself."])
         ]
-    dunda = generatorFromList
+    dundaReordered = generatorFromList
         [ (["do dunda ti mi"], ["You gave me this.", "You gave us this."])
         , (["mi dunda ta do"], ["I gave you that.", "We gave you that."])
         ]
@@ -110,7 +111,6 @@ translations1 = (++) translations1_nice $ generateTranslationExercise basicSente
         ]
     others = generatorFromSingleton <$>
         [ (["mi tavla zo'e do"], ["I was talking about you.", "We were talking about you.", "I am talking about you.", "We are talking about you.", "I will talk about you.", "We will talk about you."])
-        , (["do tavla do"], ["You are talking to yourself."])
         , (["mi dunda zo'e do"], ["I gave you something.", "I will give you something."])
         , (["zdani mi"], ["I have a house.", "We have a house.", "We have houses."])
         ]
