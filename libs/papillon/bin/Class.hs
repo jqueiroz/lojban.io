@@ -74,16 +74,16 @@ mkParseErrorTH = flip (valD $ varP $ mkName "mkParseError") [] $ normalB $
 	varE $ mkName "ParseError"
 
 parseErrorT :: Bool -> DecQ
-parseErrorT _ = flip (dataD (cxt []) (mkName "ParseError")
-		[PlainTV $ mkName "pos", PlainTV $ mkName "drv"])
-	[] $ [	recC (mkName "ParseError") [
+parseErrorT _ = dataD (cxt []) (mkName "ParseError")
+		[PlainTV $ mkName "pos", PlainTV $ mkName "drv"] Nothing
+	[	recC (mkName "ParseError") [
 			varStrictType c strT,
 			varStrictType m strT,
 			varStrictType com strT,
 			varStrictType d drvT,
 			varStrictType r lstT,
 			varStrictType pos posT ]
-	 ]
+	 ] []
 	where
 	[c, m, com, r, d, pos] = map mkName [
 		"peCode",
@@ -248,7 +248,7 @@ instance (SourceList c) => Source [c] where
 instanceSrcStr _ =
 	instanceD (cxt [classP sourceList [varT c]]) (conT source `appT` listC) [
 		tySynInstD tokenN $ tySynEqn [listC] (varT c),
-		flip (newtypeInstD (cxt []) posN [listC]) [] $
+		flip (newtypeInstD (cxt []) posN [listC] Nothing) [] $
 			normalC listPosN [strictType notStrict $
 				conT listPosN `appT` varT c],
 		valD (varP getTokenN) (normalB $ varE listTokenN) [],
@@ -307,12 +307,12 @@ instance SourceList Char where
 -}
 
 instanceSLC th = instanceD (cxt []) (conT sourceList `appT` conT (charN th)) [
-	newtypeInstD (cxt []) listPosN [conT $ charN th] (
+	newtypeInstD (cxt []) listPosN [conT $ charN th] Nothing (
 		normalC (mkName "CharPos") [
 			strictType notStrict $ tupleT 2
 				`appT` conT (mkName "Int")
 				`appT` conT (mkName "Int")]
-	 ) [mkName "Show"],
+	 ) ([derivClause Nothing $ [conT $ mkName "Show"]]),
 	funD listTokenN [
 		clause [infixP (varP c) (consN th) (varP s)]
 			(normalB $ conE (justN th) `appE` tupleBody) [],

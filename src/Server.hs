@@ -12,6 +12,7 @@ import qualified Data.ByteString.Lazy as BS
 import qualified Data.Map as M
 import qualified Data.Aeson as A
 import qualified Data.Text as T
+import Data.Either.Unwrap (fromRight)
 import qualified Courses.English.Grammar.Introduction
 import System.Random (newStdGen, mkStdGen)
 import qualified Text.Blaze as B
@@ -160,7 +161,7 @@ displayLessonHome course lessonNumber = do
                     H.h3 $ H.toHtml (lessonTitle lesson)
                     H.div $ do
                         H.h4 $ H.toHtml ("Lesson plan" :: String)
-                        PWH.writeHtml P.def (lessonPlan lesson)
+                        fromRight $ P.runPure $ PWH.writeHtml5 P.def (lessonPlan lesson)
                 H.div B.! A.class_ (H.stringValue "lesson-menu") $ do
                     H.h4 $ H.toHtml ("Menu" :: String)
                     H.ul $ displayLessonMenuItems "" course lessonNumber

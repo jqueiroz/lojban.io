@@ -22,6 +22,7 @@ executable lojto
                      , containers
                      , transformers
                      , file-embed
+                     , either-unwrap
                      , pandoc
                      , aeson
                      , random

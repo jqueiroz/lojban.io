@@ -35,6 +35,7 @@ module Text.Papillon.Parser (
 
 ) where
 
+import Prelude hiding (Word)
 import Text.Papillon.Papillon
 import "monads-tf" Control.Monad.State
 import "monads-tf" Control.Monad.Error
@@ -333,19 +334,19 @@ data Derivs
                                    (([Type], Derivs))),
               wrd :: (ErrorT (ParseError (Pos String) Derivs)
                              (State ((Maybe Int)))
-                             ((Text.Papillon.Parser.Word, Derivs))),
+                             ((Word, Derivs))),
               hsw :: (ErrorT (ParseError (Pos String) Derivs)
                              (State ((Maybe Int)))
-                             ((Text.Papillon.Parser.Word, Derivs))),
+                             ((Word, Derivs))),
               word :: (ErrorT (ParseError (Pos String) Derivs)
                               (State ((Maybe Int)))
-                              ((Text.Papillon.Parser.Word, Derivs))),
+                              ((Word, Derivs))),
               hsWord :: (ErrorT (ParseError (Pos String) Derivs)
                                 (State ((Maybe Int)))
-                                ((Text.Papillon.Parser.Word, Derivs))),
+                                ((Word, Derivs))),
               bras :: (ErrorT (ParseError (Pos String) Derivs)
                               (State ((Maybe Int)))
-                              ((Text.Papillon.Parser.Word, Derivs))),
+                              ((Word, Derivs))),
               typ :: (ErrorT (ParseError (Pos String) Derivs)
                              (State ((Maybe Int)))
                              ((String, Derivs))),

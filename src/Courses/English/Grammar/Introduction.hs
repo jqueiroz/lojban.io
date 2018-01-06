@@ -18,13 +18,13 @@ import qualified Text.Pandoc as P
 
 ------- Lesson plans
 plan1 :: P.Pandoc
-Right plan1 = P.readMarkdown P.def $ $(embedStringFile "courses/english/introduction/planning/1.md")
+Right plan1 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/introduction/planning/1.md")
 
 plan2 :: P.Pandoc
-Right plan2 = P.readMarkdown P.def $ $(embedStringFile "courses/english/introduction/planning/2.md")
+Right plan2 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/introduction/planning/2.md")
 
 plan3 :: P.Pandoc
-Right plan3 = P.readMarkdown P.def $ $(embedStringFile "courses/english/introduction/planning/3.md")
+Right plan3 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/introduction/planning/3.md")
 
 -------- Vocabulary
 vocabularyGenerator1 :: VocabularyBuilder

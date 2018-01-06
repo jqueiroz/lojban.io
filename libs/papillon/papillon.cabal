@@ -2,7 +2,7 @@ build-type:	Simple
 cabal-version:	>= 1.8
 
 name:		papillon
-version:	0.1.0.3
+version:	0.1.0.5
 stability:	Experimental
 author:		Yoshikuni Jujo <PAF01143@nifty.ne.jp>
 maintainer:	Yoshikuni Jujo <PAF01143@nifty.ne.jp>
@@ -28,7 +28,7 @@ source-repository	head
 source-repository	this
   type:		git
   location:	git://github.com/YoshikuniJujo/papillon.git
-  tag:		0.1.0.2
+  tag:		0.1.0.3
 
 library
   hs-source-dirs:	src
@@ -39,16 +39,16 @@ library
     Text.Papillon.Papillon,
     Text.Papillon.List
   build-depends:
-    base > 3 && < 5, template-haskell == 2.10.*,
-    monads-tf == 0.1.*, transformers == 0.4.*,
+    base > 3 && < 5, template-haskell == 2.12.*,
+    monads-tf == 0.1.*, transformers == 0.5.*,
     bytestring == 0.10.*
-  ghc-options:		-Wall
+  ghc-options:		-Wall -fno-warn-tabs
 
 executable	papillon
   hs-source-dirs:	bin
   main-is:		papillon.hs
   other-modules:	Class
   build-depends:
-    directory, filepath, base > 3 && < 5, template-haskell == 2.10.*,
-    monads-tf == 0.1.*, transformers == 0.4.*, papillon
-  ghc-options:		-Wall
+    directory, filepath, base > 3 && < 5, template-haskell == 2.12.*,
+    monads-tf == 0.1.*, transformers == 0.5.*, papillon
+  ghc-options:		-Wall -fno-warn-tabs

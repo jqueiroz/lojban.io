@@ -1,0 +1,195 @@
+2013.06.17 Mon.
+
+先頭と末尾の {} 内はそのまま String として出力してしまおうか。
+import 等が TH で扱えないので。
+QuasiQuote の parser と pappy 的な file 出力の parser を別にすれば良い。
+前者の前後に {} を追加するとか。
+しかし、それだとコードのなかで {} が使えなくて不便すぎるので、
+先頭と末尾は本体部分と == とかで分けたらいいかもしれない。
+これはコードに出てこないので。
+
+あるいは [papillon| と |] でくくれば、peggy っぽいコードと類似した感じとなる。
+これはある意味美しいかもしれない。
+
+つまり import Papillon の有無だけでそのふたつを分けることができる。
+しかも、場合によっては import Papillon は別に無害だ。
+
+type Result v = Maybe (v, Derivs)
+type PackratM = StateT Derivs Maybe
+
+data Derivs = Derivs {
+	dv... :: Result ...,
+	dv... :: Result ...,
+	dv... :: Result ...,
+	dvChars :: Result Char
+ }
+
+dv...M :: PackratM ...
+dv...M = StateT dv...
+
+dv...M :: PackratM ...
+dv...M = StateT dv...
+
+dv...M :: PackratM ...
+dv...M = StateT dv...
+
+parse :: String -> Derivs
+parse s = d where
+	d = Derivs ... ... ... chars
+	... = runStateT p... d
+	... = runStateT p... d
+	... = runStateT p... d
+	chars = flip runStateT d $ do
+		c : s' <- return s
+		put $ parse s'
+		return c
+
+p... :: PMonad ...
+p... = do
+	... <- dv...M
+	if ... ...
+	then return ...
+	else fail "not match"
+
+まずは葉の部分から変換していけばいいかもしれない。
+その葉を do のなかで集める。
+
+2013.06.18 Tue.
+
+'return を使ったほうが TH として使うときには便利だけど、
+mkName "return" を使ったほうが preprocessor として使うときには便利。
+
+先読みが必要か。
+
+2013.06.19 Wed.
+
+右辺に出てこないものについては dv_...M を作らないようにしよう。
+Maybe ではなく Either ParseError というようにする。
+もっと一般化し、s -> Either ParseError (c, s) のようにしよう。
+また、papillon で、flipMaybe をちゃんとくっつけるようにする必要がある。
+また、Text/Papillon/Parser.hs を git から外そう。
+
+2013.06.20 Thu.
+
+case getToken s of
+	Just (c, s) -> do
+		put $ parse s
+		return c
+	Nothing -> throwError $ strMsg "eof"
+
+次にすることは ! の形を変えることだ。
+今は var:!hoge のような形だが、本来ならば
+!var:hoge のような形にするべきだろう。
+もちろん !var:hoge は !_:hoge と書くべきだが、
+!"hoge":str のような形が作れるし、さらに言えば !'\n' のような形は便利だ。
+
+2013.06.21 Fri.
+
+同じ式のなかでは前の変数は見えるが、
+そのなかの式にはそれを伝えられない。
+zoi を実装するには何らかの形でそれが必要だと思う。
+あるいはくりかえしを内部で実装してしまうか、だ。
+"zoi":var sep:var strs:(str:var[notEq sep str])* cSep:[eq sep cSep]
+のような形だ。
+これは内部では以下のようになる。
+"zoi" <- var
+sep <- var
+strs <- list $ do
+	str <- var
+	unless (notEq sep str) $ throwError ...
+cSep <- var
+unless (eq sep cSep) $ throwError ...
+これはいい考えだな。
+つまり leaf = ... / v:var ':' leaf '*' のようにする。
+Leaf を type から data にする必要があるな。
+
+2013.07.24 Wed.
+
+2013年  7月 24日 水曜日 09:42:14 JST
+Text/Papillon.hs                        9
+Text/PapillonCore.hs                    423
+Text/Papillon/Parser.hs                 2153
+Text/Papillon/Papillon.hs               40
+Text/Papillon/SyntaxTree.hs             112
+Text/Papillon/List.hs                   53
+total                                   2790
+
+2013.07.28 Sun.
+
+2013年  7月 28日 日曜日 09:00:16 JST
+Text/Papillon.hs                        9
+Text/PapillonCore.hs                    456
+Text/Papillon/Parser.hs                 2178
+Text/Papillon/Papillon.hs               40
+Text/Papillon/SyntaxTree.hs             161
+Text/Papillon/List.hs                   53
+total                                   2897
+
+2013.07.31 Wed.
+
+これは ghc のバグらしい。
+newtype が not promotable になってしまう。
+困ったな。
+7.7 のどこかで解決されたみたいだけど、今の安定版は 7.6 だし。
+考えられる解決策は newtype ErrorT を data ErrorT に変えた版を作ることかな。
+
+上は全然違った。単に ' と '' のまちがいだったようだ。
+
+2013.08.01 Thu.
+
+2013年  8月  1日 木曜日 15:08:40 JST
+Text/Papillon.hs                        9
+Text/PapillonCore.hs                    357
+Text/Papillon/Parser.hs                 2286
+Text/Papillon/Papillon.hs               44
+Text/Papillon/SyntaxTree.hs             149
+Text/Papillon/List.hs                   59
+total                                   2904
+
+2013.08.03 Sat.
+
+tab をちゃんと数える。
+次の 8n + 1 へ行くということ。
+1 -> 9
+2 -> 9
+8 -> 9
+9 -> 17
+10 -> 17
+16 -> 17
+17 -> 25
+
+((x - 1) `div` 8 + 1) * 8 + 1
+--> (+ 1) . (* 8) . (+ 1) . (`div` 8) . (subtract 1)
+
+2013.08.12 Mon.
+
+2013年  8月 12日 月曜日 18:26:18 JST
+Text/Papillon.hs                        9
+Text/Papillon/Core.hs                   386
+Text/Papillon/Parser.hs                 2896
+Text/Papillon/Papillon.hs               46
+Text/Papillon/List.hs                   59
+total                                   3396
+
+Text/Papillon/Parser.papillon           494
+
+2013.08.15 Thu.
+
+Text/Papillon/Parser.papillon		488
+
+2013.08.19 Mon.
+
+2013年  8月 19日 月曜日 17:33:40 JST
+
+Text/Papillon.hs                        9
+Text/Papillon/Core.hs                   363
+Text/Papillon/Parser.hs                 2557
+Text/Papillon/Papillon.hs               46
+Text/Papillon/List.hs                   59
+total                                   3034
+
+Text/Papillon/Parser.papillon		448
+
+2013.08.26 Mon.
+
+新しい環境での push を試す。

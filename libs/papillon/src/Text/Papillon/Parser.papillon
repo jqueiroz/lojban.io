@@ -1,0 +1,576 @@
+{-# LANGUAGE FlexibleContexts, TemplateHaskell, UndecidableInstances,
+	BangPatterns #-}
+
+module Text.Papillon.Parser (
+	Lookahead(..),
+	Lists(..),
+
+	Peg,
+	Definition,
+	Selection,
+	Expression,
+	Check,
+	ReadFrom(..),
+
+	hsw,
+
+	pprCheck,
+
+	parse,
+	Source(..),
+	SourceList(..),
+	Derivs(pegFile, peg, char),
+	ParseError(..),
+	mkParseError,
+	pePositionS,
+	Pos(..),
+	ListPos(..),
+
+	PPragma(..),
+	ModuleName,
+	Exports,
+	Code,
+
+	runError,
+
+	dvCharsN
+) where
+
+import Language.Haskell.TH {- (
+	Name, TypeQ, PatQ, ExpQ, mkName,
+	conT, tupleT, listT, appT, arrowT,
+	wildP, litP, varP, conP, tupP, listP, uInfixP,
+	litE, varE, conE, tupE, listE, sigE, appE, infixE, uInfixE, lamE,
+	integerL, charL, stringL) -}
+import Data.Char (isDigit, isUpper, isLower, isAlphaNum, isHexDigit, chr)
+import Numeric (readHex)
+
+import Language.Haskell.TH.PprLib
+	((<>), hsep, colon, brackets, text, braces, Doc, parens, (<+>), quotes)
+import qualified Language.Haskell.TH.PprLib as P
+import Control.Arrow ((***))
+import Data.List
+import Data.Maybe
+
+data Lookahead = Here | Ahead | NAhead String deriving (Show, Eq)
+data Lists = List | List1 | Optional deriving (Show, Eq)
+
+type PegFile = ([PPragma], ModuleName, Maybe Exports, Code, STPeg, Code)
+data PPragma = LanguagePragma [String] | OtherPragma String deriving Show
+type ModuleName = [String]
+type Exports = String
+type Code = String
+
+type STPeg = (Maybe Type, Type, String, Peg)
+type Peg = [Definition]
+type Definition = (String, Maybe Type, Selection)
+type Selection = [Expression]
+type Expression = Either ([(Lookahead, Check)], Maybe Exp) Exp
+type Check = Either ((Pat, String), ReadFrom, Maybe (Exp, String)) (Char, Lists)
+data ReadFrom
+	= FromVariable (Maybe String)
+	| FromSelection Selection
+	| FromL Lists ReadFrom
+	deriving Show
+
+pprCheck :: Check -> Doc
+pprCheck (Left ((pt, _), rf, tst)) =
+	ppr pt <> colon <> ppr rf <> maybe P.empty (brackets . ppr . fst) tst
+pprCheck (Right (c, l)) = quotes (P.char c) <> ppr l
+
+instance Ppr ReadFrom where
+	ppr (FromVariable (Just v)) = text v
+	ppr (FromVariable _) = P.empty
+	ppr (FromL l rf) = ppr rf <> ppr l
+	ppr (FromSelection sel) = parens $ ps sel
+		where
+		ps = hsep . intersperse (P.char '/') . map pe
+		pe (Left (ex, hs)) = (<+> braces (maybe P.empty ppr hs)) $ hsep $
+			map (uncurry ($) . (((<>) . ppr) *** pprCheck)) ex
+		pe (Right ex) = P.char '<' <> ppr ex <> P.char '>'
+
+
+instance Ppr Lookahead where
+	ppr Here = P.empty
+	ppr Ahead = P.char '&'
+	ppr (NAhead _) = P.char '!'
+
+instance Ppr Lists where
+	ppr List = P.char '*'
+	ppr List1 = P.char '+'
+	ppr Optional = P.char '?'
+
+mkPegFile :: [PPragma] -> Maybe ([String], Maybe String) -> String -> String ->
+	STPeg -> String -> PegFile
+mkPegFile ps (Just md) x y z w = (ps, fst md, snd md, x ++ "\n" ++ y, z, w)
+mkPegFile ps Nothing x y z w = (ps, [], Nothing, x ++ "\n" ++ y, z, w)
+
+dvCharsN :: String
+dvCharsN = "char"
+
+opChars :: String
+opChars = ":!#$%&*+./<=>?@\\^|-~"
+
+data Word
+	= WSymbol String
+	| WType [String] String
+	| WVar [String] String
+	| WOpCon String
+	| WOp String
+	| WChar Char
+	| WString String
+	| WInteger Integer
+	| WOQuasiQuote String
+	| WCQuasiQuote
+
+	-- ["module", "where", "import", "if", "then", "else"]
+	| WModule
+	| WWhere
+	| WImport
+	| WIf
+	| WThen
+	| WElse
+	| WLet
+	| WIn
+
+	-- ["::", "->", "..", "{-#", "#-}"]
+	| WTypeDef
+	| WRightArrow
+	| WDotDot
+	| WOComment
+	| WCComment
+
+	-- "!&*+?=/:<>"
+	| WBang
+	| WAmp
+	| WAsterisk
+	| WPlus
+	| WQuestion
+	| WEqual
+	| WSlash
+	| WColon
+	| WLT
+	| WGT
+
+	-- "[]{}()"
+	| WOBracket
+	| WCBracket
+	| WOBrace
+	| WCBrace
+	| WOParen
+	| WCParen
+
+	-- ",;`"
+	| WComma
+	| WSemiColon
+	| WBackQuote
+	deriving Show
+
+[papillon|
+
+monad: State (Maybe Int)
+
+pegFile :: PegFile
+	= pr:pragma* md:moduleDec pip:preImpPap _:importPapillon pp:prePeg
+		(WOQuasiQuote "papillon"):hsw
+		p:peg_ WCQuasiQuote:hsw atp:afterPeg
+			{ return $ mkPegFile pr md pip pp p atp }
+	/ pr:pragma* md:moduleDec pp:prePeg
+		(WOQuasiQuote "papillon"):hsw
+		p:peg_ WCQuasiQuote:hsw atp:afterPeg
+			{ return $ mkPegFile pr md [] pp p atp }
+
+pragma :: PPragma
+	= WOComment:hsw (WType [] "LANGUAGE"):hsw s:pragmaItems WCComment:hsw
+						{ return $ LanguagePragma s }
+	/ WOComment:hsw s:pragmaStr WCComment:hsw
+						{ return $ OtherPragma s }
+
+pragmaStr :: String
+	= !WCComment:hsw c s:pragmaStr		{ return $ c : s }
+	/					{ return "" }
+
+pragmaItems :: [String]
+	= (WType [] t):hsw WComma:hsw i:pragmaItems
+						{ return $ t : i }
+	/ (WType [] t):hsw			{ return [t] }
+
+moduleDec :: Maybe ([String], Maybe String)
+	= WModule:hsw n:moduleName WOParen:hsw s:moduleDecStr _:whr
+						{ return $ Just (n, Just s) }
+	/ WModule:hsw n:moduleName WWhere:hsw	{ return $ Just (n, Nothing) }
+	/					{ return Nothing }
+
+moduleName :: ModuleName
+	= (WType m t):hsw			{ return $ m ++ [t] }
+
+moduleDecStr :: String
+	= !_:whr c s:moduleDecStr		{ return $ c : s }
+	/					{ return "" }
+
+whr = WCParen:hsw WWhere:hsw
+
+preImpPap :: String
+	= !_:importPapillon !(WOQuasiQuote "papillon"):hsw c pip:preImpPap
+						{ return $ c : pip }
+	/					{ return "" }
+
+prePeg :: String
+	= !(WOQuasiQuote "papillon"):hsw c pp:prePeg
+						{ return $ c : pp }
+	/					{ return "" }
+
+afterPeg :: String
+	= c atp:afterPeg			{ return $ c : atp }
+	/					{ return "" }
+
+importPapillon = WImport:hsw (WType ["Text"] "Papillon"):hsw
+
+peg :: STPeg = _:space* p:peg_			{ return p }
+
+peg_ :: STPeg = mt:monadType? st:sourceType? prfx:prefix? p:definition*
+	{ return (mt, fromMaybe (ConT $ mkName "String") st,
+		fromMaybe "" prfx, p) }
+
+monadType :: Type
+	= (!ListPos (CharPos (_, x))):position[put (Just x) >> return True]
+		(WSymbol "monad"):wrd WColon:wrd t:hsTypeArr WSemiColon:wrd
+						{ put Nothing >> return t }
+
+sourceType :: Type
+	= (!ListPos (CharPos (_, x))):position[put (Just x) >> return True]
+		(WSymbol "source"):wrd WColon:wrd t:hsTypeArr WSemiColon:wrd
+						{ put Nothing >> return t }
+
+prefix :: String
+	= (!ListPos (CharPos (_, x))):position[put (Just x) >> return True]
+		(WSymbol "prefix"):wrd WColon:wrd (WString prfx):hsw WSemiColon:wrd
+						{ put Nothing >> return prfx }
+
+definition :: Definition
+	= (!ListPos (CharPos (_, x))):position[put (Just x) >> return True]
+		(WSymbol v):wrd
+		mt:(WTypeDef:hsw t:hsTypeArr { return t })?
+		WEqual:wrd sel:selection WSemiColon:wrd
+		{ put Nothing >> return (v, mt, sel) }
+
+selection :: [Expression]
+	= ns:normalSelection			{ return ns }
+
+normalSelection :: [Expression]
+	= ex:expressionHs WSlash:wrd sel:normalSelection
+						{ return $ ex : sel }
+	/ ex:expressionHs			{ return [ex] }
+
+expressionHs :: Expression
+	= e:expressionHsSugar			{ return e }
+	/ e:expression mh:(WOBrace:wrd h:hsExpLam WCBrace:wrd { return h })?
+						{ return $ Left (e, mh) }
+
+expressionHsSugar :: Expression
+	= WLT:wrd h:hsExpLam WGT:wrd		{ return $ Right h }
+
+expressionHsSugar' :: Expression
+	= WLT:wrd h:hsExpLam' WGT:wrd		{ return $ Right h }
+
+expression :: [(Lookahead, Check)]
+	= l:nameLeaf_ e:expression		{ return $ l : e }
+	/					{ return [] }
+
+nameLeaf_ :: (Lookahead, Check)
+	= WBang:wrd nl:nameLeafNoCom com:comForErr?
+						{ return (NAhead $ maybe "" id com, nl) }
+	/ WAmp:wrd nl:nameLeaf			{ return (Ahead, nl) }
+	/ nl:nameLeaf				{ return (Here, nl) }
+
+nameLeaf :: Check
+	= cl:charLitLs				{ return cl }
+	/ n:pat1 com:comForErr? WColon:wrd (rf, p):leaf
+		{ return $ Left ((n, maybe "" id com), rf, p) }
+	/ n:pat1 com:comForErr?
+		{ return $ Left ((n, maybe "" id com), FromVariable Nothing, Nothing) }
+
+nameLeafNoCom :: Check
+	= cl:charLitLs				{ return cl }
+	/ n:pat1 com:comForErr? WColon:wrd (rf, p):leaf
+		{ return $ Left ((n, maybe "" id com), rf, p) }
+	/ n:pat1
+		{ return $ Left ((n, ""), FromVariable Nothing, Nothing) }
+
+comForErr :: String = WOComment:hsw (WString s):hsw WCComment:hsw
+						{ return s }
+
+leaf :: (ReadFrom, Maybe (Exp, String))
+	= rf:readFromLs t:test			{ return (rf, Just t) }
+	/ rf:readFromLs				{ return (rf, Nothing) }
+	/ t:test				{ return (FromVariable Nothing,
+							Just t) }
+
+patOp :: Pat
+	= p:pat (WOpCon o):hsw po:patOp		{ return $ UInfixP p (mkName o) po }
+	/ p:pat WBackQuote:hsw (WType [] t):hsw WBackQuote:hsw po:patOp
+						{ return $ UInfixP p (mkName t) po }
+	/ p:pat					{ return p }
+
+pat :: Pat
+	= (WType [] t):hsw ps:pats		{ return $ ConP (mkName t) ps }
+	/ WOParen:hsw (WOpCon o):hsw WCParen:hsw ps:pats
+						{ return $ ConP (mkName o) ps }
+	/ p:pat1				{ return p }
+
+pat1 :: Pat
+	= (WVar [] n):hsw (WOp "@"):hsw p:pat1	{ return $ AsP (mkName n) p }
+	/ (WType [] t):hsw			{ return $ ConP (mkName t) [] }
+	/ (WVar [] "_"):hsw			{ return WildP }
+	/ (WVar [] n):hsw			{ return $ VarP $ mkName n }
+	/ (WInteger i):hsw			{ return $ LitP (IntegerL i) }
+	/ (WOp "-"):hsw (WInteger i):hsw	{ return $ LitP (IntegerL $ - i) }
+	/ (WChar c):hsw				{ return $ LitP $ CharL c }
+	/ (WString s):hsw			{ return $ LitP $ StringL s }
+	/ WOParen:hsw p:patList WCParen:hsw	{ return $ TupP p }
+	/ WOBracket:hsw p:patList WCBracket:hsw	{ return $ ListP p }
+	/ WOParen:hsw p:pat WCParen:hsw		{ return p }
+	/ (WOp "!"):hsw p:pat			{ return $ BangP p }
+
+patList :: [Pat]
+	= p:patOp WComma:hsw ps:patList		{ return $ p : ps }
+	/ p:patOp				{ return [p] }
+	/					{ return [] }
+
+pats :: [Pat]
+	= p:pat ps:pats				{ return $ p : ps }
+	/					{ return [] }
+
+charLitLs :: Check
+	= (WChar c):hsw WAsterisk:wrd		{ return $ Right (c, List) }
+	/ (WChar c):hsw WPlus:wrd		{ return $ Right (c, List1) }
+	/ (WChar c):hsw WQuestion:wrd		{ return $ Right (c, Optional) }
+
+readFromLs :: ReadFrom
+	= rf:readFrom WAsterisk:wrd		{ return $ FromL List rf }
+	/ rf:readFrom WPlus:wrd			{ return $ FromL List1 rf }
+	/ rf:readFrom WQuestion:wrd		{ return $ FromL Optional rf }
+	/ rf:readFrom				{ return rf }
+
+readFrom :: ReadFrom
+	= (WSymbol v):wrd			{ return $ FromVariable $ Just v }
+	/ WOParen:wrd s:selection WCParen:wrd	{ return $ FromSelection s }
+	/ e:expressionHsSugar'			{ return $ FromSelection [e] }
+
+test :: (Exp, String)
+	= WOBracket:wrd h:hsExpLam com:comForErr? WCBracket:wrd
+						{ return (h, maybe "" id com) }
+
+hsExpLam :: Exp
+	= (WOp "\\"):hsw ps:pats WRightArrow:hsw e:hsExpTyp
+						{ return $ LamE ps e }
+	/ e:hsExpTyp				{ return e }
+
+hsExpTyp :: Exp
+	= eo:hsExpOp WTypeDef:hsw t:hsTypeArr	{ return $ SigE eo t }
+	/ eo:hsExpOp				{ return eo }
+
+hsExpOp :: Exp
+	= l:hsExp o:hsOp r:hsExpOp		{ return $ UInfixE (l id) o r }
+	/ e:hsExp				{ return $ e id }
+
+hsOp :: Exp
+	= (WOp op):hsw				{ return $ VarE $ mkName op }
+	/ (WOpCon op):hsw			{ return $ ConE $ mkName op }
+	/ WBackQuote:hsw (WVar [] v):hsw WBackQuote:hsw	
+						{ return $ VarE $ mkName v }
+	/ WBackQuote:hsw (WType [] t):hsw WBackQuote:hsw
+						{ return $ ConE $ mkName t }
+
+hsExpLam' :: Exp
+	= (WOp "\\"):hsw ps:pats WRightArrow:hsw e:hsExpTyp'
+						{ return $ LamE ps e }
+	/ e:hsExpTyp'				{ return e }
+
+hsExpTyp' :: Exp
+	= eo:hsExpOp' WTypeDef:hsw t:hsTypeArr	{ return $ SigE eo t }
+	/ eo:hsExpOp'				{ return eo }
+
+hsExpOp' :: Exp
+	= l:hsExp o:hsOp' r:hsExpOp'		{ return $ UInfixE (l id) o r }
+	/ e:hsExp				{ return $ e id }
+
+hsOp' :: Exp
+	= (WOp op):hsw[return $ head op /= '>']	{ return $ VarE $ mkName op }
+	/ (WOpCon op):hsw			{ return $ ConE $ mkName op }
+	/ WBackQuote:hsw v:var WBackQuote:hsw	{ return $ VarE $ mkName v }
+	/ WBackQuote:hsw t:typ WBackQuote:hsw	{ return $ ConE $ mkName t }
+
+hsExp :: (Exp -> Exp) -> Exp
+	= e:hsExp1 h:hsExp			{return (\f->h (f e `AppE`))}
+	/ e:hsExp1				{return (\f->f e)}
+
+hsExp1 :: Exp
+	= WOParen:hsw l:hsExpOp? o:hsOp r:hsExpOp? WCParen:hsw
+						{ return $ InfixE l o r }
+	/ WOParen:hsw et:hsExpTpl WCParen:hsw
+						{ return $ TupE et }
+	/ WOBracket:hsw et:hsExpTpl WCBracket:hsw
+						{ return $ ListE et }
+	/ WOBracket:hsw b:hsExpOp WDotDot:hsw e:hsExpOp WCBracket:hsw
+						{ return $ ArithSeqE $ FromToR b e }
+	/ (WVar [] v):hsw			{ return $ VarE $ mkName v }
+	/ (WType [] t):hsw			{ return $ ConE $ mkName t }
+	/ (WInteger i):hsw			{ return $ LitE $ integerL i }
+	/ (WChar c):hsw				{ return $ LitE $ charL c }
+	/ (WString s):hsw			{ return $ LitE $ stringL s }
+	/ (WOp "-"):hsw e:hsExp1		{ return $ AppE (VarE $ mkName "negate") e }
+	/ WIf:hsw p:hsExpLam WThen:hsw t:hsExpLam WElse:hsw e:hsExpLam
+						{ return $ CondE p t e }
+	/ WLet:hsw (WVar [] v):hsw (WOp "="):hsw e:hsExpLam WIn:hsw b:hsExpLam
+		{ return $ LetE
+			[ValD (VarP $ mkName v) (NormalB e) []]
+			b }
+
+hsExpTpl :: [Exp]
+	= e:hsExpLam WComma:hsw et:hsExpTpl
+						{ return $ e : et }
+	/ e:hsExpLam				{ return [e] }
+	/					{ return [] }
+
+hsTypeArr :: Type
+	= l:hsType WRightArrow:hsw r:hsTypeArr	{ return $ AppT (AppT ArrowT $ l id) r }
+	/ t:hsType				{ return $ t id }
+
+hsType :: (Type -> Type) -> Type
+	= t:hsType1 ts:hsType			{ return $(\f -> ts (f t `AppT`)) }
+	/ t:hsType1				{ return ($ t) }
+
+hsType1 :: Type
+	= WOBracket:hsw WCBracket:hsw	{ return ListT }
+	/ WOBracket:hsw t:hsTypeArr WCBracket:hsw
+						{ return $ ListT `AppT` t }
+	/ WOParen:hsw tt:hsTypeTpl WCParen:hsw	{ return $ foldl AppT
+							(TupleT $ length tt) tt }
+	/ (WType [] t):hsw			{ return $ ConT $ mkName t }
+	/ WOParen:hsw WRightArrow:hsw WCParen:hsw
+						{ return ArrowT }
+
+hsTypeTpl :: [Type]
+	= t:hsTypeArr WComma:hsw tt:hsTypeTpl	{ return $ t : tt }
+	/ t:hsTypeArr				{ return [t] }
+	/					{ return [] }
+
+wrd :: Word
+	= w:word _:space*			{ return w }
+	/ _:semiColon _:space'*			{ return WSemiColon}
+hsw :: Word = w:hsWord _:space*			{ return w }
+
+word :: Word
+	= v:<(||) <$> isAlphaNum <*> (`elem` "_'")>+
+			 			{ return $ WSymbol v }
+	-- "!&*+?=/:<>"
+	/ '!'					{ return WBang }
+	/ '&'					{ return WAmp }
+
+	/ '*'					{ return WAsterisk }
+	/ '+'					{ return WPlus }
+	/ '?'					{ return WQuestion }
+
+	/ '='					{ return WEqual }
+	/ '/'					{ return WSlash }
+	/ ':'					{ return WColon }
+	/ '<'					{ return WLT }
+	/ '>'					{ return WGT }
+
+	/ b:bras				{ return b }
+
+hsWord :: Word
+	-- ["module", "where", "import", "if", "then", "else"]
+	= 'm' 'o' 'd' 'u' 'l' 'e'		{ return $ WModule }
+	/ 'w' 'h' 'e' 'r' 'e'			{ return $ WWhere }
+	/ 'i' 'm' 'p' 'o' 'r' 't'		{ return $ WImport }
+	/ 'i' 'f'				{ return $ WIf }
+	/ 't' 'h' 'e' 'n'			{ return $ WThen }
+	/ 'e' 'l' 's' 'e'			{ return $ WElse }
+	/ 'l' 'e' 't'				{ return $ WLet }
+	/ 'i' 'n'				{ return $ WIn }
+
+	-- ["[hoge|", "|]", "::", "->", "..", "{-#", "#-}"]
+	/ '[' v:var '|'				{ return $ WOQuasiQuote v }
+	/ '|' ']'				{ return WCQuasiQuote }
+	/ ':' ':'				{ return WTypeDef }
+	/ '-' '>'				{ return WRightArrow }
+	/ '.' '.'				{ return WDotDot }
+	/ '{' '-' '#'				{ return WOComment }
+	/ '#' '-' '}'				{ return WCComment }
+--	/ '='					{ return WEqual }
+
+	/ m:(t:typ '.' { return t })* t1:typ	{ return $ WType m t1 }
+	/ m:(t:typ '.' { return t })* v1:var	{ return $ WVar m v1 }
+	/ ':' w:<(`elem` opChars)>*		{ return $ WOpCon $ ':' : w }
+	/ w:<(`elem` opChars)>+			{ return $ WOp w }
+	/ '\'' c:<(`notElem` "\\'")> '\''	{ return $ WChar c }
+	/ '\'' '\\' c:escChar '\''		{ return $ WChar c }
+	/ '"' s:strLit '"'			{ return $ WString s }
+	/ d:<isDigit>+				{ return $ WInteger $ read d }
+
+	/ b:bras				{ return b }
+	/ ','					{ return WComma }
+	/ '`'					{ return WBackQuote }
+
+bras :: Word
+	= '['					{ return WOBracket }
+	/ ']'					{ return WCBracket }
+	/ '{'					{ return WOBrace }
+	/ '}'					{ return WCBrace }
+	/ '('					{ return WOParen }
+	/ ')'					{ return WCParen }
+
+typ :: String = u:<isUpper>
+	cs:<(||) <$> isAlphaNum <*> (`elem` "_'")>*	
+						{ return $ u : cs }
+var :: String = l:<(||) <$> isLower <*> (== '_')>
+	cs:<(||) <$> isAlphaNum <*> (`elem` "_'")>*
+						{ return $ l : cs }
+
+strLit :: String
+	= c0:('\\' c:escChar { return c } / <(`notElem` "\"\\")>) s:strLit
+						{ return $ c0 : s }
+	/					{ return "" }
+
+escChar :: Char
+	= '\\'					{ return '\\' }
+	/ '\''					{ return '\'' }
+	/ '"'					{ return '"' }
+	/ 'n'					{ return '\n' }
+	/ 'r'					{ return '\r' }
+	/ 't'					{ return '\t' }
+	/ 'x' ds:<isHexDigit>+			{ return $ chr $ fst $ head $ readHex ds }
+
+space	= _:<(`elem` " \t")>
+	/ _:notSemiColon
+	/ _:comment
+	/ _:lineComment
+
+space'	= _:<(`elem` " \t")>
+	/ '\n'+
+	/ _:comment
+	/ _:lineComment
+
+lineComment = '-' '-' _:<(/= '\n')>* &'\n'
+
+comment = '{' '-' !'#' _:comments '-' '}'
+comments = _:comStr _:comment _:comments / _:comStr
+comStr = !_:comment !_:('-' '}') _ _:comStr /
+
+semiColon
+	= ';'
+	/ '\n'+ _:('\t' / ' ')*
+		(!ListPos (CharPos (_, x))):position[maybe False (x <=) <$> get]
+		!_:lineComment !_:comment !';'
+	/ !_:[return True]
+
+notSemiColon
+	= '\n'+ _:('\t' / ' ')*
+		(!ListPos (CharPos (_, x))):position[maybe True (x >) <$> get]
+	/ '\n'+ _:lineComment
+	/ '\n'+ _:comment
+	/ '\n'+ &';'
+
+|]
