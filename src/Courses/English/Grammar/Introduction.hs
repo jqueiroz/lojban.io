@@ -110,8 +110,11 @@ translations1 = (++) translations1_nice $ generateTranslationExercise basicSente
         , (["ta zdani"], ["That is a house.", "Those are houses."])
         ]
     others = generatorFromSingleton <$>
+        -- not marked as "nice" because it becomes a special exercise in the next lesson ("translate without zo'e")
         [ (["mi tavla zo'e do"], ["I was talking about you.", "We were talking about you.", "I am talking about you.", "We are talking about you.", "I will talk about you.", "We will talk about you."])
+        -- not marked as "nice" because it becomes a special exercise in the next lesson ("translate without zo'e")
         , (["mi dunda zo'e do"], ["I gave you something.", "I will give you something."])
+        -- not marked as "nice" because the cannonical answer changes to "mi se zdani" in the next lesson
         , (["zdani mi"], ["I have a house.", "We have a house.", "We have houses."])
         ]
 
