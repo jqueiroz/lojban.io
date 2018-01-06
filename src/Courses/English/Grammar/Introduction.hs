@@ -180,7 +180,7 @@ translations2_nice = combineFunctions [(1, restricted_translations), (5, normal_
             , (["dunda lo gerku ku mi"], ["Somebody gave me a dog.", "Somebody gave me dogs.", "Somebody gave us a dog.", "Somebody gave us dogs."])
             ]
         others = generatorFromList
-            [ (["lo tavla ku pendo mi"], ["The speaker is my friend.", "The speakers are my friends."]) -- is "speaker" a good choice? maybe it implies voice...
+            [ (["lo tavla ku pendo mi"], ["The speaker is my friend.", "The speakers are my friends."]) -- is "speaker" a good choice? maybe it implies voice or authority...
             , (["mi nelci lo dunda ku"], ["I like the donor.", "I like the donors."])
             , (["mi nelci lo xe ctuca ku"], ["I like the teaching method."])
             , (["lo se tavla ku prenu"], ["The listener is a person.", "The listeners are persons."]) -- is "listener" a good choice?
