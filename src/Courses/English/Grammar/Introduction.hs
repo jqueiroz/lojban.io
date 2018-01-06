@@ -143,7 +143,7 @@ translations2_nice = combineFunctions [(1, restricted_translations), (5, normal_
             , (["do dunda fi mi"], ["You gave me something."])
             ]
     restricted_translations = generateRestrictedTranslationExercise "Translate without using \"zo'e\"" (not . containsWord (T.pack "zo'e")) basicSentenceCanonicalizer special
-    normal_translations = generateTranslationExercise basicSentenceCanonicalizer $ combineFunctionsUniformly [special, hasHouse, beautifulGift, likedGift, giftingAnimal, others] where
+    normal_translations = generateTranslationExercise basicSentenceCanonicalizer $ combineFunctionsUniformly [special, hasHouse, niceGift, giftingAnimal, others] where
         hasHouse = generatorFromList
             [ (["lo ctuca ku se zdani"], ["The instructor has a house."])
             , (["lo prenu ku se zdani"], ["The person has a house."])
@@ -153,14 +153,15 @@ translations2_nice = combineFunctions [(1, restricted_translations), (5, normal_
             , (["lo dunda ku se zdani"], ["The donor has a house."])
             , (["lo te dunda ku se zdani"], ["The recipient has a house."])
             ]
-        beautifulGift = generatorFromList
-            [ (["lo se dunda ku melbi mi"], ["The gift is beautiful to me.", "The gifts are beautiful to me."])
-            , (["lo se dunda ku melbi"], ["The gift is beautiful.", "The gifts are beautiful."])
-            ]
-        likedGift = generatorFromList
-            [ (["lo te dunda ku nelci lo se dunda ku"], ["The recipient liked the gift.", "The recipient will like the gift.", "The recipients liked the gifts."])
-            , (["lo ctuca ku nelci lo se dunda ku"], ["The instructor liked the gift.", "The instructor will like the gift."])
-            ]
+        niceGift = combineFunctionsUniformly [beautifulGift, likedGift] where
+            beautifulGift = generatorFromList
+                [ (["lo se dunda ku melbi mi"], ["The gift is beautiful to me.", "The gifts are beautiful to me."])
+                , (["lo se dunda ku melbi"], ["The gift is beautiful.", "The gifts are beautiful."])
+                ]
+            likedGift = generatorFromList
+                [ (["lo te dunda ku nelci lo se dunda ku"], ["The recipient liked the gift.", "The recipient will like the gift.", "The recipients liked the gifts."])
+                , (["lo ctuca ku nelci lo se dunda ku"], ["The instructor liked the gift.", "The instructor will like the gift."])
+                ]
         giftingAnimal = generatorFromList
             -- mlatu
             [ (["mi dunda lo mlatu ku lo pendo ku"], ["I gave the cat to a friend.", "I gave the cats to a friend."])
