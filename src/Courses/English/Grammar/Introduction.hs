@@ -13,7 +13,8 @@ import Control.Applicative ((<$>))
 import qualified Data.Text as T
 import qualified Text.Pandoc as P
 
---Interesting words: jinga, sidju
+--Interesting words: djica, sidju, jinga
+-- introduce djica alongside questions: "I want you to be happy" / "Do you want me to be happy?" / "What do you want?" / "Who wants you to be happy" / "Who do you want to be happy?"
 
 ------- Lesson plans
 plan1 :: P.Pandoc
