@@ -92,7 +92,7 @@ translations1_nice = generateTranslationExercise basicSentenceCanonicalizer $ co
 
 translations1 :: ExerciseGenerator
 translations1 = combineFunctions [(1, translations1_nice), (4, more_translations)] where
-    more_translations = generateTranslationExercise basicSentenceCanonicalizer $ combineFunctionsUniformly $ others ++ [talkingWithSecondPerson, pendo, prenu, demonstrative] where
+    more_translations = generateTranslationExercise basicSentenceCanonicalizer $ combineFunctionsUniformly $ others ++ [talkingWithSecondPerson, pendo, prenu, demonstrative, zdani] where
         talkingWithSecondPerson = generatorFromList
             [ (["mi tavla do"], ["I am talking to you.", "I was talking to you.", "We are talking to you.", "We were talking to you."])
             , (["do tavla mi"], ["You are talking to me.", "You are talking to us."])
@@ -110,6 +110,12 @@ translations1 = combineFunctions [(1, translations1_nice), (4, more_translations
             , (["ta mlatu"], ["That is a cat.", "Those are cats."])
             , (["ta zdani"], ["That is a house.", "Those are houses."])
             ]
+        zdani = generatorFromList
+            -- not marked as "nice" because the cannonical answer changes to "mi se zdani" in the next lesson
+            [ (["zdani mi"], ["I have a house.", "We have a house.", "We have houses."])
+            -- not marked as "nice" because the cannonical answer changes to "do se zdani" in the next lesson
+            , (["zdani do"], ["You have a house.", "You have houses."])
+            ]
         others = generatorFromSingleton <$>
             -- not marked as "nice" because it becomes a special exercise in the next lesson ("translate without zo'e")
             [ (["mi tavla zo'e mi"], ["I was talking about myself.", "We were talking about ourselves.", "I will talk about myself."])
@@ -117,8 +123,6 @@ translations1 = combineFunctions [(1, translations1_nice), (4, more_translations
             , (["mi tavla zo'e do"], ["I was talking about you.", "We were talking about you.", "I am talking about you.", "We are talking about you.", "I will talk about you.", "We will talk about you."])
             -- not marked as "nice" because it becomes a special exercise in the next lesson ("translate without zo'e")
             , (["mi dunda zo'e do"], ["I gave you something.", "I will give you something."])
-            -- not marked as "nice" because the cannonical answer changes to "mi se zdani" in the next lesson
-            , (["zdani mi"], ["I have a house.", "We have a house.", "We have houses."])
             ]
 
 translations2_nice :: ExerciseGenerator
@@ -209,6 +213,7 @@ translations2 =  combineFunctions [(1, translations1_nice), (8, translations2_ni
         others = generatorFromList
             [ (["ctuca mi"], ["Somebody taught me.", "Somebody taught us."])
             , (["mi se zdani"], ["I have a house.", "We have a house.", "We have houses."])
+            , (["do se zdani"], ["You have a house.", "You have houses."])
             , (["do melbi mi"], ["You are beautiful to me."])
             , (["do melbi"], ["You are beautiful."])
             ]
