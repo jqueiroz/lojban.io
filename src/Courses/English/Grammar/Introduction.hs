@@ -7,7 +7,7 @@ import Core
 import Courses.Util.Vocabulary
 import Courses.Util.Sentences
 import Courses.Util.ExerciseGenerators
-import Util (combineFunctions, combineFunctionsUniformly, generatorFromSingleton, containsWord)
+import Util (combineFunctions, combineFunctionsUniformly, generatorFromSingleton, generatorFromList, containsWord)
 import Data.FileEmbed (embedStringFile)
 import Control.Applicative ((<$>))
 import qualified Data.Text as T
@@ -80,28 +80,40 @@ vocabularyGenerator3 = createVocabularyBuilder
 
 -------- Translations
 translations1_nice :: [ExerciseGenerator]
-translations1_nice = generateTranslationExercise basicSentenceCanonicalizer <$> generatorFromSingleton <$>
-    [ (["mi tavla mi"], ["I am talking to myself.", "I was talking to myself.", "We were talking to ourselves."])
-    , (["do dunda ti mi"], ["You gave me this.", "You gave us this."])
-    , (["mi dunda ta do"], ["I gave you that.", "We gave you that."])
-    ]
+translations1_nice = generateTranslationExercise basicSentenceCanonicalizer <$> [tavla, dunda] where
+    tavla = generatorFromList
+        [ (["mi tavla mi"], ["I am talking to myself.", "I was talking to myself.", "We were talking to ourselves."])
+        ]
+    dunda = generatorFromList
+        [ (["do dunda ti mi"], ["You gave me this.", "You gave us this."])
+        , (["mi dunda ta do"], ["I gave you that.", "We gave you that."])
+        ]
 
 translations1 :: [ExerciseGenerator]
-translations1 = (++) translations1_nice $ generateTranslationExercise basicSentenceCanonicalizer <$> generatorFromSingleton <$>
-    [ (["mi tavla zo'e do"], ["I was talking about you.", "We were talking about you.", "I am talking about you.", "We are talking about you.", "I will talk about you.", "We will talk about you."])
-    , (["mi tavla do"], ["I am talking to you.", "I was talking to you.", "We are talking to you.", "We were talking to you."])
-    , (["do tavla mi"], ["You are talking to me.", "You are talking to us."])
-    , (["do tavla do"], ["You are talking to yourself."])
-    , (["mi dunda zo'e do"], ["I gave you something.", "I will give you something."])
-    , (["do pendo mi"], ["You are my friend."])
-    , (["mi pendo do"], ["I am your friend."])
-    , (["mi prenu"], ["I am a person.", "We are persons."])
-    , (["do prenu"], ["You are a person.", "You are persons."])
-    , (["ti mlatu"], ["This is a cat.", "These are cats."])
-    , (["ta mlatu"], ["That is a cat.", "Those are cats."])
-    , (["ta zdani"], ["That is a house.", "Those are houses."])
-    , (["zdani mi"], ["I have a house.", "We have a house.", "We have houses."])
-    ]
+translations1 = (++) translations1_nice $ generateTranslationExercise basicSentenceCanonicalizer <$> others ++ [talkingWithSecondPerson, pendo, prenu, demonstrative] where
+    talkingWithSecondPerson = generatorFromList
+        [ (["mi tavla do"], ["I am talking to you.", "I was talking to you.", "We are talking to you.", "We were talking to you."])
+        , (["do tavla mi"], ["You are talking to me.", "You are talking to us."])
+        ]
+    pendo = generatorFromList
+        [ (["do pendo mi"], ["You are my friend."])
+        , (["mi pendo do"], ["I am your friend."])
+        ]
+    prenu = generatorFromList
+        [ (["mi prenu"], ["I am a person.", "We are persons."])
+        , (["do prenu"], ["You are a person.", "You are persons."])
+        ]
+    demonstrative = generatorFromList
+        [ (["ti mlatu"], ["This is a cat.", "These are cats."])
+        , (["ta mlatu"], ["That is a cat.", "Those are cats."])
+        , (["ta zdani"], ["That is a house.", "Those are houses."])
+        ]
+    others = generatorFromSingleton <$>
+        [ (["mi tavla zo'e do"], ["I was talking about you.", "We were talking about you.", "I am talking about you.", "We are talking about you.", "I will talk about you.", "We will talk about you."])
+        , (["do tavla do"], ["You are talking to yourself."])
+        , (["mi dunda zo'e do"], ["I gave you something.", "I will give you something."])
+        , (["zdani mi"], ["I have a house.", "We have a house.", "We have houses."])
+        ]
 
 translations2_nice :: [ExerciseGenerator]
 translations2_nice = t1 ++ t2 where

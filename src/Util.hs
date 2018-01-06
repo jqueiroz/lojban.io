@@ -82,6 +82,9 @@ chooseItemsUniformly r0 q xs = (y:ys, r2) where
 generatorFromSingleton :: a -> StdGen -> (a, StdGen)
 generatorFromSingleton x r0 = (x, r0)
 
+generatorFromList :: [a] -> StdGen -> (a, StdGen)
+generatorFromList = flip chooseItemUniformly
+
 -- combineSimpleFunctions :: [(Int, a)] -> (StdGen -> a)
 
 combineFunctions :: [(Int, StdGen -> a)] -> (StdGen -> a)
