@@ -193,8 +193,8 @@ translations2_nice = combineFunctions [(1, restricted_translations), (5, normal_
             ]
 
 translations2 :: ExerciseGenerator
-translations2 =  combineFunctions [(1, translations1_nice), (10, translations2_nice), (4, translations2)] where
-    t1 =  generateTranslationExercise basicSentenceCanonicalizer <$> [talkingToAnimal, likingAnimals, beautiful, others] where
+translations2 =  combineFunctions [(1, translations1_nice), (10, translations2_nice), (5, more_translations)] where
+    more_translations =  generateTranslationExercise basicSentenceCanonicalizer $ combineFunctionsUniformly [talkingToAnimal, likingAnimals, animalFriends, beautiful, others] where
         talkingToAnimal = generatorFromList
             [ (["lo prenu ku tavla lo mlatu ku"], ["A person is talking to a cat.", "The person talks to cats."])
             , (["lo prenu ku tavla lo gerku ku"], ["A person is talking to a dog.", "The person talks to dogs."])
@@ -204,6 +204,12 @@ translations2 =  combineFunctions [(1, translations1_nice), (10, translations2_n
             , (["mi nelci lo gerku ku"], ["I like the dog.", "I like dogs."])
             , (["lo gerku ku nelci lo mlatu ku"], ["The dog likes the cat.", "Dogs like cats."])
             , (["lo mlatu ku nelci lo gerku ku"], ["The cat likes the dog.", "Cats like dogs."])
+            ]
+        animalFriends = generatorFromList
+            [ (["lo mlatu ku pendo mi"], ["The cat is my friend."])
+            , (["lo gerku ku pendo mi"], ["The dog is my friend."])
+            , (["lo mlatu ku pendo"], ["Cats are friendly."])
+            , (["lo gerku ku pendo"], ["Dogs are friendly."])
             ]
         beautiful = generatorFromList
             [ (["lo zdani ku melbi"], ["The house is beautiful.", "The houses are beautiful."])
