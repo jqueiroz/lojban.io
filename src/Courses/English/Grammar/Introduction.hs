@@ -188,10 +188,18 @@ translations2_nice = combineFunctions [(1, restricted_translations), (5, normal_
             , (["ctuca mi"], ["Somebody taught me.", "Somebody taught us."])
             , (["ctuca do"], ["Somebody taught you."])
             ]
-        others = generatorFromList
-            [ (["lo tavla ku pendo mi"], ["The speaker is my friend.", "The speakers are my friends."])
-            , (["mi nelci lo xe ctuca ku"], ["I like the teaching method."])
-            ]
+        others = combineFunctionsUniformly [friends, teachingMethod] where
+            friends = generatorFromList
+                [ (["lo tavla ku pendo mi"], ["The speaker is my friend.", "The speakers are my friends."])
+                , (["lo se tavla ku pendo mi"], ["The listener is my friend.", "The listeners are my friends."])
+                , (["lo dunda ku pendo mi"], ["The donor is my friend.", "The donors are my friends."])
+                , (["lo te dunda ku pendo mi"], ["The recipient is my friend.", "The recipients are my friends."])
+                , (["lo ctuca ku pendo mi"], ["The instructor is my friend.", "The instructors are my friends."])
+                ]
+            teachingMethod = generatorFromList
+                [ (["mi nelci lo xe ctuca ku"], ["I like the teaching method."])
+                , (["do nelci lo xe ctuca ku"], ["You like the teaching method."])
+                ]
 
 translations2 :: ExerciseGenerator
 translations2 =  combineFunctions [(1, translations1_nice), (10, translations2_nice), (5, more_translations)] where
