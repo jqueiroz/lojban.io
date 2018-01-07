@@ -259,7 +259,7 @@ translations2 =  combineFunctions [(1, translations1_nice), (10, translations2_n
 -- TODO: indicate optional words using parenthesis
 translations3 :: ExerciseGenerator
 translations3 = combineFunctionsUniformly $ generateTranslationExercise basicSentenceCanonicalizer <$> generatorFromSingleton <$>
-    [ (["mi gleki lo nu do tavla mi fi lo mlatu ku kei ku"], ["I am happy that you talked to me about cats."])
+    [ (["mi gleki lo nu do tavla mi lo mlatu ku kei ku"], ["I am happy that you talked to me about cats."])
     , (["mi gleki lo nu do pendo mi kei ku"], ["I am happy that you are my friend."])
     , (["mi gleki lo nu do dunda lo mlatu ku mi kei ku"], ["I am happy that you gave me the cat.", "I am happy that you gave me cats."])
     , (["mi gleki lo nu do dunda lo gerku ku mi kei ku"], ["I am happy that you gave me the dog.", "I am happy that you gave me dogs."])
