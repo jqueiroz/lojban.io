@@ -190,7 +190,6 @@ translations2_nice = combineFunctions [(1, restricted_translations), (5, normal_
             ]
         others = generatorFromList
             [ (["lo tavla ku pendo mi"], ["The speaker is my friend.", "The speakers are my friends."])
-            , (["mi nelci lo dunda ku"], ["I like the donor.", "I like the donors."])
             , (["mi nelci lo xe ctuca ku"], ["I like the teaching method."])
             ]
 
@@ -234,6 +233,7 @@ translations2 =  combineFunctions [(1, translations1_nice), (10, translations2_n
             , (["mi nelci lo prenu ku"], ["I like the person.", "I like people.", "We like people."])
             , (["do melbi mi"], ["You are beautiful to me."])
             , (["do melbi"], ["You are beautiful."])
+            , (["mi nelci lo dunda ku"], ["I like the donor.", "I like the donors."])
             ]
 
 -- Are the sentences involving tavla really sensible?
