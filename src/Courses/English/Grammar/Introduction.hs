@@ -194,7 +194,7 @@ translations2_nice = combineFunctions [(1, restricted_translations), (5, normal_
 
 translations2 :: ExerciseGenerator
 translations2 =  combineFunctions [(1, translations1_nice), (10, translations2_nice), (5, more_translations)] where
-    more_translations =  generateTranslationExercise basicSentenceCanonicalizer $ combineFunctionsUniformly [talkingToAnimal, likingAnimals, animalFriends, beautiful, others] where
+    more_translations =  generateTranslationExercise basicSentenceCanonicalizer $ combineFunctionsUniformly [talkingToAnimal, likingAnimals, animalFriends, beautiful, person, others] where
         talkingToAnimal = generatorFromList
             [ (["lo prenu ku tavla lo mlatu ku"], ["A person is talking to a cat.", "The person talks to cats."])
             , (["lo prenu ku tavla lo gerku ku"], ["A person is talking to a dog.", "The person talks to dogs."])
@@ -219,9 +219,17 @@ translations2 =  combineFunctions [(1, translations1_nice), (10, translations2_n
             , (["lo mlatu ku melbi mi"], ["The cat is beautiful to me.", "The cats are beautiful to me."])
             , (["lo gerku ku melbi mi"], ["The dog is beautiful to me.", "The dogs are beautiful to me."])
             ]
+        person = generatorFromList
+            [ (["lo tavla ku prenu"], ["The speaker is a person."])
+            , (["lo se tavla ku prenu"], ["The listener is a person."])
+            , (["lo dunda ku prenu"], ["The donor is a person."])
+            , (["lo te dunda ku prenu"], ["The recipient is a person."])
+            , (["lo ctuca ku prenu"], ["The instructor is a person."])
+            ]
         others = generatorFromList
             [ (["mi se zdani"], ["I have a house.", "We have a house.", "We have houses."])
             , (["do se zdani"], ["You have a house.", "You have houses."])
+            , (["mi nelci lo prenu ku"], ["I like the person.", "I like people.", "We like people."])
             , (["do melbi mi"], ["You are beautiful to me."])
             , (["do melbi"], ["You are beautiful."])
             ]
