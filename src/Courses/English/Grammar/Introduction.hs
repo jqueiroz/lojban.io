@@ -189,7 +189,6 @@ translations2_nice = combineFunctions [(1, restricted_translations), (5, normal_
             [ (["lo tavla ku pendo mi"], ["The speaker is my friend.", "The speakers are my friends."]) -- is "speaker" a good choice? maybe it implies voice or authority...
             , (["mi nelci lo dunda ku"], ["I like the donor.", "I like the donors."])
             , (["mi nelci lo xe ctuca ku"], ["I like the teaching method."])
-            , (["lo se tavla ku prenu"], ["The listener is a person.", "The listeners are persons."]) -- is "listener" a good choice?
             ]
 
 translations2 :: ExerciseGenerator
