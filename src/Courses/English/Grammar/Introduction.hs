@@ -16,6 +16,9 @@ import qualified Text.Pandoc as P
 --Interesting words: djica, sidju, jinga
 -- introduce djica alongside questions: "I want you to be happy" / "Do you want me to be happy?" / "What do you want?" / "Who wants you to be happy" / "Who do you want to be happy?"
 
+-- Considerations
+--   * is "speaker" a good choice? maybe it implies voice or authority...
+
 ------- Lesson plans
 plan1 :: P.Pandoc
 Right plan1 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/introduction/planning/1.md")
@@ -186,7 +189,7 @@ translations2_nice = combineFunctions [(1, restricted_translations), (5, normal_
             , (["ctuca do"], ["Somebody taught you."])
             ]
         others = generatorFromList
-            [ (["lo tavla ku pendo mi"], ["The speaker is my friend.", "The speakers are my friends."]) -- is "speaker" a good choice? maybe it implies voice or authority...
+            [ (["lo tavla ku pendo mi"], ["The speaker is my friend.", "The speakers are my friends."])
             , (["mi nelci lo dunda ku"], ["I like the donor.", "I like the donors."])
             , (["mi nelci lo xe ctuca ku"], ["I like the teaching method."])
             ]
