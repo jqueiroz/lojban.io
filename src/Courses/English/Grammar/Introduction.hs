@@ -258,121 +258,140 @@ translations2 =  combineFunctions [(1, translations1_nice), (10, translations2_n
 -- TODO: programmatic translation generation
 -- TODO: indicate optional words using parenthesis
 translations3 :: ExerciseGenerator
-translations3 = generateTranslationExercise basicSentenceCanonicalizer $ combineFunctionsUniformly [gleki, tavla, nupre, cusku, others] where
-    gleki = generatorFromList
-        -- friendship
-        [ (["mi gleki lo nu do pendo mi kei ku"], ["I am happy that you are my friend."])
-        -- giving animals
-        , (["mi gleki lo nu do dunda lo mlatu ku mi kei ku"], ["I am happy that you gave me the cat.", "I am happy that you gave me cats."])
-        , (["mi gleki lo nu do dunda lo gerku ku mi kei ku"], ["I am happy that you gave me the dog.", "I am happy that you gave me dogs."])
-        , (["mi gleki lo nu mi te dunda lo mlatu ku kei ku"], ["I am happy that I was given a cat.", "I am happy that I was given cats."])
-        , (["mi gleki lo nu mi te dunda lo gerku ku kei ku"], ["I am happy that I was given a dog.", "I am happy that I was given dogs."])
-        -- talking to someone
-        , (["mi gleki lo nu do tavla mi kei ku"], ["I am happy that you talked to me."])
-        -- talking about animals
-        , (["mi gleki lo nu do tavla mi lo mlatu ku kei ku"], ["I am happy that you talked to me about cats."])
-        -- liking
-        , (["mi gleki lo nu do nelci mi kei ku"], ["I am happy that you like me.", "I am happy that you like us.", "We are happy that you like us."])
-        , (["mi gleki lo nu lo prenu ku nelci mi kei ku"], ["I am happy that people like me.", "I am happy that people like us.", "We are happy that people like us."])
-        , (["mi gleki lo nu lo prenu ku nelci do kei ku"], ["I am happy that people like you.", "We are happy that people like you."])
-        -- teaching
-        , (["mi gleki lo nu do ctuca mi kei ku"], ["I am happy that you taught me."])
-        -- owning house
-        , (["mi gleki lo nu mi se zdani kei ku"], ["I am happy that I have a house."])
-        , (["mi gleki lo nu do se zdani kei ku"], ["I am happy that you have a house."])
-        -- other
-        , (["mi gleki lo nu do gleki kei ku"], ["I am happy that you are happy."])
-        , (["mi gleki lo nu mi prenu kei ku"], ["I am happy that I am a person."])
-        , (["mi gleki lo nu do prenu kei ku"], ["I am happy that you are a person."])
-        , (["mi gleki lo nu lo te dunda ku pendo mi kei ku"], ["I am happy that the recipient is my friend."])
-        ]
-    tavla = generatorFromList
-        -- owning house
-        [ (["mi tavla fi lo nu do se zdani kei ku"], ["I talked about you having a house."])
-        -- animals liking each other
-        , (["do tavla fi lo nu lo mlatu ku nelci lo gerku ku kei ku"], ["You talked about cats liking dogs."])
-        , (["do tavla fi lo nu lo gerku ku nelci lo mlatu ku kei ku"], ["You talked about dogs liking cats."])
-        , (["do tavla mi lo nu lo gerku ku nelci lo mlatu ku kei ku"], ["You talked to me about dogs liking cats."])
-        , (["do tavla mi lo nu lo mlatu ku nelci lo gerku ku kei ku"], ["You talked to me about cats liking dogs."])
-        -- promise
-        , (["mi tavla fi lo se nupre ku"], ["I talked about the promise."])
-        , (["do tavla fi lo se nupre ku"], ["You talked about the promise."])
-        , (["mi tavla do lo se nupre ku"], ["I talked to you about the promise.", "We talked to you about the promise."])
-        , (["do tavla mi lo se nupre ku"], ["You talked to me about the promise.", "You talked to us about the promise."])
-        -- promisor talked
-        , (["lo nupre ku tavla mi"], ["The promisor talked to me.", "The promisor talked to us."])
-        , (["lo nupre ku tavla fi lo mlatu ku"], ["The promisor talked about the cat.", "The promisor talked about the cats."])
-        , (["lo nupre ku tavla fi lo gerku ku"], ["The promisor talked about the dog.", "The promisor talked about the dogs."])
-        , (["lo nupre ku tavla fi lo zdani ku"], ["The promisor talked about the house.", "The promisor talked about the houses."])
-        , (["lo nupre ku tavla mi lo mlatu ku"], ["The promisor talked to me about the cat.", "The promisor talked to me about the cats."])
-        , (["lo nupre ku tavla mi lo gerku ku"], ["The promisor talked to me about the dog.", "The promisor talked to me about the dogs."])
-        , (["lo nupre ku tavla mi lo zdani ku"], ["The promisor talked to me about the house.", "The promisor talked to me about the houses."])
-        ]
-    nupre = generatorFromList
-        -- donating animals
-        [ (["do nupre lo nu dunda lo mlatu ku kei ku", "do nupre lo nu do dunda lo mlatu ku kei ku"], ["You promised to donate the cat.", "You promised to donate the cats."])
-        , (["do nupre lo nu dunda lo gerku ku kei ku", "do nupre lo nu do dunda lo gerku ku"], ["You promised to donate the dog.", "You promised to donate the dogs."])
-        , (["do nupre lo nu dunda lo mlatu ku mi kei ku", "do nupre lo nu do dunda lo mlatu ku mi kei ku"], ["You promised to donate the cat to me.", "You promised to donate the cats to me.", "You promised to donate the cats to us."])
-        , (["do nupre lo nu dunda lo gerku ku mi kei ku", "do nupre lo nu do dunda lo gerku ku mi kei ku"], ["You promised to donate the dog to me.", "You promised to donate the dogs to me.", "You promised to donate the dogs to us."])
-        , (["do nupre lo nu dunda lo mlatu ku kei ku mi", "do nupre lo nu do dunda lo mlatu ku kei ku mi"], ["You promised me to donate the cat.", "You promised me to donate the cats.", "You promised us to donate the cat.", "You promised us to donate the cats."])
-        , (["do nupre lo nu dunda lo gerku ku kei ku mi", "do nupre lo nu do dunda lo gerku ku kei ku mi"], ["You promised me to donate the dog.", "You promised me to donate the dogs.", "You promised us to donate the dog.", "You promised us to donate the dogs."])
-        , (["do nupre lo nu dunda lo zdani ku kei ku mi", "do nupre lo nu do dunda lo zdani ku kei ku mi"], ["You promised me to donate the house.", "You promised me to donate the houses.", "You promised us to donate the house.", "You promised us to donate the houses."])
-        -- donating houses
-        , (["do nupre lo nu dunda lo zdani ku mi kei ku mi", "do nupre lo nu do dunda lo zdani ku mi kei ku mi"], ["You promised to donate the house to me.", "You promised to donate the houses to us."])
-        , (["do nupre lo nu pendo kei ku", "do nupre lo nu do pendo kei ku"], ["You promised to be friendly."])
-        -- teaching
-        , (["do nupre lo nu ctuca mi kei ku", "do nupre lo nu do ctuca mi kei ku"], ["You promised to teach me."])
-        , (["mi nupre lo nu ctuca do kei ku", "mi nupre lo nu mi ctuca do kei ku"], ["I promised to teach you."])
-        -- nothing specific
-        , (["lo prenu ku nupre"], ["People make promises."])
-        , (["do nupre"], ["You made a promise."])
-        , (["do nupre fi mi"], ["You promised me.", "You promised us."])
-        , (["mi nupre fi do"], ["I promised you.", "We promised you."])
-        ]
-    cusku = generatorFromList
-        -- nothing specific
-        [ (["mi cusku"], ["I said something.", "I was saying something.", "I will say something."])
-        , (["do cusku"], ["You said something.", "You were saying something."])
-        , (["lo prenu ku cusku"], ["The person said something.", "The person was saying something."])
-        -- beautiful
-        , (["mi cusku lo se du'u do melbi kei ku"], ["I said that you are beautiful."])
-        , (["mi cusku lo se du'u lo prenu ku melbi kei ku"], ["I said that the person is beautiful."])
-        , (["do cusku lo se du'u mi melbi kei ku"], ["You said that I am beautiful."])
-        , (["do cusku lo se du'u lo prenu ku melbi kei ku"], ["You said that the person is beautiful."])
-        -- liking
-        , (["mi cusku lo se du'u mi nelci do kei ku", "mi cusku lo se du'u nelci do kei ku"], ["I said that I like you."])
-        , (["do cusku lo se du'u do nelci mi kei ku", "do cusku lo se du'u nelci mi kei ku"], ["You said that you like me."])
-        , (["lo prenu ku cusku lo se du'u mi nelci do kei ku"], ["The person said that I like you."])
-        , (["lo prenu ku cusku lo se du'u do nelci mi kei ku"], ["The person said that you like me."])
-        , (["lo prenu ku cusku lo se du'u nelci mi kei ku"], ["The person said that she likes me."])
-        , (["lo prenu ku cusku lo se du'u nelci do kei ku"], ["The person said that she likes you."])
-        -- donating animals
-        , (["mi cusku lo se du'u mi dunda lo mlatu ku kei ku", "mi cusku lo se du'u dunda lo mlatu ku kei ku"], ["I said that I would donate the cat.", "I said that I would donate the cats."])
-        , (["do cusku lo se du'u do dunda lo mlatu ku kei ku", "do cusku lo se du'u dunda lo mlatu ku kei ku"], ["You said that you would donate the cat.", "You said that you would donate the cats."])
-        , (["lo prenu ku cusku lo se du'u dunda lo mlatu ku kei ku"], ["The person said said that she would donate the cat.", "The person said that she would donate the cats."])
-        , (["mi cusku lo se du'u mi dunda lo mlatu ku do kei ku", "mi cusku lo se du'u dunda lo mlatu ku do kei ku"], ["I said that I would give you the cat.", "I said that I would give you the cats."])
-        , (["do cusku lo se du'u do dunda lo mlatu ku mi kei ku", "do cusku lo se du'u dunda lo mlatu ku mi kei ku"], ["You said that you would give me the cat.", "You said that you would give me the cats."])
-        , (["mi cusku lo se du'u mi dunda lo gerku ku do kei ku", "mi cusku lo se du'u dunda lo gerku ku do kei ku"], ["I said that I would give you the dog.", "I said that I would give you the dogs."])
-        , (["do cusku lo se du'u do dunda lo gerku ku mi kei ku", "do cusku lo se du'u dunda lo gerku ku mi kei ku"], ["You said that you would give me the dog.", "You said that you would give me the dogs."])
-        , (["lo prenu ku cusku lo se du'u dunda lo mlatu ku mi kei ku"], ["The person said that she would give me the cat.", "The person said that she would give me the cats."])
-        , (["lo prenu ku cusku lo se du'u dunda lo mlatu ku do kei ku"], ["The person said that she would give you the cat.", "The person said that she would give you the cats."])
-        , (["lo prenu ku cusku lo se du'u dunda lo gerku ku mi kei ku"], ["The person said that she would give me the dog.", "The person said that she would give me the dogs."])
-        , (["lo prenu ku cusku lo se du'u dunda lo gerku ku do kei ku"], ["The person said that she would give you the dog.", "The person said that she would give you the dogs."])
-        , (["lo prenu ku cusku lo se du'u do dunda lo mlatu ku mi kei ku"], ["The person said that you would give me the cat.", "The person said that you would give me the cats."])
-        , (["lo prenu ku cusku lo se du'u do dunda lo gerku ku mi kei ku"], ["The person said that you would give me the dog.", "The person said that you would give me the dogs."])
-        -- being friendly
-        , (["mi cusku lo se du'u pendo kei ku", "mi cusku lo se du'u mi pendo kei ku"], ["I said that I would be friendly."])
-        , (["do cusku lo se du'u pendo kei ku", "do cusku lo se du'u do pendo kei ku"], ["You said that you would be friendly."])
-        , (["mi cusku lo se du'u do pendo kei ku"], ["I said that you would be friendly."])
-        ]
-    others = generatorFromList
-        [ (["mi nelci lo nu tavla do kei ku", "mi nelci lo nu mi tavla do kei ku"], ["I like to talk to you."]) -- is nelci really adequate?
-        , (["do nelci lo nu nupre kei ku", "do nelci lo nu do nupre kei ku"], ["You like to make promises."]) -- is nelci really adequate?
-        , (["lo prenu ku nelci lo nu nupre kei ku"], ["People like to make promises."]) -- is nelci really adequate?
-        -- Wait until terminator ellision has been explained to use the following sentences
-        {-, (["mi cusku lo se du'u mi nelci lo nu tavla do kei ku kei ku", "mi cusku lo se du'u mi nelci lo nu mi tavla do kei ku kei ku"], ["I said that I like to talk to you."])-}
-        {-, (["mi cusku lo se du'u do nelci lo nu tavla mi kei ku kei ku", "mi cusku lo se du'u do nelci lo nu do tavla mi kei ku kei ku"], ["I said that you like to talk to me."])-}
-        ]
+translations3 = generateTranslationExercise basicSentenceCanonicalizer $ combineFunctionsUniformly [gleki, tavla, nupre, cusku] where
+    gleki = combineFunctionsUniformly [friendship, talking, givingAnimals, liking, teaching, owningHouse, other] where
+        friendship = generatorFromList
+            [ (["mi gleki lo nu do pendo mi kei ku"], ["I am happy that you are my friend."])
+            ]
+        talking = generatorFromList
+            -- talking to someone
+            [ (["mi gleki lo nu do tavla mi kei ku"], ["I am happy that you talked to me."])
+            -- talking about animals
+            , (["mi gleki lo nu do tavla mi lo mlatu ku kei ku"], ["I am happy that you talked to me about cats."])
+            ]
+        givingAnimals = generatorFromList
+            [ (["mi gleki lo nu do dunda lo mlatu ku mi kei ku"], ["I am happy that you gave me the cat.", "I am happy that you gave me cats."])
+            , (["mi gleki lo nu do dunda lo gerku ku mi kei ku"], ["I am happy that you gave me the dog.", "I am happy that you gave me dogs."])
+            , (["mi gleki lo nu mi te dunda lo mlatu ku kei ku"], ["I am happy that I was given a cat.", "I am happy that I was given cats."])
+            , (["mi gleki lo nu mi te dunda lo gerku ku kei ku"], ["I am happy that I was given a dog.", "I am happy that I was given dogs."])
+            ]
+        liking = generatorFromList
+            [ (["mi gleki lo nu do nelci mi kei ku"], ["I am happy that you like me.", "I am happy that you like us.", "We are happy that you like us."])
+            , (["mi gleki lo nu lo prenu ku nelci mi kei ku"], ["I am happy that people like me.", "I am happy that people like us.", "We are happy that people like us."])
+            , (["mi gleki lo nu lo prenu ku nelci do kei ku"], ["I am happy that people like you.", "We are happy that people like you."])
+            ]
+        teaching = generatorFromList
+            [ (["mi gleki lo nu do ctuca mi kei ku"], ["I am happy that you taught me."])
+            ]
+        owningHouse = generatorFromList
+            [ (["mi gleki lo nu mi se zdani kei ku"], ["I am happy that I have a house."])
+            , (["mi gleki lo nu do se zdani kei ku"], ["I am happy that you have a house."])
+            ]
+        other = generatorFromList
+            [ (["mi gleki lo nu do gleki kei ku"], ["I am happy that you are happy."])
+            , (["mi gleki lo nu mi prenu kei ku"], ["I am happy that I am a person."])
+            , (["mi gleki lo nu do prenu kei ku"], ["I am happy that you are a person."])
+            , (["mi gleki lo nu lo te dunda ku pendo mi kei ku"], ["I am happy that the recipient is my friend."])
+            ]
+    tavla = combineFunctionsUniformly [owningHouse, animalsLikingEachOther, promise, promisorTalked] where
+        owningHouse = generatorFromList
+            [ (["mi tavla fi lo nu do se zdani kei ku"], ["I talked about you having a house."])
+            ]
+        animalsLikingEachOther = generatorFromList
+            [ (["do tavla fi lo nu lo mlatu ku nelci lo gerku ku kei ku"], ["You talked about cats liking dogs."])
+            , (["do tavla fi lo nu lo gerku ku nelci lo mlatu ku kei ku"], ["You talked about dogs liking cats."])
+            , (["do tavla mi lo nu lo gerku ku nelci lo mlatu ku kei ku"], ["You talked to me about dogs liking cats."])
+            , (["do tavla mi lo nu lo mlatu ku nelci lo gerku ku kei ku"], ["You talked to me about cats liking dogs."])
+            ]
+        promise = generatorFromList
+            [ (["mi tavla fi lo se nupre ku"], ["I talked about the promise."])
+            , (["do tavla fi lo se nupre ku"], ["You talked about the promise."])
+            , (["mi tavla do lo se nupre ku"], ["I talked to you about the promise.", "We talked to you about the promise."])
+            , (["do tavla mi lo se nupre ku"], ["You talked to me about the promise.", "You talked to us about the promise."])
+            ]
+        promisorTalked = generatorFromList
+            [ (["lo nupre ku tavla mi"], ["The promisor talked to me.", "The promisor talked to us."])
+            , (["lo nupre ku tavla fi lo mlatu ku"], ["The promisor talked about the cat.", "The promisor talked about the cats."])
+            , (["lo nupre ku tavla fi lo gerku ku"], ["The promisor talked about the dog.", "The promisor talked about the dogs."])
+            , (["lo nupre ku tavla fi lo zdani ku"], ["The promisor talked about the house.", "The promisor talked about the houses."])
+            , (["lo nupre ku tavla mi lo mlatu ku"], ["The promisor talked to me about the cat.", "The promisor talked to me about the cats."])
+            , (["lo nupre ku tavla mi lo gerku ku"], ["The promisor talked to me about the dog.", "The promisor talked to me about the dogs."])
+            , (["lo nupre ku tavla mi lo zdani ku"], ["The promisor talked to me about the house.", "The promisor talked to me about the houses."])
+            ]
+    nupre = combineFunctionsUniformly [nothingSpecific, donatingAnimals, donatingHouses, teaching, beingFriendly] where
+        nothingSpecific = generatorFromList
+            [ (["lo prenu ku nupre"], ["People make promises."])
+            , (["do nupre"], ["You made a promise."])
+            , (["do nupre fi mi"], ["You promised me.", "You promised us."])
+            , (["mi nupre fi do"], ["I promised you.", "We promised you."])
+            ]
+        donatingAnimals = generatorFromList
+            [ (["do nupre lo nu dunda lo mlatu ku kei ku", "do nupre lo nu do dunda lo mlatu ku kei ku"], ["You promised to donate the cat.", "You promised to donate the cats."])
+            , (["do nupre lo nu dunda lo gerku ku kei ku", "do nupre lo nu do dunda lo gerku ku"], ["You promised to donate the dog.", "You promised to donate the dogs."])
+            , (["do nupre lo nu dunda lo mlatu ku mi kei ku", "do nupre lo nu do dunda lo mlatu ku mi kei ku"], ["You promised to donate the cat to me.", "You promised to donate the cats to me.", "You promised to donate the cats to us."])
+            , (["do nupre lo nu dunda lo gerku ku mi kei ku", "do nupre lo nu do dunda lo gerku ku mi kei ku"], ["You promised to donate the dog to me.", "You promised to donate the dogs to me.", "You promised to donate the dogs to us."])
+            , (["do nupre lo nu dunda lo mlatu ku kei ku mi", "do nupre lo nu do dunda lo mlatu ku kei ku mi"], ["You promised me to donate the cat.", "You promised me to donate the cats.", "You promised us to donate the cat.", "You promised us to donate the cats."])
+            , (["do nupre lo nu dunda lo gerku ku kei ku mi", "do nupre lo nu do dunda lo gerku ku kei ku mi"], ["You promised me to donate the dog.", "You promised me to donate the dogs.", "You promised us to donate the dog.", "You promised us to donate the dogs."])
+            ]
+        donatingHouses = generatorFromList
+            [ (["do nupre lo nu dunda lo zdani ku kei ku mi", "do nupre lo nu do dunda lo zdani ku kei ku mi"], ["You promised me to donate the house.", "You promised me to donate the houses.", "You promised us to donate the house.", "You promised us to donate the houses."])
+            , (["do nupre lo nu dunda lo zdani ku mi kei ku mi", "do nupre lo nu do dunda lo zdani ku mi kei ku mi"], ["You promised to donate the house to me.", "You promised to donate the houses to us."])
+            ]
+        teaching = generatorFromList
+            [ (["do nupre lo nu ctuca mi kei ku", "do nupre lo nu do ctuca mi kei ku"], ["You promised to teach me."])
+            , (["mi nupre lo nu ctuca do kei ku", "mi nupre lo nu mi ctuca do kei ku"], ["I promised to teach you."])
+            ]
+        beingFriendly = generatorFromList
+            [ (["do nupre lo nu pendo kei ku", "do nupre lo nu do pendo kei ku"], ["You promised to be friendly."])
+            ]
+    cusku = combineFunctionsUniformly [nothingSpecific, beautiful, liking, donatingAnimals, beingFriendly, others] where
+        nothingSpecific = generatorFromList
+            [ (["mi cusku"], ["I said something.", "I was saying something.", "I will say something."])
+            , (["do cusku"], ["You said something.", "You were saying something."])
+            , (["lo prenu ku cusku"], ["The person said something.", "The person was saying something."])
+            ]
+        beautiful = generatorFromList
+            [ (["mi cusku lo se du'u do melbi kei ku"], ["I said that you are beautiful."])
+            , (["mi cusku lo se du'u lo prenu ku melbi kei ku"], ["I said that the person is beautiful."])
+            , (["do cusku lo se du'u mi melbi kei ku"], ["You said that I am beautiful."])
+            , (["do cusku lo se du'u lo prenu ku melbi kei ku"], ["You said that the person is beautiful."])
+            ]
+        liking = generatorFromList
+            [ (["mi cusku lo se du'u mi nelci do kei ku", "mi cusku lo se du'u nelci do kei ku"], ["I said that I like you."])
+            , (["do cusku lo se du'u do nelci mi kei ku", "do cusku lo se du'u nelci mi kei ku"], ["You said that you like me."])
+            , (["lo prenu ku cusku lo se du'u mi nelci do kei ku"], ["The person said that I like you."])
+            , (["lo prenu ku cusku lo se du'u do nelci mi kei ku"], ["The person said that you like me."])
+            , (["lo prenu ku cusku lo se du'u nelci mi kei ku"], ["The person said that she likes me."])
+            , (["lo prenu ku cusku lo se du'u nelci do kei ku"], ["The person said that she likes you."])
+            ]
+        donatingAnimals = generatorFromList
+            [ (["mi cusku lo se du'u mi dunda lo mlatu ku kei ku", "mi cusku lo se du'u dunda lo mlatu ku kei ku"], ["I said that I would donate the cat.", "I said that I would donate the cats."])
+            , (["do cusku lo se du'u do dunda lo mlatu ku kei ku", "do cusku lo se du'u dunda lo mlatu ku kei ku"], ["You said that you would donate the cat.", "You said that you would donate the cats."])
+            , (["lo prenu ku cusku lo se du'u dunda lo mlatu ku kei ku"], ["The person said said that she would donate the cat.", "The person said that she would donate the cats."])
+            , (["mi cusku lo se du'u mi dunda lo mlatu ku do kei ku", "mi cusku lo se du'u dunda lo mlatu ku do kei ku"], ["I said that I would give you the cat.", "I said that I would give you the cats."])
+            , (["do cusku lo se du'u do dunda lo mlatu ku mi kei ku", "do cusku lo se du'u dunda lo mlatu ku mi kei ku"], ["You said that you would give me the cat.", "You said that you would give me the cats."])
+            , (["mi cusku lo se du'u mi dunda lo gerku ku do kei ku", "mi cusku lo se du'u dunda lo gerku ku do kei ku"], ["I said that I would give you the dog.", "I said that I would give you the dogs."])
+            , (["do cusku lo se du'u do dunda lo gerku ku mi kei ku", "do cusku lo se du'u dunda lo gerku ku mi kei ku"], ["You said that you would give me the dog.", "You said that you would give me the dogs."])
+            , (["lo prenu ku cusku lo se du'u dunda lo mlatu ku mi kei ku"], ["The person said that she would give me the cat.", "The person said that she would give me the cats."])
+            , (["lo prenu ku cusku lo se du'u dunda lo mlatu ku do kei ku"], ["The person said that she would give you the cat.", "The person said that she would give you the cats."])
+            , (["lo prenu ku cusku lo se du'u dunda lo gerku ku mi kei ku"], ["The person said that she would give me the dog.", "The person said that she would give me the dogs."])
+            , (["lo prenu ku cusku lo se du'u dunda lo gerku ku do kei ku"], ["The person said that she would give you the dog.", "The person said that she would give you the dogs."])
+            , (["lo prenu ku cusku lo se du'u do dunda lo mlatu ku mi kei ku"], ["The person said that you would give me the cat.", "The person said that you would give me the cats."])
+            , (["lo prenu ku cusku lo se du'u do dunda lo gerku ku mi kei ku"], ["The person said that you would give me the dog.", "The person said that you would give me the dogs."])
+            ]
+        beingFriendly = generatorFromList
+            [ (["mi cusku lo se du'u pendo kei ku", "mi cusku lo se du'u mi pendo kei ku"], ["I said that I would be friendly."])
+            , (["do cusku lo se du'u pendo kei ku", "do cusku lo se du'u do pendo kei ku"], ["You said that you would be friendly."])
+            , (["mi cusku lo se du'u do pendo kei ku"], ["I said that you would be friendly."])
+            ]
+        others = generatorFromList
+            [ (["mi nelci lo nu tavla do kei ku", "mi nelci lo nu mi tavla do kei ku"], ["I like to talk to you."]) -- is nelci really adequate?
+            , (["do nelci lo nu nupre kei ku", "do nelci lo nu do nupre kei ku"], ["You like to make promises."]) -- is nelci really adequate?
+            , (["lo prenu ku nelci lo nu nupre kei ku"], ["People like to make promises."]) -- is nelci really adequate?
+            -- Wait until terminator ellision has been explained to use the following sentences
+            {-, (["mi cusku lo se du'u mi nelci lo nu tavla do kei ku kei ku", "mi cusku lo se du'u mi nelci lo nu mi tavla do kei ku kei ku"], ["I said that I like to talk to you."])-}
+            {-, (["mi cusku lo se du'u do nelci lo nu tavla mi kei ku kei ku", "mi cusku lo se du'u do nelci lo nu do tavla mi kei ku kei ku"], ["I said that you like to talk to me."])-}
+            ]
 
 translations4 :: [ExerciseGenerator]
 translations4 = generateTranslationExercise basicSentenceCanonicalizer <$> generatorFromSingleton <$>
