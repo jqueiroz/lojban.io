@@ -11,6 +11,11 @@ import Data.List.Utils (uniq)
 import qualified Data.Text as T
 import qualified Data.Map as M
 
+-- Frequently use translations such as "The gift is beautiful" (they are harder versions of contextualized gismu place exercises, and I can control which places to ask about)
+--   Maybe always create a new variable for exercises of this type, and do automatic generation for them (it should be simple)
+--   Difficulties: easy if it involves x1 ("lo mlatu"), hard otherwise ("lo se dunda")
+--   But I'm not very interested in gismu in this course -- this will be more useful for vocabulary courses
+
 -- Lesson 1.1
 vocabulary11 :: Dictionary -> Vocabulary
 vocabulary11 dictionary = buildVocabulary dictionary
