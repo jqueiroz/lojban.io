@@ -134,12 +134,12 @@ translations2_nice = combineFunctions [(1, restricted_translations), (5, normal_
         talkingAbout = generatorFromList
             [ (["mi tavla fi mi"], ["I was talking about myself.", "We were talking about ourselves.", "I will talk about myself."])
             , (["mi tavla fi do"], ["I was talking about you.", "We were talking about you.", "I am talking about you.", "We are talking about you.", "I will talk about you.", "We will talk about you."])
-            , (["tavla fi mi"], ["Somebody was talking about me."])
+            , (["tavla fi mi"], ["Somebody was talking about me.", "Somebody was talking about us."])
             , (["tavla fi do"], ["Somebody was talking about you."])
-            , (["mi tavla fi lo mlatu ku"], ["I was talking about the cat.", "I was talking about the cats.", "I am talking about the cat.", "I am talking about the cats."])
-            , (["tavla fi lo mlatu ku"], ["Somebody was talking about the cat.", "Somebody was talking about the cats."])
-            , (["mi tavla fi lo gerku ku"], ["I was talking about the dog.", "I was talking about the dogs.", "I am talking about the dog.", "I am talking about the dogs."])
-            , (["tavla fi lo gerku ku"], ["Somebody was talking about the dog.", "Somebody was talking about the dogs."])
+            , (["mi tavla fi lo mlatu ku"], ["I was talking about the cat.", "I was talking about the cats.", "I was talking about cats", "I am talking about the cat.", "I am talking about the cats.", "I am talking about cats."])
+            , (["tavla fi lo mlatu ku"], ["Somebody was talking about the cat.", "Somebody was talking about the cats.", "Somebody was talking about cats."])
+            , (["mi tavla fi lo gerku ku"], ["I was talking about the dog.", "I was talking about the dogs.", "I was talking about dogs.", "I am talking about the dog.", "I am talking about the dogs.", "I am talking about dogs."])
+            , (["tavla fi lo gerku ku"], ["Somebody was talking about the dog.", "Somebody was talking about the dogs.", "Somebody was talking about dogs."])
             ]
         gaveSomething = generatorFromList
             [ (["mi dunda fi do"], ["I gave you something.", "I will give you something."])
