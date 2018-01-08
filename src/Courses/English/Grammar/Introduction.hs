@@ -265,15 +265,17 @@ translations3 = generateTranslationExercise basicSentenceCanonicalizer $ combine
             ]
         talking = generatorFromList
             -- talking to someone
-            [ (["mi gleki lo nu do tavla mi kei ku"], ["I am happy that you talked to me."])
+            [ (["mi gleki lo nu do tavla mi kei ku"], ["I am happy that you talked to me.", "I am happy that you talked to us."])
+            , (["mi gleki lo nu do tavla mi kei ku"], ["I am happy that I talked to you."])
             -- talking about animals
             , (["mi gleki lo nu do tavla mi lo mlatu ku kei ku"], ["I am happy that you talked to me about cats."])
+            , (["mi gleki lo nu do tavla mi lo gerku ku kei ku"], ["I am happy that you talked to me about dogs."])
             ]
         givingAnimals = generatorFromList
-            [ (["mi gleki lo nu do dunda lo mlatu ku mi kei ku"], ["I am happy that you gave me the cat.", "I am happy that you gave me cats."])
-            , (["mi gleki lo nu do dunda lo gerku ku mi kei ku"], ["I am happy that you gave me the dog.", "I am happy that you gave me dogs."])
-            , (["mi gleki lo nu mi te dunda lo mlatu ku kei ku"], ["I am happy that I was given a cat.", "I am happy that I was given cats."])
-            , (["mi gleki lo nu mi te dunda lo gerku ku kei ku"], ["I am happy that I was given a dog.", "I am happy that I was given dogs."])
+            [ (["mi gleki lo nu do dunda lo mlatu ku mi kei ku"], ["I am happy that you gave me the cat.", "I am happy that you gave me cats.", "I am happy that you gave me the cats."])
+            , (["mi gleki lo nu do dunda lo gerku ku mi kei ku"], ["I am happy that you gave me the dog.", "I am happy that you gave me dogs.", "I am happy that you gave me the dogs."])
+            , (["mi gleki lo nu mi te dunda lo mlatu ku kei ku"], ["I am happy that I was given a cat.", "I am happy that I was given cats.", "I am happy that I was given the cats."])
+            , (["mi gleki lo nu mi te dunda lo gerku ku kei ku"], ["I am happy that I was given a dog.", "I am happy that I was given dogs.", "I am happy that I was given the dogs."])
             ]
         liking = generatorFromList
             [ (["mi gleki lo nu do nelci mi kei ku"], ["I am happy that you like me.", "I am happy that you like us.", "We are happy that you like us."])
@@ -282,6 +284,7 @@ translations3 = generateTranslationExercise basicSentenceCanonicalizer $ combine
             ]
         teaching = generatorFromList
             [ (["mi gleki lo nu do ctuca mi kei ku"], ["I am happy that you taught me."])
+            , (["mi gleki lo nu mi ctuca do kei ku"], ["I am happy that I taught you."])
             ]
         owningHouse = generatorFromList
             [ (["mi gleki lo nu mi se zdani kei ku"], ["I am happy that I have a house."])
@@ -291,6 +294,7 @@ translations3 = generateTranslationExercise basicSentenceCanonicalizer $ combine
             [ (["mi gleki lo nu do gleki kei ku"], ["I am happy that you are happy."])
             , (["mi gleki lo nu mi prenu kei ku"], ["I am happy that I am a person."])
             , (["mi gleki lo nu do prenu kei ku"], ["I am happy that you are a person."])
+            , (["mi gleki lo nu do se melbi mi kei ku"], ["I am happy that you find me beautiful."])
             , (["mi gleki lo nu lo te dunda ku pendo mi kei ku"], ["I am happy that the recipient is my friend."])
             ]
     tavla = combineFunctionsUniformly [owningHouse, animalsLikingEachOther, promise, promisorTalked] where
@@ -338,7 +342,7 @@ translations3 = generateTranslationExercise basicSentenceCanonicalizer $ combine
             , (["do nupre lo nu dunda lo zdani ku mi kei ku mi", "do nupre lo nu do dunda lo zdani ku mi kei ku mi"], ["You promised to donate the house to me.", "You promised to donate the houses to us."])
             ]
         teaching = generatorFromList
-            [ (["do nupre lo nu ctuca mi kei ku", "do nupre lo nu do ctuca mi kei ku"], ["You promised to teach me."])
+            [ (["do nupre lo nu ctuca mi kei ku", "do nupre lo nu do ctuca mi kei ku"], ["You promised to teach me.", "You promised to teach us."])
             , (["mi nupre lo nu ctuca do kei ku", "mi nupre lo nu mi ctuca do kei ku"], ["I promised to teach you."])
             ]
         beingFriendly = generatorFromList
