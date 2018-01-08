@@ -152,7 +152,6 @@ translations2_nice = combineFunctions [(1, restricted_translations), (5, normal_
             , (["lo prenu ku se zdani"], ["The person has a house."])
             , (["lo tavla ku se zdani"], ["The speaker has a house."])
             , (["lo se tavla ku se zdani"], ["The listener has a house."])
-            , (["lo ctuca ku se zdani"], ["The instructor has a house."])
             , (["lo dunda ku se zdani"], ["The donor has a house."])
             , (["lo te dunda ku se zdani"], ["The recipient has a house."])
             ]
