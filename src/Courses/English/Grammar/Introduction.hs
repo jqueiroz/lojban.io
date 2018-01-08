@@ -259,7 +259,7 @@ translations2 =  combineFunctions [(1, translations1_nice), (10, translations2_n
 -- TODO: indicate optional words using parenthesis
 translations3 :: ExerciseGenerator
 translations3 = generateTranslationExercise basicSentenceCanonicalizer $ combineFunctionsUniformly [gleki, tavla, nupre, cusku] where
-    gleki = combineFunctionsUniformly [talking, givingAnimals, liking, teaching, owningHouse, other] where
+    gleki = combineFunctionsUniformly [talking, beautiful, givingAnimals, liking, teaching, owningHouse, other] where
         talking = generatorFromList
             -- talking to someone
             [ (["mi gleki lo nu do tavla mi kei ku"], ["I am happy that you talked to me.", "I am happy that you talked to us."])
@@ -267,6 +267,10 @@ translations3 = generateTranslationExercise basicSentenceCanonicalizer $ combine
             -- talking about animals
             , (["mi gleki lo nu do tavla mi lo mlatu ku kei ku"], ["I am happy that you talked to me about cats."])
             , (["mi gleki lo nu do tavla mi lo gerku ku kei ku"], ["I am happy that you talked to me about dogs."])
+            ]
+        beautiful = generatorFromList
+            [ (["mi gleki lo nu do se melbi mi kei ku"], ["I am happy that you find me beautiful."])
+            , (["mi gleki lo nu do se melbi lo se dunda ku kei ku"], ["I am happy that you found the gift beautiful."])
             ]
         givingAnimals = generatorFromList
             [ (["mi gleki lo nu do dunda lo mlatu ku mi kei ku"], ["I am happy that you gave me the cat.", "I am happy that you gave me cats.", "I am happy that you gave me the cats."])
@@ -292,7 +296,6 @@ translations3 = generateTranslationExercise basicSentenceCanonicalizer $ combine
             , (["mi gleki lo nu mi prenu kei ku"], ["I am happy that I am a person."])
             , (["mi gleki lo nu do prenu kei ku"], ["I am happy that you are a person."])
             , (["mi gleki lo nu do pendo mi kei ku"], ["I am happy that you are my friend."])
-            , (["mi gleki lo nu do se melbi mi kei ku"], ["I am happy that you find me beautiful."])
             , (["mi gleki lo nu lo te dunda ku pendo mi kei ku"], ["I am happy that the recipient is my friend."])
             ]
     tavla = combineFunctionsUniformly [owningHouse, animalsLikingEachOther, promise, promisorTalked] where
