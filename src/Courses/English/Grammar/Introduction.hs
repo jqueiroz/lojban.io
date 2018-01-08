@@ -105,8 +105,8 @@ translations1 = combineFunctions [(1, translations1_nice), (4, more_translations
             , (["mi pendo do"], ["I am your friend."])
             ]
         prenu = generatorFromList
-            [ (["mi prenu"], ["I am a person.", "We are persons."])
-            , (["do prenu"], ["You are a person.", "You are persons."])
+            [ (["mi prenu"], ["I am a person."])
+            , (["do prenu"], ["You are a person."])
             ]
         demonstrative = generatorFromList
             [ (["ti mlatu"], ["This is a cat.", "These are cats."])
