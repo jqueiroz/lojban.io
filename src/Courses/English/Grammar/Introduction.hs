@@ -212,24 +212,24 @@ translations2 =  combineFunctions [(1, translations1_nice), (10, translations2_n
             , (["lo prenu ku tavla lo gerku ku"], ["A person is talking to a dog.", "The person talks to dogs."])
             ]
         likingAnimals = generatorFromList
-            [ (["mi nelci lo mlatu ku"], ["I like the cat.", "I like cats."])
-            , (["mi nelci lo gerku ku"], ["I like the dog.", "I like dogs."])
+            [ (["mi nelci lo mlatu ku"], ["I like the cat.", "I like cats.", "We like cats."])
+            , (["mi nelci lo gerku ku"], ["I like the dog.", "I like dogs.", "We like dogs."])
             , (["lo gerku ku nelci lo mlatu ku"], ["The dog likes the cat.", "Dogs like cats."])
             , (["lo mlatu ku nelci lo gerku ku"], ["The cat likes the dog.", "Cats like dogs."])
             ]
         animalFriends = generatorFromList
             [ (["lo mlatu ku pendo mi"], ["The cat is my friend."])
             , (["lo gerku ku pendo mi"], ["The dog is my friend."])
-            , (["lo mlatu ku pendo"], ["Cats are friendly."])
-            , (["lo gerku ku pendo"], ["Dogs are friendly."])
+            , (["lo mlatu ku pendo"], ["The cat is friendly.", "Cats are friendly."])
+            , (["lo gerku ku pendo"], ["The dog is friendly.", "Dogs are friendly."])
             ]
         beautiful = generatorFromList
             [ (["lo zdani ku melbi"], ["The house is beautiful.", "The houses are beautiful."])
-            , (["lo mlatu ku melbi"], ["The cat is beautiful.", "The cats are beautiful."])
-            , (["lo gerku ku melbi"], ["The dog is beautiful.", "The dogs are beautiful."])
+            , (["lo mlatu ku melbi"], ["The cat is beautiful.", "The cats are beautiful.", "Cats are beautiful."])
+            , (["lo gerku ku melbi"], ["The dog is beautiful.", "The dogs are beautiful.", "Dogs are beautiful."])
             , (["lo zdani ku melbi mi"], ["The house is beautiful to me.", "The houses are beautiful to me."])
-            , (["lo mlatu ku melbi mi"], ["The cat is beautiful to me.", "The cats are beautiful to me."])
-            , (["lo gerku ku melbi mi"], ["The dog is beautiful to me.", "The dogs are beautiful to me."])
+            , (["lo mlatu ku melbi mi"], ["The cat is beautiful to me.", "The cats are beautiful to me.", "Cats are beautiful to me."])
+            , (["lo gerku ku melbi mi"], ["The dog is beautiful to me.", "The dogs are beautiful to me.", "Dogs are beautiful to me."])
             ]
         person = generatorFromList
             [ (["lo tavla ku prenu"], ["The speaker is a person."])
