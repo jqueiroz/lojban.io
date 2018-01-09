@@ -248,12 +248,10 @@ translations2 =  combineFunctions [(1, translations1_nice), (10, translations2_n
             ]
 
 -- Are the sentences involving tavla really sensible?
--- Teach nu and du'u, but not su'u
 -- words common enough: gleki, tavla, dunda, nelci, mlatu, gerku, prenu, nupre, zdani
 -- pending words: ctuca, melbi, pendo?
 -- consider using: morji, ciksi, jijnu (useful for teaching du'u)
 -- TODO: teach ko'a?
--- TODO: nonuniform translations -- separate by selbri and then separate even more
 -- TODO: programmatic translation generation
 -- TODO: indicate optional words using parenthesis
 translations3 :: ExerciseGenerator
