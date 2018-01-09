@@ -262,7 +262,7 @@ translations3 = generateTranslationExercise basicSentenceCanonicalizer $ combine
     gleki = combineFunctionsUniformly [talking, beautiful, givingAnimals, liking, teaching, owningHouse, other] where
         talking = generatorFromList
             -- talking to someone
-            [ (["mi gleki lo nu do tavla mi kei ku"], ["I am happy that you talked to me.", "I am happy that you talked to us."])
+            [ (["mi gleki lo nu do tavla mi kei ku"], ["I am happy that you talked to me."])
             , (["mi gleki lo nu do tavla mi kei ku"], ["I am happy that I talked to you."])
             -- talking about animals
             , (["mi gleki lo nu do tavla mi lo mlatu ku kei ku"], ["I am happy that you talked to me about cats."])
