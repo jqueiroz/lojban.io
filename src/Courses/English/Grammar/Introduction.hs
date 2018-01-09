@@ -242,9 +242,12 @@ translations2 =  combineFunctions [(1, translations1_nice), (10, translations2_n
             [ (["mi se zdani"], ["I have a house.", "We have a house.", "We have houses."])
             , (["do se zdani"], ["You have a house.", "You have houses."])
             , (["mi nelci lo prenu ku"], ["I like people.", "We like people."])
+            , (["lo prenu ku nelci mi"], ["People like me.", "People like us."])
             , (["do melbi mi"], ["You are beautiful to me."])
             , (["do melbi"], ["You are beautiful."])
             , (["mi nelci lo dunda ku"], ["I like the donor.", "I like the donors."])
+            , (["mi nelci lo ctuca ku"], ["I like the instructor.", "I like the instructors."])
+            , (["lo ctuca ku nelci mi"], ["The instructor likes me", "The instructors like me."])
             ]
 
 -- Are the sentences involving tavla really sensible?
