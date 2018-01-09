@@ -241,7 +241,7 @@ translations2 =  combineFunctions [(1, translations1_nice), (10, translations2_n
         others = generatorFromList
             [ (["mi se zdani"], ["I have a house.", "We have a house.", "We have houses."])
             , (["do se zdani"], ["You have a house.", "You have houses."])
-            , (["mi nelci lo prenu ku"], ["I like the person.", "I like people.", "We like people."])
+            , (["mi nelci lo prenu ku"], ["I like people.", "We like people."])
             , (["do melbi mi"], ["You are beautiful to me."])
             , (["do melbi"], ["You are beautiful."])
             , (["mi nelci lo dunda ku"], ["I like the donor.", "I like the donors."])
