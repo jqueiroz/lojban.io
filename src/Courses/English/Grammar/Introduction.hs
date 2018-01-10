@@ -282,6 +282,9 @@ translations3 = generateTranslationExercise basicSentenceCanonicalizer $ combine
             [ (["mi gleki lo nu do nelci mi kei ku"], ["I am happy that you like me."])
             , (["mi gleki lo nu lo prenu ku nelci mi kei ku"], ["I am happy that people like me."])
             , (["mi gleki lo nu lo prenu ku nelci do kei ku"], ["I am happy that people like you."])
+            , (["mi gleki lo nu lo ctuca ku nelci mi kei ku"], ["I am happy that the instructor likes me."])
+            , (["mi gleki lo nu lo ctuca ku nelci do kei ku"], ["I am happy that the instructor likes you."])
+            , (["mi gleki lo nu do nelci lo ctuca ku kei ku"], ["I am happy that you like the instructor."])
             ]
         teaching = generatorFromList
             [ (["mi gleki lo nu do ctuca mi kei ku"], ["I am happy that you taught me."])
