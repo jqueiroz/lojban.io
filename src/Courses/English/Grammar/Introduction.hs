@@ -310,7 +310,7 @@ translations3 = generateTranslationExercise basicSentenceCanonicalizer $ combine
             ]
     tavla = combineFunctionsUniformly [owningHouse, animalsLikingEachOther, promise, promisorTalked] where
         owningHouse = generatorFromList
-            [ (["mi tavla fi lo nu do se zdani kei ku"], ["I talked about you having a house."])
+            [ (["mi tavla fi lo nu do se zdani kei ku"], ["I talked about you having a house.", "We talked about you having a house."])
             ]
         animalsLikingEachOther = generatorFromList
             [ (["do tavla fi lo nu lo mlatu ku nelci lo gerku ku kei ku"], ["You talked about cats liking dogs."])
