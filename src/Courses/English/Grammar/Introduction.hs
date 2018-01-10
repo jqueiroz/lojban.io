@@ -259,7 +259,13 @@ translations2 =  combineFunctions [(1, translations1_nice), (10, translations2_n
 -- TODO: indicate optional words using parenthesis
 translations3 :: ExerciseGenerator
 translations3 = generateTranslationExercise basicSentenceCanonicalizer $ combineFunctionsUniformly [gleki, tavla, nupre, cusku] where
-    gleki = combineFunctionsUniformly [talking, beautiful, givingAnimals, liking, teaching, owningHouse, other] where
+    gleki = combineFunctionsUniformly [nothingSpecific, talking, beautiful, givingAnimals, liking, teaching, owningHouse, other] where
+        nothingSpecific = generatorFromList
+            [ (["mi gleki"], ["I am happy."])
+            , (["lo prenu ku gleki"], ["The person is happy."])
+            , (["lo gerku ku gleki"], ["The dog is happy.", "The dogs are happy."])
+            , (["lo mlatu ku gleki"], ["The cat is happy.", "The cats are happy."])
+            ]
         talking = generatorFromList
             -- talking to someone
             [ (["mi gleki lo nu do tavla mi kei ku"], ["I am happy that you talked to me."])
