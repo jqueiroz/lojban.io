@@ -296,6 +296,7 @@ translations3 = generateTranslationExercise basicSentenceCanonicalizer $ combine
             , (["mi gleki lo nu mi prenu kei ku"], ["I am happy that I am a person."])
             , (["mi gleki lo nu do prenu kei ku"], ["I am happy that you are a person."])
             , (["mi gleki lo nu do pendo mi kei ku"], ["I am happy that you are my friend."])
+            , (["mi gleki lo nu lo ctuca ku pendo mi kei ku"], ["I am happy that the instructor is my friend."])
             , (["mi gleki lo nu lo te dunda ku pendo mi kei ku"], ["I am happy that the recipient is my friend."])
             ]
     tavla = combineFunctionsUniformly [owningHouse, animalsLikingEachOther, promise, promisorTalked] where
