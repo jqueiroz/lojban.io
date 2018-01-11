@@ -321,8 +321,8 @@ translations3 = generateTranslationExercise basicSentenceCanonicalizer $ combine
         promise = generatorFromList
             [ (["mi tavla fi lo se nupre ku"], ["I talked about the promise."])
             , (["do tavla fi lo se nupre ku"], ["You talked about the promise."])
-            , (["mi tavla do lo se nupre ku"], ["I talked to you about the promise.", "We talked to you about the promise."])
-            , (["do tavla mi lo se nupre ku"], ["You talked to me about the promise.", "You talked to us about the promise."])
+            , (["mi tavla do lo se nupre ku"], ["I talked to you about the promise."])
+            , (["do tavla mi lo se nupre ku"], ["You talked to me about the promise."])
             ]
         promisorTalked = generatorFromList
             [ (["lo nupre ku tavla mi"], ["The promisor talked to me.", "The promisor talked to us."])
