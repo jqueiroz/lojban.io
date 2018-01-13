@@ -258,7 +258,7 @@ translations2 =  combineFunctions [(1, translations1_nice), (10, translations2_n
 -- TODO: programmatic translation generation
 -- TODO: indicate optional words using parenthesis
 translations3 :: ExerciseGenerator
-translations3 = generateTranslationExercise basicSentenceCanonicalizer $ combineFunctionsUniformly [gleki, tavla, nupre, cusku] where
+translations3 = generateTranslationExercise basicSentenceCanonicalizer $ combineFunctions [(2, gleki), (1, tavla), (2, nupre), (2, cusku)] where
     gleki = combineFunctionsUniformly [nothingSpecific, talking, beautiful, givingAnimals, liking, teaching, owningHouse, other] where
         nothingSpecific = generatorFromList
             [ (["mi gleki"], ["I am happy."])
