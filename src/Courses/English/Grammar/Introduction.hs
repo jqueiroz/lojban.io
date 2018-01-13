@@ -359,7 +359,7 @@ translations3 = generateTranslationExercise basicSentenceCanonicalizer $ combine
         beingFriendly = generatorFromList
             [ (["do nupre lo nu pendo kei ku", "do nupre lo nu do pendo kei ku"], ["You promised to be friendly."])
             ]
-    cusku = combineFunctionsUniformly [nothingSpecific, beautiful, liking, donatingAnimals, beingFriendly, others] where
+    cusku = combineFunctionsUniformly [nothingSpecific, beautiful, likingPeople, likingAnimals, donatingAnimals, beingFriendly, others] where
         nothingSpecific = generatorFromList
             [ (["mi cusku"], ["I said something.", "I was saying something.", "I will say something."])
             , (["do cusku"], ["You said something.", "You were saying something."])
@@ -371,13 +371,29 @@ translations3 = generateTranslationExercise basicSentenceCanonicalizer $ combine
             , (["do cusku lo se du'u mi melbi kei ku"], ["You said that I am beautiful."])
             , (["do cusku lo se du'u lo prenu ku melbi kei ku"], ["You said that the person is beautiful."])
             ]
-        liking = generatorFromList
+        likingPeople = generatorFromList
             [ (["mi cusku lo se du'u mi nelci do kei ku", "mi cusku lo se du'u nelci do kei ku"], ["I said that I like you."])
             , (["do cusku lo se du'u do nelci mi kei ku", "do cusku lo se du'u nelci mi kei ku"], ["You said that you like me."])
             , (["lo prenu ku cusku lo se du'u mi nelci do kei ku"], ["The person said that I like you."])
             , (["lo prenu ku cusku lo se du'u do nelci mi kei ku"], ["The person said that you like me."])
             , (["lo prenu ku cusku lo se du'u nelci mi kei ku"], ["The person said that she likes me."])
             , (["lo prenu ku cusku lo se du'u nelci do kei ku"], ["The person said that she likes you."])
+            ]
+        likingAnimals = generatorFromList
+            -- mlatu
+            [ (["mi cusku lo se du'u mi nelci lo mlatu ku kei ku", "mi cusku lo se du'u nelci lo mlatu ku kei ku"], ["I said that I like the cat.", "I said that I like the cats.", "I said that I like cats."])
+            , (["mi cusku lo se du'u do nelci lo mlatu ku kei ku"], ["I said that you like the cat.", "I said that you like the cats.", "I said that you like cats."])
+            , (["do cusku lo se du'u do nelci lo mlatu ku kei ku", "do cusku lo se du'u nelci lo mlatu ku kei ku"], ["You said that you like the cat.", "You said that you like the cats.", "You said that you like cats."])
+            , (["do cusku lo se du'u mi nelci lo mlatu ku kei ku"], ["You said that I like the cat.", "You said that I like the cats.", "You said that I like cats."])
+            , (["lo prenu ku cusku lo se du'u mi nelci lo mlatu ku kei ku"], ["The person said that I like the cat.", "The person said that I like the cats.", "The person said that I like cats."])
+            , (["lo prenu ku cusku lo se du'u do nelci lo mlatu ku kei ku"], ["The person said that you like the cat.", "The person said that you like the cats.", "The person said that you like cats."])
+            -- gerku
+            , (["mi cusku lo se du'u mi nelci lo gerku ku kei ku", "mi cusku lo se du'u nelci lo gerku ku kei ku"], ["I said that I like the dog.", "I said that I like the dogs.", "I said that I like dogs."])
+            , (["mi cusku lo se du'u do nelci lo gerku ku kei ku"], ["I said that you like the dog.", "I said that you like the dogs.", "I said that you like dogs."])
+            , (["do cusku lo se du'u do nelci lo gerku ku kei ku", "do cusku lo se du'u nelci lo gerku ku kei ku"], ["You said that you like the dog.", "You said that you like the dogs.", "You said that you like dogs."])
+            , (["do cusku lo se du'u mi nelci lo gerku ku kei ku"], ["You said that I like the dog.", "You said that I like the dogs.", "You said that I like dogs."])
+            , (["lo prenu ku cusku lo se du'u mi nelci lo gerku ku kei ku"], ["The person said that I like the dog.", "The person said that I like the dogs.", "The person said that I like dogs."])
+            , (["lo prenu ku cusku lo se du'u do nelci lo gerku ku kei ku"], ["The person said that you like the dog.", "The person said that you like the dogs.", "The person said that you like dogs."])
             ]
         donatingAnimals = generatorFromList
             [ (["mi cusku lo se du'u mi dunda lo mlatu ku kei ku", "mi cusku lo se du'u dunda lo mlatu ku kei ku"], ["I said that I would donate the cat.", "I said that I would donate the cats."])
