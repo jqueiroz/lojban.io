@@ -15,6 +15,7 @@ import qualified Text.Pandoc as P
 
 --Interesting words: djica, sidju, jinga
 -- introduce djica alongside questions: "I want you to be happy" / "Do you want me to be happy?" / "What do you want?" / "Who wants you to be happy" / "Who do you want to be happy?"
+-- TODO: remove the translations that make the least sense (in progress...)
 
 -- Considerations
 --   * is "speaker" a good choice? maybe it implies voice or authority...
@@ -257,6 +258,7 @@ translations2 =  combineFunctions [(1, translations1_nice), (10, translations2_n
 -- TODO: teach ko'a?
 -- TODO: programmatic translation generation
 -- TODO: indicate optional words using parenthesis
+-- TODO: add sentences using promisee
 translations3 :: ExerciseGenerator
 translations3 = generateTranslationExercise basicSentenceCanonicalizer $ combineFunctions [(2, gleki), (1, tavla), (2, nupre), (2, cusku)] where
     gleki = combineFunctionsUniformly [nothingSpecific, talking, beautiful, givingAnimals, liking, teaching, owningHouse, other] where
@@ -345,6 +347,7 @@ translations3 = generateTranslationExercise basicSentenceCanonicalizer $ combine
             , (["do nupre lo nu dunda lo gerku ku kei ku", "do nupre lo nu do dunda lo gerku ku"], ["You promised to donate the dog.", "You promised to donate the dogs."])
             , (["do nupre lo nu dunda lo mlatu ku mi kei ku", "do nupre lo nu do dunda lo mlatu ku mi kei ku"], ["You promised to donate the cat to me.", "You promised to donate the cats to me.", "You promised to donate the cats to us."])
             , (["do nupre lo nu dunda lo gerku ku mi kei ku", "do nupre lo nu do dunda lo gerku ku mi kei ku"], ["You promised to donate the dog to me.", "You promised to donate the dogs to me.", "You promised to donate the dogs to us."])
+-- preciso revisar a partir daqui (ver oq faz sentido)
             , (["do nupre lo nu dunda lo mlatu ku kei ku mi", "do nupre lo nu do dunda lo mlatu ku kei ku mi"], ["You promised me to donate the cat.", "You promised me to donate the cats.", "You promised us to donate the cat.", "You promised us to donate the cats."])
             , (["do nupre lo nu dunda lo gerku ku kei ku mi", "do nupre lo nu do dunda lo gerku ku kei ku mi"], ["You promised me to donate the dog.", "You promised me to donate the dogs.", "You promised us to donate the dog.", "You promised us to donate the dogs."])
             ]
@@ -438,6 +441,21 @@ translations4 = generateTranslationExercise basicSentenceCanonicalizer <$> gener
 -------- Questions
 -- useful gismu: melbi
 -- xu [...] melbi do
+-- Why are you happy?
+-- What did you give me?
+-- What did you receive?
+-- What did you say?
+-- Did you say that you find me beautiful?
+-- Who is talking to you?
+-- Who is talking to you about me?
+-- What did you do to me?
+-- What did you do to the gift?
+--   Are you going to teach me?
+--   Were you talking about me?
+--   Is the house/cat/dog beautiful to you?
+--   Did somebody talk to you about the cat?
+--   Do you like the teaching method?
+-- generateFillBlanksExercise "mi (ma) do" (think more about context)
 
 -------- Exercises
 exercises1 :: Dictionary -> ExerciseGenerator
@@ -469,6 +487,7 @@ exercises2 dictionary =
         vocabulary = vocabularyGenerator2 dictionary
         displayBridi = combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
 
+-- TODO: exercise: fill with "lo nu" vs ...?
 exercises3 :: Dictionary -> ExerciseGenerator
 exercises3 dictionary =
     combineFunctions

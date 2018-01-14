@@ -15,6 +15,9 @@ import qualified Data.Map as M
 --   Maybe always create a new variable for exercises of this type, and do automatic generation for them (it should be simple)
 --   Difficulties: easy if it involves x1 ("lo mlatu"), hard otherwise ("lo se dunda")
 --   But I'm not very interested in gismu in this course -- this will be more useful for vocabulary courses
+--   What are you thinking?
+--   What did you say?
+--   I agree/disagree
 
 -- Lesson 1.1
 vocabulary11 :: Dictionary -> Vocabulary

@@ -245,6 +245,7 @@ convertStructuredTerm (ZG.LE (ZG.Init x) ZG.NR ZG.NQ y _) = insertPrefix . inser
     insertSuffix = (`T.append` " ku")
 
 ---------- Canonicalization
+--TODO: check canonicalization of "do te tavla mi" (it should be "mi tavla zo'e do")
 type SentenceCanonicalizer = T.Text -> Either String T.Text
 basicSentenceCanonicalizer :: T.Text -> Either String T.Text
 basicSentenceCanonicalizer sentence = displayCanonicalBridi <$> (parse sentence >>= canonicalizeText)
@@ -256,6 +257,7 @@ displayCanonicalBridi :: SimpleBridi -> T.Text
 displayCanonicalBridi = fst . displayStandardSimpleBridi (mkStdGen 42)
 
 ------------------------- ----------------------- Sentence generators
+--This might be incorrect; observatives are bridi, for example
 generateNonbridi :: Vocabulary -> StdGen -> (T.Text, StdGen)
 generateNonbridi vocabulary r0 = chooseItemUniformly r0 . concat . map (getVocabularySumti vocabulary) $
     ["genericPersons", "semiGenericPersons", "animals", "genericPointable", "places", "subjects"]
