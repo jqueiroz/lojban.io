@@ -17,6 +17,9 @@ import qualified Text.Pandoc as P
 -- introduce djica alongside questions: "I want you to be happy" / "Do you want me to be happy?" / "What do you want?" / "Who wants you to be happy" / "Who do you want to be happy?"
 -- TODO: remove the translations that make the least sense (in progress...)
 
+-- TODO: programmatic translation generation
+-- TODO: indicate optional words using parenthesis
+
 -- Considerations
 --   * is "speaker" a good choice? maybe it implies voice or authority...
 
@@ -256,8 +259,6 @@ translations2 =  combineFunctions [(1, translations1_nice), (10, translations2_n
 -- pending words: ctuca, melbi, pendo?
 -- consider using: morji, ciksi, jijnu (useful for teaching du'u)
 -- TODO: teach ko'a?
--- TODO: programmatic translation generation
--- TODO: indicate optional words using parenthesis
 -- TODO: add sentences using promisee
 translations3 :: ExerciseGenerator
 translations3 = generateTranslationExercise basicSentenceCanonicalizer $ combineFunctions [(2, gleki), (1, tavla), (2, nupre), (2, cusku)] where
