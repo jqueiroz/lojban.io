@@ -128,6 +128,7 @@ displayReorderedStandardSimpleBridi' = buildSentenceDisplayer $ \r0 (SimpleBridi
 -- removeElidableTerminators (ZG.LE (ZG.Init i) _ _ x _) =
 -- removeElidableTerminators (ZG.Terms terms _) =
 -- removeElidableTerminators (ZG.BridiTail (ZG.BRIVLA selbri) terms) = selbri `T.append` removeTerminators terms
+-- removeElidableTerminators (ZG.BridiTail (ZG.GOhA selbri) terms) = selbri `T.append` removeTerminators terms
 -- TODO: make this function way more efficient and use the following brute-force version only in unit tests
 
 removeElidableTerminators :: T.Text -> T.Text
@@ -187,6 +188,7 @@ swapTerms2 "xe" = swapTerms 1 5
 
 handlePlacePermutations :: StructuredBridi -> Either String StructuredBridi
 handlePlacePermutations (ZG.BRIVLA brivla, terms) = Right $ (ZG.BRIVLA brivla, terms)
+handlePlacePermutations (ZG.GOhA brivla, terms) = Right $ (ZG.GOhA brivla, terms)
 handlePlacePermutations (ZG.Prefix (ZG.SE x) y, terms) = do
     (selbri, terms2) <- handlePlacePermutations (y, terms)
     return $ (selbri, swapTerms2 x terms2)
@@ -197,6 +199,7 @@ retrieveStructuredBridi :: ZG.Text -> Either String StructuredBridi
 ------- with x1
 -- prami
 retrieveStructuredBridi (ZG.BRIVLA brivla) = Right $ (ZG.BRIVLA brivla, [])
+retrieveStructuredBridi (ZG.GOhA brivla) = Right $ (ZG.GOhA brivla, [])
 -- se prami
 retrieveStructuredBridi (ZG.Prefix x y) = Right $ (ZG.Prefix x y, [])
 -- prami do / se prami do
@@ -204,6 +207,7 @@ retrieveStructuredBridi (ZG.BridiTail selbri (ZG.Terms terms _)) = Right $ (selb
 ------- without x1
 -- mi prami
 retrieveStructuredBridi (ZG.Bridi (ZG.Terms terms _) (ZG.BRIVLA brivla)) = Right $ (ZG.BRIVLA brivla, zip [1..] terms)
+retrieveStructuredBridi (ZG.Bridi (ZG.Terms terms _) (ZG.GOhA brivla)) = Right $ (ZG.GOhA brivla, zip [1..] terms)
 -- mi se prami
 retrieveStructuredBridi (ZG.Bridi (ZG.Terms terms _) (ZG.Prefix x y)) = Right $ (ZG.Prefix x y, zip [1..] terms)
 -- mi prami do / mi se prami do
@@ -221,6 +225,7 @@ convertStructuredBridi (selbri, terms) = do
 
 convertStructuredSelbri :: StructuredSelbri -> Either String T.Text
 convertStructuredSelbri (ZG.BRIVLA brivla) = Right $ T.pack brivla
+convertStructuredSelbri (ZG.GOhA brivla) = Right $ T.pack brivla
 
 convertStructuredTerms :: [(Int, StructuredTerm)] -> Either String [T.Text]
 convertStructuredTerms terms = do
@@ -235,6 +240,7 @@ convertStructuredTerms terms = do
 convertStructuredTerm :: StructuredTerm -> Either String T.Text
 convertStructuredTerm (ZG.KOhA x) = Right $ T.pack x
 convertStructuredTerm (ZG.BRIVLA x) = Right $ T.pack x
+convertStructuredTerm (ZG.GOhA x) = Right $ T.pack x
 convertStructuredTerm (ZG.Prefix (ZG.SE x) y) = insertPrefix <$> convertStructuredTerm y where
     insertPrefix = ((T.pack $ x ++ " ") `T.append`)
 convertStructuredTerm (ZG.NU (ZG.Init x) y _) = insertPrefix . insertSuffix <$> displayCanonicalBridi <$> canonicalizeText y where
