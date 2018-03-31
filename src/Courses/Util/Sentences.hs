@@ -23,19 +23,21 @@ import Courses.Util.Vocabulary
 import Util (replace, stripRight, filterOutWord, filterOutWords, headOrDefault, isContiguousSequence, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly)
 import Control.Exception (assert)
 import Control.Applicative (liftA2)
+import Control.Arrow ((***))
 import System.Random (StdGen, mkStdGen)
 import qualified Data.Text as T
 import qualified Data.Map as M
 import qualified Language.Lojban.Parser.ZasniGerna as ZG
 
 data SimpleBridi = SimpleBridi
-    { simpleBridiSelbri :: T.Text
+    { simpleBridiXu :: Bool
+    , simpleBridiSelbri :: T.Text
     , simpleBridiSumti :: [T.Text]
     } deriving (Show)
 
 -- The following function keeps trailing empty places, if present
 swapSimpleBridiArguments :: String -> SimpleBridi -> SimpleBridi
-swapSimpleBridiArguments particle (SimpleBridi selbri sumti) = SimpleBridi selbri sumti''' where
+swapSimpleBridiArguments particle (SimpleBridi xu selbri sumti) = SimpleBridi xu selbri sumti''' where
     sumti' = sumti ++ replicate 5 (T.pack "///")
     sumti'' = swapArguments particle sumti'
     sumti''' = replace (T.pack "///") (T.pack "") . stripRight "///" $ sumti''
@@ -52,6 +54,10 @@ swapArguments "xe" (a:b:c:d:e:fs) = (e:b:c:d:a:fs)
 -- TODO: use fa/fe/fi/fo/fu if convenient
 type SimpleBridiDisplayer = StdGen -> SimpleBridi -> (T.Text, StdGen)
 
+prependXu :: Bool -> ([T.Text], StdGen) -> ([T.Text], StdGen)
+prependXu True = ("xu":) *** id
+prependXu False = id
+
 buildSentenceDisplayer :: (StdGen -> SimpleBridi -> ([T.Text], StdGen)) -> SimpleBridiDisplayer
 buildSentenceDisplayer sentenceDisplayer r0 simpleBridi = (T.unwords $ replace "" "zo'e" sentence, r1) where
     (sentence, r1) = sentenceDisplayer r0 simpleBridi
@@ -60,11 +66,12 @@ buildSentenceDisplayer sentenceDisplayer r0 simpleBridi = (T.unwords $ replace "
 --   * Ellisis occurs in the first place and in the last places
 --   * All other missing places are filled with "zo'e"
 displayStandardSimpleBridi :: StdGen -> SimpleBridi -> (T.Text, StdGen)
-displayStandardSimpleBridi = buildSentenceDisplayer $ \r0 (SimpleBridi selbri sumti) ->
+displayStandardSimpleBridi = buildSentenceDisplayer $ \r0 (SimpleBridi xu selbri sumti) ->
     let
         (sumtiHead, sumtiTail) = splitAt 1 sumti
         sentence = (if sumtiHead == [""] then [] else sumtiHead) ++ [selbri] ++ (stripRight "" sumtiTail)
     in
+        prependXu xu $
         (sentence, r0)
 
 -- The bridi is displayed with a random number of places before the selbri
@@ -72,10 +79,11 @@ displayStandardSimpleBridi = buildSentenceDisplayer $ \r0 (SimpleBridi selbri su
 --   * Ellisis occurs in the last places
 --   * All other missing places are filled with "zo'e"
 displayVariantSimpleBridi :: StdGen -> SimpleBridi -> (T.Text, StdGen)
-displayVariantSimpleBridi = buildSentenceDisplayer $ \r0 (SimpleBridi selbri sumti) ->
+displayVariantSimpleBridi = buildSentenceDisplayer $ \r0 (SimpleBridi xu selbri sumti) ->
     let
         (sumtiHead, sumtiTail) = splitAt 1 sumti
     in
+        prependXu xu $
         if sumtiHead == [""] then
             (selbri : (stripRight "" sumtiTail), r0)
         else
@@ -96,13 +104,15 @@ displayPossiblyReorderedStandardSimpleBridi r0 bridi
     where sumti = stripRight "" $ simpleBridiSumti bridi
 
 displayPossiblyReorderedStandardSimpleBridi' :: StdGen -> SimpleBridi -> (T.Text, StdGen)
-displayPossiblyReorderedStandardSimpleBridi' = buildSentenceDisplayer $ \r0 (SimpleBridi selbri sumti) ->
+displayPossiblyReorderedStandardSimpleBridi' = buildSentenceDisplayer $ \r0 (SimpleBridi xu selbri sumti) ->
     let
         particle = ["se", "te", "ve", "xe"] !! (length sumti - 2)
         sumti' = stripRight "" $ swapArguments particle sumti
         sentence = head sumti' : (T.pack particle) : selbri : (tail sumti')
     in
-        assert (length sumti >= 2 && length sumti <= 5 && head sumti == "" && last sumti /= "") $ (sentence, r0)
+        assert (length sumti >= 2 && length sumti <= 5 && head sumti == "" && last sumti /= "") $
+        prependXu xu $
+        (sentence, r0)
 
 -- The bridi is displayed with a single place swap
 --   * Exception: if the first place is empty or there are fewer than two places, then this function behaves as displayStandardSimpleBridi
@@ -114,14 +124,16 @@ displayReorderedStandardSimpleBridi r0 bridi
     where sumti = stripRight "" $ simpleBridiSumti bridi
 
 displayReorderedStandardSimpleBridi' :: StdGen -> SimpleBridi -> (T.Text, StdGen)
-displayReorderedStandardSimpleBridi' = buildSentenceDisplayer $ \r0 (SimpleBridi selbri sumti) ->
+displayReorderedStandardSimpleBridi' = buildSentenceDisplayer $ \r0 (SimpleBridi xu selbri sumti) ->
     let
         particles = take (length sumti - 1) ["se", "te", "ve", "xe"]
         (particle, r1) = chooseItemUniformly r0 particles
         sumti' = swapArguments particle sumti
         sentence = head sumti' : (T.pack particle) : selbri : tail sumti'
     in
-        assert (length sumti >= 2 && head sumti /= "" && last sumti /= "") $ (sentence, r1)
+        assert (length sumti >= 2 && head sumti /= "" && last sumti /= "") $
+        prependXu xu $
+        (sentence, r1)
 
 ------------------------- ----------------------- Terminator ellisis
 -- removeElidableTerminators :: ZG.Text -> Either String T.Text
@@ -148,8 +160,8 @@ removeElidableTerminators t = f [] (T.words t) where
 --TODO: support tanru
 
 ---------- Parsing
-parse :: T.Text -> Either String ZG.Text
-parse sentence = ZG.parse (T.unpack sentence) >>= \(_, x, _) -> return x
+parse :: T.Text -> Either String (ZG.Free, ZG.Text, ZG.Terminator)
+parse sentence = ZG.parse (T.unpack sentence)
 
 ---------- Types
 type StructuredSelbri = ZG.Text
@@ -217,11 +229,11 @@ retrieveStructuredBridi _ = Left "unrecognized pattern in function retrieveStruc
 
 ---------- Convert structured bridi to simple bridi
 -- The structured bridi must already have correct place structure (no place tags, no place reordering)
-convertStructuredBridi :: StructuredBridi -> Either String SimpleBridi
-convertStructuredBridi (selbri, terms) = do
+convertStructuredBridi :: Bool -> StructuredBridi -> Either String SimpleBridi
+convertStructuredBridi xu (selbri, terms) = do
     selbri2 <- convertStructuredSelbri selbri
     terms2 <- convertStructuredTerms terms
-    return $ SimpleBridi selbri2 terms2
+    return $ SimpleBridi xu selbri2 terms2
 
 convertStructuredSelbri :: StructuredSelbri -> Either String T.Text
 convertStructuredSelbri (ZG.BRIVLA brivla) = Right $ T.pack brivla
@@ -243,7 +255,8 @@ convertStructuredTerm (ZG.BRIVLA x) = Right $ T.pack x
 convertStructuredTerm (ZG.GOhA x) = Right $ T.pack x
 convertStructuredTerm (ZG.Prefix (ZG.SE x) y) = insertPrefix <$> convertStructuredTerm y where
     insertPrefix = ((T.pack $ x ++ " ") `T.append`)
-convertStructuredTerm (ZG.NU (ZG.Init x) y _) = insertPrefix . insertSuffix <$> displayCanonicalBridi <$> canonicalizeText y where
+convertStructuredTerm (ZG.NU (ZG.Init x) y w) = convertStructuredTerm (ZG.NU (ZG.InitF x ZG.NF) y w)
+convertStructuredTerm (ZG.NU (ZG.InitF x y) w z) = insertPrefix . insertSuffix <$> displayCanonicalBridi <$> canonicalizeText (y, w, z) where
     insertPrefix = ((T.pack $ x ++ " ") `T.append`)
     insertSuffix = (`T.append` " kei")
 convertStructuredTerm (ZG.LE (ZG.Init x) ZG.NR ZG.NQ y _) = insertPrefix . insertSuffix <$> convertStructuredTerm y where
@@ -255,8 +268,21 @@ type SentenceCanonicalizer = T.Text -> Either String T.Text
 basicSentenceCanonicalizer :: T.Text -> Either String T.Text
 basicSentenceCanonicalizer sentence = displayCanonicalBridi <$> (parse sentence >>= canonicalizeText)
 
-canonicalizeText :: ZG.Text -> Either String SimpleBridi
-canonicalizeText text = retrieveStructuredBridi text >>= handlePlaceTags >>= handlePlacePermutations >>= convertStructuredBridi
+canonicalizeText :: (ZG.Free, ZG.Text, ZG.Terminator) -> Either String SimpleBridi
+canonicalizeText (free, text, terminator) = retrieveStructuredBridi text >>= handlePlaceTags >>= handlePlacePermutations >>= convertStructuredBridi xu where
+    xu = hasXu free
+
+hasXu :: ZG.Free -> Bool
+hasXu (ZG.UI x) = x == "xu"
+hasXu (ZG.UIF x y) = (x == "xu") || hasXu y
+hasXu (ZG.BUIF x y z) = hasXu z
+hasXu (ZG.DOIF x y) = hasXu y
+hasXu (ZG.BDOIF x y z) = hasXu z
+hasXu (ZG.COIF x y) = hasXu y
+hasXu (ZG.BCOIF x y z) = hasXu z
+hasXu (ZG.COIs xs y) = any hasXu xs
+hasXu (ZG.Vocative xs y z) = any hasXu xs
+hasXu _ = False
 
 displayCanonicalBridi :: SimpleBridi -> T.Text
 displayCanonicalBridi = fst . displayStandardSimpleBridi (mkStdGen 42)
@@ -271,8 +297,9 @@ generateSimpleBridi :: Vocabulary -> StdGen -> (SimpleBridi, StdGen)
 generateSimpleBridi vocabulary = combineFunctionsUniformly
     [generatePropertyBridi vocabulary, generateRelationBridi vocabulary, generateActionBridi vocabulary]
 
+--TODO: allow questions?
 generatePropertyBridi :: Vocabulary -> StdGen -> (SimpleBridi, StdGen)
-generatePropertyBridi vocabulary r0 = (SimpleBridi property [object], r2) where
+generatePropertyBridi vocabulary r0 = (SimpleBridi False property [object], r2) where
     (property, r1) = chooseItemUniformly r0 properties
     (object, r2) = chooseItemUniformly r1 . filterOutWord property . retrievePropertyObjects $ property
     -- Vocabulary
@@ -299,8 +326,9 @@ generatePropertyBridi vocabulary r0 = (SimpleBridi property [object], r2) where
             then error $ "No property objects are available for '" ++ (T.unpack property) ++ "'"
             else objects
 
+--TODO: allow questions?
 generateRelationBridi :: Vocabulary -> StdGen -> (SimpleBridi, StdGen)
-generateRelationBridi vocabulary r0 = (SimpleBridi relation objects, r2) where
+generateRelationBridi vocabulary r0 = (SimpleBridi False relation objects, r2) where
     (relation, r1) = chooseItemUniformly r0 relations
     (objects, r2) = (retrieveRelationObjectsGenerator relation) r1
     -- Vocabulary
@@ -332,8 +360,9 @@ generateRelationBridi vocabulary r0 = (SimpleBridi relation objects, r2) where
             Just x -> x
             Nothing -> error $ "No relation objects generator are available for '" ++ (T.unpack relation) ++ "'"
 
+--TODO: allow questions?
 generateActionBridi :: Vocabulary -> StdGen -> (SimpleBridi, StdGen)
-generateActionBridi vocabulary r0 = (SimpleBridi action objects, r2) where
+generateActionBridi vocabulary r0 = (SimpleBridi False action objects, r2) where
     (action, r1) = chooseItemUniformly r0 actions
     (objects, r2) = (actionObjectsGenerators M.! action) r1
     -- Vocabulary
