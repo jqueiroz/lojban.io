@@ -16,6 +16,7 @@ module Courses.Util.Sentences
 , generateRelationBridi
 , generateActionBridi
 , removeElidableTerminators
+, parse
 ) where
 
 import Core
@@ -161,7 +162,7 @@ removeElidableTerminators t = f [] (T.words t) where
 
 ---------- Parsing
 parse :: T.Text -> Either String (ZG.Free, ZG.Text, ZG.Terminator)
-parse sentence = ZG.parse (T.unpack sentence)
+parse = ZG.parse . T.unpack
 
 ---------- Types
 type StructuredSelbri = ZG.Text
