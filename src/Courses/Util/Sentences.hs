@@ -251,7 +251,6 @@ convertStructuredTerm (ZG.LE (ZG.Init x) ZG.NR ZG.NQ y _) = insertPrefix . inser
     insertSuffix = (`T.append` " ku")
 
 ---------- Canonicalization
---TODO: check canonicalization of "do te tavla mi" (it should be "mi tavla zo'e do")
 type SentenceCanonicalizer = T.Text -> Either String T.Text
 basicSentenceCanonicalizer :: T.Text -> Either String T.Text
 basicSentenceCanonicalizer sentence = displayCanonicalBridi <$> (parse sentence >>= canonicalizeText)
