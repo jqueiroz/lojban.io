@@ -489,7 +489,7 @@ exercises2 dictionary =
         vocabulary = vocabularyGenerator2 dictionary
         displayBridi = combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
 
--- TODO: exercise: fill with "lo nu" vs ...?
+-- TODO: exercise: fill with "lo nu" vs "lo du'u" vs "lo se du'u"?
 exercises3 :: Dictionary -> ExerciseGenerator
 exercises3 dictionary =
     combineFunctions
