@@ -134,6 +134,7 @@ translations1 = combineFunctions [(1, translations1_nice), (4, more_translations
 
 translations2_nice :: ExerciseGenerator
 translations2_nice = combineFunctions [(1, restricted_translations), (5, normal_translations)] where
+    -- Restricted translations
     special = combineFunctions [(2, talkingAbout), (1, gaveSomething)] where
         talkingAbout = generatorFromList
             [ (["mi tavla fi mi"], ["I was talking about myself.", "We were talking about ourselves.", "I will talk about myself."])
@@ -150,6 +151,7 @@ translations2_nice = combineFunctions [(1, restricted_translations), (5, normal_
             , (["do dunda fi mi"], ["You gave me something."])
             ]
     restricted_translations = generateRestrictedTranslationExercise "Translate without using \"zo'e\"" (not . containsWord (T.pack "zo'e")) basicSentenceCanonicalizer special
+    -- Normal translations
     normal_translations = generateTranslationExercise basicSentenceCanonicalizer $ combineFunctionsUniformly [special, hasHouse, niceGift, giftingAnimal, teaching, friends, others] where
         hasHouse = generatorFromList
             [ (["lo ctuca ku se zdani"], ["The instructor has a house."])
