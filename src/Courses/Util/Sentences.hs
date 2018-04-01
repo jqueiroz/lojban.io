@@ -226,7 +226,7 @@ retrieveStructuredBridi (ZG.Bridi (ZG.Terms terms _) (ZG.Prefix x y)) = Right $ 
 -- mi prami do / mi se prami do
 retrieveStructuredBridi (ZG.Bridi (ZG.Terms terms1 _) (ZG.BridiTail selbri (ZG.Terms terms2 _))) = Right $ (selbri, zip [1..] $ terms1 ++ terms2)
 ------- invalid
-retrieveStructuredBridi _ = Left "unrecognized pattern in function retrieveStructuredBridi"
+retrieveStructuredBridi x = Left $ "unrecognized pattern in function retrieveStructuredBridi: " ++ show x
 
 ---------- Convert structured bridi to simple bridi
 -- The structured bridi must already have correct place structure (no place tags, no place reordering)
