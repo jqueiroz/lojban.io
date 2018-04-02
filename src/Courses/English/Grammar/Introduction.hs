@@ -50,7 +50,6 @@ vocabularyGenerator1 = createVocabularyBuilder
         ("genericPointable", ["ti", "ta"])
     ]
 
--- TODO: should "ctuca" really be here? does it denote any kind of teaching or only teaching in formal settings with an instructor and audience?
 vocabularyGenerator2 :: VocabularyBuilder
 vocabularyGenerator2 = createVocabularyBuilder
     -- Selbri
@@ -69,7 +68,6 @@ vocabularyGenerator2 = createVocabularyBuilder
         ("subjects", ["lo zdani ku", "lo mlatu ku", "lo gerku ku", "lo se dunda ku"])
     ]
 
---TODO: add "djica", "jinvi", ... (add to exercises, too)
 vocabularyGenerator3 :: VocabularyBuilder
 vocabularyGenerator3 = createVocabularyBuilder
     -- Selbri
