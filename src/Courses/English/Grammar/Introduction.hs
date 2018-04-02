@@ -74,6 +74,25 @@ vocabularyGenerator3 :: VocabularyBuilder
 vocabularyGenerator3 = createVocabularyBuilder
     -- Selbri
     [
+        ("actions", ["tavla", "dunda", "ctuca"]),
+        ("properties", ["prenu", "zdani", "mlatu", "gerku", "melbi"]),
+        ("relations", ["nelci", "pendo"])
+    ]
+    -- Sumti
+    [
+        ("genericPersons", ["mi", "do", "lo prenu ku"]),
+        ("semiGenericPersons", ["lo tavla ku", "lo se tavla ku", "lo dunda ku", "lo te dunda ku"]),
+        ("animals", ["lo mlatu ku", "lo gerku ku"]),
+        ("genericPointable", ["ti", "ta"]),
+        ("places", ["lo zdani ku"]),
+        ("subjects", ["lo zdani ku", "lo mlatu ku", "lo gerku ku", "lo se dunda ku"])
+    ]
+
+--TODO: add all new from generator3
+vocabularyGenerator4 :: VocabularyBuilder
+vocabularyGenerator4 = createVocabularyBuilder
+    -- Selbri
+    [
         ("actions", ["tavla", "dunda", "ctuca", "nupre", "cusku"]),
         ("properties", ["prenu", "zdani", "mlatu", "gerku", "melbi"]),
         ("relations", ["nelci", "pendo", "gleki"])
