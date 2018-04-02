@@ -33,6 +33,9 @@ Right plan2 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/engl
 plan3 :: P.Pandoc
 Right plan3 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/introduction/planning/3.md")
 
+plan4 :: P.Pandoc
+Right plan4 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/introduction/planning/4.md")
+
 -------- Vocabulary
 vocabularyGenerator1 :: VocabularyBuilder
 vocabularyGenerator1 = createVocabularyBuilder
@@ -48,6 +51,7 @@ vocabularyGenerator1 = createVocabularyBuilder
         ("genericPointable", ["ti", "ta"])
     ]
 
+-- TODO: should "ctuca" really be here? does it denote any kind of teaching or only teaching in formal settings with an instructor and audience?
 vocabularyGenerator2 :: VocabularyBuilder
 vocabularyGenerator2 = createVocabularyBuilder
     -- Selbri
@@ -66,7 +70,7 @@ vocabularyGenerator2 = createVocabularyBuilder
         ("subjects", ["lo zdani ku", "lo mlatu ku", "lo gerku ku", "lo se dunda ku"])
     ]
 
--- TODO: should "ctuca" really be here? does it denote any kind of teaching or only teaching in formal settings with an instructor and audience?
+--TODO: add "djica", "jinvi", ... (add to exercises, too)
 vocabularyGenerator3 :: VocabularyBuilder
 vocabularyGenerator3 = createVocabularyBuilder
     -- Selbri
@@ -256,6 +260,149 @@ translations2 =  combineFunctions [(1, translations1_nice), (10, translations2_n
             , (["lo ctuca ku nelci mi"], ["The instructor likes me", "The instructors like me."])
             ]
 
+translations3 :: ExerciseGenerator
+translations3 = combineFunctions [(1, restricted_translations), (5, normal_translations)] where
+    -- Restricted translations
+    special_xu = combineFunctions [(2, talkingAbout), (1, gaveSomething)] where
+        talkingAbout = generatorFromList
+            [ (["xu do tavla fi do"], ["Are you talking about yourself?", "Were you talking about yourself?"])
+            , (["xu do tavla fi mi"], ["Are you talking about me?", "Were you talking about me?"])
+            , (["xu tavla fi mi"], ["Was somebody talking about me?"])
+            , (["xu do tavla fi lo mlatu ku"], ["Were you talking about the cat?", "Were you talking about the cats?", "Were you talking about cats?"])
+            , (["xu do tavla fi lo gerku ku"], ["Were you talking about the dog?", "Were you talking about the dogs?", "Were you talking about dogs?"])
+            ]
+        gaveSomething = generatorFromList
+            [ (["xu do dunda fi mi"], ["Did you give me something?", "Are you going to give me something?"])
+            , (["xu mi dunda fi do"], ["Did I give you something?"])
+            ]
+    special_ma = combineFunctions [(2, talkingAbout), (1, gaveSomething)] where
+        talkingAbout = generatorFromList
+            [ (["ma tavla fi mi"], ["Who is talking about me?", "Who is talking about us?", "Who was talking about me?", "Who was walking about us?"])
+            , (["ma tavla fi do"], ["Who is talking about you?", "Who was talking about you?"])
+            , (["ma tavla fi lo mlatu ku"], ["Who is talking about the cat?"])
+            , (["ma tavla fi lo gerku ku"], ["Who is talking about the dog?"])
+            , (["do tavla fi ma"], ["What are you talking about?", "What were you talking about?"])
+            , (["lo prenu ku tavla fi ma"], ["What is the person talking about?", "What was the person talking about?"])
+            , (["lo dunda ku tavla fi ma"], ["What is the donor talking about?", "What was the donor talking about?"])
+            , (["lo te dunda ku tavla fi ma"], ["What is the recipient talking about?", "What was the recipient talking about?"])
+            ]
+        gaveSomething = generatorFromList
+            [ (["ma dunda fi mi"], ["Who donated to me?"])
+            , (["ma dunda fi do"], ["Who donated to you?"])
+            , (["do dunda fi ma"], ["To whom did you donate?"])
+            , (["lo prenu ku dunda fi ma"], ["To whom did the person donate?"])
+            ]
+    special = combineFunctionsUniformly [special_xu, special_ma]
+    restricted_translations = generateRestrictedTranslationExercise "Translate without using \"zo'e\"" (not . containsWord (T.pack "zo'e")) basicSentenceCanonicalizer special
+    -- Normal translations
+    normal = combineFunctions [(4, xu), (4, ma), (1, mo)] where
+        xu = combineFunctionsUniformly [special_xu, hasHouse, niceGift, talking, teaching, friends, others] where
+            hasHouse = generatorFromList
+                [ (["xu do se zdani"], ["Do you have a house?"])
+                , (["xu lo prenu ku se zdani"], ["Does the person have a house?"])
+                , (["xu lo ctuca ku se zdani"], ["Does the instructor have a house?"])
+                ]
+            niceGift = combineFunctionsUniformly [beautifulGift, likedGift] where
+                beautifulGift = generatorFromList
+                    [ (["xu lo se dunda ku melbi do"], ["Is the gift beautiful to you?", "Are the gifts beatiful to you?"])
+                    , (["xu lo se dunda ku melbi"], ["Is the gift beautiful?", "Are the gifts beautiful?"])
+                    ]
+                likedGift = generatorFromList
+                    [ (["xu do nelci lo se dunda ku"], ["Did you like the gift?"])
+                    , (["xu lo te dunda ku nelci lo se dunda ku"], ["Did the recipient like the gift?"])
+                    , (["xu lo ctuca ku nelci lo se dunda ku"], ["Did the instructor like the gift?"])
+                    ]
+            talking = generatorFromList
+                [ (["xu do tavla mi"], ["Are you talking to me?"])
+                , (["xu do tavla lo mlatu ku"], ["Are you talking to the cat?"])
+                , (["xu do tavla lo gerku ku"], ["Are you talking to the dog?"])
+                ]
+            teaching = generatorFromList
+                [ (["xu mi ctuca lo mlatu ku"], ["Are you teaching the cat?", "Did you teach the cat?"])
+                , (["xu do ctuca lo gerku ku"], ["Are you teaching the dog?", "Did you teach the dog?"])
+                , (["xu do ctuca mi"], ["Are you going to teach me?"])
+                , (["xu do ctuca do"], ["Did you teach yourself?"])
+                , (["xu ctuca do"], ["Did somebody teach you?"])
+                ]
+            friends = generatorFromList
+                [ (["xu do pendo mi"], ["Are you my friend?"])
+                , (["xu lo ctuca ku pendo do"], ["Is the instructor your friend?"])
+                , (["xu lo dunda ku pendo do"], ["Is the donor your friend?"])
+                , (["xu lo te dunda ku pendo do"], ["Is the recipient your friend?"])
+                ]
+            others = generatorFromList
+                [ (["xu do nelci lo xe ctuca ku"], ["Do you like the teaching method?"])
+                ]
+        ma = combineFunctionsUniformly [special_ma, hasHouse, nice, talking, giving, teaching] where
+            hasHouse = generatorFromList
+                [ (["ma se zdani"], ["Who has a house?"])
+                , (["ta zdani ma", "zdani ma"], ["Whose house is that?"])
+                , (["do nelci ma"], ["What do you like?"])
+                ]
+            nice = combineFunctionsUniformly [what, who] where
+                what = generatorFromList
+                    [ (["ma melbi do"], ["What is beautiful to you?"])
+                    , (["ma melbi"], ["What is beautiful?"])
+                    ]
+                who = generatorFromList
+                    [ (["ti melbi ma"], ["Who finds this beautiful?"])
+                    , (["ta melbi ma"], ["Who finds that beautiful?"])
+                    , (["lo se dunda ku melbi ma"], ["The gift is beautiful to whom?", "The gifts are beautiful to whom?"])
+                    , (["lo mlatu ku melbi ma"], ["The cat is beautiful to whom?", "The cats are beautiful to whom?"])
+                    , (["lo gerku ku melbi ma"], ["The dog is beautiful to whom?", "The dogs are beautiful to whom?"])
+                    , (["ma nelci lo se dunda ku"], ["Who liked the gift?", "Who likes the gift?"])
+                    , (["ma nelci lo mlatu ku"], ["Who likes cats?", "Who likes the cat?"])
+                    , (["ma nelci lo gerku ku"], ["Who likes dogs?", "Who likes the dog?"])
+                    ]
+            talking = generatorFromList
+                [ (["mi tavla ma"], ["Who am I talking to?"])
+                , (["do tavla ma"], ["Who are you talking to?"])
+                , (["ma tavla mi"], ["Who is talking to me?"])
+                , (["ma tavla do"], ["Who is talking to you?"])
+                ]
+            giving = combineFunctions [(2, general), (1, mlatu), (1, gerku)] where
+                general = generatorFromList
+                    [ (["do te dunda ma"], ["What were you given?", "What did you receive?"])
+                    , (["do dunda ma mi"], ["What did you give me?", "What will you give me?"])
+                    , (["do dunda ma"], ["What did you donate?"])
+                    , (["lo ctuca ku dunda ma do"], ["What did the instructor give you?"])
+                    , (["ma dunda do ta"], ["Who gave you that?"])
+                    , (["ma dunda mi ti"], ["Who gave me this?"])
+                    , (["ma dunda ti"], ["Who donated this?"])
+                    , (["ma dunda ta"], ["Who donated that?"])
+                    , (["ma dunda fi lo zdani ku"], ["Who donated the house?"])
+                    ]
+                mlatu = generatorFromList
+                    [ (["ma te dunda lo mlatu ku"], ["Who was given a cat?"])
+                    , (["do dunda lo mlatu ku ma"], ["To whom did you give the cat?", "To whom did you give the cats?"])
+                    , (["ma dunda lo mlatu ku lo ctuca ku"], ["Who gave the cat to the instructor?"])
+                    , (["ma dunda lo mlatu ku mi"], ["Who gave me a cat?"])
+                    , (["ma dunda lo mlatu ku do"], ["Who gave you a cat?"])
+                    , (["ma dunda fi lo mlatu ku"], ["Who donated the cat?"])
+                    ]
+                gerku = generatorFromList
+                    [ (["ma te dunda lo gerku ku"], ["Who was given a dog?"])
+                    , (["do dunda lo gerku ku ma"], ["To whom did you give the dog?", "To whom did you give the dogs?"])
+                    , (["ma dunda lo gerku ku lo ctuca ku"], ["Who gave the dog to the instructor?"])
+                    , (["ma dunda lo gerku ku mi"], ["Who gave me a dog?"])
+                    , (["ma dunda lo gerku ku do"], ["Who gave you a dog?"])
+                    , (["ma dunda fi lo gerku ku"], ["Who donated the dog?"])
+                    ]
+            teaching = generatorFromList
+                [ (["mi ctuca ma"], ["Who are we going to teach?"])
+                , (["do ctuca ma"], ["Who are you teaching?", "Who are you going to teach?"])
+                , (["ma ctuca do"], ["Who is teaching you?", "Who taught you?"])
+                , (["ma ctuca lo mlatu ku"], ["Who taught the cat?"])
+                , (["ma ctuca lo gerku ku"], ["Who taught the dog?"])
+                ]
+        mo = generatorFromList
+            [ (["mi mo"], ["What am I doing?"])
+            , (["do mo"], ["What are you doing?"])
+            , (["lo prenu ku mo"], ["What is the person doing?"])
+            , (["lo ctuca ku mo"], ["What is the instructor doing?"])
+            ]
+    normal_translations = generateTranslationExercise basicSentenceCanonicalizer normal
+
 -- Are the sentences involving tavla really sensible?
 -- words common enough: gleki, tavla, dunda, nelci, mlatu, gerku, prenu, nupre, zdani
 -- pending words: ctuca, melbi, pendo?
@@ -263,8 +410,8 @@ translations2 =  combineFunctions [(1, translations1_nice), (10, translations2_n
 -- TODO: more examples using du'u
 -- consider using: morji, ciksi, jijnu (useful for teaching du'u)
 -- TODO: add sentences using promisee
-translations3 :: ExerciseGenerator
-translations3 = generateTranslationExercise basicSentenceCanonicalizer $ combineFunctions [(2, gleki), (1, tavla), (2, nupre), (2, cusku)] where
+translations4 :: ExerciseGenerator
+translations4 = generateTranslationExercise basicSentenceCanonicalizer $ combineFunctions [(2, gleki), (1, tavla), (2, nupre), (2, cusku)] where
     gleki = combineFunctionsUniformly [nothingSpecific, talking, beautiful, givingAnimals, liking, teaching, owningHouse, other] where
         nothingSpecific = generatorFromList
             [ (["mi gleki"], ["I am happy."])
@@ -431,8 +578,13 @@ translations3 = generateTranslationExercise basicSentenceCanonicalizer $ combine
             {-, (["mi cusku lo se du'u do nelci lo nu tavla mi kei ku kei ku", "mi cusku lo se du'u do nelci lo nu do tavla mi kei ku kei ku"], ["I said that you like to talk to me."])-}
             ]
 
-translations4 :: [ExerciseGenerator]
-translations4 = generateTranslationExercise basicSentenceCanonicalizer <$> generatorFromSingleton <$>
+translations5 :: [ExerciseGenerator]
+translations5 = generateTranslationExercise basicSentenceCanonicalizer <$> generatorFromSingleton <$>
+    [
+    ]
+
+translations9 :: [ExerciseGenerator]
+translations9 = generateTranslationExercise basicSentenceCanonicalizer <$> generatorFromSingleton <$>
     [ (["lo prenu ku sutra tavla"], ["The person talks quickly.", "The person is talking quickly.", "A person is talking quickly.", "People talk quickly"])
     ]
 
@@ -491,9 +643,25 @@ exercises2 dictionary =
         vocabulary = vocabularyGenerator2 dictionary
         displayBridi = combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
 
--- TODO: exercise: fill with "lo nu" vs "lo du'u" vs "lo se du'u"?
+--TODO: new exercise: choose mo vs ma (vs xu?)
 exercises3 :: Dictionary -> ExerciseGenerator
 exercises3 dictionary =
+    combineFunctions
+        [ (5, generateGrammaticalClassExercise vocabulary)
+        , (5, generateBridiJufraExercise vocabulary displayBridi)
+        , (0, generateSelbriIdentificationExercise vocabulary displayBridi)
+        , (0, generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBridi)
+        , (0, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
+        , (0, generateIsolatedGismuPlacesExercise dictionary vocabulary)
+        , (70, translations3)
+        ]
+    where
+        vocabulary = vocabularyGenerator3 dictionary
+        displayBridi = combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
+
+-- TODO: exercise: fill with "lo nu" vs "lo du'u" vs "lo se du'u"?
+exercises4 :: Dictionary -> ExerciseGenerator
+exercises4 dictionary =
     combineFunctions
         [ (5, generateGrammaticalClassExercise vocabulary)
         , (5, generateBridiJufraExercise vocabulary displayBridi)
@@ -504,7 +672,7 @@ exercises3 dictionary =
         , (70, translations3)
         ]
     where
-        vocabulary = vocabularyGenerator3 dictionary
+        vocabulary = vocabularyGenerator4 dictionary
         displayBridi = combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
 
 -------- Lessons
@@ -515,8 +683,11 @@ lesson2 :: LessonBuilder
 lesson2 dictionary = Lesson "Basics 2" (exercises2 dictionary) plan2
 
 lesson3 :: LessonBuilder
-lesson3 dictionary = Lesson "Abstractions" (exercises3 dictionary) plan3
+lesson3 dictionary = Lesson "Questions 1" (exercises3 dictionary) plan3
+
+lesson4 :: LessonBuilder
+lesson4 dictionary = Lesson "Abstractions 1" (exercises4 dictionary) plan3
 
 -------- Course
 course :: CourseBuilder
-course = createCourseBuilder "Introduction to Lojban for English speakers" [lesson1, lesson2, lesson3]
+course = createCourseBuilder "Introduction to Lojban for English speakers" [lesson1, lesson2, lesson3, lesson4]
