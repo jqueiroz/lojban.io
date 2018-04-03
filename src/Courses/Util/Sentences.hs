@@ -298,7 +298,6 @@ generateSimpleBridi :: Vocabulary -> StdGen -> (SimpleBridi, StdGen)
 generateSimpleBridi vocabulary = combineFunctionsUniformly
     [generatePropertyBridi vocabulary, generateRelationBridi vocabulary, generateActionBridi vocabulary]
 
---TODO: allow questions?
 generatePropertyBridi :: Vocabulary -> StdGen -> (SimpleBridi, StdGen)
 generatePropertyBridi vocabulary r0 = (SimpleBridi False property [object], r2) where
     (property, r1) = chooseItemUniformly r0 properties
@@ -327,7 +326,6 @@ generatePropertyBridi vocabulary r0 = (SimpleBridi False property [object], r2) 
             then error $ "No property objects are available for '" ++ (T.unpack property) ++ "'"
             else objects
 
---TODO: allow questions?
 generateRelationBridi :: Vocabulary -> StdGen -> (SimpleBridi, StdGen)
 generateRelationBridi vocabulary r0 = (SimpleBridi False relation objects, r2) where
     (relation, r1) = chooseItemUniformly r0 relations
@@ -361,7 +359,6 @@ generateRelationBridi vocabulary r0 = (SimpleBridi False relation objects, r2) w
             Just x -> x
             Nothing -> error $ "No relation objects generator are available for '" ++ (T.unpack relation) ++ "'"
 
---TODO: allow questions?
 generateActionBridi :: Vocabulary -> StdGen -> (SimpleBridi, StdGen)
 generateActionBridi vocabulary r0 = (SimpleBridi False action objects, r2) where
     (action, r1) = chooseItemUniformly r0 actions
