@@ -1,4 +1,8 @@
 #!/bin/sh
 set -e
 
-.stack-work/dist/x86_64-linux*/Cabal-*/build/lojto/lojto
+if [ "$1" == "build" ]; then
+    stack build
+fi
+
+stack exec lojto
