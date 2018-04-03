@@ -81,6 +81,7 @@ englishSumtiPlacesBase = M.fromList
     , ("dunda", ["donor", "gift", "recipient"])
     , ("ctuca", ["instructor", "audience/student(s)", "ideas/methods", "subject", "teaching method"]) --TODO: maintain student(s) here?
     , ("citka", ["consumer", "aliment"])
+    , ("ciska", ["writer", "text/graphemes", "display/storage medium", "writing implement"])
     , ("klama", ["traveler", "destination", "origin", "route", "means/vehicle"])
     , ("bridi", ["predicate relationship", "relation", "arguments"])
     ] -- TODO: ask people to build a database

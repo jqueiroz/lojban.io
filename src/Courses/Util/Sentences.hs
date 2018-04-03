@@ -410,6 +410,13 @@ generateActionBridi vocabulary r0 = (SimpleBridi False action objects, r2) where
                 (aliment, r2) = chooseItemUniformly r1 (aliments)
             in
                 ([subject, aliment], r2))
+        , ("ciska", \r0 ->
+            let
+                persons = filterOutWord "ciska" $ genericPersons ++ semiGenericPersons
+                (writer, r1) = chooseItemUniformly r0 persons
+                (what, r2) = chooseItemUniformly r1 genericPointable
+            in
+                ([writer, what], r2))
         , ("klama", \r0 ->
             let
                 persons = filterOutWord "klama" $ genericPersons ++ semiGenericPersons

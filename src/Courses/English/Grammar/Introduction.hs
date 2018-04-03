@@ -72,33 +72,33 @@ vocabularyGenerator3 :: VocabularyBuilder
 vocabularyGenerator3 = createVocabularyBuilder
     -- Selbri
     [
-        ("actions", ["tavla", "dunda", "ctuca"]),
+        ("actions", ["tavla", "dunda", "ctuca", "ciska"]),
         ("properties", ["prenu", "zdani", "mlatu", "gerku", "melbi"]),
         ("relations", ["nelci", "pendo"])
     ]
     -- Sumti
     [
         ("genericPersons", ["mi", "do", "lo prenu ku"]),
-        ("semiGenericPersons", ["lo tavla ku", "lo se tavla ku", "lo dunda ku", "lo te dunda ku"]),
+        ("semiGenericPersons", ["lo tavla ku", "lo se tavla ku", "lo dunda ku", "lo te dunda ku", "lo ciska ku"]),
         ("animals", ["lo mlatu ku", "lo gerku ku"]),
         ("genericPointable", ["ti", "ta"]),
         ("places", ["lo zdani ku"]),
         ("subjects", ["lo zdani ku", "lo mlatu ku", "lo gerku ku", "lo se dunda ku"])
     ]
 
---TODO: add all new from generator3
+--TODO: add all new from generator3 (and consider creating exercises using them)
 vocabularyGenerator4 :: VocabularyBuilder
 vocabularyGenerator4 = createVocabularyBuilder
     -- Selbri
     [
-        ("actions", ["tavla", "dunda", "ctuca", "nupre", "cusku"]),
+        ("actions", ["tavla", "dunda", "ctuca", "ciska", "nupre", "cusku"]),
         ("properties", ["prenu", "zdani", "mlatu", "gerku", "melbi"]),
         ("relations", ["nelci", "pendo", "gleki"])
     ]
     -- Sumti
     [
         ("genericPersons", ["mi", "do", "lo prenu ku"]),
-        ("semiGenericPersons", ["lo tavla ku", "lo se tavla ku", "lo dunda ku", "lo te dunda ku"]),
+        ("semiGenericPersons", ["lo tavla ku", "lo se tavla ku", "lo dunda ku", "lo te dunda ku", "lo ciska ku"]),
         ("animals", ["lo mlatu ku", "lo gerku ku"]),
         ("genericPointable", ["ti", "ta"]),
         ("places", ["lo zdani ku"]),
@@ -279,7 +279,7 @@ translations2 =  combineFunctions [(1, translations1_nice), (10, translations2_n
 translations3 :: ExerciseGenerator
 translations3 = combineFunctions [(1, restricted_translations), (5, normal_translations)] where
     -- Restricted translations
-    special_xu = combineFunctions [(2, talkingAbout), (1, gaveSomething)] where
+    special_xu = combineFunctions [(2, talkingAbout), (1, gaveSomething), (2, writing)] where
         talkingAbout = generatorFromList
             [ (["xu do tavla fi do"], ["Are you talking about yourself?", "Were you talking about yourself?"])
             , (["xu do tavla fi mi"], ["Are you talking about me?", "Were you talking about me?"])
@@ -291,7 +291,15 @@ translations3 = combineFunctions [(1, restricted_translations), (5, normal_trans
             [ (["xu do dunda fi mi"], ["Did you give me something?", "Are you going to give me something?"])
             , (["xu mi dunda fi do"], ["Did I give you something?"])
             ]
-    special_ma = combineFunctions [(2, talkingAbout), (1, gaveSomething)] where
+        writing = generatorFromList
+            [ (["xu do ciska fi ti"], ["Did you write here?"])
+            , (["xu do ciska fi ta"], ["Did you write there?"])
+            , (["xu ciska fi ti"], ["Did somebody write here?"])
+            , (["xu ciska fi ta"], ["Did somebody write there?"])
+            , (["xu do ciska fo ti"], ["Do you write using this?", "Did you write something using this?"])
+            , (["xu do ciska fo ta"], ["Do you write using that?", "Did you write something using that?"])
+            ]
+    special_ma = combineFunctions [(2, talkingAbout), (1, gaveSomething), (2, writing)] where
         talkingAbout = generatorFromList
             [ (["ma tavla fi mi"], ["Who is talking about me?", "Who is talking about us?", "Who was talking about me?", "Who was walking about us?"])
             , (["ma tavla fi do"], ["Who is talking about you?", "Who was talking about you?"])
@@ -301,6 +309,7 @@ translations3 = combineFunctions [(1, restricted_translations), (5, normal_trans
             , (["lo prenu ku tavla fi ma"], ["What is the person talking about?", "What was the person talking about?"])
             , (["lo dunda ku tavla fi ma"], ["What is the donor talking about?", "What was the donor talking about?"])
             , (["lo te dunda ku tavla fi ma"], ["What is the recipient talking about?", "What was the recipient talking about?"])
+            , (["lo ciska ku tavla fi ma"], ["What is the writer talking about?", "What was the writer talking about?"])
             ]
         gaveSomething = generatorFromList
             [ (["ma dunda fi mi"], ["Who donated to me?"])
@@ -308,11 +317,24 @@ translations3 = combineFunctions [(1, restricted_translations), (5, normal_trans
             , (["do dunda fi ma"], ["To whom did you donate?"])
             , (["lo prenu ku dunda fi ma"], ["To whom did the person donate?"])
             ]
+        writing = generatorFromList
+            -- instrument
+            [ (["do ciska fo ma"], ["Which instrument do you use to write?"])
+            , (["do ciska fi ta ma"], ["Which instrument did you use to write there?"])
+            -- medium
+            , (["do ciska fi ma"], ["On what medium will you write?", "On what medium did you write?"])
+            , (["do ciska fi ma ti"], ["On what medium will you write using this?"])
+            , (["ciska fi ma ti"], ["On what medium will this instrument be used to write?"])
+            -- who
+            , (["ma ciska fi ta"], ["Who wrote there?"])
+            , (["ma ciska fo ti"], ["Who writes using this?"])
+            , (["ma ciska fo ta"], ["Who writes using that?"])
+            ]
     special = combineFunctionsUniformly [special_xu, special_ma]
     restricted_translations = generateRestrictedTranslationExercise "Translate without using \"zo'e\"" (not . containsWord (T.pack "zo'e")) basicSentenceCanonicalizer special
     -- Normal translations
     normal = combineFunctions [(4, xu), (4, ma), (1, mo)] where
-        xu = combineFunctionsUniformly [special_xu, hasHouse, niceGift, talking, teaching, friends, others] where
+        xu = combineFunctionsUniformly [special_xu, hasHouse, niceGift, talking, teaching, friends, writing, others] where
             hasHouse = generatorFromList
                 [ (["xu do se zdani"], ["Do you have a house?"])
                 , (["xu lo prenu ku se zdani"], ["Does the person have a house?"])
@@ -346,10 +368,16 @@ translations3 = combineFunctions [(1, restricted_translations), (5, normal_trans
                 , (["xu lo dunda ku pendo do"], ["Is the donor your friend?"])
                 , (["xu lo te dunda ku pendo do"], ["Is the recipient your friend?"])
                 ]
+            writing = generatorFromList
+                [ (["xu do ciska"], ["Do you write?"])
+                , (["xu lo prenu ku ciska"], ["Do people write?"])
+                , (["xu do ciska ti"], ["Did you write this?"])
+                , (["xu do ciska ta"], ["Did you write that?"])
+                ]
             others = generatorFromList
                 [ (["xu do nelci lo xe ctuca ku"], ["Do you like the teaching method?"])
                 ]
-        ma = combineFunctionsUniformly [special_ma, hasHouse, nice, talking, giving, teaching] where
+        ma = combineFunctionsUniformly [special_ma, hasHouse, nice, talking, giving, teaching, writing] where
             hasHouse = generatorFromList
                 [ (["ma se zdani"], ["Who has a house?"])
                 , (["ta zdani ma", "zdani ma"], ["Whose house is that?"])
@@ -411,11 +439,26 @@ translations3 = combineFunctions [(1, restricted_translations), (5, normal_trans
                 , (["ma ctuca lo mlatu ku"], ["Who taught the cat?"])
                 , (["ma ctuca lo gerku ku"], ["Who taught the dog?"])
                 ]
+            writing = generatorFromList
+                -- instrument
+                [ (["ciska ti zo'e ma"], ["Which instrument was used to write this?"])
+                , (["do ciska ta zo'e ma"], ["Which instrument did you use to write that?"])
+                -- what
+                , (["do ciska ma"], ["What did you write?", "What are you going to write?"])
+                , (["do ciska ma ta"], ["What did you write there?", "What are you going to write there?"])
+                , (["do ciska ma zo'e ta"], ["What did you write using that?"])
+                , (["ciska ma ta"], ["What is written there?"])
+                , (["ciska ma zo'e ti"], ["What was written using this?"])
+                -- who
+                , (["ma ciska"], ["Who is writing?"])
+                , (["ma ciska ti"], ["Who wrote this?"])
+                ]
         mo = generatorFromList
             [ (["mi mo"], ["What am I doing?"])
             , (["do mo"], ["What are you doing?"])
             , (["lo prenu ku mo"], ["What is the person doing?"])
             , (["lo ctuca ku mo"], ["What is the instructor doing?"])
+            , (["lo ciska ku mo"], ["What is the writer doing?"])
             ]
     normal_translations = generateTranslationExercise basicSentenceCanonicalizer normal
 
