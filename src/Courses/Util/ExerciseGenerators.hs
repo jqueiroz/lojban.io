@@ -2,6 +2,7 @@
 
 module Courses.Util.ExerciseGenerators
 ( Translation
+, TranslationGenerator
 , generateTranslationExercise
 , generateRestrictedTranslationExercise
 , generateGrammaticalClassExercise
