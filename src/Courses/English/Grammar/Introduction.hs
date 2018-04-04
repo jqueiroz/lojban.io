@@ -181,7 +181,7 @@ translations2_restricted = combineFunctions [(2, talkingAbout), (1, gaveSomethin
         ]
 
 translations2_nice :: TranslationGenerator
-translations2_nice = combineFunctions $ [(2, translations2_restricted)] ++ ((1,) <$> [hasHouse, niceGift, giftingAnimal, teaching, friends, others]) where
+translations2_nice = combineFunctions $ [(2, translations2_restricted), (2, teaching)] ++ ((1,) <$> [hasHouse, niceGift, giftingAnimal, friends, others]) where
     hasHouse = generatorFromList
         [ (["lo ctuca ku se zdani"], ["The instructor has a house."])
         , (["lo prenu ku se zdani"], ["The person has a house."])
