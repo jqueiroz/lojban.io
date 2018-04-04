@@ -724,8 +724,8 @@ exercises1 dictionary =
         [ (20, generateGrammaticalClassExercise vocabulary)
         , (15, generateBridiJufraExercise vocabulary displayBridi)
         , (20, generateSelbriIdentificationExercise vocabulary displayBridi)
-        , (20, generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBridi)
-        , (10, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
+        , (10, generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBridi)
+        , (20, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
         , (40, translationExercises1)
         ]
     where
@@ -738,8 +738,8 @@ exercises2 dictionary =
         [ (10, generateGrammaticalClassExercise vocabulary)
         , (10, generateBridiJufraExercise vocabulary displayBridi)
         , (10, generateSelbriIdentificationExercise vocabulary displayBridi)
-        , (10, generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBridi)
-        , (20, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
+        , (20, generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBridi)
+        , (10, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
         , (30, generateIsolatedGismuPlacesExercise dictionary vocabulary)
         , (50, translationExercises2)
         ]
@@ -751,7 +751,7 @@ exercises3 :: Dictionary -> ExerciseGenerator
 exercises3 dictionary =
     combineFunctions
         [ (20, generateIsolatedGismuPlacesExercise dictionary vocabulary)
-        , (20, generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBridi)
+        , (20, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
         , (20, questionExercises3)
         , (70, translationExercises3)
         ]

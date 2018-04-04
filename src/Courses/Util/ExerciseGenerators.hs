@@ -145,8 +145,8 @@ generateSelbriIdentificationExercise vocabulary displayBridi r0 = SingleChoiceEx
     sentence = Just . ExerciseSentence True $ sentenceText
 
 -- Exercises: tell gismu places of a sentence (TODO: typing exercises?)
-generateContextualizedGismuPlacePositionExercise :: Dictionary -> Vocabulary -> SimpleBridiDisplayer -> ExerciseGenerator
-generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBridi = combineFunctions [(0, f1), (1, f2)] where
+generateContextualizedGismuPlaceMeaningExercise :: Dictionary -> Vocabulary -> SimpleBridiDisplayer -> ExerciseGenerator
+generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi = combineFunctions [(0, f1), (1, f2)] where
     f1 r0 =
         let
             (bridi, r1) = generateActionBridi vocabulary r0
@@ -171,8 +171,8 @@ generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBr
             sentence = Just . ExerciseSentence True $ sentenceText
         in SingleChoiceExercise title sentence correctAlternative incorrectAlternatives False
 
-generateContextualizedGismuPlaceMeaningExercise :: Dictionary -> Vocabulary -> SimpleBridiDisplayer -> ExerciseGenerator
-generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi = combineFunctions [(0, f1), (1, f2)] where
+generateContextualizedGismuPlacePositionExercise :: Dictionary -> Vocabulary -> SimpleBridiDisplayer -> ExerciseGenerator
+generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBridi = combineFunctions [(0, f1), (1, f2)] where
     f1 r0 =
         let
             (bridi, r1) = generateActionBridi vocabulary r0
