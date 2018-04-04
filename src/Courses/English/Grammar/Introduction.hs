@@ -297,7 +297,7 @@ translationExercises2 =  combineFunctions [(1, translationExercises1_nice), (10,
 
 -- Lesson 3
 translations3_restricted_xu :: TranslationGenerator
-translations3_restricted_xu = combineFunctions [(2, talkingAbout), (1, gaveSomething), (2, writing)] where
+translations3_restricted_xu = combineFunctions [(2, talkingAbout), (1, gaveSomething), (4, writing)] where
     talkingAbout = generatorFromList
         [ (["xu do tavla fi do"], ["Are you talking about yourself?", "Were you talking about yourself?"])
         , (["xu do tavla fi mi"], ["Are you talking about me?", "Were you talking about me?"])
@@ -319,7 +319,7 @@ translations3_restricted_xu = combineFunctions [(2, talkingAbout), (1, gaveSomet
         ]
 
 translations3_normal_xu :: TranslationGenerator
-translations3_normal_xu = combineFunctions $ [(3, translations3_restricted_xu)] ++ ((1,) <$> [hasHouse, niceGift, talking, teaching, friends, writing, others]) where
+translations3_normal_xu = combineFunctions $ [(3, translations3_restricted_xu), (3, writing)] ++ ((1,) <$> [hasHouse, niceGift, talking, teaching, friends, others]) where
     hasHouse = generatorFromList
         [ (["xu do se zdani"], ["Do you have a house?"])
         , (["xu lo prenu ku se zdani"], ["Does the person have a house?"])
@@ -364,7 +364,7 @@ translations3_normal_xu = combineFunctions $ [(3, translations3_restricted_xu)] 
         ]
 
 translations3_restricted_ma :: TranslationGenerator
-translations3_restricted_ma = combineFunctions [(2, talkingAbout), (1, gaveSomething), (2, writing)] where
+translations3_restricted_ma = combineFunctions [(2, talkingAbout), (1, gaveSomething), (4, writing)] where
     talkingAbout = generatorFromList
         [ (["ma tavla fi mi"], ["Who is talking about me?", "Who is talking about us?", "Who was talking about me?", "Who was walking about us?"])
         , (["ma tavla fi do"], ["Who is talking about you?", "Who was talking about you?"])
@@ -397,7 +397,7 @@ translations3_restricted_ma = combineFunctions [(2, talkingAbout), (1, gaveSomet
         ]
 
 translations3_normal_ma :: TranslationGenerator
-translations3_normal_ma = combineFunctions $ [(3, translations3_restricted_ma)] ++ ((1,) <$> [hasHouse, nice, talking, giving, teaching, writing]) where
+translations3_normal_ma = combineFunctions $ [(3, translations3_restricted_ma), (3, writing)] ++ ((1,) <$> [hasHouse, nice, talking, giving, teaching]) where
     hasHouse = generatorFromList
         [ (["ma se zdani"], ["Who has a house?"])
         , (["ta zdani ma", "zdani ma"], ["Whose house is that?"])
