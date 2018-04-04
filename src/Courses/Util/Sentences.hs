@@ -289,7 +289,6 @@ displayCanonicalBridi :: SimpleBridi -> T.Text
 displayCanonicalBridi = fst . displayStandardSimpleBridi (mkStdGen 42)
 
 ------------------------- ----------------------- Sentence generators
---This might be incorrect; observatives are bridi, for example
 generateNonbridi :: Vocabulary -> StdGen -> (T.Text, StdGen)
 generateNonbridi vocabulary r0 = chooseItemUniformly r0 . concat . map (getVocabularySumti vocabulary) $
     ["genericPersons", "semiGenericPersons", "animals", "genericPointable", "places", "subjects"]
