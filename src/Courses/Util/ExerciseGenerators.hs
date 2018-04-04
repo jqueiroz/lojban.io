@@ -9,6 +9,7 @@ module Courses.Util.ExerciseGenerators
 , generateBridiJufraExercise
 , generateLojbanBridiJufraExercise
 , generateEnglishBridiJufraExercise
+, generateFillingBlanksExercise
 , generateSelbriIdentificationExercise
 , generateContextualizedGismuPlacePositionExercise
 , generateContextualizedGismuPlaceMeaningExercise
@@ -20,11 +21,13 @@ import Core
 import Courses.Util.Vocabulary
 import Courses.Util.Sentences
 import Courses.Util.NumberTranslator
-import Util (replace, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly)
+import Util (replace, replaceFirstSubstring, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly)
 import Text.Read (readMaybe)
 import System.Random (StdGen, random)
 import Control.Applicative (liftA2)
 import Control.Arrow (first)
+import Control.Exception (assert)
+import Data.Maybe (fromJust)
 import qualified Data.Text as T
 import qualified Data.Map as M
 
@@ -118,6 +121,18 @@ englishSentences "bridi and jufra" =
     , "There is another theory which states that this has already happened."
     , "I refuse to answer that question on the grounds that I don't know the answer."
     ]
+
+-- Exercise: fill in the blanks
+generateFillingBlanksExercise :: [T.Text] -> TranslationGenerator -> ExerciseGenerator
+generateFillingBlanksExercise alternatives translations r0 = SingleChoiceExercise title sentence correctAlternative incorrectAlternatives True where
+    (translation, r1) = translations r0
+    (sentenceText, r2) = chooseItemUniformly r1 (fst translation)
+    correctAlternatives = filter (`T.isInfixOf` sentenceText) $ alternatives
+    correctAlternative = assert (length correctAlternatives == 1) $ head correctAlternatives
+    incorrectAlternatives = filter (/= correctAlternative) alternatives
+    title = "Fill in the blanks"
+    redactedSentenceText = replaceFirstSubstring correctAlternative "____" sentenceText
+    sentence = Just . ExerciseSentence True $ redactedSentenceText
 
 -- Exercise: identify the selbri
 generateSelbriIdentificationExercise :: Vocabulary -> SimpleBridiDisplayer -> ExerciseGenerator

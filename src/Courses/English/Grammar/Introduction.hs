@@ -494,6 +494,8 @@ translationExercises3 = combineFunctions [(1, restricted), (5, normal)] where
     restricted = generateRestrictedTranslationExercise "Translate without using \"zo'e\"" (not . containsWord (T.pack "zo'e")) basicSentenceCanonicalizer translations3_restricted
     normal = generateTranslationExercise basicSentenceCanonicalizer translations3_normal
 
+questionExercises3 = generateFillingBlanksExercise ["mo", "ma"] $ combineFunctionsUniformly [translations3_normal_ma, translations3_normal_mo]
+
 -- Lesson 4
 -- Are the sentences involving tavla really sensible?
 -- words common enough: gleki, tavla, dunda, nelci, mlatu, gerku, prenu, nupre, zdani
@@ -745,16 +747,12 @@ exercises2 dictionary =
         vocabulary = vocabularyGenerator2 dictionary
         displayBridi = combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
 
---TODO: new exercise: choose mo vs ma (vs xu?)
 exercises3 :: Dictionary -> ExerciseGenerator
 exercises3 dictionary =
     combineFunctions
-        [ (5, generateGrammaticalClassExercise vocabulary)
-        , (5, generateBridiJufraExercise vocabulary displayBridi)
-        , (0, generateSelbriIdentificationExercise vocabulary displayBridi)
-        , (0, generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBridi)
-        , (0, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
-        , (0, generateIsolatedGismuPlacesExercise dictionary vocabulary)
+        [ (20, generateIsolatedGismuPlacesExercise dictionary vocabulary)
+        , (20, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
+        , (20, questionExercises3)
         , (70, translationExercises3)
         ]
     where

@@ -56,6 +56,16 @@ subfield beg end = T.strip . substr beg end
 containsWord :: T.Text -> T.Text -> Bool
 containsWord word = not . null . filter (== word) . T.words
 
+replaceFirstSubstring :: T.Text -> T.Text -> T.Text -> T.Text
+replaceFirstSubstring old new text =
+    let
+        components = T.splitOn old text
+    in
+        if components == [] then
+            text
+        else
+            (head components) `T.append` new `T.append` (T.intercalate old (tail components))
+
 -- Random (TODO: assert that sum > 0)
 shuffleList :: StdGen -> [a] -> [a]
 shuffleList r0 xs = shuffle' xs (length xs) r0
