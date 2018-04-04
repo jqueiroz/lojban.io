@@ -24,11 +24,14 @@ replace :: (Eq a) => a -> a -> [a] -> [a]
 replace x y = map r where
     r z = if z == x then y else z
 
-filterOutWords :: [T.Text] -> [T.Text] -> [T.Text]
+filterSnd :: (b -> Bool) -> [(a, b)] -> [(a, b)]
+filterSnd f = filter (f . snd)
+
+filterOutWords :: [T.Text] -> [(Int, T.Text)] -> [(Int, T.Text)]
 filterOutWords forbiddenWords expressions = foldr filterOutWord expressions forbiddenWords
 
-filterOutWord :: T.Text -> [T.Text] -> [T.Text]
-filterOutWord forbiddenWord = filter $ not . (T.isInfixOf forbiddenWord)
+filterOutWord :: T.Text -> [(Int, T.Text)] -> [(Int, T.Text)]
+filterOutWord forbiddenWord = filterSnd $ not . (T.isInfixOf forbiddenWord)
 
 sortUniq :: (Ord a) => [a] -> [a]
 sortUniq = (map head) . group . sort

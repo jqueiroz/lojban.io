@@ -41,50 +41,50 @@ vocabularyGenerator1 :: VocabularyBuilder
 vocabularyGenerator1 = createVocabularyBuilder
     -- Selbri
     [
-        ("actions", ["tavla", "dunda"]),
-        ("properties", ["prenu", "zdani", "mlatu"]),
-        ("relations", ["pendo"])
+        ("actions", (1,) <$> ["tavla", "dunda"]),
+        ("properties", (1,) <$> ["prenu", "zdani", "mlatu"]),
+        ("relations", (1,) <$> ["pendo"])
     ]
     -- Sumti
     [
-        ("genericPersons", ["mi", "do"]),
-        ("genericPointable", ["ti", "ta"])
+        ("genericPersons", (1,) <$> ["mi", "do"]),
+        ("genericPointable", (1,) <$> ["ti", "ta"])
     ]
 
 vocabularyGenerator2 :: VocabularyBuilder
 vocabularyGenerator2 = createVocabularyBuilder
     -- Selbri
     [
-        ("actions", ["tavla", "dunda", "ctuca"]),
-        ("properties", ["prenu", "zdani", "mlatu", "gerku", "melbi"]),
-        ("relations", ["nelci", "pendo"])
+        ("actions", (1,) <$> ["tavla", "dunda", "ctuca"]),
+        ("properties", (1,) <$> ["prenu", "zdani", "mlatu", "gerku", "melbi"]),
+        ("relations", (1,) <$> ["nelci", "pendo"])
     ]
     -- Sumti
     [
-        ("genericPersons", ["mi", "do", "lo prenu ku"]),
-        ("semiGenericPersons", ["lo tavla ku", "lo se tavla ku", "lo dunda ku", "lo te dunda ku"]),
-        ("animals", ["lo mlatu ku", "lo gerku ku"]),
-        ("genericPointable", ["ti", "ta"]),
-        ("places", ["lo zdani ku"]),
-        ("subjects", ["lo zdani ku", "lo mlatu ku", "lo gerku ku", "lo se dunda ku"])
+        ("genericPersons", (1,) <$> ["mi", "do", "lo prenu ku"]),
+        ("semiGenericPersons", (1,) <$> ["lo tavla ku", "lo se tavla ku", "lo dunda ku", "lo te dunda ku"]),
+        ("animals", (1,) <$> ["lo mlatu ku", "lo gerku ku"]),
+        ("genericPointable", (1,) <$> ["ti", "ta"]),
+        ("places", (1,) <$> ["lo zdani ku"]),
+        ("subjects", (1,) <$> ["lo zdani ku", "lo mlatu ku", "lo gerku ku", "lo se dunda ku"])
     ]
 
 vocabularyGenerator3 :: VocabularyBuilder
 vocabularyGenerator3 = createVocabularyBuilder
     -- Selbri
     [
-        ("actions", ["tavla", "dunda", "ctuca", "ciska"]),
-        ("properties", ["prenu", "zdani", "mlatu", "gerku", "melbi"]),
-        ("relations", ["nelci", "pendo"])
+        ("actions", (1,) <$> ["tavla", "dunda", "ctuca", "ciska"]),
+        ("properties", (1,) <$> ["prenu", "zdani", "mlatu", "gerku", "melbi"]),
+        ("relations", (1,) <$> ["nelci", "pendo"])
     ]
     -- Sumti
     [
-        ("genericPersons", ["mi", "do", "lo prenu ku"]),
-        ("semiGenericPersons", ["lo tavla ku", "lo se tavla ku", "lo dunda ku", "lo te dunda ku", "lo ciska ku"]),
-        ("animals", ["lo mlatu ku", "lo gerku ku"]),
-        ("genericPointable", ["ti", "ta"]),
-        ("places", ["lo zdani ku"]),
-        ("subjects", ["lo zdani ku", "lo mlatu ku", "lo gerku ku", "lo se dunda ku"])
+        ("genericPersons", (1,) <$> ["mi", "do", "lo prenu ku"]),
+        ("semiGenericPersons", (1,) <$> ["lo tavla ku", "lo se tavla ku", "lo dunda ku", "lo te dunda ku", "lo ciska ku"]),
+        ("animals", (1,) <$> ["lo mlatu ku", "lo gerku ku"]),
+        ("genericPointable", (1,) <$> ["ti", "ta"]),
+        ("places", (1,) <$> ["lo zdani ku"]),
+        ("subjects", (1,) <$> ["lo zdani ku", "lo mlatu ku", "lo gerku ku", "lo se dunda ku"])
     ]
 
 --TODO: add all new from generator3 (and consider creating exercises using them)
@@ -92,18 +92,18 @@ vocabularyGenerator4 :: VocabularyBuilder
 vocabularyGenerator4 = createVocabularyBuilder
     -- Selbri
     [
-        ("actions", ["tavla", "dunda", "ctuca", "ciska", "nupre", "cusku"]),
-        ("properties", ["prenu", "zdani", "mlatu", "gerku", "melbi"]),
-        ("relations", ["nelci", "pendo", "gleki"])
+        ("actions", (1,) <$> ["tavla", "dunda", "ctuca", "ciska", "nupre", "cusku"]),
+        ("properties", (1,) <$> ["prenu", "zdani", "mlatu", "gerku", "melbi"]),
+        ("relations", (1,) <$> ["nelci", "pendo", "gleki"])
     ]
     -- Sumti
     [
-        ("genericPersons", ["mi", "do", "lo prenu ku"]),
-        ("semiGenericPersons", ["lo tavla ku", "lo se tavla ku", "lo dunda ku", "lo te dunda ku", "lo ciska ku"]),
-        ("animals", ["lo mlatu ku", "lo gerku ku"]),
-        ("genericPointable", ["ti", "ta"]),
-        ("places", ["lo zdani ku"]),
-        ("subjects", ["lo zdani ku", "lo mlatu ku", "lo gerku ku", "lo se dunda ku"])
+        ("genericPersons", (1,) <$> ["mi", "do", "lo prenu ku"]),
+        ("semiGenericPersons", (1,) <$> ["lo tavla ku", "lo se tavla ku", "lo dunda ku", "lo te dunda ku", "lo ciska ku"]),
+        ("animals", (1,) <$> ["lo mlatu ku", "lo gerku ku"]),
+        ("genericPointable", (1,) <$> ["ti", "ta"]),
+        ("places", (1,) <$> ["lo zdani ku"]),
+        ("subjects", (1,) <$> ["lo zdani ku", "lo mlatu ku", "lo gerku ku", "lo se dunda ku"])
     ]
 
 -------- Translations

@@ -26,15 +26,15 @@ import qualified Data.Map as M
 type CategoryName = T.Text
 type Selbri = T.Text
 type Sumti = T.Text
-type CategorizedSelbri = [(CategoryName, [Selbri])]
-type CategorizedSumti = [(CategoryName, [Sumti])]
+type CategorizedSelbri = [(CategoryName, [(Int, Selbri)])]
+type CategorizedSumti = [(CategoryName, [(Int, Sumti)])]
 
 -- Data types
 type VocabularyBuilder = Dictionary -> Vocabulary
 data Vocabulary = Vocabulary
     { vocabularyWords :: WordList
-    , vocabularyCategorizedSelbri :: M.Map CategoryName [Selbri]
-    , vocabularyCategorizedSumti :: M.Map CategoryName [Sumti]
+    , vocabularyCategorizedSelbri :: M.Map CategoryName [(Int, Selbri)]
+    , vocabularyCategorizedSumti :: M.Map CategoryName [(Int, Sumti)]
     }
 
 data WordList = WordList
@@ -44,16 +44,16 @@ data WordList = WordList
     } deriving (Show)
 
 -- Auxiliary functions
-getVocabularySelbri :: Vocabulary -> CategoryName -> [Selbri]
+getVocabularySelbri :: Vocabulary -> CategoryName -> [(Int, Selbri)]
 getVocabularySelbri vocabulary key = M.findWithDefault [] key $ vocabularyCategorizedSelbri vocabulary
 
-getVocabularySumti :: Vocabulary -> CategoryName -> [Sumti]
+getVocabularySumti :: Vocabulary -> CategoryName -> [(Int, Sumti)]
 getVocabularySumti vocabulary key = M.findWithDefault [] key $ vocabularyCategorizedSumti vocabulary
 
 createVocabularyBuilder :: CategorizedSelbri -> CategorizedSumti -> VocabularyBuilder
 createVocabularyBuilder selbri sumti dictionary = Vocabulary (WordList gismu' cmavo' []) selbriMap sumtiMap where
-    selbriGismu = sortUniq . M.foldr (++) [] $ selbriMap
-    sumtiWords = sortUniq . concat . map T.words . M.foldr (++) [] $ sumtiMap
+    selbriGismu = sortUniq . map snd . M.foldr (++) [] $ selbriMap
+    sumtiWords = sortUniq . concat . map T.words . map snd . M.foldr (++) [] $ sumtiMap
     sumtiGismu = filter (`M.member` (dictGismu dictionary)) sumtiWords
     sumtiCmavo = filter (`M.member` (dictCmavo dictionary)) sumtiWords
     gismu = sortUniq $ selbriGismu ++ sumtiGismu
