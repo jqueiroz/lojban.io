@@ -751,7 +751,7 @@ exercises3 :: Dictionary -> ExerciseGenerator
 exercises3 dictionary =
     combineFunctions
         [ (20, generateIsolatedGismuPlacesExercise dictionary vocabulary)
-        , (20, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
+        , (20, generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBridi)
         , (20, questionExercises3)
         , (70, translationExercises3)
         ]
