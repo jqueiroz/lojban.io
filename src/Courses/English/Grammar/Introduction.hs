@@ -41,7 +41,7 @@ vocabularyGenerator1 :: VocabularyBuilder
 vocabularyGenerator1 = createVocabularyBuilder
     -- Selbri
     [
-        ("actions", (1,) <$> ["tavla", "dunda"]),
+        ("actions", (2,) <$> ["tavla", "dunda"]),
         ("properties", (1,) <$> ["prenu", "zdani", "mlatu"]),
         ("relations", (1,) <$> ["pendo"])
     ]
@@ -55,7 +55,7 @@ vocabularyGenerator2 :: VocabularyBuilder
 vocabularyGenerator2 = createVocabularyBuilder
     -- Selbri
     [
-        ("actions", (1,) <$> ["tavla", "dunda", "ctuca"]),
+        ("actions", (2,) <$> ["tavla", "dunda", "ctuca"]),
         ("properties", (1,) <$> ["prenu", "zdani", "mlatu", "gerku", "melbi"]),
         ("relations", (1,) <$> ["nelci", "pendo"])
     ]
