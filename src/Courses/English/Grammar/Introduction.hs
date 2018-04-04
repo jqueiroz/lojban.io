@@ -734,7 +734,7 @@ exercises4 dictionary =
         , (5, generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBridi)
         , (20, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
         , (30, generateIsolatedGismuPlacesExercise dictionary vocabulary)
-        , (70, translations3)
+        , (70, translations4)
         ]
     where
         vocabulary = vocabularyGenerator4 dictionary
