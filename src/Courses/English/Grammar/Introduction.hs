@@ -264,6 +264,8 @@ translations2_normal = combineFunctionsUniformly [talkingToAnimal, likingAnimals
             , (["lo zdani ku melbi mi"], ["The house is beautiful to me.", "The houses are beautiful to me."])
             , (["lo mlatu ku melbi mi"], ["The cat is beautiful to me.", "The cats are beautiful to me.", "Cats are beautiful to me."])
             , (["lo gerku ku melbi mi"], ["The dog is beautiful to me.", "The dogs are beautiful to me.", "Dogs are beautiful to me."])
+            , (["lo ctuca ku melbi"], ["The instructor is beautiful."])
+            , (["lo ctuca ku melbi mi"], ["The instructor is beautiful to me."])
             ]
         person = generatorFromList
             [ (["lo tavla ku prenu"], ["The speaker is a person."])
@@ -319,21 +321,24 @@ translations3_restricted_xu = combineFunctions [(2, talkingAbout), (1, gaveSomet
         ]
 
 translations3_normal_xu :: TranslationGenerator
-translations3_normal_xu = combineFunctions $ [(3, translations3_restricted_xu), (3, writing)] ++ ((1,) <$> [hasHouse, niceGift, talking, teaching, friends, others]) where
+translations3_normal_xu = combineFunctions $ [(3, translations3_restricted_xu), (3, writing)] ++ ((1,) <$> [hasHouse, nice, talking, teaching, friends, others]) where
     hasHouse = generatorFromList
         [ (["xu do se zdani"], ["Do you have a house?"])
         , (["xu lo prenu ku se zdani"], ["Does the person have a house?"])
         , (["xu lo ctuca ku se zdani"], ["Does the instructor have a house?"])
         ]
-    niceGift = combineFunctionsUniformly [beautifulGift, likedGift] where
-        beautifulGift = generatorFromList
+    nice = combineFunctionsUniformly [beautiful, like] where
+        beautiful = generatorFromList
             [ (["xu lo se dunda ku melbi do"], ["Is the gift beautiful to you?", "Are the gifts beatiful to you?"])
             , (["xu lo se dunda ku melbi"], ["Is the gift beautiful?", "Are the gifts beautiful?"])
+            , (["xu lo ctuca ku melbi do"], ["Is the instructor beautiful to you?"])
+            , (["xu lo ctuca ku melbi"], ["Is the instructor beautiful?"])
             ]
-        likedGift = generatorFromList
+        like = generatorFromList
             [ (["xu do nelci lo se dunda ku"], ["Did you like the gift?"])
             , (["xu lo te dunda ku nelci lo se dunda ku"], ["Did the recipient like the gift?"])
             , (["xu lo ctuca ku nelci lo se dunda ku"], ["Did the instructor like the gift?"])
+            , (["xu do nelci lo ctuca ku"], ["Did you like the instructor?"])
             ]
     talking = generatorFromList
         [ (["xu do tavla mi"], ["Are you talking to me?"])
