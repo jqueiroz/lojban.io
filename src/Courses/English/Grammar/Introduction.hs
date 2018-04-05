@@ -744,9 +744,9 @@ exercises2 dictionary =
         , (10, generateBridiJufraExercise vocabulary displayBridi)
         , (10, generateSelbriIdentificationExercise vocabulary displayBridi)
         , (20, generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBridi)
-        , (10, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
+        , (20, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
         , (30, generateIsolatedGismuPlacesExercise dictionary vocabulary)
-        , (50, translationExercises2)
+        , (60, translationExercises2)
         ]
     where
         vocabulary = vocabularyGenerator2 dictionary
@@ -758,7 +758,7 @@ exercises3 dictionary =
         [ (20, generateIsolatedGismuPlacesExercise dictionary vocabulary)
         , (20, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
         , (20, questionExercises3)
-        , (70, translationExercises3)
+        , (80, translationExercises3)
         ]
     where
         vocabulary = vocabularyGenerator3 dictionary
