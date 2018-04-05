@@ -41,9 +41,9 @@ vocabularyGenerator1 :: VocabularyBuilder
 vocabularyGenerator1 = createVocabularyBuilder
     -- Selbri
     [
-        ("actions", (2,) <$> ["tavla", "dunda"]),
-        ("properties", (1,) <$> ["prenu", "zdani", "mlatu"]),
-        ("relations", (1,) <$> ["pendo"])
+        ("actions", (1,) <$> ["tavla", "dunda"]),
+        ("relations", (1,) <$> ["pendo"]),
+        ("properties", (1,) <$> ["prenu", "zdani", "mlatu"])
     ]
     -- Sumti
     [
@@ -55,9 +55,9 @@ vocabularyGenerator2 :: VocabularyBuilder
 vocabularyGenerator2 = createVocabularyBuilder
     -- Selbri
     [
-        ("actions", (2,) <$> ["tavla", "dunda", "ctuca"]),
-        ("properties", (1,) <$> ["prenu", "zdani", "mlatu", "gerku", "melbi"]),
-        ("relations", (1,) <$> ["nelci", "pendo"])
+        ("actions", ((1,) <$> ["tavla", "dunda"]) ++ ((2,) <$> ["ctuca"])),
+        ("relations", ((1,) <$> ["pendo"]) ++ ((2,) <$> ["nelci"])),
+        ("properties", ((1,) <$> ["prenu", "zdani", "mlatu"]) ++ ((2,) <$> ["gerku", "melbi"]))
     ]
     -- Sumti
     [
@@ -73,9 +73,9 @@ vocabularyGenerator3 :: VocabularyBuilder
 vocabularyGenerator3 = createVocabularyBuilder
     -- Selbri
     [
-        ("actions", (1,) <$> ["tavla", "dunda", "ctuca", "ciska"]),
-        ("properties", (1,) <$> ["prenu", "zdani", "mlatu", "gerku", "melbi"]),
-        ("relations", (1,) <$> ["nelci", "pendo"])
+        ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca"]) ++ ((2,) <$> ["ciska"])),
+        ("relations", (0,) <$> ["nelci", "pendo"]),
+        ("properties", (0,) <$> ["prenu", "zdani", "mlatu", "gerku", "melbi"])
     ]
     -- Sumti
     [
@@ -92,9 +92,9 @@ vocabularyGenerator4 :: VocabularyBuilder
 vocabularyGenerator4 = createVocabularyBuilder
     -- Selbri
     [
-        ("actions", (1,) <$> ["tavla", "dunda", "ctuca", "ciska", "nupre", "cusku"]),
-        ("properties", (1,) <$> ["prenu", "zdani", "mlatu", "gerku", "melbi"]),
-        ("relations", (1,) <$> ["nelci", "pendo", "gleki"])
+        ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska"]) ++ ((2,) <$> ["nupre", "cusku"])),
+        ("relations", ((0,) <$> ["nelci", "pendo"]) ++ ((1,) <$> ["gleki"])),
+        ("properties", (0,) <$> ["prenu", "zdani", "mlatu", "gerku", "melbi"])
     ]
     -- Sumti
     [
