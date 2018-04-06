@@ -84,6 +84,7 @@ englishSumtiPlacesBase = M.fromList
     , ("ciska", ["writer", "text/symbols", "display/storage medium", "writing implement"])
     , ("klama", ["traveler", "destination", "origin", "route", "means/vehicle"])
     , ("bridi", ["predicate relationship", "relation", "arguments"])
+    , ("djuno", ["entity", "facts", "subject", "epistemology"])
     ] -- TODO: ask people to build a database
 
 retrieveEnglishSumtiPlaces :: T.Text -> [T.Text]

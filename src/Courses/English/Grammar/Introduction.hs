@@ -73,7 +73,7 @@ vocabularyGenerator3 :: VocabularyBuilder
 vocabularyGenerator3 = createVocabularyBuilder
     -- Selbri
     [
-        ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca"]) ++ ((2,) <$> ["ciska"])),
+        ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca"]) ++ ((2,) <$> ["ciska", "djuno"])),
         ("relations", (0,) <$> ["nelci", "pendo"]),
         ("properties", (0,) <$> ["prenu", "zdani", "mlatu", "gerku", "melbi"])
     ]
@@ -92,7 +92,7 @@ vocabularyGenerator4 :: VocabularyBuilder
 vocabularyGenerator4 = createVocabularyBuilder
     -- Selbri
     [
-        ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska"]) ++ ((2,) <$> ["nupre", "cusku"])),
+        ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska", "djuno"]) ++ ((2,) <$> ["nupre", "cusku"])),
         ("relations", ((0,) <$> ["nelci", "pendo"]) ++ ((1,) <$> ["gleki"])),
         ("properties", (0,) <$> ["prenu", "zdani", "mlatu", "gerku", "melbi"])
     ]
@@ -299,7 +299,7 @@ translationExercises2 =  combineFunctions [(1, translationExercises1_nice), (10,
 
 -- Lesson 3
 translations3_restricted_xu :: TranslationGenerator
-translations3_restricted_xu = combineFunctions [(2, talkingAbout), (1, gaveSomething), (4, writing)] where
+translations3_restricted_xu = combineFunctions [(2, talkingAbout), (1, gaveSomething), (4, writing), (2, know)] where
     talkingAbout = generatorFromList
         [ (["xu do tavla fi do"], ["Are you talking about yourself?", "Were you talking about yourself?"])
         , (["xu do tavla fi mi"], ["Are you talking about me?", "Were you talking about me?"])
@@ -319,9 +319,13 @@ translations3_restricted_xu = combineFunctions [(2, talkingAbout), (1, gaveSomet
         , (["xu do ciska fo ti"], ["Do you write using this?", "Did you write something using this?"])
         , (["xu do ciska fo ta"], ["Do you write using that?", "Did you write something using that?"])
         ]
+    know = generatorFromList
+        [ (["xu do djuno fi lo mlatu ku"], ["Do you know about cats?"])
+        , (["xu do djuno fi lo gerku ku"], ["Do you know about dogs?"])
+        ]
 
 translations3_normal_xu :: TranslationGenerator
-translations3_normal_xu = combineFunctions $ [(3, translations3_restricted_xu), (3, writing)] ++ ((1,) <$> [hasHouse, nice, talking, teaching, friends, others]) where
+translations3_normal_xu = combineFunctions $ [(3, translations3_restricted_xu), (3, writing), (2, know)] ++ ((1,) <$> [hasHouse, nice, talking, teaching, friends, others]) where
     hasHouse = generatorFromList
         [ (["xu do se zdani"], ["Do you have a house?"])
         , (["xu lo prenu ku se zdani"], ["Does the person have a house?"])
@@ -364,12 +368,17 @@ translations3_normal_xu = combineFunctions $ [(3, translations3_restricted_xu), 
         , (["xu do ciska ti"], ["Did you write this?"])
         , (["xu do ciska ta"], ["Did you write that?"])
         ]
+    know = generatorFromList
+        [ (["xu do djuno lo se ciska ku"], ["Did you know that what was written is true?"])
+        , (["xu do djuno lo te ctuca ku"], ["Did you know that what was taught is true?"])
+        , (["xu do djuno"], ["Did you know?"])
+        ]
     others = generatorFromList
         [ (["xu do nelci lo xe ctuca ku"], ["Do you like the teaching method?"])
         ]
 
 translations3_restricted_ma :: TranslationGenerator
-translations3_restricted_ma = combineFunctions [(2, talkingAbout), (1, gaveSomething), (4, writing)] where
+translations3_restricted_ma = combineFunctions [(2, talkingAbout), (1, gaveSomething), (4, writing), (2, know)] where
     talkingAbout = generatorFromList
         [ (["ma tavla fi mi"], ["Who is talking about me?", "Who is talking about us?", "Who was talking about me?", "Who was walking about us?"])
         , (["ma tavla fi do"], ["Who is talking about you?", "Who was talking about you?"])
@@ -400,9 +409,14 @@ translations3_restricted_ma = combineFunctions [(2, talkingAbout), (1, gaveSomet
         , (["ma ciska fo ti"], ["Who writes using this?"])
         , (["ma ciska fo ta"], ["Who writes using that?"])
         ]
+    know = generatorFromList
+        [ (["ma djuno fi lo mlatu ku"], ["Who knows about cats?"])
+        , (["ma djuno fi lo gerku ku"], ["Who knows about dogs?"])
+        , (["do djuno fi ma"], ["What subjects do you know?"])
+        ]
 
 translations3_normal_ma :: TranslationGenerator
-translations3_normal_ma = combineFunctions $ [(3, translations3_restricted_ma), (3, writing)] ++ ((1,) <$> [hasHouse, nice, talking, giving, teaching]) where
+translations3_normal_ma = combineFunctions $ [(3, translations3_restricted_ma), (3, writing), (2, know)] ++ ((1,) <$> [hasHouse, nice, talking, giving, teaching]) where
     hasHouse = generatorFromList
         [ (["ma se zdani"], ["Who has a house?"])
         , (["ta zdani ma", "zdani ma"], ["Whose house is that?"])
@@ -477,6 +491,11 @@ translations3_normal_ma = combineFunctions $ [(3, translations3_restricted_ma), 
         -- who
         , (["ma ciska"], ["Who is writing?"])
         , (["ma ciska ti"], ["Who wrote this?"])
+        ]
+    know = generatorFromList
+        [ (["ma djuno fi lo mlatu ku"], ["Who knows about cats?"])
+        , (["ma djuno fi lo gerku ku"], ["Who knows about dogs?"])
+        , (["do djuno fi ma"], ["What subjects do you know?"])
         ]
 
 translations3_normal_mo :: TranslationGenerator
