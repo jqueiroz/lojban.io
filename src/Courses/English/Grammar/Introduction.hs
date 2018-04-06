@@ -810,7 +810,7 @@ lesson3 :: LessonBuilder
 lesson3 dictionary = Lesson "Questions 1" (exercises3 dictionary) plan3
 
 lesson4 :: LessonBuilder
-lesson4 dictionary = Lesson "Abstractions 1" (exercises4 dictionary) plan3
+lesson4 dictionary = Lesson "Abstractions 1" (exercises4 dictionary) plan4
 
 -------- Course
 course :: CourseBuilder
