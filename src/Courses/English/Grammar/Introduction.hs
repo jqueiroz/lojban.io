@@ -640,7 +640,8 @@ translations4_du'u = combineFunctions [(2, djuno)] where
             , (["mi djuno lo du'u lo ciska ku nupre do kei ku"], ["I know that the writer promised you."])
             ]
         liking = generatorFromList
-            [ (["mi djuno lo du'u do nelci lo mlatu ku kei ku"], ["I know that you like cats."])
+            [ (["mi djuno lo du'u do nelci mi kei ku"], ["I know that you like me."])
+            , (["mi djuno lo du'u do nelci lo mlatu ku kei ku"], ["I know that you like cats."])
             , (["mi djuno lo du'u do nelci lo gerku ku kei ku"], ["I know that you like dogs."])
             , (["mi djuno lo du'u lo prenu ku nelci lo mlatu ku kei ku"], ["I know that people like cats."])
             , (["mi djuno lo du'u lo prenu ku nelci lo gerku ku kei ku"], ["I know that people like dogs."])
