@@ -420,6 +420,7 @@ generateActionBridi vocabulary r0 = (SimpleBridi False action objects, r2) where
             in
                 ([subject, aliment], r2))
         , ("ciska", \r0 ->
+            --TODO: implement more sumti places
             let
                 persons = filterOutWord "ciska" $ genericPersons ++ semiGenericPersons
                 (writer, r1) = chooseItem r0 persons
