@@ -79,7 +79,7 @@ englishSumtiPlacesBase :: M.Map T.Text [T.Text]
 englishSumtiPlacesBase = M.fromList
     [ ("tavla", ["speaker", "listener", "subject", "language"])
     , ("dunda", ["donor", "gift", "recipient"])
-    , ("ctuca", ["instructor", "audience/student(s)", "ideas/methods", "subject", "teaching method"]) --TODO: maintain student(s) here?
+    , ("ctuca", ["instructor", "audience/student(s)", "ideas/methods", "subject", "teaching method"])
     , ("citka", ["consumer", "aliment"])
     , ("ciska", ["writer", "text/symbols", "display/storage medium", "writing implement"])
     , ("klama", ["traveler", "destination", "origin", "route", "means/vehicle"])
