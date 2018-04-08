@@ -239,6 +239,7 @@ convertStructuredBridi xu (selbri, terms) = do
 convertStructuredSelbri :: StructuredSelbri -> Either String T.Text
 convertStructuredSelbri (ZG.BRIVLA brivla) = Right $ T.pack brivla
 convertStructuredSelbri (ZG.GOhA brivla) = Right $ T.pack brivla
+convertStructuredSelbri _ = Left "Unrecognized pattern for structured selbri"
 
 convertStructuredTerms :: [(Int, StructuredTerm)] -> Either String [T.Text]
 convertStructuredTerms terms = do
@@ -263,6 +264,7 @@ convertStructuredTerm (ZG.NU (ZG.InitF x y) w z) = insertPrefix . insertSuffix <
 convertStructuredTerm (ZG.LE (ZG.Init x) ZG.NR ZG.NQ y _) = insertPrefix . insertSuffix <$> convertStructuredTerm y where
     insertPrefix = ((T.pack $ x ++ " ") `T.append`)
     insertSuffix = (`T.append` " ku")
+convertStructuredTerm _ = Left "Unrecognized pattern for structured term"
 
 ---------- Canonicalization
 type SentenceCanonicalizer = T.Text -> Either String T.Text
