@@ -111,8 +111,8 @@ vocabularyGenerator4 = createVocabularyBuilder
 translations1_nice :: TranslationGenerator
 translations1_nice = combineFunctionsUniformly [tavlaReflexive, dundaReordered] where
     tavlaReflexive = generatorFromList
-        [ (["mi tavla mi"], ["I am talking to myself.", "I was talking to myself.", "We were talking to ourselves."])
-        , (["do tavla do"], ["You are talking to yourself."])
+        [ (["mi tavla mi", "mi tavla vo'a"], ["I am talking to myself.", "I was talking to myself.", "We were talking to ourselves."])
+        , (["do tavla do", "do tavla vo'a"], ["You are talking to yourself."])
         ]
     dundaReordered = generatorFromList
         [ (["do dunda ti mi"], ["You gave me this.", "You gave us this."])
@@ -146,7 +146,7 @@ translations1_normal = combineFunctionsUniformly $ others ++ [talkingWithSecondP
         ]
     others = generatorFromSingleton <$>
         -- not marked as "nice" because it becomes a special exercise in the next lesson ("translate without zo'e")
-        [ (["mi tavla zo'e mi"], ["I was talking about myself.", "We were talking about ourselves.", "I will talk about myself."])
+        [ (["mi tavla zo'e mi", "mi tavla zo'e vo'a"], ["I was talking about myself.", "We were talking about ourselves.", "I will talk about myself."])
         -- not marked as "nice" because it becomes a special exercise in the next lesson ("translate without zo'e")
         , (["mi tavla zo'e do"], ["I was talking about you.", "We were talking about you.", "I am talking about you.", "We are talking about you.", "I will talk about you.", "We will talk about you."])
         -- not marked as "nice" because it becomes a special exercise in the next lesson ("translate without zo'e")
@@ -166,7 +166,7 @@ translationExercises1 = combineFunctions [(1, translationExercises1_nice), (4, t
 translations2_restricted :: TranslationGenerator
 translations2_restricted = combineFunctions [(2, talkingAbout), (1, gaveSomething)] where
     talkingAbout = generatorFromList
-        [ (["mi tavla fi mi"], ["I was talking about myself.", "We were talking about ourselves.", "I will talk about myself."])
+        [ (["mi tavla fi mi", "mi tavla fi vo'a"], ["I was talking about myself.", "We were talking about ourselves.", "I will talk about myself."])
         , (["mi tavla fi do"], ["I was talking about you.", "We were talking about you.", "I am talking about you.", "We are talking about you.", "I will talk about you.", "We will talk about you."])
         , (["tavla fi mi"], ["Somebody was talking about me.", "Somebody was talking about us."])
         , (["tavla fi do"], ["Somebody was talking about you."])
@@ -218,7 +218,7 @@ translations2_nice = combineFunctions $ [(2, translations2_restricted), (2, teac
         , (["mi ctuca lo gerku ku"], ["I am teaching the dog.", "I am teaching the dogs.", "I taught the dog.", "I taught the dogs.", "We are teaching the dog.", "We are teaching the dogs."])
         , (["mi ctuca do"], ["I will teach you.", "We will teach you.", "I taught you.", "We taught you."])
         , (["do ctuca mi"], ["You will teach me.", "You will teach us.", "You taught me.", "You taught us."])
-        , (["mi ctuca mi"], ["I taught myself."])
+        , (["mi ctuca mi", "mi ctuca vo'a"], ["I taught myself."])
         , (["ctuca mi"], ["Somebody taught me.", "Somebody taught us."])
         , (["ctuca do"], ["Somebody taught you."])
         ]
@@ -301,7 +301,7 @@ translationExercises2 =  combineFunctions [(1, translationExercises1_nice), (10,
 translations3_restricted_xu :: TranslationGenerator
 translations3_restricted_xu = combineFunctions [(2, talkingAbout), (1, gaveSomething), (4, writing), (2, know)] where
     talkingAbout = generatorFromList
-        [ (["xu do tavla fi do"], ["Are you talking about yourself?", "Were you talking about yourself?"])
+        [ (["xu do tavla fi do", "xu do tavla fi vo'a"], ["Are you talking about yourself?", "Were you talking about yourself?"])
         , (["xu do tavla fi mi"], ["Are you talking about me?", "Were you talking about me?"])
         , (["xu tavla fi mi"], ["Was somebody talking about me?"])
         , (["xu do tavla fi lo mlatu ku"], ["Were you talking about the cat?", "Were you talking about the cats?", "Were you talking about cats?"])
@@ -353,7 +353,7 @@ translations3_normal_xu = combineFunctions $ [(3, translations3_restricted_xu), 
         [ (["xu mi ctuca lo mlatu ku"], ["Are you teaching the cat?", "Did you teach the cat?"])
         , (["xu do ctuca lo gerku ku"], ["Are you teaching the dog?", "Did you teach the dog?"])
         , (["xu do ctuca mi"], ["Are you going to teach me?"])
-        , (["xu do ctuca do"], ["Did you teach yourself?"])
+        , (["xu do ctuca do", "xu do ctuca vo'a"], ["Did you teach yourself?"])
         , (["xu ctuca do"], ["Did somebody teach you?"])
         ]
     friends = generatorFromList
