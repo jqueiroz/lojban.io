@@ -757,6 +757,8 @@ translations4 = combineFunctions $ ((4,) <$> [translations4_nu, translations4_du
 translationExercises4 :: ExerciseGenerator
 translationExercises4 = generateTranslationExercise basicSentenceCanonicalizer translations4
 
+abstractionExercises4 = generateFillingBlanksExercise ["lo nu", "lo du'u", "lo se du'u"] $ combineFunctionsUniformly [translations4_nu, translations4_du'u, translations4_sedu'u]
+
 translations5 :: [ExerciseGenerator]
 translations5 = generateTranslationExercise basicSentenceCanonicalizer <$> generatorFromSingleton <$>
     [
@@ -840,16 +842,12 @@ exercises3 dictionary =
         vocabulary = vocabularyGenerator3 dictionary
         displayBridi = combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
 
--- TODO: exercise: fill with "lo nu" vs "lo du'u" vs "lo se du'u"?
 exercises4 :: Dictionary -> ExerciseGenerator
 exercises4 dictionary =
     combineFunctions
-        [ (5, generateGrammaticalClassExercise vocabulary)
-        , (5, generateBridiJufraExercise vocabulary displayBridi)
-        , (5, generateSelbriIdentificationExercise vocabulary displayBridi)
-        , (5, generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBridi)
-        , (20, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
-        , (30, generateIsolatedGismuPlacesExercise dictionary vocabulary)
+        [ (30, generateIsolatedGismuPlacesExercise dictionary vocabulary)
+        , (10, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
+        , (30, abstractionExercises4)
         , (70, translationExercises4)
         ]
     where
