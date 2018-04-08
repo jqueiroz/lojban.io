@@ -373,7 +373,7 @@ generateActionBridi vocabulary r0 = (SimpleBridi False action objects, r2) where
     (action, r1) = chooseItem r0 actions
     (objects, r2) = (actionObjectsGenerators M.! action) r1
     -- Vocabulary
-    actions = filterOutWords ["nupre", "cusku"] $ getVocabularySelbri vocabulary "actions"
+    actions = filterOutWords ["nupre", "cusku", "djuno"] $ getVocabularySelbri vocabulary "actions"
     genericPersons = getVocabularySumti vocabulary "genericPersons"
     semiGenericPersons = getVocabularySumti vocabulary "semiGenericPersons"
     genericPointable = getVocabularySumti vocabulary "genericPointable"

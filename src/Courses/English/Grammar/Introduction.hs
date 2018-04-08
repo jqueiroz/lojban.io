@@ -528,15 +528,9 @@ questionExercises3 = generateFillingBlanksExercise ["mo", "ma"] $ combineFunctio
 -- TODO: more examples using du'u
 -- consider using: morji, ciksi, jijnu (useful for teaching du'u)
 -- TODO: add sentences using promisee
-translations4 :: TranslationGenerator
-translations4 = combineFunctions [(2, gleki), (1, tavla), (2, nupre), (2, cusku)] where
-    gleki = combineFunctionsUniformly [nothingSpecific, talking, beautiful, givingAnimals, liking, teaching, owningHouse, other] where
-        nothingSpecific = generatorFromList
-            [ (["mi gleki"], ["I am happy."])
-            , (["lo prenu ku gleki"], ["The person is happy."])
-            , (["lo gerku ku gleki"], ["The dog is happy.", "The dogs are happy."])
-            , (["lo mlatu ku gleki"], ["The cat is happy.", "The cats are happy."])
-            ]
+translations4_nu :: TranslationGenerator
+translations4_nu = combineFunctions [(2, gleki), (1, tavla), (2, nupre)] where
+    gleki = combineFunctionsUniformly [talking, beautiful, givingAnimals, liking, teaching, owningHouse, other] where
         talking = generatorFromList
             -- talking to someone
             [ (["mi gleki lo nu do tavla mi kei ku"], ["I am happy that you talked to me."])
@@ -579,7 +573,7 @@ translations4 = combineFunctions [(2, gleki), (1, tavla), (2, nupre), (2, cusku)
             , (["mi gleki lo nu lo ctuca ku pendo mi kei ku"], ["I am happy that the instructor is my friend."])
             , (["mi gleki lo nu lo te dunda ku pendo mi kei ku"], ["I am happy that the recipient is my friend."])
             ]
-    tavla = combineFunctionsUniformly [owningHouse, animalsLikingEachOther, promise, promisorTalked] where
+    tavla = combineFunctionsUniformly [owningHouse, animalsLikingEachOther, promisorTalked] where
         owningHouse = generatorFromList
             [ (["mi tavla fi lo nu do se zdani kei ku"], ["I talked about you having a house.", "We talked about you having a house."])
             ]
@@ -588,12 +582,6 @@ translations4 = combineFunctions [(2, gleki), (1, tavla), (2, nupre), (2, cusku)
             , (["do tavla fi lo nu lo gerku ku nelci lo mlatu ku kei ku"], ["You talked about dogs liking cats."])
             , (["do tavla mi lo nu lo gerku ku nelci lo mlatu ku kei ku"], ["You talked to me about dogs liking cats."])
             , (["do tavla mi lo nu lo mlatu ku nelci lo gerku ku kei ku"], ["You talked to me about cats liking dogs."])
-            ]
-        promise = generatorFromList
-            [ (["mi tavla fi lo se nupre ku"], ["I talked about the promise."])
-            , (["do tavla fi lo se nupre ku"], ["You talked about the promise."])
-            , (["mi tavla do lo se nupre ku"], ["I talked to you about the promise."])
-            , (["do tavla mi lo se nupre ku"], ["You talked to me about the promise."])
             ]
         promisorTalked = generatorFromList
             [ (["lo nupre ku tavla mi"], ["The promisor talked to me.", "The promisor talked to us."])
@@ -604,13 +592,7 @@ translations4 = combineFunctions [(2, gleki), (1, tavla), (2, nupre), (2, cusku)
             , (["lo nupre ku tavla mi lo gerku ku"], ["The promisor talked to me about the dog.", "The promisor talked to me about the dogs."])
             , (["lo nupre ku tavla mi lo zdani ku"], ["The promisor talked to me about the house.", "The promisor talked to me about the houses."])
             ]
-    nupre = combineFunctionsUniformly [nothingSpecific, donatingAnimals, donatingHouses, teaching, beingFriendly] where
-        nothingSpecific = generatorFromList
-            [ (["lo prenu ku nupre"], ["People make promises."])
-            , (["do nupre"], ["You made a promise."])
-            , (["do nupre fi mi"], ["You promised me.", "You promised us."])
-            , (["mi nupre fi do"], ["I promised you.", "We promised you."])
-            ]
+    nupre = combineFunctionsUniformly [donatingAnimals, donatingHouses, teaching, beingFriendly] where
         donatingAnimals = generatorFromList
             [ (["do nupre lo nu dunda lo mlatu ku kei ku", "do nupre lo nu do dunda lo mlatu ku kei ku"], ["You promised to donate the cat.", "You promised to donate the cats."])
             , (["do nupre lo nu dunda lo gerku ku kei ku", "do nupre lo nu do dunda lo gerku ku"], ["You promised to donate the dog.", "You promised to donate the dogs."])
@@ -631,12 +613,60 @@ translations4 = combineFunctions [(2, gleki), (1, tavla), (2, nupre), (2, cusku)
         beingFriendly = generatorFromList
             [ (["do nupre lo nu pendo kei ku", "do nupre lo nu do pendo kei ku"], ["You promised to be friendly."])
             ]
-    cusku = combineFunctionsUniformly [nothingSpecific, beautiful, likingPeople, likingAnimals, donatingAnimals, beingFriendly, others] where
-        nothingSpecific = generatorFromList
-            [ (["mi cusku"], ["I said something.", "I was saying something.", "I will say something."])
-            , (["do cusku"], ["You said something.", "You were saying something."])
-            , (["lo prenu ku cusku"], ["The person said something.", "The person was saying something."])
+
+translations4_du'u :: TranslationGenerator
+translations4_du'u = combineFunctions [(2, djuno)] where
+    djuno = combineFunctionsUniformly [teaching, friend, donating, promising, liking, talking, writing] where
+        teaching = generatorFromList
+            [ (["mi djuno lo du'u do ctuca mi kei ku"], ["I know that you taught me."])
             ]
+        friend = generatorFromList
+            [ (["mi djuno lo du'u do pendo mi kei ku"], ["I know that you are my friend."])
+            , (["mi djuno lo du'u mi pendo kei ku"], ["I know that I am friendly."])
+            , (["mi djuno lo du'u do pendo kei ku"], ["I know that you are friendly."])
+            ]
+        donating = generatorFromList
+            [ (["mi djuno lo du'u do dunda kei ku"], ["I know that you made a donation.", "I know that you made donations."])
+            , (["mi djuno lo du'u lo prenu ku dunda kei ku"], ["I know that people make donations."])
+            , (["mi djuno lo du'u do dunda lo zdani ku kei ku"], ["I know that you donated the house."])
+            , (["mi djuno lo du'u do dunda lo mlatu ku kei ku"], ["I know that you donated the cat."])
+            , (["mi djuno lo du'u do dunda lo gerku ku kei ku"], ["I know that you donated the dog."])
+            ]
+        promising = generatorFromList
+            [ (["mi djuno lo du'u do nupre kei ku"], ["I know that you made a promise."])
+            , (["mi djuno lo du'u lo prenu ku nupre kei ku"], ["I know that people make promises."])
+            , (["mi djuno lo du'u do nupre fi mi kei ku"], ["I know that you promised me."])
+            , (["mi djuno lo du'u lo ctuca ku nupre do kei ku"], ["I know that the instructor promised you."])
+            , (["mi djuno lo du'u lo ciska ku nupre do kei ku"], ["I know that the writer promised you."])
+            ]
+        liking = generatorFromList
+            [ (["mi djuno lo du'u do nelci lo mlatu ku kei ku"], ["I know that you like cats."])
+            , (["mi djuno lo du'u do nelci lo gerku ku kei ku"], ["I know that you like dogs."])
+            , (["mi djuno lo du'u lo prenu ku nelci lo mlatu ku kei ku"], ["I know that people like cats."])
+            , (["mi djuno lo du'u lo prenu ku nelci lo gerku ku kei ku"], ["I know that people like dogs."])
+            , (["mi djuno lo du'u lo mlatu ku nelci lo gerku ku kei ku"], ["I know that cats like dogs."])
+            , (["mi djuno lo du'u lo gerku ku nelci lo mlatu ku kei ku"], ["I know that dogs like cats."])
+            , (["mi djuno lo du'u lo mlatu ku nelci lo prenu ku kei ku"], ["I know that cats like people."])
+            , (["mi djuno lo du'u lo gerku ku nelci lo prenu ku kei ku"], ["I know that dogs like people."])
+            ]
+        talking = generatorFromList
+            [ (["mi djuno lo du'u do tavla mi kei ku"], ["I know that you were talking to me."])
+            , (["mi djuno lo du'u do tavla lo nupre ku kei ku"], ["I know that you talked to the promisor."])
+            , (["mi djuno lo du'u do tavla fi lo se nupre ku kei ku"], ["I know that you were talking about the promise."])
+            , (["mi djuno lo du'u do tavla fi lo ciska ku kei ku"], ["I know that you were talking about the writer."])
+            , (["mi djuno lo du'u do tavla fi lo ctuca ku kei ku"], ["I know that you were talking about the instructor."])
+            , (["mi djuno lo du'u do tavla fi lo mlatu ku kei ku"], ["I know that you were talking about the cat."])
+            , (["mi djuno lo du'u do tavla fi lo gerku ku kei ku"], ["I know that you were talking about the dog."])
+            ]
+        writing = generatorFromList
+            [ (["mi djuno lo du'u do ciska fo ta kei ku"], ["I know that you write using that."])
+            , (["mi djuno lo du'u do ciska fi ta kei ku"], ["I know that you wrote something there."])
+            , (["mi djuno lo du'u lo ctuca ku ciska fi ta kei ku"], ["I know that the instructor wrote something there."])
+            ]
+
+translations4_sedu'u :: TranslationGenerator
+translations4_sedu'u = combineFunctions [(2, cusku)] where
+    cusku = combineFunctionsUniformly [beautiful, likingPeople, likingAnimals, donatingAnimals, beingFriendly, others] where
         beautiful = generatorFromList
             [ (["mi cusku lo se du'u do melbi kei ku"], ["I said that you are beautiful."])
             , (["mi cusku lo se du'u lo prenu ku melbi kei ku"], ["I said that the person is beautiful."])
@@ -696,6 +726,33 @@ translations4 = combineFunctions [(2, gleki), (1, tavla), (2, nupre), (2, cusku)
             {-, (["mi cusku lo se du'u do nelci lo nu tavla mi kei ku kei ku", "mi cusku lo se du'u do nelci lo nu do tavla mi kei ku kei ku"], ["I said that you like to talk to me."])-}
             ]
 
+translations4_extra = combineFunctionsUniformly [gleki, tavla, nupre, cusku] where
+    gleki = generatorFromList
+        [ (["mi gleki"], ["I am happy."])
+        , (["lo prenu ku gleki"], ["The person is happy."])
+        , (["lo gerku ku gleki"], ["The dog is happy.", "The dogs are happy."])
+        , (["lo mlatu ku gleki"], ["The cat is happy.", "The cats are happy."])
+        ]
+    tavla = generatorFromList
+        [ (["mi tavla fi lo se nupre ku"], ["I talked about the promise."])
+        , (["do tavla fi lo se nupre ku"], ["You talked about the promise."])
+        , (["mi tavla do lo se nupre ku"], ["I talked to you about the promise."])
+        , (["do tavla mi lo se nupre ku"], ["You talked to me about the promise."])
+        ]
+    nupre = generatorFromList
+        [ (["lo prenu ku nupre"], ["People make promises."])
+        , (["do nupre"], ["You made a promise."])
+        , (["do nupre fi mi"], ["You promised me.", "You promised us."])
+        , (["mi nupre fi do"], ["I promised you.", "We promised you."])
+        ]
+    cusku = generatorFromList
+        [ (["mi cusku"], ["I said something.", "I was saying something.", "I will say something."])
+        , (["do cusku"], ["You said something.", "You were saying something."])
+        , (["lo prenu ku cusku"], ["The person said something.", "The person was saying something."])
+        ]
+
+translations4 :: TranslationGenerator
+translations4 = combineFunctions $ ((4,) <$> [translations4_nu, translations4_du'u, translations4_sedu'u]) ++ ((1,) <$> [translations4_extra])
 
 translationExercises4 :: ExerciseGenerator
 translationExercises4 = generateTranslationExercise basicSentenceCanonicalizer translations4
