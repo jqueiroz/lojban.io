@@ -521,7 +521,6 @@ translationExercises3 = combineFunctions [(1, restricted), (5, normal)] where
 questionExercises3 = generateFillingBlanksExercise ["mo", "ma"] $ combineFunctionsUniformly [translations3_normal_ma, translations3_normal_mo]
 
 -- Lesson 4
--- Are the sentences involving tavla really sensible?
 -- words common enough: gleki, tavla, dunda, nelci, mlatu, gerku, prenu, nupre, zdani
 -- pending words: ctuca, melbi, pendo?
 -- TODO: teach ko'a?
@@ -573,15 +572,9 @@ translations4_nu = combineFunctions [(2, gleki), (1, tavla), (2, nupre)] where
             , (["mi gleki lo nu lo ctuca ku pendo mi kei ku"], ["I am happy that the instructor is my friend."])
             , (["mi gleki lo nu lo te dunda ku pendo mi kei ku"], ["I am happy that the recipient is my friend."])
             ]
-    tavla = combineFunctionsUniformly [owningHouse, animalsLikingEachOther, promisorTalked] where
+    tavla = combineFunctionsUniformly [owningHouse, promisorTalked] where
         owningHouse = generatorFromList
             [ (["mi tavla fi lo nu do se zdani kei ku"], ["I talked about you having a house.", "We talked about you having a house."])
-            ]
-        animalsLikingEachOther = generatorFromList
-            [ (["do tavla fi lo nu lo mlatu ku nelci lo gerku ku kei ku"], ["You talked about cats liking dogs."])
-            , (["do tavla fi lo nu lo gerku ku nelci lo mlatu ku kei ku"], ["You talked about dogs liking cats."])
-            , (["do tavla mi lo nu lo gerku ku nelci lo mlatu ku kei ku"], ["You talked to me about dogs liking cats."])
-            , (["do tavla mi lo nu lo mlatu ku nelci lo gerku ku kei ku"], ["You talked to me about cats liking dogs."])
             ]
         promisorTalked = generatorFromList
             [ (["lo nupre ku tavla mi"], ["The promisor talked to me.", "The promisor talked to us."])
