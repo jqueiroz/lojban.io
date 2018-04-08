@@ -529,7 +529,7 @@ questionExercises3 = generateFillingBlanksExercise ["mo", "ma"] $ combineFunctio
 -- TODO: add sentences using promisee
 translations4_nu :: TranslationGenerator
 translations4_nu = combineFunctions [(2, gleki), (1, tavla), (2, nupre)] where
-    gleki = combineFunctionsUniformly [talking, beautiful, givingAnimals, liking, teaching, owningHouse, other] where
+    gleki = combineFunctionsUniformly [talking, beautiful, givingAnimals, liking, teaching, owningHouse, know, other] where
         talking = generatorFromList
             -- talking to someone
             [ (["mi gleki lo nu do tavla mi kei ku"], ["I am happy that you talked to me."])
@@ -563,6 +563,12 @@ translations4_nu = combineFunctions [(2, gleki), (1, tavla), (2, nupre)] where
         owningHouse = generatorFromList
             [ (["mi gleki lo nu mi se zdani kei ku"], ["I am happy that I have a house."])
             , (["mi gleki lo nu do se zdani kei ku"], ["I am happy that you have a house."])
+            ]
+        know = generatorFromList
+            [ (["mi gleki lo nu mi djuno fi lo mlatu ku kei ku"], ["I am happy that I know about cats."])
+            , (["mi gleki lo nu mi djuno fi lo gerku ku kei ku"], ["I am happy that I know about dogs."])
+            , (["mi gleki lo nu do djuno fi lo mlatu ku kei ku"], ["I am happy that you know about cats."])
+            , (["mi gleki lo nu do djuno fi lo gerku ku kei ku"], ["I am happy that you know about dogs."])
             ]
         other = generatorFromList
             [ (["mi gleki lo nu do gleki kei ku"], ["I am happy that you are happy."])
