@@ -87,7 +87,10 @@ vocabularyGenerator3 = createVocabularyBuilder
         ("subjects", (1,) <$> ["lo zdani ku", "lo mlatu ku", "lo gerku ku", "lo se dunda ku"])
     ]
 
---TODO: add all new from generator3 (and consider creating exercises using them)
+--TODO: add all new from generator3 (and create exercises using them)
+-- TODO: probably add one more word
+-- Maybe: cilre, djica
+-- Maybe: finti
 vocabularyGenerator4 :: VocabularyBuilder
 vocabularyGenerator4 = createVocabularyBuilder
     -- Selbri
@@ -369,8 +372,8 @@ translations3_normal_xu = combineFunctions $ [(3, translations3_restricted_xu), 
         , (["xu do ciska ta"], ["Did you write that?"])
         ]
     know = generatorFromList
-        [ (["xu do djuno lo se ciska ku"], ["Did you know that what was written is true?"])
-        , (["xu do djuno lo te ctuca ku"], ["Did you know that what was taught is true?"])
+        [ (["xu do djuno lo se ciska ku"], ["Did you know that what was written is true?"]) -- probably not okay (du'u vs sedu'u)
+        , (["xu do djuno lo te ctuca ku"], ["Did you know that what was taught is true?"]) -- probably not okay (du'u vs sedu'u)
         , (["xu do djuno"], ["Did you know?"])
         ]
     others = generatorFromList
@@ -527,6 +530,7 @@ questionExercises3 = generateFillingBlanksExercise ["mo", "ma"] $ combineFunctio
 -- TODO: more examples using du'u
 -- consider using: morji, ciksi, jijnu (useful for teaching du'u)
 -- TODO: add sentences using promisee
+-- Are events vs facts being used correctly?
 translations4_nu :: TranslationGenerator
 translations4_nu = combineFunctions [(2, gleki), (1, tavla), (2, nupre)] where
     gleki = combineFunctionsUniformly [talking, beautiful, givingAnimals, liking, teaching, owningHouse, know, other] where
@@ -758,6 +762,10 @@ translationExercises4 :: ExerciseGenerator
 translationExercises4 = generateTranslationExercise basicSentenceCanonicalizer translations4
 
 abstractionExercises4 = generateFillingBlanksExercise ["lo nu", "lo du'u", "lo se du'u"] $ combineFunctionsUniformly [translations4_nu, translations4_du'u, translations4_sedu'u]
+
+-- Lesson 5
+-- questionExercises5 :: "What did you promise", "What did you say, ..."
+-- Interesting: xu do djuno lo se cusku
 
 translations5 :: [ExerciseGenerator]
 translations5 = generateTranslationExercise basicSentenceCanonicalizer <$> generatorFromSingleton <$>
