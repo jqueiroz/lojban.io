@@ -527,7 +527,7 @@ translationExercises3 = combineFunctions [(1, restricted), (5, normal)] where
 questionExercises3 = generateFillingBlanksExercise ["mo", "ma"] $ combineFunctionsUniformly [translations3_normal_ma, translations3_normal_mo]
 
 -- Lesson 4
--- words common enough: gleki, tavla, dunda, nelci, mlatu, gerku, prenu, nupre, zdani
+-- words common enough: gleki, tavla, dunda, nelci, mlatu, gerku, prenu, nupre, zdani, ciska
 -- pending words: ctuca, melbi, pendo?
 -- TODO: teach ko'a?
 -- TODO: more examples using du'u
