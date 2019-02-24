@@ -875,7 +875,7 @@ exercises4 dictionary =
     combineFunctions
         [ (30, generateIsolatedGismuPlacesExercise dictionary vocabulary)
         , (10, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
-        , (30, abstractionExercises4)
+        , (40, abstractionExercises4)
         , (70, translationExercises4)
         ]
     where
