@@ -339,6 +339,12 @@ translations3_normal_xu = combineFunctions $ [(3, translations3_restricted_xu), 
             , (["xu lo se dunda ku melbi"], ["Is the gift beautiful?", "Are the gifts beautiful?"])
             , (["xu lo ctuca ku melbi do"], ["Is the instructor beautiful to you?"])
             , (["xu lo ctuca ku melbi"], ["Is the instructor beautiful?"])
+            , (["xu lo zdani ku melbi do"], ["Is the house beautiful to you?"])
+            , (["xu lo zdani ku melbi"], ["Is the house beautiful?"])
+            , (["xu lo mlatu ku melbi do"], ["Is the cat beautiful to you?"])
+            , (["xu lo mlatu ku melbi"], ["Is the cat beautiful?"])
+            , (["xu lo gerku ku melbi do"], ["Is the dog beautiful to you?"])
+            , (["xu lo gerku ku melbi"], ["Is the dog beautiful?"])
             ]
         like = generatorFromList
             [ (["xu do nelci lo se dunda ku"], ["Did you like the gift?"])
@@ -813,7 +819,6 @@ translations9 = generateTranslationExercise basicSentenceCanonicalizer <$> gener
 -- What did you do to me?
 -- What did you do to the gift?
 --   Were you talking about me?
---   Is the house/cat/dog beautiful to you?
 --   Did somebody talk to you about the cat?
 -- Are you talking about the donation? (lo ka dunda)
 -- Who wants to talk to me?
