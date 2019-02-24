@@ -815,7 +815,6 @@ translations9 = generateTranslationExercise basicSentenceCanonicalizer <$> gener
 -- Why are you happy?
 -- What did you say?
 -- Did you say that you find me beautiful?
--- Who is talking to you about me?
 -- What did you do to me?
 -- What did you do to the gift?
 --   Were you talking about me?
