@@ -89,7 +89,6 @@ vocabularyGenerator3 = createVocabularyBuilder
         ("subjects", (1,) <$> ["lo zdani ku", "lo mlatu ku", "lo gerku ku", "lo se dunda ku"])
     ]
 
---TODO: add all new from generator3 (and create exercises using them)
 -- TODO: probably add one more word (nah, it's difficult enough already)
 -- Maybe: cilre, djica
 -- Maybe: finti
