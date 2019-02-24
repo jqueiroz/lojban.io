@@ -528,7 +528,6 @@ questionExercises3 = generateFillingBlanksExercise ["mo", "ma"] $ combineFunctio
 
 -- Lesson 4
 -- TODO: teach ko'a?
--- TODO: more examples using du'u
 -- consider using: morji, ciksi, jijnu (useful for teaching du'u)
 -- TODO: add sentences using promisee
 -- TODO: replace some occurrences of "happy" with "glad"?
