@@ -745,7 +745,7 @@ translations4_sedu'u = combineFunctions [(2, cusku)] where
             {-, (["mi cusku lo se du'u do nelci lo nu tavla mi kei ku kei ku", "mi cusku lo se du'u do nelci lo nu do tavla mi kei ku kei ku"], ["I said that you like to talk to me."])-}
             ]
 
-translations4_extra = combineFunctionsUniformly [gleki, tavla, nupre, cusku] where
+translations4_extra = combineFunctionsUniformly [gleki, tavla, nupre, cusku, ciska] where
     gleki = generatorFromList
         [ (["mi gleki"], ["I am happy."])
         , (["lo prenu ku gleki"], ["The person is happy."])
@@ -768,6 +768,11 @@ translations4_extra = combineFunctionsUniformly [gleki, tavla, nupre, cusku] whe
         [ (["mi cusku"], ["I said something.", "I was saying something.", "I will say something."])
         , (["do cusku"], ["You said something.", "You were saying something."])
         , (["lo prenu ku cusku"], ["The person said something.", "The person was saying something."])
+        ]
+    ciska = generatorFromList
+        [ (["mi ciska fo ta"], ["I write using that."])
+        , (["mi ciska fi ta"], ["I wrote something there."])
+        , (["lo ctuca ku ciska fi ta"], ["The instructor wrote something there."])
         ]
 
 translations4 :: TranslationGenerator
