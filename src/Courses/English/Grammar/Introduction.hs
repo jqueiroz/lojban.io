@@ -524,7 +524,6 @@ questionExercises3 = generateFillingBlanksExercise ["mo", "ma"] $ combineFunctio
 
 -- Lesson 4
 -- TODO: teach ko'a?
--- TODO: add sentences using promisee
 -- TODO: replace some occurrences of "happy" with "glad"?
 -- CHECK: Are events vs facts being used correctly?
 translations4_nu :: TranslationGenerator
@@ -582,7 +581,7 @@ translations4_nu = combineFunctions [(2, gleki), (1, tavla), (2, nupre)] where
             , (["mi gleki lo nu lo ciska ku pendo mi kei ku"], ["I am happy that the writer is my friend."])
             , (["mi gleki lo nu lo te dunda ku pendo mi kei ku"], ["I am happy that the recipient is my friend."])
             ]
-    tavla = combineFunctionsUniformly [owningHouse, promisorTalked] where
+    tavla = combineFunctionsUniformly [owningHouse, promisorTalked, promiseeTalked] where
         owningHouse = generatorFromList
             [ (["mi tavla fi lo nu do se zdani kei ku"], ["I talked about you having a house.", "We talked about you having a house."])
             ]
@@ -594,6 +593,15 @@ translations4_nu = combineFunctions [(2, gleki), (1, tavla), (2, nupre)] where
             , (["lo nupre ku tavla mi lo mlatu ku"], ["The promisor talked to me about the cat.", "The promisor talked to me about the cats."])
             , (["lo nupre ku tavla mi lo gerku ku"], ["The promisor talked to me about the dog.", "The promisor talked to me about the dogs."])
             , (["lo nupre ku tavla mi lo zdani ku"], ["The promisor talked to me about the house.", "The promisor talked to me about the houses."])
+            ]
+        promiseeTalked = generatorFromList
+            [ (["lo te nupre ku tavla mi"], ["The promisee talked to me.", "The promisee talked to us."])
+            , (["lo te nupre ku tavla fi lo mlatu ku"], ["The promisee talked about the cat.", "The promisee talked about the cats."])
+            , (["lo te nupre ku tavla fi lo gerku ku"], ["The promisee talked about the dog.", "The promisee talked about the dogs."])
+            , (["lo te nupre ku tavla fi lo zdani ku"], ["The promisee talked about the house.", "The promisee talked about the houses."])
+            , (["lo te nupre ku tavla mi lo mlatu ku"], ["The promisee talked to me about the cat.", "The promisee talked to me about the cats."])
+            , (["lo te nupre ku tavla mi lo gerku ku"], ["The promisee talked to me about the dog.", "The promisee talked to me about the dogs."])
+            , (["lo te nupre ku tavla mi lo zdani ku"], ["The promisee talked to me about the house.", "The promisee talked to me about the houses."])
             ]
     nupre = combineFunctionsUniformly [donatingAnimals, donatingHouses, teaching, beingFriendly] where
         donatingAnimals = generatorFromList
@@ -661,6 +669,7 @@ translations4_du'u = combineFunctions [(2, djuno)] where
         talking = generatorFromList
             [ (["mi djuno lo du'u do tavla mi kei ku"], ["I know that you were talking to me."])
             , (["mi djuno lo du'u do tavla lo nupre ku kei ku"], ["I know that you talked to the promisor."])
+            , (["mi djuno lo du'u do tavla lo te nupre ku kei ku"], ["I know that you talked to the promisee."])
             , (["mi djuno lo du'u do tavla fi lo se nupre ku kei ku"], ["I know that you were talking about the promise."])
             , (["mi djuno lo du'u do tavla fi lo ciska ku kei ku"], ["I know that you were talking about the writer."])
             , (["mi djuno lo du'u do tavla fi lo ctuca ku kei ku"], ["I know that you were talking about the instructor."])
