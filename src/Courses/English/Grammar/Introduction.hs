@@ -524,7 +524,6 @@ questionExercises3 = generateFillingBlanksExercise ["mo", "ma"] $ combineFunctio
 
 -- Lesson 4
 -- TODO: teach ko'a?
--- TODO: replace some occurrences of "happy" with "glad"?
 -- CHECK: Are events vs facts being used correctly?
 translations4_nu :: TranslationGenerator
 translations4_nu = combineFunctions [(2, gleki), (1, tavla), (2, nupre)] where
@@ -533,11 +532,11 @@ translations4_nu = combineFunctions [(2, gleki), (1, tavla), (2, nupre)] where
             -- talking to someone
             [ (["mi gleki lo nu do tavla mi kei ku"], ["I am happy that you talked to me."])
             , (["mi gleki lo nu mi tavla do kei ku", "mi gleki lo nu tavla do kei ku"], ["I am happy that I talked to you."])
-            , (["mi gleki lo nu do tavla lo ciska ku kei ku"], ["I am happy that you talked to the writer."])
-            , (["mi gleki lo nu lo ciska ku tavla do kei ku"], ["I am happy that the writer talked to you."])
+            , (["mi gleki lo nu do tavla lo ciska ku kei ku"], ["I am glad that you talked to the writer."])
+            , (["mi gleki lo nu lo ciska ku tavla do kei ku"], ["I am glad that the writer talked to you."])
             -- talking about animals
-            , (["mi gleki lo nu do tavla mi lo mlatu ku kei ku"], ["I am happy that you talked to me about the cat.", "I am happy that you talked to me about cats."])
-            , (["mi gleki lo nu do tavla mi lo gerku ku kei ku"], ["I am happy that you talked to me about the dog.", "I am happy that you talked to me about dogs."])
+            , (["mi gleki lo nu do tavla mi lo mlatu ku kei ku"], ["I am glad that you talked to me about the cat.", "I am happy that you talked to me about cats."])
+            , (["mi gleki lo nu do tavla mi lo gerku ku kei ku"], ["I am glad that you talked to me about the dog.", "I am happy that you talked to me about dogs."])
             ]
         beautiful = generatorFromList
             [ (["mi gleki lo nu do se melbi mi kei ku"], ["I am happy that you find me beautiful."])
@@ -552,11 +551,11 @@ translations4_nu = combineFunctions [(2, gleki), (1, tavla), (2, nupre)] where
         liking = generatorFromList
             [ (["mi gleki lo nu do nelci mi kei ku"], ["I am happy that you like me."])
             , (["mi gleki lo nu lo prenu ku nelci mi kei ku"], ["I am happy that people like me."])
-            , (["mi gleki lo nu lo prenu ku nelci do kei ku"], ["I am happy that people like you."])
+            , (["mi gleki lo nu lo prenu ku nelci do kei ku"], ["I am happy that people like you.", "I am glad that people like you."])
             , (["mi gleki lo nu lo ctuca ku nelci mi kei ku"], ["I am happy that the instructor likes me."])
-            , (["mi gleki lo nu lo ctuca ku nelci do kei ku"], ["I am happy that the instructor likes you."])
-            , (["mi gleki lo nu do nelci lo ctuca ku kei ku"], ["I am happy that you like the instructor."])
-            , (["mi gleki lo nu do nelci lo ciska ku kei ku"], ["I am happy that you like the writer."])
+            , (["mi gleki lo nu lo ctuca ku nelci do kei ku"], ["I am happy that the instructor likes you.", "I am glad that the instructor likes you."])
+            , (["mi gleki lo nu do nelci lo ctuca ku kei ku"], ["I am glad that you like the instructor."])
+            , (["mi gleki lo nu do nelci lo ciska ku kei ku"], ["I am glad that you like the writer."])
             ]
         teaching = generatorFromList
             [ (["mi gleki lo nu do ctuca mi kei ku"], ["I am happy that you taught me."])
@@ -564,7 +563,7 @@ translations4_nu = combineFunctions [(2, gleki), (1, tavla), (2, nupre)] where
             ]
         owningHouse = generatorFromList
             [ (["mi gleki lo nu mi se zdani kei ku"], ["I am happy that I have a house."])
-            , (["mi gleki lo nu do se zdani kei ku"], ["I am happy that you have a house."])
+            , (["mi gleki lo nu do se zdani kei ku"], ["I am glad that you have a house."])
             ]
         know = generatorFromList
             [ (["mi gleki lo nu mi djuno fi lo mlatu ku kei ku"], ["I am happy that I know about cats."])
