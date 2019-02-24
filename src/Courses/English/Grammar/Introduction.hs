@@ -542,6 +542,8 @@ translations4_nu = combineFunctions [(2, gleki), (1, tavla), (2, nupre)] where
             -- talking to someone
             [ (["mi gleki lo nu do tavla mi kei ku"], ["I am happy that you talked to me."])
             , (["mi gleki lo nu mi tavla do kei ku", "mi gleki lo nu tavla do kei ku"], ["I am happy that I talked to you."])
+            , (["mi gleki lo nu do tavla lo ciska ku kei ku"], ["I am happy that you talked to the writer."])
+            , (["mi gleki lo nu lo ciska ku tavla do kei ku"], ["I am happy that the writer talked to you."])
             -- talking about animals
             , (["mi gleki lo nu do tavla mi lo mlatu ku kei ku"], ["I am happy that you talked to me about the cat.", "I am happy that you talked to me about cats."])
             , (["mi gleki lo nu do tavla mi lo gerku ku kei ku"], ["I am happy that you talked to me about the dog.", "I am happy that you talked to me about dogs."])
@@ -563,6 +565,7 @@ translations4_nu = combineFunctions [(2, gleki), (1, tavla), (2, nupre)] where
             , (["mi gleki lo nu lo ctuca ku nelci mi kei ku"], ["I am happy that the instructor likes me."])
             , (["mi gleki lo nu lo ctuca ku nelci do kei ku"], ["I am happy that the instructor likes you."])
             , (["mi gleki lo nu do nelci lo ctuca ku kei ku"], ["I am happy that you like the instructor."])
+            , (["mi gleki lo nu do nelci lo ciska ku kei ku"], ["I am happy that you like the writer."])
             ]
         teaching = generatorFromList
             [ (["mi gleki lo nu do ctuca mi kei ku"], ["I am happy that you taught me."])
@@ -584,6 +587,7 @@ translations4_nu = combineFunctions [(2, gleki), (1, tavla), (2, nupre)] where
             , (["mi gleki lo nu do prenu kei ku"], ["I am happy that you are a person."])
             , (["mi gleki lo nu do pendo mi kei ku"], ["I am happy that you are my friend."])
             , (["mi gleki lo nu lo ctuca ku pendo mi kei ku"], ["I am happy that the instructor is my friend."])
+            , (["mi gleki lo nu lo ciska ku pendo mi kei ku"], ["I am happy that the writer is my friend."])
             , (["mi gleki lo nu lo te dunda ku pendo mi kei ku"], ["I am happy that the recipient is my friend."])
             ]
     tavla = combineFunctionsUniformly [owningHouse, promisorTalked] where
@@ -619,6 +623,7 @@ translations4_nu = combineFunctions [(2, gleki), (1, tavla), (2, nupre)] where
             ]
         beingFriendly = generatorFromList
             [ (["do nupre lo nu pendo kei ku", "do nupre lo nu do pendo kei ku"], ["You promised to be friendly."])
+            , (["lo ciska ku nupre lo nu pendo kei ku"], ["The writer promised to be friendly."])
             ]
 
 translations4_du'u :: TranslationGenerator
@@ -631,6 +636,8 @@ translations4_du'u = combineFunctions [(2, djuno)] where
             [ (["mi djuno lo du'u do pendo mi kei ku"], ["I know that you are my friend."])
             , (["mi djuno lo du'u mi pendo kei ku"], ["I know that I am friendly."])
             , (["mi djuno lo du'u do pendo kei ku"], ["I know that you are friendly."])
+            [ (["mi djuno lo du'u lo ciska ku pendo do kei ku"], ["I know the writer is your friend."])
+            [ (["mi djuno lo du'u lo ciska ku pendo kei ku"], ["I know the writer friendly.."])
             ]
         donating = generatorFromList
             [ (["mi djuno lo du'u do dunda kei ku"], ["I know that you made a donation.", "I know that you made donations."])
@@ -638,6 +645,7 @@ translations4_du'u = combineFunctions [(2, djuno)] where
             , (["mi djuno lo du'u do dunda lo zdani ku kei ku"], ["I know that you donated the house."])
             , (["mi djuno lo du'u do dunda lo mlatu ku kei ku"], ["I know that you donated the cat."])
             , (["mi djuno lo du'u do dunda lo gerku ku kei ku"], ["I know that you donated the dog."])
+            , (["mi djuno lo du'u lo ciska ku dunda kei ku"], ["I know that the writer made a donation.", "I know that the writer makes donations."])
             ]
         promising = generatorFromList
             [ (["mi djuno lo du'u do nupre kei ku"], ["I know that you made a promise."])
@@ -648,6 +656,7 @@ translations4_du'u = combineFunctions [(2, djuno)] where
             ]
         liking = generatorFromList
             [ (["mi djuno lo du'u do nelci mi kei ku"], ["I know that you like me."])
+            , (["mi djuno lo du'u do nelci lo ciska ku kei ku"], ["I know that you like the writer."])
             , (["mi djuno lo du'u do nelci lo mlatu ku kei ku"], ["I know that you like cats."])
             , (["mi djuno lo du'u do nelci lo gerku ku kei ku"], ["I know that you like dogs."])
             , (["mi djuno lo du'u lo prenu ku nelci lo mlatu ku kei ku"], ["I know that people like cats."])
@@ -684,6 +693,7 @@ translations4_sedu'u = combineFunctions [(2, cusku)] where
         likingPeople = generatorFromList
             [ (["mi cusku lo se du'u mi nelci do kei ku", "mi cusku lo se du'u nelci do kei ku"], ["I said that I like you."])
             , (["do cusku lo se du'u do nelci mi kei ku", "do cusku lo se du'u nelci mi kei ku"], ["You said that you like me."])
+            , (["mi cusku lo se du'u mi nelci lo ciska ku kei ku", "mi cusku lo se du'u nelci lo ciska ku kei ku"], ["I said that I like the writer."])
             , (["lo prenu ku cusku lo se du'u mi nelci do kei ku"], ["The person said that I like you."])
             , (["lo prenu ku cusku lo se du'u do nelci mi kei ku"], ["The person said that you like me."])
             , (["lo prenu ku cusku lo se du'u nelci mi kei ku"], ["The person said that she likes me."])
@@ -724,6 +734,7 @@ translations4_sedu'u = combineFunctions [(2, cusku)] where
             [ (["mi cusku lo se du'u pendo kei ku", "mi cusku lo se du'u mi pendo kei ku"], ["I said that I would be friendly."])
             , (["do cusku lo se du'u pendo kei ku", "do cusku lo se du'u do pendo kei ku"], ["You said that you would be friendly."])
             , (["mi cusku lo se du'u do pendo kei ku"], ["I said that you would be friendly."])
+            , (["mi cusku lo se du'u lo ciska ku pendo kei ku"], ["I said that the writer would be friendly."])
             ]
         others = generatorFromList
             [ (["mi nelci lo nu tavla do kei ku", "mi nelci lo nu mi tavla do kei ku"], ["I like to talk to you."]) -- is nelci really adequate?
