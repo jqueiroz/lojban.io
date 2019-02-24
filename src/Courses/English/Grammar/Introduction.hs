@@ -89,9 +89,6 @@ vocabularyGenerator3 = createVocabularyBuilder
         ("subjects", (1,) <$> ["lo zdani ku", "lo mlatu ku", "lo gerku ku", "lo se dunda ku"])
     ]
 
--- TODO: probably add one more word (nah, it's difficult enough already)
--- Maybe: cilre, djica
--- Maybe: finti
 -- New words: nupre, cusku; gleki
 vocabularyGenerator4 :: VocabularyBuilder
 vocabularyGenerator4 = createVocabularyBuilder
