@@ -620,7 +620,7 @@ translations4_nu = combineFunctions [(2, gleki), (1, tavla), (2, nupre)] where
             ]
         donatingHouses = generatorFromList
             [ (["do nupre lo nu dunda lo zdani ku kei ku mi", "do nupre lo nu do dunda lo zdani ku kei ku mi"], ["You promised me to donate the house.", "You promised me to donate the houses.", "You promised us to donate the house.", "You promised us to donate the houses."])
-            , (["do nupre lo nu dunda lo zdani ku mi kei ku mi", "do nupre lo nu do dunda lo zdani ku mi kei ku mi"], ["You promised to donate the house to me.", "You promised to donate the houses to us."])
+            , (["do nupre lo nu dunda lo zdani ku mi kei ku", "do nupre lo nu do dunda lo zdani ku mi kei ku"], ["You promised to donate the house to me.", "You promised to donate the houses to us."])
             ]
         teaching = generatorFromList
             [ (["do nupre lo nu ctuca mi kei ku", "do nupre lo nu do ctuca mi kei ku"], ["You promised to teach me.", "You promised to teach us."])
