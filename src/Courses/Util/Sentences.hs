@@ -267,6 +267,7 @@ convertStructuredTerm (ZG.LE (ZG.Init x) ZG.NR ZG.NQ y _) = insertPrefix . inser
 convertStructuredTerm _ = Left "Unrecognized pattern for structured term"
 
 ---------- Canonicalization
+--TODO: canonicalize "do xu ciska" -> "xu do ciska"
 type SentenceCanonicalizer = T.Text -> Either String T.Text
 basicSentenceCanonicalizer :: T.Text -> Either String T.Text
 basicSentenceCanonicalizer sentence = displayCanonicalBridi <$> (parse sentence >>= canonicalizeText)
