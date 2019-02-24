@@ -531,7 +531,7 @@ questionExercises3 = generateFillingBlanksExercise ["mo", "ma"] $ combineFunctio
 -- consider using: morji, ciksi, jijnu (useful for teaching du'u)
 -- TODO: add sentences using promisee
 -- TODO: replace some occurrences of "happy" with "glad"?
--- Are events vs facts being used correctly?
+-- CHECK: Are events vs facts being used correctly?
 translations4_nu :: TranslationGenerator
 translations4_nu = combineFunctions [(2, gleki), (1, tavla), (2, nupre)] where
     gleki = combineFunctionsUniformly [talking, beautiful, givingAnimals, liking, teaching, owningHouse, know, other] where
