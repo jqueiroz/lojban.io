@@ -635,8 +635,8 @@ translations4_du'u = combineFunctions [(2, djuno)] where
             [ (["mi djuno lo du'u do pendo mi kei ku"], ["I know that you are my friend."])
             , (["mi djuno lo du'u mi pendo kei ku"], ["I know that I am friendly."])
             , (["mi djuno lo du'u do pendo kei ku"], ["I know that you are friendly."])
-            [ (["mi djuno lo du'u lo ciska ku pendo do kei ku"], ["I know the writer is your friend."])
-            [ (["mi djuno lo du'u lo ciska ku pendo kei ku"], ["I know the writer friendly.."])
+            , (["mi djuno lo du'u lo ciska ku pendo do kei ku"], ["I know the writer is your friend."])
+            , (["mi djuno lo du'u lo ciska ku pendo kei ku"], ["I know the writer friendly.."])
             ]
         donating = generatorFromList
             [ (["mi djuno lo du'u do dunda kei ku"], ["I know that you made a donation.", "I know that you made donations."])
