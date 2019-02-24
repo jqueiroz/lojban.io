@@ -1101,7 +1101,7 @@ lesson4 :: LessonBuilder
 lesson4 dictionary = Lesson "Abstractions 1" (exercises4 dictionary) plan4
 
 lesson5 :: LessonBuilder
-lesson5 dictionary = Lesson "Terminator ellipsis" (exercises5 dictionary) plan5
+lesson5 dictionary = Lesson "Terminator elision" (exercises5 dictionary) plan5
 
 -------- Course
 course :: CourseBuilder
