@@ -87,6 +87,14 @@ englishSumtiPlacesBase = M.fromList
     , ("djuno", ["entity", "facts", "subject", "epistemology"])
     , ("nupre", ["agent", "promise", "beneficiary/victim"])
     , ("cusku", ["agent", "message", "audience", "expressive medium"])
+    -- TODO: nelci
+    -- TODO: pendo
+    -- TODO: melbi
+    -- TODO: gleki
+    -- TODO: prenu
+    -- TODO: mlatu
+    -- TODO: gerku
+    -- TODO: zdani
     ] -- TODO: ask people to build a database
 
 retrieveEnglishSumtiPlaces :: T.Text -> [T.Text]
