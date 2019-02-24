@@ -15,13 +15,13 @@ module Courses.Util.Sentences
 , generatePropertyBridi
 , generateRelationBridi
 , generateActionBridi
-, removeElidableTerminators
+, simplifyBridiDisplayer
 , parse
 ) where
 
 import Core
 import Courses.Util.Vocabulary
-import Util (replace, stripRight, filterSnd, filterOutWord, filterOutWords, headOrDefault, isContiguousSequence, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly)
+import Util (compose2, replace, stripRight, filterSnd, filterOutWord, filterOutWords, headOrDefault, isContiguousSequence, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly)
 import Control.Exception (assert)
 import Control.Applicative (liftA2)
 import Control.Arrow ((***))
@@ -29,6 +29,7 @@ import System.Random (StdGen, mkStdGen)
 import qualified Data.Text as T
 import qualified Data.Map as M
 import qualified Language.Lojban.Parser.ZasniGerna as ZG
+import Control.Arrow ((***))
 
 data SimpleBridi = SimpleBridi
     { simpleBridiXu :: Bool
@@ -144,12 +145,26 @@ displayReorderedStandardSimpleBridi' = buildSentenceDisplayer $ \r0 (SimpleBridi
 -- removeElidableTerminators (ZG.BridiTail (ZG.GOhA selbri) terms) = selbri `T.append` removeTerminators terms
 -- TODO: make this function way more efficient and use the following brute-force version only in unit tests
 
+-- Replaces "ku" with "cu" whenever possible
+replaceElidableTerminators :: T.Text -> T.Text
+replaceElidableTerminators t = f [] (T.words t) where
+    originalCanonicalization = basicSentenceCanonicalizer t
+    f :: [T.Text] -> [T.Text] -> T.Text
+    f x [] = T.unwords x
+    f x (y:ys) = if basicSentenceCanonicalizer (T.unwords $ x++("cu":ys)) == originalCanonicalization then f (x++["cu"]) ys else f (x++[y]) ys
+
+-- Removes redundant "ku", "kei", etc
 removeElidableTerminators :: T.Text -> T.Text
 removeElidableTerminators t = f [] (T.words t) where
     originalCanonicalization = basicSentenceCanonicalizer t
     f :: [T.Text] -> [T.Text] -> T.Text
     f x [] = T.unwords x
     f x (y:ys) = if basicSentenceCanonicalizer (T.unwords $ x++ys) == originalCanonicalization then f x ys else f (x++[y]) ys
+
+simplifyBridiDisplayer :: SimpleBridiDisplayer -> SimpleBridiDisplayer
+simplifyBridiDisplayer bridiDisplayer = simplifySentence `compose2` bridiDisplayer where
+    simplifySentence :: (T.Text, StdGen) -> (T.Text, StdGen)
+    simplifySentence = (removeElidableTerminators . replaceElidableTerminators) *** id
 
 ------------------------- ----------------------- Sentence canonicalizers
 --TODO: check whether se/te/ve/xe are left-associative or right-associative

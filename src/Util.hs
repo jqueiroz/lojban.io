@@ -10,6 +10,9 @@ import Data.List (group, sort)
 import System.Random
 import System.Random.Shuffle (shuffle')
 
+-- Function manipulation
+compose2 f g x y = f (g x y)
+
 -- List manipulation
 stripLeft :: (Eq a) => a -> [a] -> [a]
 stripLeft x = dropWhile (==x)

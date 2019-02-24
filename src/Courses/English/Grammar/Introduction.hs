@@ -1078,14 +1078,13 @@ exercises4 dictionary =
 exercises5 :: Dictionary -> ExerciseGenerator
 exercises5 dictionary =
     combineFunctions
-        -- TODO: elide terminators
         [ (20, generateIsolatedGismuPlacesExercise dictionary vocabulary)
         , (10, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
         , (70, translationExercises5_restricted)
         ]
     where
         vocabulary = vocabularyGenerator5 dictionary
-        displayBridi = combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
+        displayBridi = simplifyBridiDisplayer $ (combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)])
 
 -------- Lessons
 lesson1 :: LessonBuilder
