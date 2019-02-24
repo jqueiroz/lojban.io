@@ -74,7 +74,7 @@ vocabularyGenerator3 = createVocabularyBuilder
     -- Selbri
     [
         ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca"]) ++ ((2,) <$> ["ciska", "djuno"])),
-        ("relations", (0,) <$> ["nelci", "pendo"]),
+        ("relations", (0,) <$> ["pendo", "nelci"]),
         ("properties", (0,) <$> ["prenu", "zdani", "mlatu", "gerku", "melbi"])
     ]
     -- Sumti
@@ -96,7 +96,7 @@ vocabularyGenerator4 = createVocabularyBuilder
     -- Selbri
     [
         ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska", "djuno"]) ++ ((2,) <$> ["nupre", "cusku"])),
-        ("relations", ((0,) <$> ["nelci", "pendo"]) ++ ((1,) <$> ["gleki"])),
+        ("relations", ((0,) <$> ["pendo", "nelci"]) ++ ((1,) <$> ["gleki"])),
         ("properties", (0,) <$> ["prenu", "zdani", "mlatu", "gerku", "melbi"])
     ]
     -- Sumti
