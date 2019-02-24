@@ -36,6 +36,9 @@ Right plan3 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/engl
 plan4 :: P.Pandoc
 Right plan4 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/introduction/planning/4.md")
 
+plan5 :: P.Pandoc
+Right plan5 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/introduction/planning/5.md")
+
 -------- Vocabulary
 vocabularyGenerator1 :: VocabularyBuilder
 vocabularyGenerator1 = createVocabularyBuilder
@@ -107,6 +110,10 @@ vocabularyGenerator4 = createVocabularyBuilder
         ("places", (1,) <$> ["lo zdani ku"]),
         ("subjects", (1,) <$> ["lo zdani ku", "lo mlatu ku", "lo gerku ku", "lo se dunda ku"])
     ]
+
+-- New words: cu
+vocabularyGenerator5 :: VocabularyBuilder
+vocabularyGenerator5 = vocabularyGenerator4
 
 -------- Translations
 -- Lesson 1
@@ -790,11 +797,199 @@ translationExercises4 = generateTranslationExercise basicSentenceCanonicalizer t
 abstractionExercises4 = generateFillingBlanksExercise ["lo nu", "lo du'u", "lo se du'u"] $ combineFunctionsUniformly [translations4_nu, translations4_du'u, translations4_sedu'u]
 
 -- Lesson 5
+translations5_restricted :: TranslationGenerator
+translations5_restricted = combineFunctions [(2, hasHouse), (3, nice), (3, giving), (2, talking), (3, gleki), (3, nupre), (3, djuno), (3, cusku)] where
+    hasHouse = generatorFromList
+        [ (["lo ctuca cu se zdani"], ["The instructor has a house."])
+        , (["lo prenu cu se zdani"], ["The person has a house."])
+        , (["lo tavla cu se zdani"], ["The speaker has a house."])
+        , (["lo se tavla cu se zdani"], ["The listener has a house."])
+        , (["lo dunda cu se zdani"], ["The donor has a house."])
+        , (["lo te dunda cu se zdani"], ["The recipient has a house."])
+        , (["xu lo prenu cu se zdani"], ["Does the person have a house?"])
+        , (["xu lo ctuca cu se zdani"], ["Does the instructor have a house?"])
+        ]
+    nice = combineFunctionsUniformly [beautiful, like] where
+        beautiful = generatorFromList
+            [ (["lo se dunda cu melbi mi"], ["The gift is beautiful to me.", "The gifts are beautiful to me."])
+            , (["lo se dunda cu melbi"], ["The gift is beautiful.", "The gifts are beautiful."])
+            , (["xu lo se dunda cu melbi do"], ["Is the gift beautiful to you?", "Are the gifts beatiful to you?"])
+            , (["xu lo se dunda cu melbi"], ["Is the gift beautiful?", "Are the gifts beautiful?"])
+            , (["xu lo ctuca cu melbi do"], ["Is the instructor beautiful to you?"])
+            , (["xu lo ctuca cu melbi"], ["Is the instructor beautiful?"])
+            , (["xu lo zdani cu melbi do"], ["Is the house beautiful to you?"])
+            , (["xu lo zdani cu melbi"], ["Is the house beautiful?"])
+            , (["xu lo mlatu cu melbi do"], ["Is the cat beautiful to you?"])
+            , (["xu lo mlatu cu melbi"], ["Is the cat beautiful?"])
+            , (["xu lo gerku cu melbi do"], ["Is the dog beautiful to you?"])
+            , (["xu lo gerku cu melbi"], ["Is the dog beautiful?"])
+            , (["lo se dunda cu melbi ma"], ["The gift is beautiful to whom?", "The gifts are beautiful to whom?"])
+            , (["lo mlatu cu melbi ma"], ["The cat is beautiful to whom?", "The cats are beautiful to whom?"])
+            , (["lo gerku cu melbi ma"], ["The dog is beautiful to whom?", "The dogs are beautiful to whom?"])
+            ]
+        like = generatorFromList
+            [ (["lo te dunda cu nelci lo se dunda"], ["The recipient liked the gift.", "The recipient will like the gift.", "The recipients liked the gifts."])
+            , (["lo ctuca cu nelci lo se dunda"], ["The instructor liked the gift.", "The instructor will like the gift."])
+            , (["xu do nelci lo se dunda"], ["Did you like the gift?"])
+            , (["xu lo te dunda cu nelci lo se dunda"], ["Did the recipient like the gift?"])
+            , (["xu lo ctuca cu nelci lo se dunda"], ["Did the instructor like the gift?"])
+            , (["xu do nelci lo ctuca cu"], ["Did you like the instructor?"])
+            , (["ma nelci lo se dunda"], ["Who liked the gift?", "Who likes the gift?"])
+            , (["ma nelci lo mlatu"], ["Who likes cats?", "Who likes the cat?"])
+            , (["ma nelci lo gerku"], ["Who likes dogs?", "Who likes the dog?"])
+            ]
+    giving = combineFunctions [(1, general), (3, mlatu), (3, gerku)] where
+        general = generatorFromList
+            [ (["lo ctuca cu dunda ma do"], ["What did the instructor give you?"])
+            , (["ma dunda fi lo zdani"], ["Who donated the house?"])
+            ]
+        mlatu = generatorFromList
+            [ (["mi dunda lo mlatu lo pendo"], ["I gave the cat to a friend.", "I gave the cats to a friend."])
+            , (["mi te dunda lo mlatu"], ["I was given a cat.", "We were given a cat."])
+            , (["dunda lo mlatu lo ctuca"], ["Somebody gave a cat to the instructor", "Somebody gave the cat to the instructor.", "Somebody gave the cats to the instructor."])
+            , (["lo ctuca cu dunda lo mlatu mi"], ["The instructor gave me a cat.", "The instructor gave me the cat.", "The instructor gave me the cats.", "The instructor gave us a cat.", "The instructor gave us the cat.", "The instructor gave us the cats."])
+            , (["dunda lo mlatu mi"], ["Somebody gave me a cat.", "Somebody gave me the cat.", "Somebody gave me the cats.", "Somebody gave us a cat.", "Someboy gave us the cat.", "Somebody gave us the cats."])
+            , (["ma te dunda lo mlatu"], ["Who was given a cat?"])
+            , (["do dunda lo mlatu ma"], ["To whom did you give the cat?", "To whom did you give the cats?"])
+            , (["ma dunda lo mlatu lo ctuca"], ["Who gave the cat to the instructor?"])
+            , (["ma dunda lo mlatu mi"], ["Who gave me a cat?"])
+            , (["ma dunda lo mlatu do"], ["Who gave you a cat?"])
+            , (["ma dunda fi lo mlatu"], ["Who donated the cat?"])
+            ]
+        gerku = generatorFromList
+            [ (["mi dunda lo gerku lo pendo"], ["I gave the dog to a friend.", "I gave the dogs to a friend."])
+            , (["mi te dunda lo gerku"], ["I was given a dog.", "We were given a dog."])
+            , (["dunda lo gerku lo ctuca"], ["Somebody gave a dog to the instructor", "Somebody gave the dog to the instructor.", "Somebody gave the dogs to the instructor."])
+            , (["lo ctuca cu dunda lo gerku mi"], ["The instructor gave me a dog.", "The instructor gave me the dog.", "The instructor gave me the dogs.", "The instructor gave us a dog.", "The instructor gave us the dog.", "The instructor gave us the dogs."])
+            , (["dunda lo gerku mi"], ["Somebody gave me a dog.", "Somebody gave me the dog.", "Somebody gave me the dogs.", "Somebody gave us a dog.", "Someboy gave us the dog.", "Somebody gave us the dogs."])
+            , (["ma te dunda lo gerku"], ["Who was given a dog?"])
+            , (["do dunda lo gerku ma"], ["To whom did you give the dog?", "To whom did you give the dogs?"])
+            , (["ma dunda lo gerku lo ctuca"], ["Who gave the dog to the instructor?"])
+            , (["ma dunda lo gerku mi"], ["Who gave me a dog?"])
+            , (["ma dunda lo gerku do"], ["Who gave you a dog?"])
+            , (["ma dunda fi lo gerku"], ["Who donated the dog?"])
+            ]
+    talking = generatorFromList
+        [ (["lo prenu cu tavla lo mlatu"], ["A person is talking to a cat.", "The person talks to cats."])
+        , (["lo prenu cu tavla lo gerku"], ["A person is talking to a dog.", "The person talks to dogs."])
+        , (["xu do tavla fi lo mlatu"], ["Were you talking about the cat?", "Were you talking about the cats?", "Were you talking about cats?"])
+        , (["ma tavla fi lo mlatu"], ["Who is talking about the cat?"])
+        , (["ma tavla fi lo gerku"], ["Who is talking about the dog?"])
+        , (["lo prenu cu tavla fi ma"], ["What is the person talking about?", "What was the person talking about?"])
+        , (["lo dunda cu tavla fi ma"], ["What is the donor talking about?", "What was the donor talking about?"])
+        , (["lo te dunda cu tavla fi ma"], ["What is the recipient talking about?", "What was the recipient talking about?"])
+        , (["lo ciska cu tavla fi ma"], ["What is the writer talking about?", "What was the writer talking about?"])
+        , (["xu do tavla fi lo gerku"], ["Were you talking about the dog?", "Were you talking about the dogs?", "Were you talking about dogs?"])
+        ]
+    gleki = combineFunctionsUniformly [givingAnimals, liking, know, other] where
+        givingAnimals = generatorFromList
+            [ (["mi gleki lo nu do dunda lo mlatu mi"], ["I am happy that you gave me the cat.", "I am happy that you gave me the cats."])
+            , (["mi gleki lo nu do dunda lo gerku mi"], ["I am happy that you gave me the dog.", "I am happy that you gave me the dogs."])
+            , (["mi gleki lo nu mi te dunda lo mlatu"], ["I am happy that I was given a cat.", "I am happy that I was given the cat."])
+            , (["mi gleki lo nu mi te dunda lo gerku"], ["I am happy that I was given a dog.", "I am happy that I was given the dog."])
+            ]
+        liking = generatorFromList
+            [ (["mi gleki lo nu lo prenu cu nelci mi"], ["I am happy that people like me."])
+            , (["mi gleki lo nu lo prenu cu nelci do"], ["I am happy that people like you.", "I am glad that people like you."])
+            , (["mi gleki lo nu lo ctuca cu nelci mi"], ["I am happy that the instructor likes me."])
+            , (["mi gleki lo nu lo ctuca cu nelci do"], ["I am happy that the instructor likes you.", "I am glad that the instructor likes you."])
+            , (["mi gleki lo nu do nelci lo ctuca"], ["I am glad that you like the instructor."])
+            , (["mi gleki lo nu do nelci lo ciska"], ["I am glad that you like the writer."])
+            ]
+        know = generatorFromList
+            [ (["mi gleki lo nu mi djuno fi lo mlatu"], ["I am happy that I know about cats."])
+            , (["mi gleki lo nu mi djuno fi lo gerku"], ["I am happy that I know about dogs."])
+            , (["mi gleki lo nu do djuno fi lo mlatu"], ["I am happy that you know about cats."])
+            , (["mi gleki lo nu do djuno fi lo gerku"], ["I am happy that you know about dogs."])
+            ]
+        other = generatorFromList
+            [ (["mi gleki lo nu lo ctuca cu pendo mi"], ["I am happy that the instructor is my friend."])
+            , (["mi gleki lo nu lo ciska cu pendo mi"], ["I am happy that the writer is my friend."])
+            , (["mi gleki lo nu lo te dunda cu pendo mi"], ["I am happy that the recipient is my friend."])
+            ]
+    nupre = combineFunctionsUniformly [donatingAnimals, donatingHouses] where
+        donatingAnimals = generatorFromList
+            [ (["do nupre lo nu dunda lo mlatu", "do nupre lo nu do dunda lo mlatu"], ["You promised to donate the cat.", "You promised to donate the cats."])
+            , (["do nupre lo nu dunda lo gerku", "do nupre lo nu do dunda lo gerku"], ["You promised to donate the dog.", "You promised to donate the dogs."])
+            , (["do nupre lo nu dunda lo mlatu mi", "do nupre lo nu do dunda lo mlatu mi"], ["You promised to donate the cat to me.", "You promised to donate the cats to me.", "You promised to donate the cats to us."])
+            , (["do nupre lo nu dunda lo gerku mi", "do nupre lo nu do dunda lo gerku mi"], ["You promised to donate the dog to me.", "You promised to donate the dogs to me.", "You promised to donate the dogs to us."])
+            , (["do nupre lo nu dunda lo mlatu kei mi", "do nupre lo nu do dunda lo mlatu kei mi"], ["You promised me to donate the cat.", "You promised me to donate the cats.", "You promised us to donate the cat.", "You promised us to donate the cats."]) -- excellent!
+            , (["do nupre lo nu dunda lo gerku kei mi", "do nupre lo nu do dunda lo gerku kei mi"], ["You promised me to donate the dog.", "You promised me to donate the dogs.", "You promised us to donate the dog.", "You promised us to donate the dogs."]) -- excellent!
+            ]
+        donatingHouses = generatorFromList
+            [ (["do nupre lo nu dunda lo zdani kei mi", "do nupre lo nu do dunda lo zdani kei mi"], ["You promised me to donate the house.", "You promised me to donate the houses.", "You promised us to donate the house.", "You promised us to donate the houses."])
+            , (["do nupre lo nu dunda lo zdani mi", "do nupre lo nu do dunda lo zdani mi"], ["You promised to donate the house to me.", "You promised to donate the houses to us."]) -- excellent!
+            ]
+    djuno = combineFunctionsUniformly [liking, talking] where
+        liking = generatorFromList
+            [ (["mi djuno lo du'u do nelci lo ciska"], ["I know that you like the writer."])
+            , (["mi djuno lo du'u do nelci lo mlatu"], ["I know that you like cats."])
+            , (["mi djuno lo du'u do nelci lo gerku"], ["I know that you like dogs."])
+            , (["mi djuno lo du'u lo prenu cu nelci lo mlatu"], ["I know that people like cats."])
+            , (["mi djuno lo du'u lo prenu cu nelci lo gerku"], ["I know that people like dogs."])
+            , (["mi djuno lo du'u lo mlatu cu nelci lo gerku"], ["I know that cats like dogs."])
+            , (["mi djuno lo du'u lo gerku cu nelci lo mlatu"], ["I know that dogs like cats."])
+            , (["mi djuno lo du'u lo mlatu cu nelci lo prenu"], ["I know that cats like people."])
+            , (["mi djuno lo du'u lo gerku cu nelci lo prenu"], ["I know that dogs like people."])
+            ]
+        talking = generatorFromList
+            [ (["mi djuno lo du'u do tavla lo nupre"], ["I know that you talked to the promisor."])
+            , (["mi djuno lo du'u do tavla lo te nupre"], ["I know that you talked to the promisee."])
+            , (["mi djuno lo du'u do tavla fi lo se nupre"], ["I know that you were talking about the promise."])
+            , (["mi djuno lo du'u do tavla fi lo ciska"], ["I know that you were talking about the writer."])
+            , (["mi djuno lo du'u do tavla fi lo ctuca"], ["I know that you were talking about the instructor."])
+            , (["mi djuno lo du'u do tavla fi lo mlatu"], ["I know that you were talking about the cat."])
+            , (["mi djuno lo du'u do tavla fi lo gerku"], ["I know that you were talking about the dog."])
+            ]
+    cusku = combineFunctionsUniformly [likingPeople, likingAnimals, donatingAnimals, others] where
+        likingPeople = generatorFromList
+            [ (["mi cusku lo se du'u mi nelci lo ciska", "mi cusku lo se du'u nelci lo ciska"], ["I said that I like the writer."])
+            , (["lo prenu cu cusku lo se du'u mi nelci do"], ["The person said that I like you."])
+            , (["lo prenu cu cusku lo se du'u do nelci mi"], ["The person said that you like me."])
+            , (["lo prenu cu cusku lo se du'u nelci mi"], ["The person said that she likes me."])
+            , (["lo prenu cu cusku lo se du'u nelci do"], ["The person said that she likes you."])
+            ]
+        likingAnimals = generatorFromList
+            -- mlatu
+            [ (["mi cusku lo se du'u mi nelci lo mlatu", "mi cusku lo se du'u nelci lo mlatu"], ["I said that I like the cat.", "I said that I like the cats.", "I said that I like cats."])
+            , (["mi cusku lo se du'u do nelci lo mlatu"], ["I said that you like the cat.", "I said that you like the cats.", "I said that you like cats."])
+            , (["do cusku lo se du'u do nelci lo mlatu", "do cusku lo se du'u nelci lo mlatu"], ["You said that you like the cat.", "You said that you like the cats.", "You said that you like cats."])
+            , (["do cusku lo se du'u mi nelci lo mlatu"], ["You said that I like the cat.", "You said that I like the cats.", "You said that I like cats."])
+            , (["lo prenu cu cusku lo se du'u mi nelci lo mlatu"], ["The person said that I like the cat.", "The person said that I like the cats.", "The person said that I like cats."])
+            , (["lo prenu cu cusku lo se du'u do nelci lo mlatu"], ["The person said that you like the cat.", "The person said that you like the cats.", "The person said that you like cats."])
+            -- gerku
+            , (["mi cusku lo se du'u mi nelci lo gerku", "mi cusku lo se du'u nelci lo gerku"], ["I said that I like the dog.", "I said that I like the dogs.", "I said that I like dogs."])
+            , (["mi cusku lo se du'u do nelci lo gerku"], ["I said that you like the dog.", "I said that you like the dogs.", "I said that you like dogs."])
+            , (["do cusku lo se du'u do nelci lo gerku", "do cusku lo se du'u nelci lo gerku"], ["You said that you like the dog.", "You said that you like the dogs.", "You said that you like dogs."])
+            , (["do cusku lo se du'u mi nelci lo gerku"], ["You said that I like the dog.", "You said that I like the dogs.", "You said that I like dogs."])
+            , (["lo prenu cu cusku lo se du'u mi nelci lo gerku"], ["The person said that I like the dog.", "The person said that I like the dogs.", "The person said that I like dogs."])
+            , (["lo prenu cu cusku lo se du'u do nelci lo gerku"], ["The person said that you like the dog.", "The person said that you like the dogs.", "The person said that you like dogs."])
+            ]
+        donatingAnimals = generatorFromList
+            [ (["lo prenu cu cusku lo se du'u dunda lo mlatu mi"], ["The person said that she would give me the cat.", "The person said that she would give me the cats."])
+            , (["lo prenu cu cusku lo se du'u dunda lo mlatu do"], ["The person said that she would give you the cat.", "The person said that she would give you the cats."])
+            , (["lo prenu cu cusku lo se du'u dunda lo gerku mi"], ["The person said that she would give me the dog.", "The person said that she would give me the dogs."])
+            , (["lo prenu cu cusku lo se du'u dunda lo gerku do"], ["The person said that she would give you the dog.", "The person said that she would give you the dogs."])
+            , (["lo prenu cu cusku lo se du'u do dunda lo mlatu mi"], ["The person said that you would give me the cat.", "The person said that you would give me the cats."])
+            , (["lo prenu cu cusku lo se du'u do dunda lo gerku mi"], ["The person said that you would give me the dog.", "The person said that you would give me the dogs."])
+            ]
+        others = generatorFromList
+            [ (["mi cusku lo se du'u lo ciska ku pendo kei ku"], ["I said that the writer would be friendly."])
+            , (["mi cusku lo se du'u mi nelci lo nu tavla do", "mi cusku lo se du'u mi nelci lo nu mi tavla do kei ku kei ku"], ["I said that I like to talk to you."]) -- is nelci really adequate?
+            , (["mi cusku lo se du'u do nelci lo nu tavla mi", "mi cusku lo se du'u do nelci lo nu do tavla mi kei ku kei ku"], ["I said that you like to talk to me."]) -- is nelci really adequate?
+            ]
+
+translationExercises5_restricted :: ExerciseGenerator
+translationExercises5_restricted = generateRestrictedTranslationExercise "Translate without using \"ku\"" (not . containsWord (T.pack "ku")) basicSentenceCanonicalizer translations5_restricted
+
+-- Checkpoint: Lessons 1--5
+
+-- Lesson 6
 -- questionExercises5 :: "What did you promise", "What did you say, ..."
 -- Interesting: xu do djuno lo se cusku
 
-translations5 :: [ExerciseGenerator]
-translations5 = generateTranslationExercise basicSentenceCanonicalizer <$> generatorFromSingleton <$>
+translations6 :: [ExerciseGenerator]
+translations6 = generateTranslationExercise basicSentenceCanonicalizer <$> generatorFromSingleton <$>
     [
     ]
 
@@ -803,7 +998,7 @@ translations9 = generateTranslationExercise basicSentenceCanonicalizer <$> gener
     [ (["lo prenu ku sutra tavla"], ["The person talks quickly.", "The person is talking quickly.", "A person is talking quickly.", "People talk quickly"])
     ]
 
---TODO: pause immediately after lesson 4
+--TODO: pause immediately after lesson 5
 
 
 -------- Tanru
@@ -880,6 +1075,18 @@ exercises4 dictionary =
         vocabulary = vocabularyGenerator4 dictionary
         displayBridi = combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
 
+exercises5 :: Dictionary -> ExerciseGenerator
+exercises5 dictionary =
+    combineFunctions
+        -- TODO: elide terminators
+        [ (20, generateIsolatedGismuPlacesExercise dictionary vocabulary)
+        , (10, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
+        , (70, translationExercises5_restricted)
+        ]
+    where
+        vocabulary = vocabularyGenerator5 dictionary
+        displayBridi = combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
+
 -------- Lessons
 lesson1 :: LessonBuilder
 lesson1 dictionary = Lesson "Basics 1" (exercises1 dictionary) plan1
@@ -893,6 +1100,9 @@ lesson3 dictionary = Lesson "Questions 1" (exercises3 dictionary) plan3
 lesson4 :: LessonBuilder
 lesson4 dictionary = Lesson "Abstractions 1" (exercises4 dictionary) plan4
 
+lesson5 :: LessonBuilder
+lesson5 dictionary = Lesson "Terminator ellipsis" (exercises5 dictionary) plan5
+
 -------- Course
 course :: CourseBuilder
-course = createCourseBuilder "Introduction to Lojban for English speakers" [lesson1, lesson2, lesson3, lesson4]
+course = createCourseBuilder "Introduction to Lojban for English speakers" [lesson1, lesson2, lesson3, lesson4, lesson5]
