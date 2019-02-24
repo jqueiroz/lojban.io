@@ -90,7 +90,7 @@ vocabularyGenerator3 = createVocabularyBuilder
     ]
 
 --TODO: add all new from generator3 (and create exercises using them)
--- TODO: probably add one more word
+-- TODO: probably add one more word (nah, it's difficult enough already)
 -- Maybe: cilre, djica
 -- Maybe: finti
 -- New words: nupre, cusku; gleki
