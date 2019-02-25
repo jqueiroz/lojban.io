@@ -39,6 +39,9 @@ Right plan4 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/engl
 plan5 :: P.Pandoc
 Right plan5 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/introduction/planning/5.md")
 
+plan1to5 :: P.Pandoc
+Right plan1to5 = P.runPure $ P.readMarkdown P.def $ ""
+
 -------- Vocabulary
 vocabularyGenerator1 :: VocabularyBuilder
 vocabularyGenerator1 = createVocabularyBuilder
@@ -986,6 +989,8 @@ translationExercises5_restricted :: ExerciseGenerator
 translationExercises5_restricted = generateRestrictedTranslationExercise "Translate without using \"ku\"" (not . containsWord (T.pack "ku")) basicSentenceCanonicalizer translations5_restricted
 
 -- Checkpoint: Lessons 1--5
+translationExercises1to5 :: ExerciseGenerator
+translationExercises1to5 = combineFunctions [(4, translationExercises2_nice), (1, translationExercises2_normal), (5, translationExercises3), (6, translationExercises4), (5, translationExercises5_restricted)]
 
 -- Lesson 6
 -- questionExercises5 :: "What did you promise", "What did you say, ..."
@@ -1088,6 +1093,23 @@ exercises5 dictionary =
         vocabulary = vocabularyGenerator5 dictionary
         displayBridi = simplifyBridiDisplayer $ (combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)])
 
+exercises1to5 :: Dictionary -> ExerciseGenerator
+exercises1to5 dictionary =
+    combineFunctions
+        [ (5, generateGrammaticalClassExercise vocabulary)
+        , (5, generateBridiJufraExercise vocabulary displayBridi)
+        , (5, generateSelbriIdentificationExercise vocabulary displayBridi)
+        , (5, generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBridi)
+        , (15, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
+        , (15, generateIsolatedGismuPlacesExercise dictionary vocabulary)
+        , (60, translationExercises1to5)
+        , (12, questionExercises3)
+        , (12, abstractionExercises4)
+        ]
+    where
+        vocabulary = vocabularyGenerator5 dictionary
+        displayBridi = simplifyBridiDisplayer $ (combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)])
+
 -------- Lessons
 lesson1 :: LessonBuilder
 lesson1 dictionary = Lesson "Basics 1" (exercises1 dictionary) plan1
@@ -1104,6 +1126,9 @@ lesson4 dictionary = Lesson "Abstractions 1" (exercises4 dictionary) plan4
 lesson5 :: LessonBuilder
 lesson5 dictionary = Lesson "Terminator elision" (exercises5 dictionary) plan5
 
+checkpoint1to5 :: LessonBuilder
+checkpoint1to5 dictionary = Lesson "Checkpoint: Lesson 1--5" (exercises1to5 dictionary) plan1to5
+
 -------- Course
 course :: CourseBuilder
-course = createCourseBuilder "Introduction to Lojban for English speakers" [lesson1, lesson2, lesson3, lesson4, lesson5]
+course = createCourseBuilder "Introduction to Lojban for English speakers" [lesson1, lesson2, lesson3, lesson4, lesson5, checkpoint1to5]
