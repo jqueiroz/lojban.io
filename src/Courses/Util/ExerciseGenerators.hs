@@ -11,7 +11,8 @@ module Courses.Util.ExerciseGenerators
 , generateBridiJufraExercise
 , generateLojbanBridiJufraExercise
 , generateEnglishBridiJufraExercise
-, generateFillingBlanksExercise
+, generateBroadFillingBlanksExercise
+, generateNarrowFillingBlanksExercise
 , generateSelbriIdentificationExercise
 , generateContextualizedGismuPlacePositionExercise
 , generateContextualizedGismuPlaceMeaningExercise
@@ -137,8 +138,9 @@ englishSentences "bridi and jufra" =
     ]
 
 -- Exercise: fill in the blanks
-generateFillingBlanksExercise :: [T.Text] -> TranslationGenerator -> ExerciseGenerator
-generateFillingBlanksExercise alternatives translationGenerator r0 = SingleChoiceExercise title sentence correctAlternative incorrectAlternatives True where
+-- This function chooses an arbitrary Lojban sentence, not necessarily the first in the Translation
+generateBroadFillingBlanksExercise :: [T.Text] -> TranslationGenerator -> ExerciseGenerator
+generateBroadFillingBlanksExercise alternatives translationGenerator r0 = SingleChoiceExercise title sentence correctAlternative incorrectAlternatives True where
     (translation, r1) = translationGenerator r0
     (sentenceText, r2) = chooseItemUniformly r1 (fst translation)
     correctAlternatives = filter (`isSubexpressionOf` sentenceText) $ alternatives
@@ -147,6 +149,15 @@ generateFillingBlanksExercise alternatives translationGenerator r0 = SingleChoic
     title = "Fill in the blanks"
     redactedSentenceText = replaceFirstSubstring correctAlternative "____" sentenceText
     sentence = Just . ExerciseSentence True $ redactedSentenceText
+
+-- This function always chooses the first (canonical) Lojban sentence from the Translation
+generateNarrowFillingBlanksExercise :: [T.Text] -> TranslationGenerator -> ExerciseGenerator
+generateNarrowFillingBlanksExercise alternatives translationGenerator = generateBroadFillingBlanksExercise alternatives translationGenerator' where
+    translationGenerator' :: TranslationGenerator
+    translationGenerator' r0 = (narrowTranslation originalTranslation, r1) where
+        (originalTranslation, r1) = translationGenerator r0
+    narrowTranslation :: Translation -> Translation
+    narrowTranslation (lojban_sentences, english_sentences) = ([head lojban_sentences], english_sentences)
 
 -- Exercise: identify the selbri
 generateSelbriIdentificationExercise :: Vocabulary -> SimpleBridiDisplayer -> ExerciseGenerator
