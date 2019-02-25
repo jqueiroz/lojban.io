@@ -127,7 +127,7 @@ displayLessonItem (lessonNumber, lesson) = do
 displayLessonMenuItems :: String -> Course -> Int -> H.Html
 displayLessonMenuItems baseUrl course lessonNumber = do
     let lessonsCount = length $ courseLessons course
-    H.li $ H.a B.! A.href (H.stringValue "../") $ (H.toHtml ("Course index" :: String))
+    H.li $ H.a B.! A.href (H.stringValue $ "../" ++ baseUrl) $ (H.toHtml ("Course index" :: String))
     if lessonNumber <= 1 || lessonNumber <= lessonsCount
         then H.ul $ do
             if lessonNumber >= 2
