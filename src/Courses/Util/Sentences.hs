@@ -15,6 +15,7 @@ module Courses.Util.Sentences
 , generatePropertyBridi
 , generateRelationBridi
 , generateActionBridi
+, simplifyBridi
 , simplifyBridiDisplayer
 , simplifyCanonicalAnswer
 , parse

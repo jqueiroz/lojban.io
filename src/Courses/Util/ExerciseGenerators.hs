@@ -6,6 +6,7 @@ module Courses.Util.ExerciseGenerators
 , generateTranslationExercise
 , generateBlacklistedWordTranslationExercise
 , generateRestrictedTranslationExercise
+, simplifyTranslationGenerator
 , generateGrammaticalClassExercise
 , generateBridiJufraExercise
 , generateLojbanBridiJufraExercise
@@ -55,6 +56,15 @@ generateRestrictedTranslationExercise title validator canonicalizer translationG
         Right typed_sentence' -> case canonicalizer (T.toLower lojban_sentence) of
             Left _ -> False
             Right lojban_sentence' -> typed_sentence' == lojban_sentence'
+
+-- Simplifies Lojban translation
+simplifyTranslation :: Translation -> Translation
+simplifyTranslation (lojbanSentences, englishSentences) = (fmap simplifyBridi lojbanSentences, englishSentences)
+
+-- Simplifies the Lojban translation produced by the generator
+simplifyTranslationGenerator :: TranslationGenerator -> TranslationGenerator
+simplifyTranslationGenerator translationGenerator r0 = (simplifyTranslation translation, r1) where
+    (translation, r1) = translationGenerator r0
 
 -- Exercise: tell grammatical class of a word
 generateGrammaticalClassExercise :: Vocabulary -> ExerciseGenerator

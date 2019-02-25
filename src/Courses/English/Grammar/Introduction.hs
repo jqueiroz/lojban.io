@@ -537,6 +537,7 @@ translationExercises3 = combineFunctions [(1, restricted), (5, normal)] where
     normal = generateTranslationExercise basicSentenceCanonicalizer translations3_normal
 
 questionExercises3 = generateFillingBlanksExercise ["mo", "ma"] $ combineFunctionsUniformly [translations3_normal_ma, translations3_normal_mo]
+questionExercises3_simplified = generateFillingBlanksExercise ["mo", "ma"] $ simplifyTranslationGenerator $ combineFunctionsUniformly [translations3_normal_ma, translations3_normal_mo]
 
 -- Lesson 4
 -- CHECK: Are events vs facts being used correctly?
@@ -799,6 +800,7 @@ translationExercises4 :: ExerciseGenerator
 translationExercises4 = generateTranslationExercise basicSentenceCanonicalizer translations4
 
 abstractionExercises4 = generateFillingBlanksExercise ["lo nu", "lo du'u", "lo se du'u"] $ combineFunctionsUniformly [translations4_nu, translations4_du'u, translations4_sedu'u]
+abstractionExercises4_simplified = generateFillingBlanksExercise ["lo nu", "lo du'u", "lo se du'u"] $ simplifyTranslationGenerator $ combineFunctionsUniformly [translations4_nu, translations4_du'u, translations4_sedu'u]
 
 -- Lesson 5
 translations5_restricted :: TranslationGenerator
@@ -989,8 +991,8 @@ translationExercises5_restricted :: ExerciseGenerator
 translationExercises5_restricted = generateBlacklistedWordTranslationExercise (T.pack "ku") basicSentenceCanonicalizer translations5_restricted
 
 -- Checkpoint: Lessons 1--5
-translationExercises1to5 :: ExerciseGenerator
-translationExercises1to5 = simplifyCanonicalAnswer $ combineFunctions [(4, translationExercises2_nice), (1, translationExercises2_normal), (5, translationExercises3), (6, translationExercises4), (5, translationExercises5_restricted)]
+translationExercises1to5_simplified :: ExerciseGenerator
+translationExercises1to5_simplified = simplifyCanonicalAnswer $ combineFunctions [(4, translationExercises2_nice), (1, translationExercises2_normal), (5, translationExercises3), (6, translationExercises4), (5, translationExercises5_restricted)]
 
 -- Lesson 6
 -- questionExercises5 :: "What did you promise", "What did you say, ..."
@@ -1102,9 +1104,9 @@ exercises1to5 dictionary =
         , (5, generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBridi)
         , (15, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
         , (15, generateIsolatedGismuPlacesExercise dictionary vocabulary)
-        , (60, translationExercises1to5)
-        , (12, questionExercises3)
-        , (12, abstractionExercises4)
+        , (60, translationExercises1to5_simplified)
+        , (12, questionExercises3_simplified)
+        , (12, abstractionExercises4_simplified)
         ]
     where
         vocabulary = vocabularyGenerator5 dictionary
