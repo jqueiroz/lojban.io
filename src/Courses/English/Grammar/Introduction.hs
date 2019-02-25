@@ -318,6 +318,8 @@ translations3_restricted_xu = combineFunctions [(2, talkingAbout), (1, gaveSomet
         , (["xu tavla fi mi"], ["Was somebody talking about me?"])
         , (["xu do tavla fi lo mlatu ku"], ["Were you talking about the cat?", "Were you talking about the cats?", "Were you talking about cats?"])
         , (["xu do tavla fi lo gerku ku"], ["Were you talking about the dog?", "Were you talking about the dogs?", "Were you talking about dogs?"])
+        , (["xu tavla do lo mlatu ku"], ["Did somebody talk to you about the cat?", "Did somebody talk to you about the cats?"])
+        , (["xu tavla do lo gerku ku"], ["Did somebody talk to you about the dog?", "Did somebody talk to you about the dogs?"])
         ]
     gaveSomething = generatorFromList
         [ (["xu do dunda fi mi"], ["Did you give me something?", "Are you going to give me something?"])
@@ -1020,7 +1022,6 @@ translations9 = generateTranslationExercise basicSentenceCanonicalizer <$> gener
 -- useful gismu: sutra, pelxu
 -- lo melbi prenu, lo sutra mlatu, lo sutra gerku, lo gleki prenu, lo melbi prenu, mi mutce gleki
 -------- Questions
---   Did somebody talk to you about the cat?
 -- Are you talking about the donation? (lo ka dunda)
 -- Who wants to talk to me?
 -- Who do you think you are talking to? (?)
