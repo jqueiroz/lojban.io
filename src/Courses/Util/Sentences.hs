@@ -161,6 +161,7 @@ removeElidableTerminators t = f [] (T.words t) where
     f x [] = T.unwords x
     f x (y:ys) = if basicSentenceCanonicalizer (T.unwords $ x++ys) == originalCanonicalization then f x ys else f (x++[y]) ys
 
+-- Simplifies the resulting bridi by replacing "ku" with "cu" and removing elidable terminators
 simplifyBridiDisplayer :: SimpleBridiDisplayer -> SimpleBridiDisplayer
 simplifyBridiDisplayer bridiDisplayer = simplifySentence `compose2` bridiDisplayer where
     simplifySentence :: (T.Text, StdGen) -> (T.Text, StdGen)
