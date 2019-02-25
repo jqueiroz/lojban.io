@@ -143,7 +143,7 @@ displayReorderedStandardSimpleBridi' = buildSentenceDisplayer $ \r0 (SimpleBridi
 -- removeElidableTerminators (ZG.Terms terms _) =
 -- removeElidableTerminators (ZG.BridiTail (ZG.BRIVLA selbri) terms) = selbri `T.append` removeTerminators terms
 -- removeElidableTerminators (ZG.BridiTail (ZG.GOhA selbri) terms) = selbri `T.append` removeTerminators terms
--- TODO: make this function way more efficient and use the following brute-force version only in unit tests
+-- TODO: make this function way more efficient and use the following brute-force version only in unit tests -- nah, probably not needed
 
 -- Replaces "ku" with "cu" whenever possible
 replaceElidableTerminators :: T.Text -> T.Text
