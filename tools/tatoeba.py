@@ -91,9 +91,30 @@ def load_sentences():
     with open('//storage/Databases/Lojban/tatoeba-dumps/2018-03-30/tatoeba-lojban.json', 'r') as f:
         return normalize(json.load(f))
 
+def build_frequency_table(sentences):
+    table = {}
+    for sentence in sentences:
+        for word in sentence['content'].split(' '):
+            table[word] = table.get(word, 0) + 1
+    return table
+
 def run():
     sentences_eng = filter_by_language(load_sentences(), 'eng')
-    print(len(sentences_eng))
+    print("Sentences: %d" % len(sentences_eng))
+    frequency_table = build_frequency_table(sentences_eng)
+    print("Words: %d" % len(frequency_table))
+    def compute_sentence_complexity(sentence):
+        score = 0
+        words = sentence['content'].split(' ')
+        for word in words:
+            score += 1000 / frequency_table[word]**1.5
+        score /= len(words)**0.5
+        return score
+    sorted_sentences = sorted(sentences_eng, key=compute_sentence_complexity)
+    for sentence in sorted_sentences[:1000]:
+        print("%.3f\t%s" % (compute_sentence_complexity(sentence), sentence['content']))
+    # frequent_words = [k for k, v in frequency_table.items() if v >= 100]
+    # print(frequent_words)
     #x = filter_by_word(sentences_eng, 'nupre')
     #print_json(x)
 
