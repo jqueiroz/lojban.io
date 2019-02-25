@@ -93,8 +93,9 @@ def load_sentences():
 
 def run():
     sentences_eng = filter_by_language(load_sentences(), 'eng')
-    x = filter_by_word(sentences_eng, 'nupre')
-    print_json(x)
+    print(len(sentences_eng))
+    #x = filter_by_word(sentences_eng, 'nupre')
+    #print_json(x)
 
 def search(word):
     sentences_eng = filter_by_language(load_sentences(), 'eng')
