@@ -138,8 +138,8 @@ englishSentences "bridi and jufra" =
 
 -- Exercise: fill in the blanks
 generateFillingBlanksExercise :: [T.Text] -> TranslationGenerator -> ExerciseGenerator
-generateFillingBlanksExercise alternatives translations r0 = SingleChoiceExercise title sentence correctAlternative incorrectAlternatives True where
-    (translation, r1) = translations r0
+generateFillingBlanksExercise alternatives translationGenerator r0 = SingleChoiceExercise title sentence correctAlternative incorrectAlternatives True where
+    (translation, r1) = translationGenerator r0
     (sentenceText, r2) = chooseItemUniformly r1 (fst translation)
     correctAlternatives = filter (`isSubexpressionOf` sentenceText) $ alternatives
     correctAlternative = assert (length correctAlternatives == 1) $ head correctAlternatives
