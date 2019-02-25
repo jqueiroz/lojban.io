@@ -1025,7 +1025,6 @@ translations9 = generateTranslationExercise basicSentenceCanonicalizer <$> gener
 -- Are you talking about the donation? (lo ka dunda)
 -- Who wants to talk to me?
 -- Who do you think you are talking to? (?)
--- Do you know that the cat is my friend?
 -- generateFillBlanksExercise "mi (ma) do" (think more about context)
 -- lo se nupre === what has been promised
 
