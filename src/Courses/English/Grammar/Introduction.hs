@@ -978,6 +978,8 @@ translations5_restricted = combineFunctions [(2, hasHouse), (3, nice), (3, givin
             [ (["mi cusku lo se du'u lo ciska ku pendo kei ku"], ["I said that the writer would be friendly."])
             , (["mi cusku lo se du'u mi nelci lo nu tavla do", "mi cusku lo se du'u mi nelci lo nu mi tavla do kei ku kei ku"], ["I said that I like to talk to you."]) -- is nelci really adequate?
             , (["mi cusku lo se du'u do nelci lo nu tavla mi", "mi cusku lo se du'u do nelci lo nu do tavla mi kei ku kei ku"], ["I said that you like to talk to me."]) -- is nelci really adequate?
+            , (["xu do cusku lo se du'u mi melbi do kei ku", "xu do cusku lo se du'u mi melbi kei ku"], ["Did you say that you find me beautiful?"])
+            , (["xu do cusku lo se du'u mi melbi kei ku", "xu do cusku lo se du'u mi melbi do kei ku"], ["Did you say that I am beautiful?"])
             ]
 
 translationExercises5_restricted :: ExerciseGenerator
@@ -1010,7 +1012,6 @@ translations9 = generateTranslationExercise basicSentenceCanonicalizer <$> gener
 -- xu [...] melbi do
 -- Why are you happy?
 -- What did you say?
--- Did you say that you find me beautiful?
 -- What did you do to me?
 -- What did you do to the gift?
 --   Were you talking about me?
