@@ -1110,6 +1110,8 @@ exercises1to5 dictionary =
         vocabulary = vocabularyGenerator5 dictionary
         displayBridi = simplifyBridiDisplayer $ (combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)])
 
+-- Reminder: from now on, mix propositions and questions
+
 -------- Lessons
 lesson1 :: LessonBuilder
 lesson1 dictionary = Lesson "Basics 1" (exercises1 dictionary) plan1
