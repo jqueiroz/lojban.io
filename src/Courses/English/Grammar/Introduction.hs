@@ -1020,7 +1020,6 @@ translations9 = generateTranslationExercise basicSentenceCanonicalizer <$> gener
 -- useful gismu: sutra, pelxu
 -- lo melbi prenu, lo sutra mlatu, lo sutra gerku, lo gleki prenu, lo melbi prenu, mi mutce gleki
 -------- Questions
---   Were you talking about me?
 --   Did somebody talk to you about the cat?
 -- Are you talking about the donation? (lo ka dunda)
 -- Who wants to talk to me?
