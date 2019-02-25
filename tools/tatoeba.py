@@ -98,6 +98,7 @@ def build_frequency_table(sentences):
             table[word] = table.get(word, 0) + 1
     return table
 
+# TODO: brivla, not just gismu
 def run():
     sentences_eng = filter_by_language(load_sentences(), 'eng')
     print("Sentences: %d" % len(sentences_eng))
@@ -110,9 +111,18 @@ def run():
             score += 1000 / frequency_table[word]**1.5
         score /= len(words)**0.5
         return score
-    sorted_sentences = sorted(sentences_eng, key=compute_sentence_complexity)
-    for sentence in sorted_sentences[:1000]:
+    def is_sentence_interesting(sentence):
+        interesting_gismu = ["citka","cizra","cmene","cusku","djica","djuno","gerna","gleki","jimpe","jundi","klaku","klama","lojbo","mutce","nelci","pilno","sipna","tavla","tsani","valsi","xamgu","zgana"]
+        for word in sentence['content'].split(' '):
+            if word in interesting_gismu:
+                return True
+        return False
+    interesting_sentences = sentences_eng
+    interesting_sentences = list(filter(is_sentence_interesting, interesting_sentences))
+    interesting_sentences.sort(key=compute_sentence_complexity)
+    for sentence in interesting_sentences[:100]:
         print("%.3f\t%s" % (compute_sentence_complexity(sentence), sentence['content']))
+    print("Interesting sentences: %d" % len(interesting_sentences))
     # frequent_words = [k for k, v in frequency_table.items() if v >= 100]
     # print(frequent_words)
     #x = filter_by_word(sentences_eng, 'nupre')
