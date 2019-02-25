@@ -759,6 +759,9 @@ translations4_sedu'u = combineFunctions [(2, cusku)] where
             [ (["mi nelci lo nu tavla do kei ku", "mi nelci lo nu mi tavla do kei ku"], ["I like to talk to you."]) -- is nelci really adequate?
             , (["do nelci lo nu nupre kei ku", "do nelci lo nu do nupre kei ku"], ["You like to make promises."]) -- is nelci really adequate?
             , (["lo prenu ku nelci lo nu nupre kei ku"], ["People like to make promises."]) -- is nelci really adequate?
+            , (["do cusku ma"], ["What did you say?"])
+            , (["lo prenu ku cusku ma"], ["What did the person say?"])
+            , (["lo prenu ku cusku ma do"], ["What did the person say to you?"])
             -- Wait until terminator ellision has been explained to use the following sentences
             {-, (["mi cusku lo se du'u mi nelci lo nu tavla do kei ku kei ku", "mi cusku lo se du'u mi nelci lo nu mi tavla do kei ku kei ku"], ["I said that I like to talk to you."])-}
             {-, (["mi cusku lo se du'u do nelci lo nu tavla mi kei ku kei ku", "mi cusku lo se du'u do nelci lo nu do tavla mi kei ku kei ku"], ["I said that you like to talk to me."])-}
@@ -1019,7 +1022,6 @@ translations9 = generateTranslationExercise basicSentenceCanonicalizer <$> gener
 -------- Questions
 -- useful gismu: melbi
 -- xu [...] melbi do
--- What did you say?
 -- What did you do to me?
 -- What did you do to the gift?
 --   Were you talking about me?
