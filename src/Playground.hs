@@ -11,6 +11,8 @@ import qualified Data.Map as M
 
 import DictionaryLoader (loadDictionary)
 
+-- See also: https://mw.lojban.org/papri/N-grams_of_Lojban_corpus
+
 allGismu = do
     dict <- loadDictionary
     return $ map snd $ M.toList $ dictGismu dict
