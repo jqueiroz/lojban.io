@@ -62,6 +62,12 @@ subfield beg end = T.strip . substr beg end
 containsWord :: T.Text -> T.Text -> Bool
 containsWord word = not . null . filter (== word) . T.words
 
+isSubexpressionOf :: T.Text -> T.Text -> Bool
+isSubexpressionOf expr text = (expr == text) || (prefixExpr `T.isPrefixOf` text) || (suffixExpr `T.isSuffixOf` text) || (infixExpr `T.isInfixOf` text) where
+    prefixExpr = expr `T.append` " "
+    suffixExpr = " " `T.append` expr
+    infixExpr = T.concat [" ", expr, " "]
+
 replaceFirstSubstring :: T.Text -> T.Text -> T.Text -> T.Text
 replaceFirstSubstring old new text =
     let

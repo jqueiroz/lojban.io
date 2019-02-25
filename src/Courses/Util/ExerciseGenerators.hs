@@ -22,7 +22,7 @@ import Core
 import Courses.Util.Vocabulary
 import Courses.Util.Sentences
 import Courses.Util.NumberTranslator
-import Util (replace, replaceFirstSubstring, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly, containsWord)
+import Util (isSubexpressionOf, replace, replaceFirstSubstring, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly, containsWord)
 import Text.Read (readMaybe)
 import System.Random (StdGen, random)
 import Control.Applicative (liftA2)
@@ -131,7 +131,7 @@ generateFillingBlanksExercise :: [T.Text] -> TranslationGenerator -> ExerciseGen
 generateFillingBlanksExercise alternatives translations r0 = SingleChoiceExercise title sentence correctAlternative incorrectAlternatives True where
     (translation, r1) = translations r0
     (sentenceText, r2) = chooseItemUniformly r1 (fst translation)
-    correctAlternatives = filter (`T.isInfixOf` sentenceText) $ alternatives
+    correctAlternatives = filter (`isSubexpressionOf` sentenceText) $ alternatives
     correctAlternative = assert (length correctAlternatives == 1) $ head correctAlternatives
     incorrectAlternatives = filter (/= correctAlternative) alternatives
     title = "Fill in the blanks"
