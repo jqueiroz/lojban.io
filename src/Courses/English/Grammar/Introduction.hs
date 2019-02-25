@@ -468,7 +468,7 @@ translations3_normal_ma = combineFunctions $ [(3, translations3_restricted_ma), 
             , (["ma dunda ti mi"], ["Who gave me this?"])
             , (["ma dunda ti"], ["Who donated this?"])
             , (["ma dunda ta"], ["Who donated that?"])
-            , (["ma dunda fi lo zdani ku"], ["Who donated the house?"])
+            , (["ma dunda lo zdani ku"], ["Who donated the house?"])
             ]
         mlatu = generatorFromList
             [ (["ma te dunda lo mlatu ku"], ["Who was given a cat?"])
@@ -476,7 +476,7 @@ translations3_normal_ma = combineFunctions $ [(3, translations3_restricted_ma), 
             , (["ma dunda lo mlatu ku lo ctuca ku"], ["Who gave the cat to the instructor?"])
             , (["ma dunda lo mlatu ku mi"], ["Who gave me a cat?"])
             , (["ma dunda lo mlatu ku do"], ["Who gave you a cat?"])
-            , (["ma dunda fi lo mlatu ku"], ["Who donated the cat?"])
+            , (["ma dunda lo mlatu ku"], ["Who donated the cat?"])
             ]
         gerku = generatorFromList
             [ (["ma te dunda lo gerku ku"], ["Who was given a dog?"])
@@ -484,7 +484,7 @@ translations3_normal_ma = combineFunctions $ [(3, translations3_restricted_ma), 
             , (["ma dunda lo gerku ku lo ctuca ku"], ["Who gave the dog to the instructor?"])
             , (["ma dunda lo gerku ku mi"], ["Who gave me a dog?"])
             , (["ma dunda lo gerku ku do"], ["Who gave you a dog?"])
-            , (["ma dunda fi lo gerku ku"], ["Who donated the dog?"])
+            , (["ma dunda lo gerku ku"], ["Who donated the dog?"])
             ]
     teaching = generatorFromList
         [ (["mi ctuca ma"], ["Who are we going to teach?"])
@@ -841,7 +841,7 @@ translations5_restricted = combineFunctions [(2, hasHouse), (3, nice), (3, givin
     giving = combineFunctions [(1, general), (3, mlatu), (3, gerku)] where
         general = generatorFromList
             [ (["lo ctuca cu dunda ma do"], ["What did the instructor give you?"])
-            , (["ma dunda fi lo zdani"], ["Who donated the house?"])
+            , (["ma dunda lo zdani"], ["Who donated the house?"])
             ]
         mlatu = generatorFromList
             [ (["mi dunda lo mlatu lo pendo"], ["I gave the cat to a friend.", "I gave the cats to a friend."])
@@ -854,7 +854,7 @@ translations5_restricted = combineFunctions [(2, hasHouse), (3, nice), (3, givin
             , (["ma dunda lo mlatu lo ctuca"], ["Who gave the cat to the instructor?"])
             , (["ma dunda lo mlatu mi"], ["Who gave me a cat?"])
             , (["ma dunda lo mlatu do"], ["Who gave you a cat?"])
-            , (["ma dunda fi lo mlatu"], ["Who donated the cat?"])
+            , (["ma dunda lo mlatu"], ["Who donated the cat?"])
             ]
         gerku = generatorFromList
             [ (["mi dunda lo gerku lo pendo"], ["I gave the dog to a friend.", "I gave the dogs to a friend."])
@@ -867,7 +867,7 @@ translations5_restricted = combineFunctions [(2, hasHouse), (3, nice), (3, givin
             , (["ma dunda lo gerku lo ctuca"], ["Who gave the dog to the instructor?"])
             , (["ma dunda lo gerku mi"], ["Who gave me a dog?"])
             , (["ma dunda lo gerku do"], ["Who gave you a dog?"])
-            , (["ma dunda fi lo gerku"], ["Who donated the dog?"])
+            , (["ma dunda lo gerku"], ["Who donated the dog?"])
             ]
     talking = generatorFromList
         [ (["lo prenu cu tavla lo mlatu"], ["A person is talking to a cat.", "The person talks to cats."])
