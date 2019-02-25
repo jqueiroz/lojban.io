@@ -34,7 +34,7 @@ filterOutWords :: [T.Text] -> [(Int, T.Text)] -> [(Int, T.Text)]
 filterOutWords forbiddenWords expressions = foldr filterOutWord expressions forbiddenWords
 
 filterOutWord :: T.Text -> [(Int, T.Text)] -> [(Int, T.Text)]
-filterOutWord forbiddenWord = filterSnd $ not . (T.isInfixOf forbiddenWord)
+filterOutWord forbiddenWord = filterSnd $ not . (isSubexpressionOf forbiddenWord)
 
 sortUniq :: (Ord a) => [a] -> [a]
 sortUniq = (map head) . group . sort
