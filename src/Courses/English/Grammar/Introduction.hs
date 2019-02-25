@@ -536,7 +536,6 @@ translationExercises3 = combineFunctions [(1, restricted), (5, normal)] where
 questionExercises3 = generateFillingBlanksExercise ["mo", "ma"] $ combineFunctionsUniformly [translations3_normal_ma, translations3_normal_mo]
 
 -- Lesson 4
--- TODO: teach ko'a?
 -- CHECK: Are events vs facts being used correctly?
 translations4_nu :: TranslationGenerator
 translations4_nu = combineFunctions [(2, gleki), (1, tavla), (2, nupre)] where
