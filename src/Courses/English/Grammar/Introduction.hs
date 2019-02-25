@@ -8,7 +8,7 @@ import Core
 import Courses.Util.Vocabulary
 import Courses.Util.Sentences
 import Courses.Util.ExerciseGenerators
-import Util (combineFunctions, combineFunctionsUniformly, generatorFromSingleton, generatorFromList, containsWord)
+import Util (combineFunctions, combineFunctionsUniformly, generatorFromSingleton, generatorFromList)
 import Data.FileEmbed (embedStringFile)
 import Control.Applicative ((<$>))
 import qualified Data.Text as T
@@ -300,7 +300,7 @@ translations2_normal = combineFunctionsUniformly [talkingToAnimal, likingAnimals
 
 translationExercises2_nice :: ExerciseGenerator
 translationExercises2_nice = combineFunctions [(1, restricted), (5, nice)] where
-    restricted = generateRestrictedTranslationExercise "Translate without using \"zo'e\"" (not . containsWord (T.pack "zo'e")) basicSentenceCanonicalizer translations2_restricted
+    restricted = generateBlacklistedWordTranslationExercise (T.pack "zo'e") basicSentenceCanonicalizer translations2_restricted
     nice = generateTranslationExercise basicSentenceCanonicalizer translations2_nice
 
 translationExercises2_normal :: ExerciseGenerator
@@ -533,7 +533,7 @@ translations3_normal = combineFunctions [(4, translations3_normal_xu), (4, trans
 
 translationExercises3 :: ExerciseGenerator
 translationExercises3 = combineFunctions [(1, restricted), (5, normal)] where
-    restricted = generateRestrictedTranslationExercise "Translate without using \"zo'e\"" (not . containsWord (T.pack "zo'e")) basicSentenceCanonicalizer translations3_restricted
+    restricted = generateBlacklistedWordTranslationExercise (T.pack "zo'e") basicSentenceCanonicalizer translations3_restricted
     normal = generateTranslationExercise basicSentenceCanonicalizer translations3_normal
 
 questionExercises3 = generateFillingBlanksExercise ["mo", "ma"] $ combineFunctionsUniformly [translations3_normal_ma, translations3_normal_mo]
@@ -986,7 +986,7 @@ translations5_restricted = combineFunctions [(2, hasHouse), (3, nice), (3, givin
             ]
 
 translationExercises5_restricted :: ExerciseGenerator
-translationExercises5_restricted = generateRestrictedTranslationExercise "Translate without using \"ku\"" (not . containsWord (T.pack "ku")) basicSentenceCanonicalizer translations5_restricted
+translationExercises5_restricted = generateBlacklistedWordTranslationExercise (T.pack "ku") basicSentenceCanonicalizer translations5_restricted
 
 -- Checkpoint: Lessons 1--5
 translationExercises1to5 :: ExerciseGenerator
