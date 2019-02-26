@@ -69,12 +69,19 @@ handleRoot dictionary = msum
     [ forceSlash . ok . toResponse $ displayHome
     , dir "static" $ serveDirectory EnableBrowsing [] "static"
     , dir "grammar" $ handleGrammar dictionary
+    , dir "vocabulary" $ handleVocabulary dictionary
     ]
 
 handleGrammar :: Dictionary -> ServerPart Response
 handleGrammar dictionary = msum
     [ forceSlash . ok . toResponse $ displayGrammarHome
     , dir "introduction" $ handleCourse dictionary Courses.English.Grammar.Introduction.course
+    ]
+
+handleVocabulary :: Dictionary -> ServerPart Response
+handleVocabulary dictionary = msum
+    [ forceSlash . ok . toResponse $ displayVocabularyHome
+    --, dir "brivla" $ handleCourse dictionary Courses.English.Vocabulary.Brivla.course
     ]
 
 handleCourse :: Dictionary -> CourseBuilder -> ServerPart Response
@@ -111,6 +118,10 @@ displayHome =
 
 -- Grammar home page
 displayGrammarHome =
+    H.html ""
+
+-- Vocabulary home page
+displayVocabularyHome =
     H.html ""
 
 -- Course page
