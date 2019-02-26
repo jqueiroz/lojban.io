@@ -26,7 +26,7 @@ import Core
 import Courses.Util.Vocabulary
 import Courses.Util.Sentences
 import Courses.Util.NumberTranslator
-import Util (narrowTranslationGenerator, narrowTranslationGeneratorByExpression, isSubexpressionOf, replace, replaceFirstSubexpression, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly, containsWord)
+import Util (narrowTranslationGenerator, narrowTranslationGeneratorByExpression, isSubexpressionOf, replace, replaceFirstSubexpression, replaceSubexpression, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly, containsWord)
 import Text.Read (readMaybe)
 import System.Random (StdGen, random)
 import Control.Applicative (liftA2)
@@ -164,7 +164,7 @@ generateBroadFillingBlanksExerciseByExpression translationGeneratorByExpression 
     (lojbanSentenceText, r3) = chooseItemUniformly r2 (fst translation)
     (englishSentenceText, r4) = chooseItemUniformly r3 (snd translation)
     title = "Complete the translation"
-    redactedLojbanSentenceText = replaceFirstSubexpression expression "____" lojbanSentenceText
+    redactedLojbanSentenceText = replaceSubexpression expression "____" lojbanSentenceText
     sentences = [ExerciseSentence False englishSentenceText, ExerciseSentence True redactedLojbanSentenceText]
     validator = (== expression)
 
