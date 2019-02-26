@@ -80,8 +80,8 @@ def load_all_gismu():
     all_gismu = []
     with open ("../resources/gismu.txt", "r") as f:
         for line in f.readlines()[1:]:
-            gismu = line.strip().split(' ')[0]
-            if len(gismu) == 5:
+            gismu = line[1:6]
+            if len(gismu.strip()) == 5:
                 all_gismu.append(gismu)
     return all_gismu
 
