@@ -51,26 +51,33 @@ def prepare_json():
     with open('/tmp/tatoeba-lojban.json', 'w') as f:
         json.dump(data, f, sort_keys=True, indent=4)
 
-def retrieve_normalized_sentences(data):
-    sentences = data['sentences'][:]
-    links = data['links']
-    sentences_by_id = {}
-    for sentence in sentences:
-        sentences_by_id[sentence['id']] = sentence
-        if sentence['language'] == 'jbo':
-            sentence['translations'] = []
-    for link in links:
-        sentence1 = sentences_by_id[link['id1']]
-        sentence2 = sentences_by_id[link['id2']]
-        if sentence1['language'] == 'jbo' and sentence2['language'] == 'eng':
-            sentence1['translations'].append({
-                'language': sentence2['language'],
-                'content': sentence2['content'],
-            })
-    for sentence in sentences:
-        if sentence['language'] == 'jbo':
-            del sentence['language']
-    return list(filter(lambda s: 'language' not in s, sentences))
+def load_sentences_from_json():
+    def retrieve_normalized_sentences(data):
+        sentences = data['sentences'][:]
+        links = data['links']
+        sentences_by_id = {}
+        for sentence in sentences:
+            sentences_by_id[sentence['id']] = sentence
+            if sentence['language'] == 'jbo':
+                sentence['translations'] = []
+        for link in links:
+            sentence1 = sentences_by_id[link['id1']]
+            sentence2 = sentences_by_id[link['id2']]
+            if sentence1['language'] == 'jbo' and sentence2['language'] == 'eng':
+                sentence1['translations'].append({
+                    'language': sentence2['language'],
+                    'content': sentence2['content'],
+                })
+        for sentence in sentences:
+            if sentence['language'] == 'jbo':
+                del sentence['language']
+        return list(filter(lambda s: 'language' not in s, sentences))
+
+    with open('/storage/Databases/Lojban/tatoeba-dumps/2018-03-30/tatoeba-lojban.json', 'r') as f:
+        return retrieve_normalized_sentences(json.load(f))
+
+def print_json(data):
+    print(json.dumps(data, sort_keys=True, indent=4))
 
 def filter_by_language(sentences, lang):
     result = []
@@ -81,15 +88,8 @@ def filter_by_language(sentences, lang):
             result.append(new_sentence)
     return result
 
-def print_json(data):
-    print(json.dumps(data, sort_keys=True, indent=4))
-
 def filter_by_word(sentences, word):
     return list(filter(lambda s: word in s['content'].split(' '), sentences))
-
-def load_sentences():
-    with open('/storage/Databases/Lojban/tatoeba-dumps/2018-03-30/tatoeba-lojban.json', 'r') as f:
-        return retrieve_normalized_sentences(json.load(f))
 
 # builds frequency table from tatoeba
 def build_frequency_table(sentences):
@@ -110,7 +110,7 @@ def load_frequency_table():
 
 # TODO: brivla, not just gismu
 def run():
-    sentences_eng = filter_by_language(load_sentences(), 'eng')
+    sentences_eng = filter_by_language(load_sentences_from_json(), 'eng')
     print("Sentences: %d" % len(sentences_eng))
     frequency_table = load_frequency_table()
     print("Words: %d" % len(frequency_table))
@@ -176,7 +176,7 @@ def main():
         return 1
     # Handle commands
     if sys.argv[1] == 'prepare':
-        prepare()
+        prepare_json()
     elif sys.argv[1] == 'run':
         run()
     elif sys.argv[1] == 'search':
