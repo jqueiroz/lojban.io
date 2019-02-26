@@ -48,8 +48,6 @@ cusku: 242
 		He does not say.
 0.23	ma cusku
 		Who said that?
-0.25	mi cusku fi ma
-		Who am I talking with?
 0.30	ma pu cusku fi do
 		Who told you?
 0.30	ko cusku fi mi
