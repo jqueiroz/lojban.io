@@ -76,6 +76,23 @@ def load_sentences_from_json():
     with open('/storage/Databases/Lojban/tatoeba-dumps/2018-03-30/tatoeba-lojban.json', 'r') as f:
         return retrieve_normalized_sentences(json.load(f))
 
+def load_all_gismu():
+    all_gismu = []
+    with open ("../resources/gismu.txt", "r") as f:
+        for line in f.readlines()[1:]:
+            gismu = line.strip().split(' ')[0]
+            if len(gismu) == 5:
+                all_gismu.append(gismu)
+    return all_gismu
+
+def load_all_lujvo():
+    all_lujvo = []
+    with open ("../resources/lujvo2.txt", "r") as f:
+        for line in f.readlines()[1:]:
+            lujvo = line.strip().split('    ')[0]
+            all_lujvo.append(lujvo)
+    return all_lujvo
+
 def print_json(data):
     print(json.dumps(data, sort_keys=True, indent=4))
 
@@ -114,6 +131,12 @@ def run():
     print("Sentences: %d" % len(sentences_eng))
     frequency_table = load_frequency_table()
     print("Words: %d" % len(frequency_table))
+    gismu = set(load_all_gismu())
+    print("Gismu: %d" % len(gismu))
+    lujvo = set(load_all_lujvo())
+    print("Lujvo: %d" % len(lujvo))
+    print("-----------")
+    print()
     def compute_sentence_complexity(sentence):
         score = 0
         words = sentence['content'].split(' ')
@@ -139,6 +162,19 @@ def run():
         frequent_words = [k for k, v in frequency_table.items() if v >= 100]
         print(frequent_words)
         print("Frequent words: %d" % len(frequent_words))
+    def display_top_brivla():
+        blacklist = set(["selpa'i"])
+        words = frequency_table.items()
+        brivla = filter(lambda x: x[0] in gismu or x[0] in lujvo, words)
+        brivla = filter(lambda x: x[0] not in blacklist, brivla)
+        brivla = list(brivla)
+        brivla.sort(key=lambda x: -x[1])
+        interesting_brivla = brivla[:20]
+        print("Brivla: %d" % len(brivla))
+        for w, f in interesting_brivla:
+                print("%7d    %s" % (f, w))
+        print()
+        print(sorted(list(map(lambda x: x[0], interesting_brivla))))
     def build_exercises():
         words = ["citka","cizra","cmene","cusku","djica","djuno","gerna","gleki","jimpe","jundi","klaku","klama","lojbo","mutce","nelci","pilno","sipna","tavla","tsani","valsi","xamgu","zgana"]
         debug = True
@@ -162,7 +198,8 @@ def run():
                 print()
 
     # display_interesting_sentences()
-    build_exercises()
+    display_top_brivla()
+    # build_exercises()
     # display_frequent_words()
 
 def search(word):
