@@ -24,7 +24,7 @@ import Core
 import Courses.Util.Vocabulary
 import Courses.Util.Sentences
 import Courses.Util.NumberTranslator
-import Util (narrowTranslationGenerator, isSubexpressionOf, replace, replaceFirstSubstring, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly, containsWord)
+import Util (narrowTranslationGenerator, isSubexpressionOf, replace, replaceFirstSubexpression, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly, containsWord)
 import Text.Read (readMaybe)
 import System.Random (StdGen, random)
 import Control.Applicative (liftA2)
@@ -144,7 +144,7 @@ generateBroadFillingBlanksExerciseByAlternatives alternatives translationGenerat
     correctAlternative = assert (length correctAlternatives == 1) $ head correctAlternatives
     incorrectAlternatives = filter (/= correctAlternative) alternatives
     title = "Fill in the blanks"
-    redactedSentenceText = replaceFirstSubstring correctAlternative "____" sentenceText
+    redactedSentenceText = replaceFirstSubexpression correctAlternative "____" sentenceText
     sentence = Just . ExerciseSentence True $ redactedSentenceText
 
 -- "Narrow": this function always chooses the first (canonical) Lojban sentence from the Translation

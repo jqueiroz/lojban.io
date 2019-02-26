@@ -92,6 +92,19 @@ replaceFirstSubstring old new text =
         else
             (head components) `T.append` new `T.append` (T.intercalate old (tail components))
 
+replaceFirstSubexpression :: T.Text -> T.Text -> T.Text -> T.Text
+replaceFirstSubexpression old new text =
+    if old == text then
+        new
+    else if (old `T.append` " ") `T.isPrefixOf` text then
+        new `T.append` (T.drop (T.length old) text)
+    else if (" " `T.append` old `T.append` " ") `T.isInfixOf` text then
+        replaceFirstSubstring (" " `T.append` old `T.append` " ") (" " `T.append` new `T.append` " ") text
+    else if (" " `T.append` old) `T.isSuffixOf` text then
+        (T.dropEnd (T.length old) text) `T.append` new
+    else
+        text
+
 -- Random (TODO: assert that sum > 0)
 shuffleList :: StdGen -> [a] -> [a]
 shuffleList r0 xs = shuffle' xs (length xs) r0
