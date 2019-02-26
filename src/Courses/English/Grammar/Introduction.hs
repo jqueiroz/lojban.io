@@ -1127,7 +1127,7 @@ lesson5 :: LessonBuilder
 lesson5 dictionary = Lesson "Terminator elision" (exercises5 dictionary) plan5
 
 checkpoint1to5 :: LessonBuilder
-checkpoint1to5 dictionary = Lesson "Checkpoint: Lessons 1--5" (exercises1to5 dictionary) plan1to5
+checkpoint1to5 dictionary = Lesson "Checkpoint: Lessons 1–5" (exercises1to5 dictionary) plan1to5
 
 -------- Course
 course :: CourseBuilder
