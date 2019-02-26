@@ -88,10 +88,21 @@ englishSumtiPlacesBase = M.fromList
     , ("djuno", ["knower", "facts", "subject", "epistemology"])
     , ("nupre", ["promisor", "promise", "beneficiary/victim"])
     , ("cusku", ["expresser", "message", "audience", "expressive medium"])
-    -- TODO: nelci
+    , ("cizra", ["strange thing", "viewpoint holder", "property"])
+    , ("cmene", ["name/title", "named entity", "name-user"])
+    , ("cusku", ["agent", "expressed idea", "audience", "expressive medium"])
+    , ("djica", ["desirer", "event/state", "purpose"])
+    , ("gleki", ["happy entity", "event/state"])
+    , ("jimpe", ["understander", "fact/truth", "subject"])
+    , ("klama", ["traveler", "destination", "origin", "route", "means/vehicle"])
+    , ("mutce", ["much/extreme thing", "property", "extreme/direction"])
+    , ("nelci", ["liker", "object/state"])
+    , ("pilno", ["user", "instrument", "purpose"])
+    , ("sipna", ["asleep entity"])
+    , ("xamgu", ["good object/event", "beneficiary", "standard"])
+    , ("zgana", ["observer", "observed", "senses/means", "conditions"])
     -- TODO: pendo
     -- TODO: melbi
-    -- TODO: gleki
     -- TODO: prenu
     -- TODO: mlatu
     -- TODO: gerku
