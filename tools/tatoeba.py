@@ -146,7 +146,7 @@ def run():
         return score
     def display_interesting_sentences():
         def is_sentence_interesting(sentence):
-            interesting_words = ["citka","cizra","cmene","cusku","djica","djuno","gerna","gleki","jimpe","jundi","klaku","klama","lojbo","mutce","nelci","pilno","sipna","tavla","tsani","valsi","xamgu","zgana"]
+            interesting_words = ['citka', 'cizra', 'cusku', 'djica', 'djuno', 'gleki', 'jimpe', 'jundi', 'klaku', 'klama', 'lojbo', 'mutce', 'nelci', 'pilno', 'sipna', 'tavla', 'tsani', 'valsi', 'xamgu', 'zgana']
             for word in sentence['content'].split(' '):
                 if word in interesting_words:
                     return True
