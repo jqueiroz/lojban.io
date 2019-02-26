@@ -538,8 +538,8 @@ translationExercises3 = combineFunctions [(1, restricted), (5, normal)] where
     restricted = generateBlacklistedWordTranslationExercise (T.pack "zo'e") basicSentenceCanonicalizer translations3_restricted
     normal = generateTranslationExercise basicSentenceCanonicalizer translations3_normal
 
-questionExercises3 = generateNarrowFillingBlanksExercise ["mo", "ma"] $ combineFunctionsUniformly [translations3_normal_ma, translations3_normal_mo]
-questionExercises3_simplified = generateNarrowFillingBlanksExercise ["mo", "ma"] $ simplifyTranslationGenerator $ combineFunctionsUniformly [translations3_normal_ma, translations3_normal_mo]
+questionExercises3 = generateNarrowFillingBlanksExerciseByAlternatives ["mo", "ma"] $ combineFunctionsUniformly [translations3_normal_ma, translations3_normal_mo]
+questionExercises3_simplified = generateNarrowFillingBlanksExerciseByAlternatives ["mo", "ma"] $ simplifyTranslationGenerator $ combineFunctionsUniformly [translations3_normal_ma, translations3_normal_mo]
 
 -- Lesson 4
 -- CHECK: Are events vs facts being used correctly?
@@ -806,8 +806,8 @@ translationExercises4 :: ExerciseGenerator
 translationExercises4 = generateTranslationExercise basicSentenceCanonicalizer translations4
 
 -- "narrow" is required to avoid alternative translations using "ko'a"
-abstractionExercises4 = generateNarrowFillingBlanksExercise ["lo nu", "lo du'u", "lo se du'u"] $ combineFunctionsUniformly [translations4_nu, translations4_du'u, translations4_sedu'u]
-abstractionExercises4_simplified = generateNarrowFillingBlanksExercise ["lo nu", "lo du'u", "lo se du'u"] $ simplifyTranslationGenerator $ combineFunctionsUniformly [translations4_nu, translations4_du'u, translations4_sedu'u]
+abstractionExercises4 = generateNarrowFillingBlanksExerciseByAlternatives ["lo nu", "lo du'u", "lo se du'u"] $ combineFunctionsUniformly [translations4_nu, translations4_du'u, translations4_sedu'u]
+abstractionExercises4_simplified = generateNarrowFillingBlanksExerciseByAlternatives ["lo nu", "lo du'u", "lo se du'u"] $ simplifyTranslationGenerator $ combineFunctionsUniformly [translations4_nu, translations4_du'u, translations4_sedu'u]
 
 -- Lesson 5
 translations5_restricted :: TranslationGenerator

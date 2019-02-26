@@ -11,8 +11,8 @@ module Courses.Util.ExerciseGenerators
 , generateBridiJufraExercise
 , generateLojbanBridiJufraExercise
 , generateEnglishBridiJufraExercise
-, generateBroadFillingBlanksExercise
-, generateNarrowFillingBlanksExercise
+, generateBroadFillingBlanksExerciseByAlternatives
+, generateNarrowFillingBlanksExerciseByAlternatives
 , generateSelbriIdentificationExercise
 , generateContextualizedGismuPlacePositionExercise
 , generateContextualizedGismuPlaceMeaningExercise
@@ -133,9 +133,9 @@ englishSentences "bridi and jufra" =
     ]
 
 -- Exercise: fill in the blanks
--- This function chooses an arbitrary Lojban sentence, not necessarily the first in the Translation
-generateBroadFillingBlanksExercise :: [T.Text] -> TranslationGenerator -> ExerciseGenerator
-generateBroadFillingBlanksExercise alternatives translationGenerator r0 = SingleChoiceExercise title sentence correctAlternative incorrectAlternatives True where
+-- "Broad": this function chooses an arbitrary Lojban sentence, not necessarily the first in the Translation
+generateBroadFillingBlanksExerciseByAlternatives :: [T.Text] -> TranslationGenerator -> ExerciseGenerator
+generateBroadFillingBlanksExerciseByAlternatives alternatives translationGenerator r0 = SingleChoiceExercise title sentence correctAlternative incorrectAlternatives True where
     (translation, r1) = translationGenerator r0
     (sentenceText, r2) = chooseItemUniformly r1 (fst translation)
     correctAlternatives = filter (`isSubexpressionOf` sentenceText) $ alternatives
@@ -145,9 +145,9 @@ generateBroadFillingBlanksExercise alternatives translationGenerator r0 = Single
     redactedSentenceText = replaceFirstSubstring correctAlternative "____" sentenceText
     sentence = Just . ExerciseSentence True $ redactedSentenceText
 
--- This function always chooses the first (canonical) Lojban sentence from the Translation
-generateNarrowFillingBlanksExercise :: [T.Text] -> TranslationGenerator -> ExerciseGenerator
-generateNarrowFillingBlanksExercise alternatives translationGenerator = generateBroadFillingBlanksExercise alternatives translationGenerator' where
+-- "Narrow": this function always chooses the first (canonical) Lojban sentence from the Translation
+generateNarrowFillingBlanksExerciseByAlternatives :: [T.Text] -> TranslationGenerator -> ExerciseGenerator
+generateNarrowFillingBlanksExerciseByAlternatives alternatives translationGenerator = generateBroadFillingBlanksExerciseByAlternatives alternatives translationGenerator' where
     translationGenerator' :: TranslationGenerator
     translationGenerator' r0 = (narrowTranslation originalTranslation, r1) where
         (originalTranslation, r1) = translationGenerator r0
