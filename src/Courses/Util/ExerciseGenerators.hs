@@ -24,7 +24,7 @@ import Core
 import Courses.Util.Vocabulary
 import Courses.Util.Sentences
 import Courses.Util.NumberTranslator
-import Util (isSubexpressionOf, replace, replaceFirstSubstring, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly, containsWord)
+import Util (narrowTranslationGenerator, isSubexpressionOf, replace, replaceFirstSubstring, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly, containsWord)
 import Text.Read (readMaybe)
 import System.Random (StdGen, random)
 import Control.Applicative (liftA2)
@@ -147,12 +147,7 @@ generateBroadFillingBlanksExerciseByAlternatives alternatives translationGenerat
 
 -- "Narrow": this function always chooses the first (canonical) Lojban sentence from the Translation
 generateNarrowFillingBlanksExerciseByAlternatives :: [T.Text] -> TranslationGenerator -> ExerciseGenerator
-generateNarrowFillingBlanksExerciseByAlternatives alternatives translationGenerator = generateBroadFillingBlanksExerciseByAlternatives alternatives translationGenerator' where
-    translationGenerator' :: TranslationGenerator
-    translationGenerator' r0 = (narrowTranslation originalTranslation, r1) where
-        (originalTranslation, r1) = translationGenerator r0
-    narrowTranslation :: Translation -> Translation
-    narrowTranslation (lojban_sentences, english_sentences) = ([head lojban_sentences], english_sentences)
+generateNarrowFillingBlanksExerciseByAlternatives alternatives translationGenerator = generateBroadFillingBlanksExerciseByAlternatives alternatives (narrowTranslationGenerator translationGenerator)
 
 -- Exercise: identify the selbri
 generateSelbriIdentificationExercise :: Vocabulary -> SimpleBridiDisplayer -> ExerciseGenerator

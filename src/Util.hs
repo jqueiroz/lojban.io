@@ -2,6 +2,7 @@
 {-# LANGUAGE TupleSections #-}
 module Util where
 
+import Core
 import Control.Applicative ((<$>), (<*>))
 import System.Random (StdGen, random)
 import qualified Data.Text as T
@@ -9,6 +10,19 @@ import Data.Text.Encoding (decodeUtf8)
 import Data.List (group, sort)
 import System.Random
 import System.Random.Shuffle (shuffle')
+
+-- Domain-specific
+
+-- Returns a translation containing only the first (canonical) Lojban sentence
+narrowTranslation :: Translation -> Translation
+narrowTranslation (lojban_sentences, english_sentences) = ([head lojban_sentences], english_sentences)
+
+-- Returns a translation generator containing only the first (canonical) Lojban sentence
+narrowTranslationGenerator :: TranslationGenerator -> TranslationGenerator
+narrowTranslationGenerator translationGenerator = translationGenerator' where
+    translationGenerator' :: TranslationGenerator
+    translationGenerator' r0 = (narrowTranslation originalTranslation, r1) where
+        (originalTranslation, r1) = translationGenerator r0
 
 -- Function manipulation
 compose2 f g x y = f (g x y)
