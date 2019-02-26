@@ -108,13 +108,13 @@ def run():
         score = 0
         words = sentence['content'].split(' ')
         for word in words:
-            score += 1000 / frequency_table[word]**1.5
+            score += 1000 / (1 + frequency_table[word]**1.5)
         score /= len(words)**0.5
         return score
     def is_sentence_interesting(sentence):
-        interesting_gismu = ["citka","cizra","cmene","cusku","djica","djuno","gerna","gleki","jimpe","jundi","klaku","klama","lojbo","mutce","nelci","pilno","sipna","tavla","tsani","valsi","xamgu","zgana"]
+        interesting_words = ["citka","cizra","cmene","cusku","djica","djuno","gerna","gleki","jimpe","jundi","klaku","klama","lojbo","mutce","nelci","pilno","sipna","tavla","tsani","valsi","xamgu","zgana"]
         for word in sentence['content'].split(' '):
-            if word in interesting_gismu:
+            if word in interesting_words:
                 return True
         return False
     interesting_sentences = sentences_eng
@@ -122,6 +122,7 @@ def run():
     interesting_sentences.sort(key=compute_sentence_complexity)
     for sentence in interesting_sentences[:100]:
         print("%.3f\t%s" % (compute_sentence_complexity(sentence), sentence['content']))
+        print("\t%s" % sentence['translations'][0]['content'])
     print("Interesting sentences: %d" % len(interesting_sentences))
     # frequent_words = [k for k, v in frequency_table.items() if v >= 100]
     # print(frequent_words)
