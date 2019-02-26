@@ -30,7 +30,7 @@ class TatoebaDatabase:
                 })
         return result
 
-def prepare():
+def prepare_json():
     # Load original database
     database = TatoebaDatabase('/storage/Databases/Lojban/tatoeba-dumps/2018-03-30')
     sentences = database.load_sentences()
@@ -51,7 +51,7 @@ def prepare():
     with open('/tmp/tatoeba-lojban.json', 'w') as f:
         json.dump(data, f, sort_keys=True, indent=4)
 
-def normalize(data):
+def retrieve_normalized_sentences(data):
     sentences = data['sentences'][:]
     links = data['links']
     sentences_by_id = {}
@@ -89,7 +89,7 @@ def filter_by_word(sentences, word):
 
 def load_sentences():
     with open('/storage/Databases/Lojban/tatoeba-dumps/2018-03-30/tatoeba-lojban.json', 'r') as f:
-        return normalize(json.load(f))
+        return retrieve_normalized_sentences(json.load(f))
 
 # builds frequency table from tatoeba
 def build_frequency_table(sentences):
