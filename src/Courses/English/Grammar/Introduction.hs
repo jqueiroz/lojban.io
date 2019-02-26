@@ -25,19 +25,19 @@ import qualified Text.Pandoc as P
 
 ------- Lesson plans
 plan1 :: P.Pandoc
-Right plan1 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/introduction/planning/1.md")
+Right plan1 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/planning/1.md")
 
 plan2 :: P.Pandoc
-Right plan2 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/introduction/planning/2.md")
+Right plan2 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/planning/2.md")
 
 plan3 :: P.Pandoc
-Right plan3 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/introduction/planning/3.md")
+Right plan3 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/planning/3.md")
 
 plan4 :: P.Pandoc
-Right plan4 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/introduction/planning/4.md")
+Right plan4 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/planning/4.md")
 
 plan5 :: P.Pandoc
-Right plan5 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/introduction/planning/5.md")
+Right plan5 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/planning/5.md")
 
 plan1to5 :: P.Pandoc
 Right plan1to5 = P.runPure $ P.readMarkdown P.def $ ""
