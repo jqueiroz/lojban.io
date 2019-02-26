@@ -163,10 +163,9 @@ generateBroadFillingBlanksExerciseByExpression translationGeneratorByExpression 
     (translation, r2) = translationGenerator r1
     (lojbanSentenceText, r3) = chooseItemUniformly r2 (fst translation)
     (englishSentenceText, r4) = chooseItemUniformly r3 (snd translation)
-    --title = "Fill in the blanks"
-    title = "Fill in the blanks: " `T.append` englishSentenceText
+    title = "Complete the translation"
     redactedLojbanSentenceText = replaceFirstSubexpression expression "____" lojbanSentenceText
-    sentences = [ExerciseSentence True redactedLojbanSentenceText]
+    sentences = [ExerciseSentence False englishSentenceText, ExerciseSentence True redactedLojbanSentenceText]
     validator = (== expression)
 
 -- "Narrow": this function always chooses the first (canonical) Lojban sentence from the Translation
