@@ -163,7 +163,7 @@ def run():
         print(frequent_words)
         print("Frequent words: %d" % len(frequent_words))
     def display_top_brivla():
-        blacklist = set(["selpa'i"])
+        blacklist = set(["selpa'i", "gerna"])
         words = frequency_table.items()
         brivla = filter(lambda x: x[0] in gismu or x[0] in lujvo, words)
         brivla = filter(lambda x: x[0] not in blacklist, brivla)
@@ -176,7 +176,7 @@ def run():
         print()
         print(sorted(list(map(lambda x: x[0], interesting_brivla))))
     def build_exercises():
-        words = ["citka","cizra","cmene","cusku","djica","djuno","gerna","gleki","jimpe","jundi","klaku","klama","lojbo","mutce","nelci","pilno","sipna","tavla","tsani","valsi","xamgu","zgana"]
+        words = ["citka","cizra","cmene","cusku","djica","djuno","gleki","jimpe","jundi","klaku","klama","lojbo","mutce","nelci","pilno","sipna","tavla","tsani","valsi","xamgu","zgana"]
         debug = True
         for word in words:
             sentences = filter_by_word(sentences_eng, word)
