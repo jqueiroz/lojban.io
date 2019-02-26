@@ -98,17 +98,7 @@ replaceFirstSubstring old new text =
             (head components) `T.append` new `T.append` (T.intercalate old (tail components))
 
 replaceFirstSubexpression :: T.Text -> T.Text -> T.Text -> T.Text
-replaceFirstSubexpression old new text =
-    if old == text then
-        new
-    else if (old `T.append` " ") `T.isPrefixOf` text then
-        new `T.append` (T.drop (T.length old) text)
-    else if (" " `T.append` old `T.append` " ") `T.isInfixOf` text then
-        replaceFirstSubstring (" " `T.append` old `T.append` " ") (" " `T.append` new `T.append` " ") text
-    else if (" " `T.append` old) `T.isSuffixOf` text then
-        (T.dropEnd (T.length old) text) `T.append` new
-    else
-        text
+replaceFirstSubexpression old new = T.drop 1 . T.dropEnd 1 . replaceFirstSubstring (" " `T.append` old `T.append` " ") (" " `T.append` new `T.append` " ") . (`T.append` " ") . (" " `T.append`)
 
 replaceSubexpression :: T.Text -> T.Text -> T.Text -> T.Text
 replaceSubexpression old new = T.drop 1 . T.dropEnd 1 . T.replace (" " `T.append` old `T.append` " ") (" " `T.append` new `T.append` " ") . (`T.append` " ") . (" " `T.append`)
