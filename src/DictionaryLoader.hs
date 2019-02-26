@@ -85,9 +85,9 @@ englishSumtiPlacesBase = M.fromList
     , ("ciska", ["writer", "text/symbols", "display/storage medium", "writing implement"])
     , ("klama", ["traveler", "destination", "origin", "route", "means/vehicle"])
     , ("bridi", ["predicate relationship", "relation", "arguments"])
-    , ("djuno", ["entity", "facts", "subject", "epistemology"])
+    , ("djuno", ["knower", "facts", "subject", "epistemology"])
     , ("nupre", ["promisor", "promise", "beneficiary/victim"])
-    , ("cusku", ["agent", "message", "audience", "expressive medium"])
+    , ("cusku", ["expresser", "message", "audience", "expressive medium"])
     -- TODO: nelci
     -- TODO: pendo
     -- TODO: melbi
