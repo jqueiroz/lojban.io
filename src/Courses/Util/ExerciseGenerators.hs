@@ -132,7 +132,9 @@ englishSentences "bridi and jufra" =
     , "I refuse to answer that question on the grounds that I don't know the answer."
     ]
 
--- Exercise: fill in the blanks
+-- Exercise: fill in the blanks (by alternatives)
+-- Expects a translation generator whose resulting sentences contain precisely one of the alternatives.
+
 -- "Broad": this function chooses an arbitrary Lojban sentence, not necessarily the first in the Translation
 generateBroadFillingBlanksExerciseByAlternatives :: [T.Text] -> TranslationGenerator -> ExerciseGenerator
 generateBroadFillingBlanksExerciseByAlternatives alternatives translationGenerator r0 = SingleChoiceExercise title sentence correctAlternative incorrectAlternatives True where
