@@ -144,20 +144,6 @@ def run():
             score += 10000000 / (1 + frequency_table.get(word, 0)**1.5)
         score /= len(words)**0.5
         return score
-    def display_interesting_sentences():
-        def is_sentence_interesting(sentence):
-            interesting_words = ['citka', 'cizra', 'cusku', 'djica', 'djuno', 'gleki', 'jimpe', 'jundi', 'klaku', 'klama', 'lojbo', 'mutce', 'nelci', 'pilno', 'sipna', 'tavla', 'tsani', 'valsi', 'xamgu', 'zgana']
-            for word in sentence['content'].split(' '):
-                if word in interesting_words:
-                    return True
-            return False
-        interesting_sentences = sentences_eng
-        interesting_sentences = list(filter(is_sentence_interesting, interesting_sentences))
-        interesting_sentences.sort(key=compute_sentence_complexity)
-        for sentence in interesting_sentences[:100]:
-            print("%.3f\t%s" % (compute_sentence_complexity(sentence), sentence['content']))
-            print("\t%s" % sentence['translations'][0]['content'])
-        print("Interesting sentences: %d" % len(interesting_sentences))
     def display_frequent_words():
         frequent_words = [k for k, v in frequency_table.items() if v >= 100]
         print(frequent_words)
