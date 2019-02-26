@@ -189,10 +189,11 @@ def run():
                 # if debug:
                     # print("    %.3f\t" % compute_sentence_complexity(sentence), end='')
                 if debug:
-                    print("%01.2f    %s" % (compute_sentence_complexity(sentence), sentence['content']))
+                    print("%01.2f\t%s" % (compute_sentence_complexity(sentence), sentence['content']))
                     print("\t\t%s" % sentence['translations'][0]['content'])
                 else:
                     print("\t%s" % sentence['content'])
+                    print("\t\t%s" % sentence['translations'][0]['content'])
             if debug:
                 print()
                 print()
