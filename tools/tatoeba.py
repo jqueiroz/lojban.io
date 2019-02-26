@@ -91,6 +91,7 @@ def load_sentences():
     with open('/storage/Databases/Lojban/tatoeba-dumps/2018-03-30/tatoeba-lojban.json', 'r') as f:
         return normalize(json.load(f))
 
+# builds frequency table from tatoeba
 def build_frequency_table(sentences):
     table = {}
     for sentence in sentences:
@@ -98,17 +99,26 @@ def build_frequency_table(sentences):
             table[word] = table.get(word, 0) + 1
     return table
 
+# loads frequency table from https://mw.lojban.org/papri/File:MyFreq-COMB_without_dots.txt
+def load_frequency_table():
+    with open("../resources/MyFreq-COMB_without_dots.txt", "r") as f:
+        table = {}
+        for line in f.readlines():
+            frequency, word = line.split(' ')
+            table[word.strip()] = int(frequency)
+    return table
+
 # TODO: brivla, not just gismu
 def run():
     sentences_eng = filter_by_language(load_sentences(), 'eng')
     print("Sentences: %d" % len(sentences_eng))
-    frequency_table = build_frequency_table(sentences_eng)
+    frequency_table = load_frequency_table()
     print("Words: %d" % len(frequency_table))
     def compute_sentence_complexity(sentence):
         score = 0
         words = sentence['content'].split(' ')
         for word in words:
-            score += 1000 / (1 + frequency_table[word]**1.5)
+            score += 10000000 / (1 + frequency_table.get(word, 0)**1.5)
         score /= len(words)**0.5
         return score
     def display_interesting_sentences():
