@@ -163,7 +163,7 @@ def run():
         print(frequent_words)
         print("Frequent words: %d" % len(frequent_words))
     def display_top_brivla():
-        blacklist = set(["selpa'i", "gerna"])
+        blacklist = set(["selpa'i"])
         words = frequency_table.items()
         brivla = filter(lambda x: x[0] in gismu or x[0] in lujvo, words)
         brivla = filter(lambda x: x[0] not in blacklist, brivla)
