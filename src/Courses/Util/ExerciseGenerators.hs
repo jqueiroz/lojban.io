@@ -35,11 +35,6 @@ import qualified Data.Text as T
 import qualified Data.Map as M
 
 -- Exercise: translate a sentence from English to Lojban
-type Translation = ([LojbanSentence], [EnglishSentence])
-type TranslationGenerator = StdGen -> (Translation, StdGen)
-type EnglishSentence = T.Text
-type LojbanSentence = T.Text
-
 generateTranslationExercise :: SentenceCanonicalizer -> TranslationGenerator -> ExerciseGenerator
 generateTranslationExercise = generateRestrictedTranslationExercise "Translate this sentence" (\_ -> True)
 

@@ -61,6 +61,12 @@ instance Show Lesson where
 createCourseBuilder :: String -> [LessonBuilder] -> CourseBuilder
 createCourseBuilder title lessons dictionary = Course title (lessons <*> [dictionary])
 
+-- Translations
+type Translation = ([LojbanSentence], [EnglishSentence])
+type TranslationGenerator = StdGen -> (Translation, StdGen)
+type EnglishSentence = T.Text
+type LojbanSentence = T.Text
+
 -- Exercises
 data Exercise =
     MultipleChoiceExercise
