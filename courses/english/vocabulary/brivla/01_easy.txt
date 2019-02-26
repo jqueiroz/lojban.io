@@ -153,7 +153,7 @@ mutce: 274
 0.39	mi mutce nelci do
 		I like you a lot.
 0.52	mi mutce gleki
-		I'm very happy now.
+		I'm very happy.
 0.68	mi ba mutce jundi
 		I'll be very careful.
 1.15	mi mutce gleki lo nu mi viska do
