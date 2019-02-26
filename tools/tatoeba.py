@@ -176,7 +176,7 @@ def run():
         print()
         print(sorted(list(map(lambda x: x[0], interesting_brivla))))
     def build_exercises():
-        words = ["citka","cizra","cmene","cusku","djica","djuno","gleki","jimpe","jundi","klaku","klama","lojbo","mutce","nelci","pilno","sipna","tavla","tsani","valsi","xamgu","zgana"]
+        words = ["citka","cizra","cmene","cusku","djica","djuno","gleki","jimpe","jundi","klaku","klama","mutce","nelci","pilno","sipna","tavla","tsani","valsi","xamgu","zgana"]
         debug = True
         for word in words:
             sentences = filter_by_word(sentences_eng, word)
