@@ -13,6 +13,8 @@ module Courses.Util.ExerciseGenerators
 , generateEnglishBridiJufraExercise
 , generateBroadFillingBlanksExerciseByAlternatives
 , generateNarrowFillingBlanksExerciseByAlternatives
+, generateBroadFillingBlanksExerciseByExpression
+, generateNarrowFillingBlanksExerciseByExpression
 , generateSelbriIdentificationExercise
 , generateContextualizedGismuPlacePositionExercise
 , generateContextualizedGismuPlaceMeaningExercise
@@ -24,7 +26,7 @@ import Core
 import Courses.Util.Vocabulary
 import Courses.Util.Sentences
 import Courses.Util.NumberTranslator
-import Util (narrowTranslationGenerator, isSubexpressionOf, replace, replaceFirstSubexpression, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly, containsWord)
+import Util (narrowTranslationGenerator, narrowTranslationGeneratorByExpression, isSubexpressionOf, replace, replaceFirstSubexpression, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly, containsWord)
 import Text.Read (readMaybe)
 import System.Random (StdGen, random)
 import Control.Applicative (liftA2)
@@ -150,6 +152,26 @@ generateBroadFillingBlanksExerciseByAlternatives alternatives translationGenerat
 -- "Narrow": this function always chooses the first (canonical) Lojban sentence from the Translation
 generateNarrowFillingBlanksExerciseByAlternatives :: [T.Text] -> TranslationGenerator -> ExerciseGenerator
 generateNarrowFillingBlanksExerciseByAlternatives alternatives translationGenerator = generateBroadFillingBlanksExerciseByAlternatives alternatives (narrowTranslationGenerator translationGenerator)
+
+-- Exercise: fill in the blanks (by expression)
+
+-- "Broad": this function chooses an arbitrary Lojban sentence, not necessarily the first in the Translation
+-- TODO: create a proper exercise type instead of using "TypingExercise"
+generateBroadFillingBlanksExerciseByExpression :: TranslationGeneratorByExpression -> ExerciseGenerator
+generateBroadFillingBlanksExerciseByExpression translationGeneratorByExpression r0 = TypingExercise title sentence validator expression where
+    ((expression, translationGenerator), r1) = chooseItemUniformly r0 translationGeneratorByExpression
+    (translation, r2) = translationGenerator r1
+    (lojbanSentenceText, r3) = chooseItemUniformly r2 (fst translation)
+    (englishSentenceText, r4) = chooseItemUniformly r3 (snd translation)
+    --title = "Fill in the blanks"
+    title = "Fill in the blanks: " `T.append` englishSentenceText
+    redactedLojbanSentenceText = replaceFirstSubexpression expression "____" lojbanSentenceText
+    sentence = Just . ExerciseSentence True $ redactedLojbanSentenceText
+    validator = (== expression)
+
+-- "Narrow": this function always chooses the first (canonical) Lojban sentence from the Translation
+generateNarrowFillingBlanksExerciseByExpression :: TranslationGeneratorByExpression -> ExerciseGenerator
+generateNarrowFillingBlanksExerciseByExpression translationGeneratorByExpression = generateBroadFillingBlanksExerciseByExpression (narrowTranslationGeneratorByExpression translationGeneratorByExpression)
 
 -- Exercise: identify the selbri
 generateSelbriIdentificationExercise :: Vocabulary -> SimpleBridiDisplayer -> ExerciseGenerator

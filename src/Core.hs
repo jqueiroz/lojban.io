@@ -67,6 +67,9 @@ type TranslationGenerator = StdGen -> (Translation, StdGen)
 type EnglishSentence = T.Text
 type LojbanSentence = T.Text
 
+type TranslationsByExpression = [(T.Text, [Translation])]
+type TranslationGeneratorByExpression = [(T.Text, TranslationGenerator)]
+
 -- Exercises
 data Exercise =
     MultipleChoiceExercise

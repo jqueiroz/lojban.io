@@ -14,6 +14,7 @@ import qualified Data.Aeson as A
 import qualified Data.Text as T
 import Data.Either.Unwrap (fromRight)
 import qualified Courses.English.Grammar.Introduction
+import qualified Courses.English.Vocabulary.Brivla
 import System.Random (newStdGen, mkStdGen)
 import qualified Text.Blaze as B
 import qualified Text.Blaze.Html5 as H
@@ -81,7 +82,7 @@ handleGrammar dictionary = msum
 handleVocabulary :: Dictionary -> ServerPart Response
 handleVocabulary dictionary = msum
     [ forceSlash . ok . toResponse $ displayVocabularyHome
-    --, dir "brivla" $ handleCourse dictionary Courses.English.Vocabulary.Brivla.course
+    , dir "brivla" $ handleCourse dictionary Courses.English.Vocabulary.Brivla.course
     ]
 
 handleCourse :: Dictionary -> CourseBuilder -> ServerPart Response

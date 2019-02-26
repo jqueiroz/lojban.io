@@ -3,6 +3,7 @@
 module Util where
 
 import Core
+import Control.Arrow (first, second, (***))
 import Control.Applicative ((<$>), (<*>))
 import System.Random (StdGen, random)
 import qualified Data.Text as T
@@ -23,6 +24,10 @@ narrowTranslationGenerator translationGenerator = translationGenerator' where
     translationGenerator' :: TranslationGenerator
     translationGenerator' r0 = (narrowTranslation originalTranslation, r1) where
         (originalTranslation, r1) = translationGenerator r0
+
+-- Returns a TranslationGeneratorByExpression containing only the first (canonical) Lojban sentence
+narrowTranslationGeneratorByExpression :: TranslationGeneratorByExpression -> TranslationGeneratorByExpression
+narrowTranslationGeneratorByExpression = map (second narrowTranslationGenerator)
 
 -- Function manipulation
 compose2 f g x y = f (g x y)
@@ -104,6 +109,9 @@ replaceFirstSubexpression old new text =
         (T.dropEnd (T.length old) text) `T.append` new
     else
         text
+
+replaceSubexpression :: T.Text -> T.Text -> T.Text -> T.Text
+replaceSubexpression old new = T.drop 1 . T.dropEnd 1 . T.replace (" " `T.append` old `T.append` " ") (" " `T.append` new `T.append` " ") . (`T.append` " ") . (" " `T.append`)
 
 -- Random (TODO: assert that sum > 0)
 shuffleList :: StdGen -> [a] -> [a]

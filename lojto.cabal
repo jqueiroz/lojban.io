@@ -27,6 +27,7 @@ executable lojto
                      , aeson
                      , random
                      , random-shuffle
+                     , split
                      , blaze-html
                      , blaze-markup
                      , happstack-server
@@ -40,6 +41,7 @@ executable lojto
                      , Courses.Util.Sentences
                      , Courses.Util.Vocabulary
                      , Courses.English.Grammar.Introduction
+                     , Courses.English.Vocabulary.Brivla
                      , Server
                      , Util
                      , Playground
