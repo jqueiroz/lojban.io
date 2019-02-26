@@ -129,7 +129,30 @@ def run():
         frequent_words = [k for k, v in frequency_table.items() if v >= 100]
         print(frequent_words)
         print("Frequent words: %d" % len(frequent_words))
-    display_interesting_sentences()
+    def build_exercises():
+        words = ["citka","cizra","cmene","cusku","djica","djuno","gerna","gleki","jimpe","jundi","klaku","klama","lojbo","mutce","nelci","pilno","sipna","tavla","tsani","valsi","xamgu","zgana"]
+        debug = True
+        for word in words:
+            sentences = filter_by_word(sentences_eng, word)
+            sentences.sort(key=compute_sentence_complexity)
+            if debug:
+                print("%s: %d" % (word, len(sentences)))
+            else:
+                print("%s:" % word)
+            for sentence in sentences[:10]:
+                # if debug:
+                    # print("    %.3f\t" % compute_sentence_complexity(sentence), end='')
+                if debug:
+                    print("%01.2f    %s" % (compute_sentence_complexity(sentence), sentence['content']))
+                    print("\t\t%s" % sentence['translations'][0]['content'])
+                else:
+                    print("\t%s" % sentence['content'])
+            if debug:
+                print()
+                print()
+
+    # display_interesting_sentences()
+    build_exercises()
     # display_frequent_words()
 
 def search(word):
