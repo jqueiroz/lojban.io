@@ -1131,4 +1131,4 @@ checkpoint1to5 dictionary = Lesson "Checkpoint: Lessons 1--5" (exercises1to5 dic
 
 -------- Course
 course :: CourseBuilder
-course = createCourseBuilder "Introduction to Lojban for English speakers" [lesson1, lesson2, lesson3, lesson4, lesson5, checkpoint1to5]
+course = createCourseBuilder "Introduction to Grammar" [lesson1, lesson2, lesson3, lesson4, lesson5, checkpoint1to5]
