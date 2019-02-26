@@ -13,11 +13,11 @@ import System.Random.Shuffle (shuffle')
 
 -- Domain-specific
 
--- Returns a translation containing only the first (canonical) Lojban sentence
+-- Returns a Translation containing only the first (canonical) Lojban sentence
 narrowTranslation :: Translation -> Translation
 narrowTranslation (lojban_sentences, english_sentences) = ([head lojban_sentences], english_sentences)
 
--- Returns a translation generator containing only the first (canonical) Lojban sentence
+-- Returns a TranslationGenerator containing only the first (canonical) Lojban sentence
 narrowTranslationGenerator :: TranslationGenerator -> TranslationGenerator
 narrowTranslationGenerator translationGenerator = translationGenerator' where
     translationGenerator' :: TranslationGenerator
