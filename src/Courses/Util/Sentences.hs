@@ -31,7 +31,7 @@ import System.Random (StdGen, mkStdGen)
 import qualified Data.Text as T
 import qualified Data.Map as M
 import qualified Language.Lojban.Parser.ZasniGerna as ZG
-import Control.Arrow ((***))
+import Control.Arrow ((***), first, second)
 
 data SimpleBridi = SimpleBridi
     { simpleBridiXu :: Bool

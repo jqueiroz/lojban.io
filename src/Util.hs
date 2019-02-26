@@ -3,7 +3,7 @@
 module Util where
 
 import Core
-import Control.Arrow (first, second, (***))
+import Control.Arrow ((***), first, second)
 import Control.Applicative ((<$>), (<*>))
 import System.Random (StdGen, random)
 import qualified Data.Text as T
