@@ -88,7 +88,7 @@ def filter_by_word(sentences, word):
     return list(filter(lambda s: word in s['content'].split(' '), sentences))
 
 def load_sentences():
-    with open('//storage/Databases/Lojban/tatoeba-dumps/2018-03-30/tatoeba-lojban.json', 'r') as f:
+    with open('/storage/Databases/Lojban/tatoeba-dumps/2018-03-30/tatoeba-lojban.json', 'r') as f:
         return normalize(json.load(f))
 
 def build_frequency_table(sentences):
