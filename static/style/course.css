@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Varela+Round');
+
 body {
     background-color: #e9e9e9;
     border: 0;
@@ -25,7 +27,7 @@ body {
     line-height: 3.5em;
     /* Text */
     font-size: 1.5em;
-    font-family: open sans;
+    font-family: "Varela Round", "Open Sans";
     font-weight: 600;
     color: #fff;
     height: 100%;
