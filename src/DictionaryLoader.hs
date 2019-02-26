@@ -75,6 +75,7 @@ parseNotes englishFullNotes =
         isSingleWord :: T.Text -> Bool
         isSingleWord x = length (T.words x) == 1
 
+-- See also: http://www.lojban.org/publications/wordlists/oblique_keywords.txt
 englishSumtiPlacesBase :: M.Map T.Text [T.Text]
 englishSumtiPlacesBase = M.fromList
     [ ("tavla", ["speaker", "listener", "subject", "language"])
