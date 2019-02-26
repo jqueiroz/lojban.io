@@ -236,10 +236,10 @@ generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBr
         in SingleChoiceExercise title sentences correctAlternative incorrectAlternatives False
 
 -- Exercise: tell gismu places using se/te/ve/xe
-generateIsolatedGismuPlacesExercise :: Dictionary -> Vocabulary -> ExerciseGenerator
-generateIsolatedGismuPlacesExercise dictionary vocabulary r0 =
+generateIsolatedGismuPlacesExercise :: Dictionary -> [(Int, Selbri)] -> ExerciseGenerator
+generateIsolatedGismuPlacesExercise dictionary selbriList r0 =
     let
-        (selbri, r1) = chooseItem r0 $ getVocabularySelbri vocabulary "actions"
+        (selbri, r1) = chooseItem r0 selbriList
         placesLojban = map (\x -> x `T.append` " " `T.append` selbri `T.append` " ku") ["lo", "lo se", "lo te", "lo ve", "lo xe"]
         placesEnglish = gismuEnglishPlaces $ (dictGismu dictionary) M.! selbri
         places = zip placesLojban placesEnglish

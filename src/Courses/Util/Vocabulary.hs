@@ -4,6 +4,8 @@ module Courses.Util.Vocabulary
 ( Vocabulary
 , VocabularyBuilder
 , WordList
+, Selbri
+, Sumti
 , vocabularyWords
 , vocabularyCategorizedSumti
 , vocabularyCategorizedSelbri
