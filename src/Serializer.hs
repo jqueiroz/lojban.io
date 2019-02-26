@@ -15,37 +15,36 @@ import System.Random (StdGen)
 -- Serialization of exercises
 exerciseToJSON :: Exercise -> StdGen -> A.Value
 
-exerciseToJSON (MultipleChoiceExercise title sentence correctAlternatives incorrectAlternatives fixedOrdering) r0 = A.object
+exerciseToJSON (MultipleChoiceExercise title sentences correctAlternatives incorrectAlternatives fixedOrdering) r0 = A.object
     [ "type" A..= ("multiple-choice" :: T.Text)
     , "title" A..= title
-    , "sentence" A..= (exerciseSentenceToJSON sentence)
+    , "sentences" A..= (map exerciseSentenceToJSON sentences)
     , "alternatives" A..= (if fixedOrdering then sort else shuffleList r0) (correctAlternatives ++ incorrectAlternatives)
     ]
 
-exerciseToJSON (SingleChoiceExercise title sentence correctAlternative incorrectAlternatives fixedOrdering) r0 = A.object
+exerciseToJSON (SingleChoiceExercise title sentences correctAlternative incorrectAlternatives fixedOrdering) r0 = A.object
     [ "type" A..= ("single-choice" :: T.Text)
     , "title" A..= title
-    , "sentence" A..= (exerciseSentenceToJSON sentence)
+    , "sentences" A..= (map exerciseSentenceToJSON sentences)
     , "alternatives" A..= (if fixedOrdering then sort else shuffleList r0) (correctAlternative : incorrectAlternatives)
     ]
 
-exerciseToJSON (MatchingExercise title sentence items) r0 = A.object
+exerciseToJSON (MatchingExercise title sentences items) r0 = A.object
     [ "type" A..= ("matching" :: T.Text)
     , "title" A..= title
-    , "sentence" A..= (exerciseSentenceToJSON sentence)
+    , "sentences" A..= (map exerciseSentenceToJSON sentences)
     , "left_items" A..= map fst items
     , "right_items" A..= shuffleList r0 (map snd items)
     ]
 
-exerciseToJSON (TypingExercise title sentence _ _) r0 = A.object
+exerciseToJSON (TypingExercise title sentences _ _) r0 = A.object
     [ "type" A..= ("typing" :: T.Text)
     , "title" A..= title
-    , "sentence" A..= (exerciseSentenceToJSON sentence)
+    , "sentences" A..= (map exerciseSentenceToJSON sentences)
     ]
 
-exerciseSentenceToJSON :: Maybe ExerciseSentence -> A.Value
-exerciseSentenceToJSON Nothing = A.Null
-exerciseSentenceToJSON (Just (ExerciseSentence lojbanic text)) = A.object
+exerciseSentenceToJSON :: ExerciseSentence -> A.Value
+exerciseSentenceToJSON (ExerciseSentence lojbanic text) = A.object
     [ "text" A..= text
     , "lojbanic" A..= lojbanic
     ]
@@ -90,20 +89,20 @@ validateExerciseAnswer :: Exercise -> BS.ByteString -> Maybe A.Value
     {-answer <- A.decode s-}
     {-return $ (sort $ mceaCorrectAlternatives answer) == (sort correctAlternatives)-}
 
-validateExerciseAnswer (SingleChoiceExercise title sentence correctAlternative incorrectAlternatives fixedOrdering) s = do
+validateExerciseAnswer (SingleChoiceExercise title sentences correctAlternative incorrectAlternatives fixedOrdering) s = do
     answer <- A.decode s
     return $ A.object
         [ ("correct", A.Bool $ sceaCorrectAlternative answer == correctAlternative)
         , ("correctAlternative", A.String correctAlternative)
         ]
 
-validateExerciseAnswer (MatchingExercise title sentence items) s = do
+validateExerciseAnswer (MatchingExercise title sentences items) s = do
     answer <- A.decode s
     return $ A.object
         [ ("correct", A.Bool $ meaOrderedAlternatives answer == map snd items)
         ]
 
-validateExerciseAnswer (TypingExercise text sentence validate canonicalAnswer) s = do
+validateExerciseAnswer (TypingExercise title sentences validate canonicalAnswer) s = do
     answer <- A.decode s
     return $ A.object
         [ ("correct", A.Bool $ validate (teaText answer))

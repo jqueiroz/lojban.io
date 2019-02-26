@@ -74,26 +74,26 @@ type TranslationGeneratorByExpression = [(T.Text, TranslationGenerator)]
 data Exercise =
     MultipleChoiceExercise
         { mceTitle :: T.Text
-        , mceSentence :: Maybe ExerciseSentence
+        , mceSentences :: [ExerciseSentence]
         , mceCorrectAlternatives :: [T.Text]
         , mceIncorrectAlternatives :: [T.Text]
         , mceFixedOrdering :: Bool
         } |
     SingleChoiceExercise
         { sceTitle :: T.Text
-        , sceSentence :: Maybe ExerciseSentence
+        , sceSentences :: [ExerciseSentence]
         , sceCorrectAlternative :: T.Text
         , sceIncorrectAlternatives :: [T.Text]
         , sceFixedOrdering :: Bool
         } |
     MatchingExercise
         { mteTitle :: T.Text
-        , mteSentence :: Maybe ExerciseSentence
+        , mteSentences :: [ExerciseSentence]
         , mteItems :: [(T.Text, T.Text)]
         } |
     TypingExercise
         { tpeTitle :: T.Text
-        , tpeSentence :: Maybe ExerciseSentence
+        , tpeSentences :: [ExerciseSentence]
         , tpeValidate :: T.Text -> Bool
         , tpeCanonicalAnswer :: T.Text
         }
@@ -101,10 +101,10 @@ data Exercise =
 type ExerciseGenerator = StdGen -> Exercise
 
 instance Show Exercise where
-    show (MultipleChoiceExercise title sentence correctAlternatives incorrectAlternatives fixedOrdering) = "MultipleChoiceExercise { mceTitle = " ++ (show title) ++ ", mceSentence = " ++ (show sentence) ++ ", mceCorrectAlternatives = " ++ (show correctAlternatives) ++ ", mceIncorrectAlternatives = " ++ (show incorrectAlternatives) ++ ", fixedOrdering = " ++ (show fixedOrdering) ++ "}"
-    show (SingleChoiceExercise title sentence correctAlternative incorrectAlternatives fixedOrdering) = "SingleChoiceExercise { sceTitle = " ++ (show title) ++ ", sceSentence = " ++ (show sentence) ++ ", sceCorrectAlternatives = " ++ (show correctAlternative) ++ ", sceIncorrectAlternatives = " ++ (show incorrectAlternatives) ++ ", fixedOrdering = " ++ (show fixedOrdering) ++ "}"
-    show (MatchingExercise title sentence items) = "MatchingExercise { mteTitle = " ++ (show title) ++ ", mteSentence = " ++ (show sentence) ++ ", mteItems = " ++ (show items) ++ "}"
-    show (TypingExercise title sentence _ canonicalAnswer) = "TypingExercise {tpeTitle = " ++ (show title) ++ ", tpeSentence = " ++ (show sentence) ++ ", canonicalAnswer = " ++ (show canonicalAnswer) ++ "}"
+    show (MultipleChoiceExercise title sentences correctAlternatives incorrectAlternatives fixedOrdering) = "MultipleChoiceExercise { mceTitle = " ++ (show title) ++ ", mceSentences = " ++ (show sentences) ++ ", mceCorrectAlternatives = " ++ (show correctAlternatives) ++ ", mceIncorrectAlternatives = " ++ (show incorrectAlternatives) ++ ", fixedOrdering = " ++ (show fixedOrdering) ++ "}"
+    show (SingleChoiceExercise title sentences correctAlternative incorrectAlternatives fixedOrdering) = "SingleChoiceExercise { sceTitle = " ++ (show title) ++ ", sceSentences = " ++ (show sentences) ++ ", sceCorrectAlternatives = " ++ (show correctAlternative) ++ ", sceIncorrectAlternatives = " ++ (show incorrectAlternatives) ++ ", fixedOrdering = " ++ (show fixedOrdering) ++ "}"
+    show (MatchingExercise title sentences items) = "MatchingExercise { mteTitle = " ++ (show title) ++ ", mteSentences = " ++ (show sentences) ++ ", mteItems = " ++ (show items) ++ "}"
+    show (TypingExercise title sentences _ canonicalAnswer) = "TypingExercise {tpeTitle = " ++ (show title) ++ ", tpeSentences = " ++ (show sentences) ++ ", canonicalAnswer = " ++ (show canonicalAnswer) ++ "}"
 
 data ExerciseSentence = ExerciseSentence
     { esLojbanic :: Bool

@@ -177,7 +177,7 @@ simplifyBridiDisplayer bridiDisplayer = simplifySentence `compose2` bridiDisplay
 simplifyCanonicalAnswer :: ExerciseGenerator -> ExerciseGenerator
 simplifyCanonicalAnswer exerciseGenerator = \r0 -> simplifyExercise (exerciseGenerator r0) where
     simplifyExercise :: Exercise -> Exercise
-    simplifyExercise (TypingExercise title sentence validate canonicalAnswer) = TypingExercise title sentence validate (simplifyBridi canonicalAnswer)
+    simplifyExercise (TypingExercise title sentences validate canonicalAnswer) = TypingExercise title sentences validate (simplifyBridi canonicalAnswer)
     simplifyExercise x = x
 
 ------------------------- ----------------------- Sentence canonicalizers

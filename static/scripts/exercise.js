@@ -134,10 +134,14 @@ var createExercisesManager = function(holder) {
             // Title
             var title = $("<div/>").addClass("title").html(data.title);
             body.append(title);
-            // Sentence
-            if (data.sentence !== null) {
-                var sentence = $("<div/>").addClass("sentence").addClass("single").html(data.sentence.text);
-                body.append(sentence);
+            // Sentences
+            for (let i = 0; i < data.sentences.length; ++i) {
+                let sentence = data.sentences[i];
+                let sentenceElement = $("<div/>").addClass("sentence").html(sentence.text);
+                if (data.sentences.length === 1) {
+                    sentenceElement.addClass("single");
+                }
+                body.append(sentenceElement);
             }
             // Alternatives
             var radioGroup = $("<div/>").addClass("funkyradio");
@@ -257,10 +261,14 @@ var createExercisesManager = function(holder) {
             // Title
             var title = $("<div/>").addClass("title").html(data.title);
             body.append(title);
-            // Sentence
-            if (data.sentence !== null) {
-                var sentence = $("<div/>").addClass("sentence").addClass("single").html(data.sentence.text);
-                body.append(sentence);
+            // Sentences
+            for (let i = 0; i < data.sentences.length; ++i) {
+                let sentence = data.sentences[i];
+                let sentenceElement = $("<div/>").addClass("sentence").html(sentence.text);
+                if (data.sentences.length === 1) {
+                    sentenceElement.addClass("single");
+                }
+                body.append(sentenceElement);
             }
             // Linebreak
             body.append("<br/><br/>");
@@ -298,10 +306,15 @@ var createExercisesManager = function(holder) {
             // Table
             var table = $("<div/>").addClass("table");
             body.append(table);
-            // Sentence
-            if (data.sentence !== null) {
-                var sentence = $("<div/>").addClass("sentence").html(data.sentence.text);
-                table.append(sentence);
+            // Sentences
+            for (let i = 0; i < data.sentences.length; ++i) {
+                let sentence = data.sentences[i];
+                let sentenceElement = $("<div/>").addClass("sentence").html(sentence.text);
+                table.append(sentenceElement);
+            }
+            if (data.sentences.length >= 2) {
+                table = $("<div/>").addClass("table");
+                body.append(table);
             }
             // Answer
             var textarea = $("<textarea/>");

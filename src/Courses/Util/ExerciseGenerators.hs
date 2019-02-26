@@ -44,7 +44,7 @@ generateBlacklistedWordTranslationExercise :: T.Text -> SentenceCanonicalizer ->
 generateBlacklistedWordTranslationExercise blacklistedWord = generateRestrictedTranslationExercise (T.concat ["Translate without using \"", blacklistedWord, "\""]) (not . containsWord blacklistedWord)
 
 generateRestrictedTranslationExercise :: T.Text -> (T.Text -> Bool) -> SentenceCanonicalizer -> TranslationGenerator -> ExerciseGenerator
-generateRestrictedTranslationExercise title validator canonicalizer translationGenerator r0 = TypingExercise title (Just $ ExerciseSentence True english_sentence) (liftA2 (&&) validator validateAll) (head lojban_sentences) where
+generateRestrictedTranslationExercise title validator canonicalizer translationGenerator r0 = TypingExercise title [ExerciseSentence True english_sentence] (liftA2 (&&) validator validateAll) (head lojban_sentences) where
     (translation, r1) = translationGenerator r0
     (lojban_sentences, english_sentences) = translation
     (english_sentence, r2) = chooseItemUniformly r1 english_sentences
@@ -66,7 +66,7 @@ simplifyTranslationGenerator translationGenerator r0 = (simplifyTranslation tran
 
 -- Exercise: tell grammatical class of a word
 generateGrammaticalClassExercise :: Vocabulary -> ExerciseGenerator
-generateGrammaticalClassExercise vocabulary r0 = SingleChoiceExercise title sentence correctAlternative incorrectAlternatives True where
+generateGrammaticalClassExercise vocabulary r0 = SingleChoiceExercise title sentences correctAlternative incorrectAlternatives True where
     wordList = vocabularyWords vocabulary
     words "gismu" = map gismuText $ gismuList wordList
     words "cmavo" = map cmavoText $ cmavoList wordList
@@ -76,14 +76,14 @@ generateGrammaticalClassExercise vocabulary r0 = SingleChoiceExercise title sent
     incorrectAlternatives = filter (/= correctAlternative) allAlternatives
     (word, _) = chooseItemUniformly r1 $ words correctAlternative
     title = "Classify <b>" `T.append` word `T.append` "</b>"
-    sentence = Nothing
+    sentences = []
 
 -- Exercise: jufra vs bridi
 generateBridiJufraExercise :: Vocabulary -> SimpleBridiDisplayer -> ExerciseGenerator
 generateBridiJufraExercise vocabulary displayBridi = combineFunctionsUniformly [generateEnglishBridiJufraExercise, generateLojbanBridiJufraExercise vocabulary displayBridi]
 
 generateLojbanBridiJufraExercise :: Vocabulary -> SimpleBridiDisplayer -> ExerciseGenerator
-generateLojbanBridiJufraExercise vocabulary displayBridi r0 = SingleChoiceExercise title sentence correctAlternative incorrectAlternatives True where
+generateLojbanBridiJufraExercise vocabulary displayBridi r0 = SingleChoiceExercise title sentences correctAlternative incorrectAlternatives True where
     chooseLojbanSentence :: T.Text -> StdGen -> (T.Text, StdGen)
     chooseLojbanSentence "only jufra" r0 = generateNonbridi vocabulary r0
     chooseLojbanSentence "bridi and jufra" r0 = displayBridi r1 simpleBridi where
@@ -93,16 +93,16 @@ generateLojbanBridiJufraExercise vocabulary displayBridi r0 = SingleChoiceExerci
     incorrectAlternatives = filter (/= correctAlternative) allAlternatives
     (sentenceText, _) = chooseLojbanSentence correctAlternative r1
     title = "Bridi or jufra?"
-    sentence = Just $ ExerciseSentence True sentenceText
+    sentences = [ExerciseSentence True sentenceText]
 
 generateEnglishBridiJufraExercise :: ExerciseGenerator
-generateEnglishBridiJufraExercise r0 = SingleChoiceExercise title sentence correctAlternative incorrectAlternatives True where
+generateEnglishBridiJufraExercise r0 = SingleChoiceExercise title sentences correctAlternative incorrectAlternatives True where
         allAlternatives = ["only jufra", "bridi and jufra"]
         (correctAlternative, r1) = chooseItemUniformly r0 allAlternatives
         incorrectAlternatives = filter (/= correctAlternative) allAlternatives
         (sentenceText, _) = chooseItemUniformly r1 $ englishSentences correctAlternative
         title = "Bridi or jufra?"
-        sentence = Just . ExerciseSentence True $ sentenceText
+        sentences = [ExerciseSentence True sentenceText]
 
 englishSentences :: T.Text -> [T.Text]
 englishSentences "only jufra" =
@@ -139,7 +139,7 @@ englishSentences "bridi and jufra" =
 
 -- "Broad": this function chooses an arbitrary Lojban sentence, not necessarily the first in the Translation
 generateBroadFillingBlanksExerciseByAlternatives :: [T.Text] -> TranslationGenerator -> ExerciseGenerator
-generateBroadFillingBlanksExerciseByAlternatives alternatives translationGenerator r0 = SingleChoiceExercise title sentence correctAlternative incorrectAlternatives True where
+generateBroadFillingBlanksExerciseByAlternatives alternatives translationGenerator r0 = SingleChoiceExercise title sentences correctAlternative incorrectAlternatives True where
     (translation, r1) = translationGenerator r0
     (sentenceText, r2) = chooseItemUniformly r1 (fst translation)
     correctAlternatives = filter (`isSubexpressionOf` sentenceText) $ alternatives
@@ -147,7 +147,7 @@ generateBroadFillingBlanksExerciseByAlternatives alternatives translationGenerat
     incorrectAlternatives = filter (/= correctAlternative) alternatives
     title = "Fill in the blanks"
     redactedSentenceText = replaceFirstSubexpression correctAlternative "____" sentenceText
-    sentence = Just . ExerciseSentence True $ redactedSentenceText
+    sentences = [ExerciseSentence True redactedSentenceText]
 
 -- "Narrow": this function always chooses the first (canonical) Lojban sentence from the Translation
 generateNarrowFillingBlanksExerciseByAlternatives :: [T.Text] -> TranslationGenerator -> ExerciseGenerator
@@ -158,7 +158,7 @@ generateNarrowFillingBlanksExerciseByAlternatives alternatives translationGenera
 -- "Broad": this function chooses an arbitrary Lojban sentence, not necessarily the first in the Translation
 -- TODO: create a proper exercise type instead of using "TypingExercise"
 generateBroadFillingBlanksExerciseByExpression :: TranslationGeneratorByExpression -> ExerciseGenerator
-generateBroadFillingBlanksExerciseByExpression translationGeneratorByExpression r0 = TypingExercise title sentence validator expression where
+generateBroadFillingBlanksExerciseByExpression translationGeneratorByExpression r0 = TypingExercise title sentences validator expression where
     ((expression, translationGenerator), r1) = chooseItemUniformly r0 translationGeneratorByExpression
     (translation, r2) = translationGenerator r1
     (lojbanSentenceText, r3) = chooseItemUniformly r2 (fst translation)
@@ -166,7 +166,7 @@ generateBroadFillingBlanksExerciseByExpression translationGeneratorByExpression 
     --title = "Fill in the blanks"
     title = "Fill in the blanks: " `T.append` englishSentenceText
     redactedLojbanSentenceText = replaceFirstSubexpression expression "____" lojbanSentenceText
-    sentence = Just . ExerciseSentence True $ redactedLojbanSentenceText
+    sentences = [ExerciseSentence True redactedLojbanSentenceText]
     validator = (== expression)
 
 -- "Narrow": this function always chooses the first (canonical) Lojban sentence from the Translation
@@ -175,13 +175,13 @@ generateNarrowFillingBlanksExerciseByExpression translationGeneratorByExpression
 
 -- Exercise: identify the selbri
 generateSelbriIdentificationExercise :: Vocabulary -> SimpleBridiDisplayer -> ExerciseGenerator
-generateSelbriIdentificationExercise vocabulary displayBridi r0 = SingleChoiceExercise title sentence correctAlternative incorrectAlternatives False where
+generateSelbriIdentificationExercise vocabulary displayBridi r0 = SingleChoiceExercise title sentences correctAlternative incorrectAlternatives False where
     (bridi, r1) = generateSimpleBridi vocabulary r0
     correctAlternative = simpleBridiSelbri bridi
     incorrectAlternatives = take 4 $ simpleBridiSumti bridi
     title = "Identify the <b>selbri</b>"
     (sentenceText, _) = displayBridi r1 bridi
-    sentence = Just . ExerciseSentence True $ sentenceText
+    sentences = [ExerciseSentence True sentenceText]
 
 -- Exercises: tell gismu places of a sentence (TODO: typing exercises?)
 generateContextualizedGismuPlaceMeaningExercise :: Dictionary -> Vocabulary -> SimpleBridiDisplayer -> ExerciseGenerator
@@ -194,8 +194,8 @@ generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBri
             places = zip placesEnglish (replace "" "zo'e" placesLojban)
             title = "Match the places"
             (sentenceText, _) = displayBridi r1 bridi
-            sentence = Just . ExerciseSentence True $ sentenceText
-        in MatchingExercise title sentence places
+            sentences = [ExerciseSentence True sentenceText]
+        in MatchingExercise title sentences places
     f2 r0 =
         let
             (bridi, r1) = generateActionBridi vocabulary r0
@@ -207,8 +207,8 @@ generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBri
             incorrectAlternatives = (simpleBridiSelbri bridi) : (filter (/= correctAlternative) . map snd $ places)
             title = "Select the " `T.append` "<b>" `T.append` (fst place) `T.append` "</b>"
             (sentenceText, _) = displayBridi r2 bridi
-            sentence = Just . ExerciseSentence True $ sentenceText
-        in SingleChoiceExercise title sentence correctAlternative incorrectAlternatives False
+            sentences = [ExerciseSentence True sentenceText]
+        in SingleChoiceExercise title sentences correctAlternative incorrectAlternatives False
 
 generateContextualizedGismuPlacePositionExercise :: Dictionary -> Vocabulary -> SimpleBridiDisplayer -> ExerciseGenerator
 generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBridi = combineFunctions [(0, f1), (1, f2)] where
@@ -220,8 +220,8 @@ generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBr
             places = zip placesNumeric (replace "" "zo'e" placesLojban)
             title = "Match the places"
             (sentenceText, _) = displayBridi r1 bridi
-            sentence = Just . ExerciseSentence True $ sentenceText
-        in MatchingExercise title sentence places
+            sentences = [ExerciseSentence True sentenceText]
+        in MatchingExercise title sentences places
     f2 r0 =
         let
             (bridi, r1) = generateSimpleBridi vocabulary r0
@@ -233,8 +233,8 @@ generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBr
             incorrectAlternatives = (simpleBridiSelbri bridi) : (filter (/= correctAlternative) . map snd $ places)
             title = "Select the <b>" `T.append` (fst place) `T.append` "</b>"
             (sentenceText, _) = displayBridi r2 bridi
-            sentence = Just . ExerciseSentence True $ sentenceText
-        in SingleChoiceExercise title sentence correctAlternative incorrectAlternatives False
+            sentences = [ExerciseSentence True sentenceText]
+        in SingleChoiceExercise title sentences correctAlternative incorrectAlternatives False
 
 -- Exercise: tell gismu places using se/te/ve/xe
 generateIsolatedGismuPlacesExercise :: Dictionary -> Vocabulary -> ExerciseGenerator
@@ -248,8 +248,8 @@ generateIsolatedGismuPlacesExercise dictionary vocabulary r0 =
         correctAlternative = snd place
         incorrectAlternatives = filter (/= correctAlternative) . map snd $ places
         title = "Identify <b>" `T.append` (fst place) `T.append` "</b>"
-        sentence = Nothing
-    in SingleChoiceExercise title sentence correctAlternative incorrectAlternatives False
+        sentences = []
+    in SingleChoiceExercise title sentences correctAlternative incorrectAlternatives False
 
 -- Exercise: convert numbers to and from lojban
 generateBasicNumberExercise :: ExerciseGenerator
@@ -261,7 +261,7 @@ generateNumberToTextExercise r0 =
         v = \text -> case lojbanToNumber text of
             Nothing -> False
             Just x' -> x' == x
-    in TypingExercise ("Number to text: <b>" `T.append` (T.pack $ show x) `T.append` "</b>") Nothing v (numberToSimpleLojban x)
+    in TypingExercise ("Number to text: <b>" `T.append` (T.pack $ show x) `T.append` "</b>") [] v (numberToSimpleLojban x)
 
 generateTextToNumberExercise :: ExerciseGenerator
 generateTextToNumberExercise r0 =
@@ -269,7 +269,7 @@ generateTextToNumberExercise r0 =
         v = \text -> case readMaybe (T.unpack text) of
             Nothing -> False
             Just x' -> x' == x
-    in TypingExercise ("Text to number: <b>" `T.append` (numberToSimpleLojban x) `T.append` "</b>") Nothing v (T.pack . show $ x)
+    in TypingExercise ("Text to number: <b>" `T.append` (numberToSimpleLojban x) `T.append` "</b>") [] v (T.pack . show $ x)
 
 ---------- Exercise ideas
 -- 1) fill bridi with fa/fe/fi/fo/fu (this probably requires images for context)
