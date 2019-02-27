@@ -23,7 +23,8 @@ loadDictionary = do
     -- Gismu
     gismu <- filter isReallyGismu <$> loadGismuFromFile frequencyMap
     let gismuMap = M.fromList $ map (\g -> (gismuText g, g)) gismu
-    return $ Dictionary gismuMap cmavoMap
+    -- Return dictionary
+    return $ Dictionary gismuMap cmavoMap englishBrivlaPlacesBase
 
 -- Gismu
 loadGismuFromLine :: FrequencyMap -> T.Text -> Gismu
@@ -32,7 +33,7 @@ loadGismuFromLine frequencyMap line =
         rafsi1 = subfield 7 10 line
         rafsi2 = subfield 11 14 line
         rafsi3 = subfield 15 19 line
-        englishSumtiPlaces = retrieveEnglishSumtiPlaces text
+        englishBrivlaPlaces = englishBrivlaPlacesBase M.! text
         englishKeyword1 = subfield 20 41 line
         englishKeyword2 = T.replace "'" "" $ subfield 41 62 line
         englishDefinition = subfield 62 158 line
@@ -40,7 +41,7 @@ loadGismuFromLine frequencyMap line =
         oldFrequencyCount = (read . T.unpack $ subfield 161 165 line) :: Int
         englishFullNotes = T.strip $ T.drop 165 line
         (englishNotes, confer) = parseNotes englishFullNotes
-    in Gismu text (filter (/=T.empty) [rafsi1, rafsi2, rafsi3]) englishSumtiPlaces (filter (/=T.empty) [englishKeyword1, englishKeyword2]) englishDefinition englishNotes confer teachingCode oldFrequencyCount (M.findWithDefault 0 text frequencyMap)
+    in Gismu text (filter (/=T.empty) [rafsi1, rafsi2, rafsi3]) englishBrivlaPlaces (filter (/=T.empty) [englishKeyword1, englishKeyword2]) englishDefinition englishNotes confer teachingCode oldFrequencyCount (M.findWithDefault 0 text frequencyMap)
 
 loadGismuFromText :: FrequencyMap -> T.Text -> [Gismu]
 loadGismuFromText frequencyMap = fmap (loadGismuFromLine frequencyMap) . tail . T.lines
@@ -65,19 +66,10 @@ loadCmavoFromText frequencyMap = fmap (loadCmavoFromLine frequencyMap) . tail . 
 loadCmavoFromFile :: FrequencyMap -> IO [Cmavo]
 loadCmavoFromFile frequencyMap = loadCmavoFromText frequencyMap <$> TIO.readFile "resources/cmavo.txt"
 
--- Helper functions
-parseNotes :: T.Text -> (T.Text, [T.Text])
-parseNotes englishFullNotes =
-    case T.splitOn "(cf. " englishFullNotes of
-        englishNotes:confer':_ -> (englishNotes, filter isSingleWord . map T.strip . T.splitOn ", " . T.takeWhile (/=')') $ confer')
-        englishNotes:_ -> (englishNotes, [])
-    where
-        isSingleWord :: T.Text -> Bool
-        isSingleWord x = length (T.words x) == 1
-
+-- Brivla places
 -- See also: http://www.lojban.org/publications/wordlists/oblique_keywords.txt
-englishSumtiPlacesBase :: M.Map T.Text [T.Text]
-englishSumtiPlacesBase = M.fromList
+englishBrivlaPlacesBase :: M.Map T.Text [T.Text]
+englishBrivlaPlacesBase = M.fromList
     [ ("tavla", ["speaker", "listener", "subject", "language"])
     , ("dunda", ["donor", "gift", "recipient"])
     , ("ctuca", ["instructor", "audience/student(s)", "ideas/methods", "subject", "teaching method"])
@@ -109,12 +101,15 @@ englishSumtiPlacesBase = M.fromList
     -- TODO: zdani
     ] -- TODO: ask people to build a database
 
-retrieveEnglishSumtiPlaces :: T.Text -> [T.Text]
-retrieveEnglishSumtiPlaces sumti =
-    let places = M.findWithDefault [] sumti englishSumtiPlacesBase
-    in if places == []
-        then error $ "Missing sumti places for '" ++ (T.unpack sumti) ++ "'"
-        else places
+-- Helper functions
+parseNotes :: T.Text -> (T.Text, [T.Text])
+parseNotes englishFullNotes =
+    case T.splitOn "(cf. " englishFullNotes of
+        englishNotes:confer':_ -> (englishNotes, filter isSingleWord . map T.strip . T.splitOn ", " . T.takeWhile (/=')') $ confer')
+        englishNotes:_ -> (englishNotes, [])
+    where
+        isSingleWord :: T.Text -> Bool
+        isSingleWord x = length (T.words x) == 1
 
 -- Frequency map
 type FrequencyMap = M.Map T.Text Int

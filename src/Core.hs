@@ -10,7 +10,15 @@ import qualified Text.Pandoc as P
 data Dictionary = Dictionary
     { dictGismu :: M.Map T.Text Gismu
     , dictCmavo :: M.Map T.Text Cmavo
+    , dictBrivlaPlaces :: M.Map T.Text [T.Text]
     } deriving (Show)
+
+retrieveBrivlaPlaces :: Dictionary -> T.Text -> [T.Text]
+retrieveBrivlaPlaces dictionary brivla =
+    let places = M.findWithDefault [] brivla $ dictBrivlaPlaces dictionary
+    in if places == []
+        then error $ "Missing brivla places for '" ++ (T.unpack brivla) ++ "'"
+        else places
 
 data Gismu = Gismu
     { gismuText :: T.Text

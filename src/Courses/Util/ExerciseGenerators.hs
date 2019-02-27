@@ -241,7 +241,7 @@ generateIsolatedGismuPlacesExercise dictionary selbriList r0 =
     let
         (selbri, r1) = chooseItem r0 selbriList
         placesLojban = map (\x -> x `T.append` " " `T.append` selbri `T.append` " ku") ["lo", "lo se", "lo te", "lo ve", "lo xe"]
-        placesEnglish = gismuEnglishPlaces $ (dictGismu dictionary) M.! selbri
+        placesEnglish = retrieveBrivlaPlaces dictionary selbri
         places = zip placesLojban placesEnglish
         (place, _) = chooseItemUniformly r1 places
         correctAlternative = snd place
