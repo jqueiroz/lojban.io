@@ -19,6 +19,7 @@ module Courses.Util.ExerciseGenerators
 , generateContextualizedGismuPlacePositionExercise
 , generateContextualizedGismuPlaceMeaningExercise
 , generateIsolatedBrivlaPlacesExercise
+, generateLexiconProvidingExercise
 , generateBasicNumberExercise
 ) where
 
@@ -249,6 +250,16 @@ generateIsolatedBrivlaPlacesExercise dictionary brivlaGenerator r0 =
         title = "Identify <b>" `T.append` (fst place) `T.append` "</b>"
         sentences = []
     in SingleChoiceExercise title sentences correctAlternative incorrectAlternatives False
+
+-- Exercise: provide the lexicon
+generateLexiconProvidingExercise :: T.Text -> Dictionary -> WordGenerator -> ExerciseGenerator
+generateLexiconProvidingExercise lexiconCategory dictionary wordGenerator r0 = TypingExercise title sentences validator canonicalAnswer where
+    (word, r1) = wordGenerator r0
+    wordDefinition = dictValsiDefinition dictionary M.! word
+    title = "Provide the " `T.append` lexiconCategory
+    sentences = [ExerciseSentence True wordDefinition]
+    validator = (== word)
+    canonicalAnswer = word
 
 -- Exercise: convert numbers to and from lojban
 generateBasicNumberExercise :: ExerciseGenerator
