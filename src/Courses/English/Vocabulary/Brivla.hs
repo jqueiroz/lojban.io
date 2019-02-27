@@ -1,11 +1,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE TemplateHaskell #-}
+{-# LANGUAGE TupleSections #-}
 
 module Courses.English.Vocabulary.Brivla (course, lesson01) where
 
 import Core
 import Courses.Util.ExerciseGenerators
-import Util (generatorFromList)
+import Util (generatorFromList, combineFunctions)
 import Control.Arrow (first, second, (***))
 import qualified Data.Text as T
 import qualified Text.Pandoc as P
@@ -22,10 +23,13 @@ loadTranslationsByExpression contents = map loadTranslations $ T.splitOn "\n\n\n
         translations = map makeTranslation $ chunksOf 2 translation_lines where
             makeTranslation [lojban_line, english_line] = ([(T.splitOn "\t" lojban_line) !! 1], [(T.splitOn "\t\t" english_line) !! 1])
 
-buildExerciseGenerator :: Dictionary -> TranslationsByExpression -> ExerciseGenerator
-buildExerciseGenerator dictionary translationsByExpression = translationExercises where
+buildBrivlaExerciseGenerator :: Dictionary -> TranslationsByExpression -> ExerciseGenerator
+buildBrivlaExerciseGenerator dictionary translationsByExpression = combineFunctions [(6, translationExercises), (4, brivlaPlacesExercise)] where
+    brivla = map fst translationsByExpression
+    brivlaWithAtLeastTwoPlaces = filter ((>= 2) . length . retrieveBrivlaPlaces dictionary) brivla
     translationExercises = generateBroadFillingBlanksExerciseByExpression translationGeneratorByExpression
     translationGeneratorByExpression = map (second generatorFromList) translationsByExpression
+    brivlaPlacesExercise = generateIsolatedBrivlaPlacesExercise dictionary $ map (1,) brivlaWithAtLeastTwoPlaces
 
 ------- Lesson plans
 plan01 :: P.Pandoc
@@ -37,7 +41,7 @@ translations01 = loadTranslationsByExpression $(embedStringFile "courses/english
 
 ------- Exercises
 exercises01 :: Dictionary -> ExerciseGenerator
-exercises01 dictionary = buildExerciseGenerator dictionary translations01
+exercises01 dictionary = buildBrivlaExerciseGenerator dictionary translations01
 
 ------- Lessons
 lesson01 :: LessonBuilder
