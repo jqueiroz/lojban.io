@@ -29,7 +29,7 @@ buildBrivlaExerciseGenerator dictionary translationsByExpression = combineFuncti
     brivlaWithAtLeastTwoPlaces = filter ((>= 2) . length . retrieveBrivlaPlaces dictionary) brivla
     translationExercises = generateBroadFillingBlanksExerciseByExpression translationGeneratorByExpression
     translationGeneratorByExpression = map (second generatorFromList) translationsByExpression
-    brivlaPlacesExercises = generateIsolatedBrivlaPlacesExercise dictionary $ map (1,) brivlaWithAtLeastTwoPlaces
+    brivlaPlacesExercises = generateIsolatedBrivlaPlacesExercise dictionary $ generatorFromList brivlaWithAtLeastTwoPlaces
 
 ------- Lesson plans
 plan01 :: P.Pandoc

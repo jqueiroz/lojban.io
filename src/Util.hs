@@ -132,6 +132,9 @@ generatorFromSingleton x r0 = (x, r0)
 generatorFromList :: [a] -> StdGen -> (a, StdGen)
 generatorFromList = flip chooseItemUniformly
 
+generatorFromWeightedList :: [(Int, a)] -> StdGen -> (a, StdGen)
+generatorFromWeightedList = flip chooseItem
+
 -- combineSimpleFunctions :: [(Int, a)] -> (StdGen -> a)
 
 combineFunctions :: [(Int, StdGen -> a)] -> (StdGen -> a)

@@ -7,6 +7,8 @@ import qualified Data.Map as M
 import qualified Text.Pandoc as P
 
 -- Dictionary
+type WordGenerator = StdGen -> (T.Text, StdGen)
+
 data Dictionary = Dictionary
     { dictGismu :: M.Map T.Text Gismu
     , dictCmavo :: M.Map T.Text Cmavo
