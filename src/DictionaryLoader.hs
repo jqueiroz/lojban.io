@@ -32,7 +32,7 @@ loadDictionary = do
     let definitionsList = cmavoDefinitions ++ gismuDefinitions
     let definitionsMap = M.fromList definitionsList
     -- Return dictionary
-    return $ Dictionary gismuMap cmavoMap definitionsMap englishBrivlaPlacesBase
+    return $ Dictionary gismuMap cmavoMap definitionsMap englishBrivlaPlacesMap
 
 -- Gismu
 loadGismuFromLine :: FrequencyMap -> T.Text -> Gismu
@@ -41,7 +41,7 @@ loadGismuFromLine frequencyMap line =
         rafsi1 = subfield 7 10 line
         rafsi2 = subfield 11 14 line
         rafsi3 = subfield 15 19 line
-        englishBrivlaPlaces = englishBrivlaPlacesBase M.! text
+        englishBrivlaPlaces = englishBrivlaPlacesMap M.! text
         englishKeyword1 = subfield 20 41 line
         englishKeyword2 = T.replace "'" "" $ subfield 41 62 line
         englishDefinition = subfield 62 158 line
@@ -76,8 +76,8 @@ loadCmavoFromFile frequencyMap = loadCmavoFromText frequencyMap <$> TIO.readFile
 
 -- Brivla places
 -- See also: http://www.lojban.org/publications/wordlists/oblique_keywords.txt
-englishBrivlaPlacesBase :: M.Map T.Text [T.Text]
-englishBrivlaPlacesBase = M.fromList
+englishBrivlaPlacesMap :: M.Map T.Text [T.Text]
+englishBrivlaPlacesMap = M.fromList
     [ ("tavla", ["speaker", "listener", "subject", "language"])
     , ("dunda", ["donor", "gift", "recipient"])
     , ("ctuca", ["instructor", "audience/student(s)", "ideas/methods", "subject", "teaching method"])
