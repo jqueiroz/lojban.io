@@ -237,11 +237,11 @@ generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBr
 
 -- Exercise: tell brivla places using se/te/ve/xe
 generateIsolatedBrivlaPlacesExercise :: Dictionary -> WordGenerator -> ExerciseGenerator
-generateIsolatedBrivlaPlacesExercise dictionary selbriGenerator r0 =
+generateIsolatedBrivlaPlacesExercise dictionary brivlaGenerator r0 =
     let
-        (selbri, r1) = selbriGenerator r0
-        placesLojban = map (\x -> x `T.append` " " `T.append` selbri `T.append` " ku") ["lo", "lo se", "lo te", "lo ve", "lo xe"]
-        placesEnglish = retrieveBrivlaPlaces dictionary selbri
+        (brivla, r1) = brivlaGenerator r0
+        placesLojban = map (\x -> x `T.append` " " `T.append` brivla `T.append` " ku") ["lo", "lo se", "lo te", "lo ve", "lo xe"]
+        placesEnglish = retrieveBrivlaPlaces dictionary brivla
         places = zip placesLojban placesEnglish
         (place, _) = chooseItemUniformly r1 places
         correctAlternative = snd place
