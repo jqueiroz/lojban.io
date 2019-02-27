@@ -44,7 +44,7 @@ generateBlacklistedWordTranslationExercise :: T.Text -> SentenceCanonicalizer ->
 generateBlacklistedWordTranslationExercise blacklistedWord = generateRestrictedTranslationExercise (T.concat ["Translate without using \"", blacklistedWord, "\""]) (not . containsWord blacklistedWord)
 
 generateRestrictedTranslationExercise :: T.Text -> (T.Text -> Bool) -> SentenceCanonicalizer -> TranslationGenerator -> ExerciseGenerator
-generateRestrictedTranslationExercise title validator canonicalizer translationGenerator r0 = TypingExercise title [ExerciseSentence True english_sentence] (liftA2 (&&) validator validateAll) (head lojban_sentences) where
+generateRestrictedTranslationExercise title validator canonicalizer translationGenerator r0 = TypingExercise title [ExerciseSentence False english_sentence] (liftA2 (&&) validator validateAll) (head lojban_sentences) where
     (translation, r1) = translationGenerator r0
     (lojban_sentences, english_sentences) = translation
     (english_sentence, r2) = chooseItemUniformly r1 english_sentences
