@@ -18,7 +18,7 @@ module Courses.Util.ExerciseGenerators
 , generateSelbriIdentificationExercise
 , generateContextualizedGismuPlacePositionExercise
 , generateContextualizedGismuPlaceMeaningExercise
-, generateIsolatedGismuPlacesExercise
+, generateIsolatedBrivlaPlacesExercise
 , generateBasicNumberExercise
 ) where
 
@@ -235,9 +235,9 @@ generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBr
             sentences = [ExerciseSentence True sentenceText]
         in SingleChoiceExercise title sentences correctAlternative incorrectAlternatives False
 
--- Exercise: tell gismu places using se/te/ve/xe
-generateIsolatedGismuPlacesExercise :: Dictionary -> [(Int, Selbri)] -> ExerciseGenerator
-generateIsolatedGismuPlacesExercise dictionary selbriList r0 =
+-- Exercise: tell brivla places using se/te/ve/xe
+generateIsolatedBrivlaPlacesExercise :: Dictionary -> [(Int, Selbri)] -> ExerciseGenerator
+generateIsolatedBrivlaPlacesExercise dictionary selbriList r0 =
     let
         (selbri, r1) = chooseItem r0 selbriList
         placesLojban = map (\x -> x `T.append` " " `T.append` selbri `T.append` " ku") ["lo", "lo se", "lo te", "lo ve", "lo xe"]

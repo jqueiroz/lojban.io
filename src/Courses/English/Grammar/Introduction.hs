@@ -1049,7 +1049,7 @@ exercises2 dictionary =
         , (10, generateSelbriIdentificationExercise vocabulary displayBridi)
         , (20, generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBridi)
         , (20, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
-        , (30, generateIsolatedGismuPlacesExercise dictionary $ getVocabularySelbri vocabulary "actions")
+        , (30, generateIsolatedBrivlaPlacesExercise dictionary $ getVocabularySelbri vocabulary "actions")
         , (60, translationExercises2)
         ]
     where
@@ -1059,7 +1059,7 @@ exercises2 dictionary =
 exercises3 :: Dictionary -> ExerciseGenerator
 exercises3 dictionary =
     combineFunctions
-        [ (20, generateIsolatedGismuPlacesExercise dictionary $ getVocabularySelbri vocabulary "actions")
+        [ (20, generateIsolatedBrivlaPlacesExercise dictionary $ getVocabularySelbri vocabulary "actions")
         , (20, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
         , (20, questionExercises3)
         , (80, translationExercises3)
@@ -1071,7 +1071,7 @@ exercises3 dictionary =
 exercises4 :: Dictionary -> ExerciseGenerator
 exercises4 dictionary =
     combineFunctions
-        [ (30, generateIsolatedGismuPlacesExercise dictionary $ getVocabularySelbri vocabulary "actions")
+        [ (30, generateIsolatedBrivlaPlacesExercise dictionary $ getVocabularySelbri vocabulary "actions")
         , (10, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
         , (40, abstractionExercises4)
         , (70, translationExercises4)
@@ -1083,7 +1083,7 @@ exercises4 dictionary =
 exercises5 :: Dictionary -> ExerciseGenerator
 exercises5 dictionary =
     combineFunctions
-        [ (20, generateIsolatedGismuPlacesExercise dictionary $ getVocabularySelbri vocabulary "actions")
+        [ (20, generateIsolatedBrivlaPlacesExercise dictionary $ getVocabularySelbri vocabulary "actions")
         , (10, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
         , (70, translationExercises5_restricted)
         ]
@@ -1099,7 +1099,7 @@ exercises1to5 dictionary =
         , (5, generateSelbriIdentificationExercise vocabulary displayBridi)
         , (5, generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBridi)
         , (15, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
-        , (15, generateIsolatedGismuPlacesExercise dictionary $ getVocabularySelbri vocabulary "actions")
+        , (15, generateIsolatedBrivlaPlacesExercise dictionary $ getVocabularySelbri vocabulary "actions")
         , (60, translationExercises1to5_simplified)
         , (12, questionExercises3_simplified)
         , (12, abstractionExercises4_simplified)
