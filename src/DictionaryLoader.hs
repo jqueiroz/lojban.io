@@ -81,7 +81,7 @@ englishBrivlaPlacesBase = M.fromList
     , ("nupre", ["promisor", "promise", "beneficiary/victim"])
     , ("cusku", ["expresser", "message", "audience", "expressive medium"])
     , ("cizra", ["strange thing", "viewpoint holder", "property"])
-    , ("cmene", ["name/title", "named entity", "name-user"])
+    , ("cmene", ["name/title", "name posessor", "name-giver/name-user"])
     , ("cusku", ["agent", "expressed idea", "audience", "expressive medium"])
     , ("djica", ["desirer", "event/state", "purpose"])
     , ("gleki", ["happy entity", "event/state"])
