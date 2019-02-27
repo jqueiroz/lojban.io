@@ -24,12 +24,12 @@ loadTranslationsByExpression contents = map loadTranslations $ T.splitOn "\n\n\n
             makeTranslation [lojban_line, english_line] = ([(T.splitOn "\t" lojban_line) !! 1], [(T.splitOn "\t\t" english_line) !! 1])
 
 buildBrivlaExerciseGenerator :: Dictionary -> TranslationsByExpression -> ExerciseGenerator
-buildBrivlaExerciseGenerator dictionary translationsByExpression = combineFunctions [(6, translationExercises), (4, brivlaPlacesExercise)] where
+buildBrivlaExerciseGenerator dictionary translationsByExpression = combineFunctions [(6, translationExercises), (4, brivlaPlacesExercises)] where
     brivla = map fst translationsByExpression
     brivlaWithAtLeastTwoPlaces = filter ((>= 2) . length . retrieveBrivlaPlaces dictionary) brivla
     translationExercises = generateBroadFillingBlanksExerciseByExpression translationGeneratorByExpression
     translationGeneratorByExpression = map (second generatorFromList) translationsByExpression
-    brivlaPlacesExercise = generateIsolatedBrivlaPlacesExercise dictionary $ map (1,) brivlaWithAtLeastTwoPlaces
+    brivlaPlacesExercises = generateIsolatedBrivlaPlacesExercise dictionary $ map (1,) brivlaWithAtLeastTwoPlaces
 
 ------- Lesson plans
 plan01 :: P.Pandoc
