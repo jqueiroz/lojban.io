@@ -44,6 +44,7 @@ exercises01 :: Dictionary -> ExerciseGenerator
 exercises01 dictionary = buildBrivlaExerciseGenerator dictionary translations01
 
 ------- Lessons
+-- TODO: rename: "Brivla 1--20", "Brivla 21--40", ...
 lesson01 :: LessonBuilder
 lesson01 dictionary = Lesson "Deck #1" (exercises01 dictionary) plan01
 
