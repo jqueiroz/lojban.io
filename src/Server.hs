@@ -50,6 +50,7 @@ universalStylesheets = do
     internalStylesheet "bootstrap.min.css"
     internalStylesheet "main.css"
     externalStylesheet "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
+    externalStylesheet "https://fonts.googleapis.com/icon?family=Material+Icons"
 
 universalScripts = do
     internalScript "jquery-2.1.4.min.js"
@@ -216,23 +217,9 @@ displayLessonItem (lessonNumber, lesson) = do
         H.a (H.toHtml $ lessonTitle lesson)
             B.! A.href (H.stringValue . (++"/") . show $ lessonNumber)
 
--- Lesson menu
-displayLessonMenuItems :: String -> Course -> Int -> H.Html
-displayLessonMenuItems baseUrl course lessonNumber = do
-    let lessonsCount = length $ courseLessons course
-    H.li $ H.a B.! A.href (H.stringValue $ "../" ++ baseUrl) $ (H.toHtml ("Course index" :: String))
-    if lessonNumber <= 1 || lessonNumber <= lessonsCount
-        then H.ul $ do
-            if lessonNumber >= 2
-                then H.li $ H.a B.! A.href (H.stringValue . ("../"++) . (baseUrl++) . show $ lessonNumber - 1) $ (H.toHtml ("Previous lesson" :: String))
-                else return ()
-            if lessonNumber < lessonsCount
-                then H.li $ H.a B.! A.href (H.stringValue . ("../"++) . (baseUrl++) . show $ lessonNumber + 1) $ (H.toHtml ("Next lesson" :: String))
-                else return ()
-        else return ()
-    H.li $ H.a B.! A.href (H.stringValue "pending") $ (H.toHtml ("Vocabulary" :: String))
-
 -- Lesson page
+data LessonSubpage = LessonHome | LessonVocabulary | LessonExercises deriving (Enum, Eq)
+
 displayLessonHome :: TopbarCategory -> Course -> Int -> H.Html
 displayLessonHome topbarCategory course lessonNumber = do
     let lesson = (courseLessons course) !! (lessonNumber - 1)
@@ -246,15 +233,40 @@ displayLessonHome topbarCategory course lessonNumber = do
             displayTopbar topbarCategory
             H.div B.! A.class_ (H.stringValue "main") $ do
                 H.div B.! A.class_ (H.stringValue "lesson") $ do
+                    displayLessonHeader "" LessonHome course lessonNumber
                     H.div B.! A.class_ (H.stringValue "lesson-contents") $ do
-                        H.h3 $ H.toHtml (lessonTitle lesson)
                         H.div $ do
-                            H.h4 $ H.toHtml ("Lesson plan" :: String)
+                            H.h3 $ H.toHtml ("Lesson plan" :: String)
                             fromRight $ P.runPure $ PWH.writeHtml5 P.def (lessonPlan lesson)
-                    H.div B.! A.class_ (H.stringValue "lesson-menu") $ do
-                        H.h4 $ H.toHtml ("Menu" :: String)
-                        H.ul $ displayLessonMenuItems "" course lessonNumber
-                        H.a B.! A.href (H.stringValue "exercises") B.! A.class_ (H.stringValue "button") $ (H.toHtml ("Practice" :: String))
+
+displayLessonHeader :: String -> LessonSubpage -> Course -> Int -> H.Html
+displayLessonHeader baseLessonUrl lessonSubpage course lessonNumber = do
+    let baseCourseUrl = baseLessonUrl ++ "../"
+    let lessons = courseLessons course
+    let lessonsCount = length lessons
+    let lesson = lessons !! (lessonNumber - 1)
+    H.div B.! A.class_ (H.stringValue "lesson-header") $ do
+        H.div B.! A.class_ (H.stringValue "lesson-info") $ do
+            H.div B.! A.class_ "course-title" $
+                H.a B.! A.href (H.stringValue baseCourseUrl) $ H.toHtml (courseTitle course)
+            H.div B.! A.class_ "lesson-title" $ do
+                if lessonNumber >= 2
+                    then let
+                        url = ("../" ++) . (baseLessonUrl ++) . show $ lessonNumber - 1
+                        title = ("Previous lesson: " ++) . lessonTitle $ lessons !! (lessonNumber - 2)
+                        in H.a B.! A.href (H.stringValue url) B.! A.title (H.stringValue title) $ H.toHtml ("<" :: String)
+                    else return ()
+                H.span $ H.toHtml ((show lessonNumber) ++ ". " ++ lessonTitle lesson)
+                if lessonNumber < lessonsCount
+                    then let
+                        url = ("../"++) . (baseLessonUrl++) . show $ lessonNumber + 1
+                        title = ("Next lesson: " ++) . lessonTitle $ lessons !! lessonNumber
+                        in H.a B.! A.href (H.stringValue url) B.! A.title (H.stringValue title) $ H.toHtml (">" :: String)
+                    else return ()
+        H.div B.! A.class_ "lesson-buttons" $ do
+            when (lessonSubpage /= LessonHome) $ H.a B.! A.class_ (H.stringValue "button") B.! A.href (H.stringValue "../") $ (H.toHtml ("Theory" :: String))
+            when (lessonSubpage /= LessonExercises) $ H.a B.! A.class_ (H.stringValue "button") B.! A.href (H.stringValue $ baseLessonUrl ++ "exercises") $ (H.toHtml ("Practice" :: String))
+            when (lessonSubpage /= LessonVocabulary) $ H.a B.! A.class_ (H.stringValue "button") B.! A.href (H.stringValue $ baseLessonUrl ++ "vocabulary")$ (H.toHtml ("Vocabulary" :: String))
 
 -- Exercise page
 displayExercise :: TopbarCategory -> Course -> Int -> H.Html
@@ -273,10 +285,7 @@ displayExercise topbarCategory course lessonNumber =
             displayTopbar topbarCategory
             H.div B.! A.class_ (H.stringValue "main") $ do
                 H.div B.! A.class_ (H.stringValue "lesson") $ do
+                    displayLessonHeader "" LessonExercises course lessonNumber
                     H.div B.! A.id (H.stringValue "exercise-holder") $ H.toHtml ("" :: String)
-                    H.div B.! A.class_ (H.stringValue "lesson-menu") $ do
-                        H.h4 $ H.toHtml ("Menu" :: String)
-                        H.ul $ displayLessonMenuItems "../" course lessonNumber
-                        H.a B.! A.href (H.stringValue "../") B.! A.class_ (H.stringValue "button") $ (H.toHtml ("Back to lesson" :: String))
     where
         lesson = (courseLessons course) !! (lessonNumber - 1)
