@@ -12,6 +12,7 @@ type WordGenerator = StdGen -> (T.Text, StdGen)
 data Dictionary = Dictionary
     { dictGismu :: M.Map T.Text Gismu
     , dictCmavo :: M.Map T.Text Cmavo
+    , dictValsiDefinition :: M.Map T.Text T.Text
     , dictBrivlaPlaces :: M.Map T.Text [T.Text]
     } deriving (Show)
 

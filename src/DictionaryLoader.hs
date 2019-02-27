@@ -7,6 +7,7 @@ module DictionaryLoader
 import Core
 import Util (subfield)
 import Control.Applicative ((<$>), (<*>))
+import Control.Arrow ((***), first, second)
 import qualified Data.Text as T
 import qualified Data.Text.IO as TIO
 import qualified Data.Map as M
@@ -18,13 +19,20 @@ loadDictionary = do
     frequencyMap <- loadFrequencyMapFromFile
     -- Cmavo
     cmavo <- loadCmavoFromFile frequencyMap
-    let cmavoMap = M.fromList $ map (\c -> (cmavoText c, c)) cmavo
-    let isReallyGismu gismu = M.lookup (gismuText gismu) cmavoMap == Nothing
+    let cmavoList = map (\c -> (cmavoText c, c)) cmavo
+    let cmavoMap = M.fromList cmavoList
     -- Gismu
+    let isReallyGismu gismu = M.lookup (gismuText gismu) cmavoMap == Nothing
     gismu <- filter isReallyGismu <$> loadGismuFromFile frequencyMap
-    let gismuMap = M.fromList $ map (\g -> (gismuText g, g)) gismu
+    let gismuList = map (\g -> (gismuText g, g)) gismu
+    let gismuMap = M.fromList gismuList
+    -- Definitions
+    let cmavoDefinitions = (second cmavoEnglishDefinition) <$> cmavoList
+    let gismuDefinitions = (second gismuEnglishDefinition) <$> gismuList
+    let definitionsList = cmavoDefinitions ++ gismuDefinitions
+    let definitionsMap = M.fromList definitionsList
     -- Return dictionary
-    return $ Dictionary gismuMap cmavoMap englishBrivlaPlacesBase
+    return $ Dictionary gismuMap cmavoMap definitionsMap englishBrivlaPlacesBase
 
 -- Gismu
 loadGismuFromLine :: FrequencyMap -> T.Text -> Gismu
