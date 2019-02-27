@@ -236,7 +236,7 @@ generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBr
         in SingleChoiceExercise title sentences correctAlternative incorrectAlternatives False
 
 -- Exercise: tell brivla places using se/te/ve/xe
-generateIsolatedBrivlaPlacesExercise :: Dictionary -> [(Int, Selbri)] -> ExerciseGenerator
+generateIsolatedBrivlaPlacesExercise :: Dictionary -> [(Int, Brivla)] -> ExerciseGenerator
 generateIsolatedBrivlaPlacesExercise dictionary selbriList r0 =
     let
         (selbri, r1) = chooseItem r0 selbriList
