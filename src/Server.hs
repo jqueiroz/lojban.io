@@ -293,5 +293,6 @@ displayLessonHeader baseLessonUrl lessonSubpage course lessonNumber = do
             when (lessonSubpage /= LessonExercises) $ H.a B.! A.class_ (H.stringValue "button") B.! A.href (H.stringValue $ baseLessonUrl ++ "exercises") $ (H.toHtml ("Practice" :: String))
             --when (lessonSubpage /= LessonVocabulary) $ H.a B.! A.class_ (H.stringValue "button") B.! A.href (H.stringValue $ baseLessonUrl ++ "vocabulary")$ (H.toHtml ("Vocabulary" :: String))
             --TODO: consider alternative layout: inside theory, there are two tabs: one for the actual theory and another for vocabulary
+            -- also consider including the lesson plan in a third tab
 
 -- displayLessonVocabulary: consider using cards (https://getbootstrap.com/docs/4.0/components/card/)
