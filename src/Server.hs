@@ -22,6 +22,8 @@ import qualified Text.Blaze.Html5.Attributes as A
 import qualified Text.Pandoc as P
 import qualified Text.Pandoc.Writers.HTML as PWH
 
+-- TODO: consider adding breadcrumbs (https://getbootstrap.com/docs/4.0/components/breadcrumb/)
+
 main :: IO ()
 main = do
     dictionary <- loadDictionary
@@ -196,6 +198,7 @@ displayTopbarMenuItem selected text url = do
             B.! A.href (H.stringValue url)
 
 -- Course page
+-- TODO: consider using list groups (https://getbootstrap.com/docs/4.0/components/list-group/)
 displayCourseHome :: TopbarCategory -> Course -> H.Html
 displayCourseHome topbarCategory course = do
     let title = courseTitle course
@@ -239,6 +242,7 @@ displayLessonHome topbarCategory course lessonNumber = do
                             H.h3 $ H.toHtml ("Lesson plan" :: String)
                             fromRight $ P.runPure $ PWH.writeHtml5 P.def (lessonPlan lesson)
 
+-- Embedded dictionary: consider using tooltips (https://getbootstrap.com/docs/4.0/components/tooltips/)
 displayLessonExercise :: TopbarCategory -> Course -> Int -> H.Html
 displayLessonExercise topbarCategory course lessonNumber =
     H.html $ do
@@ -288,3 +292,6 @@ displayLessonHeader baseLessonUrl lessonSubpage course lessonNumber = do
             when (lessonSubpage /= LessonHome) $ H.a B.! A.class_ (H.stringValue "button") B.! A.href (H.stringValue "../") $ (H.toHtml ("Review Theory" :: String))
             when (lessonSubpage /= LessonExercises) $ H.a B.! A.class_ (H.stringValue "button") B.! A.href (H.stringValue $ baseLessonUrl ++ "exercises") $ (H.toHtml ("Practice" :: String))
             --when (lessonSubpage /= LessonVocabulary) $ H.a B.! A.class_ (H.stringValue "button") B.! A.href (H.stringValue $ baseLessonUrl ++ "vocabulary")$ (H.toHtml ("Vocabulary" :: String))
+            --TODO: consider alternative layout: inside theory, there are two tabs: one for the actual theory and another for vocabulary
+
+-- displayLessonVocabulary: consider using cards (https://getbootstrap.com/docs/4.0/components/card/)
