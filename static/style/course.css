@@ -90,7 +90,8 @@ h3 {
 .lesson-header a.button {
     /* Position */
     display: inline-block;
-    width: 9em;
+    /*width: 9em;*/
+    width: 12em;
     text-align: center;
     margin-left: 2em;
     /* Style */
