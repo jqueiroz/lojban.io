@@ -243,7 +243,7 @@ displayLessonExercise :: TopbarCategory -> Course -> Int -> H.Html
 displayLessonExercise topbarCategory course lessonNumber =
     H.html $ do
         H.head $ do
-            H.title (H.toHtml ("Practice" :: T.Text))
+            H.title (H.toHtml (lessonTitle lesson ++ " :: Practice"))
             universalStylesheets
             internalStylesheet "course.css"
             internalStylesheet "funkyradio.css"
