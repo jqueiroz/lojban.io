@@ -200,7 +200,7 @@ translations2_nice = combineFunctions $ [(2, translations2_restricted), (2, teac
     hasHouse = generatorFromList
         [ (["lo ctuca ku se zdani"], ["The instructor has a house."])
         , (["lo prenu ku se zdani"], ["The person has a house."])
-        , (["lo tavla ku se zdani"], ["The speaker has a house."])
+        , (["lo tavla ku se zdani", "lo cusku ku se zdani"], ["The speaker has a house."])
         , (["lo se tavla ku se zdani"], ["The listener has a house."])
         , (["lo dunda ku se zdani"], ["The donor has a house."])
         , (["lo te dunda ku se zdani"], ["The recipient has a house."])
@@ -238,12 +238,12 @@ translations2_nice = combineFunctions $ [(2, translations2_restricted), (2, teac
         , (["ctuca do"], ["Somebody taught you."])
         ]
     friends = generatorFromList
-        [ (["lo tavla ku pendo mi"], ["The speaker is my friend.", "The speakers are my friends."])
+        [ (["lo tavla ku pendo mi", "lo cusku ku pendo mi"], ["The speaker is my friend.", "The speakers are my friends."])
         , (["lo se tavla ku pendo mi"], ["The listener is my friend.", "The listeners are my friends."])
         , (["lo dunda ku pendo mi"], ["The donor is my friend.", "The donors are my friends."])
         , (["lo te dunda ku pendo mi"], ["The recipient is my friend.", "The recipients are my friends."])
         , (["lo ctuca ku pendo mi"], ["The instructor is my friend.", "The instructors are my friends."])
-        , (["lo tavla ku pendo"], ["The speaker is friendly.", "The speakers are friendly."])
+        , (["lo tavla ku pendo", "lo cusku ku pendo"], ["The speaker is friendly.", "The speakers are friendly."])
         , (["lo se tavla ku pendo"], ["The listener is friendly.", "The listeners are friendly."])
         , (["lo dunda ku pendo"], ["The donor is friendly.", "The donors are friendly."])
         , (["lo te dunda ku pendo"], ["The recipient is friendly.", "The recipients are friendly."])
@@ -818,7 +818,7 @@ translations5_restricted = combineFunctions [(2, hasHouse), (3, nice), (3, givin
     hasHouse = generatorFromList
         [ (["lo ctuca cu se zdani"], ["The instructor has a house."])
         , (["lo prenu cu se zdani"], ["The person has a house."])
-        , (["lo tavla cu se zdani"], ["The speaker has a house."])
+        , (["lo tavla cu se zdani", "lo cusku cu se zdani"], ["The speaker has a house."])
         , (["lo se tavla cu se zdani"], ["The listener has a house."])
         , (["lo dunda cu se zdani"], ["The donor has a house."])
         , (["lo te dunda cu se zdani"], ["The recipient has a house."])
