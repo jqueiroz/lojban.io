@@ -56,7 +56,7 @@ h3 {
     /* Text */
     font-size: 2em;
     font-weight: bolder;
-    font-family: "Varela Round", "Open Sans";
+    font-family: "Varela Round";
     /* Border */
     border-bottom: solid 1px #fff;
     display: inline-block;
@@ -68,6 +68,7 @@ h3 {
     margin-top: 1rem;
     /* Text */
     font-size: 1.5em;
+    font-family: "Helvetica", "Arial", "sans-serif";
 }
 
 .lesson-header .lesson-title span {
@@ -98,7 +99,7 @@ h3 {
     padding: 0.75em 1.25em;
     /* Text */
     color: #a560eb;
-    font-family: "Varela Round", "Open Sans";
+    font-family: "Varela Round";
     font-size: 1.4em;
     font-variant: small-caps;
     font-weight: bold;
