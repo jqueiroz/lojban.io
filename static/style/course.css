@@ -22,8 +22,8 @@ h3 {
     margin: 0 0 0 0;
     overflow: auto;
     /* Style */
-    /*background-color: #8549ba;*/
-    background-color: #a560eb;
+    background-color: #8549ba;
+    /*background-color: #a560eb;*/
     padding: 40px 40px;
     /* Border */
     border-radius: 10px;
@@ -111,7 +111,8 @@ h3 {
     border-radius: 98px;
     padding: 0.75em 1.25em;
     /* Text */
-    color: #a560eb;
+    /*color: #a560eb;*/
+    color: #8549ba;
     font-family: "Varela Round";
     font-size: 1.4em;
     font-variant: small-caps;
