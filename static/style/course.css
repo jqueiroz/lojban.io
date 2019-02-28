@@ -118,8 +118,7 @@ h3 {
 }
 
 .exercise-holder {
-    /* Position */
-    position: absolute;
-    left: 7%;
-    width: 60%;
+    /* Border */
+    border-radius: 0 0 10px 10px;
+    background-color: #fff;
 }

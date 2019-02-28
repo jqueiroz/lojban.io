@@ -1,8 +1,8 @@
-.exercise-holder {
-    background-color: #fff;
-    border-radius: 20px;
-    box-shadow: 0 0 30px rgba(0,0,0,0.08);
-}
+/*.exercise-holder {*/
+    /*background-color: #fff;*/
+    /*border-radius: 20px;*/
+    /*box-shadow: 0 0 30px rgba(0,0,0,0.08);*/
+/*}*/
 
 .exercise-holder .body {
     min-height: 24em;
@@ -88,7 +88,7 @@
     position: relative;
     padding: 1.5em 3em;
     min-height: 8em;
-    border-radius: 0 0 20px 20px;
+    border-radius: 0 0 10px 10px;
     background-color: #ddd;
 }
 
