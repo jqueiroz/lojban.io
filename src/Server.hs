@@ -285,7 +285,7 @@ displayExercise topbarCategory course lessonNumber =
             displayTopbar topbarCategory
             H.div B.! A.class_ (H.stringValue "main") $ do
                 H.div B.! A.class_ (H.stringValue "lesson") $ do
-                    displayLessonHeader "" LessonExercises course lessonNumber
+                    displayLessonHeader "../" LessonExercises course lessonNumber
                     H.div B.! A.id (H.stringValue "exercise-holder") $ H.toHtml ("" :: String)
     where
         lesson = (courseLessons course) !! (lessonNumber - 1)
