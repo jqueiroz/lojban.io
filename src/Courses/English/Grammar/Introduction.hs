@@ -22,6 +22,8 @@ import qualified Text.Pandoc as P
 
 -- Considerations
 --   * is "speaker" a good choice? maybe it implies voice or authority...
+-- TODO: consider adding some translations using observatives
+-- TODO: cleanup all tenses before canonicalization (translations with incorrect tenses will be accepted, but this is likely a small price to pay in order to accept correct translations including tenses)
 
 ------- Lesson plans
 plan1 :: P.Pandoc
