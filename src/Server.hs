@@ -209,7 +209,7 @@ displayCourseHome topbarCategory course = do
             displayTopbar topbarCategory
             H.div B.! A.class_ (H.stringValue "main") $ do
                 H.h1 $ H.toHtml title
-                H.ul $ forM_ (zip [1..] lessons) displayLessonItem
+                H.ol $ forM_ (zip [1..] lessons) displayLessonItem
 
 displayLessonItem :: (Int, Lesson) -> H.Html
 displayLessonItem (lessonNumber, lesson) = do
