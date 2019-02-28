@@ -217,7 +217,7 @@ displayLessonItem (lessonNumber, lesson) = do
         H.a (H.toHtml $ lessonTitle lesson)
             B.! A.href (H.stringValue . (++"/") . show $ lessonNumber)
 
--- Lesson page
+-- Lesson pages
 data LessonSubpage = LessonHome | LessonVocabulary | LessonExercises deriving (Enum, Eq)
 
 displayLessonHome :: TopbarCategory -> Course -> Int -> H.Html
@@ -238,6 +238,27 @@ displayLessonHome topbarCategory course lessonNumber = do
                         H.div $ do
                             H.h3 $ H.toHtml ("Lesson plan" :: String)
                             fromRight $ P.runPure $ PWH.writeHtml5 P.def (lessonPlan lesson)
+
+displayLessonExercise :: TopbarCategory -> Course -> Int -> H.Html
+displayLessonExercise topbarCategory course lessonNumber =
+    H.html $ do
+        H.head $ do
+            H.title (H.toHtml ("Practice" :: T.Text))
+            universalStylesheets
+            internalStylesheet "course.css"
+            internalStylesheet "funkyradio.css"
+            internalStylesheet "list-group-horizontal.css"
+            internalStylesheet "exercise.css"
+            universalScripts
+            internalScript "exercise.js"
+        H.body $ do
+            displayTopbar topbarCategory
+            H.div B.! A.class_ (H.stringValue "main") $ do
+                H.div B.! A.class_ (H.stringValue "lesson") $ do
+                    displayLessonHeader "../" LessonExercises course lessonNumber
+                    H.div B.! A.id (H.stringValue "exercise-holder") $ H.toHtml ("" :: String)
+    where
+        lesson = (courseLessons course) !! (lessonNumber - 1)
 
 displayLessonHeader :: String -> LessonSubpage -> Course -> Int -> H.Html
 displayLessonHeader baseLessonUrl lessonSubpage course lessonNumber = do
@@ -267,25 +288,3 @@ displayLessonHeader baseLessonUrl lessonSubpage course lessonNumber = do
             when (lessonSubpage /= LessonHome) $ H.a B.! A.class_ (H.stringValue "button") B.! A.href (H.stringValue "../") $ (H.toHtml ("Theory" :: String))
             when (lessonSubpage /= LessonExercises) $ H.a B.! A.class_ (H.stringValue "button") B.! A.href (H.stringValue $ baseLessonUrl ++ "exercises") $ (H.toHtml ("Practice" :: String))
             when (lessonSubpage /= LessonVocabulary) $ H.a B.! A.class_ (H.stringValue "button") B.! A.href (H.stringValue $ baseLessonUrl ++ "vocabulary")$ (H.toHtml ("Vocabulary" :: String))
-
--- Exercise page
-displayLessonExercise :: TopbarCategory -> Course -> Int -> H.Html
-displayLessonExercise topbarCategory course lessonNumber =
-    H.html $ do
-        H.head $ do
-            H.title (H.toHtml ("Practice" :: T.Text))
-            universalStylesheets
-            internalStylesheet "course.css"
-            internalStylesheet "funkyradio.css"
-            internalStylesheet "list-group-horizontal.css"
-            internalStylesheet "exercise.css"
-            universalScripts
-            internalScript "exercise.js"
-        H.body $ do
-            displayTopbar topbarCategory
-            H.div B.! A.class_ (H.stringValue "main") $ do
-                H.div B.! A.class_ (H.stringValue "lesson") $ do
-                    displayLessonHeader "../" LessonExercises course lessonNumber
-                    H.div B.! A.id (H.stringValue "exercise-holder") $ H.toHtml ("" :: String)
-    where
-        lesson = (courseLessons course) !! (lessonNumber - 1)
