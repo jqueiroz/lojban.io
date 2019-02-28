@@ -296,3 +296,4 @@ displayLessonHeader baseLessonUrl lessonSubpage course lessonNumber = do
             -- also consider including the lesson plan in a third tab
 
 -- displayLessonVocabulary: consider using cards (https://getbootstrap.com/docs/4.0/components/card/)
+-- probably better: table similar to https://www.memrise.com/course/37344/simplified-gismu/1/
