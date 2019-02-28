@@ -43,6 +43,12 @@ h3 {
     /* Background */
     /* TODO: replace icon */
     background: url(https://image.flaticon.com/icons/svg/207/207473.svg);
+    /* https://www.flaticon.com/free-icon/classroom_906175 */
+    /*background: url(https://image.flaticon.com/icons/svg/906/906175.svg);*/
+    /* https://www.flaticon.com/free-icon/professor_167752 */
+    /*background: url(https://image.flaticon.com/icons/svg/167/167752.svg);*/
+    /* https://www.flaticon.com/free-icon/books_150360#term=literature&page=1&position=21 */
+    /*background: url(https://image.flaticon.com/icons/svg/150/150360.svg);*/
     content: '';
 }
 
