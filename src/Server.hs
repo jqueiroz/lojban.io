@@ -105,7 +105,7 @@ handleLesson :: TopbarCategory -> Dictionary -> Course -> Int -> ServerPart Resp
 handleLesson topbarCategory dictionary course lessonNumber = msum
     [ forceSlash . ok . toResponse $ displayLessonHome topbarCategory course lessonNumber
     , dir "exercises" $ msum
-        [ forceSlash . ok . toResponse $ displayExercise topbarCategory course lessonNumber
+        [ forceSlash . ok . toResponse $ displayLessonExercise topbarCategory course lessonNumber
         , path $ \n ->
             let
                 lesson = (courseLessons course) !! (lessonNumber - 1)
@@ -269,8 +269,8 @@ displayLessonHeader baseLessonUrl lessonSubpage course lessonNumber = do
             when (lessonSubpage /= LessonVocabulary) $ H.a B.! A.class_ (H.stringValue "button") B.! A.href (H.stringValue $ baseLessonUrl ++ "vocabulary")$ (H.toHtml ("Vocabulary" :: String))
 
 -- Exercise page
-displayExercise :: TopbarCategory -> Course -> Int -> H.Html
-displayExercise topbarCategory course lessonNumber =
+displayLessonExercise :: TopbarCategory -> Course -> Int -> H.Html
+displayLessonExercise topbarCategory course lessonNumber =
     H.html $ do
         H.head $ do
             H.title (H.toHtml ("Practice" :: T.Text))
