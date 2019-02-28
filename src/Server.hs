@@ -250,19 +250,19 @@ displayLessonHeader baseLessonUrl lessonSubpage course lessonNumber = do
             H.div B.! A.class_ "course-title" $
                 H.a B.! A.href (H.stringValue baseCourseUrl) $ H.toHtml (courseTitle course)
             H.div B.! A.class_ "lesson-title" $ do
-                if lessonNumber >= 2
-                    then let
+                when (lessonNumber >= 2) $
+                    let
                         url = ("../" ++) . (baseLessonUrl ++) . show $ lessonNumber - 1
                         title = ("Previous lesson: " ++) . lessonTitle $ lessons !! (lessonNumber - 2)
-                        in H.a B.! A.href (H.stringValue url) B.! A.title (H.stringValue title) $ H.toHtml ("<" :: String)
-                    else return ()
+                    in
+                        H.a B.! A.href (H.stringValue url) B.! A.title (H.stringValue title) $ H.toHtml ("<" :: String)
                 H.span $ H.toHtml ((show lessonNumber) ++ ". " ++ lessonTitle lesson)
-                if lessonNumber < lessonsCount
-                    then let
+                when (lessonNumber < lessonsCount) $
+                    let
                         url = ("../"++) . (baseLessonUrl++) . show $ lessonNumber + 1
                         title = ("Next lesson: " ++) . lessonTitle $ lessons !! lessonNumber
-                        in H.a B.! A.href (H.stringValue url) B.! A.title (H.stringValue title) $ H.toHtml (">" :: String)
-                    else return ()
+                    in
+                        H.a B.! A.href (H.stringValue url) B.! A.title (H.stringValue title) $ H.toHtml (">" :: String)
         H.div B.! A.class_ "lesson-buttons" $ do
             when (lessonSubpage /= LessonHome) $ H.a B.! A.class_ (H.stringValue "button") B.! A.href (H.stringValue "../") $ (H.toHtml ("Theory" :: String))
             when (lessonSubpage /= LessonExercises) $ H.a B.! A.class_ (H.stringValue "button") B.! A.href (H.stringValue $ baseLessonUrl ++ "exercises") $ (H.toHtml ("Practice" :: String))
