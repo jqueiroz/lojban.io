@@ -503,14 +503,14 @@ translations3_normal_ma = combineFunctions $ [(3, translations3_restricted_ma), 
         ]
     writing = generatorFromList
         -- instrument
-        [ (["ciska ti zo'e ma"], ["Which instrument was used to write this?"])
-        , (["do ciska ta zo'e ma"], ["Which instrument did you use to write that?"])
+        [ (["ciska ti fo ma"], ["Which instrument was used to write this?"])
+        , (["do ciska ta fo ma"], ["Which instrument did you use to write that?"])
         -- what
         , (["do ciska ma"], ["What did you write?", "What are you going to write?"])
         , (["do ciska ma ta"], ["What did you write there?", "What are you going to write there?"])
-        , (["do ciska ma zo'e ta"], ["What did you write using that?"])
+        , (["do ciska ma fo ta"], ["What did you write using that?"])
         , (["ciska ma ta"], ["What is written there?"])
-        , (["ciska ma zo'e ti"], ["What was written using this?"])
+        , (["ciska ma fo ti"], ["What was written using this?"])
         -- who
         , (["ma ciska"], ["Who is writing?"])
         , (["ma ciska ti"], ["Who wrote this?"])
