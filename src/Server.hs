@@ -202,20 +202,35 @@ displayTopbarMenuItem selected text url = do
 displayCourseHome :: TopbarCategory -> Course -> H.Html
 displayCourseHome topbarCategory course = do
     let title = courseTitle course
-    let lessons = courseLessons course
     H.html $ do
         H.head $ do
             H.title $ H.toHtml title
             universalStylesheets
             universalScripts
+            internalStylesheet "course.css"
         H.body $ do
             displayTopbar topbarCategory
             H.div B.! A.class_ (H.stringValue "main") $ do
-                H.h1 $ H.toHtml title
-                H.ol $ forM_ (zip [1..] lessons) displayLessonItem
+                H.div B.! A.class_ (H.stringValue "course") $ do
+                    displayCourseMenu "" course
+                    displayCourseContents "" course
 
-displayLessonItem :: (Int, Lesson) -> H.Html
-displayLessonItem (lessonNumber, lesson) = do
+displayCourseMenu :: String -> Course -> H.Html
+displayCourseMenu baseCourseUrl course = do
+    H.div B.! A.class_ (H.stringValue "course-header") $ do
+        H.div B.! A.class_ (H.stringValue "course-info") $ do
+            H.div B.! A.class_ "course-title" $ H.toHtml (courseTitle course)
+            H.div B.! A.class_ "course-description" $ H.toHtml ("" :: String)
+
+displayCourseContents :: String -> Course -> H.Html
+displayCourseContents baseCourseUrl course = do
+    let lessons = courseLessons course
+    H.div B.! A.class_ (H.stringValue "course-contents") $ do
+        H.h3 $ H.toHtml ("Lessons" :: String)
+        H.ol $ forM_ (zip [1..] lessons) displayCourseLessonItem
+
+displayCourseLessonItem :: (Int, Lesson) -> H.Html
+displayCourseLessonItem (lessonNumber, lesson) = do
     H.li $ do
         H.a (H.toHtml $ lessonTitle lesson)
             B.! A.href (H.stringValue . (++"/") . show $ lessonNumber)
