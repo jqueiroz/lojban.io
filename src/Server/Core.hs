@@ -53,7 +53,6 @@ includeExternalScript src =
       B.! A.type_ "text/javascript"
       B.! A.src (H.stringValue src)
 
-
 -- Topbar
 data TopbarCategory = TopbarHome | TopbarGrammar | TopbarVocabulary | TopbarResources deriving (Enum, Eq)
 
