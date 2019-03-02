@@ -19,6 +19,7 @@ data LessonSubpage = LessonHome | LessonVocabulary | LessonExercises deriving (E
 
 displayLessonHome :: TopbarCategory -> Course -> Int -> H.Html
 displayLessonHome topbarCategory course lessonNumber = do
+    let baseLessonUrl = ""
     let lesson = (courseLessons course) !! (lessonNumber - 1)
     H.html $ do
         H.head $ do
@@ -31,7 +32,7 @@ displayLessonHome topbarCategory course lessonNumber = do
             displayTopbar topbarCategory
             H.div B.! A.class_ (H.stringValue "main") $ do
                 H.div B.! A.class_ (H.stringValue "lesson") $ do
-                    displayLessonHeader "" LessonHome course lessonNumber
+                    displayLessonHeader baseLessonUrl LessonHome course lessonNumber
                     H.div B.! A.class_ (H.stringValue "lesson-contents") $ do
                         H.div $ do
                             H.h3 $ H.toHtml ("Lesson plan" :: String)
@@ -39,7 +40,8 @@ displayLessonHome topbarCategory course lessonNumber = do
 
 -- Embedded dictionary: consider using tooltips (https://getbootstrap.com/docs/4.0/components/tooltips/)
 displayLessonExercise :: TopbarCategory -> Course -> Int -> H.Html
-displayLessonExercise topbarCategory course lessonNumber =
+displayLessonExercise topbarCategory course lessonNumber = do
+    let baseLessonUrl = "../"
     H.html $ do
         H.head $ do
             H.title (H.toHtml (lessonTitle lesson ++ " :: Practice"))
@@ -55,7 +57,7 @@ displayLessonExercise topbarCategory course lessonNumber =
             displayTopbar topbarCategory
             H.div B.! A.class_ (H.stringValue "main") $ do
                 H.div B.! A.class_ (H.stringValue "lesson") $ do
-                    displayLessonHeader "../" LessonExercises course lessonNumber
+                    displayLessonHeader baseLessonUrl LessonExercises course lessonNumber
                     H.div B.! A.id (H.stringValue "exercise-holder") $ H.toHtml ("" :: String)
     where
         lesson = (courseLessons course) !! (lessonNumber - 1)

@@ -14,6 +14,7 @@ import qualified Text.Blaze.Html5.Attributes as A
 -- TODO: consider using list groups (https://getbootstrap.com/docs/4.0/components/list-group/)
 displayCourseHome :: TopbarCategory -> Course -> H.Html
 displayCourseHome topbarCategory course = do
+    let baseCourseUrl = ""
     let title = courseTitle course
     H.html $ do
         H.head $ do
@@ -26,8 +27,8 @@ displayCourseHome topbarCategory course = do
             displayTopbar topbarCategory
             H.div B.! A.class_ (H.stringValue "main") $ do
                 H.div B.! A.class_ (H.stringValue "course") $ do
-                    displayCourseMenu "" course
-                    displayCourseContents "" course
+                    displayCourseMenu baseCourseUrl course
+                    displayCourseContents baseCourseUrl course
 
 displayCourseMenu :: String -> Course -> H.Html
 displayCourseMenu baseCourseUrl course = do
