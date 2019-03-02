@@ -1,13 +1,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 module Server.Core
-( universalStylesheets
-, internalStylesheet
-, externalStylesheet
-, courseStylesheet
-, universalScripts
-, internalScript
-, externalScript
+( includeUniversalStylesheets
+, includeInternalStylesheet
+, includeExternalStylesheet
+, includeCourseStylesheet
+, includeUniversalScripts
+, includeInternalScript
+, includeExternalScript
 , TopbarCategory (..)
 , displayTopbar
 ) where
@@ -18,37 +18,37 @@ import qualified Text.Blaze.Html5 as H
 import qualified Text.Blaze.Html5.Attributes as A
 
 -- Stylesheets
-universalStylesheets = do
-    internalStylesheet "bootstrap.min.css"
-    internalStylesheet "main.css"
-    externalStylesheet "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
-    externalStylesheet "https://fonts.googleapis.com/icon?family=Material+Icons"
+includeUniversalStylesheets = do
+    includeInternalStylesheet "bootstrap.min.css"
+    includeInternalStylesheet "main.css"
+    includeExternalStylesheet "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
+    includeExternalStylesheet "https://fonts.googleapis.com/icon?family=Material+Icons"
 
-internalStylesheet :: String -> H.Html
-internalStylesheet = externalStylesheet . ("/static/style/"++)
+includeInternalStylesheet :: String -> H.Html
+includeInternalStylesheet = includeExternalStylesheet . ("/static/style/"++)
 
-externalStylesheet :: String -> H.Html
-externalStylesheet src =
+includeExternalStylesheet :: String -> H.Html
+includeExternalStylesheet src =
     H.link
       B.! A.href (H.stringValue src)
       B.! A.rel "stylesheet"
 
-courseStylesheet :: Course -> H.Html
-courseStylesheet course =
+includeCourseStylesheet :: Course -> H.Html
+includeCourseStylesheet course =
     case courseStyleFilename (courseStyle course) of
         Nothing -> return ()
-        Just filename -> internalStylesheet filename
+        Just filename -> includeInternalStylesheet filename
 
 -- Scripts
-universalScripts = do
-    internalScript "jquery-2.1.4.min.js"
-    internalScript "bootstrap.min.js"
+includeUniversalScripts = do
+    includeInternalScript "jquery-2.1.4.min.js"
+    includeInternalScript "bootstrap.min.js"
 
-internalScript :: String -> H.Html
-internalScript = externalScript . ("/static/scripts/"++)
+includeInternalScript :: String -> H.Html
+includeInternalScript = includeExternalScript . ("/static/scripts/"++)
 
-externalScript :: String -> H.Html
-externalScript src =
+includeExternalScript :: String -> H.Html
+includeExternalScript src =
     H.script ""
       B.! A.type_ "text/javascript"
       B.! A.src (H.stringValue src)

@@ -18,10 +18,10 @@ displayCourseHome topbarCategory course = do
     H.html $ do
         H.head $ do
             H.title $ H.toHtml title
-            universalStylesheets
-            universalScripts
-            internalStylesheet "course.css"
-            courseStylesheet course
+            includeUniversalStylesheets
+            includeUniversalScripts
+            includeInternalStylesheet "course.css"
+            includeCourseStylesheet course
         H.body $ do
             displayTopbar topbarCategory
             H.div B.! A.class_ (H.stringValue "main") $ do

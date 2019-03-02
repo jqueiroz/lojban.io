@@ -15,8 +15,8 @@ displayResourcesHome =
     H.html $ do
         H.head $ do
             H.title $ H.toHtml ("Additional resources" :: String)
-            universalStylesheets
-            universalScripts
+            includeUniversalStylesheets
+            includeUniversalScripts
         H.body $ do
             displayTopbar TopbarResources
             H.div B.! A.class_ (H.stringValue "main") $ do

@@ -23,10 +23,10 @@ displayLessonHome topbarCategory course lessonNumber = do
     H.html $ do
         H.head $ do
             H.title $ H.toHtml (lessonTitle lesson)
-            universalStylesheets
-            universalScripts
-            internalStylesheet "lesson.css"
-            courseStylesheet course
+            includeUniversalStylesheets
+            includeUniversalScripts
+            includeInternalStylesheet "lesson.css"
+            includeCourseStylesheet course
         H.body $ do
             displayTopbar topbarCategory
             H.div B.! A.class_ (H.stringValue "main") $ do
@@ -43,14 +43,14 @@ displayLessonExercise topbarCategory course lessonNumber =
     H.html $ do
         H.head $ do
             H.title (H.toHtml (lessonTitle lesson ++ " :: Practice"))
-            universalStylesheets
-            internalStylesheet "lesson.css"
-            internalStylesheet "funkyradio.css"
-            internalStylesheet "list-group-horizontal.css"
-            internalStylesheet "exercise.css"
-            universalScripts
-            internalScript "exercise.js"
-            courseStylesheet course
+            includeUniversalStylesheets
+            includeInternalStylesheet "lesson.css"
+            includeInternalStylesheet "funkyradio.css"
+            includeInternalStylesheet "list-group-horizontal.css"
+            includeInternalStylesheet "exercise.css"
+            includeUniversalScripts
+            includeInternalScript "exercise.js"
+            includeCourseStylesheet course
         H.body $ do
             displayTopbar topbarCategory
             H.div B.! A.class_ (H.stringValue "main") $ do
