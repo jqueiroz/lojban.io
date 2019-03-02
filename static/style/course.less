@@ -1,11 +1,5 @@
 @import "general.less";
 
-h2 {
-    border-bottom: solid 1px #000;
-    margin-bottom: 0.5em;
-    color: #000;
-}
-
 .course {
     &:extend(.content);
 
@@ -19,9 +13,6 @@ h2 {
     /* Style */
     background-color: var(--course-color1);
     padding: 1.8em;
-}
-
-.course-header {
     /* Text */
     color: #fff;
 }
@@ -47,4 +38,10 @@ h2 {
     /* Text */
     font-size: 0.9em;
     color: #333;
+}
+
+.course-contents h2 {
+    border-bottom: solid 1px #000;
+    margin-bottom: 0.5em;
+    color: #000;
 }
