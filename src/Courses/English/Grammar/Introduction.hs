@@ -672,8 +672,8 @@ translations4_du'u = combineFunctions [(2, djuno)] where
             [ (["mi djuno lo du'u do nupre kei ku"], ["I know that you made a promise."])
             , (["mi djuno lo du'u lo prenu ku nupre kei ku"], ["I know that people make promises."])
             , (["mi djuno lo du'u do nupre fi mi kei ku"], ["I know that you promised me."])
-            , (["mi djuno lo du'u lo ctuca ku nupre do kei ku"], ["I know that the instructor promised you."])
-            , (["mi djuno lo du'u lo ciska ku nupre do kei ku"], ["I know that the writer promised you."])
+            , (["mi djuno lo du'u lo ctuca ku nupre fi do kei ku"], ["I know that the instructor promised you."])
+            , (["mi djuno lo du'u lo ciska ku nupre fi do kei ku"], ["I know that the writer promised you."])
             ]
         liking = generatorFromList
             [ (["mi djuno lo du'u do nelci mi kei ku"], ["I know that you like me."])
