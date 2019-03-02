@@ -18,7 +18,7 @@ h3 {
 
     /* Style */
     background-color: var(--course-color1);
-    padding: 40px 40px;
+    padding: 2.5em 2.5em;
 }
 
 .lesson-header, .lesson-header a {
@@ -27,15 +27,17 @@ h3 {
 }
 
 .lesson-header {
+    @lesson-info-height: 5.5rem;
+
     .lesson-info:before {
         /* Position */
         position: absolute;
-        left: -8rem;
-        width: 8rem;
-        height: 8rem;
+        left: -@lesson-info-height;
+        width: @lesson-info-height;
+        height: @lesson-info-height;
         /* Background */
         background: var(--course-icon);
-        background-size: 8rem 8rem;
+        background-size: @lesson-info-height @lesson-info-height;
         content: '';
     }
 
@@ -43,13 +45,13 @@ h3 {
         /* Position */
         float: left;
         position: relative;
-        left: calc(8rem + 0.3em);
-        padding-left: 30px;
+        left: calc(@lesson-info-height + 0.3em);
+        padding-left: 2em;
     }
 
     .course-title {
         /* Text */
-        font-size: 2em;
+        font-size: 1.5em;
         font-weight: bolder;
         font-family: "Varela Round";
         /* Border */
@@ -62,7 +64,7 @@ h3 {
         /* Position */
         margin-top: 1rem;
         /* Text */
-        font-size: 1.5em;
+        font-size: 1.2em;
         font-family: "Helvetica", "Arial", "sans-serif";
 
         span {
@@ -78,7 +80,6 @@ h3 {
     .lesson-buttons {
         /* Position */
         float: right;
-        margin-top: 1.3rem; /* tofix: hardcoded */
         margin-right: 1em;
 
         a.button {
@@ -95,7 +96,7 @@ h3 {
             /* Text */
             color: var(--course-color1);
             font-family: "Varela Round";
-            font-size: 1.4em;
+            font-size: 1.2em;
             font-variant: small-caps;
             font-weight: bold;
         }
@@ -110,7 +111,7 @@ h3 {
     /* Border */
     border-radius: 0 0 10px 10px;
     /* Text */
-    font-size: 1.1em;
+    font-size: 1em;
     color: #333;
 
     h3 {
