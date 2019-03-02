@@ -39,14 +39,14 @@ h1, h2, h3, h4, h5, h6 {
 .topbar .logo {
     /* Position */
     display: inline;
-    margin: 0 30px 0 0;
+    margin: 0 1em 0 0;
     /* Text */
     font-size: 2.2em;
     font-family: "Varela Round";
     font-weight: 600;
     color: #fff;
     height: 100%;
-    vertical-align: middle;
+    vertical-align: top;
 }
 
 .topbar ul {
@@ -58,8 +58,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .topbar li {
     display: inline;
-    margin-right: 4px;
-    padding: 8px 15px;
+    margin-right: 0.4em;
+    padding: 0.6em 1.1em;
 }
 
 .topbar li.selected, .topbar li:hover {
@@ -72,12 +72,12 @@ h1, h2, h3, h4, h5, h6 {
     font-family: "Open Sans";
     font-weight: bold;
     height: 100%;
-    vertical-align: middle;
+    vertical-align: top;
     color: #fff;
 }
 
 .main {
     position: relative;
     top: calc(4.8em);
-    margin-top: 40px;
+    margin-top: 2.5em;
 }
