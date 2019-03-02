@@ -208,6 +208,7 @@ displayCourseHome topbarCategory course = do
             universalStylesheets
             universalScripts
             internalStylesheet "course.css"
+            courseStylesheet course
         H.body $ do
             displayTopbar topbarCategory
             H.div B.! A.class_ (H.stringValue "main") $ do
@@ -235,6 +236,12 @@ displayCourseLessonItem (lessonNumber, lesson) = do
         H.a (H.toHtml $ lessonTitle lesson)
             B.! A.href (H.stringValue . (++"/") . show $ lessonNumber)
 
+courseStylesheet :: Course -> H.Html
+courseStylesheet course =
+    case courseStyleFilename (courseStyle course) of
+        Nothing -> return ()
+        Just filename -> internalStylesheet filename
+
 -- Lesson pages
 data LessonSubpage = LessonHome | LessonVocabulary | LessonExercises deriving (Enum, Eq)
 
@@ -247,6 +254,7 @@ displayLessonHome topbarCategory course lessonNumber = do
             universalStylesheets
             universalScripts
             internalStylesheet "lesson.css"
+            courseStylesheet course
         H.body $ do
             displayTopbar topbarCategory
             H.div B.! A.class_ (H.stringValue "main") $ do
@@ -270,6 +278,7 @@ displayLessonExercise topbarCategory course lessonNumber =
             internalStylesheet "exercise.css"
             universalScripts
             internalScript "exercise.js"
+            courseStylesheet course
         H.body $ do
             displayTopbar topbarCategory
             H.div B.! A.class_ (H.stringValue "main") $ do

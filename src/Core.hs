@@ -56,7 +56,12 @@ instance Eq Cmavo where
 type CourseBuilder = Dictionary -> Course
 data Course = Course
     { courseTitle :: String
+    , courseStyle :: CourseStyle
     , courseLessons :: [Lesson]
+    } deriving (Show)
+
+data CourseStyle = CourseStyle
+    { courseStyleFilename :: Maybe String
     } deriving (Show)
 
 type LessonBuilder = Dictionary -> Lesson
@@ -69,8 +74,8 @@ data Lesson = Lesson
 instance Show Lesson where
     show lesson = "Lesson { title = " ++ show (lessonTitle lesson) ++ " }"
 
-createCourseBuilder :: String -> [LessonBuilder] -> CourseBuilder
-createCourseBuilder title lessons dictionary = Course title (lessons <*> [dictionary])
+createCourseBuilder :: String -> CourseStyle -> [LessonBuilder] -> CourseBuilder
+createCourseBuilder title courseStyle lessons dictionary = Course title courseStyle (lessons <*> [dictionary])
 
 -- Translations
 type Translation = ([LojbanSentence], [EnglishSentence])

@@ -1134,4 +1134,7 @@ checkpoint1to5 dictionary = Lesson "Checkpoint: Lessons 1–5" (exercises1to5 di
 
 -------- Course
 course :: CourseBuilder
-course = createCourseBuilder "Introduction to Grammar" [lesson1, lesson2, lesson3, lesson4, lesson5, checkpoint1to5]
+course = createCourseBuilder title style lessons where
+    title = "Introduction to Grammar"
+    style = CourseStyle (Just "courses/grammar/introduction.css")
+    lessons = [lesson1, lesson2, lesson3, lesson4, lesson5, checkpoint1to5]

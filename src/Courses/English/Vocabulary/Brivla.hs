@@ -51,4 +51,7 @@ lesson01 dictionary = Lesson "Deck #1" (exercises01 dictionary) plan01
 
 -------- Course
 course :: CourseBuilder
-course = createCourseBuilder "Common brivla" [lesson01]
+course = createCourseBuilder title style lessons where
+    title = "Common brivla" 
+    style = CourseStyle (Just "courses/vocabulary/brivla.css")
+    lessons = [lesson01]
