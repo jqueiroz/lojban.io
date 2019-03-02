@@ -6,11 +6,11 @@ h3 {
 
 .lesson {
     /* Position */
-    position: relative;
+    position: sticky;
     width: 56%;
     left: 22%;
-    width: calc(46% + 20rem);
-    left: calc(27% - 10rem);;
+    width: calc(16% + 80rem);
+    left: calc(42% - 40rem);;
     /* Border */
     border-radius: 10px;
     box-shadow: 0 0 25px rgba(0,0,0,0.04);
