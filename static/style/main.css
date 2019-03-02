@@ -74,6 +74,5 @@ a:link, a:visited, a:hover, a:active {
 
 .main {
     position: relative;
-    top: calc(4.8em + 40px);
-    /*background-color: red;*/
-}
+    top: calc(4.8em);
+    margin-top: 40px;
