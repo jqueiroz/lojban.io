@@ -220,14 +220,14 @@ displayCourseMenu :: String -> Course -> H.Html
 displayCourseMenu baseCourseUrl course = do
     H.div B.! A.class_ (H.stringValue "course-header") $ do
         H.div B.! A.class_ (H.stringValue "course-info") $ do
-            H.div B.! A.class_ "course-title" $ H.toHtml (courseTitle course)
+            H.h1 B.! A.class_ "course-title" $ H.toHtml (courseTitle course)
             H.div B.! A.class_ "course-description" $ H.toHtml ("" :: String)
 
 displayCourseContents :: String -> Course -> H.Html
 displayCourseContents baseCourseUrl course = do
     let lessons = courseLessons course
     H.div B.! A.class_ (H.stringValue "course-contents") $ do
-        H.h3 $ H.toHtml ("Lessons" :: String)
+        H.h2 $ H.toHtml ("Lessons" :: String)
         H.ol $ forM_ (zip [1..] lessons) displayCourseLessonItem
 
 displayCourseLessonItem :: (Int, Lesson) -> H.Html
@@ -296,9 +296,9 @@ displayLessonHeader baseLessonUrl lessonSubpage course lessonNumber = do
     let lesson = lessons !! (lessonNumber - 1)
     H.div B.! A.class_ (H.stringValue "lesson-header") $ do
         H.div B.! A.class_ (H.stringValue "lesson-info") $ do
-            H.div B.! A.class_ "course-title" $
+            H.h1 B.! A.class_ "course-title" $
                 H.a B.! A.href (H.stringValue baseCourseUrl) $ H.toHtml (courseTitle course)
-            H.div B.! A.class_ "lesson-title" $ do
+            H.h2 B.! A.class_ "lesson-title" $ do
                 when (lessonNumber >= 2) $
                     let
                         url = ("../" ++) . (baseLessonUrl ++) . show $ lessonNumber - 1
