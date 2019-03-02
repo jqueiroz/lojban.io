@@ -10,6 +10,7 @@ import qualified Text.Blaze as B
 import qualified Text.Blaze.Html5 as H
 import qualified Text.Blaze.Html5.Attributes as A
 
+displayHome :: H.Html
 displayHome =
     H.html $ do
         H.head $ do
