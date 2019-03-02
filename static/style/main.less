@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css?family=Varela+Round');
+
+button:focus, textarea:focus {
+    outline:0 !important;
+}
+
+body {
+    background-color: #e9e9e9;
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+a:link, a:visited, a:hover, a:active {
+    text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+.topbar {
+    /* Position */
+    position: fixed;
+    vertical-align: middle;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    line-height: 4.8em;
+    /* Style */
+    background-color: #20a8e9f0;
+    vertical-align: middle;
+    /* Text */
+    padding: 0 3em 0 3em;
+    color: #fff;
+    text-align: center;
+}
+
+.topbar {
+    .logo {
+        /* Position */
+        display: inline;
+        margin: 0 1em 0 0;
+        /* Text */
+        font-size: 2.2em;
+        font-family: "Varela Round";
+        font-weight: 600;
+        color: #fff;
+        height: 100%;
+        vertical-align: top;
+    }
+
+    ul {
+        display: inline;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+        display: inline;
+        margin-right: 0.4em;
+        padding: 0.6em 1.1em;
+    }
+
+    li.selected, li:hover {
+        background-color: #1493d1;
+        border-radius: 98px;
+    }
+
+    /* TODO: make it possible to click anywhere on the rounded box (the "a" should occupy the entire "li") */
+    li a {
+        font-family: "Open Sans";
+        font-weight: bold;
+        font-size: 0.9em;
+        height: 100%;
+        vertical-align: top;
+        color: #fff;
+    }
+}
+
+.main {
+    position: relative;
+    top: calc(4.8em);
+    margin-top: 2.5em;
+}
