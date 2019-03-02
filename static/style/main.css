@@ -71,6 +71,7 @@ h1, h2, h3, h4, h5, h6 {
 .topbar li a {
     font-family: "Open Sans";
     font-weight: bold;
+    font-size: 0.9em;
     height: 100%;
     vertical-align: top;
     color: #fff;
