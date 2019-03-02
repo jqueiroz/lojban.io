@@ -73,13 +73,16 @@ displayLessonHeader baseLessonUrl lessonSubpage course lessonNumber = do
             H.h1 B.! A.class_ "course-title" $
                 H.a B.! A.href (H.stringValue baseCourseUrl) $ H.toHtml (courseTitle course)
             H.h2 B.! A.class_ "lesson-title" $ do
+                -- Previous lesson
                 when (lessonNumber >= 2) $
                     let
                         url = ("../" ++) . (baseLessonUrl ++) . show $ lessonNumber - 1
                         title = ("Previous lesson: " ++) . lessonTitle $ lessons !! (lessonNumber - 2)
                     in
                         H.a B.! A.href (H.stringValue url) B.! A.title (H.stringValue title) $ H.toHtml ("<" :: String)
+                -- Lesson title
                 H.span $ H.toHtml ((show lessonNumber) ++ ". " ++ lessonTitle lesson)
+                -- Next lesson
                 when (lessonNumber < lessonsCount) $
                     let
                         url = ("../"++) . (baseLessonUrl++) . show $ lessonNumber + 1
