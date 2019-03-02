@@ -1,3 +1,3 @@
 module Main (main) where
 
-import Server (main)
+import Server.Main (main)

@@ -42,6 +42,13 @@ executable lojto
                      , Courses.Util.Vocabulary
                      , Courses.English.Grammar.Introduction
                      , Courses.English.Vocabulary.Brivla
-                     , Server
+                     , Server.Core
+                     , Server.Course
+                     , Server.Grammar
+                     , Server.Home
+                     , Server.Lesson
+                     , Server.Main
+                     , Server.Resources
+                     , Server.Vocabulary
                      , Util
                      , Playground
