@@ -19,6 +19,8 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0;
 }
 
+@topbar-height: 4.8em;
+
 .topbar {
     /* Position */
     position: fixed;
@@ -26,7 +28,7 @@ h1, h2, h3, h4, h5, h6 {
     top: 0;
     width: 100%;
     z-index: 1000;
-    line-height: 4.8em;
+    line-height: @topbar-height;
     /* Style */
     background-color: #20a8e9f0;
     vertical-align: middle;
@@ -81,6 +83,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .main {
     position: relative;
-    top: calc(4.8em);
+    top: @topbar-height;
     margin-top: 2.5em;
 }
