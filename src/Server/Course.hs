@@ -35,6 +35,7 @@ displayCourseMenu baseCourseUrl course = do
     H.div B.! A.class_ (H.stringValue "course-header") $ do
         H.div B.! A.class_ (H.stringValue "course-info") $ do
             H.h1 B.! A.class_ "course-title" $ H.toHtml (courseTitle course)
+            H.h1 B.! A.class_ "course-lessons-count" $ H.toHtml (showNumberOfLessons . length . courseLessons $ course)
             H.div B.! A.class_ "course-description" $ H.toHtml ("" :: String)
 
 displayCourseContents :: String -> Course -> H.Html
@@ -49,4 +50,9 @@ displayCourseLessonItem (lessonNumber, lesson) = do
     H.li $ do
         H.a (H.toHtml $ lessonTitle lesson)
             B.! A.href (H.stringValue . (++"/") . show $ lessonNumber)
+
+showNumberOfLessons :: Int -> String
+showNumberOfLessons 0 = "No lessons yet..."
+showNumberOfLessons 1 = "1 lesson"
+showNumberOfLessons x = (show x) ++ " lessons"
 

@@ -17,14 +17,56 @@
     color: #fff;
 }
 
-.course-header .course-title {
-    /* Text */
-    font-size: 1.5em;
-    font-weight: bolder;
-    font-family: "Varela Round";
-    /* Border */
-    border-bottom: solid 1px #fff;
-    display: inline-block;
+.course-header {
+    @course-info-height: 5.7rem;
+
+    .course-info:before {
+        /* Position */
+        position: absolute;
+        left: -@course-info-height;
+        width: @course-info-height;
+        height: @course-info-height;
+        /* Background */
+        background: var(--course-icon);
+        background-size: @course-info-height @course-info-height;
+        content: '';
+    }
+
+    .course-info {
+        /* Position */
+        position: relative;
+        margin-left: calc(@course-info-height + 0.3em);
+        padding-left: 2em;
+        height: @course-info-height;
+    }
+
+    .course-title {
+        /* Text */
+        font-size: 1.5em;
+        font-weight: bolder;
+        font-family: "Varela Round";
+    }
+
+    .course-lessons-count, .course-lessons-count:before, .course-lessons-count:after {
+        /* Text */
+        font-size: 1.2em;
+        font-weight: normal;
+        font-family: "Helvetica", "Arial", "sans-serif";
+    }
+
+    .course-lessons-count:before {
+        content: '< ';
+    }
+
+    .course-lessons-count:after {
+        content: ' >';
+    }
+
+    .course-lessons-count {
+        /* Position */
+        margin-top: 0.2em;
+        margin-left: 1.0em;
+    }
 }
 
 .course-contents {
