@@ -61,7 +61,8 @@ data Course = Course
     } deriving (Show)
 
 data CourseStyle = CourseStyle
-    { courseStyleFilename :: Maybe String
+    { courseStyleColor1 :: Maybe String
+    , courseStyleIconUrl :: Maybe String
     } deriving (Show)
 
 type LessonBuilder = Dictionary -> Lesson

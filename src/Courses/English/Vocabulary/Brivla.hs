@@ -50,8 +50,16 @@ lesson01 :: LessonBuilder
 lesson01 dictionary = Lesson "Deck #1" (exercises01 dictionary) plan01
 
 -------- Course
+style :: CourseStyle
+style = CourseStyle color1 iconUrl where
+    color1 = Just
+        "#7ac70c"
+    -- Icon url
+    iconUrl = Just
+        -- Source: https://www.flaticon.com/premium-icon/swear_774512#term=word&page=1&position=64
+        "https://www.flaticon.com/premium-icon/icons/svg/774/774512.svg"
+
 course :: CourseBuilder
 course = createCourseBuilder title style lessons where
     title = "Common brivla" 
-    style = CourseStyle (Just "courses/vocabulary/brivla.css")
     lessons = [lesson01]

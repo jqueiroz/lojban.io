@@ -1133,8 +1133,23 @@ checkpoint1to5 :: LessonBuilder
 checkpoint1to5 dictionary = Lesson "Checkpoint: Lessons 1–5" (exercises1to5 dictionary) plan1to5
 
 -------- Course
+style :: CourseStyle
+style = CourseStyle color1 iconUrl where
+    -- Color1
+    color1 = Just
+        "#4c4c4c"
+    -- Icon url
+    iconUrl = Just
+        -- Source: https://www.flaticon.com/free-icon/jigsaw_993723#term=jigsaw&page=1&position=3
+        "https://image.flaticon.com/icons/svg/993/993723.svg"
+
+        -- Source: https://www.flaticon.com/free-icon/jigsaw_993686
+        --"https://image.flaticon.com/icons/svg/993/993686.svg"
+
+        -- Source: https://www.flaticon.com/free-icon/puzzle_755205
+        --"https://image.flaticon.com/icons/svg/755/755205.svg"
+
 course :: CourseBuilder
 course = createCourseBuilder title style lessons where
     title = "Introduction to Grammar"
-    style = CourseStyle (Just "courses/grammar/introduction.css")
     lessons = [lesson1, lesson2, lesson3, lesson4, lesson5, checkpoint1to5]

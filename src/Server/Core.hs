@@ -39,10 +39,20 @@ includeInlineStylesheet code =
         H.toHtml code
 
 includeCourseStylesheet :: Course -> H.Html
-includeCourseStylesheet course =
-    case courseStyleFilename (courseStyle course) of
-        Nothing -> return ()
-        Just filename -> includeInternalStylesheet filename
+includeCourseStylesheet course = includeInlineStylesheet code where
+    style = courseStyle course
+    courseColor1 = case (courseStyleColor1 style) of
+        Just color ->"--course-color1: " ++ color ++ ";"
+        Nothing -> ""
+    courseIcon = case (courseStyleIconUrl style) of
+        Just url -> "--course-icon: url(" ++ url ++ ");"
+        Nothing -> ""
+    code = concat
+        [ ":root {"
+        , courseColor1
+        , courseIcon
+        , "}"
+        ]
 
 -- Scripts
 includeUniversalScripts = do
