@@ -33,6 +33,11 @@ includeExternalStylesheet src =
       B.! A.href (H.stringValue src)
       B.! A.rel "stylesheet"
 
+includeInlineStylesheet :: String -> H.Html
+includeInlineStylesheet code =
+    H.style B.! A.type_ (H.stringValue "text/css") $
+        H.toHtml code
+
 includeCourseStylesheet :: Course -> H.Html
 includeCourseStylesheet course =
     case courseStyleFilename (courseStyle course) of
