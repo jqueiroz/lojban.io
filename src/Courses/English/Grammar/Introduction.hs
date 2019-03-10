@@ -121,6 +121,17 @@ vocabularyGenerator4 = createVocabularyBuilder
 vocabularyGenerator5 :: VocabularyBuilder
 vocabularyGenerator5 = vocabularyGenerator4
 
+-- Sentence comparer
+sentenceComparer :: SentenceComparer
+sentenceComparer x y = (length xs == length ys) && (all wordComparer $ zip xs ys) where
+    xs = T.words x
+    ys = T.words y
+    wordComparer :: (T.Text, T.Text) -> Bool
+    wordComparer (x, y) = (wordComparer' x y) || (wordComparer' y x)
+    wordComparer' "nu" "su'u" = True
+    wordComparer' "du'u" "su'u" = True
+    wordComparer' x y = x == y
+
 -------- Translations
 -- Lesson 1
 translations1_nice :: TranslationGenerator
@@ -169,10 +180,10 @@ translations1_normal = combineFunctionsUniformly $ others ++ [talkingWithSecondP
         ]
 
 translationExercises1_nice :: ExerciseGenerator
-translationExercises1_nice = generateTranslationExercise basicSentenceCanonicalizer translations1_nice
+translationExercises1_nice = generateTranslationExercise basicSentenceCanonicalizer sentenceComparer translations1_nice
 
 translationExercises1_normal :: ExerciseGenerator
-translationExercises1_normal = generateTranslationExercise basicSentenceCanonicalizer translations1_normal
+translationExercises1_normal = generateTranslationExercise basicSentenceCanonicalizer sentenceComparer translations1_normal
 
 translationExercises1 :: ExerciseGenerator
 translationExercises1 = combineFunctions [(1, translationExercises1_nice), (4, translationExercises1_normal)]
@@ -303,11 +314,11 @@ translations2_normal = combineFunctionsUniformly [talkingToAnimal, likingAnimals
 
 translationExercises2_nice :: ExerciseGenerator
 translationExercises2_nice = combineFunctions [(1, restricted), (5, nice)] where
-    restricted = generateBlacklistedWordTranslationExercise (T.pack "zo'e") basicSentenceCanonicalizer translations2_restricted
-    nice = generateTranslationExercise basicSentenceCanonicalizer translations2_nice
+    restricted = generateBlacklistedWordTranslationExercise (T.pack "zo'e") basicSentenceCanonicalizer sentenceComparer translations2_restricted
+    nice = generateTranslationExercise basicSentenceCanonicalizer sentenceComparer translations2_nice
 
 translationExercises2_normal :: ExerciseGenerator
-translationExercises2_normal = generateTranslationExercise basicSentenceCanonicalizer translations2_normal
+translationExercises2_normal = generateTranslationExercise basicSentenceCanonicalizer sentenceComparer translations2_normal
 
 translationExercises2 :: ExerciseGenerator
 translationExercises2 =  combineFunctions [(1, translationExercises1_nice), (10, translationExercises2_nice), (5, translationExercises2_normal)]
@@ -538,8 +549,8 @@ translations3_normal = combineFunctions [(4, translations3_normal_xu), (4, trans
 
 translationExercises3 :: ExerciseGenerator
 translationExercises3 = combineFunctions [(1, restricted), (5, normal)] where
-    restricted = generateBlacklistedWordTranslationExercise (T.pack "zo'e") basicSentenceCanonicalizer translations3_restricted
-    normal = generateTranslationExercise basicSentenceCanonicalizer translations3_normal
+    restricted = generateBlacklistedWordTranslationExercise (T.pack "zo'e") basicSentenceCanonicalizer sentenceComparer translations3_restricted
+    normal = generateTranslationExercise basicSentenceCanonicalizer sentenceComparer translations3_normal
 
 questionExercises3 = generateNarrowFillingBlanksExerciseByAlternatives ["mo", "ma"] $ combineFunctionsUniformly [translations3_normal_ma, translations3_normal_mo]
 questionExercises3_simplified = generateNarrowFillingBlanksExerciseByAlternatives ["mo", "ma"] $ simplifyTranslationGenerator $ combineFunctionsUniformly [translations3_normal_ma, translations3_normal_mo]
@@ -806,7 +817,7 @@ translations4 :: TranslationGenerator
 translations4 = combineFunctions $ ((4,) <$> [translations4_nu, translations4_du'u, translations4_sedu'u]) ++ ((1,) <$> [translations4_extra])
 
 translationExercises4 :: ExerciseGenerator
-translationExercises4 = generateTranslationExercise basicSentenceCanonicalizer translations4
+translationExercises4 = generateTranslationExercise basicSentenceCanonicalizer sentenceComparer translations4
 
 -- "narrow" is required to avoid alternative translations using "ko'a"
 abstractionExercises4 = generateNarrowFillingBlanksExerciseByAlternatives ["lo nu", "lo du'u", "lo se du'u"] $ combineFunctionsUniformly [translations4_nu, translations4_du'u, translations4_sedu'u]
@@ -998,7 +1009,7 @@ translations5_restricted = combineFunctions [(2, hasHouse), (3, nice), (3, givin
             ]
 
 translationExercises5_restricted :: ExerciseGenerator
-translationExercises5_restricted = generateBlacklistedWordTranslationExercise (T.pack "ku") basicSentenceCanonicalizer translations5_restricted
+translationExercises5_restricted = generateBlacklistedWordTranslationExercise (T.pack "ku") basicSentenceCanonicalizer sentenceComparer translations5_restricted
 
 -- Checkpoint: Lessons 1--5
 translationExercises1to5_simplified :: ExerciseGenerator
@@ -1009,12 +1020,12 @@ translationExercises1to5_simplified = simplifyCanonicalAnswer $ combineFunctions
 -- Interesting: xu do djuno lo se cusku
 
 translations6 :: [ExerciseGenerator]
-translations6 = generateTranslationExercise basicSentenceCanonicalizer <$> generatorFromSingleton <$>
+translations6 = generateTranslationExercise basicSentenceCanonicalizer sentenceComparer <$> generatorFromSingleton <$>
     [
     ]
 
 translations9 :: [ExerciseGenerator]
-translations9 = generateTranslationExercise basicSentenceCanonicalizer <$> generatorFromSingleton <$>
+translations9 = generateTranslationExercise basicSentenceCanonicalizer sentenceComparer <$> generatorFromSingleton <$>
     [ (["lo prenu ku sutra tavla"], ["The person talks quickly.", "The person is talking quickly.", "A person is talking quickly.", "People talk quickly"])
     ]
 

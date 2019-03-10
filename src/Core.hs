@@ -87,6 +87,8 @@ type LojbanSentence = T.Text
 type TranslationsByExpression = [(T.Text, [Translation])]
 type TranslationGeneratorByExpression = [(T.Text, TranslationGenerator)]
 
+type SentenceComparer = LojbanSentence -> LojbanSentence -> Bool
+
 -- Exercises
 data Exercise =
     MultipleChoiceExercise

@@ -38,14 +38,14 @@ import qualified Data.Text as T
 import qualified Data.Map as M
 
 -- Exercise: translate a sentence from English to Lojban
-generateTranslationExercise :: SentenceCanonicalizer -> TranslationGenerator -> ExerciseGenerator
+generateTranslationExercise :: SentenceCanonicalizer -> SentenceComparer -> TranslationGenerator -> ExerciseGenerator
 generateTranslationExercise = generateRestrictedTranslationExercise "Translate this sentence" (\_ -> True)
 
-generateBlacklistedWordTranslationExercise :: T.Text -> SentenceCanonicalizer -> TranslationGenerator -> ExerciseGenerator
+generateBlacklistedWordTranslationExercise :: T.Text -> SentenceCanonicalizer -> SentenceComparer -> TranslationGenerator -> ExerciseGenerator
 generateBlacklistedWordTranslationExercise blacklistedWord = generateRestrictedTranslationExercise (T.concat ["Translate without using \"", blacklistedWord, "\""]) (not . containsWord blacklistedWord)
 
-generateRestrictedTranslationExercise :: T.Text -> (T.Text -> Bool) -> SentenceCanonicalizer -> TranslationGenerator -> ExerciseGenerator
-generateRestrictedTranslationExercise title validator canonicalizer translationGenerator r0 = TypingExercise title [ExerciseSentence False english_sentence] (liftA2 (&&) validator validateAll) (head lojban_sentences) where
+generateRestrictedTranslationExercise :: T.Text -> (T.Text -> Bool) -> SentenceCanonicalizer -> SentenceComparer -> TranslationGenerator -> ExerciseGenerator
+generateRestrictedTranslationExercise title validator canonicalizer sentenceComparer translationGenerator r0 = TypingExercise title [ExerciseSentence False english_sentence] (liftA2 (&&) validator validateAll) (head lojban_sentences) where
     (translation, r1) = translationGenerator r0
     (lojban_sentences, english_sentences) = translation
     (english_sentence, r2) = chooseItemUniformly r1 english_sentences
@@ -54,7 +54,7 @@ generateRestrictedTranslationExercise title validator canonicalizer translationG
         Left _ -> False
         Right typed_sentence' -> case canonicalizer (T.toLower lojban_sentence) of
             Left _ -> False
-            Right lojban_sentence' -> typed_sentence' == lojban_sentence'
+            Right lojban_sentence' -> typed_sentence' `sentenceComparer` lojban_sentence'
 
 -- Simplifies Lojban translation
 simplifyTranslation :: Translation -> Translation
