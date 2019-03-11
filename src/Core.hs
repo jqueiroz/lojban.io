@@ -76,7 +76,7 @@ instance Show Lesson where
     show lesson = "Lesson { title = " ++ show (lessonTitle lesson) ++ " }"
 
 createCourseBuilder :: String -> CourseStyle -> [LessonBuilder] -> CourseBuilder
-createCourseBuilder title courseStyle lessons dictionary = Course title courseStyle (lessons <*> [dictionary])
+createCourseBuilder title style lessons dictionary = Course title style (lessons <*> [dictionary])
 
 -- Translations
 type Translation = ([LojbanSentence], [EnglishSentence])
