@@ -21,3 +21,20 @@ if [ "$JAVASCRIPT_OK" == "true" ]; then
 else
     echo -e "Code style issues found in the above file(s). Forgot to run Prettier?"
 fi
+
+# CSS/Less
+echo ""
+echo "===> Less"
+echo "Checking formatting..."
+
+LESS_OK="true"
+for file in $(prettier --list-different "static/style/*.less"); do
+    LESS_OK="false"
+    echo -e "${RED}$file${NC}"
+done
+
+if [ "$LESS_OK" == "true" ]; then
+    echo -e "${GREEN}All files passed.${NC}"
+else
+    echo -e "Code style issues found in the above file(s). Forgot to run Prettier?"
+fi
