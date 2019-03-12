@@ -44,7 +44,7 @@ lojbanToNumber t =
     case sequence subnumbers of
         Just subnumbers' -> readMaybe $ T.unpack $ T.concat subnumbers'
         Nothing -> Nothing
-    where subnumbers = map (liftA $ T.justifyRight 3 '0') $ map simpleLojbanToNumberText $ T.splitOn "ki'o" t
+    where subnumbers = map (fmap $ T.justifyRight 3 '0') $ map simpleLojbanToNumberText $ T.splitOn "ki'o" t
 
 simpleLojbanToNumber :: T.Text -> Maybe Integer
 simpleLojbanToNumber t =
