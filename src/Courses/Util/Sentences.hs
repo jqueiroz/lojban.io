@@ -26,7 +26,6 @@ import Courses.Util.Vocabulary
 import Util (compose2, replace, stripRight, filterSnd, filterOutWord, filterOutWords, headOrDefault, isContiguousSequence, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly)
 import Control.Exception (assert)
 import Control.Applicative (liftA2)
-import Control.Arrow ((***))
 import System.Random (StdGen, mkStdGen)
 import qualified Data.Text as T
 import qualified Data.Map as M
