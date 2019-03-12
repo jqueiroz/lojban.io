@@ -8,6 +8,7 @@ import Core
 import Util (subfield)
 import Control.Applicative ((<$>), (<*>))
 import Control.Arrow ((***), first, second)
+import Data.Maybe (isNothing)
 import qualified Data.Text as T
 import qualified Data.Text.IO as TIO
 import qualified Data.Map as M
@@ -22,7 +23,7 @@ loadDictionary = do
     let cmavoList = map (\c -> (cmavoText c, c)) cmavo
     let cmavoMap = M.fromList cmavoList
     -- Gismu
-    let isReallyGismu gismu = M.lookup (gismuText gismu) cmavoMap == Nothing
+    let isReallyGismu gismu = isNothing $ M.lookup (gismuText gismu) cmavoMap
     gismu <- filter isReallyGismu <$> loadGismuFromFile frequencyMap
     let gismuList = map (\g -> (gismuText g, g)) gismu
     let gismuMap = M.fromList gismuList
