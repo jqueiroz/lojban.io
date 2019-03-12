@@ -50,19 +50,19 @@ exerciseSentenceToJSON (ExerciseSentence lojbanic text) = A.object
     ]
 
 -- Deserialization of answers
-data MultipleChoiceExerciseAnswer = MultipleChoiceExerciseAnswer {
+newtype MultipleChoiceExerciseAnswer = MultipleChoiceExerciseAnswer {
     mceaCorrectAlternatives :: [T.Text]
 }
 
-data SingleChoiceExerciseAnswer = SingleChoiceExerciseAnswer {
+newtype SingleChoiceExerciseAnswer = SingleChoiceExerciseAnswer {
     sceaCorrectAlternative :: T.Text
 }
 
-data MatchingExerciseAnswer = MatchingExerciseAnswer {
+newtype MatchingExerciseAnswer = MatchingExerciseAnswer {
     meaOrderedAlternatives :: [T.Text]
 }
 
-data TypingExerciseAnswer = TypingExerciseAnswer {
+newtype TypingExerciseAnswer = TypingExerciseAnswer {
     teaText :: T.Text
 }
 
