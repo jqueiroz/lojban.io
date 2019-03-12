@@ -27,6 +27,7 @@ import Util (compose2, replace, stripRight, filterSnd, filterOutWord, filterOutW
 import Control.Exception (assert)
 import Control.Applicative (liftA2)
 import System.Random (StdGen, mkStdGen)
+import Data.Maybe (fromMaybe)
 import qualified Data.Text as T
 import qualified Data.Map as M
 import qualified Language.Lojban.Parser.ZasniGerna as ZG
@@ -392,10 +393,9 @@ generateRelationBridi vocabulary r0 = (SimpleBridi False relation objects, r2) w
                 (x2, r2) = chooseItem r1 $ filterSnd (/= x1) persons
             in ([x1, x2], r2))
         ]
-    retrieveRelationObjectsGenerator relation =
-        case M.lookup relation relationObjectsGenerators of
-            Just x -> x
-            Nothing -> error $ "No relation objects generator are available for '" ++ (T.unpack relation) ++ "'"
+    retrieveRelationObjectsGenerator relation = fromMaybe
+        (error $ "No relation objects generator are available for '" ++ (T.unpack relation) ++ "'")
+        (M.lookup relation relationObjectsGenerators)
 
 generateActionBridi :: Vocabulary -> StdGen -> (SimpleBridi, StdGen)
 generateActionBridi vocabulary r0 = (SimpleBridi False action objects, r2) where
@@ -464,10 +464,9 @@ generateActionBridi vocabulary r0 = (SimpleBridi False action objects, r2) where
             in
                 ([actor, destination], r2))
         ]
-    retrieveActionObjectsGenerator action =
-        case M.lookup action actionObjectsGenerators of
-            Just x -> x
-            Nothing -> error $ "No action objects generator are available for '" ++ (T.unpack action) ++ "'"
+    retrieveActionObjectsGenerator action = fromMaybe
+        (error $ "No action objects generator are available for '" ++ (T.unpack action) ++ "'")
+        (M.lookup action actionObjectsGenerators)
 
 -- TODO: write tests
 -- Hard tests: "lo se se prenu ku", "mi tavla fa fi do"
