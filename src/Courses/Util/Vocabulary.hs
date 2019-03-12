@@ -57,7 +57,7 @@ getVocabularySumti vocabulary key = M.findWithDefault [] key $ vocabularyCategor
 createVocabularyBuilder :: CategorizedSelbri -> CategorizedSumti -> VocabularyBuilder
 createVocabularyBuilder selbri sumti dictionary = Vocabulary (WordList gismu' cmavo' []) selbriMap sumtiMap where
     selbriGismu = sortUniq . map snd . M.foldr (++) [] $ selbriMap
-    sumtiWords = sortUniq . concat . map T.words . map snd . M.foldr (++) [] $ sumtiMap
+    sumtiWords = sortUniq . concatMap (T.words . snd) . M.foldr (++) [] $ sumtiMap
     sumtiGismu = filter (`M.member` (dictGismu dictionary)) sumtiWords
     sumtiCmavo = filter (`M.member` (dictCmavo dictionary)) sumtiWords
     gismu = sortUniq $ selbriGismu ++ sumtiGismu

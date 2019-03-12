@@ -321,7 +321,7 @@ displayCanonicalBridi = fst . displayStandardSimpleBridi (mkStdGen 42)
 
 ------------------------- ----------------------- Sentence generators
 generateNonbridi :: Vocabulary -> StdGen -> (T.Text, StdGen)
-generateNonbridi vocabulary r0 = chooseItem r0 . concat . map (getVocabularySumti vocabulary) $
+generateNonbridi vocabulary r0 = chooseItem r0 . concatMap (getVocabularySumti vocabulary) $
     ["genericPersons", "semiGenericPersons", "animals", "genericPointable", "places", "subjects"]
 
 generateSimpleBridi :: Vocabulary -> StdGen -> (SimpleBridi, StdGen)
