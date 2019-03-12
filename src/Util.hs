@@ -142,7 +142,7 @@ combineFunctions fs r0 =
     in f r1
 
 combineFunctionsUniformly :: [StdGen -> a] -> (StdGen -> a)
-combineFunctionsUniformly fs r0 = combineFunctions (map (1,) fs) r0
+combineFunctionsUniformly fs = combineFunctions $ map (1,) fs
 
 -- Tests
 testChooseItem :: Int -> T.Text
