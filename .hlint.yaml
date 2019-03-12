@@ -11,7 +11,7 @@
 - ignore: {name: "Redundant bracket"}
 #- ignore: {name: "Use isNothing"}
 #- ignore: {name: "Use list literal pattern"}
-#- ignore: {name: "Use map once"}
+- ignore: {name: "Use map once"}
 #- ignore: {name: "Use <$>"}
 #- ignore: {name: "Use mapMaybe"}
 #- ignore: {name: "Use newtype instead of data"}
@@ -19,11 +19,11 @@
 #- ignore: {name: "Use fewer imports"}
 #- ignore: {name: "Use any"}
 - ignore: {name: "Move brackets to avoid $"} # TODO: consider adding it back later
-#- ignore: {name: "Eta reduce"}
+- ignore: {name: "Eta reduce"}
 #- ignore: {name: "Use const"}
-#- ignore: {name: "Functor law"}
+- ignore: {name: "Functor law"}
 - ignore: {name: "Reduce duplication"}
-#- ignore: {name: "Redundant lambda"}
+- ignore: {name: "Redundant lambda"}
 #- ignore: {name: "Use fmap"}
 - ignore: {name: "Use first"}
 - ignore: {name: "Use second"}
