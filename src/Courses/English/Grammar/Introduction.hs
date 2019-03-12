@@ -1013,7 +1013,7 @@ translationExercises5_restricted = generateBlacklistedWordTranslationExercise (T
 
 -- Checkpoint: Lessons 1--5
 translationExercises1to5_simplified :: ExerciseGenerator
-translationExercises1to5_simplified = simplifyCanonicalAnswer $ combineFunctions [(4, translationExercises2_nice), (1, translationExercises2_normal), (5, translationExercises3), (6, translationExercises4), (5, translationExercises5_restricted)]
+translationExercises1to5_simplified = simplifyCanonicalAnswer . combineFunctions [(4, translationExercises2_nice), (1, translationExercises2_normal), (5, translationExercises3), (6, translationExercises4), (5, translationExercises5_restricted)]
 
 -- Lesson 6
 -- questionExercises5 :: "What did you promise", "What did you say, ..."

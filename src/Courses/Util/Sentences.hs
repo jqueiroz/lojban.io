@@ -173,12 +173,10 @@ simplifyBridiDisplayer bridiDisplayer = simplifySentence `compose2` bridiDisplay
     simplifySentence :: (T.Text, StdGen) -> (T.Text, StdGen)
     simplifySentence = simplifyBridi *** id
 
--- Simplifies the canonical answer of the resulting exercise
-simplifyCanonicalAnswer :: ExerciseGenerator -> ExerciseGenerator
-simplifyCanonicalAnswer exerciseGenerator = simplifyExercise . exerciseGenerator where
-    simplifyExercise :: Exercise -> Exercise
-    simplifyExercise (TypingExercise title sentences validate canonicalAnswer) = TypingExercise title sentences validate (simplifyBridi canonicalAnswer)
-    simplifyExercise x = x
+-- Simplifies the canonical answer of the exercise
+simplifyCanonicalAnswer :: Exercise -> Exercise
+simplifyCanonicalAnswer (TypingExercise title sentences validate canonicalAnswer) = TypingExercise title sentences validate (simplifyBridi canonicalAnswer)
+simplifyCanonicalAnswer x = x
 
 ------------------------- ----------------------- Sentence canonicalizers
 --TODO: check whether se/te/ve/xe are left-associative or right-associative
