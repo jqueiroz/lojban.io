@@ -1,0 +1,105 @@
+# HLint configuration file
+# https://github.com/ndmitchell/hlint
+##########################
+
+# This file contains a template configuration file, which is typically
+# placed as .hlint.yaml in the root of your project
+
+
+# Warnings currently triggered by your code
+#- ignore: {name: "Use null"}
+- ignore: {name: "Redundant bracket"}
+#- ignore: {name: "Use isNothing"}
+#- ignore: {name: "Use list literal pattern"}
+#- ignore: {name: "Use map once"}
+#- ignore: {name: "Use <$>"}
+#- ignore: {name: "Use mapMaybe"}
+#- ignore: {name: "Use newtype instead of data"}
+- ignore: {name: "Redundant $"} # TODO: add it back later
+#- ignore: {name: "Use fewer imports"}
+#- ignore: {name: "Use any"}
+- ignore: {name: "Move brackets to avoid $"} # TODO: consider adding it back later
+#- ignore: {name: "Eta reduce"}
+#- ignore: {name: "Use const"}
+#- ignore: {name: "Functor law"}
+- ignore: {name: "Reduce duplication"}
+#- ignore: {name: "Redundant lambda"}
+#- ignore: {name: "Use fmap"}
+- ignore: {name: "Use first"}
+- ignore: {name: "Use second"}
+#- ignore: {name: "Avoid lambda"}
+#- ignore: {name: "Use concatMap"}
+#- ignore: {name: "Use fromMaybe"}
+#- ignore: {name: "Use head"}
+- ignore: {name: "Redundant do"} # TODO: within Server and submodules
+#- ignore: {name: "Use lambda-case"}
+
+
+# Specify additional command line arguments
+#
+# - arguments: [--color, --cpp-simple, -XQuasiQuotes]
+
+
+# Control which extensions/flags/modules/functions can be used
+#
+# - extensions:
+#   - default: false # all extension are banned by default
+#   - name: [PatternGuards, ViewPatterns] # only these listed extensions can be used
+#   - {name: CPP, within: CrossPlatform} # CPP can only be used in a given module
+#
+# - flags:
+#   - {name: -w, within: []} # -w is allowed nowhere
+#
+# - modules:
+#   - {name: [Data.Set, Data.HashSet], as: Set} # if you import Data.Set qualified, it must be as 'Set'
+#   - {name: Control.Arrow, within: []} # Certain modules are banned entirely
+#
+# - functions:
+#   - {name: unsafePerformIO, within: []} # unsafePerformIO can only appear in no modules
+- modules:
+  - { name: [Data.Map], as: M}
+  - { name: [Data.Text], as: T}
+  - { name: [Text.Pandoc], as: P}
+  - { name: [Data.ByteString.Lazy.Char8], as: BS}
+  - { name: [Data.ByteString.Lazy], as: BS}
+  - { name: [Data.Aeson], as: A}
+  - { name: [Text.Blaze], as: B}
+  - { name: [Text.Blaze.Html5], as: H}
+  - { name: [Text.Blaze.Html5.Attributes], as: A}
+
+- functions:
+  - {name: nub, within: []}
+
+
+# Add custom hints for this project
+#
+# Will suggest replacing "wibbleMany [myvar]" with "wibbleOne myvar"
+# - error: {lhs: "wibbleMany [x]", rhs: wibbleOne x}
+
+
+# Turn on hints that are off by default
+#
+# Ban "module X(module X) where", to require a real export list
+# - warn: {name: Use explicit module export list}
+#
+# Replace a $ b $ c with a . b $ c
+# - group: {name: dollar, enabled: true}
+#
+# Generalise map to fmap, ++ to <>
+ #- group: {name: generalise, enabled: true}
+
+- warn: {name: Use explicit module export list}
+#- group: {name: dollar, enabled: true}
+
+
+# Ignore some builtin hints
+# - ignore: {name: Use let}
+# - ignore: {name: Use const, within: SpecialModule} # Only within certain modules
+
+
+# Define some custom infix operators
+# - fixity: infixr 3 ~^#^~
+
+
+# To generate a suitable file for HLint do:
+# $ hlint --default > .hlint.yaml
