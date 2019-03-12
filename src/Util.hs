@@ -152,7 +152,7 @@ testChooseItemUniformly :: Int -> T.Text
 testChooseItemUniformly x = fst $ chooseItemUniformly (mkStdGen x) ["a", "b", "c", "d"]
 
 testChooseFunctionUniformly :: Int -> T.Text
-testChooseFunctionUniformly x = combineFunctionsUniformly [\r -> "a", \r -> "b", \r -> "c"] (mkStdGen x)
+testChooseFunctionUniformly x = combineFunctionsUniformly [const "a", const "b", const "c"] (mkStdGen x)
 
 -- Old implementations
 
