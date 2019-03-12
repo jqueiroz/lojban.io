@@ -14,7 +14,7 @@ generateGismuMeaningExercise gismuList = combineFunctions [(4, f1), (1, f2), (7,
         f1 :: StdGen -> Exercise
         f1 r0 = MatchingExercise text items where
             (chosenGismu, _) = chooseItemsUniformly r0 3 $ gismuList
-            item gismu = (gismuText gismu, gismuEnglishKeywords gismu !! 0)
+            item gismu = (gismuText gismu, head $ gismuEnglishKeywords gismu)
             text = "Match gismu with keyword"
             items = map item chosenGismu
         -- Exercise: match gismu with full definition
@@ -29,7 +29,7 @@ generateGismuMeaningExercise gismuList = combineFunctions [(4, f1), (1, f2), (7,
         f3 r0 = SingleChoiceExercise text correctAlternative incorrectAlternatives False where
             (chosenGismu, _) = chooseItemsUniformly r0 4 $ gismuList
             text = "Select keyword for **" `T.append` (gismuText $ head chosenGismu) `T.append` "**"
-            alternative gismu = gismuEnglishKeywords gismu !! 0
+            alternative gismu = head $ gismuEnglishKeywords gismu
             correctAlternative = alternative $ head chosenGismu
             incorrectAlternatives = map alternative $ tail chosenGismu
         -- Exercise: choose the correct definition for a gismu
