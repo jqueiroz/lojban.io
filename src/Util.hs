@@ -5,11 +5,10 @@ module Util where
 import Core
 import Control.Arrow ((***), first, second)
 import Control.Applicative ((<$>), (<*>))
-import System.Random (StdGen, random)
+import System.Random (StdGen, random, mkStdGen)
 import qualified Data.Text as T
 import Data.Text.Encoding (decodeUtf8)
 import Data.List (group, sort)
-import System.Random
 import System.Random.Shuffle (shuffle')
 
 -- Domain-specific
