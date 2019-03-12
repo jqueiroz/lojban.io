@@ -39,7 +39,7 @@ import qualified Data.Map as M
 
 -- Exercise: translate a sentence from English to Lojban
 generateTranslationExercise :: SentenceCanonicalizer -> SentenceComparer -> TranslationGenerator -> ExerciseGenerator
-generateTranslationExercise = generateRestrictedTranslationExercise "Translate this sentence" (\_ -> True)
+generateTranslationExercise = generateRestrictedTranslationExercise "Translate this sentence" (const True)
 
 generateBlacklistedWordTranslationExercise :: T.Text -> SentenceCanonicalizer -> SentenceComparer -> TranslationGenerator -> ExerciseGenerator
 generateBlacklistedWordTranslationExercise blacklistedWord = generateRestrictedTranslationExercise (T.concat ["Translate without using \"", blacklistedWord, "\""]) (not . containsWord blacklistedWord)
