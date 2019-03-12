@@ -78,7 +78,7 @@ subfield :: Int -> Int -> T.Text -> T.Text
 subfield beg end = T.strip . substr beg end
 
 containsWord :: T.Text -> T.Text -> Bool
-containsWord word = not . null . filter (== word) . T.words
+containsWord word = (word `elem`) . T.words
 
 isSubexpressionOf :: T.Text -> T.Text -> Bool
 isSubexpressionOf expr text = (expr == text) || (prefixExpr `T.isPrefixOf` text) || (suffixExpr `T.isSuffixOf` text) || (infixExpr `T.isInfixOf` text) where
