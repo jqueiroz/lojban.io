@@ -27,7 +27,7 @@ import Core
 import Courses.Util.Vocabulary
 import Courses.Util.Sentences
 import Courses.Util.NumberTranslator
-import Util (narrowTranslationGenerator, narrowTranslationGeneratorByExpression, isSubexpressionOf, replace, replaceFirstSubexpression, replaceSubexpression, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly, containsWord)
+import Util (narrowTranslationGenerator, narrowTranslationGeneratorByExpression, isSubexpressionOf, replace, replaceFirstSubexpression, replaceSubexpression, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly, isWordOf)
 import Text.Read (readMaybe)
 import System.Random (StdGen, random)
 import Control.Applicative (liftA2)
@@ -42,7 +42,7 @@ generateTranslationExercise :: SentenceCanonicalizer -> SentenceComparer -> Tran
 generateTranslationExercise = generateRestrictedTranslationExercise "Translate this sentence" (const True)
 
 generateBlacklistedWordTranslationExercise :: T.Text -> SentenceCanonicalizer -> SentenceComparer -> TranslationGenerator -> ExerciseGenerator
-generateBlacklistedWordTranslationExercise blacklistedWord = generateRestrictedTranslationExercise (T.concat ["Translate without using \"", blacklistedWord, "\""]) (not . containsWord blacklistedWord)
+generateBlacklistedWordTranslationExercise blacklistedWord = generateRestrictedTranslationExercise (T.concat ["Translate without using \"", blacklistedWord, "\""]) (not . isWordOf blacklistedWord)
 
 generateRestrictedTranslationExercise :: T.Text -> (T.Text -> Bool) -> SentenceCanonicalizer -> SentenceComparer -> TranslationGenerator -> ExerciseGenerator
 generateRestrictedTranslationExercise title validator canonicalizer sentenceComparer translationGenerator r0 = TypingExercise title [ExerciseSentence False english_sentence] (liftA2 (&&) validator validateAll) (head lojban_sentences) where
