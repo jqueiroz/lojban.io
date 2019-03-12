@@ -49,7 +49,7 @@ generateRestrictedTranslationExercise title validator canonicalizer sentenceComp
     (translation, r1) = translationGenerator r0
     (lojban_sentences, english_sentences) = translation
     (english_sentence, r2) = chooseItemUniformly r1 english_sentences
-    validateAll typed_sentence = or $ map (validateSingle typed_sentence) lojban_sentences
+    validateAll typed_sentence = any (validateSingle typed_sentence) lojban_sentences
     validateSingle typed_sentence lojban_sentence = case canonicalizer (T.toLower typed_sentence) of
         Left _ -> False
         Right typed_sentence' -> case canonicalizer (T.toLower lojban_sentence) of
