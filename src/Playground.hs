@@ -13,9 +13,7 @@ import DictionaryLoader (loadDictionary)
 
 -- See also: https://mw.lojban.org/papri/N-grams_of_Lojban_corpus
 
-allGismu = do
-    dict <- loadDictionary
-    return $ map snd $ M.toList $ dictGismu dict
+allGismu = map snd . M.toList . dictGismu <$> loadDictionary
 
 popularGismu = filter ((>=200) . gismuIRCFrequencyCount) <$> allGismu
 popularGismuWords = map gismuText <$> popularGismu
