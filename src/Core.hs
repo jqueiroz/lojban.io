@@ -19,7 +19,7 @@ data Dictionary = Dictionary
 retrieveBrivlaPlaces :: Dictionary -> T.Text -> [T.Text]
 retrieveBrivlaPlaces dictionary brivla =
     let places = M.findWithDefault [] brivla $ dictBrivlaPlaces dictionary
-    in if places == []
+    in if null places
         then error $ "Missing brivla places for '" ++ (T.unpack brivla) ++ "'"
         else places
 
