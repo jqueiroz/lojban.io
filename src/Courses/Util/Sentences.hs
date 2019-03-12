@@ -361,7 +361,7 @@ generatePropertyBridi vocabulary r0 = (SimpleBridi False property [object], r2) 
         ]
     retrievePropertyObjects property =
         let objects = M.findWithDefault [] property propertyObjects
-        in if objects == []
+        in if null objects
             then error $ "No property objects are available for '" ++ (T.unpack property) ++ "'"
             else objects
 

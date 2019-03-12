@@ -91,7 +91,7 @@ replaceFirstSubstring old new text =
     let
         components = T.splitOn old text
     in
-        if components == [] then
+        if null components then
             text
         else
             (head components) `T.append` new `T.append` (T.intercalate old (tail components))
