@@ -20,6 +20,7 @@ executable lojto
                      , text
                      , bytestring
                      , containers
+                     , data-ordlist
                      , transformers
                      , file-embed
                      , either-unwrap

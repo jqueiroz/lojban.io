@@ -4,7 +4,7 @@ module Playground where
 import Core
 import Control.Applicative ((<$>), (<*>))
 import Data.Maybe (mapMaybe)
-import Data.List (nub)
+import Data.List.Ordered (nubSort)
 import qualified Data.Text.IO as TIO
 import qualified Data.Text as T
 import qualified Data.Map as M
@@ -26,7 +26,7 @@ loadGismuFromText :: Dictionary -> T.Text -> [Gismu]
 loadGismuFromText dict t = mapMaybe lookup words where
     gismu = dictGismu dict
     lookup word = M.lookup word gismu
-    words = nub . filter (/= "") . T.splitOn " " . T.replace "\n" " " $ t
+    words = nubSort . filter (/= "") . T.splitOn " " . T.replace "\n" " " $ t
 
 loadGismuFromFile :: FilePath -> IO [Gismu]
 loadGismuFromFile filePath = do
