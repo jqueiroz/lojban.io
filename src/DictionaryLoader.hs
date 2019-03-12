@@ -125,7 +125,7 @@ type FrequencyMap = M.Map T.Text Int
 
 loadFrequencyPairFromLine :: T.Text -> (T.Text, Int)
 loadFrequencyPairFromLine line = (w, read $ T.unpack f) where
-    f:w:[] = T.splitOn " " line
+    [f, w] = T.splitOn " " line
 
 loadFrequencyMapFromFile :: IO FrequencyMap
 loadFrequencyMapFromFile = M.fromList . map loadFrequencyPairFromLine . map (T.replace "\r" "") . T.lines <$> TIO.readFile "resources/MyFreq-COMB_without_dots.txt"
