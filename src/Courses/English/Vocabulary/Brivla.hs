@@ -58,6 +58,9 @@ exercises02 dictionary = buildBrivlaExerciseGenerator dictionary translations02
 lesson01 :: LessonBuilder
 lesson01 dictionary = Lesson "Deck #1" (exercises01 dictionary) plan01
 
+-- Conflicts:
+--   * "ciska" vs "finti"
+--   * "jundi" vs "zgana"
 lesson02 :: LessonBuilder
 lesson02 dictionary = Lesson "Deck #2" (exercises02 dictionary) plan02
 
