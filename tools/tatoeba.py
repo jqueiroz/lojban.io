@@ -93,6 +93,20 @@ def load_all_lujvo():
             all_lujvo.append(lujvo)
     return all_lujvo
 
+def load_brivla_from_file(filename):
+    ret = []
+    with open(filename, "r") as f:
+        blocks = f.read().split('\n\n\n')
+        for block in blocks:
+            brivla = block.split('\n')[0].split(': ')[0]
+            ret.append(brivla)
+    return ret
+
+def load_taught_brivla():
+    ret = []
+    ret += load_brivla_from_file("../courses/english/vocabulary/brivla/01_easy.txt")
+    return ret
+
 def print_json(data):
     print(json.dumps(data, sort_keys=True, indent=4))
 
@@ -150,9 +164,11 @@ def run():
         print("Frequent words: %d" % len(frequent_words))
     def display_top_brivla():
         blacklist = set(["selpa'i"])
+        taught = set(load_taught_brivla())
         words = frequency_table.items()
         brivla = filter(lambda x: x[0] in gismu or x[0] in lujvo, words)
         brivla = filter(lambda x: x[0] not in blacklist, brivla)
+        brivla = filter(lambda x: x[0] not in taught, brivla)
         brivla = list(brivla)
         brivla.sort(key=lambda x: -x[1])
         interesting_brivla = brivla[:20]
