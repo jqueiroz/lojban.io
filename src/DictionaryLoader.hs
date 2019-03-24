@@ -102,7 +102,20 @@ englishBrivlaPlacesMap = M.fromList
     , ("sipna", ["asleep entity"])
     , ("xamgu", ["good object/event", "beneficiary", "standard"])
     , ("zgana", ["observer", "observed", "senses/means", "conditions"])
+    , ("bangu", ["language/dialect", "language user", "communicated idea"])
+    , ("cliva", ["agent", "point of departure", "route"])
+    , ("finti", ["inventor", "invention", "purpose", "existing elements/ideas"])
+    , ("gunka", ["worker", "activity", "goal"])
+    , ("jundi", ["attentive entity", "object/affair"])
+    , ("kakne", ["capable entity", "capability", "conditions"])
+    , ("tcidu", ["reader", "text", "reading material"])
+    , ("valsi", ["word", "meaning", "language"])
+    , ("zvati", ["atendee/event", "location"])
     -- TODO: pendo
+    -- TODO: cinri
+    -- TODO: drata
+    -- TODO: simsa
+    -- TODO: smuni
     -- TODO: melbi
     -- TODO: prenu
     -- TODO: mlatu

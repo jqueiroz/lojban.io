@@ -1,0 +1,12 @@
+1.25	ro prenu cu se bangu
+		Everyone speaks a language.
+        -----> Is this really correct?
+        -----> Does it mean "there is a language which is spoken by everybody"?
+
+1.02	mi drata
+		I am different.
+        -----> Is this really idiomatic?
+
+1.72	ma ca ca'o tcidu
+		Who is reading?
+        -----> "ca ca'o" -> really necessary?

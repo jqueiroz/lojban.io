@@ -36,18 +36,30 @@ buildBrivlaExerciseGenerator dictionary translationsByExpression = combineFuncti
 plan01 :: P.Pandoc
 Right plan01 = P.runPure $ P.readMarkdown P.def $ ""
 
+plan02 :: P.Pandoc
+Right plan02 = P.runPure $ P.readMarkdown P.def $ ""
+
 ------- Translations
 translations01 :: TranslationsByExpression
 translations01 = loadTranslationsByExpression $(embedStringFile "courses/english/vocabulary/brivla/01_easy.txt")
+
+translations02 :: TranslationsByExpression
+translations02 = loadTranslationsByExpression $(embedStringFile "courses/english/vocabulary/brivla/02_easy.txt")
 
 ------- Exercises
 exercises01 :: Dictionary -> ExerciseGenerator
 exercises01 dictionary = buildBrivlaExerciseGenerator dictionary translations01
 
+exercises02 :: Dictionary -> ExerciseGenerator
+exercises02 dictionary = buildBrivlaExerciseGenerator dictionary translations02
+
 ------- Lessons
 -- TODO: rename: "Brivla 1--20", "Brivla 21--40", ...
 lesson01 :: LessonBuilder
 lesson01 dictionary = Lesson "Deck #1" (exercises01 dictionary) plan01
+
+lesson02 :: LessonBuilder
+lesson02 dictionary = Lesson "Deck #2" (exercises02 dictionary) plan02
 
 -------- Course
 style :: CourseStyle
@@ -62,4 +74,4 @@ style = CourseStyle color1 iconUrl where
 course :: CourseBuilder
 course = createCourseBuilder title style lessons where
     title = "Common brivla"
-    lessons = [lesson01]
+    lessons = [lesson01, lesson02]

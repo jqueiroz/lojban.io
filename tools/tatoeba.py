@@ -105,6 +105,7 @@ def load_brivla_from_file(filename):
 def load_taught_brivla():
     ret = []
     ret += load_brivla_from_file("../courses/english/vocabulary/brivla/01_easy.txt")
+    ret += load_brivla_from_file("../courses/english/vocabulary/brivla/02_easy.txt")
     return ret
 
 def print_json(data):
@@ -163,7 +164,7 @@ def run():
         print(frequent_words)
         print("Frequent words: %d" % len(frequent_words))
     def display_top_brivla():
-        blacklist = set(["selpa'i", "broda"])
+        blacklist = set(["selpa'i", "broda", "gerna", "lojbo", "tsani", "zmadu"])
         taught = set(load_taught_brivla())
         words = frequency_table.items()
         brivla = filter(lambda x: x[0] in gismu or x[0] in lujvo, words)
@@ -178,7 +179,7 @@ def run():
         print()
         print(sorted(list(map(lambda x: x[0], interesting_brivla))))
     def build_exercises():
-        words = ['citka', 'cizra', 'cmene', 'cusku', 'djica', 'djuno', 'gleki', 'jimpe', 'klama', 'mutce', 'nelci', 'pilno', 'sipna', 'tavla', 'xamgu', 'zgana']
+        words = ['bangu', 'cinri', 'cliva', 'drata', 'finti', 'gerna', 'gunka', 'jundi', 'kakne', 'klaku', 'lojbo', 'melbi', 'prenu', 'simsa', 'smuni', 'tcidu', 'tsani', 'valsi', 'zmadu', 'zvati']
         debug = True
         for word in words:
             sentences = filter_by_word(sentences_eng, word)
