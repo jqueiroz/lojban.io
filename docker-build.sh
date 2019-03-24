@@ -3,6 +3,7 @@ set -e
 
 echo ">>>>>>>>>>>>>> lojto"
 if [ -z "$1" ]; then
+    ./compile-less.sh
     stack build && cp .stack-work/dist/x86_64-*/Cabal*/build/lojto/lojto .docker-binary
     docker $DOCKER_OPTS build -t lojto-server .
     echo ""
