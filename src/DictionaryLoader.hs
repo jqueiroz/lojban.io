@@ -104,19 +104,21 @@ englishBrivlaPlacesMap = M.fromList
     , ("zgana", ["observer", "observed", "senses/means", "conditions"])
     , ("bangu", ["language/dialect", "language user", "communicated idea"])
     , ("cliva", ["agent", "point of departure", "route"])
-    , ("finti", ["inventor", "invention", "purpose", "existing elements/ideas"])
+    , ("finti", ["inventor/composer", "invention", "purpose", "existing elements/ideas"])
     , ("gunka", ["worker", "activity", "goal"])
     , ("jundi", ["attentive entity", "object/affair"])
     , ("kakne", ["capable entity", "capability", "conditions"])
     , ("tcidu", ["reader", "text", "reading material"])
     , ("valsi", ["word", "meaning", "language"])
     , ("zvati", ["atendee/event", "location"])
+    , ("cinri", ["interesting abstraction", "interested entity"])
+    , ("drata", ["entity #1", "entity #2", "standard"])
+    , ("simsa", ["entity #1", "entity #2", "property/quantity"])
+    , ("klaku", ["crier", "tears", "reason"])
+    , ("melbi", ["beautiful entity", "viewpoint holder", "aspect", "aesthetic standard"])
+    , ("smuni", ["meaning/interpretation", "expression", "opinion holder"]) -- not very good
     -- TODO: pendo
-    -- TODO: cinri
-    -- TODO: drata
-    -- TODO: simsa
     -- TODO: smuni
-    -- TODO: melbi
     -- TODO: prenu
     -- TODO: mlatu
     -- TODO: gerku
