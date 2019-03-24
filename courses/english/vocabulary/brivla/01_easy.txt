@@ -248,3 +248,22 @@ zgana: 47
 		I like watching movies.
 2.92	ko mi'a zgana
 		Watch us.
+
+
+prenu: 225
+0.63	lo prenu cu cizra
+		People are strange.
+0.68	mi mo prenu
+		What kind of person am I?
+0.68	do mo prenu
+		What kind of person are you?
+0.69	do prenu
+		You're a person.
+0.94	no prenu pu djuno
+		No one knew it.
+1.16	no prenu pu zvati
+		No one attended.
+1.25	ro prenu cu se bangu
+		Everyone speaks a language.
+1.30	ko'a mo prenu
+		What kind of person is she?
