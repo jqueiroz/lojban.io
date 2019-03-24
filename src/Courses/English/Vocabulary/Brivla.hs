@@ -61,5 +61,5 @@ style = CourseStyle color1 iconUrl where
 
 course :: CourseBuilder
 course = createCourseBuilder title style lessons where
-    title = "Common brivla" 
+    title = "Common brivla"
     lessons = [lesson01]
