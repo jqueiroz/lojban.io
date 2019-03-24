@@ -10,3 +10,8 @@
 1.72	ma ca ca'o tcidu
 		Who is reading?
         -----> "ca ca'o" -> really necessary?
+
+
+2.68	ca lo nu ve nuzba ku mi klaku
+		When I heard the news, I cried.
+        -----> "ku" looks incorrect
