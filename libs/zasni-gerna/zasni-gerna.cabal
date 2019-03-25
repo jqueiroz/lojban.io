@@ -33,6 +33,6 @@ library
   ghc-options:		-Wall
 
   -- override
-  --ghc-options: -O2 -static -Wall -Wno-unused-pattern-binds -fno-warn-tabs
-  --cc-options: -static
-  --ld-options: -static -pthread
+  ghc-options: -j8 -O2 -static -Wall -Wno-unused-pattern-binds -fno-warn-tabs
+  cc-options: -j8 -static
+  ld-options: -static -pthread

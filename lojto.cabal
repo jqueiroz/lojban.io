@@ -16,6 +16,9 @@ executable lojto
   hs-source-dirs:      src
   main-is:             Main.hs
   default-language:    Haskell2010
+  ghc-options: -j8 -O2 -static -threaded -Wall
+  cc-options: -j8 -static
+  ld-options: -static -pthread
   build-depends:       base >= 4.7 && < 5
                      , text
                      , bytestring

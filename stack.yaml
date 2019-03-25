@@ -38,4 +38,4 @@ extra-package-dbs: []
 # Nix configuration
 nix:
   enable: true
-  packages: [zlib.dev, zlib.out]
+  packages: [glibc.static, stdenv.cc.cc.lib, gmp5.static, zlib.dev.static]
