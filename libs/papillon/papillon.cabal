@@ -44,11 +44,21 @@ library
     bytestring == 0.10.*
   ghc-options:		-Wall -fno-warn-tabs
 
-executable	papillon
-  hs-source-dirs:	bin
-  main-is:		papillon.hs
-  other-modules:	Class
-  build-depends:
-    directory, filepath, base > 3 && < 5, template-haskell == 2.12.*,
-    monads-tf == 0.1.*, transformers == 0.5.*, papillon
-  ghc-options:		-Wall -fno-warn-tabs
+  -- override
+  ghc-options: -O2 -static -Wall -Wno-unused-pattern-binds -fno-warn-tabs
+  cc-options: -static
+  ld-options: -static -pthread
+
+--executable	papillon
+  --hs-source-dirs:	bin
+  --main-is:		papillon.hs
+  --other-modules:	Class
+  --build-depends:
+    --directory, filepath, base > 3 && < 5, template-haskell == 2.12.*,
+    --monads-tf == 0.1.*, transformers == 0.5.*, papillon
+  --ghc-options:		-Wall -fno-warn-tabs
+
+  ---- override
+  --ghc-options: -O2 -static -threaded -Wall -Wno-unused-pattern-binds -fno-warn-tabs
+  --cc-options: -static
+  --ld-options: -static -pthread

@@ -31,3 +31,8 @@ library
   other-modules:	Language.Lojban.Parser.ZasniGerna.Parser
   build-depends:	base > 3 && < 5, papillon
   ghc-options:		-Wall
+
+  -- override
+  --ghc-options: -O2 -static -Wall -Wno-unused-pattern-binds -fno-warn-tabs
+  --cc-options: -static
+  --ld-options: -static -pthread
