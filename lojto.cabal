@@ -1,24 +1,19 @@
+cabal-version:       2.2
 name:                lojto
 version:             0.1.0.0
 synopsis:            Lojban learning tool
 description:         Please see README.md
 homepage:            None
-license:             AllRightsReserved
+license:             NONE
 license-file:        LICENSE
 author:              Jonathan Queiroz
 maintainer:          dev@johnjq.com
 copyright:           2016 Jonathan Queiroz
 category:            Web
 build-type:          Simple
-cabal-version:       >=1.10
 
-executable lojto
-  hs-source-dirs:      src
-  main-is:             Main.hs
+common deps
   default-language:    Haskell2010
-  ghc-options: -j8 -O2 -static -threaded -Wall
-  cc-options: -j8 -static
-  ld-options: -static -pthread
   build-depends:       base >= 4.7 && < 5
                      , text
                      , bytestring
@@ -37,6 +32,14 @@ executable lojto
                      , happstack-server
                      , papillon
                      , zasni-gerna
+
+executable lojto
+  import:              deps
+  hs-source-dirs:      src
+  main-is:             Main.hs
+  ghc-options: -j8 -O2 -static -threaded -Wall
+  cc-options: -j8 -static
+  ld-options: -static -pthread
   other-modules:       Core
                      , DictionaryLoader
                      , Serializer
@@ -56,3 +59,12 @@ executable lojto
                      , Server.Vocabulary
                      , Util
                      , Playground
+
+test-suite language
+  import:              deps
+  type:                exitcode-stdio-1.0
+  main-is:             Language.hs
+  ghc-options:         -Wno-missing-home-modules
+  hs-source-dirs:      tests src
+  build-depends:       hspec
+                     , QuickCheck
