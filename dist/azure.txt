@@ -1,0 +1,22 @@
+=========> Create 16GB server
+
+# Setup SSHD (/etc/ssh/sshd_config)
+Port 22
+Port 1022
+PasswordAuthentication no
+
+# Install docker
+sudo apt-get install -y docker.io
+
+# Start docker
+sudo systemctl start docker
+
+# Test docker
+sudo docker info
+
+# Enable remote control
+sudo systemctl stop docker
+sudo cp /lib/systemd/system/docker.service /etc/systemd/system/docker.service
+sudo vi /etc/systemd/system/docker.service # pass option do docker: -H tcp://127.0.0.1:2375 -H unix:///var/run/docker.sock
+sudo systemctl daemon-reload
+sudo systemctl start docker
