@@ -10,7 +10,6 @@ if [ -z "$1" ]; then
     echo ""
 elif [ "$1" == "from-source" ]; then
     rm -f .docker-binary
-    ./compile-less.sh
     docker $DOCKER_OPTS build -t lojto-server -f Dockerfile2 .
     echo ""
     echo ""
