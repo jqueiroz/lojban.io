@@ -28,3 +28,7 @@ main = hspec $ do
         validateSentences
             [ ("mi nelci lo cmene be mi", "mi nelci lo cmene be mi be'o ku")
             ]
+      it "supports NOI" $ do
+        validateSentences
+            [ ("mi citka lo se dunda poi plise", "mi citka lo se dunda ku poi plise ku'o")
+            ]

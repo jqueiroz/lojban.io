@@ -283,10 +283,18 @@ convertLinkargs (ZG.BE (ZG.Init x) y _) = concatET [Right $ T.pack x, Right $ T.
 -- TODO: handle ZG.BEI
 -- TODO: handle InitF
 
+convertInitiator :: ZG.Initiator -> Either String T.Text
+convertInitiator (ZG.Init x) = Right $ T.pack x
+ --TODO: InitF, BInit, BInitF
+
+convertRelative :: ZG.Relative -> Either String T.Text
+convertRelative (ZG.NOI x y _) = concatET [convertInitiator x, Right $ T.pack " ", convertStructuredTerm y, Right $ " ku'o"]
+
 convertStructuredTerm :: StructuredTerm -> Either String T.Text
 convertStructuredTerm (ZG.KOhA x) = Right $ T.pack x
 convertStructuredTerm (ZG.Link x y) = concatET [convertStructuredTerm x, Right $ T.pack " ", convertLinkargs y]
 convertStructuredTerm (ZG.BRIVLA x) = Right $ T.pack x
+convertStructuredTerm (ZG.Rel x y) = concatET [convertStructuredTerm x, Right $ T.pack " ", convertRelative y]
 convertStructuredTerm (ZG.GOhA x) = Right $ T.pack x
 convertStructuredTerm (ZG.Prefix (ZG.SE x) y) = insertPrefix <$> convertStructuredTerm y where
     insertPrefix = ((T.pack $ x ++ " ") `T.append`)
