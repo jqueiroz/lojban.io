@@ -4,7 +4,7 @@ module Util where
 
 import Core
 import Control.Arrow ((***), first, second)
-import Control.Applicative ((<$>), (<*>))
+import Control.Applicative ((<$>), (<*>), liftA2)
 import System.Random (StdGen, random, mkStdGen)
 import qualified Data.Text as T
 import Data.Text.Encoding (decodeUtf8)
@@ -69,6 +69,9 @@ infixr 5 ?:
 x ?: xs
     | x `elem` xs = xs
     | otherwise   = x:xs
+
+concatET :: [Either String T.Text] -> Either String T.Text
+concatET = foldl1 (liftA2 T.append)
 
 -- String manipulation
 substr :: Int -> Int -> T.Text -> T.Text
