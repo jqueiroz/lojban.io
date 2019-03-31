@@ -24,3 +24,7 @@ main = hspec $ do
             [ ("mi tavla fi lo mlatu", "mi tavla zo'e lo mlatu ku")
             , ("mi ctuca fo lo bangu", "mi ctuca zo'e zo'e lo bangu ku")
             ]
+      it "supports BE" $ do
+        validateSentences
+            [ ("mi nelci lo cmene be mi", "mi nelci lo cmene be mi be'o ku")
+            ]

@@ -278,8 +278,14 @@ convertStructuredTerms terms = do
     let retrieveTerm i = headOrDefault (T.pack "") $ map snd $ filter ((== i) . fst) terms5
     return $ map retrieveTerm [1..lastTermNumber]
 
+convertLinkArgs :: ZG.Linkargs -> Either String T.Text
+convertLinkArgs (ZG.BE (ZG.Init x) y _) = T.append <$> ((T.append $ T.pack (x ++ " ")) <$> convertStructuredTerm y) <*> (Right $ " be'o")
+-- TODO: handle ZG.BEI
+-- TODO: handle InitF
+
 convertStructuredTerm :: StructuredTerm -> Either String T.Text
 convertStructuredTerm (ZG.KOhA x) = Right $ T.pack x
+convertStructuredTerm (ZG.Link x y) = T.append <$> (T.append <$> convertStructuredTerm x <*> (Right $ T.pack " ")) <*> convertLinkArgs y
 convertStructuredTerm (ZG.BRIVLA x) = Right $ T.pack x
 convertStructuredTerm (ZG.GOhA x) = Right $ T.pack x
 convertStructuredTerm (ZG.Prefix (ZG.SE x) y) = insertPrefix <$> convertStructuredTerm y where
