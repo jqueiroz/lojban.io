@@ -5,9 +5,11 @@ import Core
 import Control.Applicative ((<$>), (<*>))
 import Data.Maybe (mapMaybe)
 import Data.List.Ordered (nubSort)
+import Courses.Util.Sentences (parse, basicSentenceCanonicalizer)
 import qualified Data.Text.IO as TIO
 import qualified Data.Text as T
 import qualified Data.Map as M
+import qualified Language.Lojban.Parser.ZasniGerna as ZG
 
 import DictionaryLoader (loadDictionary)
 
@@ -35,3 +37,9 @@ loadGismuFromFile filePath = do
 
 terry = loadGismuFromFile "/home/john/Temp/lojban/texts/terry.txt"
 terryWords = map gismuText <$> terry
+
+parseString :: String -> Either String (ZG.Free, ZG.Text, ZG.Terminator)
+parseString = parse . T.pack
+
+canonicalizeString :: String -> Either String T.Text
+canonicalizeString =  basicSentenceCanonicalizer . T.pack
