@@ -23,7 +23,7 @@ module Courses.Util.Sentences
 
 import Core
 import Courses.Util.Vocabulary
-import Util (compose2, replace, stripRight, filterSnd, filterOutWord, filterOutWords, headOrDefault, isContiguousSequence, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly)
+import Util (compose2, replace, stripRight, filterSnd, filterOutWord, filterOutWords, headOrDefault, isContiguousSequence, concatET, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly)
 import Control.Exception (assert)
 import Control.Applicative (liftA2)
 import System.Random (StdGen, mkStdGen)
@@ -279,13 +279,13 @@ convertStructuredTerms terms = do
     return $ map retrieveTerm [1..lastTermNumber]
 
 convertLinkArgs :: ZG.Linkargs -> Either String T.Text
-convertLinkArgs (ZG.BE (ZG.Init x) y _) = T.append <$> ((T.append $ T.pack (x ++ " ")) <$> convertStructuredTerm y) <*> (Right $ " be'o")
+convertLinkArgs (ZG.BE (ZG.Init x) y _) = concatET [Right $ T.pack x, Right $ T.pack " ", convertStructuredTerm y, Right $ T.pack " be'o"]
 -- TODO: handle ZG.BEI
 -- TODO: handle InitF
 
 convertStructuredTerm :: StructuredTerm -> Either String T.Text
 convertStructuredTerm (ZG.KOhA x) = Right $ T.pack x
-convertStructuredTerm (ZG.Link x y) = T.append <$> (T.append <$> convertStructuredTerm x <*> (Right $ T.pack " ")) <*> convertLinkArgs y
+convertStructuredTerm (ZG.Link x y) = concatET [convertStructuredTerm x, Right $ T.pack " ", convertLinkArgs y]
 convertStructuredTerm (ZG.BRIVLA x) = Right $ T.pack x
 convertStructuredTerm (ZG.GOhA x) = Right $ T.pack x
 convertStructuredTerm (ZG.Prefix (ZG.SE x) y) = insertPrefix <$> convertStructuredTerm y where
