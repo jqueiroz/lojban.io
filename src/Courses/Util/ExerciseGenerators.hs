@@ -21,6 +21,10 @@ module Courses.Util.ExerciseGenerators
 , generateIsolatedBrivlaPlacesExercise
 , generateLexiconProvidingExercise
 , generateBasicNumberExercise
+, expandSentence
+, expandSentences
+, expandTranslation
+, expandTranslationGenerator
 ) where
 
 import Core
@@ -33,6 +37,7 @@ import System.Random (StdGen, random)
 import Control.Applicative (liftA2)
 import Control.Arrow (first)
 import Control.Exception (assert)
+import Control.Monad (join)
 import Data.Maybe (fromJust)
 import qualified Data.Text as T
 import qualified Data.Map as M
@@ -63,6 +68,29 @@ simplifyTranslation (lojbanSentences, englishSentences) = (fmap simplifyBridi lo
 -- Simplifies the Lojban translation produced by the generator
 simplifyTranslationGenerator :: TranslationGenerator -> TranslationGenerator
 simplifyTranslationGenerator translationGenerator r0 = (simplifyTranslation translation, r1) where
+    (translation, r1) = translationGenerator r0
+
+-- Expands sentences
+expandSentences :: [T.Text] -> [T.Text]
+expandSentences = join . map expandSentence
+
+expandSentence :: T.Text -> [T.Text]
+expandSentence sentence = map (T.unwords . filter (/= "")) $ expandWords (T.words sentence) where
+    expandWords :: [T.Text] -> [[T.Text]]
+    expandWords [] = [[]]
+    expandWords (w:ws) = (liftA2 (:)) (expandWord w) (expandWords ws) where
+    expandWord :: T.Text -> [T.Text]
+    expandWord x =
+        if (T.head x == '{') && (T.last x == '}') then
+            ["", T.init . T.tail $ x]
+        else
+            [x]
+
+expandTranslation :: Translation -> Translation
+expandTranslation (lojban_sentences, english_sentences) = (expandSentences lojban_sentences, english_sentences)
+
+expandTranslationGenerator :: TranslationGenerator -> TranslationGenerator
+expandTranslationGenerator translationGenerator r0 = (expandTranslation translation, r1) where
     (translation, r1) = translationGenerator r0
 
 -- Exercise: tell grammatical class of a word
