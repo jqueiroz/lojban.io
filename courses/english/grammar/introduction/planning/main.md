@@ -5,7 +5,6 @@
     * Connectives
     * Negation
     * Tanru
-    * Relative clauses
     * Ownership / Association (po/pe)
     * Possessive
     * Orders
