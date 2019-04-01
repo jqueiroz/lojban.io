@@ -302,6 +302,7 @@ convertStructuredTerm (ZG.NU (ZG.Init x) y w) = convertStructuredTerm (ZG.NU (ZG
 convertStructuredTerm (ZG.NU (ZG.InitF x y) w z) = insertPrefix . insertSuffix <$> displayCanonicalBridi <$> canonicalizeText (y, w, z) where
     insertPrefix = ((T.pack $ x ++ " ") `T.append`)
     insertSuffix = (`T.append` " kei")
+convertStructuredTerm (ZG.LE (ZG.Init x) ZG.NR ZG.NQ (ZG.Rel y z) t) = convertStructuredTerm $ ZG.Rel (ZG.LE (ZG.Init x) ZG.NR ZG.NQ y t) z
 convertStructuredTerm (ZG.LE (ZG.Init x) ZG.NR ZG.NQ y _) = insertPrefix . insertSuffix <$> convertStructuredTerm y where
     insertPrefix = ((T.pack $ x ++ " ") `T.append`)
     insertSuffix = (`T.append` " ku")

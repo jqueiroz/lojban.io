@@ -31,6 +31,7 @@ main = hspec $ do
       it "supports NOI" $ do
         validateSentences
             [ ("mi citka lo se dunda ku poi plise", "mi citka lo se dunda ku poi plise ku'o")
+            , ("mi nelci lo mlatu poi melbi", "mi nelci lo mlatu ku poi melbi ku'o")
             ]
       it "supports XU" $ do
         validateSentences
