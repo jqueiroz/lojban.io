@@ -45,6 +45,9 @@ Right plan5 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/engl
 plan1to5 :: P.Pandoc
 Right plan1to5 = P.runPure $ P.readMarkdown P.def $ ""
 
+plan7 :: P.Pandoc
+Right plan7 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/planning/7.md")
+
 -------- Vocabulary
 vocabularyGenerator1 :: VocabularyBuilder
 vocabularyGenerator1 = createVocabularyBuilder
@@ -120,6 +123,19 @@ vocabularyGenerator4 = createVocabularyBuilder
 -- New words: cu
 vocabularyGenerator5 :: VocabularyBuilder
 vocabularyGenerator5 = vocabularyGenerator4
+
+-- New words: PENDING
+vocabularyGenerator7 :: VocabularyBuilder
+vocabularyGenerator7 = createVocabularyBuilder
+    -- Selbri
+    [
+        ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska", "djuno"]) ++ ((2,) <$> ["nupre", "cusku"])),
+        ("relations", ((0,) <$> ["pendo", "nelci"]) ++ ((1,) <$> ["gleki"])),
+        ("properties", (0,) <$> ["prenu", "zdani", "mlatu", "gerku", "melbi"])
+    ]
+    -- Sumti
+    [
+    ]
 
 -- Sentence comparer
 sentenceComparer :: SentenceComparer
@@ -1019,10 +1035,14 @@ translationExercises1to5_simplified = simplifyCanonicalAnswer . combineFunctions
 -- questionExercises5 :: "What did you promise", "What did you say, ..."
 -- Interesting: xu do djuno lo se cusku
 
-translations6 :: [ExerciseGenerator]
-translations6 = generateTranslationExercise basicSentenceCanonicalizer sentenceComparer <$> generatorFromSingleton <$>
-    [
-    ]
+translations7 :: TranslationGenerator
+translations7 = expandTranslationGenerator $ combineFunctionsUniformly general where
+    general = generatorFromSingleton <$>
+        [ (["mi nelci lo mlatu poi {ke'a} melbi", "mi nelci lo melbi mlatu"], ["I like the beautiful cat."])
+        ]
+
+translationExercises7 :: ExerciseGenerator
+translationExercises7 = generateTranslationExercise basicSentenceCanonicalizer sentenceComparer translations7
 
 translations9 :: [ExerciseGenerator]
 translations9 = generateTranslationExercise basicSentenceCanonicalizer sentenceComparer <$> generatorFromSingleton <$>
@@ -1122,6 +1142,15 @@ exercises1to5 dictionary =
         vocabulary = vocabularyGenerator5 dictionary
         displayBridi = simplifyBridiDisplayer $ (combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)])
 
+exercises7 :: Dictionary -> ExerciseGenerator
+exercises7 dictionary =
+    combineFunctions
+        [ (20, generateIsolatedBrivlaPlacesExercise dictionary $ generatorFromWeightedList $ getVocabularySelbri vocabulary "actions")
+        , (70, translationExercises7)
+        ]
+    where
+        vocabulary = vocabularyGenerator7 dictionary
+
 -- Reminder: from now on, mix propositions and questions
 
 -------- Lessons
@@ -1143,6 +1172,9 @@ lesson5 dictionary = Lesson "Terminator elision" (exercises5 dictionary) plan5
 checkpoint1to5 :: LessonBuilder
 checkpoint1to5 dictionary = Lesson "Checkpoint: Lessons 1–5" (exercises1to5 dictionary) plan1to5
 
+lesson7 :: LessonBuilder
+lesson7 dictionary = Lesson "Relative clauses" (exercises7 dictionary) plan7
+
 -------- Course
 style :: CourseStyle
 style = CourseStyle color1 iconUrl where
@@ -1163,4 +1195,4 @@ style = CourseStyle color1 iconUrl where
 course :: CourseBuilder
 course = createCourseBuilder title style lessons where
     title = "Introduction to Grammar"
-    lessons = [lesson1, lesson2, lesson3, lesson4, lesson5, checkpoint1to5]
+    lessons = [lesson1, lesson2, lesson3, lesson4, lesson5, checkpoint1to5, lesson7]
