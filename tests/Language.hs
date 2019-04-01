@@ -32,3 +32,11 @@ main = hspec $ do
         validateSentences
             [ ("mi citka lo se dunda ku poi plise", "mi citka lo se dunda ku poi plise ku'o")
             ]
+      it "supports XU" $ do
+        validateSentences
+            [ ("xu do nelci lo mlatu", "xu do nelci lo mlatu ku")
+            ]
+      --it "supports reordered XU" $ do
+        --validateSentences
+            --[ ("do nelci xu lo mlatu", "xu do nelci lo mlatu ku")
+            --]
