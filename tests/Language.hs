@@ -32,6 +32,8 @@ main = hspec $ do
         validateSentences
             [ ("mi citka lo se dunda ku poi plise", "mi citka lo se dunda ku poi plise ku'o")
             , ("mi nelci lo mlatu poi melbi", "mi nelci lo mlatu ku poi melbi ku'o")
+            , ("mi tavla lo prenu poi nupre do", "mi tavla lo prenu ku poi nupre do ku'o")
+            , ("mi djuno lo du'u lo gerku poi do dunda ke'a mi cu pendo", "mi djuno lo du'u lo gerku ku poi do dunda ke'a mi ku'o pendo kei ku")
             ]
       it "supports XU" $ do
         validateSentences

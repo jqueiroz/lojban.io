@@ -288,7 +288,7 @@ convertInitiator (ZG.Init x) = Right $ T.pack x
  --TODO: InitF, BInit, BInitF
 
 convertRelative :: ZG.Relative -> Either String T.Text
-convertRelative (ZG.NOI x y _) = concatET [convertInitiator x, Right $ T.pack " ", convertStructuredTerm y, Right $ " ku'o"]
+convertRelative (ZG.NOI x y _) = concatET [convertInitiator x, Right $ T.pack " ", displayCanonicalBridi <$> canonicalizeText (ZG.NF, y, ZG.NT), Right $ " ku'o"]
 
 convertStructuredTerm :: StructuredTerm -> Either String T.Text
 convertStructuredTerm (ZG.KOhA x) = Right $ T.pack x
