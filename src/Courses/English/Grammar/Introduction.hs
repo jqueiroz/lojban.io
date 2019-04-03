@@ -130,7 +130,7 @@ vocabularyGenerator7 = createVocabularyBuilder
     -- Selbri
     [
         ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska", "djuno"]) ++ ((2,) <$> ["nupre", "cusku"])),
-        ("relations", ((0,) <$> ["pendo", "nelci"]) ++ ((1,) <$> ["gleki"])),
+        ("relations", ((0,) <$> ["pendo", "nelci", "gleki"]) ++ ((1,) <$> ["simsa"])),
         ("properties", (0,) <$> ["prenu", "zdani", "mlatu", "gerku", "melbi"])
     ]
     -- Sumti
@@ -1055,7 +1055,8 @@ translations7_poi :: TranslationGenerator
 translations7_poi = combineFunctionsUniformly [animals, general] where
     animals = combineFunctionsUniformly [mlatu, gerku] where
         mlatu = generatorFromList
-            [ (["mi nelci lo mlatu poi {ke'a} melbi", "mi nelci lo melbi mlatu"], ["I like the beautiful cat."])
+            [ (["mi nelci lo mlatu poi {ke'a} simsa lo gerku"], ["I like cats that look like dogs."])
+            , (["mi nelci lo mlatu poi {ke'a} melbi", "mi nelci lo melbi mlatu"], ["I like the beautiful cat."])
             , (["mi tavla lo prenu poi {ke'a} dunda lo mlatu"], ["I talked to the person who donated the cat."])
             , (["mi tavla lo prenu poi {ke'a} dunda lo mlatu ku mi"], ["I talked to the person who gave me the cat.", "I talked to the person who gave me the cats."])
             , (["mi djuno lo du'u lo mlatu poi do dunda ke'a mi ku'o pendo"], ["I know that the cat you gave me is friendly."])
@@ -1065,13 +1066,15 @@ translations7_poi = combineFunctionsUniformly [animals, general] where
             , (["mi tavla lo mlatu poi do nupre lo nu {do} dunda"], ["I talked about the cat that you promised to donate."])
             ]
         gerku = generatorFromList
-            [ (["mi nelci lo gerku poi {ke'a} melbi", "mi nelci lo melbi gerku"], ["I like the beautiful dog."])
+            [ (["mi nelci lo gerku poi {ke'a} simsa lo mlatu"], ["I like dogs that look like cats."])
+            , (["mi nelci lo gerku poi {ke'a} melbi", "mi nelci lo melbi gerku"], ["I like the beautiful dog."])
             , (["mi tavla lo prenu poi {ke'a} dunda lo gerku"], ["I talked to the person who donated the dog."])
             , (["mi tavla lo prenu poi {ke'a} dunda lo gerku ku mi"], ["I talked to the person who gave me the dog.", "I talked to the person who gave me the dogs."])
             , (["mi djuno lo du'u lo gerku poi do dunda ke'a mi ku'o pendo"], ["I know that the dog you gave me is friendly."])
             , (["mi dunda lo gerku poi do tavla fi ke'a"], ["I donated the dog that you were talking about."])
             , (["mi nelci lo gerku poi do tavla fi ke'a"], ["I like the dog that you were talking about."])
             , (["mi nupre lo nu {mi} tavla lo prenu poi {ke'a} dunda lo gerku"], ["I promised to talk to the person who donated the dog."])
+            , (["mi tavla lo gerku poi do nupre lo nu {do} dunda"], ["I talked about the dog that you promised to donate."])
             ]
     general = generatorFromList
         [ (["mi tavla lo prenu poi {ke'a} nupre do"], ["I talked to the person who promised you."])
