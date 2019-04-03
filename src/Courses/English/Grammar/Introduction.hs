@@ -1036,23 +1036,42 @@ translationExercises1to5_simplified = simplifyCanonicalAnswer . combineFunctions
 -- Interesting: xu do djuno lo se cusku
 
 translations7_noi :: TranslationGenerator
-translations7_noi = combineFunctionsUniformly [general, animals] where
+translations7_noi = combineFunctionsUniformly [general, house, animals] where
     general = generatorFromList
-        [ (["mi nelci lo mlatu noi {ke'a} melbi"], ["I like the cat, which is beautiful."])
-        , (["mi nelci lo se dunda noi {ke'a} mlatu"], ["I liked the gift, which was a cat."])
+        [ (["mi nelci lo nu lo dunda noi {ke'a} simsa lo ctuca cu pendo"], ["I am happy that the donor, who looked like a teacher, was friendly."])
+        ]
+    house = generatorFromList
+        [ (["lo zdani noi {ke'a} melbi do cu se dunda fi mi"], ["The house, which you found beautiful, was donated to me."])
+        , (["lo zdani noi {ke'a} melbi do cu se dunda mi"], ["The house, which you found beautiful, was donated by me."])
+        , (["lo zdani noi {ke'a} melbi do cu se vecnu"], ["The house, which you found beautiful, was sold."])
+        , (["lo zdani noi {ke'a} melbi do cu se vecnu lo ctuca"], ["The house, which you found beautiful, was sold by the instructor."])
+        , (["lo zdani noi {ke'a} melbi do cu se vecnu fi lo ctuca"], ["The house, which you found beautiful, was sold to the instructor."])
         ]
     animals = combineFunctionsUniformly [mlatu, gerku] where
         mlatu = generatorFromList
-            [ (["lo mlatu noi {ke'a} pendo do cu gleki"], ["The cat, who is your friend, is happy."])
-            , (["lo mlatu noi {ke'a} melbi do cu nelci lo gerku"], ["The cat, which you find beautiful, likes dogs."])
+            [ (["lo mlatu noi {ke'a} melbi do cu nelci lo gerku"], ["The cat, which you find beautiful, likes dogs."])
+            , (["mi nelci lo mlatu noi {ke'a} melbi"], ["I like the cat, which is beautiful."])
+            , (["mi nelci lo se dunda noi {ke'a} mlatu"], ["I liked the gift, which was a cat."])
+            , (["lo mlatu noi {ke'a} pendo do cu gleki"], ["The cat, who is your friend, is happy."])
             ]
         gerku = generatorFromList
-            [ (["lo gerku noi {ke'a} pendo do cu gleki"], ["The dog, who is your friend, is happy."])
-            , (["lo gerku noi {ke'a} melbi do cu nelci lo mlatu"], ["The dog, which you find beautiful, likes cats."])
+            [ (["lo gerku noi {ke'a} melbi do cu nelci lo mlatu"], ["The dog, which you find beautiful, likes cats."])
+            , (["mi nelci lo gerku noi {ke'a} melbi"], ["I like the dog, which is beautiful."])
+            , (["mi nelci lo se dunda noi {ke'a} gerku"], ["I liked the gift, which was a dog."])
+            , (["lo gerku noi {ke'a} pendo do cu gleki"], ["The dog, who is your friend, is happy."])
             ]
 
 translations7_poi :: TranslationGenerator
-translations7_poi = combineFunctionsUniformly [animals, general] where
+translations7_poi = combineFunctionsUniformly [house, animals, general] where
+    house = generatorFromList
+        [ (["lo zdani poi {ke'a} melbi do cu se dunda fi mi"], ["The house that you found beautiful was donated to me."])
+        , (["lo zdani poi {ke'a} melbi do cu se dunda mi"], ["The house that you found beautiful was donated by me."])
+        , (["lo zdani poi {ke'a} melbi do cu se vecnu"], ["The house that you found beautiful was sold."])
+        , (["lo zdani poi {ke'a} melbi do cu se vecnu lo ctuca"], ["The house that you found beautiful was sold by the instructor."])
+        , (["lo zdani poi {ke'a} melbi do cu se vecnu fi lo ctuca"], ["The house that you found beautiful was sold to the instructor."])
+        , (["xu do vecnu lo zdani poi melbi mi"], ["Did you sell the house that I found beautiful?", "Are you selling the house that I found beautiful?"])
+        , (["xu lo cutca vecnu lo zdani poi {ke'a} melbi do"], ["Did the instructor sell the house that you found beautiful?", "Will the instructor sell the house that you found beautiful?"])
+        ]
     animals = combineFunctionsUniformly [mlatu, gerku] where
         mlatu = generatorFromList
             [ (["mi nelci lo mlatu poi {ke'a} simsa lo gerku"], ["I like cats that look like dogs."])
