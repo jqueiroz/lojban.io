@@ -129,7 +129,7 @@ vocabularyGenerator7 :: VocabularyBuilder
 vocabularyGenerator7 = createVocabularyBuilder
     -- Selbri
     [
-        ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska", "djuno"]) ++ ((2,) <$> ["nupre", "cusku"])),
+        ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska", "djuno", "nupre", "cusku"]) ++ ((3,) <$> ["vecnu"])),
         ("relations", ((0,) <$> ["pendo", "nelci", "gleki"]) ++ ((1,) <$> ["simsa"])),
         ("properties", (0,) <$> ["prenu", "zdani", "mlatu", "gerku", "melbi"])
     ]
