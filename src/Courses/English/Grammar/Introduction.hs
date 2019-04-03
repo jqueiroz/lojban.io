@@ -1035,11 +1035,51 @@ translationExercises1to5_simplified = simplifyCanonicalAnswer . combineFunctions
 -- questionExercises5 :: "What did you promise", "What did you say, ..."
 -- Interesting: xu do djuno lo se cusku
 
-translations7 :: TranslationGenerator
-translations7 = expandTranslationGenerator $ combineFunctionsUniformly general where
-    general = generatorFromSingleton <$>
-        [ (["mi nelci lo mlatu poi {ke'a} melbi", "mi nelci lo melbi mlatu"], ["I like the beautiful cat."])
+translations7_noi :: TranslationGenerator
+translations7_noi = combineFunctionsUniformly [general, animals] where
+    general = generatorFromList
+        [ (["mi nelci lo mlatu noi {ke'a} melbi"], ["I like the cat, which is beautiful."])
+        , (["mi nelci lo se dunda noi {ke'a} mlatu"], ["I liked the gift, which was a cat."])
         ]
+    animals = combineFunctionsUniformly [mlatu, gerku] where
+        mlatu = generatorFromList
+            [ (["lo mlatu noi {ke'a} pendo do cu gleki"], ["The cat, who is your friend, is happy."])
+            , (["lo mlatu noi {ke'a} melbi do cu nelci lo gerku"], ["The cat, which you find beautiful, likes dogs."])
+            ]
+        gerku = generatorFromList
+            [ (["lo gerku noi {ke'a} pendo do cu gleki"], ["The dog, who is your friend, is happy."])
+            , (["lo gerku noi {ke'a} melbi do cu nelci lo mlatu"], ["The dog, which you find beautiful, likes cats."])
+            ]
+
+translations7_poi :: TranslationGenerator
+translations7_poi = combineFunctionsUniformly [animals, general] where
+    animals = combineFunctionsUniformly [mlatu, gerku] where
+        mlatu = generatorFromList
+            [ (["mi nelci lo mlatu poi {ke'a} melbi", "mi nelci lo melbi mlatu"], ["I like the beautiful cat."])
+            , (["mi tavla lo prenu poi {ke'a} dunda lo mlatu"], ["I talked to the person who donated the cat."])
+            , (["mi tavla lo prenu poi {ke'a} dunda lo mlatu ku mi"], ["I talked to the person who gave me the cat.", "I talked to the person who gave me the cats."])
+            , (["mi djuno lo du'u lo mlatu poi do dunda ke'a mi ku'o pendo"], ["I know that the cat you gave me is friendly."])
+            , (["mi dunda lo mlatu poi do tavla fi ke'a"], ["I donated the cat that you were talking about."])
+            , (["mi nelci lo mlatu poi do tavla fi ke'a"], ["I like the cat that you were talking about."])
+            , (["mi nupre lo nu {mi} tavla lo prenu poi {ke'a} dunda lo mlatu"], ["I promised to talk to the person who donated the cat."])
+            , (["mi tavla lo mlatu poi do nupre lo nu {do} dunda"], ["I talked about the cat that you promised to donate."])
+            ]
+        gerku = generatorFromList
+            [ (["mi nelci lo gerku poi {ke'a} melbi", "mi nelci lo melbi gerku"], ["I like the beautiful dog."])
+            , (["mi tavla lo prenu poi {ke'a} dunda lo gerku"], ["I talked to the person who donated the dog."])
+            , (["mi tavla lo prenu poi {ke'a} dunda lo gerku ku mi"], ["I talked to the person who gave me the dog.", "I talked to the person who gave me the dogs."])
+            , (["mi djuno lo du'u lo gerku poi do dunda ke'a mi ku'o pendo"], ["I know that the dog you gave me is friendly."])
+            , (["mi dunda lo gerku poi do tavla fi ke'a"], ["I donated the dog that you were talking about."])
+            , (["mi nelci lo gerku poi do tavla fi ke'a"], ["I like the dog that you were talking about."])
+            , (["mi nupre lo nu {mi} tavla lo prenu poi {ke'a} dunda lo gerku"], ["I promised to talk to the person who donated the dog."])
+            ]
+    general = generatorFromList
+        [ (["mi tavla lo prenu poi {ke'a} nupre do"], ["I talked to the person who promised you."])
+        , (["mi tavla lo zdani poi do nupre lo nu {do} dunda"], ["I talked about the house that you promised to donate."])
+        ]
+
+translations7 :: TranslationGenerator
+translations7 = expandTranslationGenerator $ combineFunctionsUniformly [translations7_noi, translations7_poi]
 
 translationExercises7 :: ExerciseGenerator
 translationExercises7 = generateTranslationExercise basicSentenceCanonicalizer sentenceComparer translations7
