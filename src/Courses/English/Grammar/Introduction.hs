@@ -1039,6 +1039,10 @@ translations7_noi :: TranslationGenerator
 translations7_noi = combineFunctionsUniformly [general, house, animals] where
     general = generatorFromList
         [ (["mi nelci lo nu lo dunda noi {ke'a} simsa lo ctuca cu pendo"], ["I am happy that the donor, who looked like a teacher, was friendly."])
+        , (["lo dunda noi {ke'a} pendo mi cu gleki"], ["The donor, who is my friend, is happy."])
+        , (["lo te dunda noi {ke'a} pendo mi cu gleki"], ["The recipient, who is my friend, is happy."])
+        , (["lo vecnu noi {ke'a} pendo mi cu gleki"], ["The seller, who is my friend, is happy."])
+        , (["lo te vecnu noi {ke'a} pendo mi cu gleki"], ["The buyer, who is my friend, is happy."])
         ]
     house = generatorFromList
         [ (["lo zdani noi {ke'a} melbi do cu se dunda fi mi"], ["The house, which you found beautiful, was donated to me."])
@@ -1083,6 +1087,7 @@ translations7_poi = combineFunctionsUniformly [house, animals, general] where
             , (["mi nelci lo mlatu poi do tavla fi ke'a"], ["I like the cat that you were talking about."])
             , (["mi nupre lo nu {mi} tavla lo prenu poi {ke'a} dunda lo mlatu"], ["I promised to talk to the person who donated the cat."])
             , (["mi tavla lo mlatu poi do nupre lo nu {do} dunda"], ["I talked about the cat that you promised to donate."])
+            , (["mi djuno lo du'u do nupre fi lo pendo poi {ke'a} dunda lo mlatu"], ["I know that you made a promise to the friend who donated the cat."])
             ]
         gerku = generatorFromList
             [ (["mi nelci lo gerku poi {ke'a} simsa lo mlatu"], ["I like dogs that look like cats."])
@@ -1094,6 +1099,7 @@ translations7_poi = combineFunctionsUniformly [house, animals, general] where
             , (["mi nelci lo gerku poi do tavla fi ke'a"], ["I like the dog that you were talking about."])
             , (["mi nupre lo nu {mi} tavla lo prenu poi {ke'a} dunda lo gerku"], ["I promised to talk to the person who donated the dog."])
             , (["mi tavla lo gerku poi do nupre lo nu {do} dunda"], ["I talked about the dog that you promised to donate."])
+            , (["mi djuno lo du'u do nupre fi lo pendo poi {ke'a} dunda lo gerku"], ["I know that you made a promise to the friend who donated the dog."])
             ]
     general = generatorFromList
         [ (["mi tavla lo prenu poi {ke'a} nupre do"], ["I talked to the person who promised you."])
