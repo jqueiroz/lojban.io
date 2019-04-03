@@ -20,3 +20,15 @@ sudo cp /lib/systemd/system/docker.service /etc/systemd/system/docker.service
 sudo vi /etc/systemd/system/docker.service # pass option do docker: -H tcp://127.0.0.1:2375 -H unix:///var/run/docker.sock
 sudo systemctl daemon-reload
 sudo systemctl start docker
+
+=========> Setup continuous integration
+Creating build pipeline: https://docs.microsoft.com/en-us/azure/devops/pipelines/get-started-yaml?view=azure-devops
+
+Setting up docker: https://docs.microsoft.com/en-us/azure/devops/pipelines/languages/docker?view=azure-devops
+
+Setting up linuxvm: https://docs.microsoft.com/en-us/azure/devops/pipelines/apps/cd/deploy-linuxvm-deploygroups?view=azure-devops
+    Additional dependency: curl
+    Personal access tokens: see https://docs.microsoft.com/en-us/azure/devops/integrate/get-started/authentication/pats?view=azure-devops
+
+-----
+Azure Web Apps for Containers (not used right now): https://docs.microsoft.com/en-us/azure/devops/pipelines/apps/cd/deploy-docker-webapp?view=azure-devops
