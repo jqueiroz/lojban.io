@@ -131,7 +131,7 @@ vocabularyGenerator7 = createVocabularyBuilder
     [
         ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska", "djuno", "nupre", "cusku"]) ++ ((3,) <$> ["vecnu"])),
         ("relations", ((0,) <$> ["pendo", "nelci", "gleki"]) ++ ((1,) <$> ["simsa"])),
-        ("properties", (0,) <$> ["prenu", "zdani", "mlatu", "gerku", "melbi"])
+        ("properties", (0,) <$> ["prenu", "zdani", "mlatu", "gerku", "melbi", "plise"])
     ]
     -- Sumti
     [
@@ -1079,6 +1079,7 @@ translations7_poi = combineFunctionsUniformly [house, animals, general] where
     animals = combineFunctionsUniformly [mlatu, gerku] where
         mlatu = generatorFromList
             [ (["mi nelci lo mlatu poi {ke'a} simsa lo gerku"], ["I like cats that look like dogs."])
+            , (["mi nelci lo mlatu poi {ke'a} nelci lo plise"], ["I like cats that like apples."])
             , (["mi nelci lo mlatu poi {ke'a} melbi", "mi nelci lo melbi mlatu"], ["I like the beautiful cat."])
             , (["mi tavla lo prenu poi {ke'a} dunda lo mlatu"], ["I talked to the person who donated the cat."])
             , (["mi tavla lo prenu poi {ke'a} dunda lo mlatu ku mi"], ["I talked to the person who gave me the cat.", "I talked to the person who gave me the cats."])
@@ -1091,6 +1092,7 @@ translations7_poi = combineFunctionsUniformly [house, animals, general] where
             ]
         gerku = generatorFromList
             [ (["mi nelci lo gerku poi {ke'a} simsa lo mlatu"], ["I like dogs that look like cats."])
+            , (["mi nelci lo gerku poi {ke'a} nelci lo plise"], ["I like dogs that like apples."])
             , (["mi nelci lo gerku poi {ke'a} melbi", "mi nelci lo melbi gerku"], ["I like the beautiful dog."])
             , (["mi tavla lo prenu poi {ke'a} dunda lo gerku"], ["I talked to the person who donated the dog."])
             , (["mi tavla lo prenu poi {ke'a} dunda lo gerku ku mi"], ["I talked to the person who gave me the dog.", "I talked to the person who gave me the dogs."])
@@ -1104,6 +1106,15 @@ translations7_poi = combineFunctionsUniformly [house, animals, general] where
     general = generatorFromList
         [ (["mi tavla lo prenu poi {ke'a} nupre do"], ["I talked to the person who promised you."])
         , (["mi tavla lo zdani poi do nupre lo nu {do} dunda"], ["I talked about the house that you promised to donate."])
+        , (["mi tavla fi lo plise poi do dunda ke'a lo mlatu"], ["I am talking about the apple that you gave to the dog."])
+        , (["mi tavla fi lo plise poi do vecnu"], ["I am talking about the apple that you sold."])
+        , (["xu lo gerku nelci lo plise poi do dunda {ke'a}"], ["Did the dog like the apple that you gave?"])
+        , (["mi tavla lo prenu poi {ke'a} dunda lo plise"], ["I talked to the person who donated the apple."])
+        , (["mi tavla fi lo prenu poi {ke'a} dunda lo plise"], ["I talked about person who donated the apple."])
+        , (["mi dunda lo plise poi do tavla fi ke'a"], ["I donated the apple that you were talking about."])
+        , (["mi nupre lo nu {mi} tavla lo prenu poi {ke'a} dunda lo plise"], ["I promised to talk to the person who donated the apple."])
+        , (["mi tavla fi lo plise poi do nupre lo nu {do} dunda {ke'a}"], ["I talked about the apple that you promised to donate."])
+        , (["mi djuno lo du'u do nupre fi lo pendo poi {ke'a} dunda lo plise"], ["I know that you made a promise to the friend who donated the apple."])
         ]
 
 translations7 :: TranslationGenerator
