@@ -124,7 +124,7 @@ vocabularyGenerator4 = createVocabularyBuilder
 vocabularyGenerator5 :: VocabularyBuilder
 vocabularyGenerator5 = vocabularyGenerator4
 
--- New words: PENDING
+-- New words: plise, vecnu, (PENDING)
 vocabularyGenerator7 :: VocabularyBuilder
 vocabularyGenerator7 = createVocabularyBuilder
     -- Selbri
