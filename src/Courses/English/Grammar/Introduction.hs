@@ -1105,16 +1105,23 @@ translations7_poi = combineFunctionsUniformly [house, animals, general] where
             ]
     general = generatorFromList
         [ (["mi tavla lo prenu poi {ke'a} nupre do"], ["I talked to the person who promised you."])
+        , (["xu do tavla lo prenu poi {ke'a} nupre mi"], ["Did you talk to the person who promised me?"])
         , (["mi tavla fi lo zdani poi do nupre lo nu {do} dunda"], ["I talked about the house that you promised to donate."])
+        , (["xu do tavla fi lo zdani poi do nupre lo nu {do} dunda"], ["Did you talk about the house that you promised to donate?"])
         , (["mi tavla fi lo plise poi do dunda ke'a lo mlatu"], ["I am talking about the apple that you gave to the dog."])
         , (["mi tavla fi lo plise poi do vecnu"], ["I am talking about the apple that you sold."])
         , (["xu lo gerku nelci lo plise poi do dunda {ke'a}"], ["Did the dog like the apple that you gave?"])
         , (["mi tavla lo prenu poi {ke'a} dunda lo plise"], ["I talked to the person who donated the apple."])
         , (["mi tavla fi lo prenu poi {ke'a} dunda lo plise"], ["I talked about person who donated the apple."])
+        , (["xu do tavla lo prenu poi {ke'a} dunda lo plise"], ["Did you talk to the person who donated the apple?"])
         , (["mi dunda lo plise poi do tavla fi ke'a"], ["I donated the apple that you were talking about."])
         , (["mi nupre lo nu {mi} tavla lo prenu poi {ke'a} dunda lo plise"], ["I promised to talk to the person who donated the apple."])
         , (["mi tavla fi lo plise poi do nupre lo nu {do} dunda {ke'a}"], ["I talked about the apple that you promised to donate."])
         , (["mi djuno lo du'u do nupre fi lo pendo poi {ke'a} dunda lo plise"], ["I know that you made a promise to the friend who donated the apple."])
+        , (["xu do nupre fi lo pendo poi {ke'a} dunda lo plise"], ["Did you make a promise to the friend who donated the apple?"])
+        , (["mi cusku lo se du'u mi nelci lo plise poi do vecnu {ke'a}"], ["I said that I liked the apple that you sold."])
+        , (["xu do nelci lo plise poi mi vecnu {ke'a}"], ["Did you like the apple that I sold?"])
+        , (["xu do nelci lo plise poi mi te vecnu ke'a"], ["Did you like the apple that I bought?"])
         ]
 
 translations7 :: TranslationGenerator
