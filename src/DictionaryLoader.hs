@@ -117,6 +117,8 @@ englishBrivlaPlacesMap = M.fromList
     , ("klaku", ["crier", "tears", "reason"])
     , ("melbi", ["beautiful entity", "viewpoint holder", "aspect", "aesthetic standard"])
     , ("smuni", ["meaning/interpretation", "expression", "opinion holder"]) -- not very good
+    , ("vecnu", ["seller", "goods/service", "buyer", "price"])
+    , ("plise", ["apple", "species/strain"])
     -- TODO: pendo
     -- TODO: smuni
     -- TODO: prenu
