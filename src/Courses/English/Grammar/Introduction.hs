@@ -1036,13 +1036,21 @@ translationExercises1to5_simplified = simplifyCanonicalAnswer . combineFunctions
 -- Interesting: xu do djuno lo se cusku
 
 translations7_noi :: TranslationGenerator
-translations7_noi = combineFunctionsUniformly [general, house, animals] where
+translations7_noi = combineFunctionsUniformly [general, friend, house, animals] where
     general = generatorFromList
+        [ (["lo ctuca noi djuno fi lo gerku ku'o dunda lo plise"], ["The instructor, who knows about dogs, donated the apple."])
+        ]
+    friend = generatorFromList
         -- [ (["mi nelci lo nu lo dunda noi {ke'a} simsa lo ctuca cu pendo"], ["I am happy that the donor, who looked like a teacher, was friendly."])
         [ (["lo dunda noi {ke'a} pendo mi cu gleki"], ["The donor, who is my friend, is happy."])
         , (["lo te dunda noi {ke'a} pendo mi cu gleki"], ["The recipient, who is my friend, is happy."])
         , (["lo vecnu noi {ke'a} pendo mi cu gleki"], ["The seller, who is my friend, is happy."])
         , (["lo te vecnu noi {ke'a} pendo mi cu gleki"], ["The buyer, who is my friend, is happy."])
+
+        , (["lo dunda noi {ke'a} pendo mi cu ciska ta"], ["The donor, who is my friend, wrote that."])
+        , (["lo te dunda noi {ke'a} pendo mi ciska ta"], ["The recipient, who is my friend, wrote that."])
+        , (["lo vecnu noi {ke'a} pendo mi cu ciska ta"], ["The seller, who is my friend, wrote that."])
+        , (["lo te vecnu noi {ke'a} pendo mi cu ciska ta"], ["The buyer, who is my friend, wrote that."])
         ]
     house = generatorFromList
         [ (["lo zdani noi {ke'a} melbi do cu se dunda fi mi"], ["The house, which you found beautiful, was donated to me."])
@@ -1079,7 +1087,8 @@ translations7_poi = combineFunctionsUniformly [house, animals, general] where
     animals = combineFunctionsUniformly [mlatu, gerku] where
         mlatu = generatorFromList
             -- [ (["mi nelci lo mlatu poi {ke'a} simsa lo gerku"], ["I like cats that look like dogs."])
-            [ (["mi nelci lo mlatu poi {ke'a} nelci lo plise"], ["I like cats that like apples."])
+            [ (["mi nelci lo mlatu poi {ke'a} pendo lo gerku"], ["I like cats that are friendly to dogs."])
+            , (["mi nelci lo mlatu poi {ke'a} nelci lo plise"], ["I like cats that like apples."])
             , (["mi nelci lo plise poi {ke'a} melbi lo mlatu"], ["I like apples that are beautiful to cats."])
             , (["mi nelci lo mlatu poi {ke'a} melbi", "mi nelci lo melbi mlatu"], ["I like the beautiful cat."])
             , (["mi tavla lo prenu poi {ke'a} dunda lo mlatu"], ["I talked to the person who donated the cat."])
@@ -1093,7 +1102,8 @@ translations7_poi = combineFunctionsUniformly [house, animals, general] where
             ]
         gerku = generatorFromList
             -- [ (["mi nelci lo gerku poi {ke'a} simsa lo mlatu"], ["I like dogs that look like cats."])
-            [ (["mi nelci lo gerku poi {ke'a} nelci lo plise"], ["I like dogs that like apples."])
+            [ (["mi nelci lo gerku poi {ke'a} pendo lo mlatu"], ["I like dogs that are friendly to cats."])
+            , (["mi nelci lo gerku poi {ke'a} nelci lo plise"], ["I like dogs that like apples."])
             , (["mi nelci lo plise poi {ke'a} melbi lo gerku"], ["I like apples that are beautiful to dogs."])
             , (["mi nelci lo gerku poi {ke'a} melbi", "mi nelci lo melbi gerku"], ["I like the beautiful dog."])
             , (["mi tavla lo prenu poi {ke'a} dunda lo gerku"], ["I talked to the person who donated the dog."])
