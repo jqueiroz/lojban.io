@@ -1105,7 +1105,7 @@ translations7_poi = combineFunctionsUniformly [house, animals, general] where
             ]
     general = generatorFromList
         [ (["mi tavla lo prenu poi {ke'a} nupre do"], ["I talked to the person who promised you."])
-        , (["mi tavla lo zdani poi do nupre lo nu {do} dunda"], ["I talked about the house that you promised to donate."])
+        , (["mi tavla fi lo zdani poi do nupre lo nu {do} dunda"], ["I talked about the house that you promised to donate."])
         , (["mi tavla fi lo plise poi do dunda ke'a lo mlatu"], ["I am talking about the apple that you gave to the dog."])
         , (["mi tavla fi lo plise poi do vecnu"], ["I am talking about the apple that you sold."])
         , (["xu lo gerku nelci lo plise poi do dunda {ke'a}"], ["Did the dog like the apple that you gave?"])
