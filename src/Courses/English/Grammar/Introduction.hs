@@ -1036,9 +1036,18 @@ translationExercises1to5_simplified = simplifyCanonicalAnswer . combineFunctions
 -- Interesting: xu do djuno lo se cusku
 
 translations7_noi :: TranslationGenerator
-translations7_noi = combineFunctionsUniformly [general, friend, house, animals] where
-    general = generatorFromList
-        [ (["lo ctuca noi djuno fi lo gerku ku'o dunda lo plise"], ["The instructor, who knows about dogs, donated the apple."])
+translations7_noi = combineFunctionsUniformly [knower, instructor, friend, house, animals] where
+    knower = generatorFromList
+        [ (["lo djuno noi {ke'a} nelci lo nu {ke'a} tavla (ke'a|vo'a) ku'o pendo"], ["The knower, who enjoys talking to himself, is friendly."])
+        , (["lo djuno noi {ke'a} nelci lo nu {ke'a} tavla (ke'a|vo'a) ku'o ciska ta"], ["The knower, who enjoys talking to himself, wrote that."])
+        , (["lo djuno noi {ke'a} nelci lo nu {ke'a} tavla (ke'a|vo'a) ku'o ctuca mi"], ["The knower, who enjoys talking to himself, taught us."])
+        ]
+    instructor = generatorFromList
+        [ (["lo ctuca noi {ke'a} djuno fi lo gerku ku'o dunda lo plise"], ["The instructor, who knows about dogs, donated the apple."])
+        , (["lo ctuca noi {ke'a} tavla do cu nelci lo plise"], ["The instructor, who talked to you, likes apples."])
+        , (["lo ctuca noi {ke'a} tavla fi do cu nelci lo plise"], ["The instructor, who talked about you, likes apples.", "The instructor, who talked about you, liked the apple."])
+        , (["lo ctuca noi {ke'a} pendo mi cu se zdani"], ["The instructor, who is my friend, has a house."])
+        , (["lo ctuca noi {ke'a} pendo mi cu cusku lo se du'u {ra|ko'a} nelci lo mlatu"], ["The instructor, who is my friend, said that he likes cats."])
         ]
     friend = generatorFromList
         -- [ (["mi nelci lo nu lo dunda noi {ke'a} simsa lo ctuca cu pendo"], ["I am happy that the donor, who looked like a teacher, was friendly."])
