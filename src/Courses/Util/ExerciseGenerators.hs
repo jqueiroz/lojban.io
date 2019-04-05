@@ -77,8 +77,7 @@ expandSentences = join . map expandSentence
 expandSentence :: T.Text -> [T.Text]
 expandSentence sentence = map (T.unwords . filter (/= "")) $ expandWords (T.words sentence) where
     expandWords :: [T.Text] -> [[T.Text]]
-    expandWords [] = [[]]
-    expandWords (w:ws) = (liftA2 (:)) (expandWord w) (expandWords ws) where
+    expandWords = foldr (liftA2 (:) . expandWord) [[]]
     expandWord :: T.Text -> [T.Text]
     expandWord x =
         if (T.head x == '{') && (T.last x == '}') then
