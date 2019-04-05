@@ -79,10 +79,12 @@ expandSentence sentence = map (T.unwords . filter (/= "")) $ expandWords (T.word
     expandWords :: [T.Text] -> [[T.Text]]
     expandWords = foldr (liftA2 (:) . expandWord) [[]]
     expandWord :: T.Text -> [T.Text]
-    expandWord x =
-        if (T.head x == '{') && (T.last x == '}') then
-            ["", T.init . T.tail $ x]
-        else
+    expandWord x
+        | (T.head x == '(') && (T.last x == ')') =
+            T.splitOn "|" (T.init . T.tail $ x)
+        | (T.head x == '{') && (T.last x == '}') =
+            "" : T.splitOn "|" (T.init . T.tail $ x)
+        | otherwise =
             [x]
 
 expandTranslation :: Translation -> Translation
