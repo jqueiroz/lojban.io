@@ -124,14 +124,14 @@ vocabularyGenerator4 = createVocabularyBuilder
 vocabularyGenerator5 :: VocabularyBuilder
 vocabularyGenerator5 = vocabularyGenerator4
 
--- New words: plise, vecnu, (PENDING)
+-- New words: plise, vecnu, skami, pilno
 vocabularyGenerator7 :: VocabularyBuilder
 vocabularyGenerator7 = createVocabularyBuilder
     -- Selbri
     [
-        ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska", "djuno", "nupre", "cusku"]) ++ ((3,) <$> ["vecnu"])),
+        ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska", "djuno", "nupre", "cusku"]) ++ ((3,) <$> ["vecnu", "pilno"])),
         ("relations", ((0,) <$> ["pendo", "nelci", "gleki"])),
-        ("properties", (0,) <$> ["prenu", "zdani", "mlatu", "gerku", "melbi", "plise"])
+        ("properties", (0,) <$> ["prenu", "zdani", "mlatu", "gerku", "melbi", "plise", "skami"])
     ]
     -- Sumti
     [
@@ -1036,11 +1036,26 @@ translationExercises1to5_simplified = simplifyCanonicalAnswer . combineFunctions
 -- Interesting: xu do djuno lo se cusku
 
 translations7_noi :: TranslationGenerator
-translations7_noi = combineFunctionsUniformly [knower, instructor, friend, house, animals] where
+translations7_noi = combineFunctionsUniformly [computer, uses, knower, instructor, friend, house, animals] where
+    usesComputers =
+        [ (["lo ctuca noi {ke'a} pilno lo skami cu pendo"], ["The instructor, who uses computers, is friendly."])
+        , (["lo ctuca noi {ke'a} pilno lo skami cu tavla mi"], ["The instructor, who uses computers, talked to me."])
+        , (["lo ctuca noi {ke'a} pilno lo skami cu tavla fi do"], ["The instructor, who uses computers, is talking about you.", "The instructor, who uses computers, talked about you."])
+        , (["xu lo ctuca noi {ke'a} pilno lo skami cu tavla mi"], ["Is the instructor, who uses computers, talking to me?"])
+        , (["xu lo ctuca noi {ke'a} pilno lo skami cu tavla fi mi"], ["Is the instructor, who uses computers, talking about me?"])
+        ]
+    computer = generatorFromList $ usesComputers ++
+        [ (["lo ctuca noi {ke'a} dunda lo skami cu se zdani"], ["The instructor, who donated the computer, has a house."])
+        , (["lo tavla noi {ke'a} dunda lo skami cu se zdani"], ["The speaker, who donated the computer, has a house."])
+        ]
+    uses = generatorFromList $ usesComputers ++
+        [ (["lo ctuca noi {ke'a} pendo cu cusku lo se du'u lo skami cu se pilno"], ["The instructor, who is friendly, said that computers are useful."])
+        ]
     knower = generatorFromList
         [ (["lo djuno noi {ke'a} nelci lo nu {ke'a} tavla (ke'a|vo'a) ku'o pendo"], ["The knower, who enjoys talking to himself, is friendly."])
         , (["lo djuno noi {ke'a} nelci lo nu {ke'a} tavla (ke'a|vo'a) ku'o ciska ta"], ["The knower, who enjoys talking to himself, wrote that."])
         , (["lo djuno noi {ke'a} nelci lo nu {ke'a} tavla (ke'a|vo'a) ku'o ctuca mi"], ["The knower, who enjoys talking to himself, taught us."])
+        , (["lo djuno noi {ke'a} nelci lo nu {ke'a} tavla (ke'a|vo'a) ku'o pilno lo skami"], ["The knower, who enjoys talking to himself, uses computers."])
         ]
     instructor = generatorFromList
         [ (["lo ctuca noi {ke'a} djuno fi lo gerku ku'o dunda lo plise"], ["The instructor, who knows about dogs, donated the apple."])
@@ -1074,12 +1089,14 @@ translations7_noi = combineFunctionsUniformly [knower, instructor, friend, house
             , (["mi nelci lo mlatu noi {ke'a} melbi"], ["I like the cat, which is beautiful."])
             , (["mi nelci lo se dunda noi {ke'a} mlatu"], ["I liked the gift, which was a cat."])
             , (["lo mlatu noi {ke'a} pendo do cu gleki"], ["The cat, who is your friend, is happy."])
+            , (["lo pendo noi {ke'a} vecnu lo skami cu nelci lo mlatu"], ["The friend, who sells computers, likes cats."])
             ]
         gerku = generatorFromList
             [ (["lo gerku noi {ke'a} melbi do cu nelci lo mlatu"], ["The dog, which you find beautiful, likes cats."])
             , (["mi nelci lo gerku noi {ke'a} melbi"], ["I like the dog, which is beautiful."])
             , (["mi nelci lo se dunda noi {ke'a} gerku"], ["I liked the gift, which was a dog."])
             , (["lo gerku noi {ke'a} pendo do cu gleki"], ["The dog, who is your friend, is happy."])
+            , (["lo pendo noi {ke'a} vecnu lo skami cu nelci lo gerku"], ["The friend, who sells computers, likes dogs."])
             ]
 
 translations7_poi :: TranslationGenerator
