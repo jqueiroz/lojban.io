@@ -1037,6 +1037,7 @@ translationExercises1to5_simplified = simplifyCanonicalAnswer . combineFunctions
 -- questionExercises5 :: "What did you promise", "What did you say, ..."
 -- Interesting: xu do djuno lo se cusku
 
+-- TODO: questions with "ma"
 translations7_noi :: TranslationGenerator
 translations7_noi = combineFunctionsUniformly [computer, uses, knower, instructor, friend, house, animals] where
     usesComputers =
