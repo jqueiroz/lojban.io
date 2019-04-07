@@ -1109,8 +1109,8 @@ translations7_poi = combineFunctionsUniformly [computer, uses, house, animals, g
         , (["xu do se melbi lo skami poi mi pilno (ke'a|)"], ["Do you find the computer that I use beautiful?"])
         , (["mi nupre lo nu {mi} pilno lo skami poi do dunda ze'a mi"], ["I promised to use the computers that you gave me."])
         , (["mi nupre lo nu {mi} pilno lo skami poi do vecnu ze'a mi"], ["I promised to use the computers that you sold me."])
-        , (["mi pilno lo skami lo nu {mi} te vecnu lo mlatu"], ["I used the computer to buy a cat."])
-        , (["mi pilno lo skami lo nu {mi} te vecnu lo gerku"], ["I used the computer to buy a dog."])
+        , (["mi pilno lo skami poi do dunda ke'a mi lo nu {mi} te vecnu lo mlatu"], ["I used the computer that you gave me to buy a cat."])
+        , (["mi pilno lo skami poi do dunda ke'a mi lo nu {mi} te vecnu lo gerku"], ["I used the computer that you gave me to buy a dog."])
         ]
     computer = generatorFromList $ usesComputers ++
         [ (["lo ctuca poi {ke'a} dunda lo skami cu se zdani"], ["The instructor who donated the computer has a house."])
