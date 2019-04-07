@@ -119,9 +119,9 @@ englishBrivlaPlacesMap = M.fromList
     , ("smuni", ["meaning/interpretation", "expression", "opinion holder"]) -- not very good
     , ("vecnu", ["seller", "goods/service", "buyer", "price"])
     , ("plise", ["apple", "species/strain"])
+    , ("prenu", ["person"])
     -- TODO: pendo
     -- TODO: smuni
-    -- TODO: prenu
     -- TODO: mlatu
     -- TODO: gerku
     -- TODO: zdani
