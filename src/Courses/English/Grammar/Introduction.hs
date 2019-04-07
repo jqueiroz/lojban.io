@@ -1100,7 +1100,38 @@ translations7_noi = combineFunctionsUniformly [computer, uses, knower, instructo
             ]
 
 translations7_poi :: TranslationGenerator
-translations7_poi = combineFunctionsUniformly [house, animals, general] where
+translations7_poi = combineFunctionsUniformly [computer, uses, house, animals, general] where
+    usesComputers =
+        [ (["lo skami poi mi pilno (ke'a|) ku'o melbi"], ["The computer that I use is beautiful."])
+        , (["lo skami poi do pilno (ke'a|) ku'o melbi"], ["The computer that you use is beautiful."])
+        , (["mi nelci lo skami poi do pilno (ke'a|)"], ["I like the computer that you use."])
+        , (["xu do nelci lo skami poi do pilno (ke'a|)"], ["Do you like the computer that you use?"])
+        , (["xu do se melbi lo skami poi mi pilno (ke'a|)"], ["Do you find the computer that I use beautiful?"])
+        , (["mi nupre lo nu {mi} pilno lo skami poi do dunda ze'a mi"], ["I promised to use the computers that you gave me."])
+        , (["mi nupre lo nu {mi} pilno lo skami poi do vecnu ze'a mi"], ["I promised to use the computers that you sold me."])
+        , (["mi pilno lo skami lo nu {mi} te vecnu lo mlatu"], ["I used the computer to buy a cat."])
+        , (["mi pilno lo skami lo nu {mi} te vecnu lo gerku"], ["I used the computer to buy a dog."])
+        ]
+    computer = generatorFromList $ usesComputers ++
+        [ (["lo ctuca poi {ke'a} dunda lo skami cu se zdani"], ["The instructor who donated the computer has a house."])
+        , (["lo skami poi do tavla fi ke'a cu melbi"], ["The computer that you talked about is beautiful."])
+        , (["lo skami poi do dunda (ke'a|) cu melbi"], ["The computer that you donated is beautiful."])
+        , (["lo skami poi do nupre lo nu {do} dunda {ke'a} ku'o melbi"], ["The computer that you promised to donate is beautiful."])
+        , (["mi nelci lo skami poi do tavla fi ke'a"], ["I like the computer that you talked about."])
+        , (["mi nelci lo skami poi do dunda ke'a"], ["I like the computer that you donated."])
+        , (["mi nelci lo skami poi do nupre lo nu {do} dunda {ke'a}"], ["I like the computer that you promised to donate."])
+        , (["xu do nelci lo skami poi mi tavla fi ke'a"], ["Did you like the computer that I talked about?"])
+        , (["mi nelci lo skami poi do vecnu (ke'a|)"], ["I like the computers that you sell.", "I liked the computer that you sold."])
+        , (["xu do nelci lo skami poi mi vecnu (ke'a|)"], ["Did you like the computer that I sold?"])
+        ]
+    uses = generatorFromList $ usesComputers ++
+        [ (["lo ctuca noi {ke'a} pendo cu cusku lo se du'u lo skami cu se pilno"], ["The instructor, who is friendly, said that computers are useful."])
+        , (["mi gleki lo nu do dunda lo se pilno mi"], ["I am happy that you gave me the tool."])
+        , (["mi gleki lo nu do vecnu lo se pilno mi"], ["I am happy that you sold me the tool."])
+        , (["xu do gleki lo nu do te vecnu lo se pilno"], ["Are you happy that you bought the tool?"])
+        , (["xu do gleki lo nu mi dunda lo se pilno do"], ["Are you happy that I gave you the tool?"])
+        , (["xu do gleki lo nu mi vecnu lo se pilno do"], ["Are you happy that I sold you the tool?"])
+        ]
     house = generatorFromList
         [ (["lo zdani poi {ke'a} melbi do cu se dunda fi mi"], ["The house that you found beautiful was donated to me."])
         , (["lo zdani poi {ke'a} melbi do cu se dunda mi"], ["The house that you found beautiful was donated by me."])
