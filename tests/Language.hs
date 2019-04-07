@@ -43,3 +43,7 @@ main = hspec $ do
         --validateSentences
             --[ ("do nelci xu lo mlatu", "xu do nelci lo mlatu ku")
             --]
+      it "supports complex sentences" $ do
+        validateSentences
+            [ ("mi nupre lo nu pilno lo skami poi do dunda ke'a mi", "mi nupre lo nu pilno lo skami ku poi do dunda ke'a mi ku'o kei ku")
+            ]
