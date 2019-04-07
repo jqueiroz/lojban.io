@@ -1107,8 +1107,8 @@ translations7_poi = combineFunctionsUniformly [computer, uses, house, animals, g
         , (["mi nelci lo skami poi do pilno (ke'a|)"], ["I like the computer that you use."])
         , (["xu do nelci lo skami poi do pilno (ke'a|)"], ["Do you like the computer that you use?"])
         , (["xu do se melbi lo skami poi mi pilno (ke'a|)"], ["Do you find the computer that I use beautiful?"])
-        , (["mi nupre lo nu {mi} pilno lo skami poi do dunda ze'a mi"], ["I promised to use the computers that you gave me."])
-        , (["mi nupre lo nu {mi} pilno lo skami poi do vecnu ze'a mi"], ["I promised to use the computers that you sold me."])
+        , (["mi nupre lo nu {mi} pilno lo skami poi do dunda ke'a mi"], ["I promised to use the computers that you gave me."])
+        , (["mi nupre lo nu {mi} pilno lo skami poi do vecnu ke'a mi"], ["I promised to use the computers that you sold me."])
         , (["mi pilno lo skami poi do dunda ke'a mi lo nu {mi} te vecnu lo mlatu"], ["I used the computer that you gave me to buy a cat."])
         , (["mi pilno lo skami poi do dunda ke'a mi lo nu {mi} te vecnu lo gerku"], ["I used the computer that you gave me to buy a dog."])
         ]
