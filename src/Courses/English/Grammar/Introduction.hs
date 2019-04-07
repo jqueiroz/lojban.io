@@ -230,7 +230,7 @@ translations2_nice = combineFunctions $ [(2, translations2_restricted), (2, teac
         , (["lo tavla ku se zdani", "lo cusku ku se zdani"], ["The speaker has a house."])
         , (["lo se tavla ku se zdani"], ["The listener has a house."])
         , (["lo dunda ku se zdani"], ["The donor has a house."])
-        , (["lo te dunda ku se zdani"], ["The recipient has a house."])
+        , (["lo te dunda ku se zdani"], ["The beneficiary has a house."])
         ]
     niceGift = combineFunctionsUniformly [beautifulGift, likedGift] where
         beautifulGift = generatorFromList
@@ -268,12 +268,12 @@ translations2_nice = combineFunctions $ [(2, translations2_restricted), (2, teac
         [ (["lo tavla ku pendo mi", "lo cusku ku pendo mi"], ["The speaker is my friend.", "The speakers are my friends."])
         , (["lo se tavla ku pendo mi"], ["The listener is my friend.", "The listeners are my friends."])
         , (["lo dunda ku pendo mi"], ["The donor is my friend.", "The donors are my friends."])
-        , (["lo te dunda ku pendo mi"], ["The recipient is my friend.", "The recipients are my friends."])
+        , (["lo te dunda ku pendo mi"], ["The beneficiary is my friend.", "The beneficiaries are my friends."])
         , (["lo ctuca ku pendo mi"], ["The instructor is my friend.", "The instructors are my friends."])
         , (["lo tavla ku pendo", "lo cusku ku pendo"], ["The speaker is friendly.", "The speakers are friendly."])
         , (["lo se tavla ku pendo"], ["The listener is friendly.", "The listeners are friendly."])
         , (["lo dunda ku pendo"], ["The donor is friendly.", "The donors are friendly."])
-        , (["lo te dunda ku pendo"], ["The recipient is friendly.", "The recipients are friendly."])
+        , (["lo te dunda ku pendo"], ["The beneficiary is friendly.", "The beneficiaries are friendly."])
         , (["lo ctuca ku pendo"], ["The instructor is friendly.", "The instructors are friendly."])
         ]
     others = generatorFromList
@@ -313,7 +313,7 @@ translations2_normal = combineFunctionsUniformly [talkingToAnimal, likingAnimals
             [ (["lo tavla ku prenu"], ["The speaker is a person."])
             , (["lo se tavla ku prenu"], ["The listener is a person."])
             , (["lo dunda ku prenu"], ["The donor is a person."])
-            , (["lo te dunda ku prenu"], ["The recipient is a person."])
+            , (["lo te dunda ku prenu"], ["The beneficiary is a person."])
             , (["lo ctuca ku prenu"], ["The instructor is a person."])
             ]
         others = generatorFromList
@@ -410,7 +410,7 @@ translations3_normal_xu = combineFunctions $ [(3, translations3_restricted_xu), 
         [ (["xu do pendo mi"], ["Are you my friend?"])
         , (["xu lo ctuca ku pendo do"], ["Is the instructor your friend?"])
         , (["xu lo dunda ku pendo do"], ["Is the donor your friend?"])
-        , (["xu lo te dunda ku pendo do"], ["Is the recipient your friend?"])
+        , (["xu lo te dunda ku pendo do"], ["Is the beneficiary your friend?"])
         ]
     writing = generatorFromList
         [ (["xu do ciska"], ["Do you write?"])
@@ -437,7 +437,7 @@ translations3_restricted_ma = combineFunctions [(2, talkingAbout), (1, gaveSomet
         , (["do tavla fi ma"], ["What are you talking about?", "What were you talking about?"])
         , (["lo prenu ku tavla fi ma"], ["What is the person talking about?", "What was the person talking about?"])
         , (["lo dunda ku tavla fi ma"], ["What is the donor talking about?", "What was the donor talking about?"])
-        , (["lo te dunda ku tavla fi ma"], ["What is the recipient talking about?", "What was the recipient talking about?"])
+        , (["lo te dunda ku tavla fi ma"], ["What is the beneficiary talking about?", "What was the beneficiary talking about?"])
         , (["lo ciska ku tavla fi ma"], ["What is the writer talking about?", "What was the writer talking about?"])
         ]
     gaveSomething = generatorFromList
@@ -626,7 +626,7 @@ translations4_nu = combineFunctions [(2, gleki), (1, tavla), (2, nupre)] where
             , (["mi gleki lo nu do pendo mi kei ku"], ["I am happy that you are my friend."])
             , (["mi gleki lo nu lo ctuca ku pendo mi kei ku"], ["I am happy that the instructor is my friend."])
             , (["mi gleki lo nu lo ciska ku pendo mi kei ku"], ["I am happy that the writer is my friend."])
-            , (["mi gleki lo nu lo te dunda ku pendo mi kei ku"], ["I am happy that the recipient is my friend."])
+            , (["mi gleki lo nu lo te dunda ku pendo mi kei ku"], ["I am happy that the beneficiary is my friend."])
             , (["do gleki ma"], ["Why are you happy?", "What are you happy about?"])
             ]
     tavla = combineFunctionsUniformly [owningHouse, promisorTalked, promiseeTalked] where
@@ -848,7 +848,7 @@ translations5_restricted = combineFunctions [(2, hasHouse), (3, nice), (3, givin
         , (["lo tavla cu se zdani", "lo cusku cu se zdani"], ["The speaker has a house."])
         , (["lo se tavla cu se zdani"], ["The listener has a house."])
         , (["lo dunda cu se zdani"], ["The donor has a house."])
-        , (["lo te dunda cu se zdani"], ["The recipient has a house."])
+        , (["lo te dunda cu se zdani"], ["The beneficiary has a house."])
         , (["xu lo prenu cu se zdani"], ["Does the person have a house?"])
         , (["xu lo ctuca cu se zdani"], ["Does the instructor have a house?"])
         ]
@@ -920,7 +920,7 @@ translations5_restricted = combineFunctions [(2, hasHouse), (3, nice), (3, givin
         , (["ma tavla fi lo gerku"], ["Who is talking about the dog?"])
         , (["lo prenu cu tavla fi ma"], ["What is the person talking about?", "What was the person talking about?"])
         , (["lo dunda cu tavla fi ma"], ["What is the donor talking about?", "What was the donor talking about?"])
-        , (["lo te dunda cu tavla fi ma"], ["What is the recipient talking about?", "What was the recipient talking about?"])
+        , (["lo te dunda cu tavla fi ma"], ["What is the beneficiary talking about?", "What was the beneficiary talking about?"])
         , (["lo ciska cu tavla fi ma"], ["What is the writer talking about?", "What was the writer talking about?"])
         , (["xu do tavla fi lo gerku"], ["Were you talking about the dog?", "Were you talking about the dogs?", "Were you talking about dogs?"])
         ]
@@ -948,7 +948,7 @@ translations5_restricted = combineFunctions [(2, hasHouse), (3, nice), (3, givin
         other = generatorFromList
             [ (["mi gleki lo nu lo ctuca cu pendo mi"], ["I am happy that the instructor is my friend."])
             , (["mi gleki lo nu lo ciska cu pendo mi"], ["I am happy that the writer is my friend."])
-            , (["mi gleki lo nu lo te dunda cu pendo mi"], ["I am happy that the recipient is my friend."])
+            , (["mi gleki lo nu lo te dunda cu pendo mi"], ["I am happy that the beneficiary is my friend."])
             ]
     nupre = combineFunctionsUniformly [donatingAnimals, donatingHouses] where
         donatingAnimals = generatorFromList
@@ -1067,12 +1067,12 @@ translations7_noi = combineFunctionsUniformly [computer, uses, knower, instructo
     friend = generatorFromList
         -- [ (["mi nelci lo nu lo dunda noi {ke'a} simsa lo ctuca cu pendo"], ["I am happy that the donor, who looked like a teacher, was friendly."])
         [ (["lo dunda noi {ke'a} pendo mi cu gleki"], ["The donor, who is my friend, is happy."])
-        , (["lo te dunda noi {ke'a} pendo mi cu gleki"], ["The recipient, who is my friend, is happy."])
+        , (["lo te dunda noi {ke'a} pendo mi cu gleki"], ["The beneficiary, who is my friend, is happy."])
         , (["lo vecnu noi {ke'a} pendo mi cu gleki"], ["The seller, who is my friend, is happy."])
         , (["lo te vecnu noi {ke'a} pendo mi cu gleki"], ["The buyer, who is my friend, is happy."])
 
         , (["lo dunda noi {ke'a} pendo mi cu ciska ta"], ["The donor, who is my friend, wrote that."])
-        , (["lo te dunda noi {ke'a} pendo mi ciska ta"], ["The recipient, who is my friend, wrote that."])
+        , (["lo te dunda noi {ke'a} pendo mi ciska ta"], ["The beneficiary, who is my friend, wrote that."])
         , (["lo vecnu noi {ke'a} pendo mi cu ciska ta"], ["The seller, who is my friend, wrote that."])
         , (["lo te vecnu noi {ke'a} pendo mi cu ciska ta"], ["The buyer, who is my friend, wrote that."])
         ]
