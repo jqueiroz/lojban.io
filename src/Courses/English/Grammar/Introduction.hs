@@ -1199,6 +1199,9 @@ translations7 = expandTranslationGenerator $ combineFunctionsUniformly [translat
 translationExercises7 :: ExerciseGenerator
 translationExercises7 = generateTranslationExercise basicSentenceCanonicalizer sentenceComparer translations7
 
+questionExercises7 :: ExerciseGenerator
+questionExercises7 = generateNarrowFillingBlanksExerciseByAlternatives ["poi", "noi"] translations7
+
 translations9 :: [ExerciseGenerator]
 translations9 = generateTranslationExercise basicSentenceCanonicalizer sentenceComparer <$> generatorFromSingleton <$>
     [ (["lo prenu ku sutra tavla"], ["The person talks quickly.", "The person is talking quickly.", "A person is talking quickly.", "People talk quickly"])
@@ -1302,6 +1305,7 @@ exercises7 dictionary =
     combineFunctions
         [ (20, generateIsolatedBrivlaPlacesExercise dictionary $ generatorFromWeightedList $ getVocabularySelbri vocabulary "actions")
         , (70, translationExercises7)
+        , (15, questionExercises7)
         ]
     where
         vocabulary = vocabularyGenerator7 dictionary
