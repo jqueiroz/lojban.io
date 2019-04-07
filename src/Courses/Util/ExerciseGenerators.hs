@@ -13,6 +13,8 @@ module Courses.Util.ExerciseGenerators
 , generateEnglishBridiJufraExercise
 , generateBroadFillingBlanksExerciseByAlternatives
 , generateNarrowFillingBlanksExerciseByAlternatives
+, generateContextualizedBroadFillingBlanksExerciseByAlternatives
+, generateContextualizedNarrowFillingBlanksExerciseByAlternatives
 , generateBroadFillingBlanksExerciseByExpression
 , generateNarrowFillingBlanksExerciseByExpression
 , generateSelbriIdentificationExercise
@@ -179,9 +181,24 @@ generateBroadFillingBlanksExerciseByAlternatives alternatives translationGenerat
     redactedSentenceText = replaceFirstSubexpression correctAlternative "____" sentenceText
     sentences = [ExerciseSentence True redactedSentenceText]
 
+generateContextualizedBroadFillingBlanksExerciseByAlternatives :: [T.Text] -> TranslationGenerator -> ExerciseGenerator
+generateContextualizedBroadFillingBlanksExerciseByAlternatives alternatives translationGenerator r0 = SingleChoiceExercise title sentences correctAlternative incorrectAlternatives True where
+    (translation, r1) = translationGenerator r0
+    (lojbanSentenceText, r2) = chooseItemUniformly r1 (fst translation)
+    (englishSentenceText, r3) = chooseItemUniformly r2 (snd translation)
+    correctAlternatives = filter (`isSubexpressionOf` lojbanSentenceText) $ alternatives
+    correctAlternative = assert (length correctAlternatives == 1) $ head correctAlternatives
+    incorrectAlternatives = filter (/= correctAlternative) alternatives
+    title = "Complete the translation"
+    redactedLojbanSentenceText = replaceFirstSubexpression correctAlternative "____" lojbanSentenceText
+    sentences = [ExerciseSentence False englishSentenceText, ExerciseSentence True redactedLojbanSentenceText]
+
 -- "Narrow": this function always chooses the first (canonical) Lojban sentence from the Translation
 generateNarrowFillingBlanksExerciseByAlternatives :: [T.Text] -> TranslationGenerator -> ExerciseGenerator
 generateNarrowFillingBlanksExerciseByAlternatives alternatives translationGenerator = generateBroadFillingBlanksExerciseByAlternatives alternatives (narrowTranslationGenerator translationGenerator)
+
+generateContextualizedNarrowFillingBlanksExerciseByAlternatives :: [T.Text] -> TranslationGenerator -> ExerciseGenerator
+generateContextualizedNarrowFillingBlanksExerciseByAlternatives alternatives translationGenerator = generateContextualizedBroadFillingBlanksExerciseByAlternatives alternatives (narrowTranslationGenerator translationGenerator)
 
 -- Exercise: fill in the blanks (by expression)
 

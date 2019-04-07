@@ -1200,7 +1200,7 @@ translationExercises7 :: ExerciseGenerator
 translationExercises7 = generateTranslationExercise basicSentenceCanonicalizer sentenceComparer translations7
 
 questionExercises7 :: ExerciseGenerator
-questionExercises7 = generateNarrowFillingBlanksExerciseByAlternatives ["poi", "noi"] translations7
+questionExercises7 = generateContextualizedBroadFillingBlanksExerciseByAlternatives ["poi", "noi"] translations7
 
 translations9 :: [ExerciseGenerator]
 translations9 = generateTranslationExercise basicSentenceCanonicalizer sentenceComparer <$> generatorFromSingleton <$>
