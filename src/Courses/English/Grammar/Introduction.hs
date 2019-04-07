@@ -48,6 +48,9 @@ Right plan1to5 = P.runPure $ P.readMarkdown P.def $ ""
 plan7 :: P.Pandoc
 Right plan7 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/planning/7.md")
 
+plan8 :: P.Pandoc
+Right plan8 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/planning/8.md")
+
 -------- Vocabulary
 vocabularyGenerator1 :: VocabularyBuilder
 vocabularyGenerator1 = createVocabularyBuilder
@@ -138,6 +141,17 @@ vocabularyGenerator7 = createVocabularyBuilder
     ]
 
 -- New words: cmene, PENDING
+vocabularyGenerator8 :: VocabularyBuilder
+vocabularyGenerator8 = createVocabularyBuilder
+    -- Selbri
+    [
+        ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska", "djuno", "nupre", "cusku"]) ++ ((2,) <$> ["vecnu", "pilno"])),
+        ("relations", ((0,) <$> ["pendo", "nelci", "gleki", "cmene"])),
+        ("properties", (0,) <$> ["prenu", "zdani", "mlatu", "gerku", "melbi", "plise", "skami"])
+    ]
+    -- Sumti
+    [
+    ]
 
 -- Sentence comparer
 sentenceComparer :: SentenceComparer
@@ -1205,6 +1219,24 @@ translationExercises7 = generateTranslationExercise basicSentenceCanonicalizer s
 fillingBlanksExercises7 :: ExerciseGenerator
 fillingBlanksExercises7 = generateContextualizedBroadFillingBlanksExerciseByAlternatives ["poi", "noi"] translations7
 
+translations8 :: TranslationGenerator
+translations8 = combineFunctionsUniformly [zdani, cmene] where
+    zdani = generatorFromList
+        [ (["mi nelci lo zdani be mi"], ["I like my house."])
+        , (["mi nelci lo zdani be do"], ["I like your house."])
+        , (["xu do nelci lo zdani be mi"], ["Do you like my house."])
+        , (["xu do nelci lo zdani be do"], ["Do you like your house."])
+        ]
+    cmene = generatorFromList
+        [ (["mi nelci lo cmene be mi"], ["I like my name."])
+        , (["mi nelci lo cmene be do"], ["I like your name."])
+        , (["xu do nelci lo cmene be mi"], ["Do you like my name?"])
+        , (["xu do nelci lo cmene be do"], ["Do you like your name?"])
+        ]
+
+translationExercises8 :: ExerciseGenerator
+translationExercises8 = generateTranslationExercise basicSentenceCanonicalizer sentenceComparer translations8
+
 translations9 :: [ExerciseGenerator]
 translations9 = generateTranslationExercise basicSentenceCanonicalizer sentenceComparer <$> generatorFromSingleton <$>
     [ (["lo prenu ku sutra tavla"], ["The person talks quickly.", "The person is talking quickly.", "A person is talking quickly.", "People talk quickly"])
@@ -1313,6 +1345,15 @@ exercises7 dictionary =
     where
         vocabulary = vocabularyGenerator7 dictionary
 
+exercises8 :: Dictionary -> ExerciseGenerator
+exercises8 dictionary =
+    combineFunctions
+        [ (20, generateIsolatedBrivlaPlacesExercise dictionary $ generatorFromWeightedList $ getVocabularySelbri vocabulary "actions")
+        , (70, translationExercises8)
+        ]
+    where
+        vocabulary = vocabularyGenerator8 dictionary
+
 -- Reminder: from Lesson 4 onwards, mix propositions and questions
 
 -------- Lessons
@@ -1337,6 +1378,9 @@ checkpoint1to5 dictionary = Lesson "Checkpoint: Lessons 1–5" (exercises1to5 di
 lesson7 :: LessonBuilder
 lesson7 dictionary = Lesson "Relative clauses" (exercises7 dictionary) plan7
 
+lesson8 :: LessonBuilder
+lesson8 dictionary = Lesson "Linked sumti" (exercises8 dictionary) plan8
+
 -------- Course
 style :: CourseStyle
 style = CourseStyle color1 iconUrl where
@@ -1357,4 +1401,4 @@ style = CourseStyle color1 iconUrl where
 course :: CourseBuilder
 course = createCourseBuilder title style lessons where
     title = "Introduction to Grammar"
-    lessons = [lesson1, lesson2, lesson3, lesson4, lesson5, checkpoint1to5, lesson7]
+    lessons = [lesson1, lesson2, lesson3, lesson4, lesson5, checkpoint1to5, lesson7, lesson8]
