@@ -1310,7 +1310,7 @@ exercises7 dictionary =
     where
         vocabulary = vocabularyGenerator7 dictionary
 
--- Reminder: from now on, mix propositions and questions
+-- Reminder: from Lesson 4 onwards, mix propositions and questions
 
 -------- Lessons
 lesson1 :: LessonBuilder
