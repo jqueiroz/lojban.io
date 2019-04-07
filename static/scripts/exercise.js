@@ -146,6 +146,9 @@ var createExercisesManager = function(holder) {
                 .addClass("title")
                 .html(data.title);
             body.append(title);
+            // Table
+            var table = $("<div/>").addClass("table");
+            body.append(table);
             // Sentences
             for (let i = 0; i < data.sentences.length; ++i) {
                 let sentence = data.sentences[i];
@@ -155,7 +158,7 @@ var createExercisesManager = function(holder) {
                 if (data.sentences.length === 1) {
                     sentenceElement.addClass("single");
                 }
-                body.append(sentenceElement);
+                table.append(sentenceElement);
             }
             // Alternatives
             var radioGroup = $("<div/>").addClass("funkyradio");
@@ -306,6 +309,9 @@ var createExercisesManager = function(holder) {
                 .addClass("title")
                 .html(data.title);
             body.append(title);
+            // Table
+            var table = $("<div/>").addClass("table");
+            body.append(table);
             // Sentences
             for (let i = 0; i < data.sentences.length; ++i) {
                 let sentence = data.sentences[i];
@@ -315,7 +321,7 @@ var createExercisesManager = function(holder) {
                 if (data.sentences.length === 1) {
                     sentenceElement.addClass("single");
                 }
-                body.append(sentenceElement);
+                table.append(sentenceElement);
             }
             // Linebreak
             body.append("<br/><br/>");
