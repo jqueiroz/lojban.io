@@ -137,6 +137,8 @@ vocabularyGenerator7 = createVocabularyBuilder
     [
     ]
 
+-- New words: cmene, PENDING
+
 -- Sentence comparer
 sentenceComparer :: SentenceComparer
 sentenceComparer x y = (length xs == length ys) && (all wordComparer $ zip xs ys) where
