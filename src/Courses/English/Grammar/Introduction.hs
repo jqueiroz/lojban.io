@@ -1173,8 +1173,8 @@ translations7_poi = combineFunctionsUniformly [computer, uses, house, animals, g
             , (["mi djuno lo du'u do nupre fi lo pendo poi {ke'a} dunda lo gerku"], ["I know that you made a promise to the friend who donated the dog."])
             ]
     general = generatorFromList
-        [ (["mi tavla lo prenu poi {ke'a} nupre do"], ["I talked to the person who promised you."])
-        , (["xu do tavla lo prenu poi {ke'a} nupre mi"], ["Did you talk to the person who promised me?"])
+        [ (["mi tavla lo prenu poi {ke'a} nupre fi do"], ["I talked to the person who promised you."])
+        , (["xu do tavla lo prenu poi {ke'a} nupre fi mi"], ["Did you talk to the person who promised me?"])
         , (["mi tavla fi lo zdani poi do nupre lo nu {do} dunda"], ["I talked about the house that you promised to donate."])
         , (["xu do tavla fi lo zdani poi do nupre lo nu {do} dunda"], ["Did you talk about the house that you promised to donate?"])
         , (["mi tavla fi lo plise poi do dunda ke'a lo mlatu"], ["I am talking about the apple that you gave to the dog."])
