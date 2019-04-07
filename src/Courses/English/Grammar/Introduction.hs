@@ -1154,7 +1154,7 @@ translations7_poi = combineFunctionsUniformly [computer, uses, house, animals, g
             , (["mi dunda lo mlatu poi do tavla fi ke'a"], ["I donated the cat that you were talking about."])
             , (["mi nelci lo mlatu poi do tavla fi ke'a"], ["I like the cat that you were talking about."])
             , (["mi nupre lo nu {mi} tavla lo prenu poi {ke'a} dunda lo mlatu"], ["I promised to talk to the person who donated the cat."])
-            , (["mi tavla lo mlatu poi do nupre lo nu {do} dunda"], ["I talked about the cat that you promised to donate."])
+            , (["mi tavla fi lo mlatu poi do nupre lo nu {do} dunda"], ["I talked about the cat that you promised to donate."])
             , (["mi djuno lo du'u do nupre fi lo pendo poi {ke'a} dunda lo mlatu"], ["I know that you made a promise to the friend who donated the cat."])
             ]
         gerku = generatorFromList
@@ -1169,7 +1169,7 @@ translations7_poi = combineFunctionsUniformly [computer, uses, house, animals, g
             , (["mi dunda lo gerku poi do tavla fi ke'a"], ["I donated the dog that you were talking about."])
             , (["mi nelci lo gerku poi do tavla fi ke'a"], ["I like the dog that you were talking about."])
             , (["mi nupre lo nu {mi} tavla lo prenu poi {ke'a} dunda lo gerku"], ["I promised to talk to the person who donated the dog."])
-            , (["mi tavla lo gerku poi do nupre lo nu {do} dunda"], ["I talked about the dog that you promised to donate."])
+            , (["mi tavla fi lo gerku poi do nupre lo nu {do} dunda"], ["I talked about the dog that you promised to donate."])
             , (["mi djuno lo du'u do nupre fi lo pendo poi {ke'a} dunda lo gerku"], ["I know that you made a promise to the friend who donated the dog."])
             ]
     general = generatorFromList
