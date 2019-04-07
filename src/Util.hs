@@ -8,7 +8,7 @@ import Control.Applicative ((<$>), (<*>), liftA2)
 import System.Random (StdGen, random, mkStdGen)
 import qualified Data.Text as T
 import Data.Text.Encoding (decodeUtf8)
-import Data.List (group, sort)
+import Data.List (group, sort, intersperse)
 import System.Random.Shuffle (shuffle')
 
 -- Domain-specific
@@ -72,6 +72,9 @@ x ?: xs
 
 concatET :: [Either String T.Text] -> Either String T.Text
 concatET = foldl1 (liftA2 T.append)
+
+unwordsET :: [Either String T.Text] -> Either String T.Text
+unwordsET = concatET . intersperse (Right $ T.pack " ")
 
 -- String manipulation
 substr :: Int -> Int -> T.Text -> T.Text

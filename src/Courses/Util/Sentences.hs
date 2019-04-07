@@ -23,7 +23,7 @@ module Courses.Util.Sentences
 
 import Core
 import Courses.Util.Vocabulary
-import Util (compose2, replace, stripRight, filterSnd, filterOutWord, filterOutWords, headOrDefault, isContiguousSequence, concatET, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly)
+import Util (compose2, replace, stripRight, filterSnd, filterOutWord, filterOutWords, headOrDefault, isContiguousSequence, concatET, unwordsET, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly)
 import Control.Exception (assert)
 import Control.Applicative (liftA2)
 import System.Random (StdGen, mkStdGen)
@@ -280,7 +280,11 @@ convertStructuredTerms terms = do
 
 convertLinkargs :: ZG.Linkargs -> Either String T.Text
 convertLinkargs (ZG.BE (ZG.Init x) y _) = concatET [Right $ T.pack x, Right $ T.pack " ", convertStructuredTerm y, Right $ T.pack " be'o"]
--- TODO: handle ZG.BEI
+convertLinkargs (ZG.BEI (ZG.Init x) y z _) = concatET [Right $ T.pack x, Right $ T.pack " ", convertStructuredTerm y, Right $ T.pack " ", unwordsET beiArguments, Right $ T.pack " be'o"] where
+    beiArguments :: [Either String T.Text]
+    beiArguments = map convertArgument z
+    convertArgument :: (ZG.Separator, ZG.Text) -> Either String T.Text
+    convertArgument (ZG.Sep x, y) = concatET [Right $ T.pack x, Right $ T.pack " ", convertStructuredTerm y]
 -- TODO: handle InitF
 
 convertInitiator :: ZG.Initiator -> Either String T.Text

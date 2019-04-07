@@ -27,6 +27,7 @@ main = hspec $ do
       it "supports BE" $ do
         validateSentences
             [ ("mi nelci lo cmene be mi", "mi nelci lo cmene be mi be'o ku")
+            , ("mi tavla lo vecnu be lo zdani bei do", "mi tavla lo vecnu be lo zdani ku bei do be'o ku")
             ]
       it "supports NOI" $ do
         validateSentences
