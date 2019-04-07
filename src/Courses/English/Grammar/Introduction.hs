@@ -1118,7 +1118,7 @@ translations7_poi = combineFunctionsUniformly [computer, uses, house, animals, g
         , (["lo skami poi do dunda (ke'a|) cu melbi"], ["The computer that you donated is beautiful."])
         , (["lo skami poi do nupre lo nu {do} dunda {ke'a} ku'o melbi"], ["The computer that you promised to donate is beautiful."])
         , (["mi nelci lo skami poi do tavla fi ke'a"], ["I like the computer that you talked about."])
-        , (["mi nelci lo skami poi do dunda ke'a"], ["I like the computer that you donated."])
+        , (["mi nelci lo skami poi do dunda (ke'a|)"], ["I like the computer that you donated."])
         , (["mi nelci lo skami poi do nupre lo nu {do} dunda {ke'a}"], ["I like the computer that you promised to donate."])
         , (["xu do nelci lo skami poi mi tavla fi ke'a"], ["Did you like the computer that I talked about?"])
         , (["mi nelci lo skami poi do vecnu (ke'a|)"], ["I like the computers that you sell.", "I liked the computer that you sold."])
