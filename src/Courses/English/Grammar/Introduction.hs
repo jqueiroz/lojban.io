@@ -1052,10 +1052,10 @@ translations7_noi = combineFunctionsUniformly [computer, uses, knower, instructo
         [ (["lo ctuca noi {ke'a} pendo cu cusku lo se du'u lo skami cu se pilno"], ["The instructor, who is friendly, said that computers are useful."])
         ]
     knower = generatorFromList
-        [ (["lo djuno noi {ke'a} nelci lo nu {ke'a} tavla (ke'a|vo'a) ku'o pendo"], ["The knower, who enjoys talking to himself, is friendly."])
-        , (["lo djuno noi {ke'a} nelci lo nu {ke'a} tavla (ke'a|vo'a) ku'o ciska ta"], ["The knower, who enjoys talking to himself, wrote that."])
-        , (["lo djuno noi {ke'a} nelci lo nu {ke'a} tavla (ke'a|vo'a) ku'o ctuca mi"], ["The knower, who enjoys talking to himself, taught us."])
-        , (["lo djuno noi {ke'a} nelci lo nu {ke'a} tavla (ke'a|vo'a) ku'o pilno lo skami"], ["The knower, who enjoys talking to himself, uses computers."])
+        [ (["lo djuno noi {ke'a} nelci lo nu {ke'a} tavla vo'a ku'o pendo", "lo djuno noi {ke'a} nelci lo nu ke'a tavla ke'a ku'o pendo"], ["The knower, who enjoys talking to himself, is friendly."])
+        , (["lo djuno noi {ke'a} nelci lo nu {ke'a} tavla vo'a ku'o ciska ta", "lo djuno noi {ke'a} nelci lo nu ke'a tavla ke'a ku'o ciska ta"], ["The knower, who enjoys talking to himself, wrote that."])
+        , (["lo djuno noi {ke'a} nelci lo nu {ke'a} tavla vo'a ku'o ctuca mi", "lo djuno noi {ke'a} nelci lo nu ke'a tavla ke'a ku'o ctuca mi"], ["The knower, who enjoys talking to himself, taught us."])
+        , (["lo djuno noi {ke'a} nelci lo nu {ke'a} tavla vo'a ku'o pilno lo skami", "lo djuno noi {ke'a} nelci lo nu ke'a tavla ke'a ku'o pilno lo skami"], ["The knower, who enjoys talking to himself, uses computers."])
         ]
     instructor = generatorFromList
         [ (["lo ctuca noi {ke'a} djuno fi lo gerku ku'o dunda lo plise"], ["The instructor, who knows about dogs, donated the apple."])
