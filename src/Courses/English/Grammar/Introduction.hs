@@ -1220,7 +1220,7 @@ fillingBlanksExercises7 :: ExerciseGenerator
 fillingBlanksExercises7 = generateContextualizedBroadFillingBlanksExerciseByAlternatives ["poi", "noi"] translations7
 
 translations8 :: TranslationGenerator
-translations8 = expandTranslationGenerator $ combineFunctionsUniformly [required_terminator, cmene_complex, vecnu_zdani, tavla, bangu, zdani, cmene] where
+translations8 = expandTranslationGenerator $ combineFunctionsUniformly [required_terminator, cmene_complex, vecnu_zdani, ctuca, tavla, bangu, zdani, cmene] where
     required_terminator = generatorFromList
         [ (["mi nelci lo cmene be do be'o noi melbi"], ["I like your name, which is beautiful."])
         , (["mi nelci lo zdani be do be'o noi melbi"], ["I like your house, which is beautiful."])
@@ -1253,6 +1253,17 @@ translations8 = expandTranslationGenerator $ combineFunctionsUniformly [required
         , (["xu do tavla lo vecnu be lo zdani bei do"], ["Did you talk to the one who sold you the house?"])
         , (["do vecnu lo zdani be ma"], ["Whose house did you sell?"])
         , (["do vecnu lo zdani be mi ma"], ["To whom did you sell my house?"])
+        ]
+    ctuca = generatorFromList
+        [ (["do dunda lo zdani lo ctuca be ma"], ["Whose instructor did you donate the house to?"])
+        , (["xu do dunda lo zdani lo ctuca be mi"], ["Did you donate the house to the instructor who taught me?"])
+        , (["xu do dunda lo zdani lo ctuca be do"], ["Did you donate the house to the instructor who taught you?"])
+        , (["xu do nelci lo ctuca be do"], ["Do you like your instructor?", "Did you like your instructor?"])
+        , (["xu do nelci lo ctuca be mi"], ["Do you like my instructor?"])
+        , (["mi pendo lo ctuca be mi"], ["I am friends with my instructor."])
+        , (["mi pendo lo ctuca be do"], ["I am friends with your instructor."])
+        , (["xu do pendo lo ctuca be mi"], ["Are you friends with my instructor?"])
+        , (["xu do pendo lo ctuca be do"], ["Are you friends with your instructor?"])
         ]
     tavla = generatorFromList
         [ (["mi dunda lo mlatu lo tavla be do"], ["I donated the cat to the one who was talking to you."])
