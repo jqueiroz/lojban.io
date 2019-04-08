@@ -1220,7 +1220,7 @@ fillingBlanksExercises7 :: ExerciseGenerator
 fillingBlanksExercises7 = generateContextualizedBroadFillingBlanksExerciseByAlternatives ["poi", "noi"] translations7
 
 translations8 :: TranslationGenerator
-translations8 = combineFunctionsUniformly [required_terminator, cmene_complex, vecnu_zdani, bangu, zdani, cmene] where
+translations8 = expandTranslationGenerator $ combineFunctionsUniformly [required_terminator, cmene_complex, vecnu_zdani, bangu, zdani, cmene] where
     required_terminator = generatorFromList
         [ (["mi nelci lo cmene be do be'o noi melbi"], ["I like your name, which is beautiful."])
         , (["mi nelci lo zdani be do be'o noi melbi"], ["I like your house, which is beautiful."])
