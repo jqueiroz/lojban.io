@@ -2,6 +2,7 @@ FROM nixorg/nix:latest
 
 ####################### Install dependencies #######################
 
+RUN mkdir -p /etc/nix && echo 'sandbox = false' > /etc/nix/nix.conf
 RUN nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs
 RUN nix-channel --update
 RUN nix-env -iA nixpkgs.stack nixpkgs.coreutils nixpkgs.lessc nixpkgs.findutils
