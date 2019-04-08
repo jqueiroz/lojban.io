@@ -1252,8 +1252,8 @@ translations8 = combineFunctionsUniformly [cmene, vecnu_zdani, zdani, cmene] whe
     zdani = generatorFromList
         [ (["mi nelci lo zdani be mi"], ["I like my house."])
         , (["mi nelci lo zdani be do"], ["I like your house."])
-        , (["xu do nelci lo zdani be mi"], ["Do you like my house."])
-        , (["xu do nelci lo zdani be do"], ["Do you like your house."])
+        , (["xu do nelci lo zdani be mi"], ["Do you like my house?"])
+        , (["xu do nelci lo zdani be do"], ["Do you like your house?"])
         ]
     cmene = generatorFromList
         [ (["mi nelci lo cmene be mi"], ["I like my name."])
