@@ -1220,7 +1220,7 @@ fillingBlanksExercises7 :: ExerciseGenerator
 fillingBlanksExercises7 = generateContextualizedBroadFillingBlanksExerciseByAlternatives ["poi", "noi"] translations7
 
 translations8 :: TranslationGenerator
-translations8 = expandTranslationGenerator $ combineFunctionsUniformly [required_terminator, cmene_complex, vecnu_zdani, ctuca, tavla, bangu, zdani, cmene] where
+translations8 = expandTranslationGenerator $ combineFunctionsUniformly [required_terminator, cmene_complex, general, vecnu_zdani, ctuca, tavla, bangu, zdani, cmene] where
     required_terminator = generatorFromList
         [ (["mi nelci lo cmene be do be'o noi melbi"], ["I like your name, which is beautiful."])
         , (["mi nelci lo zdani be do be'o noi melbi"], ["I like your house, which is beautiful."])
@@ -1240,6 +1240,13 @@ translations8 = expandTranslationGenerator $ combineFunctionsUniformly [required
         , (["ma se cmene lo tavla be do"], ["What is the name of the one who talked to you?"])
         , (["ma se cmene lo tavla be do bei lo zdani"], ["What is the name of the one who talked to you about the house?"])
         , (["ma se cmene lo tavla be zo'e bei lo zdani"], ["What is the name of the one who talked about the house?"])
+        ]
+    general = generatorFromList
+        [ (["mi nelci lo se nupre be do"], ["I like the promise that you made."])
+        , (["mi nelci lo se dunda be do"], ["I liked the gift that you gave."])
+        , (["mi nelci lo se dunda be do bei mi"], ["I liked the gift that you gave me."])
+        , (["mi nelci lo se dunda be zo'e kei do"], ["I liked the gift that you received."])
+        , (["mi nelci lo se dunda be zo'e kei mi"], ["I liked the gift that I received."])
         ]
     vecnu_zdani = generatorFromList
         [ (["mi tavla lo vecnu be lo zdani"], ["I talked to the one who sold the house."])
