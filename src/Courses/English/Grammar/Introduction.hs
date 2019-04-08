@@ -140,13 +140,13 @@ vocabularyGenerator7 = createVocabularyBuilder
     [
     ]
 
--- New words: cmene, PENDING
+-- New words: cmene, bangu, PENDING
 vocabularyGenerator8 :: VocabularyBuilder
 vocabularyGenerator8 = createVocabularyBuilder
     -- Selbri
     [
         ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska", "djuno", "nupre", "cusku"]) ++ ((2,) <$> ["vecnu", "pilno"])),
-        ("relations", ((0,) <$> ["pendo", "nelci", "gleki", "cmene"])),
+        ("relations", ((0,) <$> ["pendo", "nelci", "gleki", "cmene", "bangu"])),
         ("properties", (0,) <$> ["prenu", "zdani", "mlatu", "gerku", "melbi", "plise", "skami"])
     ]
     -- Sumti
@@ -1220,8 +1220,13 @@ fillingBlanksExercises7 :: ExerciseGenerator
 fillingBlanksExercises7 = generateContextualizedBroadFillingBlanksExerciseByAlternatives ["poi", "noi"] translations7
 
 translations8 :: TranslationGenerator
-translations8 = combineFunctionsUniformly [cmene, vecnu_zdani, zdani, cmene] where
-    cmene = generatorFromList
+translations8 = combineFunctionsUniformly [required_terminator, cmene_complex, vecnu_zdani, bangu, zdani, cmene] where
+    required_terminator = generatorFromList
+        [ (["mi nelci lo cmene be do be'o noi melbi"], ["I like your name, which is beautiful."])
+        , (["mi nelci lo zdani be do be'o noi melbi"], ["I like your house, which is beautiful."])
+        , (["mi nelci lo bangu be do be'o noi mi nupre lo nu {mi} ctuca fo ke'a"], ["I like your language, which I promised to teach."])
+        ]
+    cmene_complex = generatorFromList
         [ (["ma se cmene lo dunda be lo mlatu bei do"], ["What is the name of the one who gave you the cat?"])
         , (["ma se cmene lo dunda be lo mlatu"], ["What is the name of the one who donated the cat?"])
         , (["ma se cmene lo vecnu be lo mlatu"], ["What is the name of the one who sold the cat?"])
@@ -1248,6 +1253,12 @@ translations8 = combineFunctionsUniformly [cmene, vecnu_zdani, zdani, cmene] whe
         , (["xu do tavla lo vecnu be lo zdani bei do"], ["Did you talk to the one who sold you the house?"])
         , (["do vecnu lo zdani be ma"], ["Whose house did you sell?"])
         , (["do vecnu lo zdani be mi ma"], ["To whom did you sell my house?"])
+        ]
+    bangu = generatorFromList
+        [ (["mi nelci lo bangu be mi"], ["I like my language."])
+        , (["mi nelci lo bangu be do"], ["I like your language."])
+        , (["xu do nelci lo bangu be mi"], ["Do you like my language?"])
+        , (["xu do nelci lo bangu be do"], ["Do you like your language?"])
         ]
     zdani = generatorFromList
         [ (["mi nelci lo zdani be mi"], ["I like my house."])
