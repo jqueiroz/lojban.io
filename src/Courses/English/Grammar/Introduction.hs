@@ -1268,9 +1268,9 @@ translations8 = expandTranslationGenerator $ combineFunctionsUniformly [required
         , (["mi dunda lo mlatu lo tavla be zo'e bei do"], ["I donated the cat to the one who was talking about you."])
         , (["mi dunda lo gerku lo tavla be do"], ["I donated the dog to the one who was talking to you."])
         , (["mi dunda lo gerku lo tavla be zo'e bei do"], ["I donated the dog to the one who was talking about you."])
-        , (["mi se melbi lo tavla be do"], ["The one who was talking to you is beautiful."])
-        , (["mi se melbi lo tavla be zo'e bei do"], ["The one who was talking about you is beautiful."])
-        , (["mi se melbi lo tavla be zo'e bei mi"], ["The one who was talking about me is beautiful."])
+        , (["lo tavla be do cu melbi"], ["The one who was talking to you is beautiful."])
+        , (["mi se melbi lo tavla be zo'e bei do"], ["The one who was talking about you is beautiful to me."])
+        , (["mi se melbi lo tavla be zo'e bei mi"], ["The one who was talking about me is beautiful to me."])
         ]
     bangu = generatorFromList
         [ (["mi nelci lo bangu be mi"], ["I like my language."])
