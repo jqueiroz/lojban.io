@@ -146,7 +146,7 @@ vocabularyGenerator8 = createVocabularyBuilder
     -- Selbri
     [
         ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska", "djuno", "nupre", "cusku"]) ++ ((2,) <$> ["vecnu", "pilno"])),
-        ("relations", ((0,) <$> ["pendo", "nelci", "gleki", "cmene", "bangu"])),
+        ("relations", ((0,) <$> ["pendo", "nelci", "gleki"]) ++ ((3,) <$> ["cmene", "bangu"])),
         ("properties", (0,) <$> ["prenu", "zdani", "mlatu", "gerku", "melbi", "plise", "skami"])
     ]
     -- Sumti
@@ -1387,7 +1387,7 @@ exercises7 dictionary =
 exercises8 :: Dictionary -> ExerciseGenerator
 exercises8 dictionary =
     combineFunctions
-        [ (20, generateIsolatedBrivlaPlacesExercise dictionary $ generatorFromWeightedList $ getVocabularySelbri vocabulary "actions")
+        [ (20, generateIsolatedBrivlaPlacesExercise dictionary $ generatorFromWeightedList $ getVocabularySelbri vocabulary "actions" ++ getVocabularySelbri vocabulary "relations")
         , (70, translationExercises8)
         ]
     where
