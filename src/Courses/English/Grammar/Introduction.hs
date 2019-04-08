@@ -1220,7 +1220,24 @@ fillingBlanksExercises7 :: ExerciseGenerator
 fillingBlanksExercises7 = generateContextualizedBroadFillingBlanksExerciseByAlternatives ["poi", "noi"] translations7
 
 translations8 :: TranslationGenerator
-translations8 = combineFunctionsUniformly [vecnu_zdani, zdani, cmene] where
+translations8 = combineFunctionsUniformly [cmene, vecnu_zdani, zdani, cmene] where
+    cmene = generatorFromList
+        [ (["ma se cmene lo dunda be lo mlatu bei do"], ["What is the name of the one who gave you the cat?"])
+        , (["ma se cmene lo dunda be lo mlatu"], ["What is the name of the one who donated the cat?"])
+        , (["ma se cmene lo vecnu be lo mlatu"], ["What is the name of the one who sold the cat?"])
+        , (["ma se cmene lo vecnu be lo mlatu bei do"], ["What is the name of the one who sold you the cat?"])
+        , (["ma se cmene lo vecnu be lo mlatu"], ["What is the name of the one who sold the cat?"])
+
+        , (["ma se cmene lo dunda be lo gerku bei do"], ["What is the name of the one who gave you the dog?"])
+        , (["ma se cmene lo dunda be lo gerku"], ["What is the name of the one who donated the dog?"])
+        , (["ma se cmene lo vecnu be lo gerku"], ["What is the name of the one who sold the dog?"])
+        , (["ma se cmene lo vecnu be lo gerku bei do"], ["What is the name of the one who sold you the dog?"])
+        , (["ma se cmene lo vecnu be lo gerku"], ["What is the name of the one who sold the dog?"])
+
+        , (["ma se cmene lo tavla be do"], ["What is the name of the one who talked to you?"])
+        , (["ma se cmene lo tavla be do bei lo zdani"], ["What is the name of the one who talked to you about the house?"])
+        , (["ma se cmene lo tavla be zo'e bei lo zdani"], ["What is the name of the one who talked about the house?"])
+        ]
     vecnu_zdani = generatorFromList
         [ (["mi tavla lo vecnu be lo zdani"], ["I talked to the one who sold the house."])
         , (["mi tavla lo vecnu be lo zdani be do"], ["I talked to the one who sold your house."])
