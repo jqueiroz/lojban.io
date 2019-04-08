@@ -1224,7 +1224,7 @@ translations8 = expandTranslationGenerator $ combineFunctionsUniformly [required
     required_terminator = generatorFromList
         [ (["mi nelci lo cmene be do be'o noi melbi"], ["I like your name, which is beautiful."])
         , (["mi nelci lo zdani be do be'o noi melbi"], ["I like your house, which is beautiful."])
-        , (["mi nelci lo bangu be do be'o noi mi nupre lo nu {mi} ctuca (fo ke'a|)"], ["I like your language, which I promised to teach."])
+        , (["mi nelci lo bangu be do be'o noi mi nupre lo nu {mi} ctuca fo (ke'a|zo'e)"], ["I like your language, which I promised to teach."])
         ]
     cmene_complex = generatorFromList
         [ (["ma se cmene lo dunda be lo mlatu bei do"], ["What is the name of the one who gave you the cat?"])
