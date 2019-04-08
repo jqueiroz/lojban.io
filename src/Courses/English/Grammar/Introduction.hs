@@ -1231,13 +1231,11 @@ translations8 = expandTranslationGenerator $ combineFunctionsUniformly [required
         , (["ma se cmene lo dunda be lo mlatu"], ["What is the name of the one who donated the cat?"])
         , (["ma se cmene lo vecnu be lo mlatu"], ["What is the name of the one who sold the cat?"])
         , (["ma se cmene lo vecnu be lo mlatu bei do"], ["What is the name of the one who sold you the cat?"])
-        , (["ma se cmene lo vecnu be lo mlatu"], ["What is the name of the one who sold the cat?"])
 
         , (["ma se cmene lo dunda be lo gerku bei do"], ["What is the name of the one who gave you the dog?"])
         , (["ma se cmene lo dunda be lo gerku"], ["What is the name of the one who donated the dog?"])
         , (["ma se cmene lo vecnu be lo gerku"], ["What is the name of the one who sold the dog?"])
         , (["ma se cmene lo vecnu be lo gerku bei do"], ["What is the name of the one who sold you the dog?"])
-        , (["ma se cmene lo vecnu be lo gerku"], ["What is the name of the one who sold the dog?"])
 
         , (["ma se cmene lo tavla be do"], ["What is the name of the one who talked to you?"])
         , (["ma se cmene lo tavla be do bei lo zdani"], ["What is the name of the one who talked to you about the house?"])
