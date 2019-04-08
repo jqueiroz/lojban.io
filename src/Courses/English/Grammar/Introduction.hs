@@ -1220,7 +1220,7 @@ fillingBlanksExercises7 :: ExerciseGenerator
 fillingBlanksExercises7 = generateContextualizedBroadFillingBlanksExerciseByAlternatives ["poi", "noi"] translations7
 
 translations8 :: TranslationGenerator
-translations8 = expandTranslationGenerator $ combineFunctionsUniformly [required_terminator, cmene_complex, vecnu_zdani, bangu, zdani, cmene] where
+translations8 = expandTranslationGenerator $ combineFunctionsUniformly [required_terminator, cmene_complex, vecnu_zdani, tavla, bangu, zdani, cmene] where
     required_terminator = generatorFromList
         [ (["mi nelci lo cmene be do be'o noi melbi"], ["I like your name, which is beautiful."])
         , (["mi nelci lo zdani be do be'o noi melbi"], ["I like your house, which is beautiful."])
@@ -1253,6 +1253,15 @@ translations8 = expandTranslationGenerator $ combineFunctionsUniformly [required
         , (["xu do tavla lo vecnu be lo zdani bei do"], ["Did you talk to the one who sold you the house?"])
         , (["do vecnu lo zdani be ma"], ["Whose house did you sell?"])
         , (["do vecnu lo zdani be mi ma"], ["To whom did you sell my house?"])
+        ]
+    tavla = generatorFromList
+        [ (["mi dunda lo mlatu lo tavla be do"], ["I donated the cat to the one who was talking to you."])
+        , (["mi dunda lo mlatu lo tavla be zo'e bei do"], ["I donated the cat to the one who was talking about you."])
+        , (["mi dunda lo gerku lo tavla be do"], ["I donated the dog to the one who was talking to you."])
+        , (["mi dunda lo gerku lo tavla be zo'e bei do"], ["I donated the dog to the one who was talking about you."])
+        , (["mi se melbi lo tavla be do"], ["The one who was talking to you is beautiful."])
+        , (["mi se melbi lo tavla be zo'e bei do"], ["The one who was talking about you is beautiful."])
+        , (["mi se melbi lo tavla be zo'e bei mi"], ["The one who was talking about mi is beautiful."])
         ]
     bangu = generatorFromList
         [ (["mi nelci lo bangu be mi"], ["I like my language."])
