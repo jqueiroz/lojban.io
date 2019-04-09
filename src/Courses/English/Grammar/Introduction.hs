@@ -1245,8 +1245,8 @@ translations8 = expandTranslationGenerator $ combineFunctionsUniformly [required
         [ (["mi nelci lo se nupre be do"], ["I like the promise that you made."])
         , (["mi nelci lo se dunda be do"], ["I liked the gift that you gave."])
         , (["mi nelci lo se dunda be do bei mi"], ["I liked the gift that you gave me."])
-        , (["mi nelci lo se dunda be zo'e kei do"], ["I liked the gift that you received."])
-        , (["mi nelci lo se dunda be zo'e kei mi"], ["I liked the gift that I received."])
+        , (["mi nelci lo se dunda be zo'e bei do"], ["I liked the gift that you received."])
+        , (["mi nelci lo se dunda be zo'e bei mi"], ["I liked the gift that I received."])
         ]
     vecnu_zdani = generatorFromList
         [ (["mi tavla lo vecnu be lo zdani"], ["I talked to the one who sold the house."])
