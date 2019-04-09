@@ -227,6 +227,7 @@ swapTerms2 "ve" = swapTerms 1 4
 swapTerms2 "xe" = swapTerms 1 5
 
 handlePlacePermutations :: StructuredBridi -> Either String StructuredBridi
+handlePlacePermutations (ZG.Tag tag text, terms) = Right $ (ZG.Tag tag text, terms)
 handlePlacePermutations (ZG.BRIVLA brivla, terms) = Right $ (ZG.BRIVLA brivla, terms)
 handlePlacePermutations (ZG.GOhA brivla, terms) = Right $ (ZG.GOhA brivla, terms)
 handlePlacePermutations (ZG.Prefix (ZG.SE x) y, terms) = do
@@ -266,7 +267,12 @@ convertStructuredBridi xu (selbri, terms) = do
 convertStructuredSelbri :: StructuredSelbri -> Either String T.Text
 convertStructuredSelbri (ZG.BRIVLA brivla) = Right $ T.pack brivla
 convertStructuredSelbri (ZG.GOhA brivla) = Right $ T.pack brivla
+convertStructuredSelbri (ZG.Tag tag text) = concatET [handleSelbriTag tag, Right $ T.pack " ", convertStructuredSelbri text]
 convertStructuredSelbri x = Left $ "Unrecognized pattern for structured selbri: " ++ show x
+
+handleSelbriTag :: ZG.Tag -> Either String T.Text
+handleSelbriTag (ZG.BAI x) = Right $ T.pack x
+handleSelbriTag x = Left $ "Unrecognized pattern in handleSelbriTag: " ++ show x
 
 convertStructuredTerms :: [(Int, StructuredTerm)] -> Either String [T.Text]
 convertStructuredTerms terms = do
