@@ -316,7 +316,7 @@ convertStructuredTerm (ZG.LE (ZG.Init x) ZG.NR ZG.NQ (ZG.Rel y z) t) = convertSt
 convertStructuredTerm (ZG.LE (ZG.Init x) ZG.NR ZG.NQ y _) = insertPrefix . insertSuffix <$> convertStructuredTerm y where
     insertPrefix = ((T.pack $ x ++ " ") `T.append`)
     insertSuffix = (`T.append` " ku")
-convertStructuredTerm _ = Left "Unrecognized pattern for structured term"
+convertStructuredTerm x = Left $ "Unrecognized pattern for structured term: " ++ show x
 
 ---------- Canonicalization
 --TODO: canonicalize "do xu ciska" -> "xu do ciska"
