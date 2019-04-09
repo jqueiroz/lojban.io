@@ -266,7 +266,7 @@ convertStructuredBridi xu (selbri, terms) = do
 convertStructuredSelbri :: StructuredSelbri -> Either String T.Text
 convertStructuredSelbri (ZG.BRIVLA brivla) = Right $ T.pack brivla
 convertStructuredSelbri (ZG.GOhA brivla) = Right $ T.pack brivla
-convertStructuredSelbri _ = Left "Unrecognized pattern for structured selbri"
+convertStructuredSelbri x = Left $ "Unrecognized pattern for structured selbri: " ++ show x
 
 convertStructuredTerms :: [(Int, StructuredTerm)] -> Either String [T.Text]
 convertStructuredTerms terms = do
