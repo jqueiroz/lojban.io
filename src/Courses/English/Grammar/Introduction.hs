@@ -1322,14 +1322,23 @@ translations8 = expandTranslationGenerator $ combineFunctionsUniformly [required
 translationExercises8 :: ExerciseGenerator
 translationExercises8 = generateTranslationExercise basicSentenceCanonicalizer sentenceComparer translations8
 
-translations9_pu :: TranslationGenerator
-translations9_pu = expandTranslationGenerator $ combineFunctionsUniformly [general] where
+translations9 :: TranslationGenerator
+translations9 = expandTranslationGenerator $ combineFunctionsUniformly [general] where
+    general = generatorFromList
+        [ (["mi fanva se pi'o lo skami"], ["I translated using the computer."])
+        ]
+
+translationExercises9 :: ExerciseGenerator
+translationExercises9 = generateTranslationExercise basicSentenceCanonicalizer sentenceComparer translations9
+
+translations10_pu :: TranslationGenerator
+translations10_pu = expandTranslationGenerator $ combineFunctionsUniformly [general] where
     general = generatorFromList
         [ (["mi pu dunda lo mlatu"], ["I donated the cat."])
         ]
 
-translationExercises9 :: ExerciseGenerator
-translationExercises9 = generateRestrictedTranslationExercise "Translate <b>specifying tenses</b>" (const True) basicSentenceCanonicalizer sentenceComparer $ combineFunctionsUniformly [translations9_pu]
+translationExercises10 :: ExerciseGenerator
+translationExercises10 = generateRestrictedTranslationExercise "Translate <b>specifying tenses</b>" (const True) basicSentenceCanonicalizer sentenceComparer $ combineFunctionsUniformly [translations10_pu]
 
 translations99 :: [ExerciseGenerator]
 translations99 = generateTranslationExercise basicSentenceCanonicalizer sentenceComparer <$> generatorFromSingleton <$>
@@ -1485,7 +1494,7 @@ lesson8 :: LessonBuilder
 lesson8 dictionary = Lesson "Linked sumti" (exercises8 dictionary) plan8
 
 lesson9 :: LessonBuilder
-lesson9 dictionary = Lesson "Tenses" (exercises9 dictionary) plan9
+lesson9 dictionary = Lesson "Sumtcita" (exercises9 dictionary) plan9
 
 -------- Course
 style :: CourseStyle
