@@ -49,6 +49,7 @@ main = hspec $ do
       it "supports tenses" $ do
         validateSentences
             [ ("lo prenu pu dunda lo mlatu", "lo prenu ku pu dunda lo mlatu ku")
+            -- , ("pu ku lo prenu dunda lo mlatu", "lo prenu ku pu dunda lo mlatu ku")
             ]
       it "supports complex sentences" $ do
         validateSentences
