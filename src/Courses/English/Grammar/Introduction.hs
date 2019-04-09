@@ -1306,8 +1306,8 @@ translations8 = expandTranslationGenerator $ combineFunctionsUniformly [required
 translationExercises8 :: ExerciseGenerator
 translationExercises8 = generateTranslationExercise basicSentenceCanonicalizer sentenceComparer translations8
 
-translations9 :: [ExerciseGenerator]
-translations9 = generateTranslationExercise basicSentenceCanonicalizer sentenceComparer <$> generatorFromSingleton <$>
+translations99 :: [ExerciseGenerator]
+translations99 = generateTranslationExercise basicSentenceCanonicalizer sentenceComparer <$> generatorFromSingleton <$>
     [ (["lo prenu ku sutra tavla"], ["The person talks quickly.", "The person is talking quickly.", "A person is talking quickly.", "People talk quickly"])
     ]
 
