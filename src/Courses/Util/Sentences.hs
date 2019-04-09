@@ -1,4 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE TupleSections #-}
 
 module Courses.Util.Sentences
 ( SimpleBridi
@@ -277,7 +278,7 @@ handleSelbriTag x = Left $ "Unrecognized pattern in handleSelbriTag: " ++ show x
 convertStructuredTerms :: [(Int, StructuredTerm)] -> Either String [T.Text]
 convertStructuredTerms terms = do
     let terms2 = map (fmap convertStructuredTerm) terms :: [(Int, Either String T.Text)]
-    let terms3 = map (\(i, v) -> case v of Right x -> Right (i, x); Left x -> Left x) terms2 :: [Either String (Int, T.Text)]
+    let terms3 = map (\(i, v) -> (i,) <$> v) terms2 :: [Either String (Int, T.Text)]
     terms4 <- foldr (liftA2 (:)) (Right []) terms3 :: Either String [(Int, T.Text)]
     let terms5 = filter ((/= "zo'e") . snd) terms4 :: [(Int, T.Text)]
     let lastTermNumber = if null terms5 then 0 else maximum (map fst terms5)
