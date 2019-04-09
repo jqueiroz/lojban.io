@@ -232,7 +232,7 @@ handlePlacePermutations (ZG.GOhA brivla, terms) = Right $ (ZG.GOhA brivla, terms
 handlePlacePermutations (ZG.Prefix (ZG.SE x) y, terms) = do
     (selbri, terms2) <- handlePlacePermutations (y, terms)
     return $ (selbri, swapTerms2 x terms2)
-handlePlacePermutations x = Left $ "unrecognized pattern in function handlePlacePermutations" ++ show x
+handlePlacePermutations x = Left $ "unrecognized pattern in function handlePlacePermutations: " ++ show x
 
 ---------- Retrieve structured bridi
 retrieveStructuredBridi :: ZG.Text -> Either String StructuredBridi
