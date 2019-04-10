@@ -238,7 +238,7 @@ handlePlacePermutations x = Left $ "unrecognized pattern in function handlePlace
 
 ---------- Retrieve structured bridi
 retrieveStructuredBridi :: ZG.Text -> Either String StructuredBridi
-------- with x1
+------- without x1
 -- prami
 retrieveStructuredBridi (ZG.BRIVLA brivla) = Right $ (ZG.BRIVLA brivla, [])
 retrieveStructuredBridi (ZG.GOhA brivla) = Right $ (ZG.GOhA brivla, [])
@@ -246,7 +246,7 @@ retrieveStructuredBridi (ZG.GOhA brivla) = Right $ (ZG.GOhA brivla, [])
 retrieveStructuredBridi (ZG.Prefix x y) = Right $ (ZG.Prefix x y, [])
 -- prami do / se prami do
 retrieveStructuredBridi (ZG.BridiTail selbri (ZG.Terms terms _)) = Right $ (selbri, zip [2..] terms)
-------- without x1
+------- with x1
 -- mi prami
 retrieveStructuredBridi (ZG.Bridi (ZG.Terms terms _) (ZG.BRIVLA brivla)) = Right $ (ZG.BRIVLA brivla, zip [1..] terms)
 retrieveStructuredBridi (ZG.Bridi (ZG.Terms terms _) (ZG.GOhA brivla)) = Right $ (ZG.GOhA brivla, zip [1..] terms)
