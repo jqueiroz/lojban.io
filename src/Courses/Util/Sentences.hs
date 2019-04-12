@@ -248,7 +248,10 @@ constructStructuredBridiFromTerms selbri terms = (selbri, (zip [1..] mainTerms),
     isExtraTerm :: ZG.Text -> Bool
     isExtraTerm (ZG.TagKU (ZG.BAI x) _) = True
     isExtraTerm (ZG.TagKU (ZG.FIhO x y z) _) = True
-    isExtraTerm (ZG.Tag (ZG.FIhO x y z) a) = True
+    isExtraTerm (ZG.TagKU (ZG.PrefixTag x y) a) = isExtraTerm (ZG.TagKU y a)
+    isExtraTerm (ZG.Tag (ZG.BAI x) _) = True
+    isExtraTerm (ZG.Tag (ZG.FIhO x y z) _) = True
+    isExtraTerm (ZG.Tag (ZG.PrefixTag x y) a) = isExtraTerm (ZG.Tag y a)
     isExtraTerm _ = False
     (extraTerms, mainTerms) = partition isExtraTerm terms
 
@@ -353,7 +356,10 @@ expandExtraTerms = concatMap expandTerm where
 convertExtraTerm :: ExtraTerm -> Either String T.Text
 convertExtraTerm (ZG.TagKU (ZG.FIhO (ZG.Init x) y _) _) = concatET [Right $ T.pack "fi'o ", convertStructuredSelbri y, Right $ T.pack " fe'u"]
 convertExtraTerm (ZG.Tag (ZG.FIhO (ZG.Init x) y _) text) = concatET [Right $ T.pack "fi'o ", convertStructuredSelbri y, Right $ T.pack " fe'u ", convertStructuredTerm text]
+convertExtraTerm (ZG.TagKU (ZG.PrefixTag (ZG.SE x) y) z) = concatET [Right $ T.pack x, Right $ T.pack " ", convertExtraTerm (ZG.TagKU y z)]
+convertExtraTerm (ZG.Tag (ZG.PrefixTag (ZG.SE x) y) z) = concatET [Right $ T.pack x, Right $ T.pack " ", convertExtraTerm (ZG.Tag y z)]
 convertExtraTerm (ZG.TagKU (ZG.BAI x) _) = concatET [Right $ T.pack x, Right $ T.pack " ku"]
+convertExtraTerm (ZG.Tag (ZG.BAI x) text) = concatET [Right $ T.pack x, Right $ T.pack " ", convertStructuredTerm text]
 convertExtraTerm x = Left $ "Unrecognized pattern for convertExtraTerm: " ++ show x
 
 ---------- Canonicalization

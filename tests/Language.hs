@@ -55,6 +55,9 @@ main = hspec $ do
         validateSentences
             [ ("mi fanva fi'o se pilno fe'u lo skami", "fi'o se pilno fe'u lo skami ku mi fanva")
             , ("mi fanva fi'o se pilno fe'u lo skami ta", "fi'o se pilno fe'u lo skami ku mi fanva ta")
+            , ("mi fanva se pi'o lo skami", "se pi'o lo skami ku mi fanva")
+            , ("mi fanva se pi'o lo skami ta", "se pi'o lo skami ku mi fanva ta")
+            , ("lo prenu zu'e klama lo zarci", "zu'e ku lo prenu ku klama lo zarci ku")
             ]
       it "supports complex sentences" $ do
         validateSentences
