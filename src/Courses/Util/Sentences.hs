@@ -29,6 +29,7 @@ import Control.Exception (assert)
 import Control.Applicative (liftA2)
 import System.Random (StdGen, mkStdGen)
 import Data.Maybe (fromMaybe)
+import Data.List (partition)
 import qualified Data.Text as T
 import qualified Data.Map as M
 import qualified Language.Lojban.Parser.ZasniGerna as ZG
@@ -38,11 +39,12 @@ data SimpleBridi = SimpleBridi
     { simpleBridiXu :: Bool
     , simpleBridiSelbri :: T.Text
     , simpleBridiSumti :: [T.Text]
+    , simpleBridiExtraSumti :: [T.Text]
     } deriving (Show)
 
 -- The following function keeps trailing empty places, if present
 swapSimpleBridiArguments :: String -> SimpleBridi -> SimpleBridi
-swapSimpleBridiArguments particle (SimpleBridi xu selbri sumti) = SimpleBridi xu selbri sumti''' where
+swapSimpleBridiArguments particle (SimpleBridi xu selbri sumti extraSumti) = SimpleBridi xu selbri sumti''' extraSumti where
     sumti' = sumti ++ replicate 5 (T.pack "///")
     sumti'' = swapArguments particle sumti'
     sumti''' = replace (T.pack "///") (T.pack "") . stripRight "///" $ sumti''
@@ -71,20 +73,20 @@ buildSentenceDisplayer sentenceDisplayer r0 simpleBridi = (T.unwords $ replace "
 --   * Ellisis occurs in the first place and in the last places
 --   * All other missing places are filled with "zo'e"
 displayStandardSimpleBridi :: StdGen -> SimpleBridi -> (T.Text, StdGen)
-displayStandardSimpleBridi = buildSentenceDisplayer $ \r0 (SimpleBridi xu selbri sumti) ->
+displayStandardSimpleBridi = buildSentenceDisplayer $ \r0 (SimpleBridi xu selbri sumti extraSumti) ->
     let
         (sumtiHead, sumtiTail) = splitAt 1 sumti
         sentence = (if sumtiHead == [""] then [] else sumtiHead) ++ [selbri] ++ (stripRight "" sumtiTail)
     in
         prependXu xu $
-        (sentence, r0)
+        (extraSumti ++ sentence, r0)
 
 -- The bridi is displayed with a random number of places before the selbri
 --   * Exception: if the first place is empty, then this function behaves as displayStandardSimpleBridi
 --   * Ellisis occurs in the last places
 --   * All other missing places are filled with "zo'e"
 displayVariantSimpleBridi :: StdGen -> SimpleBridi -> (T.Text, StdGen)
-displayVariantSimpleBridi = buildSentenceDisplayer $ \r0 (SimpleBridi xu selbri sumti) ->
+displayVariantSimpleBridi = buildSentenceDisplayer $ \r0 (SimpleBridi xu selbri sumti extraSumti) ->
     let
         (sumtiHead, sumtiTail) = splitAt 1 sumti
     in
@@ -96,7 +98,7 @@ displayVariantSimpleBridi = buildSentenceDisplayer $ \r0 (SimpleBridi xu selbri 
                 (beforeCount, r1) = chooseItemUniformly r0 [1..length sumti]
                 (sumtiBefore, sumtiAfter) = splitAt beforeCount sumti
             in
-                (sumtiBefore ++ [selbri] ++ sumtiAfter, r1)
+                (extraSumti ++ sumtiBefore ++ [selbri] ++ sumtiAfter, r1)
 
 -- The bridi is displayed as in "displayStandardSimpleBridi", but if the x1 is missing then its position is used to hold the last place
 --   * Exception: if there are more than five sumti places, then "displayStandardSimpleBridi" is used after all
@@ -109,7 +111,7 @@ displayPossiblyReorderedStandardSimpleBridi r0 bridi
     where sumti = stripRight "" $ simpleBridiSumti bridi
 
 displayPossiblyReorderedStandardSimpleBridi' :: StdGen -> SimpleBridi -> (T.Text, StdGen)
-displayPossiblyReorderedStandardSimpleBridi' = buildSentenceDisplayer $ \r0 (SimpleBridi xu selbri sumti) ->
+displayPossiblyReorderedStandardSimpleBridi' = buildSentenceDisplayer $ \r0 (SimpleBridi xu selbri sumti extraSumti) ->
     let
         particle = ["se", "te", "ve", "xe"] !! (length sumti - 2)
         sumti' = stripRight "" $ swapArguments particle sumti
@@ -117,7 +119,7 @@ displayPossiblyReorderedStandardSimpleBridi' = buildSentenceDisplayer $ \r0 (Sim
     in
         assert (length sumti >= 2 && length sumti <= 5 && head sumti == "" && last sumti /= "") $
         prependXu xu $
-        (sentence, r0)
+        (extraSumti ++ sentence, r0)
 
 -- The bridi is displayed with a single place swap
 --   * Exception: if the first place is empty or there are fewer than two places, then this function behaves as displayStandardSimpleBridi
@@ -129,7 +131,7 @@ displayReorderedStandardSimpleBridi r0 bridi
     where sumti = stripRight "" $ simpleBridiSumti bridi
 
 displayReorderedStandardSimpleBridi' :: StdGen -> SimpleBridi -> (T.Text, StdGen)
-displayReorderedStandardSimpleBridi' = buildSentenceDisplayer $ \r0 (SimpleBridi xu selbri sumti) ->
+displayReorderedStandardSimpleBridi' = buildSentenceDisplayer $ \r0 (SimpleBridi xu selbri sumti extraSumti) ->
     let
         particles = take (length sumti - 1) ["se", "te", "ve", "xe"]
         (particle, r1) = chooseItemUniformly r0 particles
@@ -138,7 +140,7 @@ displayReorderedStandardSimpleBridi' = buildSentenceDisplayer $ \r0 (SimpleBridi
     in
         assert (length sumti >= 2 && head sumti /= "" && last sumti /= "") $
         prependXu xu $
-        (sentence, r1)
+        (extraSumti ++ sentence, r1)
 
 ------------------------- ----------------------- Terminator ellisis
 -- removeElidableTerminators :: ZG.Text -> Either String T.Text
@@ -195,12 +197,13 @@ parse = ZG.parse . T.unpack
 ---------- Types
 type StructuredSelbri = ZG.Text
 type StructuredTerm = ZG.Text
-type StructuredBridi = (StructuredSelbri, [(Int, StructuredTerm)])
+type ExtraTerm = ZG.Text
+type StructuredBridi = (StructuredSelbri, [(Int, StructuredTerm)], [ExtraTerm])
 
 ---------- Handle place tags (fa/fe/fi/fo/fu)
 handlePlaceTags :: StructuredBridi -> Either String StructuredBridi
-handlePlaceTags (selbri, []) = Right $ (selbri, [])
-handlePlaceTags (selbri, terms) = assert (isContiguousSequence $ map fst terms) $ Right (selbri, f firstPosition terms) where
+handlePlaceTags (selbri, [], extraTerms) = Right $ (selbri, [], extraTerms)
+handlePlaceTags (selbri, terms, extraTerms) = assert (isContiguousSequence $ map fst terms) $ Right (selbri, f firstPosition terms, extraTerms) where
     firstPosition = fst $ head terms
     f :: Int -> [(Int, StructuredTerm)] -> [(Int, StructuredTerm)]
     f _ [] = []
@@ -228,52 +231,70 @@ swapTerms2 "ve" = swapTerms 1 4
 swapTerms2 "xe" = swapTerms 1 5
 
 handlePlacePermutations :: StructuredBridi -> Either String StructuredBridi
-handlePlacePermutations (ZG.Tag tag text, terms) = Right $ (ZG.Tag tag text, terms)
-handlePlacePermutations (ZG.BRIVLA brivla, terms) = Right $ (ZG.BRIVLA brivla, terms)
-handlePlacePermutations (ZG.GOhA brivla, terms) = Right $ (ZG.GOhA brivla, terms)
-handlePlacePermutations (ZG.Prefix (ZG.SE x) y, terms) = do
-    (selbri, terms2) <- handlePlacePermutations (y, terms)
-    return $ (selbri, swapTerms2 x terms2)
+handlePlacePermutations (ZG.BRIVLA brivla, terms, extraTerms) = Right $ (ZG.BRIVLA brivla, terms, extraTerms)
+handlePlacePermutations (ZG.GOhA brivla, terms, extraTerms) = Right $ (ZG.GOhA brivla, terms, extraTerms)
+handlePlacePermutations (ZG.Prefix (ZG.SE x) y, terms, extraTerms) = do
+    (selbri, terms2, extraTerms) <- handlePlacePermutations (y, terms, extraTerms)
+    return $ (selbri, swapTerms2 x terms2, extraTerms)
 handlePlacePermutations x = Left $ "unrecognized pattern in function handlePlacePermutations: " ++ show x
+
+---------- Append extra tag to structured bridi
+appendExtraTagToStructuredBridi :: ZG.Text -> StructuredBridi -> StructuredBridi
+appendExtraTagToStructuredBridi tag (x, y, z) = (x, y, tag : z)
+
+---------- Construct structured bridi from terms
+constructStructuredBridiFromTerms :: StructuredSelbri -> [StructuredTerm] -> StructuredBridi
+constructStructuredBridiFromTerms selbri terms = (selbri, (zip [1..] mainTerms), extraTerms) where
+    isExtraTerm :: ZG.Text -> Bool
+    isExtraTerm (ZG.TagKU (ZG.BAI x) _) = True
+    isExtraTerm (ZG.TagKU (ZG.FIhO x y z) _) = True
+    isExtraTerm (ZG.Tag (ZG.FIhO x y z) a) = True
+    isExtraTerm _ = False
+    (extraTerms, mainTerms) = partition isExtraTerm terms
 
 ---------- Retrieve structured bridi
 retrieveStructuredBridi :: ZG.Text -> Either String StructuredBridi
 ------- without x1
+-- pu prami / pu se prami / pu ca ba prami / pu ca ba se prami (also pu go'i / pu se go'i / ...)
+retrieveStructuredBridi (ZG.Tag x y) = appendExtraTagToStructuredBridi (ZG.TagKU x (ZG.Term "ku")) <$> retrieveStructuredBridi y
+-- pu prami do / pu se prami do / pu ca ba prami do / pu ca ba se prami do (also pu go'i do / pu se go'i do / ...)
+retrieveStructuredBridi (ZG.BridiTail (ZG.Tag x y) z) = appendExtraTagToStructuredBridi (ZG.TagKU x (ZG.Term "ku")) <$> retrieveStructuredBridi (ZG.BridiTail y z)
 -- prami
-retrieveStructuredBridi (ZG.BRIVLA brivla) = Right $ (ZG.BRIVLA brivla, [])
-retrieveStructuredBridi (ZG.GOhA brivla) = Right $ (ZG.GOhA brivla, [])
--- se prami
-retrieveStructuredBridi (ZG.Prefix x y) = Right $ (ZG.Prefix x y, [])
--- prami do / se prami do
-retrieveStructuredBridi (ZG.BridiTail selbri (ZG.Terms terms _)) = Right $ (selbri, zip [2..] terms)
+retrieveStructuredBridi (ZG.BRIVLA brivla) = Right $ (ZG.BRIVLA brivla, [], [])
+-- go'i
+retrieveStructuredBridi (ZG.GOhA brivla) = Right $ (ZG.GOhA brivla, [], [])
+-- se prami / se go'i
+retrieveStructuredBridi (ZG.Prefix x y) = Right $ (ZG.Prefix x y, [], [])
+-- prami do / se prami do (also go'i do / se go'i do)
+retrieveStructuredBridi (ZG.BridiTail selbri (ZG.Terms terms _)) = Right $ (selbri, zip [2..] terms, [])
 ------- with x1
--- mi prami
-retrieveStructuredBridi (ZG.Bridi (ZG.Terms terms _) (ZG.BRIVLA brivla)) = Right $ (ZG.BRIVLA brivla, zip [1..] terms)
-retrieveStructuredBridi (ZG.Bridi (ZG.Terms terms _) (ZG.GOhA brivla)) = Right $ (ZG.GOhA brivla, zip [1..] terms)
--- mi se prami
-retrieveStructuredBridi (ZG.Bridi (ZG.Terms terms _) (ZG.Prefix x y)) = Right $ (ZG.Prefix x y, zip [1..] terms)
--- mi prami do / mi se prami do
-retrieveStructuredBridi (ZG.Bridi (ZG.Terms terms1 _) (ZG.BridiTail selbri (ZG.Terms terms2 _))) = Right $ (selbri, zip [1..] $ terms1 ++ terms2)
+-- mi prami / mi pu ku ca ku prami
+retrieveStructuredBridi (ZG.Bridi (ZG.Terms terms _) (ZG.BRIVLA brivla)) = Right $ constructStructuredBridiFromTerms (ZG.BRIVLA brivla) terms
+-- mi go'i / mi pu ku ca ku go'i
+retrieveStructuredBridi (ZG.Bridi (ZG.Terms terms _) (ZG.GOhA brivla)) = Right $ constructStructuredBridiFromTerms (ZG.GOhA brivla) terms
+-- mi se prami / mi pu ku ca ku se prami
+retrieveStructuredBridi (ZG.Bridi (ZG.Terms terms _) (ZG.Prefix x y)) = Right $ constructStructuredBridiFromTerms (ZG.Prefix x y) terms
+-- mi pu ku ca ku prami do / mi pu ku ca ku se prami do
+retrieveStructuredBridi (ZG.Bridi (ZG.Terms terms1 terms1_t) (ZG.BridiTail (ZG.Tag x y) z)) = appendExtraTagToStructuredBridi (ZG.TagKU x (ZG.Term "ku")) <$> retrieveStructuredBridi (ZG.Bridi (ZG.Terms terms1 terms1_t) (ZG.BridiTail y z))
+-- mi prami do / mi se prami do 
+retrieveStructuredBridi (ZG.Bridi (ZG.Terms terms1 _) (ZG.BridiTail selbri (ZG.Terms terms2 _))) = Right $ constructStructuredBridiFromTerms selbri (terms1 ++ terms2)
 ------- invalid
 retrieveStructuredBridi x = Left $ "unrecognized pattern in function retrieveStructuredBridi: " ++ show x
 
 ---------- Convert structured bridi to simple bridi
 -- The structured bridi must already have correct place structure (no place tags, no place reordering)
 convertStructuredBridi :: Bool -> StructuredBridi -> Either String SimpleBridi
-convertStructuredBridi xu (selbri, terms) = do
+convertStructuredBridi xu (selbri, terms, extraTerms) = do
     selbri2 <- convertStructuredSelbri selbri
     terms2 <- convertStructuredTerms terms
-    return $ SimpleBridi xu selbri2 terms2
+    extraTerms2 <- convertExtraTerms extraTerms
+    return $ SimpleBridi xu selbri2 terms2 extraTerms2
 
 convertStructuredSelbri :: StructuredSelbri -> Either String T.Text
 convertStructuredSelbri (ZG.BRIVLA brivla) = Right $ T.pack brivla
 convertStructuredSelbri (ZG.GOhA brivla) = Right $ T.pack brivla
-convertStructuredSelbri (ZG.Tag tag text) = concatET [handleSelbriTag tag, Right $ T.pack " ", convertStructuredSelbri text]
+convertStructuredSelbri (ZG.Prefix (ZG.SE x) y) = concatET [Right $ T.pack x, Right $ T.pack " ", convertStructuredSelbri y]
 convertStructuredSelbri x = Left $ "Unrecognized pattern for structured selbri: " ++ show x
-
-handleSelbriTag :: ZG.Tag -> Either String T.Text
-handleSelbriTag (ZG.BAI x) = Right $ T.pack x
-handleSelbriTag x = Left $ "Unrecognized pattern in handleSelbriTag: " ++ show x
 
 convertStructuredTerms :: [(Int, StructuredTerm)] -> Either String [T.Text]
 convertStructuredTerms terms = do
@@ -299,7 +320,8 @@ convertInitiator (ZG.Init x) = Right $ T.pack x
  --TODO: InitF, BInit, BInitF
 
 convertRelative :: ZG.Relative -> Either String T.Text
-convertRelative (ZG.NOI x y _) = concatET [convertInitiator x, Right $ T.pack " ", displayCanonicalBridi <$> canonicalizeText (ZG.NF, y, ZG.NT), Right $ " ku'o"]
+convertRelative (ZG.NOI x y _) = concatET [convertInitiator x, Right $ T.pack " ", convertBridi y, Right $ " ku'o"]
+convertRelative x = Left $ "Unrecognized pattern for convertRelative: " ++ show x
 
 convertStructuredTerm :: StructuredTerm -> Either String T.Text
 convertStructuredTerm (ZG.KOhA x) = Right $ T.pack x
@@ -318,6 +340,21 @@ convertStructuredTerm (ZG.LE (ZG.Init x) ZG.NR ZG.NQ y _) = insertPrefix . inser
     insertPrefix = ((T.pack $ x ++ " ") `T.append`)
     insertSuffix = (`T.append` " ku")
 convertStructuredTerm x = Left $ "Unrecognized pattern for structured term: " ++ show x
+
+convertExtraTerms :: [ExtraTerm] -> Either String [T.Text]
+convertExtraTerms = mapM convertExtraTerm . expandExtraTerms
+
+expandExtraTerms :: [ExtraTerm] -> [ExtraTerm]
+expandExtraTerms = concatMap expandTerm where
+    expandTerm :: ExtraTerm -> [ExtraTerm]
+    expandTerm (ZG.TagKU (ZG.TTags tags) term) = map (`ZG.TagKU` term) tags
+    expandTerm x = [x]
+
+convertExtraTerm :: ExtraTerm -> Either String T.Text
+convertExtraTerm (ZG.TagKU (ZG.FIhO (ZG.Init x) y _) _) = concatET [Right $ T.pack "fi'o ", convertStructuredSelbri y, Right $ T.pack " fe'u"]
+convertExtraTerm (ZG.Tag (ZG.FIhO (ZG.Init x) y _) text) = concatET [Right $ T.pack "fi'o ", convertStructuredSelbri y, Right $ T.pack " fe'u ", convertStructuredTerm text]
+convertExtraTerm (ZG.TagKU (ZG.BAI x) _) = concatET [Right $ T.pack x, Right $ T.pack " ku"]
+convertExtraTerm x = Left $ "Unrecognized pattern for convertExtraTerm: " ++ show x
 
 ---------- Canonicalization
 --TODO: canonicalize "do xu ciska" -> "xu do ciska"
@@ -344,6 +381,9 @@ hasXu _ = False
 displayCanonicalBridi :: SimpleBridi -> T.Text
 displayCanonicalBridi = fst . displayStandardSimpleBridi (mkStdGen 42)
 
+convertBridi :: ZG.Text -> Either String T.Text
+convertBridi text = displayCanonicalBridi <$> canonicalizeText (ZG.NF, text, ZG.NT)
+
 ------------------------- ----------------------- Sentence generators
 generateNonbridi :: Vocabulary -> StdGen -> (T.Text, StdGen)
 generateNonbridi vocabulary r0 = chooseItem r0 . concatMap (getVocabularySumti vocabulary) $
@@ -362,7 +402,7 @@ generateSimpleBridi vocabulary = combineFunctions
         actions = getVocabularySelbri vocabulary "actions"
 
 generatePropertyBridi :: Vocabulary -> StdGen -> (SimpleBridi, StdGen)
-generatePropertyBridi vocabulary r0 = (SimpleBridi False property [object], r2) where
+generatePropertyBridi vocabulary r0 = (SimpleBridi False property [object] [], r2) where
     (property, r1) = chooseItem r0 properties
     (object, r2) = chooseItem r1 . filterOutWord property . retrievePropertyObjects $ property
     -- Vocabulary
@@ -390,7 +430,7 @@ generatePropertyBridi vocabulary r0 = (SimpleBridi False property [object], r2) 
             else objects
 
 generateRelationBridi :: Vocabulary -> StdGen -> (SimpleBridi, StdGen)
-generateRelationBridi vocabulary r0 = (SimpleBridi False relation objects, r2) where
+generateRelationBridi vocabulary r0 = (SimpleBridi False relation objects [], r2) where
     (relation, r1) = chooseItem r0 relations
     (objects, r2) = (retrieveRelationObjectsGenerator relation) r1
     -- Vocabulary
@@ -422,7 +462,7 @@ generateRelationBridi vocabulary r0 = (SimpleBridi False relation objects, r2) w
         (M.lookup relation relationObjectsGenerators)
 
 generateActionBridi :: Vocabulary -> StdGen -> (SimpleBridi, StdGen)
-generateActionBridi vocabulary r0 = (SimpleBridi False action objects, r2) where
+generateActionBridi vocabulary r0 = (SimpleBridi False action objects [], r2) where
     (action, r1) = chooseItem r0 actions
     (objects, r2) = (actionObjectsGenerators M.! action) r1
     -- Vocabulary

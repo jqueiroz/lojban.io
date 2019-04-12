@@ -48,8 +48,13 @@ main = hspec $ do
             --]
       it "supports tenses" $ do
         validateSentences
-            [ ("lo prenu pu dunda lo mlatu", "lo prenu ku pu dunda lo mlatu ku")
-            -- , ("pu ku lo prenu dunda lo mlatu", "lo prenu ku pu dunda lo mlatu ku")
+            [ ("lo prenu pu dunda lo mlatu", "pu ku lo prenu ku dunda lo mlatu ku")
+            , ("pu ku lo prenu cu dunda lo mlatu", "pu ku lo prenu ku dunda lo mlatu ku")
+            ]
+      it "supports sumtcita" $ do
+        validateSentences
+            [ ("mi fanva fi'o se pilno fe'u lo skami", "fi'o se pilno fe'u lo skami ku mi fanva")
+            , ("mi fanva fi'o se pilno fe'u lo skami ta", "fi'o se pilno fe'u lo skami ku mi fanva ta")
             ]
       it "supports complex sentences" $ do
         validateSentences
