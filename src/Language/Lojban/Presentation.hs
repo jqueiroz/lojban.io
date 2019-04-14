@@ -28,8 +28,6 @@ swapArguments "ve" (a:b:c:d:es) = (d:b:c:a:es)
 swapArguments "xe" (a:b:c:d:e:fs) = (e:b:c:d:a:fs)
 
 ------------------------- ------------------------ Sentence displayers
--- TODO: other display modes (place some sumti before the selbri, introduce fa/fe/fi/fo/fu, introduce se/te/ve/..., etc.)
--- TODO: create functions that use the variant bridi structure (eg. x1 x2 selbri x3 ...), different ways of skipping (fa/fe/... vs se/te/...) according to some randomness, perhaps even unnecessarily sometimes (there should be parameters to control the preferences between fa/fe/... and se/te/... and the level of unnecessary use of fa/fe/..., variant bridi structure, etc.) -- probably overkill
 -- TODO: use fa/fe/fi/fo/fu if convenient
 
 prependXu :: Bool -> ([T.Text], StdGen) -> ([T.Text], StdGen)
