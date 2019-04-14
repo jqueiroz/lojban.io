@@ -3,8 +3,6 @@
 module Language.Lojban.Refinement
 ( simplifyTerminatorsInSentence
 , simplifyTerminatorsInBridiDisplayer
-, replaceElidableTerminatorsInSentence
-, removeElidableTerminatorsInSentence
 ) where
 
 import Language.Lojban.Core
