@@ -19,8 +19,6 @@ import qualified Language.Lojban.Parser.ZasniGerna as ZG
 --TODO: check whether se/te/ve/xe are left-associative or right-associative
 --TODO: create LOTS of unit tests
 --ZasniGerna documentation: https://hackage.haskell.org/package/zasni-gerna-0.0.7/docs/Language-Lojban-Parser-ZasniGerna.html
---TODO: exercises involving su'u -- first replace with (the more general cmavo here) and then canonicalize? this way the specific word will be accepted whenever the more general is -- problem: what about the use of an incorrect, more restrictive word instead?
---TODO: conversion mode that replaces all "NU" words with "nu"?
 --TODO: write tests using equivalence classes + canonical output for the class
 --TODO: support tanru
 

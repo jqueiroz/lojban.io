@@ -27,6 +27,7 @@ import qualified Text.Pandoc as P
 -- TODO: consider adding some translations using observatives
 -- TODO: cleanup all tenses before canonicalization (translations with incorrect tenses will be accepted, but this is likely a small price to pay in order to accept correct translations including tenses)
 -- TODO: also accept "ma'a" (and similar terms) whenever "mi" is accepted
+-- TODO: consider accepting "su'u" whenever "nu" and "du'u" are accepted
 
 ------- Lesson plans
 plan1 :: P.Pandoc
