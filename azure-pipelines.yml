@@ -16,7 +16,7 @@ variables:
 steps:
 - script: |
     docker login -u $(dockerId) -p $pswd $(dockerId).azurecr.io
-    docker build -f Dockerfile2 -t $(dockerId).azurecr.io/$(imageName) .
+    docker build -f Dockerfile -t $(dockerId).azurecr.io/$(imageName) .
     docker push $(dockerId).azurecr.io/$(imageName)
   env:
     pswd: $(dockerPassword)
