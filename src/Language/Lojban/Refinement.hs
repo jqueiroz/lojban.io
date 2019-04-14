@@ -14,14 +14,7 @@ import System.Random (StdGen)
 import Util (compose2)
 import qualified Data.Text as T
 
-------------------------------------------------- Terminator ellisis
--- removeElidableTerminators :: ZG.Text -> Either String T.Text
--- removeElidableTerminators (ZG.LE (ZG.Init i) _ _ x _) =
--- removeElidableTerminators (ZG.Terms terms _) =
--- removeElidableTerminators (ZG.BridiTail (ZG.BRIVLA selbri) terms) = selbri `T.append` removeTerminators terms
--- removeElidableTerminators (ZG.BridiTail (ZG.GOhA selbri) terms) = selbri `T.append` removeTerminators terms
--- TODO: make this function way more efficient and use the following brute-force version only in unit tests -- nah, probably not needed
-
+------------------------------------------------- Terminator simplification
 -- Replaces "ku" with "cu" whenever possible
 replaceElidableTerminatorsInSentence :: T.Text -> T.Text
 replaceElidableTerminatorsInSentence t = f [] (T.words t) where
