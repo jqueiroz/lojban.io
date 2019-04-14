@@ -49,6 +49,11 @@ executable lojto
                      , Courses.Util.Vocabulary
                      , Courses.English.Grammar.Introduction
                      , Courses.English.Vocabulary.Brivla
+                     , Language.Lojban.Canonicalization
+                     , Language.Lojban.Core
+                     , Language.Lojban.Parsing
+                     , Language.Lojban.Presentation
+                     , Language.Lojban.Refinement
                      , Server.Core
                      , Server.Course
                      , Server.Grammar

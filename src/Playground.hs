@@ -2,10 +2,11 @@
 module Playground where
 
 import Core
+import Language.Lojban.Parsing (parse)
+import Language.Lojban.Canonicalization (basicSentenceCanonicalizer)
 import Control.Applicative ((<$>), (<*>))
 import Data.Maybe (mapMaybe)
 import Data.List.Ordered (nubSort)
-import Courses.Util.Sentences (parse, basicSentenceCanonicalizer)
 import qualified Data.Text.IO as TIO
 import qualified Data.Text as T
 import qualified Data.Map as M

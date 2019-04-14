@@ -1,8 +1,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module Main where
 
+import Language.Lojban.Canonicalization (basicSentenceCanonicalizer)
 import Test.Hspec
-import Courses.Util.Sentences (basicSentenceCanonicalizer)
 import Data.Either
 import qualified Data.Text as T
 

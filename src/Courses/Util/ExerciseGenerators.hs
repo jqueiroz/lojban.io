@@ -33,6 +33,7 @@ import Core
 import Courses.Util.Vocabulary
 import Courses.Util.Sentences
 import Courses.Util.NumberTranslator
+import Language.Lojban.Core
 import Util (narrowTranslationGenerator, narrowTranslationGeneratorByExpression, isSubexpressionOf, replace, replaceFirstSubexpression, replaceSubexpression, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly, isWordOf)
 import Text.Read (readMaybe)
 import System.Random (StdGen, random)

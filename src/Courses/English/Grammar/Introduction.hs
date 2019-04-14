@@ -8,6 +8,8 @@ import Core
 import Courses.Util.Vocabulary
 import Courses.Util.Sentences
 import Courses.Util.ExerciseGenerators
+import Language.Lojban.Canonicalization (basicSentenceCanonicalizer)
+import Language.Lojban.Presentation (displayStandardSimpleBridi, displayVariantSimpleBridi, displayReorderedStandardSimpleBridi)
 import Util (combineFunctions, combineFunctionsUniformly, generatorFromSingleton, generatorFromList, generatorFromWeightedList)
 import Data.FileEmbed (embedStringFile)
 import Control.Applicative ((<$>))
