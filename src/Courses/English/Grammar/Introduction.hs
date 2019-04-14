@@ -10,6 +10,7 @@ import Courses.Util.Sentences
 import Courses.Util.ExerciseGenerators
 import Language.Lojban.Canonicalization (basicSentenceCanonicalizer)
 import Language.Lojban.Presentation (displayStandardSimpleBridi, displayVariantSimpleBridi, displayReorderedStandardSimpleBridi)
+import Language.Lojban.Refinement (simplifyTerminatorsInBridiDisplayer)
 import Util (combineFunctions, combineFunctionsUniformly, generatorFromSingleton, generatorFromList, generatorFromWeightedList)
 import Data.FileEmbed (embedStringFile)
 import Control.Applicative ((<$>))
@@ -1420,7 +1421,7 @@ exercises5 dictionary =
         ]
     where
         vocabulary = vocabularyGenerator5 dictionary
-        displayBridi = simplifyBridiDisplayer $ (combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)])
+        displayBridi = simplifyTerminatorsInBridiDisplayer $ (combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)])
 
 exercises1to5 :: Dictionary -> ExerciseGenerator
 exercises1to5 dictionary =
@@ -1437,7 +1438,7 @@ exercises1to5 dictionary =
         ]
     where
         vocabulary = vocabularyGenerator5 dictionary
-        displayBridi = simplifyBridiDisplayer $ (combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)])
+        displayBridi = simplifyTerminatorsInBridiDisplayer $ (combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)])
 
 exercises7 :: Dictionary -> ExerciseGenerator
 exercises7 dictionary =
