@@ -34,6 +34,7 @@ import Courses.Util.Vocabulary
 import Courses.Util.Sentences
 import Courses.Util.NumberTranslator
 import Language.Lojban.Core
+import Language.Lojban.Refinement (simplifyTerminatorsInSentence)
 import Util (narrowTranslationGenerator, narrowTranslationGeneratorByExpression, isSubexpressionOf, replace, replaceFirstSubexpression, replaceSubexpression, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly, isWordOf)
 import Text.Read (readMaybe)
 import System.Random (StdGen, random)
@@ -66,7 +67,7 @@ generateRestrictedTranslationExercise title validator canonicalizer sentenceComp
 
 -- Simplifies Lojban translation
 simplifyTranslation :: Translation -> Translation
-simplifyTranslation (lojbanSentences, englishSentences) = (fmap simplifyBridi lojbanSentences, englishSentences)
+simplifyTranslation (lojbanSentences, englishSentences) = (fmap simplifyTerminatorsInSentence lojbanSentences, englishSentences)
 
 -- Simplifies the Lojban translation produced by the generator
 simplifyTranslationGenerator :: TranslationGenerator -> TranslationGenerator

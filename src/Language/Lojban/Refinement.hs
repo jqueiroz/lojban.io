@@ -1,8 +1,9 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 module Language.Lojban.Refinement
-( replaceElidableTerminators
-, removeElidableTerminators
+( simplifyTerminatorsInSentence
+, replaceElidableTerminatorsInSentence
+, removeElidableTerminatorsInSentence
 ) where
 
 import Language.Lojban.Canonicalization (basicSentenceCanonicalizer)
@@ -17,19 +18,20 @@ import qualified Data.Text as T
 -- TODO: make this function way more efficient and use the following brute-force version only in unit tests -- nah, probably not needed
 
 -- Replaces "ku" with "cu" whenever possible
-replaceElidableTerminators :: T.Text -> T.Text
-replaceElidableTerminators t = f [] (T.words t) where
+replaceElidableTerminatorsInSentence :: T.Text -> T.Text
+replaceElidableTerminatorsInSentence t = f [] (T.words t) where
     originalCanonicalization = basicSentenceCanonicalizer t
     f :: [T.Text] -> [T.Text] -> T.Text
     f x [] = T.unwords x
     f x (y:ys) = if basicSentenceCanonicalizer (T.unwords $ x++("cu":ys)) == originalCanonicalization then f (x++["cu"]) ys else f (x++[y]) ys
 
 -- Removes redundant "ku", "kei", etc
-removeElidableTerminators :: T.Text -> T.Text
-removeElidableTerminators t = f [] (T.words t) where
+removeElidableTerminatorsInSentence :: T.Text -> T.Text
+removeElidableTerminatorsInSentence t = f [] (T.words t) where
     originalCanonicalization = basicSentenceCanonicalizer t
     f :: [T.Text] -> [T.Text] -> T.Text
     f x [] = T.unwords x
     f x (y:ys) = if basicSentenceCanonicalizer (T.unwords $ x++ys) == originalCanonicalization then f x ys else f (x++[y]) ys
 
--- TODO: create function "simplifyTerminatorsInSentence"
+simplifyTerminatorsInSentence :: T.Text -> T.Text
+simplifyTerminatorsInSentence = removeElidableTerminatorsInSentence . replaceElidableTerminatorsInSentence
