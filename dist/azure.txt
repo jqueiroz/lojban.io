@@ -1,4 +1,4 @@
-=========> Create 16GB server
+=========> Create 8GB server
 
 # Setup SSHD (/etc/ssh/sshd_config)
 Port 22
@@ -14,7 +14,7 @@ sudo systemctl start docker
 # Test docker
 sudo docker info
 
-# Enable remote control
+# Setup remote control
 sudo systemctl stop docker
 sudo cp /lib/systemd/system/docker.service /etc/systemd/system/docker.service
 sudo vi /etc/systemd/system/docker.service # pass option do docker: -H tcp://127.0.0.1:2375 -H unix:///var/run/docker.sock
@@ -31,4 +31,4 @@ Setting up linuxvm: https://docs.microsoft.com/en-us/azure/devops/pipelines/apps
     Personal access tokens: see https://docs.microsoft.com/en-us/azure/devops/integrate/get-started/authentication/pats?view=azure-devops
 
 -----
-Azure Web Apps for Containers (not used right now): https://docs.microsoft.com/en-us/azure/devops/pipelines/apps/cd/deploy-docker-webapp?view=azure-devops
+Azure Web Apps for Containers (not currently used): https://docs.microsoft.com/en-us/azure/devops/pipelines/apps/cd/deploy-docker-webapp?view=azure-devops
