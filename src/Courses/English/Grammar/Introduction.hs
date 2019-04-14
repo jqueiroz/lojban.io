@@ -18,7 +18,6 @@ import qualified Text.Pandoc as P
 -- TODO: remove the translations that make the least sense (in progress...)
 
 -- TODO: programmatic translation generation
--- TODO: indicate optional words using parenthesis
 
 -- Considerations
 --   * is "speaker" a good choice? maybe it implies voice or authority...
