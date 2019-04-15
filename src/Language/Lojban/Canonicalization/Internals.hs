@@ -152,7 +152,7 @@ convertLinkargs (ZG.BEI (ZG.Init x) y z _) = concatET [Right $ T.pack x, Right $
 
 convertInitiator :: ZG.Initiator -> Either String T.Text
 convertInitiator (ZG.Init x) = Right $ T.pack x
- --TODO: InitF, BInit, BInitF
+-- TODO: InitF, BInit, BInitF
 
 convertRelative :: ZG.Relative -> Either String T.Text
 convertRelative (ZG.NOI x y _) = concatET [convertInitiator x, Right $ T.pack " ", convertBridi y, Right $ " ku'o"]
