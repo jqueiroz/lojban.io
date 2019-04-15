@@ -2,7 +2,12 @@
 {-# LANGUAGE TupleSections #-}
 
 module Language.Lojban.Canonicalization.Internals
-( basicSentenceCanonicalizer
+( StructuredSelbri
+, StructuredTerm
+, ExtraTerm
+, StructuredBridi
+, basicSentenceCanonicalizer
+, canonicalizeText
 ) where
 
 import Language.Lojban.Core

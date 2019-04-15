@@ -4,10 +4,16 @@ module Language.Canonicalization
 ( validateCanonicalization
 ) where
 
-import Language.Lojban.Canonicalization (basicSentenceCanonicalizer)
+import Language.Lojban.Core
+import Language.Lojban.Parsing (parse)
+import Language.Lojban.Canonicalization.Internals
 import Test.Hspec
 import Data.Either
 import qualified Data.Text as T
+
+validateBridiRetrieval :: T.Text -> SimpleBridi -> IO ()
+validateBridiRetrieval text expectedSimpleBridi = simpleBridi `shouldBe` (Right expectedSimpleBridi) where
+    simpleBridi = (parse text) >>= canonicalizeText
 
 validateEquivalentSentences :: T.Text -> [T.Text] -> IO ()
 validateEquivalentSentences canonicalSentence originalSentences = lhs `shouldBe` rhs where
@@ -21,6 +27,118 @@ validateSentences sentences = map basicSentenceCanonicalizer originalSentences `
 
 validateCanonicalization :: IO ()
 validateCanonicalization = hspec $ do
+    describe "Bridi retrieval" $ do
+      -- (without-x1) nelci
+      it "supports 'nelci'" $ do
+        validateBridiRetrieval
+            "nelci" $
+            SimpleBridi False "nelci" [] []
+      it "supports 'se nelci'" $ do
+        validateBridiRetrieval
+            "se nelci" $
+            SimpleBridi False "nelci" [] []
+      it "supports 'nelci do'" $ do
+        validateBridiRetrieval
+            "nelci do" $
+            SimpleBridi False "nelci" ["", "do"] []
+      it "supports 'se nelci do'" $ do
+        validateBridiRetrieval
+            "se nelci do" $
+            SimpleBridi False "nelci" ["do"] []
+      -- (without-x1) go'i
+      it "supports 'go'i'" $ do
+        validateBridiRetrieval
+            "go'i" $
+            SimpleBridi False "go'i" [] []
+      it "supports 'se go'i'" $ do
+        validateBridiRetrieval
+            "se go'i" $
+            SimpleBridi False "go'i" [] []
+      it "supports 'go'i do'" $ do
+        validateBridiRetrieval
+            "go'i do" $
+            SimpleBridi False "go'i" ["", "do"] []
+      it "supports 'se go'i do'" $ do
+        validateBridiRetrieval
+            "se go'i do" $
+            SimpleBridi False "go'i" ["do"] []
+      -- (without-x1) pu nelci
+      it "supports 'pu nelci'" $ do
+        validateBridiRetrieval
+            "pu nelci" $
+            SimpleBridi False "nelci" [] ["pu ku"]
+      it "supports 'pu se nelci'" $ do
+        validateBridiRetrieval
+            "pu se nelci" $
+            SimpleBridi False "nelci" [] ["pu ku"]
+      it "supports 'pu ca ba nelci'" $ do
+        validateBridiRetrieval
+            "pu ca ba nelci" $
+            SimpleBridi False "nelci" [] ["pu ku", "ca ku", "ba ku"]
+      it "supports 'pu ca ba se nelci'" $ do
+        validateBridiRetrieval
+            "pu ca ba se nelci" $
+            SimpleBridi False "nelci" [] ["pu ku", "ca ku", "ba ku"]
+      -- (without-x1) pu go'i
+      it "supports 'pu go'i'" $ do
+        validateBridiRetrieval
+            "pu go'i" $
+            SimpleBridi False "go'i" [] ["pu ku"]
+      it "supports 'pu se go'i'" $ do
+        validateBridiRetrieval
+            "pu se go'i" $
+            SimpleBridi False "go'i" [] ["pu ku"]
+      it "supports 'pu ca ba go'i'" $ do
+        validateBridiRetrieval
+            "pu ca ba go'i" $
+            SimpleBridi False "go'i" [] ["pu ku", "ca ku", "ba ku"]
+      it "supports 'pu ca ba se go'i'" $ do
+        validateBridiRetrieval
+            "pu ca ba se go'i" $
+            SimpleBridi False "go'i" [] ["pu ku", "ca ku", "ba ku"]
+      -- (with-x1) nelci
+      it "supports 'mi nelci'" $ do
+        validateBridiRetrieval
+            "mi nelci" $
+            SimpleBridi False "nelci" ["mi"] []
+      it "supports 'mi se nelci'" $ do
+        validateBridiRetrieval
+            "mi se nelci" $
+            SimpleBridi False "nelci" ["", "mi"] []
+      it "supports 'mi nelci do'" $ do
+        validateBridiRetrieval
+            "mi nelci do" $
+            SimpleBridi False "nelci" ["mi", "do"] []
+      it "supports 'mi se nelci do'" $ do
+        validateBridiRetrieval
+            "mi se nelci do" $
+            SimpleBridi False "nelci" ["do", "mi"] []
+      -- (with-x1) pu nelci
+      -- TODO: make the following three tests work
+      --it "supports 'mi pu ca nelci'" $ do
+        --validateBridiRetrieval
+            --"mi pu ca nelci" $
+            --SimpleBridi False "nelci" ["mi"] ["pu ku", "ca ku"]
+      --it "supports 'mi pu ku ca nelci'" $ do
+        --validateBridiRetrieval
+            --"mi pu ku ca nelci" $
+            --SimpleBridi False "nelci" ["mi"] ["pu ku", "ca ku"]
+      it "supports 'mi pu ku ca ku nelci'" $ do
+        validateBridiRetrieval
+            "mi pu ku ca ku nelci" $
+            SimpleBridi False "nelci" ["mi"] ["pu ku", "ca ku"]
+      it "supports 'pu ku ca ku mi nelci'" $ do
+        validateBridiRetrieval
+            "pu ku ca ku mi nelci" $
+            SimpleBridi False "nelci" ["mi"] ["pu ku", "ca ku"]
+      it "supports 'mi pu ku ca ku nelci do'" $ do
+        validateBridiRetrieval
+            "mi pu ku ca ku nelci do" $
+            SimpleBridi False "nelci" ["mi", "do"] ["pu ku", "ca ku"]
+      it "supports 'mi pu ku ca ku se nelci do'" $ do
+        validateBridiRetrieval
+            "mi pu ku ca ku se nelci do" $
+            SimpleBridi False "nelci" ["do", "mi"] ["pu ku", "ca ku"]
     describe "Basic sentence canonicalizer" $ do
       it "supports SE" $ do
         validateSentences

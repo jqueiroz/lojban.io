@@ -12,7 +12,7 @@ data SimpleBridi = SimpleBridi
     , simpleBridiSelbri :: T.Text
     , simpleBridiSumti :: [T.Text]
     , simpleBridiExtraSumti :: [T.Text]
-    } deriving (Show)
+    } deriving (Show, Eq)
 
 type SimpleBridiDisplayer = StdGen -> SimpleBridi -> (T.Text, StdGen)
 
