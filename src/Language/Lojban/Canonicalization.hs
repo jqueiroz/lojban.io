@@ -19,7 +19,6 @@ import qualified Language.Lojban.Parser.ZasniGerna as ZG
 --TODO: check whether se/te/ve/xe are left-associative or right-associative
 --TODO: create LOTS of unit tests
 --ZasniGerna documentation: https://hackage.haskell.org/package/zasni-gerna-0.0.7/docs/Language-Lojban-Parser-ZasniGerna.html
---TODO: write tests using equivalence classes + canonical output for the class
 --TODO: support tanru
 
 ---------- Types

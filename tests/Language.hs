@@ -6,6 +6,11 @@ import Test.Hspec
 import Data.Either
 import qualified Data.Text as T
 
+validateEquivalentSentences :: T.Text -> [T.Text] -> IO ()
+validateEquivalentSentences canonicalSentence originalSentences = lhs `shouldBe` rhs where
+    lhs = map basicSentenceCanonicalizer (canonicalSentence : originalSentences)
+    rhs = replicate (length lhs) $ Right canonicalSentence
+
 validateSentences :: [(T.Text, T.Text)] -> IO ()
 validateSentences sentences = map basicSentenceCanonicalizer originalSentences `shouldBe` canonicalSentences where
   originalSentences = map fst sentences
@@ -47,9 +52,11 @@ main = hspec $ do
             --[ ("do nelci xu lo mlatu", "xu do nelci lo mlatu ku")
             --]
       it "supports tenses" $ do
-        validateSentences
-            [ ("lo prenu pu dunda lo mlatu", "pu ku lo prenu ku dunda lo mlatu ku")
-            , ("pu ku lo prenu cu dunda lo mlatu", "pu ku lo prenu ku dunda lo mlatu ku")
+        validateEquivalentSentences
+            "pu ku lo prenu ku dunda lo mlatu ku"
+            [ "lo prenu pu dunda lo mlatu"
+            , "pu ku lo prenu cu dunda lo mlatu"
+            , "pu ku lo prenu ku dunda lo mlatu"
             ]
       it "supports sumtcita" $ do
         validateSentences
