@@ -185,8 +185,8 @@ expandExtraTerms = concatMap expandTerm where
     expandTerm x = [x]
 
 convertExtraTerm :: ExtraTerm -> Either String T.Text
-convertExtraTerm (ZG.TagKU (ZG.FIhO (ZG.Init x) y _) _) = concatET [Right $ T.pack "fi'o ", convertStructuredSelbri y, Right $ T.pack " fe'u"]
-convertExtraTerm (ZG.Tag (ZG.FIhO (ZG.Init x) y _) text) = concatET [Right $ T.pack "fi'o ", convertStructuredSelbri y, Right $ T.pack " fe'u ", convertStructuredTerm text]
+convertExtraTerm (ZG.TagKU (ZG.FIhO (ZG.Init _) y _) _) = concatET [Right $ T.pack "fi'o ", convertStructuredSelbri y, Right $ T.pack " fe'u"]
+convertExtraTerm (ZG.Tag (ZG.FIhO (ZG.Init _) y _) text) = concatET [Right $ T.pack "fi'o ", convertStructuredSelbri y, Right $ T.pack " fe'u ", convertStructuredTerm text]
 convertExtraTerm (ZG.TagKU (ZG.PrefixTag (ZG.SE x) y) z) = concatET [Right $ T.pack x, Right $ T.pack " ", convertExtraTerm (ZG.TagKU y z)]
 convertExtraTerm (ZG.Tag (ZG.PrefixTag (ZG.SE x) y) z) = concatET [Right $ T.pack x, Right $ T.pack " ", convertExtraTerm (ZG.Tag y z)]
 convertExtraTerm (ZG.TagKU (ZG.BAI x) _) = concatET [Right $ T.pack x, Right $ T.pack " ku"]
