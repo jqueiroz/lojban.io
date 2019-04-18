@@ -180,6 +180,17 @@ validateCanonicalization = hspec $ do
             , "pu ku lo prenu ku dunda lo mlatu"
             ]
       it "supports sumtcita" $ do
+        validateEquivalentSentences
+            "fi'o zukte fe'u ku lo prenu ku klama lo zarci ku"
+            [ "lo prenu fi'o zukte fe'u klama lo zarci"
+            , "fi'o zukte ku lo prenu cu klama lo zarci"
+            -- , "fi'o zukte lo prenu cu klama lo zarci" -- should this work???
+            ]
+        validateEquivalentSentences
+            "zu'e ku lo prenu ku klama lo zarci ku"
+            [ "zu'e ku lo prenu cu klama lo zarci"
+            , "lo prenu zu'e klama lo zarci"
+            ]
         validateSentences
             [ ("mi fanva fi'o se pilno fe'u lo skami", "fi'o se pilno fe'u lo skami ku mi fanva")
             , ("mi fanva fi'o se pilno fe'u lo skami ta", "fi'o se pilno fe'u lo skami ku mi fanva ta")
