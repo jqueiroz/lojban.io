@@ -21,9 +21,9 @@ validateEquivalentSentences canonicalSentence originalSentences = lhs `shouldBe`
     rhs = replicate (length lhs) $ Right canonicalSentence
 
 validateSentences :: [(T.Text, T.Text)] -> IO ()
-validateSentences sentences = map basicSentenceCanonicalizer originalSentences `shouldBe` canonicalSentences where
+validateSentences sentences = map basicSentenceCanonicalizer (originalSentences ++ canonicalSentences) `shouldBe` map Right (canonicalSentences ++ canonicalSentences) where
   originalSentences = map fst sentences
-  canonicalSentences = map (Right . snd) sentences
+  canonicalSentences = map snd sentences
 
 validateCanonicalization :: IO ()
 validateCanonicalization = hspec $ do
