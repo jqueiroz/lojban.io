@@ -18,6 +18,7 @@ import Control.Applicative (liftA2)
 import Control.Exception (assert)
 import Data.List (partition)
 import qualified Data.Text as T
+import qualified Data.Map as M
 import qualified Language.Lojban.Parser.ZasniGerna as ZG
 
 ------------------------- ----------------------- Sentence canonicalizers
@@ -187,11 +188,28 @@ expandExtraTerms = concatMap expandTerm where
 convertExtraTerm :: ExtraTerm -> Either String T.Text
 convertExtraTerm (ZG.TagKU (ZG.FIhO (ZG.Init _) y _) _) = concatET [Right $ T.pack "fi'o ", convertStructuredSelbri y, Right $ T.pack " fe'u ku"]
 convertExtraTerm (ZG.Tag (ZG.FIhO (ZG.Init _) y _) text) = concatET [Right $ T.pack "fi'o ", convertStructuredSelbri y, Right $ T.pack " fe'u ", convertStructuredTerm text]
-convertExtraTerm (ZG.TagKU (ZG.PrefixTag (ZG.SE x) y) z) = concatET [Right $ T.pack x, Right $ T.pack " ", convertExtraTerm (ZG.TagKU y z)]
-convertExtraTerm (ZG.Tag (ZG.PrefixTag (ZG.SE x) y) z) = concatET [Right $ T.pack x, Right $ T.pack " ", convertExtraTerm (ZG.Tag y z)]
-convertExtraTerm (ZG.TagKU (ZG.BAI x) _) = concatET [Right $ T.pack x, Right $ T.pack " ku"]
-convertExtraTerm (ZG.Tag (ZG.BAI x) text) = concatET [Right $ T.pack x, Right $ T.pack " ", convertStructuredTerm text]
+convertExtraTerm (ZG.TagKU (ZG.PrefixTag (ZG.SE x) (ZG.BAI y)) z) = case expandBai y of
+    Just y' -> convertExtraTerm $ ZG.TagKU (ZG.FIhO (ZG.Init "fi'o") (ZG.Prefix (ZG.SE x) (ZG.BRIVLA y')) (ZG.Term "fe'u")) z
+    Nothing -> concatET [Right $ T.pack x, Right $ T.pack " ", convertExtraTerm (ZG.TagKU (ZG.BAI y) z)]
+convertExtraTerm (ZG.Tag (ZG.PrefixTag (ZG.SE x) (ZG.BAI y)) z) = case expandBai y of
+    Just y' -> convertExtraTerm $ ZG.Tag (ZG.FIhO (ZG.Init "fi'o") (ZG.Prefix (ZG.SE x) (ZG.BRIVLA y')) (ZG.Term "fe'u")) z
+    Nothing -> concatET [Right $ T.pack x, Right $ T.pack " ", convertExtraTerm (ZG.Tag (ZG.BAI y) z)]
+convertExtraTerm (ZG.TagKU (ZG.BAI x) y) = case expandBai x of
+    Just x' -> convertExtraTerm $ ZG.TagKU (ZG.FIhO (ZG.Init "fi'o") (ZG.BRIVLA x') (ZG.Term "fe'u")) y
+    Nothing -> concatET [Right $ T.pack x, Right $ T.pack " ku"]
+convertExtraTerm (ZG.Tag (ZG.BAI x) text) = case expandBai x of
+    Just x' -> convertExtraTerm $ ZG.Tag (ZG.FIhO (ZG.Init "fi'o") (ZG.BRIVLA x') (ZG.Term "fe'u")) text
+    Nothing -> concatET [Right $ T.pack x, Right $ T.pack " ", convertStructuredTerm text]
 convertExtraTerm x = Left $ "Unrecognized pattern for convertExtraTerm: " ++ show x
+
+compressedBai :: M.Map String String
+compressedBai = M.fromList
+    [ ("pi'o", "pilno")
+    , ("zu'e", "zukte")
+    ]
+
+expandBai :: String -> Maybe String
+expandBai = (`M.lookup` compressedBai)
 
 ---------- Canonicalization
 --TODO: canonicalize "do xu ciska" -> "xu do ciska"

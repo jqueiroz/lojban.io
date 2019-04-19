@@ -180,23 +180,66 @@ validateCanonicalization = hspec $ do
             , "pu ku lo prenu ku dunda lo mlatu"
             ]
       it "supports sumtcita" $ do
+        -- not followed by arguments; not containing prefix tag
         validateEquivalentSentences
             "fi'o zukte fe'u ku lo prenu ku klama lo zarci ku"
             [ "lo prenu fi'o zukte fe'u klama lo zarci"
             , "fi'o zukte ku lo prenu cu klama lo zarci"
-            -- , "fi'o zukte lo prenu cu klama lo zarci" -- should this work???
-            ]
-        validateEquivalentSentences
-            "zu'e ku lo prenu ku klama lo zarci ku"
-            [ "zu'e ku lo prenu cu klama lo zarci"
+            --, "fi'o zukte lo prenu cu klama lo zarci" -- should this work???
+            , "zu'e ku lo prenu cu klama lo zarci"
             , "lo prenu zu'e klama lo zarci"
             ]
-        validateSentences
-            [ ("mi fanva fi'o se pilno fe'u lo skami", "fi'o se pilno fe'u lo skami ku mi fanva")
-            , ("mi fanva fi'o se pilno fe'u lo skami ta", "fi'o se pilno fe'u lo skami ku mi fanva ta")
-            , ("mi fanva se pi'o lo skami", "se pi'o lo skami ku mi fanva")
-            , ("mi fanva se pi'o lo skami ta", "se pi'o lo skami ku mi fanva ta")
-            , ("lo prenu zu'e klama lo zarci", "zu'e ku lo prenu ku klama lo zarci ku")
+        -- not followed by arguments; containing prefix tag (note: semantically nonsensical)
+        validateEquivalentSentences
+            "fi'o se zukte fe'u ku lo prenu ku klama lo zarci ku"
+            [ "lo prenu fi'o se zukte fe'u klama lo zarci"
+            , "fi'o se zukte ku lo prenu cu klama lo zarci"
+            , "se zu'e ku lo prenu cu klama lo zarci"
+            , "lo prenu se zu'e klama lo zarci"
+            ]
+        -- followed by argument; not containing prefix tag (note: semantically nonsensical)
+        validateEquivalentSentences
+            "fi'o pilno fe'u lo skami ku mi fanva"
+            [ "mi fanva fi'o pilno fe'u lo skami"
+            , "mi fi'o pilno fe'u lo skami ku fanva"
+            , "mi fi'o pilno fe'u lo skami cu fanva"
+            , "mi fanva pi'o lo skami"
+            , "pi'o lo skami ku mi fanva"
+            ]
+        validateEquivalentSentences
+            "fi'o pilno fe'u lo skami ku mi fanva ta"
+            [ "mi fanva ta fi'o pilno fe'u lo skami"
+            , "mi fanva fi'o pilno fe'u lo skami ta"
+            , "mi fi'o pilno fe'u lo skami ku fanva ta"
+            , "mi fi'o pilno fe'u lo skami cu fanva ta"
+            , "fi'o pilno fe'u lo skami ku mi fanva ta"
+            , "mi fanva ta pi'o lo skami"
+            , "mi fanva pi'o lo skami ta"
+            , "mi pi'o lo skami ku fanva ta"
+            , "mi pi'o lo skami cu fanva ta"
+            , "pi'o lo skami ku mi fanva ta"
+            ]
+        -- followed by argument; containing prefix tag
+        validateEquivalentSentences
+            "fi'o se pilno fe'u lo skami ku mi fanva"
+            [ "mi fanva fi'o se pilno fe'u lo skami"
+            , "mi fi'o se pilno fe'u lo skami ku fanva"
+            , "mi fi'o se pilno fe'u lo skami cu fanva"
+            , "mi fanva se pi'o lo skami"
+            , "se pi'o lo skami ku mi fanva"
+            ]
+        validateEquivalentSentences
+            "fi'o se pilno fe'u lo skami ku mi fanva ta"
+            [ "mi fanva ta fi'o se pilno fe'u lo skami"
+            , "mi fanva fi'o se pilno fe'u lo skami ta"
+            , "mi fi'o se pilno fe'u lo skami ku fanva ta"
+            , "mi fi'o se pilno fe'u lo skami cu fanva ta"
+            , "fi'o se pilno fe'u lo skami ku mi fanva ta"
+            , "mi fanva ta se pi'o lo skami"
+            , "mi fanva se pi'o lo skami ta"
+            , "mi se pi'o lo skami ku fanva ta"
+            , "mi se pi'o lo skami cu fanva ta"
+            , "se pi'o lo skami ku mi fanva ta"
             ]
       it "supports complex sentences" $ do
         validateSentences
