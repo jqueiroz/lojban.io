@@ -159,12 +159,14 @@ vocabularyGenerator8 = createVocabularyBuilder
     [
     ]
 
--- New words: PENDING
+-- New words: NONE
+-- Deliberately excluded words: mukti (there are no sentences using the unabbreviated word)
+-- More words: gasnu+, zgana*, finti*, srana?, lifri?, stidi?, xamgu?
 vocabularyGenerator9 :: VocabularyBuilder
 vocabularyGenerator9 = createVocabularyBuilder
     -- Selbri
     [
-        ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska", "djuno", "nupre", "cusku", "vecnu"]) ++ ((4,) <$> ["zgana", "pilno"])),
+        ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska", "djuno", "nupre", "cusku", "vecnu"]) ++ ((4,) <$> ["pilno"])),
         ("relations", ((0,) <$> ["pendo", "nelci", "gleki"]) ++ ((1,) <$> ["cmene", "bangu"])),
         ("properties", (0,) <$> ["prenu", "zdani", "mlatu", "gerku", "melbi", "plise", "skami"])
     ]
@@ -1326,9 +1328,62 @@ translationExercises8 :: ExerciseGenerator
 translationExercises8 = generateTranslationExercise basicSentenceCanonicalizer sentenceComparer translations8
 
 translations9 :: TranslationGenerator
-translations9 = expandTranslationGenerator $ combineFunctionsUniformly [general] where
-    general = generatorFromList
+translations9 = expandTranslationGenerator $ combineFunctionsUniformly [pi'o, mu'i] where
+    pi'o = generatorFromList
+        -- fanva
         [ (["mi fanva se pi'o lo skami"], ["I translated using the computer."])
+        , (["mi fanva se pi'o lo te ctuca be do"], ["I translated using what you taught."])
+        , (["mi fanva se pi'o lo te ctuca be do bei mi"], ["I translated using what you taught me."])
+        -- tavla (mi)
+        , (["mi tavla se pi'o lo skami"], ["I talk using a computer."])
+        , (["mi tavla lo pendo se pi'o lo skami"], ["I talk to friends using a computer."])
+        , (["mi tavla lo pendo be mi se pi'o lo skami"], ["I talk to my friend using a computer.", "I talked to my friend using a computer.", "I talked to my friends using a computer."])
+        -- tavla (xu do)
+        , (["xu do tavla se pi'o lo skami"], ["Do you talk using a computer?"])
+        , (["xu do tavla lo pendo se pi'o lo skami"], ["Do you talk to friends using a computer?"])
+        , (["xu do tavla lo pendo be do se pi'o lo skami"], ["Do you talk to your friends using a computer?"])
+        -- ciska
+        , (["mi ciska se pi'o lo skami", "mi ciska fo lo skami"], ["I write using a computer."])
+        , (["mi ciska se pi'o lo se dunda be do", "mi ciska fo lo se dunda be do"], ["I write using the gift that you gave."])
+        , (["mi ciska se pi'o lo se dunda be do bei mi", "mi ciska fo lo se dunda be do bei mi"], ["I write using the gift that you gave me."])
+        -- ctuca
+        , (["mi ctuca se pi'o lo skami"], ["I teach using a computer."])
+        , (["mi ctuca lo prenu se pi'o lo skami"], ["I teach people using a computer."])
+        , (["mi ctuca se pi'o lo se dunda be do"], ["I teach using the gift that you gave."])
+        , (["mi ctuca se pi'o lo se dunda be do bei mi"], ["I teach using the gift that you gave me."])
+        , (["mi ctuca se pi'o lo se vecnu be do"], ["I teach using what you sold."])
+        , (["mi ctuca se pi'o lo se vecnu be do bei mi"], ["I teach using what you sold me."])
+        , (["mi ctuca do se pi'o lo skami"], ["I taught you using a computers."])
+        -- vecnu
+        , (["mi vecnu lo gerku be mi se pi'o lo skami"], ["I sold my dog using a computer."])
+        , (["mi vecnu lo mlatu be mi se pi'o lo skami"], ["I sold my cat using a computer."])
+        ]
+    mu'i = generatorFromList
+        -- tavla
+        [ (["mu'i ma do tavla mi"], ["Why do you talk to me?", "Why are you talking to me?"])
+        , (["mu'i ma do tavla fi mi"], ["Why were you talking about me?"])
+        , (["mu'i ma tavla fi lo mlatu"], ["Why talk about cats?", "Why talk about the cat?"])
+        , (["mu'i ma tavla fi lo gerku"], ["Why talk about dogs?", "Why talk about the dog?"])
+        -- nelci
+        , (["mu'i ma do nelci lo zdani be mi"], ["Why did you like my house?"])
+        , (["mu'i ma do nelci lo se dunda"], ["Why did you like the gift?"])
+        , (["mu'i ma do nelci lo prenu"], ["Why do you like people?"])
+        -- pilno
+        , (["mu'i ma lo ctuca cu pilno lo skami"], ["Why does the instructor use computers?"])
+        -- dunda
+        , (["mu'i ma do dunda lo mlatu"], ["Why did you donate the cat?"])
+        , (["mu'i ma do dunda lo gerku"], ["Why did you donate the dog?"])
+        , (["mu'i ma dunda"], ["Why donate?"])
+        -- ctuca
+        , (["mu'i ma do ctuca"], ["Why do you teach?"])
+        , (["mu'i ma do se melbi lo zdani"], ["Why do you find the house beautiful?"])
+        -- ciska
+        , (["mu'i ma lo prenu cu ciska"], ["Why do people write?"])
+        , (["mu'i ma do ciska ti"], ["Why did you write this?"])
+        , (["mu'i ma do ciska ta"], ["Why did you write that?"])
+        -- others
+        , (["mu'i ma lo prenu cu se zdani"], ["Why do people have houses?"])
+        , (["mu'i ma do pendo"], ["Why are you friendly?"])
         ]
 
 translationExercises9 :: ExerciseGenerator
