@@ -1519,7 +1519,7 @@ exercises9 :: Dictionary -> ExerciseGenerator
 exercises9 dictionary =
     combineFunctions
         [ (20, generateIsolatedBrivlaPlacesExercise dictionary $ generatorFromWeightedList $ getVocabularySelbri vocabulary "actions" ++ getVocabularySelbri vocabulary "relations")
-        , (70, translationExercises9)
+        , (80, translationExercises9)
         ]
     where
         vocabulary = vocabularyGenerator9 dictionary
