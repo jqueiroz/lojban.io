@@ -206,6 +206,8 @@ compressedBai :: M.Map String String
 compressedBai = M.fromList
     [ ("pi'o", "pilno")
     , ("zu'e", "zukte")
+    , ("mu'i", "mukti")
+    , ("gau", "gasnu")
     ]
 
 expandBai :: String -> Maybe String
