@@ -79,6 +79,15 @@ validateCanonicalization = hspec $ do
         validateBridiRetrieval
             "pu ca ba se nelci" $
             SimpleBridi False "nelci" [] ["pu ku", "ca ku", "ba ku"]
+      -- (without-x1) pu ku nelci
+      it "supports 'pu ku nelci'" $ do
+        validateBridiRetrieval
+            "pu ku nelci" $
+            SimpleBridi False "nelci" [] ["pu ku"]
+      it "supports 'pu ku se nelci'" $ do
+        validateBridiRetrieval
+            "pu ku se nelci" $
+            SimpleBridi False "nelci" [] ["pu ku"]
       -- (without-x1) pu go'i
       it "supports 'pu go'i'" $ do
         validateBridiRetrieval
@@ -96,6 +105,15 @@ validateCanonicalization = hspec $ do
         validateBridiRetrieval
             "pu ca ba se go'i" $
             SimpleBridi False "go'i" [] ["pu ku", "ca ku", "ba ku"]
+      -- (without-x1) pu ku go'i
+      it "supports 'pu ku go'i'" $ do
+        validateBridiRetrieval
+            "pu ku go'i" $
+            SimpleBridi False "go'i" [] ["pu ku"]
+      it "supports 'pu ku se go'i'" $ do
+        validateBridiRetrieval
+            "pu ku se go'i" $
+            SimpleBridi False "go'i" [] ["pu ku"]
       -- (with-x1) nelci
       it "supports 'mi nelci'" $ do
         validateBridiRetrieval
