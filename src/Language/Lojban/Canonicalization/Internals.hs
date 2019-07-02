@@ -202,6 +202,7 @@ convertExtraTerm (ZG.Tag (ZG.BAI x) text) = case expandBai x of
     Nothing -> concatET [Right $ T.pack x, Right $ T.pack " ", convertStructuredTerm text]
 convertExtraTerm x = Left $ "Unrecognized pattern for convertExtraTerm: " ++ show x
 
+-- TODO: add all BAI
 compressedBai :: M.Map String String
 compressedBai = M.fromList
     [ ("pi'o", "pilno")
