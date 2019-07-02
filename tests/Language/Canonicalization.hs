@@ -114,11 +114,15 @@ validateCanonicalization = hspec $ do
             "mi se nelci do" $
             SimpleBridi False "nelci" ["do", "mi"] []
       -- (with-x1) pu nelci
-      -- TODO: make the following three tests work
-      --it "supports 'mi pu ca nelci'" $ do
-        --validateBridiRetrieval
-            --"mi pu ca nelci" $
-            --SimpleBridi False "nelci" ["mi"] ["pu ku", "ca ku"]
+      it "supports 'mi pu nelci'" $ do
+        validateBridiRetrieval
+            "mi pu nelci" $
+            SimpleBridi False "nelci" ["mi"] ["pu ku"]
+      it "supports 'mi pu ca nelci'" $ do
+        validateBridiRetrieval
+            "mi pu ca nelci" $
+            SimpleBridi False "nelci" ["mi"] ["pu ku", "ca ku"]
+      -- TODO: make the following test work
       --it "supports 'mi pu ku ca nelci'" $ do
         --validateBridiRetrieval
             --"mi pu ku ca nelci" $

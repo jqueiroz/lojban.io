@@ -105,6 +105,7 @@ retrieveStructuredBridi (ZG.BridiTail selbri (ZG.Terms terms _)) = Right $ (selb
 ------- with x1
 -- mi prami / mi pu ku ca ku prami
 retrieveStructuredBridi (ZG.Bridi (ZG.Terms terms _) (ZG.BRIVLA brivla)) = Right $ constructStructuredBridiFromTerms (ZG.BRIVLA brivla) terms
+retrieveStructuredBridi (ZG.Bridi (ZG.Terms terms terms_t) (ZG.Tag x y)) = appendExtraTagToStructuredBridi (ZG.TagKU x (ZG.Term "ku")) <$> retrieveStructuredBridi (ZG.Bridi (ZG.Terms terms terms_t) y)
 -- mi go'i / mi pu ku ca ku go'i
 retrieveStructuredBridi (ZG.Bridi (ZG.Terms terms _) (ZG.GOhA brivla)) = Right $ constructStructuredBridiFromTerms (ZG.GOhA brivla) terms
 -- mi se prami / mi pu ku ca ku se prami
