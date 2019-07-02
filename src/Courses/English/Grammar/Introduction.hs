@@ -1316,6 +1316,8 @@ translations8 = expandTranslationGenerator $ combineFunctionsUniformly [required
         , (["mi nelci lo zdani be do"], ["I like your house."])
         , (["xu do nelci lo zdani be mi"], ["Do you like my house?"])
         , (["xu do nelci lo zdani be do"], ["Do you like your house?"])
+        , (["lo zdani be mi cu melbi"], ["My house is beautiful."])
+        , (["lo zdani be do cu melbi"], ["Your house is beautiful."])
         ]
     cmene = generatorFromList
         [ (["mi nelci lo cmene be mi"], ["I like my name."])
