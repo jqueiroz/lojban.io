@@ -1349,32 +1349,32 @@ translations9 :: TranslationGenerator
 translations9 = expandTranslationGenerator $ combineFunctionsUniformly [pi'o, mu'i, gau] where
     pi'o = generatorFromList
         -- fanva
-        [ (["mi fanva se pi'o lo skami"], ["I translated using the computer."])
-        , (["mi fanva se pi'o lo te ctuca be do"], ["I translated using what you taught."])
-        , (["mi fanva se pi'o lo te ctuca be do bei mi"], ["I translated using what you taught me."])
+        [ (["mi fanva sepi'o lo skami"], ["I translated using the computer."])
+        , (["mi fanva sepi'o lo te ctuca be do"], ["I translated using what you taught."])
+        , (["mi fanva sepi'o lo te ctuca be do bei mi"], ["I translated using what you taught me."])
         -- tavla (mi)
-        , (["mi tavla se pi'o lo skami"], ["I talk using a computer."])
-        , (["mi tavla lo pendo se pi'o lo skami"], ["I talk to friends using a computer."])
-        , (["mi tavla lo pendo be mi se pi'o lo skami"], ["I talk to my friend using a computer.", "I talked to my friend using a computer.", "I talked to my friends using a computer."])
+        , (["mi tavla sepi'o lo skami"], ["I talk using a computer."])
+        , (["mi tavla lo pendo sepi'o lo skami"], ["I talk to friends using a computer."])
+        , (["mi tavla lo pendo be mi sepi'o lo skami"], ["I talk to my friend using a computer.", "I talked to my friend using a computer.", "I talked to my friends using a computer."])
         -- tavla (xu do)
-        , (["xu do tavla se pi'o lo skami"], ["Do you talk using a computer?"])
-        , (["xu do tavla lo pendo se pi'o lo skami"], ["Do you talk to friends using a computer?"])
-        , (["xu do tavla lo pendo be do se pi'o lo skami"], ["Do you talk to your friends using a computer?"])
+        , (["xu do tavla sepi'o lo skami"], ["Do you talk using a computer?"])
+        , (["xu do tavla lo pendo sepi'o lo skami"], ["Do you talk to friends using a computer?"])
+        , (["xu do tavla lo pendo be do sepi'o lo skami"], ["Do you talk to your friends using a computer?"])
         -- ciska
-        , (["mi ciska se pi'o lo skami", "mi ciska fo lo skami"], ["I write using a computer."])
-        , (["mi ciska se pi'o lo se dunda be do", "mi ciska fo lo se dunda be do"], ["I write using the gift that you gave."])
-        , (["mi ciska se pi'o lo se dunda be do bei mi", "mi ciska fo lo se dunda be do bei mi"], ["I write using the gift that you gave me."])
+        , (["mi ciska sepi'o lo skami", "mi ciska fo lo skami"], ["I write using a computer."])
+        , (["mi ciska sepi'o lo se dunda be do", "mi ciska fo lo se dunda be do"], ["I write using the gift that you gave."])
+        , (["mi ciska sepi'o lo se dunda be do bei mi", "mi ciska fo lo se dunda be do bei mi"], ["I write using the gift that you gave me."])
         -- ctuca
-        , (["mi ctuca se pi'o lo skami"], ["I teach using a computer."])
-        , (["mi ctuca lo prenu se pi'o lo skami"], ["I teach people using a computer."])
-        , (["mi ctuca se pi'o lo se dunda be do"], ["I teach using the gift that you gave."])
-        , (["mi ctuca se pi'o lo se dunda be do bei mi"], ["I teach using the gift that you gave me."])
-        , (["mi ctuca se pi'o lo se vecnu be do"], ["I teach using what you sold."])
-        , (["mi ctuca se pi'o lo se vecnu be do bei mi"], ["I teach using what you sold me."])
-        , (["mi ctuca do se pi'o lo skami"], ["I taught you using a computers."])
+        , (["mi ctuca sepi'o lo skami"], ["I teach using a computer."])
+        , (["mi ctuca lo prenu sepi'o lo skami"], ["I teach people using a computer."])
+        , (["mi ctuca sepi'o lo se dunda be do"], ["I teach using the gift that you gave."])
+        , (["mi ctuca sepi'o lo se dunda be do bei mi"], ["I teach using the gift that you gave me."])
+        , (["mi ctuca sepi'o lo se vecnu be do"], ["I teach using what you sold."])
+        , (["mi ctuca sepi'o lo se vecnu be do bei mi"], ["I teach using what you sold me."])
+        , (["mi ctuca do sepi'o lo skami"], ["I taught you using a computers."])
         -- vecnu
-        , (["mi vecnu lo gerku be mi se pi'o lo skami"], ["I sold my dog using a computer."])
-        , (["mi vecnu lo mlatu be mi se pi'o lo skami"], ["I sold my cat using a computer."])
+        , (["mi vecnu lo gerku be mi sepi'o lo skami"], ["I sold my dog using a computer."])
+        , (["mi vecnu lo mlatu be mi sepi'o lo skami"], ["I sold my cat using a computer."])
         ]
     mu'i = generatorFromList
         -- tavla
