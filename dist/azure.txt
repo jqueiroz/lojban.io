@@ -9,6 +9,7 @@ PasswordAuthentication no
 sudo apt-get install -y docker.io
 
 # Start docker
+sudo systemctl enable docker
 sudo systemctl start docker
 
 # Test docker
