@@ -1090,7 +1090,7 @@ translationExercises1to5_simplified = simplifyCanonicalAnswer . combineFunctions
 
 -- TODO: questions with "ma"
 translations7_noi :: TranslationGenerator
-translations7_noi = combineFunctionsUniformly [computer, uses, knower, instructor, friend, house, animals] where
+translations7_noi = expandTranslationGenerator $ combineFunctionsUniformly [computer, uses, knower, instructor, friend, house, animals] where
     usesComputers =
         [ (["lo ctuca noi {ke'a} pilno lo skami cu pendo"], ["The instructor, who uses computers, is friendly."])
         , (["lo ctuca noi {ke'a} pilno lo skami cu tavla mi"], ["The instructor, who uses computers, talked to me."])
@@ -1154,7 +1154,7 @@ translations7_noi = combineFunctionsUniformly [computer, uses, knower, instructo
             ]
 
 translations7_poi :: TranslationGenerator
-translations7_poi = combineFunctionsUniformly [computer, uses, house, animals, general] where
+translations7_poi = expandTranslationGenerator $ combineFunctionsUniformly [computer, uses, house, animals, general] where
     usesComputers =
         [ (["lo skami poi mi pilno (ke'a|) ku'o melbi"], ["The computer that I use is beautiful."])
         , (["lo skami poi do pilno (ke'a|) ku'o melbi"], ["The computer that you use is beautiful."])
@@ -1248,7 +1248,7 @@ translations7_poi = combineFunctionsUniformly [computer, uses, house, animals, g
         ]
 
 translations7 :: TranslationGenerator
-translations7 = expandTranslationGenerator $ combineFunctionsUniformly [translations7_noi, translations7_poi]
+translations7 = combineFunctionsUniformly [translations7_noi, translations7_poi]
 
 translationExercises7 :: ExerciseGenerator
 translationExercises7 = generateTranslationExercise basicSentenceCanonicalizer sentenceComparer translations7
