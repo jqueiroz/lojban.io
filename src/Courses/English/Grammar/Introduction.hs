@@ -160,7 +160,7 @@ vocabularyGenerator8 = createVocabularyBuilder
     ]
 
 -- New words: NONE
--- Deliberately excluded words: mukti (there are no sentences using the unabbreviated word)
+-- Deliberately excluded words: mukti, gasnu (there are no sentences using the unabbreviated word)
 -- More words: gasnu+, zgana*, finti*, srana?, lifri?, stidi?, xamgu?
 vocabularyGenerator9 :: VocabularyBuilder
 vocabularyGenerator9 = createVocabularyBuilder
@@ -1330,7 +1330,7 @@ translationExercises8 :: ExerciseGenerator
 translationExercises8 = generateTranslationExercise basicSentenceCanonicalizer sentenceComparer translations8
 
 translations9 :: TranslationGenerator
-translations9 = expandTranslationGenerator $ combineFunctionsUniformly [pi'o, mu'i] where
+translations9 = expandTranslationGenerator $ combineFunctionsUniformly [pi'o, mu'i, gau] where
     pi'o = generatorFromList
         -- fanva
         [ (["mi fanva se pi'o lo skami"], ["I translated using the computer."])
@@ -1386,6 +1386,42 @@ translations9 = expandTranslationGenerator $ combineFunctionsUniformly [pi'o, mu
         -- others
         , (["mu'i ma lo prenu cu se zdani"], ["Why do people have houses?"])
         , (["mu'i ma do pendo"], ["Why are you friendly?"])
+        ]
+    gau = generatorFromList
+        -- tavla
+        [ (["gau do mi tavla do"], ["You made me talk to you."])
+        , (["gau do mi tavla fi lo gerku"], ["You made me talk about the dog."])
+        , (["gau do mi tavla fi lo mlatu"], ["You made me talk about the cat."])
+        , (["gau ma do tavla fi lo gerku"], ["Who made you talk about the dog?"])
+        , (["gau ma do tavla fi lo mlatu"], ["Who made you talk about the cat?"])
+        -- dunda
+        , (["gau do mi dunda lo gerku"], ["You made me donate the dog."])
+        , (["gau do mi dunda lo mlatu"], ["You made me donate the cat."])
+        , (["gau do mi dunda lo zdani"], ["You made me donate the house."])
+        , (["gau ma do dunda lo zdani"], ["Who made you donate the house?"])
+        , (["gau ma do dunda lo gerku"], ["Who made you donate the dog?"])
+        , (["gau ma do dunda lo mlatu"], ["Who made you donate the cat?"])
+        -- vecnu
+        , (["gau do mi vecnu lo gerku"], ["You made me sell the dog."])
+        , (["gau do mi vecnu lo mlatu"], ["You made me sell the cat."])
+        , (["gau do mi vecnu lo zdani"], ["You made me sell the house."])
+        , (["gau ma do vecnu lo zdani"], ["Who made you sell the house?"])
+        , (["gau ma do vecnu lo gerku"], ["Who made you sell the dog?"])
+        , (["gau ma do vecnu lo mlatu"], ["Who made you sell the cat?"])
+        -- ciska
+        , (["gau do mi ciska ta"], ["You made me write that."])
+        , (["gau ma do ciska ta"], ["Who made you write that?"])
+        -- gleki
+        , (["gau do mi gleki"], ["You make me happy."])
+        , (["xu gau mi do gleki"], ["Do I make you happy?"])
+        -- melbi
+        , (["gau mi lo zdani cu melbi"], ["I made the house beautiful."])
+        , (["gau do lo zdani cu melbi"], ["You made the house beautiful."])
+        , (["xu gau do lo zdani cu melbi"], ["Did you made the house beautiful?"])
+        , (["gau ma lo zdani cu melbi"], ["Who made the house beautiful?"])
+        -- cmene
+        , (["gau mi cmene lo gerku"], ["I named the dog."])
+        , (["gau mi cmene lo mlatu"], ["I named the cat."])
         ]
 
 translationExercises9 :: ExerciseGenerator
