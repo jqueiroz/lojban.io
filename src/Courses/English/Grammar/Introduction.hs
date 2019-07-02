@@ -1417,7 +1417,7 @@ translations9 = expandTranslationGenerator $ combineFunctionsUniformly [pi'o, mu
         -- melbi
         , (["gau mi lo zdani cu melbi"], ["I made the house beautiful."])
         , (["gau do lo zdani cu melbi"], ["You made the house beautiful."])
-        , (["xu gau do lo zdani cu melbi"], ["Did you made the house beautiful?"])
+        , (["xu gau do lo zdani cu melbi"], ["Did you make the house beautiful?"])
         , (["gau ma lo zdani cu melbi"], ["Who made the house beautiful?"])
         -- cmene
         , (["gau mi cmene lo gerku"], ["I named the dog."])
