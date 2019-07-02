@@ -14,10 +14,15 @@ COPY stack.yaml /lojto/stack.yaml
 COPY lojto.cabal /lojto/lojto.cabal
 
 # Setup GHC
-RUN cd /lojto && stack setup
+#RUN cd /lojto && stack setup
 
 # Install dependencies
+#COPY libs /lojto/libs
+#RUN cd /lojto && stack install --only-dependencies
+
+# Setup GHC
 COPY libs /lojto/libs
+RUN cd /lojto && stack setup
 RUN cd /lojto && stack install --only-dependencies
 
 # Copy source code
