@@ -57,6 +57,9 @@ Right plan8 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/engl
 plan9 :: P.Pandoc
 Right plan9 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/planning/9.md")
 
+plan10 :: P.Pandoc
+Right plan10 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/planning/10.md")
+
 -------- Vocabulary
 vocabularyGenerator1 :: VocabularyBuilder
 vocabularyGenerator1 = createVocabularyBuilder
@@ -167,6 +170,19 @@ vocabularyGenerator9 = createVocabularyBuilder
     -- Selbri
     [
         ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska", "djuno", "nupre", "cusku", "vecnu"]) ++ ((4,) <$> ["pilno"])),
+        ("relations", ((0,) <$> ["pendo", "nelci", "gleki"]) ++ ((1,) <$> ["cmene", "bangu"])),
+        ("properties", (0,) <$> ["prenu", "zdani", "mlatu", "gerku", "melbi", "plise", "skami"])
+    ]
+    -- Sumti
+    [
+    ]
+
+-- New words: PENDING?
+vocabularyGenerator10 :: VocabularyBuilder
+vocabularyGenerator10 = createVocabularyBuilder
+    -- Selbri
+    [
+        ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska", "djuno", "nupre", "cusku", "vecnu", "pilno"])),
         ("relations", ((0,) <$> ["pendo", "nelci", "gleki"]) ++ ((1,) <$> ["cmene", "bangu"])),
         ("properties", (0,) <$> ["prenu", "zdani", "mlatu", "gerku", "melbi", "plise", "skami"])
     ]
@@ -1428,13 +1444,68 @@ translationExercises9 :: ExerciseGenerator
 translationExercises9 = generateTranslationExercise basicSentenceCanonicalizer sentenceComparer translations9
 
 translations10_pu :: TranslationGenerator
-translations10_pu = expandTranslationGenerator $ combineFunctionsUniformly [general] where
-    general = generatorFromList
+translations10_pu = expandTranslationGenerator $ combineFunctionsUniformly [dunda, vecnu] where
+    dunda = generatorFromList
         [ (["mi pu dunda lo mlatu"], ["I donated the cat."])
+        , (["mi pu dunda lo gerku"], ["I donated the dog."])
+        , (["mi pu dunda lo zdani"], ["I donated the house."])
+        , (["xu do pu dunda lo mlatu"], ["Did you donate the cat?"])
+        , (["xu do pu dunda lo gerku"], ["Did you donate the dog?"])
+        , (["xu do pu dunda lo zdani"], ["Did you donate the house?"])
+        ]
+    vecnu = generatorFromList
+        [ (["mi pu vecnu lo mlatu"], ["I sold the cat."])
+        , (["mi pu vecnu lo gerku"], ["I sold the dog."])
+        , (["mi pu vecnu lo zdani"], ["I sold the house."])
+        , (["xu do pu vecnu lo mlatu"], ["Did you sell the cat?"])
+        , (["xu do pu vecnu lo gerku"], ["Did you sell the dog?"])
+        , (["xu do pu vecnu lo zdani"], ["Did you sell the house?"])
+        ]
+
+translations10_ca :: TranslationGenerator
+translations10_ca = expandTranslationGenerator $ combineFunctionsUniformly [dunda, vecnu] where
+    dunda = generatorFromList
+        [ (["mi ca dunda lo mlatu"], ["I am donating the cat."])
+        , (["mi ca dunda lo gerku"], ["I am donating the dog."])
+        , (["mi ca dunda lo zdani"], ["I am donating the house."])
+        , (["mi ca dunda"], ["I am donating."])
+        , (["xu do ca dunda lo mlatu"], ["Are you donating the cat?"])
+        , (["xu do ca dunda lo gerku"], ["Are you donating the dog?"])
+        , (["xu do ca dunda lo zdani"], ["Are you donating the house?"])
+        , (["xu do ca dunda"], ["Are you donating?"])
+        ]
+    vecnu = generatorFromList
+        [ (["mi ca vecnu lo mlatu"], ["I am selling the cat."])
+        , (["mi ca vecnu lo gerku"], ["I am selling the dog."])
+        , (["mi ca vecnu lo zdani"], ["I am selling the house."])
+        , (["mi ca vecnu"], ["I am selling."])
+        , (["xu do ca vecnu lo mlatu"], ["Are you selling the cat?"])
+        , (["xu do ca vecnu lo gerku"], ["Are you selling the dog?"])
+        , (["xu do ca vecnu lo zdani"], ["Are you selling the house?"])
+        , (["xu do ca vecnu"], ["Are you selling?"])
+        ]
+
+translations10_ba :: TranslationGenerator
+translations10_ba = expandTranslationGenerator $ combineFunctionsUniformly [dunda, vecnu] where
+    dunda = generatorFromList
+        [ (["mi ba dunda lo mlatu"], ["I will donate the cat."])
+        , (["mi ba dunda lo gerku"], ["I will donate the dog."])
+        , (["mi ba dunda lo zdani"], ["I will donate the house."])
+        , (["xu do ba dunda lo mlatu"], ["Will you donate the cat?"])
+        , (["xu do ba dunda lo gerku"], ["Will you donate the dog?"])
+        , (["xu do ba dunda lo zdani"], ["Will you donate the house?"])
+        ]
+    vecnu = generatorFromList
+        [ (["mi ba vecnu lo mlatu"], ["I will sell the cat."])
+        , (["mi ba vecnu lo gerku"], ["I will sell the dog."])
+        , (["mi ba vecnu lo zdani"], ["I will sell the house."])
+        , (["xu do ba vecnu lo mlatu"], ["Will you sell the cat?"])
+        , (["xu do ba vecnu lo gerku"], ["Will you sell the dog?"])
+        , (["xu do ba vecnu lo zdani"], ["Will you sell the house?"])
         ]
 
 translationExercises10 :: ExerciseGenerator
-translationExercises10 = generateRestrictedTranslationExercise "Translate <b>specifying tenses</b>" (const True) basicSentenceCanonicalizer sentenceComparer $ combineFunctionsUniformly [translations10_pu]
+translationExercises10 = generateRestrictedTranslationExercise "Translate <b>specifying tenses</b>" (const True) basicSentenceCanonicalizer sentenceComparer $ combineFunctionsUniformly [translations10_pu, translations10_ca]
 
 translations99 :: [ExerciseGenerator]
 translations99 = generateTranslationExercise basicSentenceCanonicalizer sentenceComparer <$> generatorFromSingleton <$>
@@ -1562,6 +1633,15 @@ exercises9 dictionary =
     where
         vocabulary = vocabularyGenerator9 dictionary
 
+exercises10 :: Dictionary -> ExerciseGenerator
+exercises10 dictionary =
+    combineFunctions
+        [ (20, generateIsolatedBrivlaPlacesExercise dictionary $ generatorFromWeightedList $ getVocabularySelbri vocabulary "actions" ++ getVocabularySelbri vocabulary "relations")
+        , (70, translationExercises10)
+        ]
+    where
+        vocabulary = vocabularyGenerator10 dictionary
+
 -- Reminder: from Lesson 4 onwards, mix propositions and questions
 
 -------- Lessons
@@ -1592,6 +1672,9 @@ lesson8 dictionary = Lesson "Linked sumti" (exercises8 dictionary) plan8
 lesson9 :: LessonBuilder
 lesson9 dictionary = Lesson "Sumtcita" (exercises9 dictionary) plan9
 
+lesson10 :: LessonBuilder
+lesson10 dictionary = Lesson "Tenses 1" (exercises10 dictionary) plan10
+
 -------- Course
 style :: CourseStyle
 style = CourseStyle color1 iconUrl where
@@ -1612,4 +1695,4 @@ style = CourseStyle color1 iconUrl where
 course :: CourseBuilder
 course = createCourseBuilder title style lessons where
     title = "Introduction to Grammar"
-    lessons = [lesson1, lesson2, lesson3, lesson4, lesson5, checkpoint1to5, lesson7, lesson8, lesson9]
+    lessons = [lesson1, lesson2, lesson3, lesson4, lesson5, checkpoint1to5, lesson7, lesson8, lesson9, lesson10]
