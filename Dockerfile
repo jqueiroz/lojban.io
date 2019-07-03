@@ -45,4 +45,4 @@ RUN cd /lojto && ./compile-less.sh
 EXPOSE 8000/tcp
 
 ####################### Default command #######################
-CMD cd /lojto && .stack-work/install/x86_64-linux-nix/lts-*/*/bin/lojto
+CMD cd /lojto && .stack-work/install/x86_64-linux-nix/*/*/bin/lojto
