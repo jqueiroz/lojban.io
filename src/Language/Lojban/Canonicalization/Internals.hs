@@ -8,6 +8,7 @@ module Language.Lojban.Canonicalization.Internals
 , StructuredBridi
 , basicSentenceCanonicalizer
 , canonicalizeText
+, canonicalizeTerm
 ) where
 
 import Language.Lojban.Core
@@ -163,6 +164,7 @@ convertStructuredTerm :: StructuredTerm -> Either String T.Text
 convertStructuredTerm (ZG.KOhA x) = Right $ T.pack x
 convertStructuredTerm (ZG.Link x y) = concatET [convertStructuredTerm x, Right $ T.pack " ", convertLinkargs y]
 convertStructuredTerm (ZG.BRIVLA x) = Right $ T.pack x
+convertStructuredTerm (ZG.Tag (ZG.BAI x) y) = concatET [Right $ T.pack x, Right $ T.pack " ",  convertStructuredTerm y]
 convertStructuredTerm (ZG.Rel x y) = concatET [convertStructuredTerm x, Right $ T.pack " ", convertRelative y]
 convertStructuredTerm (ZG.GOhA x) = Right $ T.pack x
 convertStructuredTerm (ZG.Prefix (ZG.SE x) y) = insertPrefix <$> convertStructuredTerm y where
@@ -223,6 +225,9 @@ basicSentenceCanonicalizer sentence = displayCanonicalBridi <$> (parse sentence 
 canonicalizeText :: (ZG.Free, ZG.Text, ZG.Terminator) -> Either String SimpleBridi
 canonicalizeText (free, text, terminator) = retrieveStructuredBridi text >>= handlePlaceTags >>= handlePlacePermutations >>= convertStructuredBridi xu where
     xu = hasXu free
+
+canonicalizeTerm :: (ZG.Free, ZG.Text, ZG.Terminator) -> Either String T.Text
+canonicalizeTerm (free, ZG.Terms [term] _, terminator) = convertStructuredTerm term
 
 hasXu :: ZG.Free -> Bool
 hasXu (ZG.UI x) = x == "xu"

@@ -15,6 +15,10 @@ validateBridiRetrieval :: T.Text -> SimpleBridi -> IO ()
 validateBridiRetrieval text expectedSimpleBridi = simpleBridi `shouldBe` (Right expectedSimpleBridi) where
     simpleBridi = (parse text) >>= canonicalizeText
 
+validateTermCanonicalization :: T.Text -> T.Text -> IO ()
+validateTermCanonicalization term expectedCanonicalizedTerm = canonicalizedTerm `shouldBe` (Right expectedCanonicalizedTerm) where
+    canonicalizedTerm = (parse term) >>= canonicalizeTerm
+
 validateEquivalentSentences :: T.Text -> [T.Text] -> IO ()
 validateEquivalentSentences canonicalSentence originalSentences = lhs `shouldBe` rhs where
     lhs = map basicSentenceCanonicalizer (canonicalSentence : originalSentences)
@@ -186,6 +190,15 @@ validateCanonicalization = hspec $ do
         validateBridiRetrieval
             "mi pu ku ca ku se nelci do" $
             SimpleBridi False "nelci" ["do", "mi"] ["pu ku", "ca ku"]
+    describe "Term canonicalization" $ do
+      it "supports 'lo prenu'" $ do
+        validateTermCanonicalization "lo prenu" "lo prenu ku"
+      it "supports 'lo prenu ku'" $ do
+        validateTermCanonicalization "lo prenu ku" "lo prenu ku"
+      it "supports 'lo pu prenu'" $ do
+        validateTermCanonicalization "lo pu prenu" "lo pu prenu ku"
+      it "supports 'lo pu prenu ku'" $ do
+        validateTermCanonicalization "lo pu prenu ku" "lo pu prenu ku"
     describe "Basic sentence canonicalizer" $ do
       it "supports SE" $ do
         validateSentences
