@@ -1444,7 +1444,7 @@ translationExercises9 :: ExerciseGenerator
 translationExercises9 = generateTranslationExercise basicSentenceCanonicalizer sentenceComparer translations9
 
 translations10_pu :: TranslationGenerator
-translations10_pu = expandTranslationGenerator $ combineFunctionsUniformly [dunda, vecnu] where
+translations10_pu = expandTranslationGenerator $ combineFunctionsUniformly [dunda, vecnu, gleki] where
     dunda = generatorFromList
         [ (["mi pu dunda lo mlatu"], ["I donated the cat."])
         , (["mi pu dunda lo gerku"], ["I donated the dog."])
@@ -1461,9 +1461,17 @@ translations10_pu = expandTranslationGenerator $ combineFunctionsUniformly [dund
         , (["xu do pu vecnu lo gerku"], ["Did you sell the dog?"])
         , (["xu do pu vecnu lo zdani"], ["Did you sell the house?"])
         ]
+    gleki = generatorFromList
+        [ (["mi pu gleki"], ["I was happy."])
+        , (["do pu gleki"], ["You were happy."])
+        , (["xu do pu gleki"], ["Were you happy?"])
+        , (["lo prenu pu gleki"], ["The person was happy."])
+        , (["lo vecnu pu gleki"], ["The seller was happy."])
+        , (["lo te vecnu pu gleki"], ["The buyer was happy."])
+        ]
 
 translations10_ca :: TranslationGenerator
-translations10_ca = expandTranslationGenerator $ combineFunctionsUniformly [dunda, vecnu] where
+translations10_ca = expandTranslationGenerator $ combineFunctionsUniformly [dunda, vecnu, gleki] where
     dunda = generatorFromList
         [ (["mi ca dunda lo mlatu"], ["I am donating the cat."])
         , (["mi ca dunda lo gerku"], ["I am donating the dog."])
@@ -1484,9 +1492,16 @@ translations10_ca = expandTranslationGenerator $ combineFunctionsUniformly [dund
         , (["xu do ca vecnu lo zdani"], ["Are you selling the house?"])
         , (["xu do ca vecnu"], ["Are you selling?"])
         ]
+    gleki = generatorFromList
+        [ (["mi ca gleki"], ["I am happy."])
+        , (["xu do ca gleki"], ["Are you happy?"])
+        , (["lo prenu ca gleki"], ["The person is happy."])
+        , (["lo vecnu ca gleki"], ["The seller is happy."])
+        , (["lo te vecnu ca gleki"], ["The buyer is happy."])
+        ]
 
 translations10_ba :: TranslationGenerator
-translations10_ba = expandTranslationGenerator $ combineFunctionsUniformly [dunda, vecnu] where
+translations10_ba = expandTranslationGenerator $ combineFunctionsUniformly [dunda, vecnu, gleki] where
     dunda = generatorFromList
         [ (["mi ba dunda lo mlatu"], ["I will donate the cat."])
         , (["mi ba dunda lo gerku"], ["I will donate the dog."])
@@ -1502,6 +1517,13 @@ translations10_ba = expandTranslationGenerator $ combineFunctionsUniformly [dund
         , (["xu do ba vecnu lo mlatu"], ["Will you sell the cat?"])
         , (["xu do ba vecnu lo gerku"], ["Will you sell the dog?"])
         , (["xu do ba vecnu lo zdani"], ["Will you sell the house?"])
+        ]
+    gleki = generatorFromList
+        [ (["mi ba gleki"], ["I will be happy."])
+        , (["do ba gleki"], ["You will be happy."])
+        , (["lo prenu ba gleki"], ["The person will be happy."])
+        , (["lo vecnu ba gleki"], ["The seller will be happy."])
+        , (["lo te vecnu ba gleki"], ["The buyer will be happy."])
         ]
 
 translations10 :: TranslationGenerator
