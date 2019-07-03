@@ -1526,14 +1526,28 @@ translations10_ba = expandTranslationGenerator $ combineFunctionsUniformly [dund
         , (["lo te vecnu ba gleki"], ["The buyer will be happy."])
         ]
 
-translations10 :: TranslationGenerator
-translations10 = combineFunctionsUniformly [translations10_pu, translations10_ca, translations10_ba]
+translations10_unrestricted :: TranslationGenerator
+translations10_unrestricted = expandTranslationGenerator $ combineFunctionsUniformly [cmene, vecnu] where
+    cmene = generatorFromList
+        [ (["mi nelci lo pu cmene be do"], ["I like your former name."])
+        , (["xu do nelci lo pu cmene be do"], ["Did you like your former name?"])
+        ]
+    vecnu = generatorFromList
+        [ (["lo pu vecnu cu gleki"], ["The former seller is happy."])
+        , (["lo ba te vecnu cu gleki"], ["The future buyer is happy."])
+        ]
 
-translationExercises10 :: ExerciseGenerator
-translationExercises10 = generateRestrictedTranslationExercise "Translate <b>specifying tenses</b>" (const True) basicSentenceCanonicalizer sentenceComparer translations10
+translations10_restricted :: TranslationGenerator
+translations10_restricted = combineFunctionsUniformly [translations10_pu, translations10_ca, translations10_ba]
+
+translationExercises10_restricted :: ExerciseGenerator
+translationExercises10_restricted = generateRestrictedTranslationExercise "Translate <b>specifying tenses</b>" (const True) basicSentenceCanonicalizer sentenceComparer translations10_restricted
+
+translationExercises10_unrestricted :: ExerciseGenerator
+translationExercises10_unrestricted = generateTranslationExercise basicSentenceCanonicalizer sentenceComparer translations10_unrestricted
 
 fillingBlanksExercises10 :: ExerciseGenerator
-fillingBlanksExercises10 = generateContextualizedBroadFillingBlanksExerciseByAlternatives ["pu", "ca", "ba"] translations10
+fillingBlanksExercises10 = generateContextualizedBroadFillingBlanksExerciseByAlternatives ["pu", "ca", "ba"] translations10_restricted
 
 translations99 :: [ExerciseGenerator]
 translations99 = generateTranslationExercise basicSentenceCanonicalizer sentenceComparer <$> generatorFromSingleton <$>
@@ -1664,8 +1678,9 @@ exercises9 dictionary =
 exercises10 :: Dictionary -> ExerciseGenerator
 exercises10 dictionary =
     combineFunctions
-        [ (15, generateIsolatedBrivlaPlacesExercise dictionary $ generatorFromWeightedList $ getVocabularySelbri vocabulary "actions" ++ getVocabularySelbri vocabulary "relations")
-        , (70, translationExercises10)
+        [ (10, generateIsolatedBrivlaPlacesExercise dictionary $ generatorFromWeightedList $ getVocabularySelbri vocabulary "actions" ++ getVocabularySelbri vocabulary "relations")
+        , (70, translationExercises10_restricted)
+        , (15, translationExercises10_unrestricted)
         , (20, fillingBlanksExercises10)
         ]
     where
