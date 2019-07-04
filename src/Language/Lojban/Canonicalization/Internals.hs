@@ -237,6 +237,7 @@ retrieveSimpleBridi (free, text, terminator) = retrieveStructuredBridi text >>= 
 
 canonicalizeParsedTerm :: (ZG.Free, ZG.Text, ZG.Terminator) -> Either String T.Text
 canonicalizeParsedTerm (free, ZG.Terms [term] _, terminator) = convertStructuredTerm term
+canonicalizeParsedTerm x = Left $ "Unrecognized pattern for canonicalizeParsedTerm: " ++ show x
 
 hasXu :: ZG.Free -> Bool
 hasXu (ZG.UI x) = x == "xu"
