@@ -222,7 +222,7 @@ expandBai = (`M.lookup` compressedBai)
 
 ---------- Canonicalization
 --TODO: canonicalize "do xu ciska" -> "xu do ciska"
-basicSentenceCanonicalizer :: T.Text -> Either String T.Text
+basicSentenceCanonicalizer :: SentenceCanonicalizer
 basicSentenceCanonicalizer sentence = parse sentence >>= canonicalizeParsedText
 
 canonicalizeParsedText :: (ZG.Free, ZG.Text, ZG.Terminator) -> Either String T.Text
