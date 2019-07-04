@@ -7,8 +7,8 @@ module Language.Lojban.Canonicalization.Internals
 , ExtraTerm
 , StructuredBridi
 , basicSentenceCanonicalizer
-, canonicalizeBridi
-, canonicalizeTerm
+, canonicalizeParsedBridi
+, canonicalizeParsedTerm
 , retrieveSimpleBridi
 ) where
 
@@ -171,7 +171,7 @@ convertStructuredTerm (ZG.GOhA x) = Right $ T.pack x
 convertStructuredTerm (ZG.Prefix (ZG.SE x) y) = insertPrefix <$> convertStructuredTerm y where
     insertPrefix = ((T.pack $ x ++ " ") `T.append`)
 convertStructuredTerm (ZG.NU (ZG.Init x) y w) = convertStructuredTerm (ZG.NU (ZG.InitF x ZG.NF) y w)
-convertStructuredTerm (ZG.NU (ZG.InitF x y) w z) = insertPrefix . insertSuffix <$> canonicalizeBridi (y, w, z) where
+convertStructuredTerm (ZG.NU (ZG.InitF x y) w z) = insertPrefix . insertSuffix <$> canonicalizeParsedBridi (y, w, z) where
     insertPrefix = ((T.pack $ x ++ " ") `T.append`)
     insertSuffix = (`T.append` " kei")
 convertStructuredTerm (ZG.LE (ZG.Init x) ZG.NR ZG.NQ (ZG.Rel y z) t) = convertStructuredTerm $ ZG.Rel (ZG.LE (ZG.Init x) ZG.NR ZG.NQ y t) z
@@ -221,17 +221,17 @@ expandBai = (`M.lookup` compressedBai)
 ---------- Canonicalization
 --TODO: canonicalize "do xu ciska" -> "xu do ciska"
 basicSentenceCanonicalizer :: T.Text -> Either String T.Text
-basicSentenceCanonicalizer sentence = parse sentence >>= canonicalizeBridi
+basicSentenceCanonicalizer sentence = parse sentence >>= canonicalizeParsedBridi
 
-canonicalizeBridi :: (ZG.Free, ZG.Text, ZG.Terminator) -> Either String T.Text
-canonicalizeBridi parsedText = displayCanonicalBridi <$> (retrieveSimpleBridi parsedText)
+canonicalizeParsedBridi :: (ZG.Free, ZG.Text, ZG.Terminator) -> Either String T.Text
+canonicalizeParsedBridi parsedBridi = displayCanonicalBridi <$> (retrieveSimpleBridi parsedBridi)
 
 retrieveSimpleBridi :: (ZG.Free, ZG.Text, ZG.Terminator) -> Either String SimpleBridi
 retrieveSimpleBridi (free, text, terminator) = retrieveStructuredBridi text >>= handlePlaceTags >>= handlePlacePermutations >>= convertStructuredBridi xu where
     xu = hasXu free
 
-canonicalizeTerm :: (ZG.Free, ZG.Text, ZG.Terminator) -> Either String T.Text
-canonicalizeTerm (free, ZG.Terms [term] _, terminator) = convertStructuredTerm term
+canonicalizeParsedTerm :: (ZG.Free, ZG.Text, ZG.Terminator) -> Either String T.Text
+canonicalizeParsedTerm (free, ZG.Terms [term] _, terminator) = convertStructuredTerm term
 
 hasXu :: ZG.Free -> Bool
 hasXu (ZG.UI x) = x == "xu"
