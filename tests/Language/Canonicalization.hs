@@ -17,7 +17,7 @@ validateSimpleBridiRetrieval text expectedSimpleBridi = simpleBridi `shouldBe` (
 
 validateTermCanonicalization :: T.Text -> T.Text -> IO ()
 validateTermCanonicalization term expectedCanonicalizedTerm = canonicalizedTerm `shouldBe` (Right expectedCanonicalizedTerm) where
-    canonicalizedTerm = (parse term) >>= canonicalizeParsedTerm
+    canonicalizedTerm = basicSentenceCanonicalizer term
 
 validateEquivalentSentences :: T.Text -> [T.Text] -> IO ()
 validateEquivalentSentences canonicalSentence originalSentences = lhs `shouldBe` rhs where

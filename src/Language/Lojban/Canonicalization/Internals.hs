@@ -7,6 +7,7 @@ module Language.Lojban.Canonicalization.Internals
 , ExtraTerm
 , StructuredBridi
 , basicSentenceCanonicalizer
+, canonicalizeParsedText
 , canonicalizeParsedBridi
 , canonicalizeParsedTerm
 , retrieveSimpleBridi
@@ -18,6 +19,7 @@ import Language.Lojban.Presentation (displayCanonicalBridi)
 import Util (headOrDefault, isContiguousSequence, concatET, unwordsET)
 import Control.Applicative (liftA2)
 import Control.Exception (assert)
+import Control.Monad (mplus)
 import Data.List (partition)
 import qualified Data.Text as T
 import qualified Data.Map as M
@@ -221,7 +223,10 @@ expandBai = (`M.lookup` compressedBai)
 ---------- Canonicalization
 --TODO: canonicalize "do xu ciska" -> "xu do ciska"
 basicSentenceCanonicalizer :: T.Text -> Either String T.Text
-basicSentenceCanonicalizer sentence = parse sentence >>= canonicalizeParsedBridi
+basicSentenceCanonicalizer sentence = parse sentence >>= canonicalizeParsedText
+
+canonicalizeParsedText :: (ZG.Free, ZG.Text, ZG.Terminator) -> Either String T.Text
+canonicalizeParsedText parsedText = (canonicalizeParsedBridi parsedText) `mplus` (canonicalizeParsedTerm parsedText)
 
 canonicalizeParsedBridi :: (ZG.Free, ZG.Text, ZG.Terminator) -> Either String T.Text
 canonicalizeParsedBridi parsedBridi = displayCanonicalBridi <$> (retrieveSimpleBridi parsedBridi)
@@ -247,4 +252,4 @@ hasXu _ = False
 
 
 convertBridi :: ZG.Text -> Either String T.Text
-convertBridi text = canonicalizeBridi (ZG.NF, text, ZG.NT)
+convertBridi text = canonicalizeParsedBridi (ZG.NF, text, ZG.NT)
