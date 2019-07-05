@@ -1448,7 +1448,7 @@ translationExercises9 = generateTranslationExercise sentenceCanonicalizer senten
 
 -- Lesson 10: Tenses 1
 translations10_pu :: TranslationGenerator
-translations10_pu = expandTranslationGenerator $ combineFunctionsUniformly [dunda, vecnu, gleki] where
+translations10_pu = expandTranslationGenerator $ combineFunctionsUniformly [dunda, vecnu, gleki, ciska] where
     dunda = generatorFromList
         [ (["mi pu dunda lo mlatu"], ["I donated the cat."])
         , (["mi pu dunda lo gerku"], ["I donated the dog."])
@@ -1473,9 +1473,17 @@ translations10_pu = expandTranslationGenerator $ combineFunctionsUniformly [dund
         , (["lo vecnu pu gleki"], ["The seller was happy."])
         , (["lo te vecnu pu gleki"], ["The buyer was happy."])
         ]
+    ciska = generatorFromList
+        [ (["do pu ciska ta"], ["You wrote that."])
+        , (["mi pu ciska ta"], ["I wrote that."])
+        , (["xu mi pu ciska ta"], ["Did I write that?"])
+        , (["do pu ciska ma"], ["What did you write?"])
+        , (["xu do pu ciska fo ti"], ["Did you write something using this?"])
+        , (["xu do pu ciska fo ta"], ["Did you write something using that?"])
+        ]
 
 translations10_ca :: TranslationGenerator
-translations10_ca = expandTranslationGenerator $ combineFunctionsUniformly [dunda, vecnu, gleki] where
+translations10_ca = expandTranslationGenerator $ combineFunctionsUniformly [dunda, vecnu, gleki, ciska] where
     dunda = generatorFromList
         [ (["mi ca dunda lo mlatu"], ["I am donating the cat."])
         , (["mi ca dunda lo gerku"], ["I am donating the dog."])
@@ -1503,9 +1511,16 @@ translations10_ca = expandTranslationGenerator $ combineFunctionsUniformly [dund
         , (["lo vecnu ca gleki"], ["The seller is happy."])
         , (["lo te vecnu ca gleki"], ["The buyer is happy."])
         ]
+    ciska = generatorFromList
+        [ (["xu do ca ciska ta"], ["Are you writing that?"])
+        , (["mi ca ciska ta"], ["I am writing that."])
+        , (["do ca ciska ma"], ["What are you writing?"])
+        , (["xu do ca ciska fo ti"], ["Are you writing something using this?"])
+        , (["xu do ca ciska fo ta"], ["Are you writing something using that?"])
+        ]
 
 translations10_ba :: TranslationGenerator
-translations10_ba = expandTranslationGenerator $ combineFunctionsUniformly [dunda, vecnu, gleki] where
+translations10_ba = expandTranslationGenerator $ combineFunctionsUniformly [dunda, vecnu, gleki, ciska] where
     dunda = generatorFromList
         [ (["mi ba dunda lo mlatu"], ["I will donate the cat."])
         , (["mi ba dunda lo gerku"], ["I will donate the dog."])
@@ -1528,6 +1543,13 @@ translations10_ba = expandTranslationGenerator $ combineFunctionsUniformly [dund
         , (["lo prenu ba gleki"], ["The person will be happy."])
         , (["lo vecnu ba gleki"], ["The seller will be happy."])
         , (["lo te vecnu ba gleki"], ["The buyer will be happy."])
+        ]
+    ciska = generatorFromList
+        [ (["xu do ba ciska ta"], ["Will you write that?"])
+        , (["mi ba ciska ta"], ["I will write that."])
+        , (["do ba ciska ma"], ["What will you write?"])
+        , (["xu do ba ciska fo ti"], ["Will you write something using this?"])
+        , (["xu do ba ciska fo ta"], ["Will you write something using that?"])
         ]
 
 translations10_unrestricted :: TranslationGenerator
