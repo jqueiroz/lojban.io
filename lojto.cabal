@@ -75,3 +75,10 @@ test-suite language
   hs-source-dirs:      tests src
   build-depends:       hspec
                      , QuickCheck
+  other-modules:       Core
+                     , Language.Lojban.Canonicalization.Tests
+                     , Language.Lojban.Canonicalization.Internals
+                     , Language.Lojban.Core
+                     , Language.Lojban.Parsing
+                     , Language.Lojban.Presentation
+                     , Util
