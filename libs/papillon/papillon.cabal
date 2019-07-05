@@ -38,7 +38,7 @@ library
     Text.Papillon.Papillon,
     Text.Papillon.List
   build-depends:
-    base > 3 && < 5, template-haskell == 2.13.*,
+    base > 3 && < 5, template-haskell == 2.14.*,
     monads-tf == 0.1.*, transformers == 0.5.*,
     bytestring == 0.10.*
   ghc-options:		-Wall -fno-warn-tabs
@@ -48,6 +48,6 @@ executable	papillon
   main-is:		papillon.hs
   other-modules:	Class
   build-depends:
-    directory, filepath, base > 3 && < 5, template-haskell == 2.13.*,
+    directory, filepath, base > 3 && < 5, template-haskell == 2.14.*,
     monads-tf == 0.1.*, transformers == 0.5.*, papillon
   ghc-options:		-Wall -fno-warn-tabs

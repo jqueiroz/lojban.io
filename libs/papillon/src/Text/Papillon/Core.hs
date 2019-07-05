@@ -154,7 +154,8 @@ mkParseBody th monadic prefix pg = do
 
 mkParseCore :: Bool -> String -> [Name] -> [Name] -> State Variables Clause
 mkParseCore th prefix rets rules = do
-	[ch, p, s, d] <- mapM (gets . getVariable) ["chars", "pos", "s", "d"]
+	arr <- mapM (gets . getVariable) ["chars", "pos", "s", "d"]
+	let [ch, p, s, d] = arr
 	let def ret rule = flip (ValD $ VarP ret) [] $
 		NormalB $ VarE (runStateTN th) `AppE` VarE rule `AppE` VarE d
 	pc <- parseChar th prefix
@@ -166,8 +167,9 @@ mkParseCore th prefix rets rules = do
 
 parseChar :: Bool -> String -> State Variables Dec
 parseChar th prefix = do
-	[prs, ch, p, c, s, s', d] <- mapM (gets . getVariable)
+	arr <- mapM (gets . getVariable)
 		["parse", "chars", "pos", "c", "s", "s'", "d"]
+	let [prs, ch, p, c, s, s', d] = arr
 	let	emsg = "end of input"
 		np = VarE (mkName "updatePos") `AppE` VarE c `AppE` VarE p
 	return $ flip (ValD $ VarP ch) [] $ NormalB $ VarE (runStateTN th) `AppE`
