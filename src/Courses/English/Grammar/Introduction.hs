@@ -205,7 +205,7 @@ sentenceCanonicalizer :: SentenceCanonicalizer
 sentenceCanonicalizer = basicSentenceCanonicalizer
 
 -------- Translations
--- Lesson 1
+-- Lesson 1: Basics 1
 translations1_nice :: TranslationGenerator
 translations1_nice = combineFunctionsUniformly [tavlaReflexive, dundaReordered] where
     tavlaReflexive = generatorFromList
@@ -260,7 +260,7 @@ translationExercises1_normal = generateTranslationExercise sentenceCanonicalizer
 translationExercises1 :: ExerciseGenerator
 translationExercises1 = combineFunctions [(1, translationExercises1_nice), (4, translationExercises1_normal)]
 
--- Lesson 2
+-- Lesson 2: Basics 2
 translations2_restricted :: TranslationGenerator
 translations2_restricted = combineFunctions [(2, talkingAbout), (1, gaveSomething)] where
     talkingAbout = generatorFromList
@@ -395,7 +395,7 @@ translationExercises2_normal = generateTranslationExercise sentenceCanonicalizer
 translationExercises2 :: ExerciseGenerator
 translationExercises2 =  combineFunctions [(1, translationExercises1_nice), (10, translationExercises2_nice), (5, translationExercises2_normal)]
 
--- Lesson 3
+-- Lesson 3: Questions 1
 translations3_restricted_xu :: TranslationGenerator
 translations3_restricted_xu = combineFunctions [(2, talkingAbout), (1, gaveSomething), (4, writing), (2, know)] where
     talkingAbout = generatorFromList
@@ -627,7 +627,7 @@ translationExercises3 = combineFunctions [(1, restricted), (5, normal)] where
 questionExercises3 = generateNarrowFillingBlanksExerciseByAlternatives ["mo", "ma"] $ combineFunctionsUniformly [translations3_normal_ma, translations3_normal_mo]
 questionExercises3_simplified = generateNarrowFillingBlanksExerciseByAlternatives ["mo", "ma"] $ simplifyTranslationGenerator $ combineFunctionsUniformly [translations3_normal_ma, translations3_normal_mo]
 
--- Lesson 4
+-- Lesson 4: Abstractions 1
 -- CHECK: Are events vs facts being used correctly?
 translations4_nu :: TranslationGenerator
 translations4_nu = combineFunctions [(2, gleki), (1, tavla), (2, nupre)] where
@@ -895,7 +895,7 @@ translationExercises4 = generateTranslationExercise sentenceCanonicalizer senten
 abstractionExercises4 = generateNarrowFillingBlanksExerciseByAlternatives ["lo nu", "lo du'u", "lo se du'u"] $ combineFunctionsUniformly [translations4_nu, translations4_du'u, translations4_sedu'u]
 abstractionExercises4_simplified = generateNarrowFillingBlanksExerciseByAlternatives ["lo nu", "lo du'u", "lo se du'u"] $ simplifyTranslationGenerator $ combineFunctionsUniformly [translations4_nu, translations4_du'u, translations4_sedu'u]
 
--- Lesson 5
+-- Lesson 5: Terminator elision
 translations5_restricted :: TranslationGenerator
 translations5_restricted = combineFunctions [(2, hasHouse), (3, nice), (3, giving), (2, talking), (3, gleki), (3, nupre), (3, djuno), (3, cusku)] where
     hasHouse = generatorFromList
@@ -1083,11 +1083,11 @@ translations5_restricted = combineFunctions [(2, hasHouse), (3, nice), (3, givin
 translationExercises5_restricted :: ExerciseGenerator
 translationExercises5_restricted = generateBlacklistedWordTranslationExercise (T.pack "ku") sentenceCanonicalizer sentenceComparer translations5_restricted
 
--- Checkpoint: Lessons 1--5
+-- Lesson 6: Checkpoint -- Lessons 1-5
 translationExercises1to5_simplified :: ExerciseGenerator
 translationExercises1to5_simplified = simplifyCanonicalAnswer . combineFunctions [(4, translationExercises2_nice), (1, translationExercises2_normal), (5, translationExercises3), (6, translationExercises4), (5, translationExercises5_restricted)]
 
--- Lesson 6
+-- Lesson 7: Relative clauses
 -- questionExercises5 :: "What did you promise", "What did you say, ..."
 -- Interesting: xu do djuno lo se cusku
 
@@ -1259,6 +1259,7 @@ translationExercises7 = generateTranslationExercise sentenceCanonicalizer senten
 fillingBlanksExercises7 :: ExerciseGenerator
 fillingBlanksExercises7 = generateContextualizedBroadFillingBlanksExerciseByAlternatives ["poi", "noi"] translations7
 
+-- Lesson 8: Linked sumti
 translations8 :: TranslationGenerator
 translations8 = expandTranslationGenerator $ combineFunctionsUniformly [required_terminator, cmene_complex, general, vecnu_zdani, ctuca, tavla, bangu, zdani, cmene] where
     required_terminator = generatorFromList
@@ -1348,6 +1349,7 @@ translations8 = expandTranslationGenerator $ combineFunctionsUniformly [required
 translationExercises8 :: ExerciseGenerator
 translationExercises8 = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations8
 
+-- Lesson 9: Sumtcita
 translations9 :: TranslationGenerator
 translations9 = expandTranslationGenerator $ combineFunctionsUniformly [pi'o, mu'i, gau] where
     pi'o = generatorFromList
@@ -1446,6 +1448,7 @@ translations9 = expandTranslationGenerator $ combineFunctionsUniformly [pi'o, mu
 translationExercises9 :: ExerciseGenerator
 translationExercises9 = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations9
 
+-- Lesson 10: Tenses 1
 translations10_pu :: TranslationGenerator
 translations10_pu = expandTranslationGenerator $ combineFunctionsUniformly [dunda, vecnu, gleki] where
     dunda = generatorFromList
