@@ -21,8 +21,6 @@ import qualified Text.Pandoc as P
 -- introduce djica alongside questions: "I want you to be happy" / "Do you want me to be happy?" / "What do you want?" / "Who wants you to be happy" / "Who do you want to be happy?"
 -- TODO: remove the translations that make the least sense (in progress...)
 
--- TODO: programmatic translation generation
-
 -- Considerations
 --   * is "speaker" a good choice? maybe it implies voice or authority...
 -- TODO: consider adding some translations using observatives
