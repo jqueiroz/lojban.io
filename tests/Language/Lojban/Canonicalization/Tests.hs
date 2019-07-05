@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Language.Canonicalization
+module Language.Lojban.Canonicalization.Tests
 ( validateCanonicalization
 ) where
 

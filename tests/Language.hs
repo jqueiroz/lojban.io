@@ -1,6 +1,6 @@
 module Main where
 
-import Language.Canonicalization (validateCanonicalization)
+import Language.Lojban.Canonicalization.Tests (validateCanonicalization)
 
 main :: IO ()
 main = validateCanonicalization
