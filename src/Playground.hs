@@ -36,7 +36,10 @@ loadGismuFromFile filePath = do
     dict <- loadDictionary
     loadGismuFromText dict <$> TIO.readFile filePath
 
+terry :: IO [Gismu]
 terry = loadGismuFromFile "/home/john/Temp/lojban/texts/terry.txt"
+
+terryWords :: IO [T.Text]
 terryWords = map gismuText <$> terry
 
 parseString :: String -> Either String (ZG.Free, ZG.Text, ZG.Terminator)

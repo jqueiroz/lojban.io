@@ -622,7 +622,10 @@ translationExercises3 = combineFunctions [(1, restricted), (5, normal)] where
     restricted = generateBlacklistedWordTranslationExercise (T.pack "zo'e") sentenceCanonicalizer sentenceComparer translations3_restricted
     normal = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations3_normal
 
+questionExercises3 :: ExerciseGenerator
 questionExercises3 = generateNarrowFillingBlanksExerciseByAlternatives ["mo", "ma"] $ combineFunctionsUniformly [translations3_normal_ma, translations3_normal_mo]
+
+questionExercises3_simplified :: ExerciseGenerator
 questionExercises3_simplified = generateNarrowFillingBlanksExerciseByAlternatives ["mo", "ma"] $ simplifyTranslationGenerator $ combineFunctionsUniformly [translations3_normal_ma, translations3_normal_mo]
 
 -- Lesson 4: Abstractions 1
@@ -853,6 +856,7 @@ translations4_sedu'u = combineFunctions [(2, cusku)] where
             {-, (["mi cusku lo se du'u do nelci lo nu tavla mi kei ku kei ku", "mi cusku lo se du'u do nelci lo nu do tavla mi kei ku kei ku"], ["I said that you like to talk to me."])-}
             ]
 
+translations4_extra :: TranslationGenerator
 translations4_extra = combineFunctionsUniformly [gleki, tavla, nupre, cusku, ciska] where
     gleki = generatorFromList
         [ (["mi gleki"], ["I am happy."])
@@ -890,7 +894,10 @@ translationExercises4 :: ExerciseGenerator
 translationExercises4 = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations4
 
 -- "narrow" is required to avoid alternative translations using "ko'a"
+abstractionExercises4 :: ExerciseGenerator
 abstractionExercises4 = generateNarrowFillingBlanksExerciseByAlternatives ["lo nu", "lo du'u", "lo se du'u"] $ combineFunctionsUniformly [translations4_nu, translations4_du'u, translations4_sedu'u]
+
+abstractionExercises4_simplified :: ExerciseGenerator
 abstractionExercises4_simplified = generateNarrowFillingBlanksExerciseByAlternatives ["lo nu", "lo du'u", "lo se du'u"] $ simplifyTranslationGenerator $ combineFunctionsUniformly [translations4_nu, translations4_du'u, translations4_sedu'u]
 
 -- Lesson 5: Terminator elision

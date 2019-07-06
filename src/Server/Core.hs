@@ -18,6 +18,7 @@ import qualified Text.Blaze.Html5 as H
 import qualified Text.Blaze.Html5.Attributes as A
 
 -- Stylesheets
+includeUniversalStylesheets :: H.Html
 includeUniversalStylesheets = do
     includeInternalStylesheet "bootstrap.min.css"
     includeInternalStylesheet "main.css"
@@ -55,6 +56,7 @@ includeCourseStylesheet course = includeInlineStylesheet code where
         ]
 
 -- Scripts
+includeUniversalScripts :: H.Html
 includeUniversalScripts = do
     includeInternalScript "jquery-2.1.4.min.js"
     includeInternalScript "bootstrap.min.js"

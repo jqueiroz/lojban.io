@@ -28,6 +28,7 @@ narrowTranslationGeneratorByExpression :: TranslationGeneratorByExpression -> Tr
 narrowTranslationGeneratorByExpression = map (second narrowTranslationGenerator)
 
 -- Function manipulation
+compose2 :: (t1 -> t2) -> (t3 -> t4 -> t1) -> t3 -> t4 -> t2
 compose2 f g x y = f (g x y)
 
 -- List manipulation
