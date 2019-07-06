@@ -6,7 +6,7 @@ module Courses.Util.NumberTranslator
 ) where
 
 import Text.Read (readMaybe)
-import Control.Applicative ((<$>), (<*>), liftA)
+import Control.Applicative ((<$>), (<*>))
 import qualified Data.Text as T
 
 -- Digit

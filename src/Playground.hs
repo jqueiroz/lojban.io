@@ -4,7 +4,7 @@ module Playground where
 import Core
 import Language.Lojban.Parsing (parse)
 import Language.Lojban.Canonicalization (basicSentenceCanonicalizer)
-import Control.Applicative ((<$>), (<*>))
+import Control.Applicative ((<$>))
 import Data.Maybe (mapMaybe)
 import Data.List.Ordered (nubSort)
 import qualified Data.Text.IO as TIO

@@ -6,8 +6,8 @@ module DictionaryLoader
 
 import Core
 import Util (subfield)
-import Control.Applicative ((<$>), (<*>))
-import Control.Arrow ((***), first, second)
+import Control.Applicative ((<$>))
+import Control.Arrow (second)
 import Data.Maybe (isNothing)
 import qualified Data.Text as T
 import qualified Data.Text.IO as TIO

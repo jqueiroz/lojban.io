@@ -4,7 +4,6 @@ module Server.Resources
 ( displayResourcesHome
 ) where
 
-import Core
 import Server.Core
 import qualified Text.Blaze as B
 import qualified Text.Blaze.Html5 as H

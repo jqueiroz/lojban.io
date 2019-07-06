@@ -35,14 +35,13 @@ import Courses.Util.Sentences
 import Courses.Util.NumberTranslator
 import Language.Lojban.Core
 import Language.Lojban.Refinement (simplifyTerminatorsInSentence)
-import Util (narrowTranslationGenerator, narrowTranslationGeneratorByExpression, isSubexpressionOf, replace, replaceFirstSubexpression, replaceSubexpression, chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly, isWordOf)
+import Util (narrowTranslationGenerator, narrowTranslationGeneratorByExpression, isSubexpressionOf, replace, replaceFirstSubexpression, replaceSubexpression, chooseItemUniformly, combineFunctions, combineFunctionsUniformly, isWordOf)
 import Text.Read (readMaybe)
 import System.Random (StdGen, random)
 import Control.Applicative (liftA2)
 import Control.Arrow (first)
 import Control.Exception (assert)
 import Control.Monad (join)
-import Data.Maybe (fromJust)
 import qualified Data.Text as T
 import qualified Data.Map as M
 

@@ -7,7 +7,7 @@ module Language.Lojban.Refinement
 
 import Language.Lojban.Core
 import Language.Lojban.Canonicalization (basicSentenceCanonicalizer)
-import Control.Arrow ((***), first, second)
+import Control.Arrow ((***))
 import System.Random (StdGen)
 import Util (compose2)
 import qualified Data.Text as T

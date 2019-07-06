@@ -3,11 +3,10 @@
 module Util where
 
 import Core
-import Control.Arrow ((***), first, second)
-import Control.Applicative ((<$>), (<*>), liftA2)
+import Control.Arrow (second)
+import Control.Applicative (liftA2)
 import System.Random (StdGen, random, mkStdGen)
 import qualified Data.Text as T
-import Data.Text.Encoding (decodeUtf8)
 import Data.List (group, sort, intersperse)
 import System.Random.Shuffle (shuffle')
 

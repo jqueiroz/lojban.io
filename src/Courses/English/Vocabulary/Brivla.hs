@@ -7,7 +7,7 @@ module Courses.English.Vocabulary.Brivla (course, lesson01) where
 import Core
 import Courses.Util.ExerciseGenerators
 import Util (generatorFromList, combineFunctions)
-import Control.Arrow (first, second, (***))
+import Control.Arrow (second)
 import qualified Data.Text as T
 import qualified Text.Pandoc as P
 import Data.FileEmbed (embedStringFile)
