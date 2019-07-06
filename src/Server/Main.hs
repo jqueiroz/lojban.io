@@ -6,7 +6,7 @@ module Server.Main (main) where
 import Core
 import DictionaryLoader (loadDictionary)
 import Serializer (exerciseToJSON, validateExerciseAnswer)
-import qualified Courses.English.Grammar.Introduction
+import qualified Courses.English.Grammar.Introduction.Course
 import qualified Courses.English.Vocabulary.Brivla
 import Server.Core
 import Server.Home (displayHome)
@@ -52,7 +52,7 @@ handleRoot dictionary = msum
 handleGrammar :: Dictionary -> ServerPart Response
 handleGrammar dictionary = msum
     [ forceSlash . ok . toResponse $ displayGrammarHome
-    , dir "introduction" $ handleCourse TopbarGrammar dictionary Courses.English.Grammar.Introduction.course
+    , dir "introduction" $ handleCourse TopbarGrammar dictionary Courses.English.Grammar.Introduction.Course.course
     ]
 
 handleVocabulary :: Dictionary -> ServerPart Response
