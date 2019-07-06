@@ -4,7 +4,7 @@
 module Courses.English.Grammar.Introduction.Translations where
 
 import Core
-import Courses.English.Grammar.Introduction.Config
+import Courses.English.Grammar.Introduction.Strategies
 import Courses.Util.ExerciseGenerators
 import Courses.Util.Sentences
 import Util (combineFunctions, combineFunctionsUniformly, generatorFromSingleton, generatorFromList)

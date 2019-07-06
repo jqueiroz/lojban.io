@@ -47,11 +47,11 @@ library
                      , Courses.Util.NumberTranslator
                      , Courses.Util.Sentences
                      , Courses.Util.Vocabulary
-                     , Courses.English.Grammar.Introduction.Config
                      , Courses.English.Grammar.Introduction.Course
                      , Courses.English.Grammar.Introduction.Documents
                      , Courses.English.Grammar.Introduction.Exercises
                      , Courses.English.Grammar.Introduction.Lessons
+                     , Courses.English.Grammar.Introduction.Strategies
                      , Courses.English.Grammar.Introduction.Translations
                      , Courses.English.Grammar.Introduction.Vocabulary
                      , Courses.English.Vocabulary.Brivla
