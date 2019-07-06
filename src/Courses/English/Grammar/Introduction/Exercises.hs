@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- | This module defines exercises for each of the course lessons.
 module Courses.English.Grammar.Introduction.Exercises where
 
 import Core
@@ -11,7 +12,7 @@ import Courses.English.Grammar.Introduction.Translations
 import Courses.English.Grammar.Introduction.Vocabulary
 import Util (combineFunctions, generatorFromWeightedList)
 
--------- Exercises
+-- | Exercises for the first lesson.
 exercises1 :: Dictionary -> ExerciseGenerator
 exercises1 dictionary =
     combineFunctions
@@ -26,6 +27,7 @@ exercises1 dictionary =
         vocabulary = vocabularyGenerator1 dictionary
         displayBridi = combineFunctions [(7, displayStandardSimpleBridi), (3, displayVariantSimpleBridi)]
 
+-- | Exercises for the second lesson.
 exercises2 :: Dictionary -> ExerciseGenerator
 exercises2 dictionary =
     combineFunctions
@@ -41,6 +43,7 @@ exercises2 dictionary =
         vocabulary = vocabularyGenerator2 dictionary
         displayBridi = combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
 
+-- | Exercises for the third lesson.
 exercises3 :: Dictionary -> ExerciseGenerator
 exercises3 dictionary =
     combineFunctions
@@ -53,6 +56,7 @@ exercises3 dictionary =
         vocabulary = vocabularyGenerator3 dictionary
         displayBridi = combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
 
+-- | Exercises for the fourth lesson.
 exercises4 :: Dictionary -> ExerciseGenerator
 exercises4 dictionary =
     combineFunctions
@@ -65,6 +69,7 @@ exercises4 dictionary =
         vocabulary = vocabularyGenerator4 dictionary
         displayBridi = combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
 
+-- | Exercises for the fifth lesson.
 exercises5 :: Dictionary -> ExerciseGenerator
 exercises5 dictionary =
     combineFunctions
@@ -76,6 +81,7 @@ exercises5 dictionary =
         vocabulary = vocabularyGenerator5 dictionary
         displayBridi = simplifyTerminatorsInBridiDisplayer $ (combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)])
 
+-- | Exercises for the sixth lesson.
 exercises1to5 :: Dictionary -> ExerciseGenerator
 exercises1to5 dictionary =
     combineFunctions
@@ -93,6 +99,7 @@ exercises1to5 dictionary =
         vocabulary = vocabularyGenerator5 dictionary
         displayBridi = simplifyTerminatorsInBridiDisplayer $ (combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)])
 
+-- | Exercises for the seventh lesson.
 exercises7 :: Dictionary -> ExerciseGenerator
 exercises7 dictionary =
     combineFunctions
@@ -103,6 +110,7 @@ exercises7 dictionary =
     where
         vocabulary = vocabularyGenerator7 dictionary
 
+-- | Exercises for the eighth lesson.
 exercises8 :: Dictionary -> ExerciseGenerator
 exercises8 dictionary =
     combineFunctions
@@ -112,6 +120,7 @@ exercises8 dictionary =
     where
         vocabulary = vocabularyGenerator8 dictionary
 
+-- | Exercises for the nineth lesson.
 exercises9 :: Dictionary -> ExerciseGenerator
 exercises9 dictionary =
     combineFunctions
@@ -121,6 +130,7 @@ exercises9 dictionary =
     where
         vocabulary = vocabularyGenerator9 dictionary
 
+-- | Exercises for the tenth lesson.
 exercises10 :: Dictionary -> ExerciseGenerator
 exercises10 dictionary =
     combineFunctions
