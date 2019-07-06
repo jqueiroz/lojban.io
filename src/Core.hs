@@ -89,6 +89,8 @@ type TranslationGeneratorByExpression = [(T.Text, TranslationGenerator)]
 
 type SentenceComparer = LojbanSentence -> LojbanSentence -> Bool
 
+type SentenceCanonicalizer = T.Text -> Either String T.Text
+
 -- Exercises
 data Exercise =
     MultipleChoiceExercise

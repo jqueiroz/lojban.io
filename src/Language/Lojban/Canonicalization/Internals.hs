@@ -13,6 +13,7 @@ module Language.Lojban.Canonicalization.Internals
 , retrieveSimpleBridi
 ) where
 
+import Core (SentenceCanonicalizer)
 import Language.Lojban.Core
 import Language.Lojban.Parsing (parse)
 import Language.Lojban.Presentation (displayCanonicalBridi)
