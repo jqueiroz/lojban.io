@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-stack ghci lojto:exe:lojto
+stack ghci lojto:lib

@@ -27,6 +27,7 @@ RUN cd /lojto && stack install --only-dependencies
 
 # Copy source code
 COPY courses /lojto/courses
+COPY app /lojto/app
 COPY src /lojto/src
 COPY LICENSE /lojto/LICENSE
 
