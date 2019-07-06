@@ -4,6 +4,7 @@ set -e
 # Colors
 RED='\033[0;31m'
 GREEN='\033[0;32m'
+BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 # Haskell
@@ -20,6 +21,7 @@ if [ "$ALL_FILES_OKAY" == "true" ]; then
     echo -e "${GREEN}All files passed.${NC}"
 else
     echo -e "Lint issues found in the above file(s). Forgot to check hlint?"
+    echo -e "Try running: ${BLUE}hlint src${NC}"
 fi
 
 # Javascript
@@ -37,6 +39,7 @@ if [ "$ALL_FILES_OKAY" == "true" ]; then
     echo -e "${GREEN}All files passed.${NC}"
 else
     echo -e "Deviations from coding style found in the above file(s). Forgot to run Prettier?"
+    echo -e "Try running: ${BLUE}prettier --write static/scripts/*.js${NC}"
 fi
 
 # CSS/Less
@@ -54,4 +57,5 @@ if [ "$ALL_FILES_OKAY" == "true" ]; then
     echo -e "${GREEN}All files passed.${NC}"
 else
     echo -e "Deviations from coding style found in the above file(s). Forgot to run Prettier?"
+    echo -e "Try running: ${BLUE}prettier --write static/style/*.less${NC}"
 fi
