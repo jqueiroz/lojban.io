@@ -1,6 +1,6 @@
 {-# LANGUAGE TemplateHaskell #-}
 
--- | This module defines documents pertaining to the course, such as lessons and lesson plans.
+-- | This module defines documents pertaining to the course, such as lesson materials and lesson plans.
 module Courses.English.Grammar.Introduction.Documents where
 
 import Data.FileEmbed (embedStringFile)
