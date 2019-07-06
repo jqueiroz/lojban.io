@@ -3,7 +3,6 @@
 module Courses.English.Grammar.Introduction.Config  where
 
 import Core
-import Language.Lojban.Core
 import Language.Lojban.Canonicalization (basicSentenceCanonicalizer)
 import qualified Data.Text as T
 
