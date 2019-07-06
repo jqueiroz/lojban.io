@@ -1163,6 +1163,7 @@ translationExercises8 :: ExerciseGenerator
 translationExercises8 = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations8
 
 -- Lesson 9: Sumtcita
+-- TODO: include sentences like "lo jinga be gau do"
 translations9 :: TranslationGenerator
 translations9 = expandTranslationGenerator $ combineFunctionsUniformly [pi'o, mu'i, gau] where
     pi'o = generatorFromList
