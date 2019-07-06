@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- | This modules exposes the overall "Introduction to Grammar" course.
 module Courses.English.Grammar.Introduction.Course (course) where
 
 import Core
@@ -28,7 +29,7 @@ import Courses.English.Grammar.Introduction.Lessons
 -- Reminder: from Lesson 4 onwards, mix propositions and questions
 
 
--------- Course
+-- | Course style.
 style :: CourseStyle
 style = CourseStyle color1 iconUrl where
     -- Color1
@@ -45,6 +46,7 @@ style = CourseStyle color1 iconUrl where
         -- Source: https://www.flaticon.com/free-icon/puzzle_755205
         --"https://image.flaticon.com/icons/svg/755/755205.svg"
 
+-- | Course: Introduction to Grammar.
 course :: CourseBuilder
 course = createCourseBuilder title style lessons where
     title = "Introduction to Grammar"
