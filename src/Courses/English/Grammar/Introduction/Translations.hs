@@ -1469,6 +1469,6 @@ translations11 = expandTranslationGenerator $ combineFunctionsUniformly [pendo, 
         ]
 
 translationExercises11 :: ExerciseGenerator
-translationExercises11 = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations11
+translationExercises11 = generateRestrictedTranslationExercise "Translate this expression" (const True) sentenceCanonicalizer sentenceComparer translations11
 
 --TODO: pause immediately after lesson 5
