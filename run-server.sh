@@ -3,4 +3,4 @@ set -e
 
 stack build --fast
 ./compile-less.sh
-stack exec lojto
+stack exec server
