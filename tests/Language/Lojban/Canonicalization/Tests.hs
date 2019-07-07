@@ -199,6 +199,14 @@ validateCanonicalization = hspec $ do
         validateTermCanonicalization "lo pu prenu" "lo pu prenu ku"
       it "supports 'lo pu prenu ku'" $ do
         validateTermCanonicalization "lo pu prenu ku" "lo pu prenu ku"
+      it "supports 'lo gleki prenu ku'" $ do
+        validateTermCanonicalization "lo gleki prenu ku" "lo gleki prenu ku"
+      it "supports 'lo gleki prenu'" $ do
+        validateTermCanonicalization "lo gleki prenu" "lo gleki prenu ku"
+      it "supports 'lo gleki te dunda ku'" $ do
+        validateTermCanonicalization "lo gleki te dunda ku" "lo gleki te dunda ku"
+      it "supports 'lo gleki te dunda'" $ do
+        validateTermCanonicalization "lo gleki te dunda" "lo gleki te dunda ku"
     describe "Basic sentence canonicalizer" $ do
       it "supports SE" $ do
         validateSentences

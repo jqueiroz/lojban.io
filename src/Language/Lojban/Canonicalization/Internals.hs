@@ -181,6 +181,7 @@ convertStructuredTerm (ZG.LE (ZG.Init x) ZG.NR ZG.NQ (ZG.Rel y z) t) = convertSt
 convertStructuredTerm (ZG.LE (ZG.Init x) ZG.NR ZG.NQ y _) = insertPrefix . insertSuffix <$> convertStructuredTerm y where
     insertPrefix = ((T.pack $ x ++ " ") `T.append`)
     insertSuffix = (`T.append` " ku")
+convertStructuredTerm (ZG.Tanru xs) = unwordsET (map convertStructuredTerm xs)
 convertStructuredTerm x = Left $ "Unrecognized pattern for structured term: " ++ show x
 
 convertExtraTerms :: [ExtraTerm] -> Either String [T.Text]
