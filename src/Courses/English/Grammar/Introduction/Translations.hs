@@ -1423,6 +1423,7 @@ translations99 = generateTranslationExercise sentenceCanonicalizer sentenceCompa
     ]
 
 -- * Lesson 11: Tanru
+-- TODO: include full sentences, not just expressions
 translations11 :: TranslationGenerator
 translations11 = expandTranslationGenerator $ combineFunctionsUniformly [pendo, gleki, melbi, others] where
     pendo = generatorFromList
