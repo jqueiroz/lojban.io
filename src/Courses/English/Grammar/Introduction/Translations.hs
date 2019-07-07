@@ -1460,9 +1460,12 @@ translations11 = expandTranslationGenerator $ combineFunctionsUniformly [pendo, 
         , (["lo melbi skami"], ["The beautiful computer."])
         , (["lo melbi plise"], ["The beautiful apple."])
         ]
-    -- TODO: add more words
     others = generatorFromList
-        [ (["lo gerku zdani"], ["The dog house."])
+        [ (["lo nupre se dunda"], ["The promised gift."])
+        , (["lo gerku zdani"], ["The dog house."])
+        , (["lo tavla skami"], ["The talking computer."])
+        , (["lo tavla gerku"], ["The talking dog."])
+        , (["lo tavla mlatu"], ["The talking cat."])
         ]
 
 translationExercises11 :: ExerciseGenerator
