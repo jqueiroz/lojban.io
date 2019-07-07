@@ -48,3 +48,7 @@ lesson10 dictionary = Lesson "Tenses 1" (exercises10 dictionary) plan10
 -- | Eleventh lesson: Tanru
 lesson11 :: LessonBuilder
 lesson11 dictionary = Lesson "Tanru 1" (exercises11 dictionary) plan11
+
+-- | Twelveth lesson: Checkpoint (Lessons 7--11)
+checkpoint7to11 :: LessonBuilder
+checkpoint7to11 dictionary = Lesson "Checkpoint: Lessons 7-11" (exercises7to11 dictionary) plan7to11

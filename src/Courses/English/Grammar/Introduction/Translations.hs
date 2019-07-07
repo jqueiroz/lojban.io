@@ -1471,4 +1471,17 @@ translations11 = expandTranslationGenerator $ combineFunctionsUniformly [pendo, 
 translationExercises11 :: ExerciseGenerator
 translationExercises11 = generateRestrictedTranslationExercise "Translate this expression" (const True) sentenceCanonicalizer sentenceComparer translations11
 
+-- * Lesson 11: Checkpoint -- Lessons 7-11
+translationExercises7to11 :: ExerciseGenerator
+translationExercises7to11 = combineFunctions
+    [ (5, translationExercises7)
+    , (1, fillingBlanksExercises7)
+    , (5, translationExercises8)
+    , (5, translationExercises9)
+    , (5, translationExercises10_restricted)
+    , (1, translationExercises10_unrestricted)
+    , (2, fillingBlanksExercises10)
+    , (5, translationExercises11)
+    ]
+
 --TODO: pause immediately after lesson 5
