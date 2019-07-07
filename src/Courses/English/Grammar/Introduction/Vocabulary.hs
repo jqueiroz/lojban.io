@@ -167,3 +167,19 @@ vocabularyGenerator10 = createVocabularyBuilder
     -- Sumti
     [
     ]
+
+-- | Vocabulary for the eleventh lesson.
+--
+-- * New brivla: NONE.
+-- * New cmavo: NONE.
+vocabularyGenerator11 :: VocabularyBuilder
+vocabularyGenerator11 = createVocabularyBuilder
+    -- Selbri
+    [
+        ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska", "djuno", "nupre", "cusku", "vecnu", "pilno"])),
+        ("relations", ((0,) <$> ["pendo", "nelci", "gleki"]) ++ ((1,) <$> ["cmene", "bangu"])),
+        ("properties", (0,) <$> ["prenu", "zdani", "mlatu", "gerku", "melbi", "plise", "skami"])
+    ]
+    -- Sumti
+    [
+    ]

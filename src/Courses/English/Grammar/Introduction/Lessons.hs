@@ -44,3 +44,7 @@ lesson9 dictionary = Lesson "Sumtcita" (exercises9 dictionary) plan9
 -- | Tenth lesson: Tenses 1
 lesson10 :: LessonBuilder
 lesson10 dictionary = Lesson "Tenses 1" (exercises10 dictionary) plan10
+
+-- | Eleventh lesson: Tanru
+lesson11 :: LessonBuilder
+lesson11 dictionary = Lesson "Tanru 1" (exercises11 dictionary) plan11

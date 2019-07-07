@@ -1422,4 +1422,50 @@ translations99 = generateTranslationExercise sentenceCanonicalizer sentenceCompa
     [ (["lo prenu ku sutra tavla"], ["The person talks quickly.", "The person is talking quickly.", "A person is talking quickly.", "People talk quickly"])
     ]
 
+-- * Lesson 11: Tanru
+translations11 :: TranslationGenerator
+translations11 = expandTranslationGenerator $ combineFunctionsUniformly [pendo, gleki, melbi, others] where
+    pendo = generatorFromList
+        [ (["lo pendo prenu"], ["The friendly person."])
+        , (["lo pendo dunda"], ["The friendly donor."])
+        , (["lo pendo te dunda "], ["The friendly recipient."])
+        , (["lo pendo vecnu"], ["The friendly seller."])
+        , (["lo pendo te vecnu"], ["The friendly buyer."])
+        , (["lo pendo tavla"], ["The friendly speaker."])
+        , (["lo pendo ctuca"], ["The friendly teacher."])
+        , (["lo pendo gerku"], ["The friendly dog."])
+        , (["lo pendo mlatu"], ["The friendly cat."])
+        ]
+    gleki = generatorFromList
+        [ (["lo gleki prenu"], ["The happy person."])
+        , (["lo gleki dunda"], ["The happy donor."])
+        , (["lo gleki te dunda "], ["The happy recipient."])
+        , (["lo gleki vecnu"], ["The happy seller."])
+        , (["lo gleki te vecnu"], ["The happy buyer."])
+        , (["lo gleki tavla"], ["The happy speaker."])
+        , (["lo gleki ctuca"], ["The happy teacher."])
+        , (["lo gleki gerku"], ["The happy dog."])
+        , (["lo gleki mlatu"], ["The happy cat."])
+        ]
+    melbi = generatorFromList
+        [ (["lo melbi prenu"], ["The beautiful person."])
+        , (["lo melbi dunda"], ["The beautiful donor."])
+        , (["lo melbi te dunda "], ["The beautiful recipient."])
+        , (["lo melbi vecnu"], ["The beautiful seller."])
+        , (["lo melbi te vecnu"], ["The beautiful buyer."])
+        , (["lo melbi tavla"], ["The beautiful speaker."])
+        , (["lo melbi ctuca"], ["The beautiful teacher."])
+        , (["lo melbi gerku"], ["The beautiful dog."])
+        , (["lo melbi mlatu"], ["The beautiful cat."])
+        , (["lo melbi skami"], ["The beautiful computer."])
+        , (["lo melbi plise"], ["The beautiful apple."])
+        ]
+    -- TODO: add more words
+    others = generatorFromList
+        [ (["lo gerku zdani"], ["The dog house."])
+        ]
+
+translationExercises11 :: ExerciseGenerator
+translationExercises11 = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations11
+
 --TODO: pause immediately after lesson 5

@@ -141,3 +141,13 @@ exercises10 dictionary =
         ]
     where
         vocabulary = vocabularyGenerator10 dictionary
+
+-- | Exercises for the eleventh lesson.
+exercises11 :: Dictionary -> ExerciseGenerator
+exercises11 dictionary =
+    combineFunctions
+        [ (10, generateIsolatedBrivlaPlacesExercise dictionary $ generatorFromWeightedList $ getVocabularySelbri vocabulary "actions" ++ getVocabularySelbri vocabulary "relations")
+        , (70, translationExercises11)
+        ]
+    where
+        vocabulary = vocabularyGenerator11 dictionary
