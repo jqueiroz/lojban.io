@@ -1536,7 +1536,7 @@ translationExercises11 = combineFunctions [(1, translationExercises11_expression
     translationExercises11_expressions = generateRestrictedTranslationExercise "Translate this expression as a tanru" (const True) sentenceCanonicalizer sentenceComparer translations11_expressions
     translationExercises11_sentences = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations11_sentences
 
--- * Lesson 11: Checkpoint -- Lessons 7-11
+-- * Lesson 12: Checkpoint -- Lessons 7-11
 translationExercises7to11 :: ExerciseGenerator
 translationExercises7to11 = combineFunctions
     [ (5, translationExercises7)
