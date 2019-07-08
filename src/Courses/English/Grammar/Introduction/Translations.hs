@@ -1423,9 +1423,8 @@ translations99 = generateTranslationExercise sentenceCanonicalizer sentenceCompa
     ]
 
 -- * Lesson 11: Tanru
--- TODO: include full sentences, not just expressions
-translations11 :: TranslationGenerator
-translations11 = expandTranslationGenerator $ combineFunctionsUniformly [pendo, gleki, melbi, others] where
+translations11_expressions :: TranslationGenerator
+translations11_expressions = expandTranslationGenerator $ combineFunctionsUniformly [pendo, gleki, melbi, others] where
     pendo = generatorFromList
         [ (["lo pendo prenu"], ["The friendly person."])
         , (["lo pendo dunda"], ["The friendly donor."])
@@ -1469,8 +1468,73 @@ translations11 = expandTranslationGenerator $ combineFunctionsUniformly [pendo, 
         , (["lo tavla mlatu"], ["The talking cat."])
         ]
 
+translations11_sentences :: TranslationGenerator
+translations11_sentences = expandTranslationGenerator $ combineFunctionsUniformly [pendo, gleki] where
+    pendo = generatorFromList
+        -- tavla (mi)
+        [ (["mi tavla lo pendo prenu", "mi tavla lo prenu poi pendo"], ["I talked to the friendly person."])
+        , (["mi tavla lo pendo dunda", "mi tavla lo dunda poi pendo"], ["I talked to the friendly donor."])
+        , (["mi tavla lo pendo te dunda ", "mi tavla lo te dunda poi pendo"], ["I talked to the friendly recipient."])
+        , (["mi tavla lo pendo vecnu", "mi tavla lo vecnu poi pendo"], ["I talked to the friendly seller."])
+        , (["mi tavla lo pendo te vecnu", "mi tavla lo te vecnu poi pendo"], ["I talked to the friendly buyer."])
+        , (["mi tavla lo pendo ctuca", "mi tavla lo ctuca poi pendo"], ["I talked to the friendly teacher."])
+        -- tavla (xu do)
+        , (["xu do tavla lo pendo prenu", "xu do tavla lo prenu poi pendo"], ["Did you talk to the friendly person?"])
+        , (["xu do tavla lo pendo dunda", "xu do tavla lo dunda poi pendo"], ["Did you talk to the friendly donor?"])
+        , (["xu do tavla lo pendo te dunda ", "xu do tavla lo te dunda poi pendo"], ["Did you talk to the friendly recipient?"])
+        , (["xu do tavla lo pendo vecnu", "xu do tavla lo vecnu poi pendo"], ["Did you talk to the friendly seller?"])
+        , (["xu do tavla lo pendo te vecnu", "xu do tavla lo te vecnu poi pendo"], ["Did you talk to the friendly buyer?"])
+        , (["xu do tavla lo pendo ctuca", "xu do tavla lo ctuca poi pendo"], ["Did you talk to the friendly teacher?"])
+        -- nelci (mi)
+        , (["mi nelci lo pendo prenu", "mi nelci lo prenu poi pendo"], ["I like friendly people."])
+        , (["mi nelci lo pendo dunda", "mi nelci lo dunda poi pendo"], ["I like friendly donors."])
+        , (["mi nelci lo pendo te dunda", "mi nelci lo te dunda poi pendo"], ["I like friendly recipients."])
+        , (["mi nelci lo pendo vecnu", "mi nelci lo vecnu poi pendo"], ["I like friendly sellers."])
+        , (["mi nelci lo pendo te vecnu", "mi nelci lo te vecnu poi pendo"], ["I like friendly buyers."])
+        , (["mi nelci lo pendo ctuca", "mi nelci lo ctuca poi pendo"], ["I like friendly teachers."])
+        , (["mi nelci lo pendo gerku", "mi nelci lo gerku poi pendo"], ["I like friendly dogs."])
+        , (["mi nelci lo pendo mlatu", "mi nelci lo mlatu poi pendo"], ["I like friendly cats."])
+        -- nelci (xu do)
+        , (["xu do nelci lo pendo prenu", "xu do nelci lo prenu poi pendo"], ["Do you like friendly people?"])
+        , (["xu do nelci lo pendo dunda", "xu do nelci lo dunda poi pendo"], ["Do you like friendly donors?"])
+        , (["xu do nelci lo pendo te dunda", "xu do nelci lo te dunda poi pendo"], ["Do you like friendly recipients?"])
+        , (["xu do nelci lo pendo vecnu", "xu do nelci lo vecnu poi pendo"], ["Do you like friendly sellers?"])
+        , (["xu do nelci lo pendo te vecnu", "xu do nelci lo te vecnu poi pendo"], ["Do you like friendly buyers?"])
+        , (["xu do nelci lo pendo ctuca", "xu do nelci lo ctuca poi pendo"], ["Do you like friendly teachers?"])
+        , (["xu do nelci lo pendo gerku", "xu do nelci lo gerku poi pendo"], ["Do you like friendly dogs?"])
+        , (["xu do nelci lo pendo mlatu", "xu do nelci lo mlatu poi pendo"], ["Do you like friendly cats?"])
+        ]
+    gleki = generatorFromList
+        -- tavla (mi)
+        [ (["mi tavla lo gleki prenu", "mi tavla lo prenu poi gleki"], ["I talked to the happy person."])
+        , (["mi tavla lo gleki dunda", "mi tavla lo dunda poi gleki"], ["I talked to the happy donor."])
+        , (["mi tavla lo gleki te dunda ", "mi tavla lo te dunda poi gleki"], ["I talked to the happy recipient."])
+        , (["mi tavla lo gleki vecnu", "mi tavla lo vecnu poi gleki"], ["I talked to the happy seller."])
+        , (["mi tavla lo gleki te vecnu", "mi tavla lo te vecnu poi gleki"], ["I talked to the happy buyer."])
+        , (["mi tavla lo gleki ctuca", "mi tavla lo ctuca poi gleki"], ["I talked to the happy teacher."])
+        -- tavla (xu do)
+        , (["xu do tavla lo gleki prenu", "xu do tavla lo prenu poi gleki"], ["Did you talk to the happy person?"])
+        , (["xu do tavla lo gleki dunda", "xu do tavla lo dunda poi gleki"], ["Did you talk to the happy donor?"])
+        , (["xu do tavla lo gleki te dunda ", "xu do tavla lo te dunda poi gleki"], ["Did you talk to the happy recipient?"])
+        , (["xu do tavla lo gleki vecnu", "xu do tavla lo vecnu poi gleki"], ["Did you talk to the happy seller?"])
+        , (["xu do tavla lo gleki te vecnu", "xu do tavla lo te vecnu poi gleki"], ["Did you talk to the happy buyer?"])
+        , (["xu do tavla lo gleki ctuca", "xu do tavla lo ctuca poi gleki"], ["Did you talk to the happy teacher?"])
+        -- nelci (mi)
+        , (["mi nelci lo gleki prenu", "mi nelci lo prenu poi gleki"], ["I like happy people."])
+        , (["mi nelci lo gleki ctuca", "mi nelci lo ctuca poi gleki"], ["I like happy teachers."])
+        , (["mi nelci lo gleki gerku", "mi nelci lo gerku poi gleki"], ["I like happy dogs."])
+        , (["mi nelci lo gleki mlatu", "mi nelci lo mlatu poi gleki"], ["I like happy cats."])
+        -- nelci (xu do)
+        , (["xu do nelci lo gleki prenu", "xu do nelci lo prenu poi gleki"], ["Do you like happy people?"])
+        , (["xu do nelci lo gleki ctuca", "xu do nelci lo ctuca poi gleki"], ["Do you like happy teachers?"])
+        , (["xu do nelci lo gleki gerku", "xu do nelci lo gerku poi gleki"], ["Do you like happy dogs?"])
+        , (["xu do nelci lo gleki mlatu", "xu do nelci lo mlatu poi gleki"], ["Do you like happy cats?"])
+        ]
+
 translationExercises11 :: ExerciseGenerator
-translationExercises11 = generateRestrictedTranslationExercise "Translate this expression" (const True) sentenceCanonicalizer sentenceComparer translations11
+translationExercises11 = combineFunctions [(1, translationExercises11_expressions), (1, translationExercises11_sentences)] where
+    translationExercises11_expressions = generateRestrictedTranslationExercise "Translate this expression as a tanru" (const True) sentenceCanonicalizer sentenceComparer translations11_expressions
+    translationExercises11_sentences = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations11_sentences
 
 -- * Lesson 11: Checkpoint -- Lessons 7-11
 translationExercises7to11 :: ExerciseGenerator
