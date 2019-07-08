@@ -1423,6 +1423,7 @@ translations99 = generateTranslationExercise sentenceCanonicalizer sentenceCompa
     ]
 
 -- * Lesson 11: Tanru
+-- TODO: tanru for "adverbs", in addition to the existing tanru for "adjectives"
 translations11_expressions :: TranslationGenerator
 translations11_expressions = expandTranslationGenerator $ combineFunctionsUniformly [pendo, gleki, melbi, others] where
     pendo = generatorFromList
