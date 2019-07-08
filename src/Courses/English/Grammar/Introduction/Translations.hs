@@ -1540,7 +1540,7 @@ translationExercises11 = combineFunctions [(1, translationExercises11_expression
 translationExercises7to11 :: ExerciseGenerator
 translationExercises7to11 = combineFunctions
     [ (5, translationExercises7)
-    , (1, fillingBlanksExercises7)
+    , (2, fillingBlanksExercises7)
     , (5, translationExercises8)
     , (5, translationExercises9)
     , (5, translationExercises10_restricted)
