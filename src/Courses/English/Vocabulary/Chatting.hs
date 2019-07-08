@@ -1,1 +1,18 @@
 -- TODO: implement canonicalization for coi, doi, etc (discursives in general)
+-- First lesson:
+--   coi, doi, do'u
+--   co'o
+--   mi'e
+--   je'e, ki'e
+--   go'i, na go'i
+-- Second lesson:
+--   fi'i
+--   pe'u
+--   je'e
+-- Third lesson:
+--   ju'i
+
+-- Others:
+--   .ui penmi do
+--   .a'o xamgu nicte
+--   .a'o xamgu djedi
