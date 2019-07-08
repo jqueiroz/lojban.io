@@ -236,6 +236,10 @@ validateCanonicalization = hspec $ do
         validateSentences
             [ ("xu do nelci lo mlatu", "xu do nelci lo mlatu ku")
             ]
+      it "supports BPFK-2016-03-15" $ do
+        validateSentences
+            [ ("lo nu broda ba brode", "ba ku lo nu broda kei ku brode")
+            ]
       --it "supports reordered XU" $ do
         --validateSentences
             --[ ("do nelci xu lo mlatu", "xu do nelci lo mlatu ku")
