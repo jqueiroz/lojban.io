@@ -4,7 +4,7 @@ module Courses.English.Vocabulary.Attitudinals.Glossary where
 
 import Courses.English.Vocabulary.Attitudinals.Model
 
--- Source: https://en.wikibooks.org/wiki/Lojban/Attitudinals#Simple_propositional_emotions:
+-- Source: https://en.wikibooks.org/wiki/Lojban/Attitudinals
 
 -- Simple propositional emotions
 a'a :: Attitudinal
