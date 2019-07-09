@@ -54,6 +54,8 @@ library
                      , Courses.English.Grammar.Introduction.Strategies
                      , Courses.English.Grammar.Introduction.Translations
                      , Courses.English.Grammar.Introduction.Vocabulary
+                     , Courses.English.Vocabulary.Attitudinals.Model
+                     , Courses.English.Vocabulary.Attitudinals.Glossary
                      , Courses.English.Vocabulary.Brivla
                      , Language.Lojban.Canonicalization
                      , Language.Lojban.Canonicalization.Internals
