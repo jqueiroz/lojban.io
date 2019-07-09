@@ -31,6 +31,7 @@
 #- ignore: {name: "Use concatMap"}
 #- ignore: {name: "Use fromMaybe"}
 #- ignore: {name: "Use head"}
+- ignore: {name: "Use camelCase"}
 - ignore: {name: "Redundant do"} # TODO: within Server and submodules
 #- ignore: {name: "Use lambda-case"}
 
