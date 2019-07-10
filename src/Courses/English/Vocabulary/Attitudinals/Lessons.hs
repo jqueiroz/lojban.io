@@ -8,3 +8,7 @@ import Courses.English.Vocabulary.Attitudinals.Exercises
 -- | First lesson: Pure emotions 1.
 lesson1 :: LessonBuilder
 lesson1 dictionary = Lesson "Pure emotions 1" exercises1 plan1
+
+-- | Second lesson: Propositional emotions 1.
+lesson2 :: LessonBuilder
+lesson2 dictionary = Lesson "Propositional emotions 1" exercises2 plan2

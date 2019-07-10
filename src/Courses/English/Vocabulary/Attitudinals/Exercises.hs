@@ -18,3 +18,7 @@ generatePositiveAttitudinalMeaningExercise attitudinalGenerator r0 = TypingExerc
 -- | Exercises for the first lesson.
 exercises1 :: ExerciseGenerator
 exercises1 = generatePositiveAttitudinalMeaningExercise $ generatorFromList attitudinals1
+
+-- | Exercises for the second lesson.
+exercises2 :: ExerciseGenerator
+exercises2 = generatePositiveAttitudinalMeaningExercise $ generatorFromList attitudinals2
