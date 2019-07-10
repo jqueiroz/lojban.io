@@ -34,7 +34,7 @@ style :: CourseStyle
 style = CourseStyle color1 iconUrl where
     -- Color1
     color1 = Just
-        "#4c4c4c"
+        "hsl(0, 0%, 30%)"
     -- Icon url
     iconUrl = Just
         -- Source: https://www.flaticon.com/free-icon/jigsaw_993723#term=jigsaw&page=1&position=3

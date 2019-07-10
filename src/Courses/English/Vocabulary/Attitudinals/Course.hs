@@ -10,11 +10,11 @@ import Courses.English.Vocabulary.Attitudinals.Lessons
 style :: CourseStyle
 style = CourseStyle color1 iconUrl where
     color1 = Just
-        "#7ac70c"
+        "hsl(274, 34%, 30%)"
     -- Icon url
     iconUrl = Just
-        -- Source: https://www.flaticon.com/premium-icon/swear_774512#term=word&page=1&position=64
-        "https://www.flaticon.com/premium-icon/icons/svg/774/774512.svg"
+        -- Source: https://www.flaticon.com/free-icon/happy_187134
+        "https://image.flaticon.com/icons/svg/187/187134.svg"
 
 -- | Course: Attitudinals.
 course :: CourseBuilder

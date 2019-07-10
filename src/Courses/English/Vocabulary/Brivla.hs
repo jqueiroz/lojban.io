@@ -68,7 +68,7 @@ lesson02 dictionary = Lesson "Deck #2" (exercises02 dictionary) plan02
 style :: CourseStyle
 style = CourseStyle color1 iconUrl where
     color1 = Just
-        "#7ac70c"
+        "hsl(85, 89%, 30%)"
     -- Icon url
     iconUrl = Just
         -- Source: https://www.flaticon.com/premium-icon/swear_774512#term=word&page=1&position=64
