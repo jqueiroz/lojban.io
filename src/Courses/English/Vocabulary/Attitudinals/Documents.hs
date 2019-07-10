@@ -4,7 +4,6 @@
 module Courses.English.Vocabulary.Attitudinals.Documents where
 
 import Data.FileEmbed (embedStringFile)
-import qualified Data.Text as T
 import qualified Text.Pandoc as P
 
 -- * Lesson plans
