@@ -1,5 +1,6 @@
 module Courses.English.Vocabulary.Attitudinals.Model where
 
+import System.Random (StdGen)
 import qualified Data.Text as T
 
 data AttitudinalType = PureEmotion | PropositionalEmotion
@@ -11,3 +12,5 @@ data Attitudinal = Attitudinal
     , attitudinalNeutralMeaning :: Maybe T.Text
     , attitudinalNegativeMeaning :: Maybe T.Text
     }
+
+type AttitudinalGenerator = StdGen -> (Attitudinal, StdGen)

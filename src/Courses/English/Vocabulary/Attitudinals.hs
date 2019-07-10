@@ -1,2 +1,0 @@
--- Interesting exercise: "Rewrite using attitudinals"
--- Example: "mi djica lo nu mi citka" -> ".au mi citka"
