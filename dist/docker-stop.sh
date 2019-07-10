@@ -5,10 +5,10 @@ set -e
 echo -e ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Stopping containers..."
 previously_running=false
 
-if [ -n "`docker $DOCKER_OPTS ps -a | grep lojto-server$`" ]; then
+if [ -n "`docker $DOCKER_OPTS ps -a | grep lojban-server$`" ]; then
     previously_running=true
     echo -ne "\t"
-    docker $DOCKER_OPTS stop lojto-server
+    docker $DOCKER_OPTS stop lojban-server
 fi
 
 echo ""
@@ -19,9 +19,9 @@ fi
 ########################## Remove containers ##########################
 echo -e ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Removing containers..."
 
-if [ -n "`docker $DOCKER_OPTS ps -a | grep lojto-server$`" ]; then
+if [ -n "`docker $DOCKER_OPTS ps -a | grep lojban-server$`" ]; then
     echo -ne "\t"
-    docker $DOCKER_OPTS rm lojto-server
+    docker $DOCKER_OPTS rm lojban-server
 fi
 
 echo ""

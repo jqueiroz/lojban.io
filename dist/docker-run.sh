@@ -5,10 +5,10 @@ set -e
 echo -e ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Starting containers..."
 if [ -z "$DOCKER_OPTS" ]; then
     echo -ne "\t"
-    docker $DOCKER_OPTS run -p 80:8000/tcp -it --name lojto-server lojto-server
+    docker $DOCKER_OPTS run -p 80:8000/tcp -it --name lojban-server lojban-server
 else
     echo -ne "\t"
-    docker $DOCKER_OPTS run -d --name lojto-server lojto-server
+    docker $DOCKER_OPTS run -d --name lojban-server lojban-server
 fi
 
 echo ""
