@@ -13,4 +13,7 @@ data Attitudinal = Attitudinal
     , attitudinalNegativeMeaning :: Maybe T.Text
     }
 
+instance Eq Attitudinal where
+    x == y = (attitudinalWord x) == (attitudinalWord y)
+
 type AttitudinalGenerator = StdGen -> (Attitudinal, StdGen)
