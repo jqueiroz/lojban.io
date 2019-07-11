@@ -14,4 +14,7 @@ attitudinals1 = [G.u'i, G.ua, G.oi, G.ui, G.ue, G.u'u]
 
 -- | List of attitudinals for the second lesson (consists solely of propositional emotions).
 attitudinals2 :: [Attitudinal]
-attitudinals2 = [G.ie, G.i'e, G.ai, G.au, G.e'u, G.a'o]
+attitudinals2 = [G.ie, G.ei, G.i'e, G.ai, G.au, G.e'u]
+
+-- | List of attitudinals for the fourth lesson (consists solely of propositional emotions).
+attitudinals4 = [G.a'o]
