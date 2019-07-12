@@ -46,7 +46,7 @@ generateAttitudinalForwardMeaningExercise attitudinals r0 = SingleChoiceExercise
     (incorrectMeanings, r4) = mapRandom r3 randomlyPickAttitudinalMeaning (take 4 incorrectAttitudinals)
 
 generateAttitudinalClassificationExercise :: [Attitudinal] -> ExerciseGenerator
-generateAttitudinalClassificationExercise attitudinals r0 = SingleChoiceExercise title [] correctClassification [incorrectClassification] False where
+generateAttitudinalClassificationExercise attitudinals r0 = SingleChoiceExercise title [] correctClassification [incorrectClassification] True where
     title = "Classify the attitudinal <b>" `T.append` (attitudinalWord attitudinal) `T.append` "</b>"
     (attitudinal, r1) = chooseItemUniformly r0 attitudinals
     (correctClassification, incorrectClassification)
