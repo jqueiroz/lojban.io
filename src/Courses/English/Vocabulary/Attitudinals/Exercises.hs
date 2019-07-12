@@ -10,6 +10,7 @@ import Courses.English.Vocabulary.Attitudinals.Vocabulary
 import Courses.English.Vocabulary.Attitudinals.Util
 import qualified Data.Text as T
 
+-- * Exercise templates
 generatePositiveAttitudinalBackwardMeaningExercise :: [Attitudinal] -> ExerciseGenerator
 generatePositiveAttitudinalBackwardMeaningExercise attitudinals r0 = TypingExercise title [] (== expectedAttitudinal) (expectedAttitudinal) where
     (attitudinal, r1) = chooseItemUniformly r0 attitudinals
@@ -53,6 +54,7 @@ generateAttitudinalClassificationExercise attitudinals r0 = SingleChoiceExercise
         | (attitudinalType attitudinal) == PureEmotion = ("Pure", "Propositional")
         | otherwise                                    = ("Propositional", "Pure")
 
+-- * Exercises per lesson
 -- | Exercises for the first lesson.
 exercises1 :: ExerciseGenerator
 exercises1 = combineFunctionsUniformly
