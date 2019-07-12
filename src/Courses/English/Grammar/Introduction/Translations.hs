@@ -1102,9 +1102,9 @@ fillingBlanksExercises7 = generateContextualizedBroadFillingBlanksExerciseByAlte
 translations8 :: TranslationGenerator
 translations8 = expandTranslationGenerator $ combineFunctionsUniformly [required_terminator, cmene_complex, general, vecnu_zdani, ctuca, tavla, bangu, zdani, cmene] where
     required_terminator = generatorFromList
-        [ (["mi nelci lo cmene be do be'o noi melbi"], ["I like your name, which is beautiful."])
-        , (["mi nelci lo zdani be do be'o noi melbi"], ["I like your house, which is beautiful."])
-        , (["mi nelci lo bangu be do be'o noi mi nupre lo nu {mi} ctuca fo (ke'a|zo'e)"], ["I like your language, which I promised to teach."])
+        [ (["mi nelci lo cmene (be do be'o|pe do ge'u) noi melbi"], ["I like your name, which is beautiful."])
+        , (["mi nelci lo zdani (be do be'o|pe do ge'u) noi melbi"], ["I like your house, which is beautiful."])
+        , (["mi nelci lo bangu (be do be'o|pe do ge'u) noi mi nupre lo nu {mi} ctuca fo (ke'a|zo'e)"], ["I like your language, which I promised to teach."])
         ]
     cmene_complex = generatorFromList
         [ (["ma se cmene lo dunda be lo mlatu bei do"], ["What is the name of the one who gave you the cat?"])
@@ -1130,25 +1130,25 @@ translations8 = expandTranslationGenerator $ combineFunctionsUniformly [required
         ]
     vecnu_zdani = generatorFromList
         [ (["mi tavla lo vecnu be lo zdani"], ["I talked to the one who sold the house."])
-        , (["mi tavla lo vecnu be lo zdani be do"], ["I talked to the one who sold your house."])
+        , (["mi tavla lo vecnu be lo zdani (be|pe) do"], ["I talked to the one who sold your house."])
         , (["mi tavla lo vecnu be lo zdani bei do"], ["I talked to the one who sold the house to you."])
-        , (["mi tavla lo vecnu be lo zdani be do bei mi"], ["I talked to the one who sold me your house."])
+        , (["mi tavla lo vecnu be lo zdani (be|pe) do bei mi"], ["I talked to the one who sold me your house."])
         , (["xu do tavla lo vecnu be lo zdani"], ["Did you talk to the one who sold the house?"])
         , (["xu do tavla lo vecnu be lo zdani be do"], ["Did you talk to the one who sold your house?"])
         , (["xu do tavla lo vecnu be lo zdani bei do"], ["Did you talk to the one who sold you the house?"])
-        , (["do vecnu lo zdani be ma"], ["Whose house did you sell?"])
-        , (["do vecnu lo zdani be mi ma"], ["To whom did you sell my house?"])
+        , (["do vecnu lo zdani (be|pe) ma"], ["Whose house did you sell?"])
+        , (["do vecnu lo zdani (be|pe) mi ma"], ["To whom did you sell my house?"])
         ]
     ctuca = generatorFromList
         [ (["do dunda lo zdani lo ctuca be ma"], ["Whose instructor did you donate the house to?"])
         , (["xu do dunda lo zdani lo ctuca be mi"], ["Did you donate the house to the instructor who taught me?"])
         , (["xu do dunda lo zdani lo ctuca be do"], ["Did you donate the house to the instructor who taught you?"])
-        , (["xu do nelci lo ctuca be do"], ["Do you like your instructor?", "Did you like your instructor?"])
-        , (["xu do nelci lo ctuca be mi"], ["Do you like my instructor?"])
-        , (["mi pendo lo ctuca be mi"], ["I am friends with my instructor."])
-        , (["mi pendo lo ctuca be do"], ["I am friends with your instructor."])
-        , (["xu do pendo lo ctuca be mi"], ["Are you friends with my instructor?"])
-        , (["xu do pendo lo ctuca be do"], ["Are you friends with your instructor?"])
+        , (["xu do nelci lo ctuca (be|pe) do"], ["Do you like your instructor?", "Did you like your instructor?"])
+        , (["xu do nelci lo ctuca (be|pe) mi"], ["Do you like my instructor?"])
+        , (["mi pendo lo ctuca (be|pe) mi"], ["I am friends with my instructor."])
+        , (["mi pendo lo ctuca (be|pe) do"], ["I am friends with your instructor."])
+        , (["xu do pendo lo ctuca (be|pe) mi"], ["Are you friends with my instructor?"])
+        , (["xu do pendo lo ctuca (be|pe) do"], ["Are you friends with your instructor?"])
         ]
     tavla = generatorFromList
         [ (["mi dunda lo mlatu lo tavla be do"], ["I donated the cat to the one who was talking to you."])
@@ -1165,24 +1165,24 @@ translations8 = expandTranslationGenerator $ combineFunctionsUniformly [required
         , (["mi se melbi lo tavla be zo'e bei mi"], ["The one who was talking about me is beautiful to me."])
         ]
     bangu = generatorFromList
-        [ (["mi nelci lo bangu be mi"], ["I like my language."])
-        , (["mi nelci lo bangu be do"], ["I like your language."])
-        , (["xu do nelci lo bangu be mi"], ["Do you like my language?"])
-        , (["xu do nelci lo bangu be do"], ["Do you like your language?"])
+        [ (["mi nelci lo bangu (be|pe) mi"], ["I like my language."])
+        , (["mi nelci lo bangu (be|pe) do"], ["I like your language."])
+        , (["xu do nelci lo bangu (be|pe) mi"], ["Do you like my language?"])
+        , (["xu do nelci lo bangu (be|pe) do"], ["Do you like your language?"])
         ]
     zdani = generatorFromList
-        [ (["mi nelci lo zdani be mi"], ["I like my house."])
-        , (["mi nelci lo zdani be do"], ["I like your house."])
-        , (["xu do nelci lo zdani be mi"], ["Do you like my house?"])
-        , (["xu do nelci lo zdani be do"], ["Do you like your house?"])
-        , (["lo zdani be mi cu melbi"], ["My house is beautiful."])
-        , (["lo zdani be do cu melbi"], ["Your house is beautiful."])
+        [ (["mi nelci lo zdani (be|pe) mi"], ["I like my house."])
+        , (["mi nelci lo zdani (be|pe) do"], ["I like your house."])
+        , (["xu do nelci lo zdani (be|pe) mi"], ["Do you like my house?"])
+        , (["xu do nelci lo zdani (be|pe) do"], ["Do you like your house?"])
+        , (["lo zdani (be|pe) mi cu melbi"], ["My house is beautiful."])
+        , (["lo zdani (be|pe) do cu melbi"], ["Your house is beautiful."])
         ]
     cmene = generatorFromList
-        [ (["mi nelci lo cmene be mi"], ["I like my name."])
-        , (["mi nelci lo cmene be do"], ["I like your name."])
-        , (["xu do nelci lo cmene be mi"], ["Do you like my name?"])
-        , (["xu do nelci lo cmene be do"], ["Do you like your name?"])
+        [ (["mi nelci lo cmene (be|pe) mi"], ["I like my name."])
+        , (["mi nelci lo cmene (be|pe) do"], ["I like your name."])
+        , (["xu do nelci lo cmene (be|pe) mi"], ["Do you like my name?"])
+        , (["xu do nelci lo cmene (be|pe) do"], ["Do you like your name?"])
         ]
 
 translationExercises8 :: ExerciseGenerator
@@ -1201,11 +1201,11 @@ translations9 = expandTranslationGenerator $ combineFunctionsUniformly [pi'o, mu
         -- tavla (mi)
         , (["mi tavla sepi'o lo skami"], ["I talk using a computer."])
         , (["mi tavla lo pendo sepi'o lo skami"], ["I talk to friends using a computer."])
-        , (["mi tavla lo pendo be mi sepi'o lo skami"], ["I talk to my friend using a computer.", "I talked to my friend using a computer.", "I talked to my friends using a computer."])
+        , (["mi tavla lo pendo (be|pe) mi sepi'o lo skami"], ["I talk to my friend using a computer.", "I talked to my friend using a computer.", "I talked to my friends using a computer."])
         -- tavla (xu do)
         , (["xu do tavla sepi'o lo skami"], ["Do you talk using a computer?"])
         , (["xu do tavla lo pendo sepi'o lo skami"], ["Do you talk to friends using a computer?"])
-        , (["xu do tavla lo pendo be do sepi'o lo skami"], ["Do you talk to your friends using a computer?"])
+        , (["xu do tavla lo pendo (be|pe) do sepi'o lo skami"], ["Do you talk to your friends using a computer?"])
         -- ciska
         , (["mi ciska sepi'o lo skami", "mi ciska fo lo skami"], ["I write using a computer."])
         , (["mi ciska sepi'o lo se dunda be do", "mi ciska fo lo se dunda be do"], ["I write using the gift that you gave."])
@@ -1219,8 +1219,8 @@ translations9 = expandTranslationGenerator $ combineFunctionsUniformly [pi'o, mu
         , (["mi ctuca sepi'o lo se vecnu be do bei mi"], ["I teach using what you sold me."])
         , (["mi ctuca do sepi'o lo skami"], ["I taught you using a computers."])
         -- vecnu
-        , (["mi vecnu lo gerku be mi sepi'o lo skami"], ["I sold my dog using a computer."])
-        , (["mi vecnu lo mlatu be mi sepi'o lo skami"], ["I sold my cat using a computer."])
+        , (["mi vecnu lo gerku (be|pe) mi sepi'o lo skami"], ["I sold my dog using a computer."])
+        , (["mi vecnu lo mlatu (be|pe) mi sepi'o lo skami"], ["I sold my cat using a computer."])
         ]
     mu'i = generatorFromList
         -- tavla
@@ -1229,7 +1229,7 @@ translations9 = expandTranslationGenerator $ combineFunctionsUniformly [pi'o, mu
         , (["mu'i ma tavla fi lo mlatu"], ["Why talk about cats?", "Why talk about the cat?"])
         , (["mu'i ma tavla fi lo gerku"], ["Why talk about dogs?", "Why talk about the dog?"])
         -- nelci
-        , (["mu'i ma do nelci lo zdani be mi"], ["Why did you like my house?"])
+        , (["mu'i ma do nelci lo zdani (be|pe) mi"], ["Why did you like my house?"])
         , (["mu'i ma do nelci lo se dunda"], ["Why did you like the gift?"])
         , (["mu'i ma do nelci lo prenu"], ["Why do you like people?"])
         -- pilno
@@ -1398,8 +1398,8 @@ translations10_ba = expandTranslationGenerator $ combineFunctionsUniformly [dund
 translations10_unrestricted :: TranslationGenerator
 translations10_unrestricted = expandTranslationGenerator $ combineFunctionsUniformly [cmene, vecnu] where
     cmene = generatorFromList
-        [ (["mi nelci lo pu cmene be do"], ["I like your former name."])
-        , (["xu do nelci lo pu cmene be do"], ["Did you like your former name?"])
+        [ (["mi nelci lo pu cmene (be|pe) do"], ["I like your former name."])
+        , (["xu do nelci lo pu cmene (be|pe) do"], ["Did you like your former name?"])
         ]
     vecnu = generatorFromList
         [ (["lo pu vecnu cu gleki"], ["The former seller is happy."])
