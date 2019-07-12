@@ -20,7 +20,7 @@ style = CourseStyle color1 iconUrl where
 course :: CourseBuilder
 course = createCourseBuilder title style lessons where
     title = "Attitudinals"
-    lessons = [lesson1, lesson2]
+    lessons = [lesson1, lesson2, lesson3]
 
 -- Interesting exercise: "Rewrite using attitudinals"
 -- Example: "mi djica lo nu mi citka" -> ".au mi citka"

@@ -12,3 +12,7 @@ lesson1 dictionary = Lesson "Pure emotions 1" exercises1 plan1
 -- | Second lesson: Propositional emotions 1.
 lesson2 :: LessonBuilder
 lesson2 dictionary = Lesson "Propositional emotions 1" exercises2 plan2
+
+-- | Third lesson: Attitudinal modifiers 1
+lesson3 :: LessonBuilder
+lesson3 dictionary = Lesson "Attitudinal modifiers 1" exercises3 plan3

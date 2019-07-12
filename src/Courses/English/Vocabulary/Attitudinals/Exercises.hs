@@ -4,10 +4,10 @@
 module Courses.English.Vocabulary.Attitudinals.Exercises where
 
 import Core
-import Util (chooseItemUniformly, combineFunctionsUniformly)
+import Util (shuffle, chooseItemUniformly, combineFunctionsUniformly, mapRandom)
 import Courses.English.Vocabulary.Attitudinals.Model
 import Courses.English.Vocabulary.Attitudinals.Vocabulary
-import System.Random.Shuffle (shuffle')
+import Courses.English.Vocabulary.Attitudinals.Util
 import qualified Data.Text as T
 
 generatePositiveAttitudinalBackwardMeaningExercise :: [Attitudinal] -> ExerciseGenerator
@@ -20,10 +20,30 @@ generatePositiveAttitudinalForwardMeaningExercise :: [Attitudinal] -> ExerciseGe
 generatePositiveAttitudinalForwardMeaningExercise attitudinals r0 = SingleChoiceExercise title [] correctMeaning incorrectMeanings False where
     (correctAttitudinal, r1) = chooseItemUniformly r0 attitudinals
     incorrectAttitudinals = filter (/= correctAttitudinal) attitudinals
-    shuffledIncorrectAttitudinals = shuffle' incorrectAttitudinals (length incorrectAttitudinals) r1
+    (shuffledIncorrectAttitudinals, r2) = shuffle r1 incorrectAttitudinals
     title = "Select the meaning of <b>" `T.append` (attitudinalWord correctAttitudinal) `T.append` "</b>"
     correctMeaning = attitudinalPositiveMeaning correctAttitudinal
     incorrectMeanings = map attitudinalPositiveMeaning (take 4 incorrectAttitudinals)
+
+generateAttitudinalBackwardMeaningExercise :: [Attitudinal] -> ExerciseGenerator
+generateAttitudinalBackwardMeaningExercise attitudinals r0 = TypingExercise title [] (== expectedAttitudinalExpression) (expectedAttitudinalExpression) where
+    (attitudinal, r1) = chooseItemUniformly r0 attitudinals
+    (attitudinalModifier, meaningOfModifiedAttitudinal, r2) = randomlyPickAttitudinalModifier r1 attitudinal
+    expectedAttitudinalExpression = (attitudinalWord attitudinal) `T.append` attitudinalModifier
+    title = "Provide the attitudinal expression for <b>" `T.append` meaningOfModifiedAttitudinal `T.append` "</b>"
+
+generateAttitudinalForwardMeaningExercise :: [Attitudinal] -> ExerciseGenerator
+generateAttitudinalForwardMeaningExercise attitudinals r0 = SingleChoiceExercise title [] correctMeaning incorrectMeanings False where
+    title = "Select the meaning of <b>" `T.append` correctAttitudinalExpression `T.append` "</b>"
+    -- Correct attitudinal
+    (correctAttitudinal, r1) = chooseItemUniformly r0 attitudinals
+    (correctAttitudinalModifier, meaningOfModifiedCorrectAttitudinal, r2) = randomlyPickAttitudinalModifier r1 correctAttitudinal
+    correctAttitudinalExpression = (attitudinalWord correctAttitudinal) `T.append` correctAttitudinalModifier
+    correctMeaning = meaningOfModifiedCorrectAttitudinal
+    -- Incorrect attitudinals
+    incorrectAttitudinals = filter (/= correctAttitudinal) attitudinals
+    (shuffledIncorrectAttitudinals, r3) = shuffle r2 incorrectAttitudinals
+    (incorrectMeanings, r4) = mapRandom r3 randomlyPickAttitudinalMeaning (take 4 incorrectAttitudinals)
 
 -- | Exercises for the first lesson.
 exercises1 :: ExerciseGenerator
@@ -37,4 +57,11 @@ exercises2 :: ExerciseGenerator
 exercises2 = combineFunctionsUniformly
     [ generatePositiveAttitudinalBackwardMeaningExercise attitudinals2
     , generatePositiveAttitudinalForwardMeaningExercise attitudinals2
+    ]
+
+-- | Exercises for the third lesson.
+exercises3 :: ExerciseGenerator
+exercises3 = combineFunctionsUniformly
+    [ generateAttitudinalBackwardMeaningExercise attitudinals3_cumulative
+    , generateAttitudinalForwardMeaningExercise attitudinals3_cumulative
     ]

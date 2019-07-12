@@ -5,7 +5,7 @@ module Util where
 import Core
 import Control.Arrow (second)
 import Control.Applicative (liftA2)
-import System.Random (StdGen, random, mkStdGen)
+import System.Random (StdGen, random, mkStdGen, split)
 import qualified Data.Text as T
 import Data.List (group, sort, intersperse)
 import System.Random.Shuffle (shuffle')
@@ -112,6 +112,10 @@ replaceSubexpression old new = T.drop 1 . T.dropEnd 1 . T.replace (" " `T.append
 shuffleList :: StdGen -> [a] -> [a]
 shuffleList r0 xs = shuffle' xs (length xs) r0
 
+shuffle :: StdGen -> [a] -> ([a], StdGen)
+shuffle r0 xs = (shuffle' xs (length xs) r1, r2) where
+    (r1, r2) = split r0
+
 chooseItem :: StdGen -> [(Int, a)] -> (a, StdGen)
 chooseItem r0 [] = error "choosing item from empty list"
 chooseItem r0 xs = (f 0 xs, r1) where
@@ -149,6 +153,12 @@ combineFunctions fs r0 =
 
 combineFunctionsUniformly :: [StdGen -> a] -> (StdGen -> a)
 combineFunctionsUniformly fs = combineFunctions $ map (1,) fs
+
+mapRandom :: StdGen -> (StdGen -> a -> (b, StdGen)) -> [a] -> ([b], StdGen)
+mapRandom r0 _ [] = ([], r0)
+mapRandom r0 f (x:xs) = (f_x : f_xs, r2) where
+    (f_x, r1) = f r0 x
+    (f_xs, r2) = mapRandom r1 f xs
 
 -- Tests
 testChooseItem :: Int -> T.Text

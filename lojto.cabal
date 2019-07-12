@@ -60,6 +60,7 @@ library
                      , Courses.English.Vocabulary.Attitudinals.Glossary
                      , Courses.English.Vocabulary.Attitudinals.Lessons
                      , Courses.English.Vocabulary.Attitudinals.Model
+                     , Courses.English.Vocabulary.Attitudinals.Util
                      , Courses.English.Vocabulary.Attitudinals.Vocabulary
                      , Courses.English.Vocabulary.Brivla
                      , Language.Lojban.Canonicalization
