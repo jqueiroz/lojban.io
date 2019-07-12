@@ -162,6 +162,7 @@ convertInitiator (ZG.Init x) = Right $ T.pack x
 
 convertRelative :: ZG.Relative -> Either String T.Text
 convertRelative (ZG.NOI x y _) = concatET [convertInitiator x, Right $ T.pack " ", convertBridi y, Right $ " ku'o"]
+convertRelative (ZG.GOI x y _) = concatET [convertInitiator x, Right $ T.pack " ", convertTerm y, Right $ " ge'u"]
 convertRelative x = Left $ "Unrecognized pattern for convertRelative: " ++ show x
 
 convertStructuredTerm :: StructuredTerm -> Either String T.Text
@@ -256,3 +257,6 @@ hasXu _ = False
 
 convertBridi :: ZG.Text -> Either String T.Text
 convertBridi text = canonicalizeParsedBridi (ZG.NF, text, ZG.NT)
+
+convertTerm :: ZG.Text -> Either String T.Text
+convertTerm term = canonicalizeParsedTerm (ZG.NF, ZG.Terms [term] ZG.NT, ZG.NT)
