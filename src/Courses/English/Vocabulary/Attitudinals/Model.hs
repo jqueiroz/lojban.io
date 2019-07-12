@@ -3,7 +3,7 @@ module Courses.English.Vocabulary.Attitudinals.Model where
 import System.Random (StdGen)
 import qualified Data.Text as T
 
-data AttitudinalType = PureEmotion | PropositionalEmotion
+data AttitudinalType = PureEmotion | PropositionalEmotion deriving (Eq)
 
 data Attitudinal = Attitudinal
     { attitudinalWord :: T.Text

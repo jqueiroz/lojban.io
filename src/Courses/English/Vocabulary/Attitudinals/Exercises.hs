@@ -45,6 +45,14 @@ generateAttitudinalForwardMeaningExercise attitudinals r0 = SingleChoiceExercise
     (shuffledIncorrectAttitudinals, r3) = shuffle r2 incorrectAttitudinals
     (incorrectMeanings, r4) = mapRandom r3 randomlyPickAttitudinalMeaning (take 4 incorrectAttitudinals)
 
+generateAttitudinalClassificationExercise :: [Attitudinal] -> ExerciseGenerator
+generateAttitudinalClassificationExercise attitudinals r0 = SingleChoiceExercise title [] correctClassification [incorrectClassification] False where
+    title = "Classify the attitudinal <b>" `T.append` (attitudinalWord attitudinal) `T.append` "</b>"
+    (attitudinal, r1) = chooseItemUniformly r0 attitudinals
+    (correctClassification, incorrectClassification)
+        | (attitudinalType attitudinal) == PureEmotion = ("Pure", "Propositional")
+        | otherwise                                    = ("Propositional", "Pure")
+
 -- | Exercises for the first lesson.
 exercises1 :: ExerciseGenerator
 exercises1 = combineFunctionsUniformly
@@ -57,6 +65,7 @@ exercises2 :: ExerciseGenerator
 exercises2 = combineFunctionsUniformly
     [ generatePositiveAttitudinalBackwardMeaningExercise attitudinals2
     , generatePositiveAttitudinalForwardMeaningExercise attitudinals2
+    , generateAttitudinalClassificationExercise attitudinals2_cumulative
     ]
 
 -- | Exercises for the third lesson.
@@ -64,4 +73,5 @@ exercises3 :: ExerciseGenerator
 exercises3 = combineFunctionsUniformly
     [ generateAttitudinalBackwardMeaningExercise attitudinals3_cumulative
     , generateAttitudinalForwardMeaningExercise attitudinals3_cumulative
+    , generateAttitudinalClassificationExercise attitudinals3_cumulative
     ]
