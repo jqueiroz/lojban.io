@@ -1075,7 +1075,7 @@ translations7_poi = expandTranslationGenerator $ combineFunctionsUniformly [comp
         , (["xu do tavla fi lo zdani poi do nupre lo nu {do} dunda"], ["Did you talk about the house that you promised to donate?"])
         , (["mi tavla fi lo plise poi do dunda ke'a lo mlatu"], ["I am talking about the apple that you gave to the cat."])
         , (["mi tavla fi lo plise poi do vecnu"], ["I am talking about the apple that you sold."])
-        , (["xu lo gerku nelci lo plise poi do dunda {ke'a}"], ["Did the dog like the apple that you gave?"])
+        , (["xu lo gerku cu nelci lo plise poi do dunda {ke'a}"], ["Did the dog like the apple that you gave?"])
         , (["mi tavla lo prenu poi {ke'a} dunda lo plise"], ["I talked to the person who donated the apple."])
         , (["mi tavla fi lo prenu poi {ke'a} dunda lo plise"], ["I talked about person who donated the apple."])
         , (["xu do tavla lo prenu poi {ke'a} dunda lo plise"], ["Did you talk to the person who donated the apple?"])
