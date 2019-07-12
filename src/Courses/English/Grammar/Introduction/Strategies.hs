@@ -18,14 +18,17 @@ import qualified Data.Text as T
 --
 -- * The generic abstractor "su'u" is exchangeable with the more specific abstractors "nu" and "du'u".
 -- * Tenses are optional, and may be missing from one or both of the sentences (however, if tenses are specified in both sentences, they must match).
+-- * Association words ("pe", "ne", "po" and "po'e") are interchangeable.
 --
 --     * TODO: this still needs to be implemented
 sentenceComparer :: SentenceComparer
 sentenceComparer x y = (length xs == length ys) && (all wordComparer $ zip xs ys) where
     xs = T.words x
     ys = T.words y
+    isAssociationWord :: T.Text -> Bool
+    isAssociationWord x = x `elem` [ "pe", "ne", "po", "po'e" ]
     wordComparer :: (T.Text, T.Text) -> Bool
-    wordComparer (x, y) = (wordComparer' x y) || (wordComparer' y x)
+    wordComparer (x, y) = (wordComparer' x y) || (wordComparer' y x) || (isAssociationWord x && isAssociationWord y)
     wordComparer' "nu" "su'u" = True
     wordComparer' "du'u" "su'u" = True
     wordComparer' x y = x == y
