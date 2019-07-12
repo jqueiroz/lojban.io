@@ -211,6 +211,9 @@ validateCanonicalization = hspec $ do
         validateTermCanonicalization "lo zdani pe mi" "lo zdani ku pe mi ge'u"
       it "supports 'lo zdani pe mi'" $ do
         validateTermCanonicalization "lo zdani pe mi" "lo zdani ku pe mi ge'u"
+      -- TODO: fix the following canonicalization
+      --it "supports 'lo zdani po'e mi'" $ do
+        --validateTermCanonicalization "lo zdani po'e mi" "lo zdani ku po'e mi ge'u"
     describe "Basic sentence canonicalizer" $ do
       it "supports SE" $ do
         validateSentences
