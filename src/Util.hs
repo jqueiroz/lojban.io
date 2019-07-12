@@ -109,8 +109,8 @@ replaceSubexpression :: T.Text -> T.Text -> T.Text -> T.Text
 replaceSubexpression old new = T.drop 1 . T.dropEnd 1 . T.replace (" " `T.append` old `T.append` " ") (" " `T.append` new `T.append` " ") . (`T.append` " ") . (" " `T.append`)
 
 -- Random (TODO: assert that sum > 0)
-shuffleList :: StdGen -> [a] -> [a]
-shuffleList r0 xs = shuffle' xs (length xs) r0
+shuffle_ :: StdGen -> [a] -> [a]
+shuffle_ r0 = fst . shuffle r0
 
 shuffle :: StdGen -> [a] -> ([a], StdGen)
 shuffle r0 xs = (shuffle' xs (length xs) r1, r2) where

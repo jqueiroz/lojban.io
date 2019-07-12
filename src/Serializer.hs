@@ -5,7 +5,7 @@ module Serializer
 ) where
 
 import Core
-import Util (shuffleList)
+import Util (shuffle_)
 import qualified Data.ByteString.Lazy.Char8 as BS
 import qualified Data.Text as T
 import qualified Data.Aeson as A
@@ -19,14 +19,14 @@ exerciseToJSON (MultipleChoiceExercise title sentences correctAlternatives incor
     [ "type" A..= ("multiple-choice" :: T.Text)
     , "title" A..= title
     , "sentences" A..= (map exerciseSentenceToJSON sentences)
-    , "alternatives" A..= (if fixedOrdering then sort else shuffleList r0) (correctAlternatives ++ incorrectAlternatives)
+    , "alternatives" A..= (if fixedOrdering then sort else shuffle_ r0) (correctAlternatives ++ incorrectAlternatives)
     ]
 
 exerciseToJSON (SingleChoiceExercise title sentences correctAlternative incorrectAlternatives fixedOrdering) r0 = A.object
     [ "type" A..= ("single-choice" :: T.Text)
     , "title" A..= title
     , "sentences" A..= (map exerciseSentenceToJSON sentences)
-    , "alternatives" A..= (if fixedOrdering then sort else shuffleList r0) (correctAlternative : incorrectAlternatives)
+    , "alternatives" A..= (if fixedOrdering then sort else shuffle_ r0) (correctAlternative : incorrectAlternatives)
     ]
 
 exerciseToJSON (MatchingExercise title sentences items) r0 = A.object
@@ -34,7 +34,7 @@ exerciseToJSON (MatchingExercise title sentences items) r0 = A.object
     , "title" A..= title
     , "sentences" A..= (map exerciseSentenceToJSON sentences)
     , "left_items" A..= map fst items
-    , "right_items" A..= shuffleList r0 (map snd items)
+    , "right_items" A..= shuffle_ r0 (map snd items)
     ]
 
 exerciseToJSON (TypingExercise title sentences _ _) r0 = A.object
