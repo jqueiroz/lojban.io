@@ -1618,20 +1618,71 @@ translationExercises13 = generateTranslationExercise sentenceCanonicalizer sente
 
 -- * Lesson 14: Relative phrases
 translations14_expressions :: TranslationGenerator
-translations14_expressions = expandTranslationGenerator $ combineFunctionsUniformly [gerku] where
+translations14_expressions = expandTranslationGenerator $ combineFunctionsUniformly [gerku, mlatu, pendo] where
     gerku = generatorFromList
         [ (["lo mi gerku"], ["My dog."])
         , (["lo gerku pe lo prenu"], ["The person's dog."])
         , (["lo gerku pe lo pendo"], ["The friend's dog."])
+        , (["lo gerku pe lo nupre"], ["The promisor's dog."])
+        , (["lo gerku pe lo dunda"], ["The donor's dog."])
+        , (["lo gerku pe lo te dunda"], ["The recipient's dog."])
+        , (["lo gerku pe lo vecnu"], ["The seller's dog."])
+        , (["lo gerku pe lo te vecnu"], ["The buyer's dog."])
+        ]
+    mlatu = generatorFromList
+        [ (["lo mi mlatu"], ["My cat."])
+        , (["lo mlatu pe lo prenu"], ["The person's cat."])
+        , (["lo mlatu pe lo pendo"], ["The friend's cat."])
+        , (["lo mlatu pe lo nupre"], ["The promisor's cat."])
+        , (["lo mlatu pe lo dunda"], ["The donor's cat."])
+        , (["lo mlatu pe lo te dunda"], ["The recipient's cat."])
+        , (["lo mlatu pe lo vecnu"], ["The seller's cat."])
+        , (["lo mlatu pe lo te vecnu"], ["The buyer's cat."])
+        ]
+    pendo = generatorFromList
+        [ (["lo mi pendo"], ["My friend."])
+        , (["lo do pendo"], ["Your friend."])
+        , (["lo gerku pe lo mi pendo"], ["My friend's dog."])
+        , (["lo mlatu pe lo mi pendo"], ["My friend's cat."])
+        , (["lo pendo pe lo mi pendo"], ["My friend's friend."])
+        , (["lo gerku pe lo do pendo"], ["Your friend's dog."])
+        , (["lo mlatu pe lo do pendo"], ["Your friend's cat."])
+        , (["lo pendo pe lo do pendo"], ["Your friend's friend."])
         ]
 
 translations14_sentences :: TranslationGenerator
-translations14_sentences = expandTranslationGenerator $ combineFunctionsUniformly [gerku] where
+translations14_sentences = expandTranslationGenerator $ combineFunctionsUniformly [gerku, mlatu, pendo] where
     gerku = generatorFromList
         [ (["mi dunda lo mi gerku"], ["I donated my dog."])
         , (["lo mi gerku cu pendo"], ["My dog is friendly."])
         , (["xu do dunda lo do gerku"], ["Did you donate your dog?"])
         , (["xu lo do gerku cu pendo"], ["Is your dog is friendly?"])
+        ]
+    mlatu = generatorFromList
+        [ (["mi dunda lo mi mlatu"], ["I donated my cat."])
+        , (["lo mi mlatu cu pendo"], ["My cat is friendly."])
+        , (["xu do dunda lo do mlatu"], ["Did you donate your cat?"])
+        , (["xu lo do mlatu cu pendo"], ["Is your cat is friendly?"])
+        ]
+    pendo = generatorFromList
+        -- mi
+        [ (["mi tavla lo mi pendo"], ["I talked to my friend."])
+        , (["mi nelci lo mi pendo"], ["I like my friend."])
+        , (["mi tavla lo do pendo"], ["I talked to your friend."])
+        , (["mi nelci lo do pendo"], ["I like your friend.", "I liked your friend."])
+        , (["mi dunda lo mi gerku lo do pendo"], ["I donated my dog to your friend."])
+        , (["mi dunda lo mi mlatu lo do pendo"], ["I donated my cat to your friend."])
+        , (["mi djuno lo du'u do tavla lo do pendo"], ["I know that you talked to your friend."])
+        , (["mi djuno lo du'u do tavla lo mi pendo"], ["I know that you talked to my friend."])
+        -- xu do
+        , (["xu do tavla lo mi pendo"], ["Did you talk to my friend?"])
+        , (["xu do nelci lo mi pendo"], ["Do you like my friend?", "Did you like my friend?"])
+        , (["xu do tavla lo do pendo"], ["Did you talk to your friend?"])
+        , (["xu do nelci lo do pendo"], ["Do you like your friend?"])
+        , (["xu do dunda lo do gerku lo mi pendo"], ["Did you donate your dog to my friend?"])
+        , (["xu do dunda lo do mlatu lo mi pendo"], ["Did you donate your cat to my friend?"])
+        , (["xu do djuno lo du'u mi tavla lo do pendo"], ["Did you know that I talked to your friend?"])
+        , (["xu do djuno lo du'u mi tavla lo mi pendo"], ["Did you know that I talked to my friend?"])
         ]
 
 translationExercises14 :: ExerciseGenerator
