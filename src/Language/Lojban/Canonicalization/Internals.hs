@@ -187,6 +187,9 @@ convertStructuredTerm (ZG.Tanru xs) = unwordsET (map convertStructuredTerm xs)
 convertStructuredTerm (ZG.Clause (ZG.ZO x)) = Right $ T.unwords ["lo'u", T.pack x, "le'u"]
 convertStructuredTerm (ZG.Clause (ZG.LOhU x)) = Right $ T.unwords ["lo'u",  T.unwords $ map T.pack x, "le'u"]
 convertStructuredTerm (ZG.LU (ZG.Init x) y term) = unwordsET [Right $ T.pack x, convertText y , Right $ "li'u"]
+convertStructuredTerm (ZG.Con x connectives) = unwordsET $ convertStructuredTerm x : (map convertConnective connectives) where
+    convertConnective :: (ZG.Connective, ZG.Text) -> Either String T.Text
+    convertConnective (ZG.JOI x, y) = concatET [Right ".", Right $ T.pack x, Right " ", convertTerm y]
 convertStructuredTerm x = Left $ "Unrecognized pattern for structured term: " ++ show x
 
 convertExtraTerms :: [ExtraTerm] -> Either String [T.Text]

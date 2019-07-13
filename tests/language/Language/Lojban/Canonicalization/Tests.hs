@@ -223,6 +223,26 @@ validateCanonicalization = hspec $ do
             [ "lo zdani pe mi"
             , "lo mi zdani"
             ]
+      it "supports 'mi .a do'" $ do
+        validateEquivalentTerms
+            "mi .a do"
+            [
+            ]
+      it "supports 'mi .a lo gerku'" $ do
+        validateEquivalentTerms
+            "mi .e lo gerku ku"
+            [ "mi .a lo gerku"
+            ]
+      it "supports 'mi .e do'" $ do
+        validateEquivalentTerms
+            "mi .e do"
+            [
+            ]
+      it "supports 'mi .e lo gerku'" $ do
+        validateEquivalentTerms
+            "mi .e lo gerku ku"
+            [ "mi .e lo gerku"
+            ]
       -- TODO: fix the following canonicalization
       --it "supports 'lo zdani po'e mi'" $ do
         --validateEquivalentTerms
