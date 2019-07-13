@@ -56,3 +56,7 @@ checkpoint7to11 dictionary = Lesson "Checkpoint: Lessons 7-11" (exercises7to11 d
 -- | Thirteenth lesson: Quotations 1
 lesson13 :: LessonBuilder
 lesson13 dictionary = Lesson "Quotations 1" (exercises13 dictionary) plan13
+
+-- | Fourteenth lesson: Relative phrases
+lesson14 :: LessonBuilder
+lesson14 dictionary = Lesson "Relative phrases" (exercises14 dictionary) plan14

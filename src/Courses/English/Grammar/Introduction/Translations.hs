@@ -1616,4 +1616,25 @@ translations13_lu = expandTranslationGenerator $ combineFunctionsUniformly [cusk
 translationExercises13 :: ExerciseGenerator
 translationExercises13 = generateTranslationExercise sentenceCanonicalizer sentenceComparer $ combineFunctionsUniformly [translations13_zo, translations13_lu]
 
+-- * Lesson 14: Relative phrases
+translations14_expressions :: TranslationGenerator
+translations14_expressions = expandTranslationGenerator $ combineFunctionsUniformly [gerku] where
+    gerku = generatorFromList
+        [ (["lo mi gerku"], ["My dog."])
+        , (["lo gerku pe lo prenu"], ["The person's dog."])
+        , (["lo gerku pe lo pendo"], ["The friend's dog."])
+        ]
+
+translations14_sentences :: TranslationGenerator
+translations14_sentences = expandTranslationGenerator $ combineFunctionsUniformly [gerku] where
+    gerku = generatorFromList
+        [ (["mi dunda lo mi gerku"], ["I donated my dog."])
+        , (["lo mi gerku cu pendo"], ["My dog is friendly."])
+        , (["xu do dunda lo do gerku"], ["Did you donate your dog?"])
+        , (["xu lo do gerku cu pendo"], ["Is your dog is friendly?"])
+        ]
+
+translationExercises14 :: ExerciseGenerator
+translationExercises14 = generateTranslationExercise sentenceCanonicalizer sentenceComparer $ combineFunctionsUniformly [translations14_expressions, translations14_sentences]
+
 --TODO: pause immediately after lesson 5

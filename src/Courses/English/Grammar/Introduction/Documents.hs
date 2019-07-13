@@ -60,3 +60,7 @@ Right plan7to11 = P.runPure $ P.readMarkdown P.def $ T.pack ""
 -- | Plan for the thirteenth lesson.
 plan13 :: P.Pandoc
 Right plan13 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/planning/13.md")
+
+-- | Plan for the fourteenth lesson.
+plan14 :: P.Pandoc
+Right plan14 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/planning/14.md")

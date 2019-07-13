@@ -199,3 +199,19 @@ vocabularyGenerator13 = createVocabularyBuilder
     -- Sumti
     [
     ]
+
+-- | Vocabulary for the fourteenth lesson.
+--
+-- * New brivla: NONE.
+-- * New cmavo: ne, pe, po, po'e
+vocabularyGenerator14 :: VocabularyBuilder
+vocabularyGenerator14 = createVocabularyBuilder
+    -- Selbri
+    [
+        ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska", "djuno", "nupre", "cusku", "vecnu", "pilno"])),
+        ("relations", ((0,) <$> ["pendo", "nelci", "gleki"]) ++ ((1,) <$> ["cmene", "bangu"])),
+        ("properties", (0,) <$> ["prenu", "zdani", "mlatu", "gerku", "melbi", "plise", "skami"])
+    ]
+    -- Sumti
+    [
+    ]

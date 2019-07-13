@@ -170,3 +170,12 @@ exercises13 dictionary =
         ]
     where
         vocabulary = vocabularyGenerator13 dictionary
+
+-- | Exercises for the fourteenth lesson.
+exercises14 :: Dictionary -> ExerciseGenerator
+exercises14 dictionary =
+    combineFunctions
+        [ (70, translationExercises14)
+        ]
+    where
+        vocabulary = vocabularyGenerator14 dictionary
