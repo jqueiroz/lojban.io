@@ -183,6 +183,8 @@ convertStructuredTerm (ZG.LE (ZG.Init x) ZG.NR ZG.NQ y _) = insertPrefix . inser
     insertPrefix = ((T.pack $ x ++ " ") `T.append`)
     insertSuffix = (`T.append` " ku")
 convertStructuredTerm (ZG.Tanru xs) = unwordsET (map convertStructuredTerm xs)
+convertStructuredTerm (ZG.Clause (ZG.ZO x)) = unwordsET [Right $ "lu", Right $ T.pack x, Right $ "li'u"]
+convertStructuredTerm (ZG.LU (ZG.Init x) y term) = unwordsET [Right $ T.pack x, convertText y , Right $ "li'u"]
 convertStructuredTerm x = Left $ "Unrecognized pattern for structured term: " ++ show x
 
 convertExtraTerms :: [ExtraTerm] -> Either String [T.Text]
@@ -254,6 +256,8 @@ hasXu (ZG.COIs xs y) = any hasXu xs
 hasXu (ZG.Vocative xs y z) = any hasXu xs
 hasXu _ = False
 
+convertText :: ZG.Text -> Either String T.Text
+convertText text = canonicalizeParsedText (ZG.NF, text, ZG.NT)
 
 convertBridi :: ZG.Text -> Either String T.Text
 convertBridi text = canonicalizeParsedBridi (ZG.NF, text, ZG.NT)
