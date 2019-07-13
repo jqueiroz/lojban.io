@@ -77,6 +77,7 @@ loadCmavoFromFile frequencyMap = loadCmavoFromText frequencyMap <$> TIO.readFile
 
 -- Brivla places
 -- See also: http://www.lojban.org/publications/wordlists/oblique_keywords.txt
+-- See also: https://www.memrise.com/course/17297/gismu-places-1-of-4/
 englishBrivlaPlacesMap :: M.Map T.Text [T.Text]
 englishBrivlaPlacesMap = M.fromList
     [ ("tavla", ["speaker", "listener", "subject", "language"])
