@@ -1552,16 +1552,68 @@ translationExercises7to11 = combineFunctions
     ]
 
 -- * Lesson 13: Quotations 1
-translations13 :: TranslationGenerator
-translations13 = expandTranslationGenerator $ combineFunctionsUniformly [cusku] where
+translations13_zo :: TranslationGenerator
+translations13_zo = expandTranslationGenerator $ combineFunctionsUniformly [cusku] where
     cusku = generatorFromList
-        [ (["mi cusku zo do"], ["I said \"you\"."])
-        , (["mi cusku zo prenu"], ["I said \"person\"."])
-        , (["mi cusku zo gleki"], ["I said \"happy\"."])
-        , (["mi cusku lu mi nelci do li'u"], ["I said \"I like you\"."])
+        -- mi cusku
+        [ (["mi cusku zo do"], ["I said \"do\".", "I said \"you\"."])
+        , (["mi cusku zo prenu"], ["I said \"prenu\".", "I said \"person\"."])
+        , (["mi cusku zo pendo"], ["I said \"pendo\".", "I said \"friend\"."])
+        , (["mi cusku zo zdani"], ["I said \"zdani\".", "I said \"house\"."])
+        , (["mi cusku zo skami"], ["I said \"skami\".", "I said \"computer\"."])
+        , (["mi cusku zo gleki"], ["I said \"gleki\".", "I said \"happy\"."])
+        , (["mi cusku zo tavla"], ["I said \"tavla\".", "I said \"talk\"."])
+        , (["mi cusku zo djuno"], ["I said \"djuno\".", "I said \"know\"."])
+        , (["mi cusku zo pilno"], ["I said \"pilno\".", "I said \"use\"."])
+        , (["mi cusku zo bangu"], ["I said \"bangu\".", "I said \"language\"."])
+        -- xu do cusku
+        , (["xu do cusku zo do"], ["Did you say \"do\"?", "Did you say \"you\"?"])
+        , (["xu do cusku zo prenu"], ["Did you say \"prenu\"?", "Did you say \"person\"?"])
+        , (["xu do cusku zo pendo"], ["Did you say \"pendo\"?", "Did you say \"friend\"?"])
+        , (["xu do cusku zo zdani"], ["Did you say \"zdani\"?", "Did you say \"house\"?"])
+        , (["xu do cusku zo skami"], ["Did you say \"skami\"?", "Did you say \"computer\"?"])
+        , (["xu do cusku zo gleki"], ["Did you say \"gleki\"?", "Did you say \"happy\"?"])
+        , (["xu do cusku zo tavla"], ["Did you say \"tavla\"?", "Did you say \"talk\"?"])
+        , (["xu do cusku zo djuno"], ["Did you say \"djuno\"?", "Did you say \"know\"?"])
+        , (["xu do cusku zo pilno"], ["Did you say \"pilno\"?", "Did you say \"use\"?"])
+        , (["xu do cusku zo bangu"], ["Did you say \"bangu\"?", "Did you say \"language\"?"])
+        -- ma cusku
+        , (["ma cusku zo do"], ["Who said \"do\"?", "Who said \"you\"?"])
+        , (["ma cusku zo prenu"], ["Who said \"prenu\"?", "Who said \"person\"?"])
+        , (["ma cusku zo pendo"], ["Who said \"pendo\"?", "Who said \"friend\"?"])
+        , (["ma cusku zo zdani"], ["Who said \"zdani\"?", "Who said \"house\"?"])
+        , (["ma cusku zo skami"], ["Who said \"skami\"?", "Who said \"computer\"?"])
+        , (["ma cusku zo gleki"], ["Who said \"gleki\"?", "Who said \"happy\"?"])
+        , (["ma cusku zo tavla"], ["Who said \"tavla\"?", "Who said \"talk\"?"])
+        , (["ma cusku zo djuno"], ["Who said \"djuno\"?", "Who said \"know\"?"])
+        , (["ma cusku zo pilno"], ["Who said \"pilno\"?", "Who said \"use\"?"])
+        , (["ma cusku zo bangu"], ["Who said \"bangu\"?", "Who said \"language\"?"])
+        ]
+
+translations13_lu :: TranslationGenerator
+translations13_lu = expandTranslationGenerator $ combineFunctionsUniformly [cusku] where
+    cusku = generatorFromList
+        -- Propositions
+        [ (["mi cusku lu mi nelci do li'u"], ["I said \"mi nelci do\".", "I said \"I like you\"."])
+        , (["mi cusku lu mi dunda lo mlatu li'u"], ["I said \"mi dunda lo mlatu\".", "I said \"I donated the cat\"."])
+        , (["mi cusku lu do dunda lo mlatu li'u"], ["I said \"do dunda lo mlatu\".", "I said \"You donated the cat\"."])
+        , (["mi cusku lu mi se zdani li'u"], ["I said \"mi se zdani\".", "I said \"I have a house\"."])
+        , (["mi cusku lu do se zdani li'u"], ["I said \"do se zdani\".", "I said \"You have a house\"."])
+
+        , (["mi cusku lu ma cusku zo do li'u"], ["I said \"ma cusku zo do\"", "I said \"Who said 'you'?\"."])
+        , (["mi cusku lu ma cusku zo zdani li'u"], ["I said \"ma cusku zo zdani\"", "I said \"Who said 'house'?\"."])
+        , (["mi cusku lu ma cusku zo mlatu li'u"], ["I said \"ma cusku zo mlatu\"", "I said \"Who said 'cat'?\"."])
+        -- Questions
+        , (["xu do cusku lu mi nelci do li'u"], ["Did you say \"mi nelci do\"?", "Did you say \"I like you\"?"])
+        , (["xu do cusku lu mi dunda lo mlatu li'u"], ["Did you say \"mi dunda lo mlatu\"?", "Did you say \"I donated the cat\"?"])
+        , (["xu do cusku lu do dunda lo mlatu li'u"], ["Did you say \"do dunda lo mlatu\"?", "Did you say \"You donated the cat\"?"])
+        , (["xu do cusku lu mi se zdani li'u"], ["Did you say \"mi se zdani\"?", "Did you say \"I have a house\"?"])
+        , (["xu do cusku lu do se zdani li'u"], ["Did you say \"do se zdani\"?", "Did you say \"You have a house\"?"])
+
+        , (["ma cusku lu mi se zdani li'u"], ["Who said \"mi se zdani\"?", "Who said \"I have a house\"?"])
         ]
 
 translationExercises13 :: ExerciseGenerator
-translationExercises13 = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations13
+translationExercises13 = generateTranslationExercise sentenceCanonicalizer sentenceComparer $ combineFunctionsUniformly [translations13_zo, translations13_lu]
 
 --TODO: pause immediately after lesson 5
