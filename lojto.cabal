@@ -103,3 +103,25 @@ test-suite language
                      , Language.Lojban.Parsing
                      , Language.Lojban.Presentation
                      , Util
+
+test-suite courses
+  import:              deps
+  type:                exitcode-stdio-1.0
+  main-is:             Main.hs
+  ghc-options:         -Wno-missing-home-modules
+  hs-source-dirs:      tests/courses src
+  build-depends:       hspec
+                     , QuickCheck
+  other-modules:       Core
+                     , Courses.Util.ExerciseGenerators
+                     , Courses.Util.ExerciseGenerators.Tests
+                     , Courses.Util.NumberTranslator
+                     , Courses.Util.Sentences
+                     , Courses.Util.Vocabulary
+                     , Language.Lojban.Canonicalization
+                     , Language.Lojban.Canonicalization.Internals
+                     , Language.Lojban.Core
+                     , Language.Lojban.Parsing
+                     , Language.Lojban.Presentation
+                     , Language.Lojban.Refinement
+                     , Util
