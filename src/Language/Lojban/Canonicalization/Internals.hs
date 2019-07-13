@@ -182,6 +182,7 @@ convertStructuredTerm (ZG.LE (ZG.Init x) ZG.NR ZG.NQ (ZG.Rel y z) t) = convertSt
 convertStructuredTerm (ZG.LE (ZG.Init x) ZG.NR ZG.NQ y _) = insertPrefix . insertSuffix <$> convertStructuredTerm y where
     insertPrefix = ((T.pack $ x ++ " ") `T.append`)
     insertSuffix = (`T.append` " ku")
+convertStructuredTerm (ZG.LE (ZG.Init x) (ZG.RelSumti y) ZG.NQ z _) = unwordsET [Right $ T.pack x, convertBridi z, Right "ku pe", convertTerm y, Right "ge'u"]
 convertStructuredTerm (ZG.Tanru xs) = unwordsET (map convertStructuredTerm xs)
 convertStructuredTerm (ZG.Clause (ZG.ZO x)) = Right $ T.unwords ["lo'u", T.pack x, "le'u"]
 convertStructuredTerm (ZG.Clause (ZG.LOhU x)) = Right $ T.unwords ["lo'u",  T.unwords $ map T.pack x, "le'u"]

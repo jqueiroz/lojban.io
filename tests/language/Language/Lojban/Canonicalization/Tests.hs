@@ -221,6 +221,7 @@ validateCanonicalization = hspec $ do
         validateEquivalentTerms
             "lo zdani ku pe mi ge'u"
             [ "lo zdani pe mi"
+            , "lo mi zdani"
             ]
       -- TODO: fix the following canonicalization
       --it "supports 'lo zdani po'e mi'" $ do
