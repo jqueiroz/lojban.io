@@ -16,6 +16,7 @@ import qualified Data.Text as T
 --
 -- Decides whether two sentences are equivalent taking into account the following allowances:
 --
+-- * The descriptors "lo" and "le" are interchangeable.
 -- * The generic abstractor "su'u" is exchangeable with the more specific abstractors "nu" and "du'u".
 -- * Tenses are optional, and may be missing from one or both of the sentences (however, if tenses are specified in both sentences, they must match).
 --
@@ -33,6 +34,7 @@ sentenceComparer x y = (length xs == length ys) && (all wordComparer $ zip xs ys
     isAssociationWord x = x `elem` [ "pe", "ne", "po", "po'e" ]
     wordComparer :: (T.Text, T.Text) -> Bool
     wordComparer (x, y) = (wordComparer' x y) || (wordComparer' y x) || (isAssociationWord x && isAssociationWord y)
+    wordComparer' "lo" "le" = True
     wordComparer' "lu" "lo'u" = True
     wordComparer' "li'u" "le'u" = True
     wordComparer' "nu" "su'u" = True
