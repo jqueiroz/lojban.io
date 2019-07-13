@@ -29,6 +29,12 @@ validateSentences sentences = map basicSentenceCanonicalizer (originalSentences 
   originalSentences = map fst sentences
   canonicalSentences = map snd sentences
 
+validateEquivalentTerms :: T.Text -> [T.Text] -> IO ()
+validateEquivalentTerms = validateEquivalentSentences
+
+validateTerms :: [(T.Text, T.Text)] -> IO ()
+validateTerms = validateSentences
+
 validateCanonicalization :: IO ()
 validateCanonicalization = hspec $ do
     describe "SimpleBridi retrieval" $ do
@@ -192,36 +198,51 @@ validateCanonicalization = hspec $ do
             SimpleBridi False "nelci" ["do", "mi"] ["pu ku", "ca ku"]
     describe "Term canonicalization" $ do
       it "supports 'lo prenu'" $ do
-        validateTermCanonicalization "lo prenu" "lo prenu ku"
-      it "supports 'lo prenu ku'" $ do
-        validateTermCanonicalization "lo prenu ku" "lo prenu ku"
+        validateEquivalentTerms
+            "lo prenu ku"
+            [ "lo prenu"
+            ]
       it "supports 'lo pu prenu'" $ do
-        validateTermCanonicalization "lo pu prenu" "lo pu prenu ku"
-      it "supports 'lo pu prenu ku'" $ do
-        validateTermCanonicalization "lo pu prenu ku" "lo pu prenu ku"
-      it "supports 'lo gleki prenu ku'" $ do
-        validateTermCanonicalization "lo gleki prenu ku" "lo gleki prenu ku"
+        validateEquivalentTerms
+            "lo pu prenu ku"
+            [ "lo pu prenu"
+            ]
       it "supports 'lo gleki prenu'" $ do
-        validateTermCanonicalization "lo gleki prenu" "lo gleki prenu ku"
-      it "supports 'lo gleki te dunda ku'" $ do
-        validateTermCanonicalization "lo gleki te dunda ku" "lo gleki te dunda ku"
+        validateEquivalentTerms
+            "lo gleki prenu ku"
+            [ "lo gleki prenu"
+            ]
       it "supports 'lo gleki te dunda'" $ do
-        validateTermCanonicalization "lo gleki te dunda" "lo gleki te dunda ku"
-      it "supports 'lo zdani ku pe mi'" $ do
-        validateTermCanonicalization "lo zdani pe mi" "lo zdani ku pe mi ge'u"
+        validateEquivalentTerms
+            "lo gleki te dunda ku"
+            [ "lo gleki te dunda"
+            ]
       it "supports 'lo zdani pe mi'" $ do
-        validateTermCanonicalization "lo zdani pe mi" "lo zdani ku pe mi ge'u"
+        validateEquivalentTerms
+            "lo zdani ku pe mi ge'u"
+            [ "lo zdani pe mi"
+            ]
       -- TODO: fix the following canonicalization
       --it "supports 'lo zdani po'e mi'" $ do
-        --validateTermCanonicalization "lo zdani po'e mi" "lo zdani ku po'e mi ge'u"
-      it "supports 'zo prenu" $ do
-        validateTermCanonicalization "zo prenu" "lo'u prenu le'u"
+        --validateEquivalentTerms
+            --"lo zdani ku po'e mi ge'u"
+            --[ "lo zdani po'e mi"
+            --]
+      it "supports 'zo prenu'" $ do
+        validateEquivalentTerms
+            "lo'u prenu le'u"
+            [ "zo prenu"
+            ]
       it "supports 'lu mi tavla do'" $ do
-        validateTermCanonicalization "lu mi tavla do" "lu mi tavla do li'u"
-      it "supports 'lu mi tavla do li'u'" $ do
-        validateTermCanonicalization "lu mi tavla do li'u" "lu mi tavla do li'u"
+        validateEquivalentTerms
+            "lu mi tavla do li'u"
+            [ "lu mi tavla do"
+            ]
       it "supports 'lo'u mi je tavla le'u'" $ do
-        validateTermCanonicalization "lo'u mi je tavla le'u" "lo'u mi je tavla le'u"
+        validateEquivalentTerms
+            "lo'u mi je tavla le'u"
+            [
+            ]
     describe "Basic sentence canonicalizer" $ do
       it "supports SE" $ do
         validateSentences
