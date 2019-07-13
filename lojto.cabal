@@ -91,9 +91,9 @@ executable server
 test-suite language
   import:              deps
   type:                exitcode-stdio-1.0
-  main-is:             Language.hs
+  main-is:             Main.hs
   ghc-options:         -Wno-missing-home-modules
-  hs-source-dirs:      tests src
+  hs-source-dirs:      tests/language src
   build-depends:       hspec
                      , QuickCheck
   other-modules:       Core
