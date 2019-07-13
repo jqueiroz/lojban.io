@@ -229,7 +229,7 @@ basicSentenceCanonicalizer :: SentenceCanonicalizer
 basicSentenceCanonicalizer sentence = parse sentence >>= canonicalizeParsedText
 
 canonicalizeParsedText :: (ZG.Free, ZG.Text, ZG.Terminator) -> Either String T.Text
-canonicalizeParsedText parsedText = (canonicalizeParsedBridi parsedText) `mplus` (canonicalizeParsedTerm parsedText)
+canonicalizeParsedText parsedText = (canonicalizeParsedTerm parsedText) `mplus` (canonicalizeParsedBridi parsedText)
 
 canonicalizeParsedBridi :: (ZG.Free, ZG.Text, ZG.Terminator) -> Either String T.Text
 canonicalizeParsedBridi parsedBridi = displayCanonicalBridi <$> (retrieveSimpleBridi parsedBridi)
