@@ -39,7 +39,7 @@ import Util (narrowTranslationGenerator, narrowTranslationGeneratorByExpression,
 import Text.Read (readMaybe)
 import System.Random (StdGen, random)
 import Control.Applicative (liftA2)
-import Control.Arrow (first)
+import Control.Arrow ((***), first)
 import Control.Exception (assert)
 import Control.Monad (join)
 import qualified Data.Text as T
@@ -78,17 +78,27 @@ expandSentences :: [T.Text] -> [T.Text]
 expandSentences = join . map expandSentence
 
 expandSentence :: T.Text -> [T.Text]
-expandSentence sentence = map (T.unwords . filter (/= "")) $ expandWords (T.words sentence) where
-    expandWords :: [T.Text] -> [[T.Text]]
-    expandWords = foldr (liftA2 (:) . expandWord) [[]]
-    expandWord :: T.Text -> [T.Text]
-    expandWord x
-        | (T.head x == '(') && (T.last x == ')') =
-            T.splitOn "|" (T.init . T.tail $ x)
-        | (T.head x == '{') && (T.last x == '}') =
-            "" : T.splitOn "|" (T.init . T.tail $ x)
-        | otherwise =
-            [x]
+expandSentence sentence = map (T.unwords . T.words) (expandSentence' sentence) where
+    expandSentence' :: T.Text -> [T.Text]
+    expandSentence' sentence
+        | (T.null sentence) =
+            [ "" ]
+        | (T.head sentence) == '(' = do
+            let (expression, sentence') = ((T.drop 1) *** (T.drop 1)) $ T.breakOn ")" sentence
+            expandedExpression <- expandExpression expression
+            expandedSentence' <- expandSentence' sentence'
+            return $ expandedExpression `T.append` expandedSentence'
+        | (T.head sentence) == '{' = do
+            let (expression, sentence') = ((T.drop 1) *** (T.drop 1)) $ T.breakOn "}" sentence
+            expandedExpression <- "" : (expandExpression expression)
+            expandedSentence' <- expandSentence' sentence'
+            return $ expandedExpression `T.append` expandedSentence'
+        | otherwise = do
+            let (expression, sentence') = T.break (`elem` ['(', '{']) sentence
+            expandedSentence' <- expandSentence' sentence'
+            return $ expression `T.append` expandedSentence'
+    expandExpression :: T.Text -> [T.Text]
+    expandExpression = T.splitOn "|"
 
 expandTranslation :: Translation -> Translation
 expandTranslation (lojban_sentences, english_sentences) = (expandSentences lojban_sentences, english_sentences)

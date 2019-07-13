@@ -19,11 +19,11 @@ sentenceExpansionTests = do
           validateSentenceExpansion "mi tavla {do}" ["mi tavla", "mi tavla do"]
           validateSentenceExpansion "mi tavla {mi|do}" ["mi tavla", "mi tavla mi", "mi tavla do"]
           validateSentenceExpansion "mi tavla {mi|do|mi'o}" ["mi tavla", "mi tavla mi", "mi tavla do", "mi tavla mi'o"]
-          -- validateSentenceExpansion "mi nelci lo cmene {be do be'o|pe do ge'u} noi melbi" ["mi nelci lo cmene noi melbi", "mi nelci lo cmene be do be'o noi melbi", "mi nelci lo cmene pe do ge'u noi melbi"]
+          validateSentenceExpansion "mi nelci lo cmene {be do be'o|pe do ge'u} noi melbi" ["mi nelci lo cmene noi melbi", "mi nelci lo cmene be do be'o noi melbi", "mi nelci lo cmene pe do ge'u noi melbi"]
       it "supports '()'" $ do
           validateSentenceExpansion "mi tavla (do)" ["mi tavla do"]
           validateSentenceExpansion "mi tavla (mi|do)" ["mi tavla mi", "mi tavla do"]
           validateSentenceExpansion "mi tavla (mi|do|mi'o)" ["mi tavla mi", "mi tavla do", "mi tavla mi'o"]
-          -- validateSentenceExpansion "mi nelci lo cmene (be do be'o|pe do ge'u) noi melbi" ["mi nelci lo cmene be do be'o noi melbi", "mi nelci lo cmene pe do ge'u noi melbi"]
+          validateSentenceExpansion "mi nelci lo cmene (be do be'o|pe do ge'u) noi melbi" ["mi nelci lo cmene be do be'o noi melbi", "mi nelci lo cmene pe do ge'u noi melbi"]
 
 tests = sentenceExpansionTests
