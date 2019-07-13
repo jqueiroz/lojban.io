@@ -215,11 +215,13 @@ validateCanonicalization = hspec $ do
       --it "supports 'lo zdani po'e mi'" $ do
         --validateTermCanonicalization "lo zdani po'e mi" "lo zdani ku po'e mi ge'u"
       it "supports 'zo prenu" $ do
-        validateTermCanonicalization "zo prenu" "lu prenu li'u"
+        validateTermCanonicalization "zo prenu" "lo'u prenu le'u"
       it "supports 'lu mi tavla do'" $ do
         validateTermCanonicalization "lu mi tavla do" "lu mi tavla do li'u"
       it "supports 'lu mi tavla do li'u'" $ do
         validateTermCanonicalization "lu mi tavla do li'u" "lu mi tavla do li'u"
+      it "supports 'lo'u mi je tavla le'u'" $ do
+        validateTermCanonicalization "lo'u mi je tavla le'u" "lo'u mi je tavla le'u"
     describe "Basic sentence canonicalizer" $ do
       it "supports SE" $ do
         validateSentences

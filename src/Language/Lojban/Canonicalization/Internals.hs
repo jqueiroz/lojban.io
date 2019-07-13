@@ -183,7 +183,8 @@ convertStructuredTerm (ZG.LE (ZG.Init x) ZG.NR ZG.NQ y _) = insertPrefix . inser
     insertPrefix = ((T.pack $ x ++ " ") `T.append`)
     insertSuffix = (`T.append` " ku")
 convertStructuredTerm (ZG.Tanru xs) = unwordsET (map convertStructuredTerm xs)
-convertStructuredTerm (ZG.Clause (ZG.ZO x)) = unwordsET [Right $ "lu", Right $ T.pack x, Right $ "li'u"]
+convertStructuredTerm (ZG.Clause (ZG.ZO x)) = unwordsET [Right "lo'u", Right $ T.pack x, Right "le'u"]
+convertStructuredTerm (ZG.Clause (ZG.LOhU x)) = unwordsET [Right "lo'u",  Right $ T.unwords $ map T.pack x, Right "le'u"]
 convertStructuredTerm (ZG.LU (ZG.Init x) y term) = unwordsET [Right $ T.pack x, convertText y , Right $ "li'u"]
 convertStructuredTerm x = Left $ "Unrecognized pattern for structured term: " ++ show x
 
