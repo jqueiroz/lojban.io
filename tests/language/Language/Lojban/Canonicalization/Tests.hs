@@ -230,7 +230,7 @@ validateCanonicalization = hspec $ do
             ]
       it "supports 'mi .a lo gerku'" $ do
         validateEquivalentTerms
-            "mi .e lo gerku ku"
+            "mi .a lo gerku ku"
             [ "mi .a lo gerku"
             ]
       it "supports 'mi .e do'" $ do
