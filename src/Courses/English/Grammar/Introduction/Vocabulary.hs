@@ -215,3 +215,19 @@ vocabularyGenerator14 = createVocabularyBuilder
     -- Sumti
     [
     ]
+
+-- | Vocabulary for the fifteenth lesson.
+--
+-- * New brivla: NONE.
+-- * New cmavo: .a, .e, .o, .u
+vocabularyGenerator15 :: VocabularyBuilder
+vocabularyGenerator15 = createVocabularyBuilder
+    -- Selbri
+    [
+        ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska", "djuno", "nupre", "cusku", "vecnu", "pilno"])),
+        ("relations", ((0,) <$> ["pendo", "nelci", "gleki"]) ++ ((1,) <$> ["cmene", "bangu"])),
+        ("properties", (0,) <$> ["prenu", "zdani", "mlatu", "gerku", "melbi", "plise", "skami"])
+    ]
+    -- Sumti
+    [
+    ]

@@ -60,3 +60,7 @@ lesson13 dictionary = Lesson "Quotations 1" (exercises13 dictionary) plan13
 -- | Fourteenth lesson: Relative phrases
 lesson14 :: LessonBuilder
 lesson14 dictionary = Lesson "Relative phrases" (exercises14 dictionary) plan14
+
+-- | Fifteenth lesson: Logical connectives 1
+lesson15 :: LessonBuilder
+lesson15 dictionary = Lesson "Logical connectives 1" (exercises15 dictionary) plan15

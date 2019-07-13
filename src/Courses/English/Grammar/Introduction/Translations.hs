@@ -1688,4 +1688,32 @@ translations14_sentences = expandTranslationGenerator $ combineFunctionsUniforml
 translationExercises14 :: ExerciseGenerator
 translationExercises14 = generateTranslationExercise sentenceCanonicalizer sentenceComparer $ combineFunctionsUniformly [translations14_expressions, translations14_sentences]
 
+-- * Lesson 15: Logical connectives 1
+translations15_a :: TranslationGenerator
+translations15_a = expandTranslationGenerator $ combineFunctionsUniformly [zdani] where
+    zdani = generatorFromList
+        [ (["mi .a do se zdani"], ["I have a house, or you have a house (or both)."])
+        ]
+
+translations15_e :: TranslationGenerator
+translations15_e = expandTranslationGenerator $ combineFunctionsUniformly [zdani] where
+    zdani = generatorFromList
+        [ (["mi .e do se zdani"], ["I have a house, and you have a house."])
+        ]
+
+translations15_o :: TranslationGenerator
+translations15_o = expandTranslationGenerator $ combineFunctionsUniformly [zdani] where
+    zdani = generatorFromList
+        [ (["mi .o do se zdani"], ["I have a house, if and only if you have a house."])
+        ]
+
+translations15_u :: TranslationGenerator
+translations15_u = expandTranslationGenerator $ combineFunctionsUniformly [zdani] where
+    zdani = generatorFromList
+        [ (["mi .u do se zdani"], ["I have a house, regardless of whether you have a house."])
+        ]
+
+translationExercises15 :: ExerciseGenerator
+translationExercises15 = generateRestrictedTranslationExercise "Translate using <b>sumti connectives</b>" (const True) sentenceCanonicalizer sentenceComparer $ combineFunctionsUniformly [translations15_a, translations15_e, translations15_o, translations15_u]
+
 --TODO: pause immediately after lesson 5
