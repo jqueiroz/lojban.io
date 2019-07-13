@@ -183,3 +183,19 @@ vocabularyGenerator11 = createVocabularyBuilder
     -- Sumti
     [
     ]
+
+-- | Vocabulary for the thirteenth lesson.
+--
+-- * New brivla: NONE.
+-- * New cmavo: zo, lu, li'u
+vocabularyGenerator13 :: VocabularyBuilder
+vocabularyGenerator13 = createVocabularyBuilder
+    -- Selbri
+    [
+        ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska", "djuno", "nupre", "cusku", "vecnu", "pilno"])),
+        ("relations", ((0,) <$> ["pendo", "nelci", "gleki"]) ++ ((1,) <$> ["cmene", "bangu"])),
+        ("properties", (0,) <$> ["prenu", "zdani", "mlatu", "gerku", "melbi", "plise", "skami"])
+    ]
+    -- Sumti
+    [
+    ]

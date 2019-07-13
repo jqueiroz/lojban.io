@@ -1551,4 +1551,17 @@ translationExercises7to11 = combineFunctions
     , (5, translationExercises11)
     ]
 
+-- * Lesson 13: Quotations 1
+translations13 :: TranslationGenerator
+translations13 = expandTranslationGenerator $ combineFunctionsUniformly [cusku] where
+    cusku = generatorFromList
+        [ (["mi cusku zo do"], ["I said \"you\"."])
+        , (["mi cusku zo prenu"], ["I said \"person\"."])
+        , (["mi cusku zo gleki"], ["I said \"happy\"."])
+        , (["mi cusku lu mi nelci do li'u"], ["I said \"I like you\"."])
+        ]
+
+translationExercises13 :: ExerciseGenerator
+translationExercises13 = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations13
+
 --TODO: pause immediately after lesson 5

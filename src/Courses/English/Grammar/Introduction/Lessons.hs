@@ -52,3 +52,7 @@ lesson11 dictionary = Lesson "Tanru 1" (exercises11 dictionary) plan11
 -- | Twelveth lesson: Checkpoint (Lessons 7--11)
 checkpoint7to11 :: LessonBuilder
 checkpoint7to11 dictionary = Lesson "Checkpoint: Lessons 7-11" (exercises7to11 dictionary) plan7to11
+
+-- | Thirteenth lesson: Quotations 1
+lesson13 :: LessonBuilder
+lesson13 dictionary = Lesson "Quotations 1" (exercises13 dictionary) plan13
