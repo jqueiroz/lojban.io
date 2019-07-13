@@ -257,7 +257,7 @@ zvati: 310
 		Are you there?
 0.60	mi na djuno fi lo se zvati
 		I don't know where it is.
-0.66	zvati ma
-		Where is he?
+0.00	lo do pendo cu zvati ma
+		Where is your friend?
 0.97	no lo prenu cu zvati
 		There is nobody about.
