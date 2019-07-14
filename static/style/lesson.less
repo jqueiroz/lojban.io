@@ -97,7 +97,7 @@
     }
 }
 
-.lesson-contents {
+.lesson-body {
     /* Style */
     line-height: 1.5em;
     background-color: #fff;
@@ -109,9 +109,67 @@
     color: #333;
 
     h3 {
-        margin: 0.5em 0 0.5em 0;
-        border-bottom: solid 1px #000;
-        color: #000;
+        margin: 0 0 0.5em 0;
+    }
+
+    /* Tabs */
+    .lesson-tab-input {
+        display: none;
+    }
+
+    .lesson-tab-label {
+        display: inline-block;
+        margin-bottom: -1px;
+        padding: 15px 25px;
+        font-weight: 600;
+        text-align: center;
+        color: #abc;
+        border: 1px solid transparent;
+    }
+
+    .lesson-tab-label:before {
+      font-family: fontawesome;
+      font-weight: normal;
+      margin-right: 10px;
+    }
+
+    .lesson-tab-label[for="lesson-tab-lecture"]:before {
+        content: '\f02d';
+    }
+
+    .lesson-tab-label[for="lesson-tab-plan"]:before {
+        content: '\f1cb';
+    }
+
+    .lesson-tab-label:hover {
+      color: #789;
+      cursor: pointer;
+    }
+
+    .lesson-tab-input:checked + label {
+        color: #0af;
+        border: 1px solid #abc;
+        border-top: 2px solid #0af;
+        border-bottom: 1px solid #fff;
+    }
+
+    .lesson-lecture,
+    .lesson-plan {
+        display: none;
+        border-top: 1px solid #abc;
+        padding-top: 20px;
+    }
+
+    .lesson-lecture,
+    .lesson-plan {
+        font-family: 'Open Sans';
+        font-size: 1.1em;
+        line-height: 1.4em;
+    }
+
+    #lesson-tab-lecture:checked ~ .lesson-lecture,
+    #lesson-tab-plan:checked ~ .lesson-plan {
+        display: block;
     }
 }
 

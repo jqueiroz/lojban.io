@@ -33,10 +33,25 @@ displayLessonHome topbarCategory course lessonNumber = do
             H.div B.! A.class_ (H.stringValue "main") $ do
                 H.div B.! A.class_ (H.stringValue "lesson") $ do
                     displayLessonHeader baseLessonUrl LessonHome course lessonNumber
-                    H.div B.! A.class_ (H.stringValue "lesson-contents") $ do
-                        H.div $ do
-                            H.h3 $ H.toHtml ("Lesson plan" :: String)
-                            fromRight $ P.runPure $ PWH.writeHtml5 P.def (lessonPlan lesson)
+                    H.div B.! A.class_ (H.stringValue "lesson-body") $ do
+                        displayLessonTabs
+                        H.div B.! A.class_ (H.stringValue "lesson-lecture") $ do
+                            H.div $ do
+                                fromRight $ P.runPure $ PWH.writeHtml5 P.def (lessonLecture lesson)
+                        H.div B.! A.class_ (H.stringValue "lesson-plan") $ do
+                            H.div $ do
+                                fromRight $ P.runPure $ PWH.writeHtml5 P.def (lessonPlan lesson)
+
+displayLessonTabs :: H.Html
+displayLessonTabs = do
+    displayLessonTab "lesson-tab-lecture" "Lecture" True
+    displayLessonTab "lesson-tab-plan" "Plan" False
+
+displayLessonTab :: String -> String -> Bool -> H.Html
+displayLessonTab id title checked = do
+    H.input B.! A.type_ (H.stringValue "radio") B.!? (checked, A.checked "checked") B.! A.name (H.stringValue "lesson-tabgroup") B.! A.id (H.stringValue id) B.! A.class_ (H.stringValue "lesson-tab-input")
+    H.label B.! A.for (H.stringValue id) B.! A.class_ ("lesson-tab-label") $ do
+        H.toHtml title
 
 -- Embedded dictionary: consider using tooltips (https://getbootstrap.com/docs/4.0/components/tooltips/)
 displayLessonExercise :: TopbarCategory -> Course -> Int -> H.Html
