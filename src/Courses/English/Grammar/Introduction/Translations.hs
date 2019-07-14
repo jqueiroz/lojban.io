@@ -1690,27 +1690,87 @@ translationExercises14 = generateTranslationExercise sentenceCanonicalizer sente
 
 -- * Lesson 15: Logical connectives 1
 translations15_a :: TranslationGenerator
-translations15_a = expandTranslationGenerator $ combineFunctionsUniformly [zdani] where
+translations15_a = expandTranslationGenerator $ combineFunctionsUniformly [zdani, tavla, gleki] where
     zdani = generatorFromList
         [ (["mi .a do se zdani"], ["I have a house, or you have a house (or both)."])
+        , (["mi .a lo mi pendo cu se zdani"], ["I have a house, or my friend has a house (or both)."])
+        , (["do .a lo do pendo cu se zdani"], ["You have a house, or your friend has a house (or both)."])
+        ]
+    tavla = generatorFromList
+        [ (["mi .a do tavla"], ["I will talk, or you will talk (or both)."])
+        , (["mi .a do tavla fi lo gerku"], ["I will talk about the dog, or you will talk about the dog (or both)."])
+        , (["mi .a do tavla fi lo mlatu"], ["I will talk about the cat, or you will talk about the cat (or both)."])
+        , (["mi .a do tavla lo mi pendo"], ["I will talk to my friend, or you will talk to my friend (or both)."])
+        , (["mi .a lo mi pendo cu tavla"], ["I will talk, or my friend will talk (or both)."])
+        ]
+    gleki = generatorFromList
+        [ (["mi .a do gleki"], ["I am happy, or you are happy."])
+        , (["mi .a lo mi pendo cu gleki"], ["I am happy, or my friend is happy."])
+        , (["mi .a lo do pendo cu gleki"], ["I am happy, or your friend is happy."])
+        , (["mi .a lo do pendo cu gleki"], ["I am happy, or your friend is happy."])
         ]
 
 translations15_e :: TranslationGenerator
-translations15_e = expandTranslationGenerator $ combineFunctionsUniformly [zdani] where
+translations15_e = expandTranslationGenerator $ combineFunctionsUniformly [zdani, tavla, gleki] where
     zdani = generatorFromList
         [ (["mi .e do se zdani"], ["I have a house, and you have a house."])
+        , (["mi .e lo mi pendo cu se zdani"], ["I have a house, and my friend has a house."])
+        , (["mi .e lo do pendo cu se zdani"], ["I have a house, and your friend has a house."])
+        ]
+    tavla = generatorFromList
+        [ (["mi .e do tavla"], ["I will talk, and you will talk."])
+        , (["mi .e do tavla fi lo gerku"], ["I will talk about the dog, and you will talk about the dog."])
+        , (["mi .e do tavla fi lo mlatu"], ["I will talk about the cat, and you will talk about the cat."])
+        , (["mi .e do tavla lo mi pendo"], ["I will talk to my friend, and you will talk to my friend."])
+        , (["mi .e lo mi pendo cu tavla"], ["I will talk, and my friend will talk."])
+        ]
+    gleki = generatorFromList
+        [ (["mi .e do gleki"], ["I am happy, and you are happy."])
+        , (["mi .e lo mi pendo cu gleki"], ["I am happy, and my friend is happy."])
+        , (["mi .e lo do pendo cu gleki"], ["I am happy, and your friend is happy."])
+        , (["do .e lo do pendo cu gleki"], ["You are happy, and your friend is happy."])
         ]
 
 translations15_o :: TranslationGenerator
-translations15_o = expandTranslationGenerator $ combineFunctionsUniformly [zdani] where
+translations15_o = expandTranslationGenerator $ combineFunctionsUniformly [zdani, tavla, gleki] where
     zdani = generatorFromList
         [ (["mi .o do se zdani"], ["I have a house, if and only if you have a house."])
+        , (["mi .o lo mi pendo cu se zdani"], ["I have a house, if and only if my friend has a house."])
+        , (["do .o lo do pendo cu se zdani"], ["You have a house, if and only if your friend has a house."])
+        ]
+    tavla = generatorFromList
+        [ (["mi .o do tavla"], ["I will talk, if and only if you talk."])
+        , (["mi .o do tavla fi lo gerku"], ["I will talk about the dog, if and only if you talk about the dog."])
+        , (["mi .o do tavla fi lo mlatu"], ["I will talk about the cat, if and only if you talk about the cat."])
+        , (["mi .o do tavla lo mi pendo"], ["I will talk to my friend, if and only if you talk to my friend."])
+        , (["mi .o lo mi pendo cu tavla"], ["I will talk, if and only if my friend talks."])
+        ]
+    gleki = generatorFromList
+        [ (["mi .o do gleki"], ["I am happy, if and only if you are happy."])
+        , (["mi .o lo mi pendo cu gleki"], ["I am happy, if and only if my friend is happy."])
+        , (["mi .o lo do pendo cu gleki"], ["I am happy, if and only if your friend is happy."])
+        , (["do .o lo do pendo cu gleki"], ["You are happy, if and only if your friend is happy."])
         ]
 
 translations15_u :: TranslationGenerator
 translations15_u = expandTranslationGenerator $ combineFunctionsUniformly [zdani] where
     zdani = generatorFromList
         [ (["mi .u do se zdani"], ["I have a house, regardless of whether you have a house."])
+        , (["mi .u lo mi pendo cu se zdani"], ["I have a house, regardless of whether my friend has a house."])
+        , (["do .u lo do pendo cu se zdani"], ["You have a house, regardless of whether your friend has a house."])
+        ]
+    tavla = generatorFromList
+        [ (["mi .u do tavla"], ["I will talk, regardless of whether you talk."])
+        , (["mi .u do tavla fi lo gerku"], ["I will talk about the dog, regardless of whether you talk about the dog."])
+        , (["mi .u do tavla fi lo mlatu"], ["I will talk about the cat, regardless of whether you talk about the cat."])
+        , (["mi .u do tavla lo mi pendo"], ["I will talk to my friend, regardless of whether you talk to my friend."])
+        , (["mi .u lo mi pendo cu tavla"], ["I will talk, regardless of whether my friend talks."])
+        ]
+    gleki = generatorFromList
+        [ (["mi .u do gleki"], ["I am happy, regardless of whether you are happy."])
+        , (["mi .u lo mi pendo cu gleki"], ["I am happy, regardless of whether my friend is happy."])
+        , (["mi .u lo do pendo cu gleki"], ["I am happy, regardless of whether your friend is happy."])
+        , (["do .u lo do pendo cu gleki"], ["You are happy, regardless of whether your friend is happy."])
         ]
 
 translationExercises15 :: ExerciseGenerator
