@@ -6,6 +6,7 @@ module Courses.English.Vocabulary.Brivla (course, lesson01) where
 
 import Core
 import Courses.Util.ExerciseGenerators
+import Courses.Util.Documents (buildDocument)
 import Util (generatorFromList, combineFunctions)
 import Control.Arrow (second)
 import qualified Data.Text as T
@@ -34,17 +35,17 @@ buildBrivlaExerciseGenerator dictionary translationsByExpression = combineFuncti
 
 ------- Lesson contents
 lecture01 :: P.Pandoc
-Right lecture01 = P.runPure $ P.readMarkdown P.def $ ""
+Right lecture01 = buildDocument ""
 
 lecture02 :: P.Pandoc
-Right lecture02 = P.runPure $ P.readMarkdown P.def $ ""
+Right lecture02 = buildDocument ""
 
 ------- Lesson plans
 plan01 :: P.Pandoc
-Right plan01 = P.runPure $ P.readMarkdown P.def $ ""
+Right plan01 = buildDocument ""
 
 plan02 :: P.Pandoc
-Right plan02 = P.runPure $ P.readMarkdown P.def $ ""
+Right plan02 = buildDocument ""
 
 ------- Translations
 translations01 :: TranslationsByExpression

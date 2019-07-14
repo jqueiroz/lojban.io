@@ -171,6 +171,30 @@
     #lesson-tab-plan:checked ~ .lesson-plan {
         display: block;
     }
+
+    .spoiler-answer {
+        filter: blur(4px);
+        transition-property: -webkit-filter;
+        transition-duration: 0.2s;
+    }
+
+    .spoiler-answer:hover,
+    .spoiler:focus {
+        filter: blur(0px);
+    }
+
+    .definition-head {
+        margin-left: 2em;
+        font-weight: bold;
+    }
+
+    .definition-head:after {
+        content: " = ";
+    }
+
+    .hspace {
+        margin-left: 2em;
+    }
 }
 
 .exercise-holder {

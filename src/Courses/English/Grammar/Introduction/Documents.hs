@@ -1,131 +1,132 @@
+{-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE TemplateHaskell #-}
 
 -- | This module defines documents pertaining to the course, such as lesson materials and lesson plans.
 module Courses.English.Grammar.Introduction.Documents where
 
+import Courses.Util.Documents (buildDocument)
 import Data.FileEmbed (embedStringFile)
-import qualified Data.Text as T
 import qualified Text.Pandoc as P
 
 -- * Lesson contents
 -- | Lecture for the first lesson.
 lecture1 :: P.Pandoc
-Right lecture1 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/lectures/01.md")
+Right lecture1 = buildDocument $(embedStringFile "courses/english/grammar/introduction/lectures/01.md")
 
 -- | Lecture for the second lesson.
 lecture2 :: P.Pandoc
-Right lecture2 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/lectures/02.md")
+Right lecture2 = buildDocument $(embedStringFile "courses/english/grammar/introduction/lectures/02.md")
 
 -- | Lecture for the third lesson.
 lecture3 :: P.Pandoc
-Right lecture3 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/lectures/03.md")
+Right lecture3 = buildDocument $(embedStringFile "courses/english/grammar/introduction/lectures/03.md")
 
 -- | Lecture for the fourth lesson.
 lecture4 :: P.Pandoc
-Right lecture4 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/lectures/04.md")
+Right lecture4 = buildDocument $(embedStringFile "courses/english/grammar/introduction/lectures/04.md")
 
 -- | Lecture for the fifth lesson.
 lecture5 :: P.Pandoc
-Right lecture5 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/lectures/05.md")
+Right lecture5 = buildDocument $(embedStringFile "courses/english/grammar/introduction/lectures/05.md")
 
 -- | Lecture for the sixth lesson.
 lecture1to5 :: P.Pandoc
-Right lecture1to5 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/lectures/checkpoint_01to05.md")
+Right lecture1to5 = buildDocument $(embedStringFile "courses/english/grammar/introduction/lectures/checkpoint_01to05.md")
 
 -- | Lecture for the seventh lesson.
 lecture7 :: P.Pandoc
-Right lecture7 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/lectures/07.md")
+Right lecture7 = buildDocument $(embedStringFile "courses/english/grammar/introduction/lectures/07.md")
 
 -- | Lecture for the eighth lesson.
 lecture8 :: P.Pandoc
-Right lecture8 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/lectures/08.md")
+Right lecture8 = buildDocument $(embedStringFile "courses/english/grammar/introduction/lectures/08.md")
 
 -- | Lecture for the nineth lesson.
 lecture9 :: P.Pandoc
-Right lecture9 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/lectures/09.md")
+Right lecture9 = buildDocument $(embedStringFile "courses/english/grammar/introduction/lectures/09.md")
 
 -- | Lecture for the tenth lesson.
 lecture10 :: P.Pandoc
-Right lecture10 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/lectures/10.md")
+Right lecture10 = buildDocument $(embedStringFile "courses/english/grammar/introduction/lectures/10.md")
 
 -- | Lecture for the eleventh lesson.
 lecture11 :: P.Pandoc
-Right lecture11 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/lectures/11.md")
+Right lecture11 = buildDocument $(embedStringFile "courses/english/grammar/introduction/lectures/11.md")
 
 -- | Lecture for the twelveth lesson.
 lecture7to11 :: P.Pandoc
-Right lecture7to11 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/lectures/checkpoint_07to11.md")
+Right lecture7to11 = buildDocument $(embedStringFile "courses/english/grammar/introduction/lectures/checkpoint_07to11.md")
 
 -- | Lecture for the thirteenth lesson.
 lecture13 :: P.Pandoc
-Right lecture13 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/lectures/13.md")
+Right lecture13 = buildDocument $(embedStringFile "courses/english/grammar/introduction/lectures/13.md")
 
 -- | Lecture for the fourteenth lesson.
 lecture14 :: P.Pandoc
-Right lecture14 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/lectures/14.md")
+Right lecture14 = buildDocument $(embedStringFile "courses/english/grammar/introduction/lectures/14.md")
 
 -- | Lecture for the fifteenth lesson.
 lecture15 :: P.Pandoc
-Right lecture15 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/lectures/15.md")
+Right lecture15 = buildDocument $(embedStringFile "courses/english/grammar/introduction/lectures/15.md")
 
 -- * Lesson plans
 
 -- | Plan for the first lesson.
 plan1 :: P.Pandoc
-Right plan1 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/planning/01.md")
+Right plan1 = buildDocument $(embedStringFile "courses/english/grammar/introduction/planning/01.md")
 
 -- | Plan for the second lesson.
 plan2 :: P.Pandoc
-Right plan2 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/planning/02.md")
+Right plan2 = buildDocument $(embedStringFile "courses/english/grammar/introduction/planning/02.md")
 
 -- | Plan for the third lesson.
 plan3 :: P.Pandoc
-Right plan3 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/planning/03.md")
+Right plan3 = buildDocument $(embedStringFile "courses/english/grammar/introduction/planning/03.md")
 
 -- | Plan for the fourth lesson.
 plan4 :: P.Pandoc
-Right plan4 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/planning/04.md")
+Right plan4 = buildDocument $(embedStringFile "courses/english/grammar/introduction/planning/04.md")
 
 -- | Plan for the fifth lesson.
 plan5 :: P.Pandoc
-Right plan5 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/planning/05.md")
+Right plan5 = buildDocument $(embedStringFile "courses/english/grammar/introduction/planning/05.md")
 
 -- | Plan for the sixth lesson.
 plan1to5 :: P.Pandoc
-Right plan1to5 = P.runPure $ P.readMarkdown P.def $ T.pack ""
+Right plan1to5 = buildDocument ""
 
 -- | Plan for the seventh lesson.
 plan7 :: P.Pandoc
-Right plan7 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/planning/07.md")
+Right plan7 = buildDocument $(embedStringFile "courses/english/grammar/introduction/planning/07.md")
 
 -- | Plan for the eighth lesson.
 plan8 :: P.Pandoc
-Right plan8 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/planning/08.md")
+Right plan8 = buildDocument $(embedStringFile "courses/english/grammar/introduction/planning/08.md")
 
 -- | Plan for the nineth lesson.
 plan9 :: P.Pandoc
-Right plan9 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/planning/09.md")
+Right plan9 = buildDocument $(embedStringFile "courses/english/grammar/introduction/planning/09.md")
 
 -- | Plan for the tenth lesson.
 plan10 :: P.Pandoc
-Right plan10 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/planning/10.md")
+Right plan10 = buildDocument $(embedStringFile "courses/english/grammar/introduction/planning/10.md")
 
 -- | Plan for the eleventh lesson.
 plan11 :: P.Pandoc
-Right plan11 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/planning/11.md")
+Right plan11 = buildDocument $(embedStringFile "courses/english/grammar/introduction/planning/11.md")
 
 -- | Plan for the twelveth lesson.
 plan7to11 :: P.Pandoc
-Right plan7to11 = P.runPure $ P.readMarkdown P.def $ T.pack ""
+Right plan7to11 = buildDocument ""
 
 -- | Plan for the thirteenth lesson.
 plan13 :: P.Pandoc
-Right plan13 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/planning/13.md")
+Right plan13 = buildDocument $(embedStringFile "courses/english/grammar/introduction/planning/13.md")
 
 -- | Plan for the fourteenth lesson.
 plan14 :: P.Pandoc
-Right plan14 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/planning/14.md")
+Right plan14 = buildDocument $(embedStringFile "courses/english/grammar/introduction/planning/14.md")
 
 -- | Plan for the fifteenth lesson.
 plan15 :: P.Pandoc
-Right plan15 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/planning/15.md")
+Right plan15 = buildDocument $(embedStringFile "courses/english/grammar/introduction/planning/15.md")

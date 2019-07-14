@@ -43,6 +43,7 @@ library
   exposed-modules:     Core
                      , DictionaryLoader
                      , Serializer
+                     , Courses.Util.Documents
                      , Courses.Util.ExerciseGenerators
                      , Courses.Util.NumberTranslator
                      , Courses.Util.Sentences
