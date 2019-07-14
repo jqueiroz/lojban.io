@@ -7,6 +7,67 @@ import Data.FileEmbed (embedStringFile)
 import qualified Data.Text as T
 import qualified Text.Pandoc as P
 
+-- * Lesson contents
+-- | Lecture for the first lesson.
+lecture1 :: P.Pandoc
+Right lecture1 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/lectures/01.md")
+
+-- | Lecture for the second lesson.
+lecture2 :: P.Pandoc
+Right lecture2 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/lectures/02.md")
+
+-- | Lecture for the third lesson.
+lecture3 :: P.Pandoc
+Right lecture3 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/lectures/03.md")
+
+-- | Lecture for the fourth lesson.
+lecture4 :: P.Pandoc
+Right lecture4 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/lectures/04.md")
+
+-- | Lecture for the fifth lesson.
+lecture5 :: P.Pandoc
+Right lecture5 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/lectures/05.md")
+
+-- | Lecture for the sixth lesson.
+lecture1to5 :: P.Pandoc
+Right lecture1to5 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/lectures/checkpoint_01to05.md")
+
+-- | Lecture for the seventh lesson.
+lecture7 :: P.Pandoc
+Right lecture7 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/lectures/07.md")
+
+-- | Lecture for the eighth lesson.
+lecture8 :: P.Pandoc
+Right lecture8 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/lectures/08.md")
+
+-- | Lecture for the nineth lesson.
+lecture9 :: P.Pandoc
+Right lecture9 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/lectures/09.md")
+
+-- | Lecture for the tenth lesson.
+lecture10 :: P.Pandoc
+Right lecture10 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/lectures/10.md")
+
+-- | Lecture for the eleventh lesson.
+lecture11 :: P.Pandoc
+Right lecture11 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/lectures/11.md")
+
+-- | Lecture for the twelveth lesson.
+lecture7to11 :: P.Pandoc
+Right lecture7to11 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/lectures/checkpoint_07to11.md")
+
+-- | Lecture for the thirteenth lesson.
+lecture13 :: P.Pandoc
+Right lecture13 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/lectures/13.md")
+
+-- | Lecture for the fourteenth lesson.
+lecture14 :: P.Pandoc
+Right lecture14 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/lectures/14.md")
+
+-- | Lecture for the fifteenth lesson.
+lecture15 :: P.Pandoc
+Right lecture15 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/grammar/introduction/lectures/15.md")
+
 -- * Lesson plans
 
 -- | Plan for the first lesson.

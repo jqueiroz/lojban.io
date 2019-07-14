@@ -7,12 +7,12 @@ import Courses.English.Vocabulary.Attitudinals.Exercises
 
 -- | First lesson: Pure emotions 1.
 lesson1 :: LessonBuilder
-lesson1 dictionary = Lesson "Pure emotions 1" exercises1 plan1
+lesson1 dictionary = Lesson "Pure emotions 1" exercises1 lecture1 plan1
 
 -- | Second lesson: Propositional emotions 1.
 lesson2 :: LessonBuilder
-lesson2 dictionary = Lesson "Propositional emotions 1" exercises2 plan2
+lesson2 dictionary = Lesson "Propositional emotions 1" exercises2 lecture2 plan2
 
 -- | Third lesson: Attitudinal modifiers 1
 lesson3 :: LessonBuilder
-lesson3 dictionary = Lesson "Attitudinal modifiers 1" exercises3 plan3
+lesson3 dictionary = Lesson "Attitudinal modifiers 1" exercises3 lecture3 plan3

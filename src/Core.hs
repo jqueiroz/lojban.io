@@ -69,6 +69,7 @@ type LessonBuilder = Dictionary -> Lesson
 data Lesson = Lesson
     { lessonTitle :: String
     , lessonExercises :: ExerciseGenerator
+    , lessonLecture :: P.Pandoc
     , lessonPlan :: P.Pandoc
     }
 

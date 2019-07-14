@@ -6,6 +6,18 @@ module Courses.English.Vocabulary.Attitudinals.Documents where
 import Data.FileEmbed (embedStringFile)
 import qualified Text.Pandoc as P
 
+-- * Lesson contents
+
+-- | Lecture for the first lesson.
+lecture1 :: P.Pandoc
+Right lecture1 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/vocabulary/attitudinals/lectures/01.md")
+
+lecture2 :: P.Pandoc
+Right lecture2 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/vocabulary/attitudinals/lectures/02.md")
+
+lecture3 :: P.Pandoc
+Right lecture3 = P.runPure $ P.readMarkdown P.def $ $(embedStringFile "courses/english/vocabulary/attitudinals/lectures/03.md")
+
 -- * Lesson plans
 
 -- | Plan for the first lesson.

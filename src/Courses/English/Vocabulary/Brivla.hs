@@ -32,6 +32,13 @@ buildBrivlaExerciseGenerator dictionary translationsByExpression = combineFuncti
     brivlaPlacesExercises = generateIsolatedBrivlaPlacesExercise dictionary $ generatorFromList brivlaWithAtLeastTwoPlaces
     brivlaProvidingExercises = generateLexiconProvidingExercise "brivla" dictionary $ generatorFromList brivla
 
+------- Lesson contents
+lecture01 :: P.Pandoc
+Right lecture01 = P.runPure $ P.readMarkdown P.def $ ""
+
+lecture02 :: P.Pandoc
+Right lecture02 = P.runPure $ P.readMarkdown P.def $ ""
+
 ------- Lesson plans
 plan01 :: P.Pandoc
 Right plan01 = P.runPure $ P.readMarkdown P.def $ ""
@@ -56,13 +63,13 @@ exercises02 dictionary = buildBrivlaExerciseGenerator dictionary translations02
 ------- Lessons
 -- TODO: rename: "Brivla 1--20", "Brivla 21--40", ...
 lesson01 :: LessonBuilder
-lesson01 dictionary = Lesson "Deck #1" (exercises01 dictionary) plan01
+lesson01 dictionary = Lesson "Deck #1" (exercises01 dictionary) lecture01 plan01
 
 -- Conflicts:
 --   * "ciska" vs "finti"
 --   * "jundi" vs "zgana"
 lesson02 :: LessonBuilder
-lesson02 dictionary = Lesson "Deck #2" (exercises02 dictionary) plan02
+lesson02 dictionary = Lesson "Deck #2" (exercises02 dictionary) lecture02 plan02
 
 -------- Course
 style :: CourseStyle
