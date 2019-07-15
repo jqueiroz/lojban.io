@@ -30,12 +30,12 @@ lecture5 :: P.Pandoc
 Right lecture5 = buildDocument $(embedStringFile "courses/english/grammar/introduction/lectures/05.md")
 
 -- | Lecture for the sixth lesson.
-lecture1to5 :: P.Pandoc
-Right lecture1to5 = buildDocument $(embedStringFile "courses/english/grammar/introduction/lectures/checkpoint_01to05.md")
+lecture6 :: P.Pandoc
+Right lecture6 = buildDocument $(embedStringFile "courses/english/grammar/introduction/lectures/06.md")
 
 -- | Lecture for the seventh lesson.
-lecture7 :: P.Pandoc
-Right lecture7 = buildDocument $(embedStringFile "courses/english/grammar/introduction/lectures/07.md")
+lecture1to6 :: P.Pandoc
+Right lecture1to6 = buildDocument $(embedStringFile "courses/english/grammar/introduction/lectures/checkpoint_01to06.md")
 
 -- | Lecture for the eighth lesson.
 lecture8 :: P.Pandoc
@@ -54,12 +54,12 @@ lecture11 :: P.Pandoc
 Right lecture11 = buildDocument $(embedStringFile "courses/english/grammar/introduction/lectures/11.md")
 
 -- | Lecture for the twelveth lesson.
-lecture7to11 :: P.Pandoc
-Right lecture7to11 = buildDocument $(embedStringFile "courses/english/grammar/introduction/lectures/checkpoint_07to11.md")
+lecture12 :: P.Pandoc
+Right lecture12 = buildDocument $(embedStringFile "courses/english/grammar/introduction/lectures/12.md")
 
 -- | Lecture for the thirteenth lesson.
-lecture13 :: P.Pandoc
-Right lecture13 = buildDocument $(embedStringFile "courses/english/grammar/introduction/lectures/13.md")
+lecture8to12 :: P.Pandoc
+Right lecture8to12 = buildDocument $(embedStringFile "courses/english/grammar/introduction/lectures/checkpoint_08to12.md")
 
 -- | Lecture for the fourteenth lesson.
 lecture14 :: P.Pandoc
@@ -68,6 +68,10 @@ Right lecture14 = buildDocument $(embedStringFile "courses/english/grammar/intro
 -- | Lecture for the fifteenth lesson.
 lecture15 :: P.Pandoc
 Right lecture15 = buildDocument $(embedStringFile "courses/english/grammar/introduction/lectures/15.md")
+
+-- | Lecture for the fifteenth lesson.
+lecture16 :: P.Pandoc
+Right lecture16 = buildDocument $(embedStringFile "courses/english/grammar/introduction/lectures/16.md")
 
 -- * Lesson plans
 
@@ -92,12 +96,12 @@ plan5 :: P.Pandoc
 Right plan5 = buildDocument $(embedStringFile "courses/english/grammar/introduction/planning/05.md")
 
 -- | Plan for the sixth lesson.
-plan1to5 :: P.Pandoc
-Right plan1to5 = buildDocument ""
+plan6 :: P.Pandoc
+Right plan6 = buildDocument $(embedStringFile "courses/english/grammar/introduction/planning/06.md")
 
 -- | Plan for the seventh lesson.
-plan7 :: P.Pandoc
-Right plan7 = buildDocument $(embedStringFile "courses/english/grammar/introduction/planning/07.md")
+plan1to6 :: P.Pandoc
+Right plan1to6 = buildDocument ""
 
 -- | Plan for the eighth lesson.
 plan8 :: P.Pandoc
@@ -116,12 +120,12 @@ plan11 :: P.Pandoc
 Right plan11 = buildDocument $(embedStringFile "courses/english/grammar/introduction/planning/11.md")
 
 -- | Plan for the twelveth lesson.
-plan7to11 :: P.Pandoc
-Right plan7to11 = buildDocument ""
+plan12 :: P.Pandoc
+Right plan12 = buildDocument $(embedStringFile "courses/english/grammar/introduction/planning/12.md")
 
 -- | Plan for the thirteenth lesson.
-plan13 :: P.Pandoc
-Right plan13 = buildDocument $(embedStringFile "courses/english/grammar/introduction/planning/13.md")
+plan8to12 :: P.Pandoc
+Right plan8to12 = buildDocument ""
 
 -- | Plan for the fourteenth lesson.
 plan14 :: P.Pandoc
@@ -130,3 +134,7 @@ Right plan14 = buildDocument $(embedStringFile "courses/english/grammar/introduc
 -- | Plan for the fifteenth lesson.
 plan15 :: P.Pandoc
 Right plan15 = buildDocument $(embedStringFile "courses/english/grammar/introduction/planning/15.md")
+
+-- | Plan for the sixteenth lesson.
+plan16 :: P.Pandoc
+Right plan16 = buildDocument $(embedStringFile "courses/english/grammar/introduction/planning/16.md")
