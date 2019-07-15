@@ -1441,11 +1441,6 @@ translationExercises11_unrestricted = generateTranslationExercise sentenceCanoni
 fillingBlanksExercises11 :: ExerciseGenerator
 fillingBlanksExercises11 = generateContextualizedBroadFillingBlanksExerciseByAlternatives ["pu", "ca", "ba"] translations11_restricted
 
-translations99 :: [ExerciseGenerator]
-translations99 = generateTranslationExercise sentenceCanonicalizer sentenceComparer <$> generatorFromSingleton <$>
-    [ (["lo prenu ku sutra tavla"], ["The person talks quickly.", "The person is talking quickly.", "A person is talking quickly.", "People talk quickly"])
-    ]
-
 -- * Lesson 12: Tanru
 -- TODO: tanru for "adverbs", in addition to the existing tanru for "adjectives" (changes in the canonicalizer will likely be necessary)
 translations12_expressions :: TranslationGenerator
@@ -1555,6 +1550,12 @@ translations12_sentences = expandTranslationGenerator $ combineFunctionsUniforml
         , (["xu do nelci lo gleki gerku", "xu do nelci lo gerku poi gleki"], ["Do you like happy dogs?"])
         , (["xu do nelci lo gleki mlatu", "xu do nelci lo mlatu poi gleki"], ["Do you like happy cats?"])
         ]
+
+-- TODO: use the following sentences
+translations99 :: [ExerciseGenerator]
+translations99 = generateTranslationExercise sentenceCanonicalizer sentenceComparer <$> generatorFromSingleton <$>
+    [ (["lo prenu ku sutra tavla"], ["The person talks quickly.", "The person is talking quickly.", "A person is talking quickly.", "People talk quickly"])
+    ]
 
 translationExercises12 :: ExerciseGenerator
 translationExercises12 = combineFunctions [(1, translationExercises12_expressions), (1, translationExercises12_sentences)] where
