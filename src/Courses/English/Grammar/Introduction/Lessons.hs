@@ -5,13 +5,17 @@ import Core
 import Courses.English.Grammar.Introduction.Documents
 import Courses.English.Grammar.Introduction.Exercises
 
--- | Second lesson: Basics 1.
-lesson2 :: LessonBuilder
-lesson2 dictionary = Lesson "Basics 1" (exercises2 dictionary) lecture2 plan2
+-- | First lesson: Basics 1.
+lesson1 :: LessonBuilder
+lesson1 dictionary = Lesson "Basics 1" (exercises1 dictionary) lecture1 plan1
 
--- | Third lesson: Basics 2.
+-- | Second lesson: Basics 2.
+lesson2 :: LessonBuilder
+lesson2 dictionary = Lesson "Basics 2" (exercises2 dictionary) lecture2 plan2
+
+-- | Third lesson: Basics 3.
 lesson3 :: LessonBuilder
-lesson3 dictionary = Lesson "Basics 2" (exercises3 dictionary) lecture3 plan3
+lesson3 dictionary = Lesson "Basics 3" (exercises3 dictionary) lecture3 plan3
 
 -- | Fourth lesson: Questions 1.
 lesson4 :: LessonBuilder

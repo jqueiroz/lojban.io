@@ -11,6 +11,29 @@ import Courses.Util.Sentences
 import Util (combineFunctions, combineFunctionsUniformly, generatorFromSingleton, generatorFromList)
 import qualified Data.Text as T
 
+-- * Lesson 1: Basics 1
+
+-- | Translations for the first lesson.
+translations1 :: TranslationGenerator
+translations1 = combineFunctionsUniformly [dunda, demonstrative, zdani] where
+    dunda = generatorFromList
+        [ (["do dunda ti mi"], ["You give me this.", "You give us this."])
+        , (["mi dunda ta do"], ["I give you that.", "We give you that."])
+        ]
+    demonstrative = generatorFromList
+        [ (["ti mlatu"], ["This is a cat.", "These are cats."])
+        , (["ta mlatu"], ["That is a cat.", "Those are cats."])
+        , (["ta zdani"], ["That is a house.", "Those are houses."])
+        ]
+    zdani = generatorFromList
+        [ (["zdani mi"], ["I have a house.", "We have a house.", "We have houses."])
+        , (["zdani do"], ["You have a house.", "You have houses."])
+        ]
+
+-- | Translation exercises for the first lesson.
+translationExercises1 :: ExerciseGenerator
+translationExercises1 = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations1
+
 -- * Lesson 2: Basics 2
 
 -- | Interesting translations for the second lesson.
@@ -78,7 +101,7 @@ translationExercises2 :: ExerciseGenerator
 translationExercises2 = combineFunctions [(1, translationExercises2_nice), (4, translationExercises2_normal)]
 
 
--- * Lesson 3: Basics 2
+-- * Lesson 3: Basics 3
 
 -- | Translation exercises for the third lesson, with the restriction that some intermediate place is missing.
 --

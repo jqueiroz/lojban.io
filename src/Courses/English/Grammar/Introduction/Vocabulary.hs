@@ -6,10 +6,28 @@ module Courses.English.Grammar.Introduction.Vocabulary where
 
 import Courses.Util.Vocabulary
 
+-- | Vocabulary for the first lesson.
+--
+-- * Starting brivla: dunda, zdani (pelxu is used only in the lecture).
+-- * Starting cmavo: mi, do, ti, ta.
+vocabularyGenerator1 :: VocabularyBuilder
+vocabularyGenerator1 = createVocabularyBuilder
+    -- Selbri
+    [
+        ("actions", (1,) <$> ["dunda"]),
+        ("relations", (1,) <$> []),
+        ("properties", (1,) <$> ["zdani"])
+    ]
+    -- Sumti
+    [
+        ("genericPersons", (1,) <$> ["mi", "do"]),
+        ("genericPointable", (1,) <$> ["ti", "ta"])
+    ]
+
 -- | Vocabulary for the second lesson.
 --
--- * Starting brivla: tavla, dunda, pendo, prenu, zdani, mlatu.
--- * Starting cmavo: mi, do, ti, ta.
+-- * New brivla: tavla, pendo, prenu, mlatu.
+-- * New cmavo: NONE.
 vocabularyGenerator2 :: VocabularyBuilder
 vocabularyGenerator2 = createVocabularyBuilder
     -- Selbri

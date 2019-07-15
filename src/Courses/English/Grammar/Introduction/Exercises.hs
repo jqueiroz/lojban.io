@@ -12,6 +12,21 @@ import Courses.English.Grammar.Introduction.Translations
 import Courses.English.Grammar.Introduction.Vocabulary
 import Util (combineFunctions, generatorFromWeightedList)
 
+-- | Exercises for the first lesson.
+exercises1 :: Dictionary -> ExerciseGenerator
+exercises1 dictionary =
+    -- TODO: avoid generation of bridi with incomplete places
+    combineFunctions
+        [ (25, generateBridiJufraExercise vocabulary displayBridi)
+        , (20, generateSelbriIdentificationExercise vocabulary displayBridi)
+        , (10, generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBridi)
+        , (20, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
+        , (40, translationExercises1)
+        ]
+    where
+        vocabulary = vocabularyGenerator1 dictionary
+        displayBridi = displayStandardSimpleBridi
+
 -- | Exercises for the second lesson.
 exercises2 :: Dictionary -> ExerciseGenerator
 exercises2 dictionary =
