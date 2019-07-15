@@ -183,8 +183,6 @@ exercises14 dictionary =
     combineFunctions
         [ (70, translationExercises14)
         ]
-    where
-        vocabulary = vocabularyGenerator14 dictionary
 
 -- | Exercises for the fifteenth lesson.
 exercises15 :: Dictionary -> ExerciseGenerator
@@ -192,8 +190,6 @@ exercises15 dictionary =
     combineFunctions
         [ (70, translationExercises15)
         ]
-    where
-        vocabulary = vocabularyGenerator15 dictionary
 
 -- | Exercises for the sixteenth lesson.
 exercises16 :: Dictionary -> ExerciseGenerator
@@ -201,5 +197,3 @@ exercises16 dictionary =
     combineFunctions
         [ (70, translationExercises16)
         ]
-    where
-        vocabulary = vocabularyGenerator16 dictionary
