@@ -63,7 +63,11 @@ library
                      , Courses.English.Vocabulary.Attitudinals.Model
                      , Courses.English.Vocabulary.Attitudinals.Util
                      , Courses.English.Vocabulary.Attitudinals.Vocabulary
-                     , Courses.English.Vocabulary.Brivla
+                     , Courses.English.Vocabulary.Brivla.Course
+                     , Courses.English.Vocabulary.Brivla.Documents
+                     , Courses.English.Vocabulary.Brivla.Exercises
+                     , Courses.English.Vocabulary.Brivla.Lessons
+                     , Courses.English.Vocabulary.Brivla.Translations
                      , Language.Lojban.Canonicalization
                      , Language.Lojban.Canonicalization.Internals
                      , Language.Lojban.Core

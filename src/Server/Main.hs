@@ -8,7 +8,7 @@ import DictionaryLoader (loadDictionary)
 import Serializer (exerciseToJSON, validateExerciseAnswer)
 import qualified Courses.English.Grammar.Introduction.Course
 import qualified Courses.English.Vocabulary.Attitudinals.Course
-import qualified Courses.English.Vocabulary.Brivla
+import qualified Courses.English.Vocabulary.Brivla.Course
 import Server.Core
 import Server.Home (displayHome)
 import Server.Grammar (displayGrammarHome)
@@ -60,7 +60,7 @@ handleVocabulary :: Dictionary -> ServerPart Response
 handleVocabulary dictionary = msum
     [ forceSlash . ok . toResponse $ displayVocabularyHome
     , dir "attitudinals" $ handleCourse TopbarVocabulary dictionary Courses.English.Vocabulary.Attitudinals.Course.course
-    , dir "brivla" $ handleCourse TopbarVocabulary dictionary Courses.English.Vocabulary.Brivla.course
+    , dir "brivla" $ handleCourse TopbarVocabulary dictionary Courses.English.Vocabulary.Brivla.Course.course
     ]
 
 handleResources :: Dictionary -> ServerPart Response
