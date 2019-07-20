@@ -129,7 +129,7 @@ translations3_restricted = combineFunctions [(2, talkingAbout), (1, gaveSomethin
 --
 -- Defined separately so that they may be reused in the checkpoint lesson (Lesson 7).
 translations3_nice :: TranslationGenerator
-translations3_nice = combineFunctions $ [(2, translations3_restricted), (2, teaching)] ++ ((1,) <$> [hasHouse, niceGift, giftingAnimal, friends, others]) where
+translations3_nice = combineFunctions $ [(2, translations3_restricted), (2, teaching)] ++ ((1,) <$> [hasHouse, niceGift, giftingAnimal, friends, pelxu, others]) where
     hasHouse = generatorFromList
         [ (["lo ctuca ku se zdani"], ["The instructor has a house."])
         , (["lo prenu ku se zdani"], ["The person has a house."])
@@ -181,6 +181,12 @@ translations3_nice = combineFunctions $ [(2, translations3_restricted), (2, teac
         , (["lo dunda ku pendo"], ["The donor is friendly.", "The donors are friendly."])
         , (["lo te dunda ku pendo"], ["The beneficiary is friendly.", "The beneficiaries are friendly."])
         , (["lo ctuca ku pendo"], ["The instructor is friendly.", "The instructors are friendly."])
+        ]
+    pelxu = generatorFromList
+        [ (["lo zdani ku pelxu"], ["The house is yellow.", "The houses are yellow."])
+        , (["lo mlatu ku pelxu"], ["The cat is yellow.", "The cats are yellow."])
+        , (["lo gerku ku pelxu"], ["The dog is yellow.", "The dogs are yellow."])
+        , (["lo se dunda ku pelxu"], ["The gift is yellow."])
         ]
     others = generatorFromList
         [ (["mi nelci lo xe ctuca ku"], ["I like the teaching method."])
