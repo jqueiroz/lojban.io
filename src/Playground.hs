@@ -17,7 +17,7 @@ import DictionaryLoader (loadDictionary)
 -- See also: https://mw.lojban.org/papri/N-grams_of_Lojban_corpus
 
 allGismu :: IO [Gismu]
-allGismu = map snd . M.toList . dictGismu <$> loadDictionary
+allGismu = return $ map snd . M.toList . dictGismu $ loadDictionary
 
 popularGismu :: IO [Gismu]
 popularGismu = filter ((>=200) . gismuIRCFrequencyCount) <$> allGismu
@@ -33,7 +33,7 @@ loadGismuFromText dict t = mapMaybe lookup words where
 
 loadGismuFromFile :: FilePath -> IO [Gismu]
 loadGismuFromFile filePath = do
-    dict <- loadDictionary
+    let dict = loadDictionary
     loadGismuFromText dict <$> TIO.readFile filePath
 
 terry :: IO [Gismu]

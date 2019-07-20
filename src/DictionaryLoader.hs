@@ -1,4 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE TemplateHaskell #-}
 
 module DictionaryLoader
 ( loadDictionary
@@ -10,30 +11,28 @@ import Control.Applicative ((<$>))
 import Control.Arrow (second)
 import Data.Maybe (isNothing)
 import qualified Data.Text as T
-import qualified Data.Text.IO as TIO
 import qualified Data.Map as M
+import Data.FileEmbed (embedStringFile)
 
 -- Dictionary
-loadDictionary :: IO Dictionary
-loadDictionary = do
+loadDictionary :: Dictionary
+loadDictionary = Dictionary gismuMap cmavoMap definitionsMap englishBrivlaPlacesMap where
     -- Frequency map
-    frequencyMap <- loadFrequencyMapFromFile
+    frequencyMap = loadFrequencyMapFromText $ T.pack $(embedStringFile "resources/MyFreq-COMB_without_dots.txt")
     -- Cmavo
-    cmavo <- loadCmavoFromFile frequencyMap
-    let cmavoList = map (\c -> (cmavoText c, c)) cmavo
-    let cmavoMap = M.fromList cmavoList
+    cmavo = loadCmavoFromText frequencyMap $ T.pack $(embedStringFile "resources/cmavo.txt")
+    cmavoList = map (\c -> (cmavoText c, c)) cmavo
+    cmavoMap = M.fromList cmavoList
     -- Gismu
-    let isReallyGismu gismu = isNothing $ M.lookup (gismuText gismu) cmavoMap
-    gismu <- filter isReallyGismu <$> loadGismuFromFile frequencyMap
-    let gismuList = map (\g -> (gismuText g, g)) gismu
-    let gismuMap = M.fromList gismuList
+    isReallyGismu gismu = isNothing $ M.lookup (gismuText gismu) cmavoMap
+    gismu = filter isReallyGismu $ loadGismuFromText frequencyMap $ T.pack $(embedStringFile "resources/gismu.txt")
+    gismuList = map (\g -> (gismuText g, g)) gismu
+    gismuMap = M.fromList gismuList
     -- Definitions
-    let cmavoDefinitions = (second cmavoEnglishDefinition) <$> cmavoList
-    let gismuDefinitions = (second gismuEnglishDefinition) <$> gismuList
-    let definitionsList = cmavoDefinitions ++ gismuDefinitions
-    let definitionsMap = M.fromList definitionsList
-    -- Return dictionary
-    return $ Dictionary gismuMap cmavoMap definitionsMap englishBrivlaPlacesMap
+    cmavoDefinitions = (second cmavoEnglishDefinition) <$> cmavoList
+    gismuDefinitions = (second gismuEnglishDefinition) <$> gismuList
+    definitionsList = cmavoDefinitions ++ gismuDefinitions
+    definitionsMap = M.fromList definitionsList
 
 -- Gismu
 loadGismuFromLine :: FrequencyMap -> T.Text -> Gismu
@@ -55,9 +54,6 @@ loadGismuFromLine frequencyMap line =
 loadGismuFromText :: FrequencyMap -> T.Text -> [Gismu]
 loadGismuFromText frequencyMap = fmap (loadGismuFromLine frequencyMap) . tail . T.lines
 
-loadGismuFromFile :: FrequencyMap -> IO [Gismu]
-loadGismuFromFile frequencyMap = loadGismuFromText frequencyMap <$> TIO.readFile "resources/gismu.txt"
-
 -- Cmavo
 loadCmavoFromLine :: FrequencyMap -> T.Text -> Cmavo
 loadCmavoFromLine frequencyMap line =
@@ -71,9 +67,6 @@ loadCmavoFromLine frequencyMap line =
 
 loadCmavoFromText :: FrequencyMap -> T.Text -> [Cmavo]
 loadCmavoFromText frequencyMap = fmap (loadCmavoFromLine frequencyMap) . tail . T.lines
-
-loadCmavoFromFile :: FrequencyMap -> IO [Cmavo]
-loadCmavoFromFile frequencyMap = loadCmavoFromText frequencyMap <$> TIO.readFile "resources/cmavo.txt"
 
 -- Brivla places
 -- See also: http://www.lojban.org/publications/wordlists/oblique_keywords.txt
@@ -156,5 +149,5 @@ loadFrequencyPairFromLine :: T.Text -> (T.Text, Int)
 loadFrequencyPairFromLine line = (w, read $ T.unpack f) where
     [f, w] = T.splitOn " " line
 
-loadFrequencyMapFromFile :: IO FrequencyMap
-loadFrequencyMapFromFile = M.fromList . map loadFrequencyPairFromLine . map (T.replace "\r" "") . T.lines <$> TIO.readFile "resources/MyFreq-COMB_without_dots.txt"
+loadFrequencyMapFromText :: T.Text -> FrequencyMap
+loadFrequencyMapFromText = M.fromList . map loadFrequencyPairFromLine . map (T.replace "\r" "") . T.lines

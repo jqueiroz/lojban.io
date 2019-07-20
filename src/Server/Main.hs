@@ -27,7 +27,7 @@ import Happstack.Server
 
 main :: IO ()
 main = do
-    dictionary <- loadDictionary
+    let dictionary = loadDictionary
     simpleHTTP nullConf $ handleRoot dictionary
 
 -- Utility functions
