@@ -20,12 +20,12 @@ englishDictionary = Dictionary gismuMap cmavoMap definitionsMap englishBrivlaPla
     -- Frequency map
     frequencyMap = loadFrequencyMapFromText $ T.pack $(embedStringFile "resources/MyFreq-COMB_without_dots.txt")
     -- Cmavo
-    cmavo = loadCmavoFromText frequencyMap $ T.pack $(embedStringFile "resources/cmavo.txt")
+    cmavo = loadCmavoFromText frequencyMap $ T.pack $(embedStringFile "resources/english/cmavo.txt")
     cmavoList = map (\c -> (cmavoText c, c)) cmavo
     cmavoMap = M.fromList cmavoList
     -- Gismu
     isReallyGismu gismu = isNothing $ M.lookup (gismuText gismu) cmavoMap
-    gismu = filter isReallyGismu $ loadGismuFromText frequencyMap $ T.pack $(embedStringFile "resources/gismu.txt")
+    gismu = filter isReallyGismu $ loadGismuFromText frequencyMap $ T.pack $(embedStringFile "resources/english/gismu.txt")
     gismuList = map (\g -> (gismuText g, g)) gismu
     gismuMap = M.fromList gismuList
     -- Definitions
