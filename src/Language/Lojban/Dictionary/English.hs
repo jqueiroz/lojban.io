@@ -1,8 +1,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE TemplateHaskell #-}
 
-module DictionaryLoader
-( loadDictionary
+module Language.Lojban.Dictionary.English
+( englishDictionary
 ) where
 
 import Core
@@ -15,8 +15,8 @@ import qualified Data.Map as M
 import Data.FileEmbed (embedStringFile)
 
 -- Dictionary
-loadDictionary :: Dictionary
-loadDictionary = Dictionary gismuMap cmavoMap definitionsMap englishBrivlaPlacesMap where
+englishDictionary :: Dictionary
+englishDictionary = Dictionary gismuMap cmavoMap definitionsMap englishBrivlaPlacesMap where
     -- Frequency map
     frequencyMap = loadFrequencyMapFromText $ T.pack $(embedStringFile "resources/MyFreq-COMB_without_dots.txt")
     -- Cmavo

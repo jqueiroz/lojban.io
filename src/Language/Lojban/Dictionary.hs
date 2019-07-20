@@ -3,7 +3,4 @@ module Language.Lojban.Dictionary
 ) where
 
 import Core
-import DictionaryLoader (loadDictionary)
-
-englishDictionary :: Dictionary
-englishDictionary = loadDictionary
+import Language.Lojban.Dictionary.English (englishDictionary)

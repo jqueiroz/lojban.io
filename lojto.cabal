@@ -41,7 +41,6 @@ library
   --cc-options: -j8 -static
   --ld-options: -static -pthread
   exposed-modules:     Core
-                     , DictionaryLoader
                      , Serializer
                      , Courses.Util.Documents
                      , Courses.Util.ExerciseGenerators
@@ -72,6 +71,7 @@ library
                      , Language.Lojban.Canonicalization.Internals
                      , Language.Lojban.Core
                      , Language.Lojban.Dictionary
+                     , Language.Lojban.Dictionary.English
                      , Language.Lojban.Parsing
                      , Language.Lojban.Presentation
                      , Language.Lojban.Refinement
