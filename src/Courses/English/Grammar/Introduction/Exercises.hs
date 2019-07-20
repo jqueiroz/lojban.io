@@ -6,15 +6,20 @@ module Courses.English.Grammar.Introduction.Exercises where
 import Core
 import Courses.Util.Vocabulary
 import Courses.Util.ExerciseGenerators
+import Language.Lojban.Dictionary (englishDictionary)
 import Language.Lojban.Presentation (displayStandardSimpleBridi, displayVariantSimpleBridi, displayReorderedStandardSimpleBridi)
 import Language.Lojban.Refinement (simplifyTerminatorsInBridiDisplayer)
 import Courses.English.Grammar.Introduction.Translations
 import Courses.English.Grammar.Introduction.Vocabulary
 import Util (combineFunctions, generatorFromWeightedList)
 
+-- | Dictionary for the exercises.
+dictionary :: Dictionary
+dictionary = englishDictionary
+
 -- | Exercises for the first lesson.
-exercises1 :: Dictionary -> ExerciseGenerator
-exercises1 dictionary =
+exercises1 :: ExerciseGenerator
+exercises1 =
     -- TODO: avoid generation of bridi with incomplete places
     combineFunctions
         [ (25, generateBridiJufraExercise vocabulary displayBridi)
@@ -28,8 +33,8 @@ exercises1 dictionary =
         displayBridi = displayStandardSimpleBridi
 
 -- | Exercises for the second lesson.
-exercises2 :: Dictionary -> ExerciseGenerator
-exercises2 dictionary =
+exercises2 :: ExerciseGenerator
+exercises2 =
     combineFunctions
         [ (20, generateGrammaticalClassExercise vocabulary)
         , (15, generateBridiJufraExercise vocabulary displayBridi)
@@ -43,8 +48,8 @@ exercises2 dictionary =
         displayBridi = combineFunctions [(7, displayStandardSimpleBridi), (3, displayVariantSimpleBridi)]
 
 -- | Exercises for the third lesson.
-exercises3 :: Dictionary -> ExerciseGenerator
-exercises3 dictionary =
+exercises3 :: ExerciseGenerator
+exercises3 =
     combineFunctions
         [ (10, generateGrammaticalClassExercise vocabulary)
         , (10, generateBridiJufraExercise vocabulary displayBridi)
@@ -59,8 +64,8 @@ exercises3 dictionary =
         displayBridi = combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
 
 -- | Exercises for the fourth lesson.
-exercises4 :: Dictionary -> ExerciseGenerator
-exercises4 dictionary =
+exercises4 :: ExerciseGenerator
+exercises4 =
     combineFunctions
         [ (20, generateIsolatedBrivlaPlacesExercise dictionary $ generatorFromWeightedList $ getVocabularySelbri vocabulary "actions")
         , (20, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
@@ -72,8 +77,8 @@ exercises4 dictionary =
         displayBridi = combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
 
 -- | Exercises for the fifth lesson.
-exercises5 :: Dictionary -> ExerciseGenerator
-exercises5 dictionary =
+exercises5 :: ExerciseGenerator
+exercises5 =
     combineFunctions
         [ (30, generateIsolatedBrivlaPlacesExercise dictionary $ generatorFromWeightedList $ getVocabularySelbri vocabulary "actions")
         , (10, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
@@ -85,8 +90,8 @@ exercises5 dictionary =
         displayBridi = combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
 
 -- | Exercises for the sixth lesson.
-exercises6 :: Dictionary -> ExerciseGenerator
-exercises6 dictionary =
+exercises6 :: ExerciseGenerator
+exercises6 =
     combineFunctions
         [ (20, generateIsolatedBrivlaPlacesExercise dictionary $ generatorFromWeightedList $ getVocabularySelbri vocabulary "actions")
         , (10, generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi)
@@ -97,8 +102,8 @@ exercises6 dictionary =
         displayBridi = simplifyTerminatorsInBridiDisplayer $ (combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)])
 
 -- | Exercises for the seventh lesson.
-exercises1to6 :: Dictionary -> ExerciseGenerator
-exercises1to6 dictionary =
+exercises1to6 :: ExerciseGenerator
+exercises1to6 =
     combineFunctions
         [ (5, generateGrammaticalClassExercise vocabulary)
         , (5, generateBridiJufraExercise vocabulary displayBridi)
@@ -115,8 +120,8 @@ exercises1to6 dictionary =
         displayBridi = simplifyTerminatorsInBridiDisplayer $ (combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)])
 
 -- | Exercises for the eighth lesson.
-exercises8 :: Dictionary -> ExerciseGenerator
-exercises8 dictionary =
+exercises8 :: ExerciseGenerator
+exercises8 =
     combineFunctions
         [ (20, generateIsolatedBrivlaPlacesExercise dictionary $ generatorFromWeightedList $ getVocabularySelbri vocabulary "actions")
         , (70, translationExercises8)
@@ -126,8 +131,8 @@ exercises8 dictionary =
         vocabulary = vocabularyGenerator8 dictionary
 
 -- | Exercises for the nineth lesson.
-exercises9 :: Dictionary -> ExerciseGenerator
-exercises9 dictionary =
+exercises9 :: ExerciseGenerator
+exercises9 =
     combineFunctions
         [ (20, generateIsolatedBrivlaPlacesExercise dictionary $ generatorFromWeightedList $ getVocabularySelbri vocabulary "actions" ++ getVocabularySelbri vocabulary "relations")
         , (70, translationExercises9)
@@ -136,8 +141,8 @@ exercises9 dictionary =
         vocabulary = vocabularyGenerator9 dictionary
 
 -- | Exercises for the tenth lesson.
-exercises10 :: Dictionary -> ExerciseGenerator
-exercises10 dictionary =
+exercises10 :: ExerciseGenerator
+exercises10 =
     combineFunctions
         [ (20, generateIsolatedBrivlaPlacesExercise dictionary $ generatorFromWeightedList $ getVocabularySelbri vocabulary "actions" ++ getVocabularySelbri vocabulary "relations")
         , (80, translationExercises10)
@@ -146,8 +151,8 @@ exercises10 dictionary =
         vocabulary = vocabularyGenerator10 dictionary
 
 -- | Exercises for the eleventh lesson.
-exercises11 :: Dictionary -> ExerciseGenerator
-exercises11 dictionary =
+exercises11 :: ExerciseGenerator
+exercises11 =
     combineFunctions
         [ (10, generateIsolatedBrivlaPlacesExercise dictionary $ generatorFromWeightedList $ getVocabularySelbri vocabulary "actions" ++ getVocabularySelbri vocabulary "relations")
         , (70, translationExercises11_restricted)
@@ -158,8 +163,8 @@ exercises11 dictionary =
         vocabulary = vocabularyGenerator11 dictionary
 
 -- | Exercises for the twelveth lesson.
-exercises12 :: Dictionary -> ExerciseGenerator
-exercises12 dictionary =
+exercises12 :: ExerciseGenerator
+exercises12 =
     combineFunctions
         [ (10, generateIsolatedBrivlaPlacesExercise dictionary $ generatorFromWeightedList $ getVocabularySelbri vocabulary "actions" ++ getVocabularySelbri vocabulary "relations")
         , (70, translationExercises12)
@@ -168,8 +173,8 @@ exercises12 dictionary =
         vocabulary = vocabularyGenerator12 dictionary
 
 -- | Exercises for the thirteenth lesson.
-exercises8to12 :: Dictionary -> ExerciseGenerator
-exercises8to12 dictionary =
+exercises8to12 :: ExerciseGenerator
+exercises8to12 =
     combineFunctions
         [ (10, generateIsolatedBrivlaPlacesExercise dictionary $ generatorFromWeightedList $ getVocabularySelbri vocabulary "actions" ++ getVocabularySelbri vocabulary "relations")
         , (70, translationExercises8to12)
@@ -178,22 +183,22 @@ exercises8to12 dictionary =
         vocabulary = vocabularyGenerator12 dictionary
 
 -- | Exercises for the fourteenth lesson.
-exercises14 :: Dictionary -> ExerciseGenerator
-exercises14 dictionary =
+exercises14 :: ExerciseGenerator
+exercises14 =
     combineFunctions
         [ (70, translationExercises14)
         ]
 
 -- | Exercises for the fifteenth lesson.
-exercises15 :: Dictionary -> ExerciseGenerator
-exercises15 dictionary =
+exercises15 :: ExerciseGenerator
+exercises15 =
     combineFunctions
         [ (70, translationExercises15)
         ]
 
 -- | Exercises for the sixteenth lesson.
-exercises16 :: Dictionary -> ExerciseGenerator
-exercises16 dictionary =
+exercises16 :: ExerciseGenerator
+exercises16 =
     combineFunctions
         [ (70, translationExercises16)
         ]

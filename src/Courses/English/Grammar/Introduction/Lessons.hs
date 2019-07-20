@@ -6,65 +6,65 @@ import Courses.English.Grammar.Introduction.Documents
 import Courses.English.Grammar.Introduction.Exercises
 
 -- | First lesson: Basics 1.
-lesson1 :: LessonBuilder
-lesson1 dictionary = Lesson "Basics 1" (exercises1 dictionary) lecture1 plan1
+lesson1 :: Lesson
+lesson1 = Lesson "Basics 1" exercises1 lecture1 plan1
 
 -- | Second lesson: Basics 2.
-lesson2 :: LessonBuilder
-lesson2 dictionary = Lesson "Basics 2" (exercises2 dictionary) lecture2 plan2
+lesson2 :: Lesson
+lesson2 = Lesson "Basics 2" exercises2 lecture2 plan2
 
 -- | Third lesson: Basics 3.
-lesson3 :: LessonBuilder
-lesson3 dictionary = Lesson "Basics 3" (exercises3 dictionary) lecture3 plan3
+lesson3 :: Lesson
+lesson3 = Lesson "Basics 3" exercises3 lecture3 plan3
 
 -- | Fourth lesson: Questions 1.
-lesson4 :: LessonBuilder
-lesson4 dictionary = Lesson "Questions 1" (exercises4 dictionary) lecture4 plan4
+lesson4 :: Lesson
+lesson4 = Lesson "Questions 1" exercises4 lecture4 plan4
 
 -- | Fifth lesson: Abstractions 1.
-lesson5 :: LessonBuilder
-lesson5 dictionary = Lesson "Abstractions 1" (exercises5 dictionary) lecture5 plan5
+lesson5 :: Lesson
+lesson5 = Lesson "Abstractions 1" exercises5 lecture5 plan5
 
 -- | Sixth lesson: Terminator elision.
-lesson6 :: LessonBuilder
-lesson6 dictionary = Lesson "Terminator elision" (exercises6 dictionary) lecture6 plan6
+lesson6 :: Lesson
+lesson6 = Lesson "Terminator elision" exercises6 lecture6 plan6
 
 -- | Seventh lesson: Checkpoint (Lessons 1--6).
-checkpoint1to6 :: LessonBuilder
-checkpoint1to6 dictionary = Lesson "Checkpoint: Lessons 1–6" (exercises1to6 dictionary) lecture1to6 plan1to6
+checkpoint1to6 :: Lesson
+checkpoint1to6 = Lesson "Checkpoint: Lessons 1–6" exercises1to6 lecture1to6 plan1to6
 
 -- | Eighth lesson: Relative clauses.
-lesson8 :: LessonBuilder
-lesson8 dictionary = Lesson "Relative clauses" (exercises8 dictionary) lecture8 plan8
+lesson8 :: Lesson
+lesson8 = Lesson "Relative clauses" exercises8 lecture8 plan8
 
 -- | Nineth lesson: Linked sumti.
-lesson9 :: LessonBuilder
-lesson9 dictionary = Lesson "Linked sumti" (exercises9 dictionary) lecture9 plan9
+lesson9 :: Lesson
+lesson9 = Lesson "Linked sumti" exercises9 lecture9 plan9
 
 -- | Tenth lesson: Sumtcita
-lesson10 :: LessonBuilder
-lesson10 dictionary = Lesson "Sumtcita" (exercises10 dictionary) lecture10 plan10
+lesson10 :: Lesson
+lesson10 = Lesson "Sumtcita" exercises10 lecture10 plan10
 
 -- | Eleventh lesson: Tenses 1
-lesson11 :: LessonBuilder
-lesson11 dictionary = Lesson "Tenses 1" (exercises11 dictionary) lecture11 plan11
+lesson11 :: Lesson
+lesson11 = Lesson "Tenses 1" exercises11 lecture11 plan11
 
 -- | Twelveth lesson: Tanru
-lesson12 :: LessonBuilder
-lesson12 dictionary = Lesson "Tanru 1" (exercises12 dictionary) lecture12 plan12
+lesson12 :: Lesson
+lesson12 = Lesson "Tanru 1" exercises12 lecture12 plan12
 
 -- | Thirteenth lesson: Checkpoint (Lessons 8--12)
-checkpoint8to12 :: LessonBuilder
-checkpoint8to12 dictionary = Lesson "Checkpoint: Lessons 8-12" (exercises8to12 dictionary) lecture8to12 plan8to12
+checkpoint8to12 :: Lesson
+checkpoint8to12 = Lesson "Checkpoint: Lessons 8-12" exercises8to12 lecture8to12 plan8to12
 
 -- | Fourteenth lesson: Quotations 1
-lesson14 :: LessonBuilder
-lesson14 dictionary = Lesson "Quotations 1" (exercises14 dictionary) lecture14 plan14
+lesson14 :: Lesson
+lesson14 = Lesson "Quotations 1" exercises14 lecture14 plan14
 
 -- | Fifteenth lesson: Relative phrases
-lesson15 :: LessonBuilder
-lesson15 dictionary = Lesson "Relative phrases" (exercises15 dictionary) lecture15 plan15
+lesson15 :: Lesson
+lesson15 = Lesson "Relative phrases" exercises15 lecture15 plan15
 
 -- | Sixteenth lesson: Logical connectives 1
-lesson16 :: LessonBuilder
-lesson16 dictionary = Lesson "Logical connectives 1" (exercises16 dictionary) lecture16 plan16
+lesson16 :: Lesson
+lesson16 = Lesson "Logical connectives 1" exercises16 lecture16 plan16

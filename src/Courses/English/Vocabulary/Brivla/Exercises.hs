@@ -5,13 +5,15 @@ module Courses.English.Vocabulary.Brivla.Exercises where
 
 import Core
 import Util (generatorFromList, combineFunctions)
+import Language.Lojban.Dictionary (englishDictionary)
 import Control.Arrow (second)
 import Courses.Util.ExerciseGenerators
 import Courses.English.Vocabulary.Brivla.Translations
 
 -- * Auxiliar functions
-buildBrivlaExerciseGenerator :: Dictionary -> TranslationsByExpression -> ExerciseGenerator
-buildBrivlaExerciseGenerator dictionary translationsByExpression = combineFunctions [(6, translationExercises), (3, brivlaPlacesExercises), (3, brivlaProvidingExercises)] where
+buildBrivlaExerciseGenerator :: TranslationsByExpression -> ExerciseGenerator
+buildBrivlaExerciseGenerator translationsByExpression = combineFunctions [(6, translationExercises), (3, brivlaPlacesExercises), (3, brivlaProvidingExercises)] where
+    dictionary = englishDictionary
     brivla = map fst translationsByExpression
     brivlaWithAtLeastTwoPlaces = filter ((>= 2) . length . retrieveBrivlaPlaces dictionary) brivla
     translationExercises = generateBroadFillingBlanksExerciseByExpression translationGeneratorByExpression
@@ -22,13 +24,13 @@ buildBrivlaExerciseGenerator dictionary translationsByExpression = combineFuncti
 -- * Exercises
 
 -- | Exercises for the corresponding lesson.
-exercises01 :: Dictionary -> ExerciseGenerator
-exercises01 dictionary = buildBrivlaExerciseGenerator dictionary translations01
+exercises01 :: ExerciseGenerator
+exercises01 = buildBrivlaExerciseGenerator translations01
 
 -- | Exercises for the corresponding lesson.
-exercises02 :: Dictionary -> ExerciseGenerator
-exercises02 dictionary = buildBrivlaExerciseGenerator dictionary translations02
+exercises02 :: ExerciseGenerator
+exercises02 = buildBrivlaExerciseGenerator translations02
 
 -- | Exercises for the corresponding lesson.
-exercises03 :: Dictionary -> ExerciseGenerator
-exercises03 dictionary = buildBrivlaExerciseGenerator dictionary translations03
+exercises03 :: ExerciseGenerator
+exercises03 = buildBrivlaExerciseGenerator translations03

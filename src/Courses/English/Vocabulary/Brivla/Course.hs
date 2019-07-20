@@ -17,7 +17,7 @@ style = CourseStyle color1 iconUrl where
         "https://www.flaticon.com/premium-icon/icons/svg/774/774512.svg"
 
 -- | Course: Brivla.
-course :: CourseBuilder
-course = createCourseBuilder title style lessons where
+course :: Course
+course = Course title style lessons where
     title = "Common brivla"
     lessons = [lesson01, lesson02, lesson03]

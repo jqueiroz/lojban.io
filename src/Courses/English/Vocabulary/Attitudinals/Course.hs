@@ -17,8 +17,8 @@ style = CourseStyle color1 iconUrl where
         "https://image.flaticon.com/icons/svg/187/187134.svg"
 
 -- | Course: Attitudinals.
-course :: CourseBuilder
-course = createCourseBuilder title style lessons where
+course :: Course
+course = Course title style lessons where
     title = "Attitudinals"
     lessons = [lesson1, lesson2, lesson3]
 

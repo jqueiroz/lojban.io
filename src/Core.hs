@@ -53,7 +53,6 @@ instance Eq Cmavo where
     x == y = (cmavoText x) == (cmavoText y)
 
 -- Course
-type CourseBuilder = Dictionary -> Course
 data Course = Course
     { courseTitle :: String
     , courseStyle :: CourseStyle
@@ -65,7 +64,6 @@ data CourseStyle = CourseStyle
     , courseStyleIconUrl :: Maybe String
     } deriving (Show)
 
-type LessonBuilder = Dictionary -> Lesson
 data Lesson = Lesson
     { lessonTitle :: String
     , lessonExercises :: ExerciseGenerator
@@ -75,9 +73,6 @@ data Lesson = Lesson
 
 instance Show Lesson where
     show lesson = "Lesson { title = " ++ show (lessonTitle lesson) ++ " }"
-
-createCourseBuilder :: String -> CourseStyle -> [LessonBuilder] -> CourseBuilder
-createCourseBuilder title style lessons dictionary = Course title style (lessons <*> [dictionary])
 
 -- Translations
 type Translation = ([LojbanSentence], [EnglishSentence])

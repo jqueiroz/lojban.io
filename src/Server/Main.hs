@@ -4,7 +4,6 @@
 module Server.Main (main) where
 
 import Core
-import DictionaryLoader (loadDictionary)
 import Serializer (exerciseToJSON, validateExerciseAnswer)
 import qualified Courses.English.Grammar.Introduction.Course
 import qualified Courses.English.Vocabulary.Attitudinals.Course
@@ -26,9 +25,7 @@ import Happstack.Server
 -- TODO: consider adding breadcrumbs (https://getbootstrap.com/docs/4.0/components/breadcrumb/)
 
 main :: IO ()
-main = do
-    let dictionary = loadDictionary
-    simpleHTTP nullConf $ handleRoot dictionary
+main = simpleHTTP nullConf handleRoot
 
 -- Utility functions
 forceSlash :: ServerPart Response -> ServerPart Response
@@ -41,44 +38,43 @@ getBody = askRq >>= liftIO . takeRequestBody >>=
         Nothing     -> return ""
 
 -- Handlers
-handleRoot :: Dictionary -> ServerPart Response
-handleRoot dictionary = msum
+handleRoot :: ServerPart Response
+handleRoot = msum
     [ forceSlash . ok . toResponse $ displayHome
     , dir "static" $ serveDirectory EnableBrowsing [] "static"
-    , dir "grammar" $ handleGrammar dictionary
-    , dir "vocabulary" $ handleVocabulary dictionary
-    , dir "resources" $ handleResources dictionary
+    , dir "grammar" handleGrammar
+    , dir "vocabulary" handleVocabulary
+    , dir "resources" handleResources
     ]
 
-handleGrammar :: Dictionary -> ServerPart Response
-handleGrammar dictionary = msum
+handleGrammar :: ServerPart Response
+handleGrammar = msum
     [ forceSlash . ok . toResponse $ displayGrammarHome
-    , dir "introduction" $ handleCourse TopbarGrammar dictionary Courses.English.Grammar.Introduction.Course.course
+    , dir "introduction" $ handleCourse TopbarGrammar Courses.English.Grammar.Introduction.Course.course
     ]
 
-handleVocabulary :: Dictionary -> ServerPart Response
-handleVocabulary dictionary = msum
+handleVocabulary :: ServerPart Response
+handleVocabulary = msum
     [ forceSlash . ok . toResponse $ displayVocabularyHome
-    , dir "attitudinals" $ handleCourse TopbarVocabulary dictionary Courses.English.Vocabulary.Attitudinals.Course.course
-    , dir "brivla" $ handleCourse TopbarVocabulary dictionary Courses.English.Vocabulary.Brivla.Course.course
+    , dir "attitudinals" $ handleCourse TopbarVocabulary Courses.English.Vocabulary.Attitudinals.Course.course
+    , dir "brivla" $ handleCourse TopbarVocabulary Courses.English.Vocabulary.Brivla.Course.course
     ]
 
-handleResources :: Dictionary -> ServerPart Response
-handleResources dictionary = msum
+handleResources :: ServerPart Response
+handleResources = msum
     [ forceSlash . ok . toResponse $ displayResourcesHome
     ]
 
-handleCourse :: TopbarCategory -> Dictionary -> CourseBuilder -> ServerPart Response
-handleCourse topbarCategory dictionary courseBuilder =
-    let course = courseBuilder dictionary
-        lessons = courseLessons course
+handleCourse :: TopbarCategory -> Course -> ServerPart Response
+handleCourse topbarCategory course =
+    let lessons = courseLessons course
     in msum
         [ forceSlash . ok . toResponse . displayCourseHome topbarCategory $ course
-        , path $ \n -> (guard $ 1 <= n && n <= (length lessons)) >> (handleLesson topbarCategory dictionary course n)
+        , path $ \n -> (guard $ 1 <= n && n <= (length lessons)) >> (handleLesson topbarCategory course n)
         ]
 
-handleLesson :: TopbarCategory -> Dictionary -> Course -> Int -> ServerPart Response
-handleLesson topbarCategory dictionary course lessonNumber = msum
+handleLesson :: TopbarCategory -> Course -> Int -> ServerPart Response
+handleLesson topbarCategory course lessonNumber = msum
     [ forceSlash . ok . toResponse $ displayLessonHome topbarCategory course lessonNumber
     , dir "exercises" $ msum
         [ forceSlash . ok . toResponse $ displayLessonExercise topbarCategory course lessonNumber
