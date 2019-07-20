@@ -33,19 +33,19 @@ cnino: 71
 drani: 57
 0.83	lo se cusku be do cu drani
 		What you said is correct.
-0.99	xu mi pu drani
+0.00	xu mi pu jai drani
 		Did I get it right?
-1.00	do djuno lo du'u mi drani
+0.00	do djuno lo du'u mi jai drani
 		You know I'm right.
-1.23	pe'i do na drani
+0.00	pe'i do na jai drani
 		I think you are mistaken.
-1.24	mi drani
+0.00	mi jai drani
 		I'm right.
-1.25	do drani
+0.00	do jai drani
 		You're right.
 1.26	na drani
 		It's wrong.
-1.27	ro lo re do drani
+0.00	ro lo re do jai drani
 		Both of you are right.
 0.00	drani xu
 		Is it correct?
