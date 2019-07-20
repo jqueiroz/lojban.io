@@ -23,6 +23,7 @@ common deps
                      , file-embed
                      , either-unwrap
                      , pandoc
+                     , yaml
                      , aeson
                      , random
                      , random-shuffle

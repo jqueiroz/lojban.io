@@ -9,9 +9,11 @@ import Core
 import Util (subfield)
 import Control.Applicative ((<$>))
 import Control.Arrow (second)
-import Data.Maybe (isNothing)
+import Data.Maybe (isNothing, catMaybes)
 import qualified Data.Text as T
+import qualified Data.Text.Encoding as TE
 import qualified Data.Map as M
+import qualified Data.Yaml as Y
 import Data.FileEmbed (embedStringFile)
 
 -- Dictionary
@@ -69,68 +71,15 @@ loadCmavoFromText :: FrequencyMap -> T.Text -> [Cmavo]
 loadCmavoFromText frequencyMap = fmap (loadCmavoFromLine frequencyMap) . tail . T.lines
 
 -- Brivla places
--- See also: http://www.lojban.org/publications/wordlists/oblique_keywords.txt
--- See also: https://www.memrise.com/course/17297/gismu-places-1-of-4/
 englishBrivlaPlacesMap :: M.Map T.Text [T.Text]
-englishBrivlaPlacesMap = M.fromList
-    [ ("tavla", ["speaker", "listener", "subject", "language"])
-    , ("dunda", ["donor", "gift", "recipient"])
-    , ("ctuca", ["instructor", "audience/student(s)", "ideas/methods", "subject", "teaching method"])
-    , ("citka", ["consumer", "aliment"])
-    , ("ciska", ["writer", "text/symbols", "display/storage medium", "writing implement"])
-    , ("klama", ["traveler", "destination", "origin", "route", "means/vehicle"])
-    , ("bridi", ["predicate relationship", "relation", "arguments"])
-    , ("djuno", ["knower", "facts", "subject", "epistemology"])
-    , ("nupre", ["promisor", "promise", "beneficiary/victim"])
-    , ("cusku", ["expresser", "message", "audience", "expressive medium"])
-    , ("cizra", ["strange thing", "viewpoint holder", "property"])
-    , ("cmene", ["name/title", "name posessor", "name-giver/name-user"])
-    , ("cusku", ["agent", "expressed idea", "audience", "expressive medium"])
-    , ("djica", ["desirer", "event/state", "purpose"])
-    , ("gleki", ["happy entity", "event/state"])
-    , ("jimpe", ["understander", "fact/truth", "subject"])
-    , ("klama", ["traveler", "destination", "origin", "route", "means/vehicle"])
-    , ("mutce", ["much/extreme thing", "property", "extreme/direction"])
-    , ("nelci", ["liker", "object/state"])
-    , ("pilno", ["user", "instrument", "purpose"])
-    , ("sipna", ["asleep entity"])
-    , ("xamgu", ["good object/event", "beneficiary", "standard"])
-    , ("zgana", ["observer", "observed", "senses/means", "conditions"])
-    , ("bangu", ["language/dialect", "language user", "communicated idea"])
-    , ("cliva", ["agent", "point of departure", "route"])
-    , ("finti", ["inventor/composer", "invention", "purpose", "existing elements/ideas"])
-    , ("gunka", ["worker", "activity", "goal"])
-    , ("jundi", ["attentive entity", "object/affair"])
-    , ("kakne", ["capable entity", "capability", "conditions"])
-    , ("tcidu", ["reader", "text", "reading material"])
-    , ("valsi", ["word", "meaning", "language"])
-    , ("zvati", ["atendee/event", "location"])
-    , ("cinri", ["interesting abstraction", "interested entity"])
-    , ("drata", ["entity #1", "entity #2", "standard"])
-    , ("simsa", ["entity #1", "entity #2", "property/quantity"])
-    , ("klaku", ["crier", "tears", "reason"])
-    , ("melbi", ["beautiful entity", "viewpoint holder", "aspect", "aesthetic standard"])
-    , ("smuni", ["meaning/interpretation", "expression", "opinion holder"]) -- not very good
-    , ("vecnu", ["seller", "goods/service", "buyer", "price"])
-    , ("plise", ["apple", "species/strain"])
-    , ("prenu", ["person"])
-    , ("cilre", ["learner", "facts", "subject", "source", "method"])
-    , ("cnino", ["new entity", "observer", "feature", "standard"])
-    , ("drani", ["correct thing", "property", "situation", "standard"])
-    , ("fanva", ["translator", "text/utterance", "target language", "source language", "translation result"])
-    , ("gasnu", ["agent", "event"])
-    , ("kelci", ["player", "toy"])
-    , ("milxe", ["mild thing", "property"])
-    , ("mlatu", ["cat", "species/breed"])
-    , ("nitcu", ["needing entity", "necessity", "purpose"])
-    , ("pendo", ["friendly entity", "friendliness experiencer"])
-    , ("pensi", ["thinking entity", "subject/concept"])
-    , ("skami", ["computer", "purpose"])
-    , ("slabu", ["familiar/old thing", "observer", "feature", "standard"])
-    , ("troci", ["trier", "attempted event/state/property", "actions/method"])
-    , ("zdani", ["house", "owner/user"])
-    -- TODO: gerku
-    ] -- TODO: ask people to build a database
+englishBrivlaPlacesMap = loadBrivlaPlacesMapFromYaml $ T.pack $(embedStringFile "resources/english/brivla-places.yaml")
+
+loadBrivlaPlacesMapFromYaml :: T.Text -> M.Map T.Text [T.Text]
+loadBrivlaPlacesMapFromYaml yamlText = M.map extractPlaces yamlData where
+    yamlData :: M.Map T.Text (M.Map T.Text T.Text)
+    Right yamlData = Y.decodeEither $ TE.encodeUtf8 yamlText
+    extractPlaces :: M.Map T.Text T.Text -> [T.Text]
+    extractPlaces dict = catMaybes [ dict M.!? "x1" , dict M.!? "x2", dict M.!? "x3", dict M.!? "x4", dict M.!? "x5" ]
 
 -- Helper functions
 parseNotes :: T.Text -> (T.Text, [T.Text])

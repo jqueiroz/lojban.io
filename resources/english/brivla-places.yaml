@@ -1,0 +1,287 @@
+# See also: http://www.lojban.org/publications/wordlists/oblique_keywords.txt
+# See also: https://www.memrise.com/course/17297/gismu-places-1-of-4/
+
+tavla:
+    x1: speaker
+    x2: listener
+    x3: subject
+    x4: language
+
+dunda:
+    x1: donor
+    x2: gift
+    x3: recipient
+
+ctuca:
+    x1: instructor
+    x2: audience/student(s)
+    x3: ideas/methods
+    x4: subject
+    x5: teaching method
+
+citka:
+    x1: consumer
+    x2: aliment
+
+ciska:
+    x1: writer
+    x2: text/symbols
+    x3: display/storage medium
+    x4: writing implement
+
+klama:
+    x1: traveler
+    x2: destination
+    x3: origin
+    x4: route
+    x5: means/vehicle
+
+bridi:
+    x1: predicate relationship
+    x2: relation
+    x3: arguments
+
+djuno:
+    x1: knower
+    x2: facts
+    x3: subject
+    x4: epistemology
+
+nupre:
+    x1: promisor
+    x2: promise
+    x3: beneficiary/victim
+
+cusku:
+    x1: expresser
+    x2: message
+    x3: audience
+    x4: expressive medium
+
+cizra:
+    x1: strange thing
+    x2: viewpoint holder
+    x3: property
+
+cmene:
+    x1: name/title
+    x2: name posessor
+    x3: name-giver/name-user
+
+cusku:
+    x1: agent
+    x2: expressed idea
+    x3: audience
+    x4: expressive medium
+
+djica:
+    x1: desirer
+    x2: event/state
+    x3: purpose
+
+gleki:
+    x1: happy entity
+    x2: event/state
+
+jimpe:
+    x1: understander
+    x2: fact/truth
+    x3: subject
+
+klama:
+    x1: traveler
+    x2: destination
+    x3: origin
+    x4: route
+    x5: means/vehicle
+
+mutce:
+    x1: much/extreme thing
+    x2: property
+    x3: extreme/direction
+
+nelci:
+    x1: liker
+    x2: object/state
+
+pilno:
+    x1: user
+    x2: instrument
+    x3: purpose
+
+sipna:
+    x1: asleep entity
+
+xamgu:
+    x1: good object/event
+    x2: beneficiary
+    x3: standard
+
+zgana:
+    x1: observer
+    x2: observed
+    x3: senses/means
+    x4: conditions
+
+bangu:
+    x1: language/dialect
+    x2: language user
+    x3: communicated idea
+
+cliva:
+    x1: agent
+    x2: point of departure
+    x3: route
+
+finti:
+    x1: inventor/composer
+    x2: invention
+    x3: purpose
+    x4: existing elements/ideas
+
+gunka:
+    x1: worker
+    x2: activity
+    x3: goal
+
+jundi:
+    x1: attentive entity
+    x2: object/affair
+
+kakne:
+    x1: capable entity
+    x2: capability
+    x3: conditions
+
+tcidu:
+    x1: reader
+    x2: text
+    x3: reading material
+
+valsi:
+    x1: word
+    x2: meaning
+    x3: language
+
+zvati:
+    x1: atendee/event
+    x2: location
+
+cinri:
+    x1: interesting abstraction
+    x2: interested entity
+
+drata:
+    x1: "entity #1"
+    x2: "entity #2"
+    x3: standard
+
+simsa:
+    x1: "entity #1"
+    x2: "entity #2"
+    x3: property/quantity
+
+klaku:
+    x1: crier
+    x2: tears
+    x3: reason
+
+melbi:
+    x1: beautiful entity
+    x2: viewpoint holder
+    x3: aspect
+    x4: aesthetic standard
+
+# not very good
+smuni:
+    x1: meaning/interpretation
+    x2: expression
+    x3: opinion holder
+
+vecnu:
+    x1: seller
+    x2: goods/service
+    x3: buyer
+    x4: price
+
+plise:
+    x1: apple
+    x2: species/strain
+
+prenu:
+    x1: person
+
+cilre:
+    x1: learner
+    x2: facts
+    x3: subject
+    x4: source
+    x5: method
+
+cnino:
+    x1: new entity
+    x2: observer
+    x3: feature
+    x4: standard
+
+drani:
+    x1: correct thing
+    x2: property
+    x3: situation
+    x4: standard
+
+fanva:
+    x1: translator
+    x2: text/utterance
+    x3: target language
+    x4: source language
+    x5: translation result
+
+gasnu:
+    x1: agent
+    x2: event
+
+kelci:
+    x1: player
+    x2: toy
+
+milxe:
+    x1: mild thing
+    x2: property
+
+mlatu:
+    x1: cat
+    x2: species/breed
+
+nitcu:
+    x1: needing entity
+    x2: necessity
+    x3: purpose
+
+pendo:
+    x1: friendly entity
+    x2: friendliness experiencer
+
+pensi:
+    x1: thinking entity
+    x2: subject/concept
+
+skami:
+    x1: computer
+    x2: purpose
+
+slabu:
+    x1: familiar/old thing
+    x2: observer
+    x3: feature
+    x4: standard
+
+troci:
+    x1: trier
+    x2: attempted event/state/property
+    x3: actions/method
+
+zdani:
+    x1: house
+    x2: owner/user
+
