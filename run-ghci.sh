@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 set -e
 
-stack ghci lojto:lib
+stack ghci lojto:lib --ghci-options "-XOverloadedStrings"
