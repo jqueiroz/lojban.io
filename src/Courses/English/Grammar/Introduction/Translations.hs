@@ -21,8 +21,8 @@ translations1 = combineFunctionsUniformly [dunda, demonstrative, zdani] where
         , (["mi dunda ta do"], ["I give you that.", "We give you that."])
         ]
     demonstrative = generatorFromList
-        [ (["ti mlatu"], ["This is a cat.", "These are cats."])
-        , (["ta mlatu"], ["That is a cat.", "Those are cats."])
+        [ (["ti pelxu"], ["This is yellow.", "These are yellow."])
+        , (["ta pelxu"], ["That is yellow.", "Those are yellow."])
         , (["ta zdani"], ["That is a house.", "Those are houses."])
         ]
     zdani = generatorFromList
@@ -68,6 +68,8 @@ translations2_normal = combineFunctionsUniformly $ others ++ [talkingWithSecondP
     demonstrative = generatorFromList
         [ (["ti mlatu"], ["This is a cat.", "These are cats."])
         , (["ta mlatu"], ["That is a cat.", "Those are cats."])
+        , (["ti pelxu"], ["This is yellow.", "These are yellow."])
+        , (["ta pelxu"], ["That is yellow.", "Those are yellow."])
         , (["ta zdani"], ["That is a house.", "Those are houses."])
         ]
     zdani = generatorFromList

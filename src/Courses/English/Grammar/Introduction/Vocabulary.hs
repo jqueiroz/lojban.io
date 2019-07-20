@@ -8,7 +8,7 @@ import Courses.Util.Vocabulary
 
 -- | Vocabulary for the first lesson.
 --
--- * Starting brivla: dunda, zdani (pelxu is used only in the lecture).
+-- * Starting brivla: dunda, pelxu, zdani
 -- * Starting cmavo: mi, do, ti, ta.
 vocabularyGenerator1 :: VocabularyBuilder
 vocabularyGenerator1 = createVocabularyBuilder
@@ -16,7 +16,7 @@ vocabularyGenerator1 = createVocabularyBuilder
     [
         ("actions", (1,) <$> ["dunda"]),
         ("relations", (1,) <$> []),
-        ("properties", (1,) <$> ["zdani"])
+        ("properties", (1,) <$> ["pelxu", "zdani"])
     ]
     -- Sumti
     [
@@ -34,7 +34,7 @@ vocabularyGenerator2 = createVocabularyBuilder
     [
         ("actions", (1,) <$> ["tavla", "dunda"]),
         ("relations", (1,) <$> ["pendo"]),
-        ("properties", (1,) <$> ["prenu", "zdani", "mlatu"])
+        ("properties", (1,) <$> ["prenu", "pelxu", "zdani", "mlatu"])
     ]
     -- Sumti
     [
@@ -52,7 +52,7 @@ vocabularyGenerator3 = createVocabularyBuilder
     [
         ("actions", ((1,) <$> ["tavla", "dunda"]) ++ ((2,) <$> ["ctuca"])),
         ("relations", ((1,) <$> ["pendo"]) ++ ((2,) <$> ["nelci"])),
-        ("properties", ((1,) <$> ["prenu", "zdani", "mlatu"]) ++ ((2,) <$> ["gerku", "melbi"]))
+        ("properties", ((1,) <$> ["prenu", "pelxu", "zdani", "mlatu"]) ++ ((2,) <$> ["gerku", "melbi"]))
     ]
     -- Sumti
     [
@@ -74,7 +74,7 @@ vocabularyGenerator4 = createVocabularyBuilder
     [
         ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca"]) ++ ((2,) <$> ["ciska", "djuno"])),
         ("relations", (0,) <$> ["pendo", "nelci"]),
-        ("properties", (0,) <$> ["prenu", "zdani", "mlatu", "gerku", "melbi"])
+        ("properties", (0,) <$> ["prenu", "pelxu", "zdani", "mlatu", "gerku", "melbi"])
     ]
     -- Sumti
     [
@@ -96,7 +96,7 @@ vocabularyGenerator5 = createVocabularyBuilder
     [
         ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska", "djuno"]) ++ ((2,) <$> ["nupre", "cusku"])),
         ("relations", ((0,) <$> ["pendo", "nelci"]) ++ ((1,) <$> ["gleki"])),
-        ("properties", (0,) <$> ["prenu", "zdani", "mlatu", "gerku", "melbi"])
+        ("properties", (0,) <$> ["prenu", "pelxu", "zdani", "mlatu", "gerku", "melbi"])
     ]
     -- Sumti
     [
@@ -125,7 +125,7 @@ vocabularyGenerator8 = createVocabularyBuilder
     [
         ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska", "djuno", "nupre", "cusku"]) ++ ((3,) <$> ["vecnu", "pilno"])),
         ("relations", ((0,) <$> ["pendo", "nelci", "gleki"])),
-        ("properties", (0,) <$> ["prenu", "zdani", "mlatu", "gerku", "melbi", "plise", "skami"])
+        ("properties", (0,) <$> ["prenu", "pelxu", "zdani", "mlatu", "gerku", "melbi", "plise", "skami"])
     ]
     -- Sumti
     [
@@ -141,7 +141,7 @@ vocabularyGenerator9 = createVocabularyBuilder
     [
         ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska", "djuno", "nupre", "cusku"]) ++ ((2,) <$> ["vecnu", "pilno"])),
         ("relations", ((0,) <$> ["pendo", "nelci", "gleki"]) ++ ((3,) <$> ["cmene", "bangu"])),
-        ("properties", (0,) <$> ["prenu", "zdani", "mlatu", "gerku", "melbi", "plise", "skami"])
+        ("properties", (0,) <$> ["prenu", "pelxu", "zdani", "mlatu", "gerku", "melbi", "plise", "skami"])
     ]
     -- Sumti
     [
@@ -164,7 +164,7 @@ vocabularyGenerator10 = createVocabularyBuilder
     [
         ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska", "djuno", "nupre", "cusku", "vecnu"]) ++ ((4,) <$> ["pilno"])),
         ("relations", ((0,) <$> ["pendo", "nelci", "gleki"]) ++ ((1,) <$> ["cmene", "bangu"])),
-        ("properties", (0,) <$> ["prenu", "zdani", "mlatu", "gerku", "melbi", "plise", "skami"])
+        ("properties", (0,) <$> ["prenu", "pelxu", "zdani", "mlatu", "gerku", "melbi", "plise", "skami"])
     ]
     -- Sumti
     [
@@ -180,7 +180,7 @@ vocabularyGenerator11 = createVocabularyBuilder
     [
         ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska", "djuno", "nupre", "cusku", "vecnu", "pilno"])),
         ("relations", ((0,) <$> ["pendo", "nelci", "gleki"]) ++ ((1,) <$> ["cmene", "bangu"])),
-        ("properties", (0,) <$> ["prenu", "zdani", "mlatu", "gerku", "melbi", "plise", "skami"])
+        ("properties", (0,) <$> ["prenu", "pelxu", "zdani", "mlatu", "gerku", "melbi", "plise", "skami"])
     ]
     -- Sumti
     [
@@ -196,7 +196,7 @@ vocabularyGenerator12 = createVocabularyBuilder
     [
         ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska", "djuno", "nupre", "cusku", "vecnu", "pilno"])),
         ("relations", ((0,) <$> ["pendo", "nelci", "gleki"]) ++ ((1,) <$> ["cmene", "bangu"])),
-        ("properties", (0,) <$> ["prenu", "zdani", "mlatu", "gerku", "melbi", "plise", "skami"])
+        ("properties", (0,) <$> ["prenu", "pelxu", "zdani", "mlatu", "gerku", "melbi", "plise", "skami"])
     ]
     -- Sumti
     [
@@ -212,7 +212,7 @@ vocabularyGenerator14 = createVocabularyBuilder
     [
         ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska", "djuno", "nupre", "cusku", "vecnu", "pilno"])),
         ("relations", ((0,) <$> ["pendo", "nelci", "gleki"]) ++ ((1,) <$> ["cmene", "bangu"])),
-        ("properties", (0,) <$> ["prenu", "zdani", "mlatu", "gerku", "melbi", "plise", "skami"])
+        ("properties", (0,) <$> ["prenu", "pelxu", "zdani", "mlatu", "gerku", "melbi", "plise", "skami"])
     ]
     -- Sumti
     [
@@ -228,7 +228,7 @@ vocabularyGenerator15 = createVocabularyBuilder
     [
         ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska", "djuno", "nupre", "cusku", "vecnu", "pilno"])),
         ("relations", ((0,) <$> ["pendo", "nelci", "gleki"]) ++ ((1,) <$> ["cmene", "bangu"])),
-        ("properties", (0,) <$> ["prenu", "zdani", "mlatu", "gerku", "melbi", "plise", "skami"])
+        ("properties", (0,) <$> ["prenu", "pelxu", "zdani", "mlatu", "gerku", "melbi", "plise", "skami"])
     ]
     -- Sumti
     [
@@ -244,7 +244,7 @@ vocabularyGenerator16 = createVocabularyBuilder
     [
         ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska", "djuno", "nupre", "cusku", "vecnu", "pilno"])),
         ("relations", ((0,) <$> ["pendo", "nelci", "gleki"]) ++ ((1,) <$> ["cmene", "bangu"])),
-        ("properties", (0,) <$> ["prenu", "zdani", "mlatu", "gerku", "melbi", "plise", "skami"])
+        ("properties", (0,) <$> ["prenu", "pelxu", "zdani", "mlatu", "gerku", "melbi", "plise", "skami"])
     ]
     -- Sumti
     [
