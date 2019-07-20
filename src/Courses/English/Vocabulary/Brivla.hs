@@ -40,12 +40,18 @@ Right lecture01 = buildDocument ""
 lecture02 :: P.Pandoc
 Right lecture02 = buildDocument ""
 
+lecture03 :: P.Pandoc
+Right lecture03 = buildDocument ""
+
 ------- Lesson plans
 plan01 :: P.Pandoc
 Right plan01 = buildDocument ""
 
 plan02 :: P.Pandoc
 Right plan02 = buildDocument ""
+
+plan03 :: P.Pandoc
+Right plan03 = buildDocument ""
 
 ------- Translations
 translations01 :: TranslationsByExpression
@@ -54,12 +60,18 @@ translations01 = loadTranslationsByExpression $(embedStringFile "courses/english
 translations02 :: TranslationsByExpression
 translations02 = loadTranslationsByExpression $(embedStringFile "courses/english/vocabulary/brivla/02_easy.txt")
 
+translations03 :: TranslationsByExpression
+translations03 = loadTranslationsByExpression $(embedStringFile "courses/english/vocabulary/brivla/03_easy.txt")
+
 ------- Exercises
 exercises01 :: Dictionary -> ExerciseGenerator
 exercises01 dictionary = buildBrivlaExerciseGenerator dictionary translations01
 
 exercises02 :: Dictionary -> ExerciseGenerator
 exercises02 dictionary = buildBrivlaExerciseGenerator dictionary translations02
+
+exercises03 :: Dictionary -> ExerciseGenerator
+exercises03 dictionary = buildBrivlaExerciseGenerator dictionary translations03
 
 ------- Lessons
 -- TODO: rename: "Brivla 1--20", "Brivla 21--40", ...
@@ -71,6 +83,9 @@ lesson01 dictionary = Lesson "Deck #1" (exercises01 dictionary) lecture01 plan01
 --   * "jundi" vs "zgana"
 lesson02 :: LessonBuilder
 lesson02 dictionary = Lesson "Deck #2" (exercises02 dictionary) lecture02 plan02
+
+lesson03 :: LessonBuilder
+lesson03 dictionary = Lesson "Deck #3" (exercises03 dictionary) lecture03 plan03
 
 -------- Course
 style :: CourseStyle
@@ -85,4 +100,4 @@ style = CourseStyle color1 iconUrl where
 course :: CourseBuilder
 course = createCourseBuilder title style lessons where
     title = "Common brivla"
-    lessons = [lesson01, lesson02]
+    lessons = [lesson01, lesson02, lesson03]

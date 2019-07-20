@@ -1,0 +1,271 @@
+cilre: 57
+1.15	mi ba cilre
+		I will learn.
+1.32	mi nelci lo nu cilre fi lo bangu
+		I like learning languages.
+0.00	mi nitcu lo ka cilre
+		I need to learn.
+2.66	cilre fo lo se srera
+		One learns from one's mistakes.
+3.11	lo nu cilre fi le cnino bangu cu zdile
+		Learning a new language is fun.
+
+
+cnino: 71
+1.34	ma cnino
+		What is new?
+1.72	na'e cnino
+		It isn't new.
+1.83	cnino
+		It's new.
+2.35	mi nitcu lo cnino skami
+		I need a new computer.
+2.48	mi cnino tadni
+		I am a new student.
+2.57	ro cnino bangu ku jai simsa lo nu kelci
+		Every new language is like a game.
+2.66	ti cnino
+		This is new.
+3.11	lo nu cilre fi le cnino bangu cu zdile
+		Learning a new language is fun.
+
+
+drani: 57
+0.83	lo se cusku be do cu drani
+		What you said is correct.
+0.99	xu mi pu drani
+		Did I get it right?
+1.00	do djuno lo du'u mi drani
+		You know I'm right.
+1.23	pe'i do na drani
+		I think you are mistaken.
+1.24	mi drani
+		I'm right.
+1.25	do drani
+		You're right.
+1.26	na drani
+		It's wrong.
+1.27	ro lo re do drani
+		Both of you are right.
+0.00	drani xu
+		Is it correct?
+
+
+fanva: 34
+1.78	lo nu fanva le valsi cu mutce nandu
+		That word is very hard to translate.
+2.02	mi tatpi lo nu fanva
+		I'm tired of translating.
+4.28	xu le xe fanva cu drani
+		Is this translation correct?
+5.77	ko na fanva dei
+		Do not translate this sentence!
+8.57	ma xe fanva zo plise lo do bangu
+		How to say "apple" in your language?
+
+
+gasnu: 48
+1.80	mi ba gasnu lo nu ko'a cliva
+		I will make him go.
+3.42	xu do djuno lo du'u ma gasnu lo nabmi
+		Do you know what's causing the problem?
+4.02	do gasnu lo nu mi senva
+		You make me dream.
+6.04	mi pu gasnu lo drata cipra
+		I did another test.
+10.60	do ma gasnu ca lo bavlamdei
+		What are you doing tomorrow?
+
+
+kelci: 40
+0.00	ma kelci
+		Who's playing?
+0.00	do kelci ma
+		What are you playing with?
+2.57	ro cnino bangu ku jai simsa lo nu kelci
+		Every new language is like a game.
+5.37	ko no roi bu'u ti kelci
+		Never play here.
+11.02	ko na kelci tu'a lo fagri
+		Don't play with fire.
+22.16	le mlatu cu kelci le bolci
+		The cat is playing with the ball.
+
+
+milxe: 27
+2.41	milxe drani
+		This is reasonably accurate.
+3.15	mi milxe se cfipu
+		I'm a little confused.
+13.02	mi milxe lerci
+		I'm a bit late.
+00.00	mi milxe lo ka senpi lo nu ko'a klama
+		I have some doubts about his coming.
+24.12	milxe carvi ca lo prulamdei
+		There was a light rain yesterday.
+250.49	milxe tilju
+		It's a little heavy.
+
+
+mlatu: 99
+0.00	do nelci lo mlatu
+		You like cats.
+1.60	mi mlatu
+		I'm a cat.
+1.83	lo mlatu ku na'e prenu
+		A cat is not a person!
+2.43	loi mlatu cu cinri mi
+		I'm fascinated by cats.
+2.44	mi nitcu lo pa po'o mlatu
+		I need only one cat.
+2.50	doi le mamta ma se zvati le mlatu
+		Mom, where's the cat?
+3.51	lo mlatu cu nanca li re no
+		The cat has twenty years.
+3.67	le mlatu cu morsi
+		The cat is dead.
+4.27	lo mlatu pe mi cu xagji
+		My cat is hungry.
+4.87	lo nu kucli cu rinka lo nu lo mlatu cu morsi
+		Curiosity killed the cat.
+
+
+nitcu: 128
+0.83	mi nitcu lo nu cusku da do
+		There's something I have to tell you.
+0.84	mi nitcu lo nu tavla do
+		I've got to speak to you.
+0.94	do nitcu fi ma
+		Why do you need it?
+1.00	mi nitcu da lo nu da jimpe mi
+		I need someone to understand me.
+1.08	do nitcu lo ka sipna
+		You need sleep.
+0.00	mi nitcu lo ka klama
+		I gotta go.
+1.10	no da nitcu mi
+		Nobody needs me.
+1.16	do ba nitcu
+		You'll need it.
+
+
+pendo: 106
+1.10	mi do pendo xu
+		Are we friends?
+1.17	mi cusku lu coi pendo li'u
+		I say "Hi, friend.".
+1.23	do pendo mi
+		You are my friend.
+1.26	xu do nelci lo pendo pe mi
+		Do you like my friend?
+1.32	pu pendo mi
+		He was my friend.
+1.63	mi pu troci lo ka pendo do
+		I've tried to be your friend.
+1.70	pu xamgu pendo
+		He was a good friend.
+1.88	mi nitcu lo pendo
+		I need friends.
+1.98	lo pendo be mi cu bebna
+		My friend is stupid.
+2.16	coi slabu pendo
+		Hello, old friend!
+
+
+pensi: 47
+1.05	do pensi ma
+		What are you thinking of?
+1.34	ko pensi
+		Think about it.
+1.69	ma do ca'o se pensi
+		What're you thinking?
+1.93	ca'o lo nu mi gunka kei mi pensi
+		While I work, I reflect.
+2.23	mi pensi lo du'u do nitcu lo nu viska ko'a
+		I think that you need to see him.
+2.71	ju'o do pu pensi da
+		You must have thought of something.
+3.68	mi pensi lo du'u makau finti
+		I wonder who invented it.
+
+
+skami: 40
+1.12	ma se zvati lo do skami
+		Where's your computer?
+1.34	ma se zvati lo skami pe mi
+		Where's my computer?
+1.73	ma nitcu lo skami
+		Who needs computers?
+2.35	mi nitcu lo cnino skami
+		I need a new computer.
+2.66	ri na ponse lo skami
+		She doesn't have a computer.
+4.80	ko na curmi lo nu pilno lo skami
+		Don't let him touch the computer.
+8.64	ei mi cpacu lo cnino skami
+		I have to get a new computer.
+16.17	lo skami cu pluja minji
+		A computer is a complex machine.
+
+
+slabu: 46
+0.78	xu do se slabu mi
+		Do you remember me?
+1.34	lo cmene be lo finti cu slabu mi
+		The author's name is familiar to us.
+1.46	mutce slabu
+		It's very familiar.
+2.16	coi slabu pendo
+		Hello, old friend!
+3.12	mi'a se slabu do
+		We know you.
+3.33	do traji slabu do
+		You know yourself best.
+3.69	mi se slabu lo nabmi pe do
+		I am familiar with your problem.
+4.72	lo se slabu be ko'a cu nelci ko'a
+		Those who know him like him.
+
+
+troci: 88
+0.84	xu do djica lo nu do troci
+		Do you want to try it?
+1.05	xu do troci
+		Did you try it?
+1.10	lo nu troci cu xamgu
+		Trying is good.
+1.23	mi troci
+		I try.
+1.27	ko troci lo ka jimpe
+		Try to understand.
+1.63	mi pu troci lo ka pendo do
+		I've tried to be your friend.
+1.73	ei mi troci
+		I have to try.
+1.76	mi ca ca'o troci lo ka jimpe da
+		I'm trying to figure out something.
+2.26	ko troci tu'a lo fonxa pe do
+		Try your phone.
+
+
+zdani: 163
+1.08	mi na se zdani
+		I don't have a house.
+1.15	do pu zdani ma
+		Which house did you live in?
+1.25	ma se zvati lo do zdani
+		Where's your house?
+1.25	ma se zdani
+		Who lives here?
+1.28	mi djica lo ka klama lo zdani
+		I want to go home.
+1.28	mi djica tu'a lo zdani
+		I want to go home.
+1.30	xu do ca zvati lo zdani
+		Are you at home?
+1.34	da zdani mi
+		I have a home.
+1.40	ko cliva lo zdani be mi
+		Get out of my house!
+1.54	lo zdani be mi cu zdani be do
+		My home is your home.

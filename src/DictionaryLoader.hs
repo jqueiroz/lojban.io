@@ -121,11 +121,22 @@ englishBrivlaPlacesMap = M.fromList
     , ("vecnu", ["seller", "goods/service", "buyer", "price"])
     , ("plise", ["apple", "species/strain"])
     , ("prenu", ["person"])
-    -- TODO: pendo
-    -- TODO: smuni
-    -- TODO: mlatu
+    , ("cilre", ["learner", "facts", "subject", "source", "method"])
+    , ("cnino", ["new entity", "observer", "feature", "standard"])
+    , ("drani", ["correct thing", "property", "situation", "standard"])
+    , ("fanva", ["translator", "text/utterance", "target language", "source language", "translation result"])
+    , ("gasnu", ["agent", "event"])
+    , ("kelci", ["player", "toy"])
+    , ("milxe", ["mild thing", "property"])
+    , ("mlatu", ["cat", "species/breed"])
+    , ("nitcu", ["needing entity", "necessity", "purpose"])
+    , ("pendo", ["friendly entity", "friendliness experiencer"])
+    , ("pensi", ["thinking entity", "subject/concept"])
+    , ("skami", ["computer", "purpose"])
+    , ("slabu", ["familiar/old thing", "observer", "feature", "standard"])
+    , ("troci", ["trier", "attempted event/state/property", "actions/method"])
+    , ("zdani", ["house", "owner/user"])
     -- TODO: gerku
-    -- TODO: zdani
     ] -- TODO: ask people to build a database
 
 -- Helper functions
