@@ -18,7 +18,6 @@ module Courses.Util.Vocabulary
 , createVocabularyBuilder
 ) where
 
-import Core
 import Language.Lojban.Core
 import Util (sortUniq, (?:))
 import qualified Data.Text as T
