@@ -264,6 +264,16 @@ validateCanonicalization = hspec $ do
             "lo'u mi je tavla le'u"
             [
             ]
+      it "supports 'lo na'e prenu'" $ do
+        validateEquivalentTerms
+            "lo na'e prenu ku"
+            [ "lo na'e prenu"
+            ]
+      it "supports 'lo to'e prenu'" $ do
+        validateEquivalentTerms
+            "lo to'e prenu ku"
+            [ "lo to'e prenu"
+            ]
     describe "Basic sentence canonicalizer" $ do
       it "supports SE" $ do
         validateSentences
@@ -296,6 +306,13 @@ validateCanonicalization = hspec $ do
       it "supports BPFK-2016-03-15" $ do
         validateSentences
             [ ("lo nu broda ba brode", "ba ku lo nu broda kei ku brode")
+            ]
+      it "supports NAhE" $ do
+        validateSentences
+            [ ("mi na'e prenu", "mi na'e prenu")
+            , ("mi na'e nelci do", "mi na'e nelci do")
+            , ("mi to'e prenu", "mi to'e prenu")
+            , ("mi to'e nelci do", "mi to'e nelci do")
             ]
       --it "supports reordered XU" $ do
         --validateSentences

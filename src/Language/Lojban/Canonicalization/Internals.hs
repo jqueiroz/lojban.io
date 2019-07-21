@@ -74,6 +74,10 @@ handlePlacePermutations (ZG.Prefix (ZG.SE x) y, terms, extraTerms) = do
     return $ (selbri, swapTerms2 x terms2, extraTerms)
 handlePlacePermutations x = Left $ "unrecognized pattern in function handlePlacePermutations: " ++ show x
 
+handleScalarNegation :: StructuredBridi -> Either String StructuredBridi
+handleScalarNegation (ZG.Prefix (ZG.NAhE nahe) (ZG.BRIVLA brivla), terms, extraTerms) = Right $ (ZG.BRIVLA $ nahe ++ " " ++ brivla, terms, extraTerms)
+handleScalarNegation x = Right $ x
+
 ---------- Append extra tag to structured bridi
 appendExtraTagToStructuredBridi :: ZG.Text -> StructuredBridi -> StructuredBridi
 appendExtraTagToStructuredBridi tag (x, y, z) = (x, y, tag : z)
@@ -171,6 +175,7 @@ convertStructuredTerm (ZG.BRIVLA x) = Right $ T.pack x
 convertStructuredTerm (ZG.Tag (ZG.BAI x) y) = concatET [Right $ T.pack x, Right $ T.pack " ",  convertStructuredTerm y]
 convertStructuredTerm (ZG.Rel x y) = concatET [convertStructuredTerm x, Right $ T.pack " ", convertRelative y]
 convertStructuredTerm (ZG.GOhA x) = Right $ T.pack x
+convertStructuredTerm (ZG.Prefix (ZG.NAhE x) (ZG.BRIVLA y)) = Right $ T.pack (x ++ " " ++ y)
 convertStructuredTerm (ZG.Prefix (ZG.SE x) y) = insertPrefix <$> convertStructuredTerm y where
     insertPrefix = ((T.pack $ x ++ " ") `T.append`)
 convertStructuredTerm (ZG.NU (ZG.Init x) y w) = convertStructuredTerm (ZG.NU (ZG.InitF x ZG.NF) y w)
@@ -241,7 +246,7 @@ canonicalizeParsedBridi :: (ZG.Free, ZG.Text, ZG.Terminator) -> Either String T.
 canonicalizeParsedBridi parsedBridi = displayCanonicalBridi <$> (retrieveSimpleBridi parsedBridi)
 
 retrieveSimpleBridi :: (ZG.Free, ZG.Text, ZG.Terminator) -> Either String SimpleBridi
-retrieveSimpleBridi (free, text, terminator) = retrieveStructuredBridi text >>= handlePlaceTags >>= handlePlacePermutations >>= convertStructuredBridi xu where
+retrieveSimpleBridi (free, text, terminator) = retrieveStructuredBridi text >>= handleScalarNegation >>= handlePlaceTags >>= handlePlacePermutations >>= convertStructuredBridi xu where
     xu = hasXu free
 
 canonicalizeParsedTerm :: (ZG.Free, ZG.Text, ZG.Terminator) -> Either String T.Text
