@@ -22,3 +22,7 @@ lesson02 = Lesson "Deck #2" exercises02 lecture02 plan02
 -- * Lesson.
 lesson03 :: Lesson
 lesson03 = Lesson "Deck #3" exercises03 lecture03 plan03
+
+-- * Lesson.
+lesson04 :: Lesson
+lesson04 = Lesson "Deck #4" exercises04 lecture04 plan04

@@ -285,3 +285,73 @@ zdani:
     x1: house
     x2: owner/user
 
+tsali:
+    x1: strong entity
+    x2: property/quality
+    x3: standard
+
+viska:
+    x1: viewer
+    x2: what is viewed
+    x3: conditions
+
+jinvi:
+    x1: opiner
+    x2: opinion
+    x3: subject
+    x4: grounds
+
+tadni:
+    x1: student
+    x2: subject
+
+ponse:
+    x1: possessor
+    x2: possessed thing
+    x3: law/custom
+
+bebna:
+    x1: foolish entity
+    x2: event/action/property
+
+pluka:
+    x1: pleasant event/state
+    x2: entity
+    x3: conditions
+
+nandu:
+    x1: difficult thing
+    x2: entity
+    x3: conditions
+
+preti:
+    x1: question
+    x2: subject
+    x3: questioner
+    x4: audience
+
+prami:
+    x1: "entity #1"
+    x2: "entity #2"
+
+tatpi:
+    x1: tired entity
+    x2: event
+
+fonxa:
+    x1: phone
+    x2: system/network
+
+morji:
+    x1: tntity
+    x2: facts
+    x3: subject
+
+certu:
+    x1: expert
+    x2: event/activity
+    x3: standard
+
+xabju:
+    x1: resident
+    x2: location

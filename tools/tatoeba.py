@@ -106,6 +106,7 @@ def load_taught_brivla():
     ret = []
     ret += load_brivla_from_file("../courses/english/vocabulary/brivla/01_easy.txt")
     ret += load_brivla_from_file("../courses/english/vocabulary/brivla/02_easy.txt")
+    ret += load_brivla_from_file("../courses/english/vocabulary/brivla/03_easy.txt")
     return ret
 
 def print_json(data):
@@ -147,7 +148,7 @@ def encode_text_to_yaml_string(text):
         return text
 
 # TODO: brivla, not just gismu
-def run():
+def run(cmd):
     sentences_eng = filter_by_language(load_sentences_from_json(), 'eng')
     print("Sentences: %d" % len(sentences_eng))
     frequency_table = load_frequency_table()
@@ -170,7 +171,7 @@ def run():
         print(frequent_words)
         print("Frequent words: %d" % len(frequent_words))
     def display_top_brivla():
-        blacklist = set(["selpa'i", "broda", "gerna", "lojbo", "tsani", "zmadu", "gerna", "binxo", "tertadni", "srana"])
+        blacklist = set(["selpa'i", "broda", "gerna", "lojbo", "tsani", "zmadu", "gerna", "binxo", "terdatni", "srana", "binxo"])
         taught = set(load_taught_brivla())
         words = frequency_table.items()
         brivla = filter(lambda x: x[0] in gismu or x[0] in lujvo, words)
@@ -187,7 +188,7 @@ def run():
         # print(sorted(list(map(lambda x: x[0], interesting_brivla))))
     def build_exercises():
         # prenu, tsani, zmadu
-        words = ['binxo', 'cilre', 'cnino', 'drani', 'fanva', 'gasnu', 'kelci', 'milxe', 'mlatu', 'nitcu', 'pendo', 'pensi', 'skami', 'slabu', 'srana', 'terdatni', 'troci', 'tsali', 'viska', 'zdani']
+        words = ['tsali', 'viska', 'casnu', 'jinvi', 'jbopre', 'tadni', 'ponse', 'bebna', 'pluka', 'nandu', 'preti', 'prami', 'tatpi', 'fonxa', 'morji', 'certu', 'xabju', 'ckule', 'facki', 'srera']
         debug = True
         for word in words:
             sentences = filter_by_word(sentences_eng, word)
@@ -206,10 +207,14 @@ def run():
             print()
             print()
 
-    # display_interesting_sentences()
-    display_top_brivla()
-    # build_exercises()
-    # display_frequent_words()
+    if cmd == 'top':
+        display_top_brivla()
+    elif cmd == 'exercises':
+        build_exercises()
+    elif cmd == 'interesting_sentences':
+        display_interesting_sentences()
+    elif cmd == 'frequent_words':
+        display_frequent_words()
 
 def search(word):
     sentences_eng = filter_by_language(load_sentences(), 'eng')
@@ -223,8 +228,10 @@ def main():
     # Handle commands
     if sys.argv[1] == 'prepare':
         prepare_json()
-    elif sys.argv[1] == 'run':
-        run()
+    elif sys.argv[1] == 'top':
+        run('top')
+    elif sys.argv[1] == 'exercises':
+        run('exercises')
     elif sys.argv[1] == 'search':
         if len(sys.argv) != 3:
             print("error: incorrect number of arguments")

@@ -1,0 +1,840 @@
+# Total sentences: 16
+tsali:
+    # Sentence complexity: 1.584
+    - lojban_sentences:
+        - do tsali
+      translated_sentences:
+        - You are strong.
+
+    # Sentence complexity: 3.138
+    - lojban_sentences:
+        - va'o lo nu do tsali kei mi tsali
+      translated_sentences:
+        - If you are strong, I am strong.
+
+    # Sentence complexity: 6.748
+    - lojban_sentences:
+        - ra tsali zmadu do
+      translated_sentences:
+        - He's stronger than you.
+
+    # Sentence complexity: 7.180
+    - lojban_sentences:
+        - ra mutce tsali
+      translated_sentences:
+        - He's very strong.
+
+    # Sentence complexity: 8.227
+    - lojban_sentences:
+        - ra simlu lo ka tsali
+      translated_sentences:
+        - He looks strong.
+
+    # Sentence complexity: 16.433
+    - lojban_sentences:
+        - zmadu fi lo ka sutra je galtu je tsali
+      translated_sentences:
+        - Faster, higher, stronger!
+
+    # Sentence complexity: 35.620
+    - lojban_sentences:
+        - ra tordu gi'e ku'i tsali
+      translated_sentences:
+        - He is short but strong.
+
+    # Sentence complexity: 49.083
+    - lojban_sentences:
+        - ro prenu cu tsali da gi'e ruble de
+      translated_sentences:
+        - Everyone has strengths and weaknesses.
+
+
+
+# Total sentences: 190
+viska:
+    # Sentence complexity: 1.131
+    - lojban_sentences:
+        - xu do djica lo nu viska
+      translated_sentences:
+        - Do you want to look at it?
+
+    # Sentence complexity: 1.147
+    - lojban_sentences:
+        - mi mutce gleki lo nu mi viska do
+      translated_sentences:
+        - I'm very glad to see you.
+
+    # Sentence complexity: 1.238
+    - lojban_sentences:
+        - xu da pu viska do
+      translated_sentences:
+        - Did anybody see you?
+
+    # Sentence complexity: 1.246
+    - lojban_sentences:
+        - ko na viska mi
+      translated_sentences:
+        - Don't look at me!
+
+    # Sentence complexity: 1.283
+    - lojban_sentences:
+        - mi na viska da
+      translated_sentences:
+        - I don't see anything.
+
+    # Sentence complexity: 1.293
+    - lojban_sentences:
+        - mi pu viska ro da
+      translated_sentences:
+        - I saw everything.
+
+    # Sentence complexity: 1.331
+    - lojban_sentences:
+        - mi ba viska do
+      translated_sentences:
+        - I'll be seeing you.
+
+    # Sentence complexity: 1.351
+    - lojban_sentences:
+        - do na viska
+      translated_sentences:
+        - You can't see.
+
+    # Sentence complexity: 1.388
+    - lojban_sentences:
+        - mi djica lo nu viska do kei ji'a
+      translated_sentences:
+        - I wanted to see you, too.
+
+    # Sentence complexity: 1.409
+    - lojban_sentences:
+        - mi djica lo nu mi viska ro ko'a
+      translated_sentences:
+        - I want to see them all.
+
+
+
+# Total sentences: 94
+jinvi:
+    # Sentence complexity: 1.112
+    - lojban_sentences:
+        - mi na djuno .i do jinvi ma
+      translated_sentences:
+        - I don't know. What do you think?
+
+    # Sentence complexity: 1.307
+    - lojban_sentences:
+        - mi pu jinvi lo du'u na klama
+      translated_sentences:
+        - I thought they wouldn't come.
+
+    # Sentence complexity: 1.442
+    - lojban_sentences:
+        - mi pu jinvi lonu do djica nai lo ka klama
+      translated_sentences:
+        - I thought you didn't want to come.
+
+    # Sentence complexity: 1.515
+    - lojban_sentences:
+        - mi jinvi da
+      translated_sentences:
+        - I have an opinion.
+
+    # Sentence complexity: 1.741
+    - lojban_sentences:
+        - do jinvi lo du'u mi pu ca'o mo
+      translated_sentences:
+        - What do you think I've been doing?
+
+    # Sentence complexity: 1.870
+    - lojban_sentences:
+        - mi djica lo ka djuno lo se jinvi be do
+      translated_sentences:
+        - I would like to know your opinion.
+
+    # Sentence complexity: 2.014
+    - lojban_sentences:
+        - xu do jinvi lo du'u mi bebna
+      translated_sentences:
+        - Do you take me for a fool?
+
+    # Sentence complexity: 3.199
+    - lojban_sentences:
+        - mi jinvi lo du'u le se cukta cu mutce cinri
+      translated_sentences:
+        - I found this book very interesting.
+
+
+
+# Total sentences: 106
+tadni:
+    # Sentence complexity: 1.408
+    - lojban_sentences:
+        - mi na me lo tadni
+      translated_sentences:
+        - I'm not a student.
+
+    # Sentence complexity: 1.465
+    - lojban_sentences:
+        - xu do tadni
+      translated_sentences:
+        - Are you studying?
+
+    # Sentence complexity: 1.742
+    - lojban_sentences:
+        - mi tadni
+      translated_sentences:
+        - I am a student.
+
+    # Sentence complexity: 1.809
+    - lojban_sentences:
+        - do xamgu tadni
+      translated_sentences:
+        - You are a good student.
+
+    # Sentence complexity: 1.853
+    - lojban_sentences:
+        - ko tadni
+      translated_sentences:
+        - Study!
+
+    # Sentence complexity: 2.207
+    - lojban_sentences:
+        - mi na ca'o tadni
+      translated_sentences:
+        - I am not studying.
+
+    # Sentence complexity: 2.416
+    - lojban_sentences:
+        - ki'u ma do ca'o tadni
+      translated_sentences:
+        - Why are you studying?
+
+    # Sentence complexity: 2.472
+    - lojban_sentences:
+        - lo tadni na nelci lo ckule
+      translated_sentences:
+        - The students don't like the school.
+
+    # Sentence complexity: 2.481
+    - lojban_sentences:
+        - mi cnino tadni
+      translated_sentences:
+        - I am a new student.
+
+
+
+# Total sentences: 71
+ponse:
+    # Sentence complexity: 1.607
+    - lojban_sentences:
+        - lo nu na djica cu du lo nu ponse
+      translated_sentences:
+        - Not wanting is the same as having.
+
+    # Sentence complexity: 2.657
+    - lojban_sentences:
+        - ri na ponse lo skami
+      translated_sentences:
+        - She doesn't have a computer.
+
+    # Sentence complexity: 2.932
+    - lojban_sentences:
+        - xu do ponse ti
+      translated_sentences:
+        - Do you own this?
+
+    # Sentence complexity: 3.765
+    - lojban_sentences:
+        - mi ponse ro le cukta
+      translated_sentences:
+        - I own all the books.
+
+    # Sentence complexity: 3.864
+    - lojban_sentences:
+        - ma cukta poi do ponse
+      translated_sentences:
+        - Which is your book?
+
+    # Sentence complexity: 3.996
+    - lojban_sentences:
+        - ti poi cukta cu se ponse mi
+      translated_sentences:
+        - This book belongs to me.
+
+    # Sentence complexity: 4.381
+    - lojban_sentences:
+        - xu do ponse lo bu'u zdani
+      translated_sentences:
+        - Are you the owner of this house?
+
+    # Sentence complexity: 4.512
+    - lojban_sentences:
+        - do ponse lo vi cukta
+      translated_sentences:
+        - This book belongs to you.
+
+    # Sentence complexity: 4.552
+    - lojban_sentences:
+        - ma ponse lo ti cukta
+      translated_sentences:
+        - Whose book is this?
+
+    # Sentence complexity: 5.190
+    - lojban_sentences:
+        - lo ta zdani cu se ponse mi
+      translated_sentences:
+        - That house belongs to me.
+
+
+
+# Total sentences: 41
+bebna:
+    # Sentence complexity: 1.540
+    - lojban_sentences:
+        - mi na bebna
+      translated_sentences:
+        - I'm not an idiot.
+
+    # Sentence complexity: 1.548
+    - lojban_sentences:
+        - lo bebna cu gleki
+      translated_sentences:
+        - The fool is happy.
+
+    # Sentence complexity: 1.613
+    - lojban_sentences:
+        - mi pu bebna
+      translated_sentences:
+        - I was an idiot.
+
+    # Sentence complexity: 1.630
+    - lojban_sentences:
+        - ko na bebna
+      translated_sentences:
+        - Don't be silly.
+
+    # Sentence complexity: 1.869
+    - lojban_sentences:
+        - do bebna
+      translated_sentences:
+        - You are stupid.
+
+    # Sentence complexity: 1.887
+    - lojban_sentences:
+        - bebna
+      translated_sentences:
+        - It's stupid.
+
+    # Sentence complexity: 1.888
+    - lojban_sentences:
+        - mi na ka'e na bebna
+      translated_sentences:
+        - I can't help being a fool.
+
+    # Sentence complexity: 1.985
+    - lojban_sentences:
+        - lo pendo be mi cu bebna
+      translated_sentences:
+        - My friend is stupid.
+
+    # Sentence complexity: 2.014
+    - lojban_sentences:
+        - xu do jinvi lo du'u mi bebna
+      translated_sentences:
+        - Do you take me for a fool?
+
+    # Sentence complexity: 2.106
+    - lojban_sentences:
+        - ko'a na sai bebna
+      translated_sentences:
+        - She is far from a fool.
+
+
+
+# Total sentences: 51
+pluka:
+    # Sentence complexity: 1.386
+    - lojban_sentences:
+        - do ba se pluka xu
+      translated_sentences:
+        - Would that please you?
+
+    # Sentence complexity: 1.449
+    - lojban_sentences:
+        - lo nu citka kei cu pluka mi
+      translated_sentences:
+        - Eating pleases me.
+
+    # Sentence complexity: 1.561
+    - lojban_sentences:
+        - mi mutce se pluka
+      translated_sentences:
+        - I am very pleased.
+
+    # Sentence complexity: 1.864
+    - lojban_sentences:
+        - ko'a ba se pluka xu
+      translated_sentences:
+        - Will that please him?
+
+    # Sentence complexity: 1.896
+    - lojban_sentences:
+        - mi se pluka lo nu viska do
+      translated_sentences:
+        - I am pleased to see you.
+
+    # Sentence complexity: 2.295
+    - lojban_sentences:
+        - ti cu pluka mi
+      translated_sentences:
+        - This pleases me.
+
+    # Sentence complexity: 2.502
+    - lojban_sentences:
+        - pe'i ti ba pluka do
+      translated_sentences:
+        - I think that this will please you.
+
+    # Sentence complexity: 2.627
+    - lojban_sentences:
+        - pluka
+      translated_sentences:
+        - It's pleasant.
+
+
+
+# Total sentences: 51
+nandu:
+    # Sentence complexity: 1.720
+    - lojban_sentences:
+        - lo gerna cu mutce nandu
+      translated_sentences:
+        - Grammar is very difficult.
+
+    # Sentence complexity: 1.784
+    - lojban_sentences:
+        - lo nu fanva le valsi cu nandu mutce
+      translated_sentences:
+        - That word is very hard to translate.
+
+    # Sentence complexity: 2.215
+    - lojban_sentences:
+        - mutce nandu
+      translated_sentences:
+        - This is very difficult.
+
+    # Sentence complexity: 2.685
+    - lojban_sentences:
+        - nandu
+      translated_sentences:
+        - This is difficult.
+
+    # Sentence complexity: 3.861
+    - lojban_sentences:
+        - nandu preti
+      translated_sentences:
+        - It's a hard question.
+
+    # Sentence complexity: 5.409
+    - lojban_sentences:
+        - lo nu morji lo cmene be ra cu nandu
+      translated_sentences:
+        - His name is very difficult to remember.
+
+    # Sentence complexity: 6.230
+    - lojban_sentences:
+        - ro bangu cu jai nandu fai lo ka fanva fi ce'u
+      translated_sentences:
+        - All languages are hard to translate into.
+
+    # Sentence complexity: 6.810
+    - lojban_sentences:
+        - xu lo glico bangu cu jai nandu fai lo ka se cilre
+      translated_sentences:
+        - Is English a difficult language to learn?
+
+
+
+# Total sentences: 37
+preti:
+    # Sentence complexity: 1.386
+    - lojban_sentences:
+        - mi na jimpe fi lo do preti
+      translated_sentences:
+        - I don't understand your question.
+
+    # Sentence complexity: 2.007
+    - lojban_sentences:
+        - mi ba pensi lo se preti
+      translated_sentences:
+        - I'll keep the question in mind.
+
+    # Sentence complexity: 2.947
+    - lojban_sentences:
+        - cinri preti
+      translated_sentences:
+        - That's an interesting question.
+
+    # Sentence complexity: 3.861
+    - lojban_sentences:
+        - nandu preti
+      translated_sentences:
+        - It's a hard question.
+
+    # Sentence complexity: 4.272
+    - lojban_sentences:
+        - mi pu spuda le preti
+      translated_sentences:
+        - I answered the question.
+
+    # Sentence complexity: 4.646
+    - lojban_sentences:
+        - do na bilga lo ka spuda lo preti
+      translated_sentences:
+        - You don't need to answer this question.
+
+    # Sentence complexity: 5.042
+    - lojban_sentences:
+        - ko spuda loi mi preti
+      translated_sentences:
+        - Answer my questions.
+
+    # Sentence complexity: 5.221
+    - lojban_sentences:
+        - no tadni pu ka'e spuda lo preti
+      translated_sentences:
+        - No students could answer the question.
+
+
+
+# Total sentences: 137
+prami:
+    # Sentence complexity: 1.364
+    - lojban_sentences:
+        - xu do pu prami mi
+      translated_sentences:
+        - Did you love me?
+
+    # Sentence complexity: 1.493
+    - lojban_sentences:
+        - mi pu prami do
+      translated_sentences:
+        - I loved you.
+
+    # Sentence complexity: 1.519
+    - lojban_sentences:
+        - do mi prami
+      translated_sentences:
+        - You love me.
+
+    # Sentence complexity: 1.537
+    - lojban_sentences:
+        - ma pu prami ma
+      translated_sentences:
+        - Who loved who?
+
+    # Sentence complexity: 1.625
+    - lojban_sentences:
+        - mi prami mi
+      translated_sentences:
+        - I love myself.
+
+    # Sentence complexity: 1.631
+    - lojban_sentences:
+        - mi prami do
+      translated_sentences:
+        - I love you.
+
+    # Sentence complexity: 1.646
+    - lojban_sentences:
+        - mi se prami
+      translated_sentences:
+        - I'm loved.
+
+    # Sentence complexity: 1.668
+    - lojban_sentences:
+        - ma nu prami
+      translated_sentences:
+        - What is love?
+
+    # Sentence complexity: 1.673
+    - lojban_sentences:
+        - xu nu prami
+      translated_sentences:
+        - Is it love?
+
+    # Sentence complexity: 1.683
+    - lojban_sentences:
+        - ma prami ma
+      translated_sentences:
+        - Who loved who?
+
+
+
+# Total sentences: 55
+tatpi:
+    # Sentence complexity: 1.463
+    - lojban_sentences:
+        - xu do na tatpi
+      translated_sentences:
+        - Are you not tired?
+
+    # Sentence complexity: 1.630
+    - lojban_sentences:
+        - mi tatpi gi'e djica lo ka sipna
+      translated_sentences:
+        - I am tired and I want to go to bed.
+
+    # Sentence complexity: 1.695
+    - lojban_sentences:
+        - ro da ca tatpi
+      translated_sentences:
+        - Everyone is tired.
+
+    # Sentence complexity: 1.709
+    - lojban_sentences:
+        - mi ca tatpi
+      translated_sentences:
+        - I'm tired now.
+
+    # Sentence complexity: 1.713
+    - lojban_sentences:
+        - mi pu mutce tatpi
+      translated_sentences:
+        - I was very tired.
+
+    # Sentence complexity: 1.886
+    - lojban_sentences:
+        - mi mutce tatpi
+      translated_sentences:
+        - I'm very tired.
+
+    # Sentence complexity: 1.992
+    - lojban_sentences:
+        - mi tatpi
+      translated_sentences:
+        - I'm tired.
+
+    # Sentence complexity: 2.017
+    - lojban_sentences:
+        - mi tatpi lo nu fanva
+      translated_sentences:
+        - I'm tired of translating.
+
+    # Sentence complexity: 2.164
+    - lojban_sentences:
+        - mi na tatpi
+      translated_sentences:
+        - I'm not tired.
+
+    # Sentence complexity: 2.318
+    - lojban_sentences:
+        - tatpi sai
+      translated_sentences:
+        - So tired!
+
+
+
+# Total sentences: 17
+fonxa:
+    # Sentence complexity: 1.566
+    - lojban_sentences:
+        - ma se zvati lo do fonxa
+      translated_sentences:
+        - Where's your phone?
+
+    # Sentence complexity: 1.720
+    - lojban_sentences:
+        - ma se zvati le fonxa
+      translated_sentences:
+        - Where's the phone?
+
+    # Sentence complexity: 1.747
+    - lojban_sentences:
+        - ko pilno lo fonxa
+      translated_sentences:
+        - Use the telephone.
+
+    # Sentence complexity: 2.260
+    - lojban_sentences:
+        - ko troci tu'a lo fonxa pe do
+      translated_sentences:
+        - Try your phone.
+
+    # Sentence complexity: 3.904
+    - lojban_sentences:
+        - lo fonxa cu spofu
+      translated_sentences:
+        - The phone is out of order.
+
+    # Sentence complexity: 35.502
+    - lojban_sentences:
+        - .e'a pei mi pilno lo fonxa pe do
+      translated_sentences:
+        - Could I use your phone?
+
+    # Sentence complexity: 75.128
+    - lojban_sentences:
+        - lo mi fonxa cu se zerle'a
+      translated_sentences:
+        - My cellphone has been stolen.
+
+
+
+# Total sentences: 50
+morji:
+    # Sentence complexity: 1.420
+    - lojban_sentences:
+        - xu do morji fi mi
+      translated_sentences:
+        - Do you remember me?
+
+    # Sentence complexity: 1.519
+    - lojban_sentences:
+        - xu do morji lo mi cmene
+      translated_sentences:
+        - Do you remember my name?
+
+    # Sentence complexity: 1.526
+    - lojban_sentences:
+        - mi pu djica lo ka morji
+      translated_sentences:
+        - I wanted to remember.
+
+    # Sentence complexity: 1.675
+    - lojban_sentences:
+        - mi morji tu'a ro lo re do
+      translated_sentences:
+        - I remember both of you.
+
+    # Sentence complexity: 1.732
+    - lojban_sentences:
+        - xu do morji
+      translated_sentences:
+        - Do you remember?
+
+    # Sentence complexity: 1.952
+    - lojban_sentences:
+        - mi morji lo du'u do pu cusku ma kau
+      translated_sentences:
+        - I remember what you said.
+
+    # Sentence complexity: 1.955
+    - lojban_sentences:
+        - ko'a na xamgu lo ka morji fi lo cmene
+      translated_sentences:
+        - He's not very good at remembering names.
+
+    # Sentence complexity: 2.104
+    - lojban_sentences:
+        - ma morji
+      translated_sentences:
+        - Who can remember?
+
+    # Sentence complexity: 2.279
+    - lojban_sentences:
+        - xu do morji lo du'u ko'a cusku ma kau
+      translated_sentences:
+        - Do you remember what she said?
+
+    # Sentence complexity: 2.490
+    - lojban_sentences:
+        - ko morji ti poi valsi
+      translated_sentences:
+        - Commit these words to memory.
+
+
+
+# Total sentences: 43
+certu:
+    # Sentence complexity: 1.861
+    - lojban_sentences:
+        - mi na certu
+      translated_sentences:
+        - I'm no expert.
+
+    # Sentence complexity: 3.268
+    - lojban_sentences:
+        - mi to'e certu
+      translated_sentences:
+        - I'm bad at this.
+
+    # Sentence complexity: 4.872
+    - lojban_sentences:
+        - do je'a mutce certu
+      translated_sentences:
+        - You are really very good at this.
+
+    # Sentence complexity: n/a
+    - lojban_sentences:
+        - do to'e certu lo ka ctuca
+      translated_sentences:
+        - You are bad at teaching.
+
+    # Sentence complexity: 7.644
+    - lojban_sentences:
+        - ko'a certu lo nu se glibau
+      translated_sentences:
+        - He speaks English well.
+
+    # Sentence complexity: 26.135
+    - lojban_sentences:
+        - lo ka jai rapli cu rinka lo ka certu
+      translated_sentences:
+        - Practice makes perfect.
+
+
+
+# Total sentences: 98
+xabju:
+    # Sentence complexity: 1.390
+    - lojban_sentences:
+        - do djica lo nu do xabju ma
+      translated_sentences:
+        - Where would you like to live?
+
+    # Sentence complexity: 1.883
+    - lojban_sentences:
+        - do xabju ma
+      translated_sentences:
+        - Where are you from?
+
+    # Sentence complexity: 2.102
+    - lojban_sentences:
+        - ma poi zdani cu pu se xabju do
+      translated_sentences:
+        - Which house did you live in?
+
+    # Sentence complexity: 2.403
+    - lojban_sentences:
+        - ta'o do xabju ma
+      translated_sentences:
+        - By the way, where do you live?
+
+    # Sentence complexity: 2.578
+    - lojban_sentences:
+        - xu do vi xabju
+      translated_sentences:
+        - Do you live here?
+
+    # Sentence complexity: 3.106
+    - lojban_sentences:
+        - do joi ma xabju
+      translated_sentences:
+        - Who do you live with?
+
+    # Sentence complexity: 3.394
+    - lojban_sentences:
+        - mi xabju ti poi zdani
+      translated_sentences:
+        - This is the house where I live.
+
+    # Sentence complexity: 4.280
+    - lojban_sentences:
+        - xu do da kansa le ka xabju
+      translated_sentences:
+        - Do you live with someone?
+
+
+
