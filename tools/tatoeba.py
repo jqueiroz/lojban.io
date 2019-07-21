@@ -3,6 +3,7 @@ import sys
 import os
 import csv
 import json
+import yaml
 import copy
 
 class TatoebaDatabase:
@@ -93,7 +94,7 @@ def load_all_lujvo():
             all_lujvo.append(lujvo)
     return all_lujvo
 
-def load_brivla_from_file(filename):
+def load_brivla_from_raw_file(filename):
     ret = []
     with open(filename, "r") as f:
         blocks = f.read().split('\n\n\n')
@@ -102,11 +103,21 @@ def load_brivla_from_file(filename):
             ret.append(brivla)
     return ret
 
+def load_brivla_from_yaml_file(filename):
+    ret = []
+    with open(filename, "r") as f:
+        data = yaml.load(f, Loader=yaml.CLoader)
+        for brivla, translations in data.items():
+            ret.append(brivla)
+    return ret
+
 def load_taught_brivla():
     ret = []
-    ret += load_brivla_from_file("../courses/english/vocabulary/brivla/01_easy.txt")
-    ret += load_brivla_from_file("../courses/english/vocabulary/brivla/02_easy.txt")
-    ret += load_brivla_from_file("../courses/english/vocabulary/brivla/03_easy.txt")
+    ret += load_brivla_from_raw_file("../courses/english/vocabulary/brivla/01_easy.txt")
+    ret += load_brivla_from_raw_file("../courses/english/vocabulary/brivla/02_easy.txt")
+    ret += load_brivla_from_raw_file("../courses/english/vocabulary/brivla/03_easy.txt")
+    ret += load_brivla_from_yaml_file("../courses/english/vocabulary/brivla/04_easy.yaml")
+    print(ret)
     return ret
 
 def print_json(data):
@@ -171,7 +182,7 @@ def run(cmd):
         print(frequent_words)
         print("Frequent words: %d" % len(frequent_words))
     def display_top_brivla():
-        blacklist = set(["selpa'i", "broda", "gerna", "lojbo", "tsani", "zmadu", "gerna", "binxo", "terdatni", "srana", "binxo"])
+        blacklist = set(["selpa'i", "broda", "gerna", "lojbo", "tsani", "zmadu", "gerna", "binxo", "terdatni", "srana", "binxo", "casnu", "jbopre"])
         taught = set(load_taught_brivla())
         words = frequency_table.items()
         brivla = filter(lambda x: x[0] in gismu or x[0] in lujvo, words)
