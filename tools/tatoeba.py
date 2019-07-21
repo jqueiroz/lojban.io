@@ -78,7 +78,7 @@ def load_sentences_from_json():
 
 def load_all_gismu():
     all_gismu = []
-    with open ("../resources/gismu.txt", "r") as f:
+    with open ("../resources/english/gismu.txt", "r") as f:
         for line in f.readlines()[1:]:
             gismu = line[1:6]
             if len(gismu.strip()) == 5:
@@ -87,7 +87,7 @@ def load_all_gismu():
 
 def load_all_lujvo():
     all_lujvo = []
-    with open ("../resources/lujvo2.txt", "r") as f:
+    with open ("../resources/english/lujvo2.txt", "r") as f:
         for line in f.readlines()[1:]:
             lujvo = line.strip().split('    ')[0]
             all_lujvo.append(lujvo)
@@ -164,7 +164,7 @@ def run():
         print(frequent_words)
         print("Frequent words: %d" % len(frequent_words))
     def display_top_brivla():
-        blacklist = set(["selpa'i", "broda", "gerna", "lojbo", "tsani", "zmadu", "gerna"])
+        blacklist = set(["selpa'i", "broda", "gerna", "lojbo", "tsani", "zmadu", "gerna", "binxo", "tertadni", "srana"])
         taught = set(load_taught_brivla())
         words = frequency_table.items()
         brivla = filter(lambda x: x[0] in gismu or x[0] in lujvo, words)
@@ -177,7 +177,8 @@ def run():
         for w, f in interesting_brivla:
                 print("%7d    %s" % (f, w))
         print()
-        print(sorted(list(map(lambda x: x[0], interesting_brivla))))
+        print(list(map(lambda x: x[0], interesting_brivla)))
+        # print(sorted(list(map(lambda x: x[0], interesting_brivla))))
     def build_exercises():
         # prenu, tsani, zmadu
         words = ['binxo', 'cilre', 'cnino', 'drani', 'fanva', 'gasnu', 'kelci', 'milxe', 'mlatu', 'nitcu', 'pendo', 'pensi', 'skami', 'slabu', 'srana', 'terdatni', 'troci', 'tsali', 'viska', 'zdani']
