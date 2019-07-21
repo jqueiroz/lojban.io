@@ -12,7 +12,7 @@ import System.Random (StdGen)
 import Util (compose2)
 import qualified Data.Text as T
 
-------------------------------------------------- Terminator simplification
+-- * Terminator simplification
 -- | Replaces terminators with "cu" whenever possible
 replaceElidableTerminatorsInSentence :: T.Text -> T.Text
 replaceElidableTerminatorsInSentence t = f [] (T.words t) where
