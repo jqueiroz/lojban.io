@@ -1,0 +1,733 @@
+# Total sentences: 64
+ckule:
+    # Sentence complexity: 1.627
+    - lojban_sentences:
+        - xu do nelci lo ckule
+      translated_sentences:
+        - Do you like school?
+
+    # Sentence complexity: 1.919
+    - lojban_sentences:
+        - mi pu zvati lo ckule
+      translated_sentences:
+        - I was at school.
+
+    # Sentence complexity: 2.097
+    - lojban_sentences:
+        - mi djica lonu cliva lo ckule
+      translated_sentences:
+        - I want to leave school.
+
+    # Sentence complexity: 2.472
+    - lojban_sentences:
+        - lo tadni na nelci lo ckule
+      translated_sentences:
+        - The students don't like school.
+
+    # Sentence complexity: 2.788
+    - lojban_sentences:
+        - mi bilga lo nu klama lo ckule
+      translated_sentences:
+        - I have to go to school.
+
+    # Sentence complexity: 3.041
+    - lojban_sentences:
+        - da ckule vi lo mi zdani
+      translated_sentences:
+        - There is a school near my house.
+
+    # Sentence complexity: 3.255
+    - lojban_sentences:
+        - lo ckule cu na jai zdile
+      translated_sentences:
+        - School's not fun.
+
+    # Sentence complexity: 4.448
+    - lojban_sentences:
+        - bu'u lo ckule do ma cilre
+      translated_sentences:
+        - What do you learn at school?
+
+    # Sentence complexity: 5.958
+    - lojban_sentences:
+        - ta'i ma do klama lo ckule
+      translated_sentences:
+        - How did you come to school?
+
+
+
+# Total sentences: 41
+facki:
+    # Sentence complexity: 1.959
+    - lojban_sentences:
+        - do ma facki
+      translated_sentences:
+        - What did you find out?
+
+    # Sentence complexity: 2.250
+    - lojban_sentences:
+        - ma pu facki tu'a ko'a
+      translated_sentences:
+        - Who found her?
+
+    # Sentence complexity: 5.402
+    - lojban_sentences:
+        - mi pu facki lo jetnu
+      translated_sentences:
+        - I discovered the truth.
+
+    # Sentence complexity: 8.356
+    - lojban_sentences:
+        - ma tadji lo nu do facki
+      translated_sentences:
+        - What is your method for discovering?
+
+    # Sentence complexity: 16.175
+    - lojban_sentences:
+        - xu do ka'e facki lo danfu be le nabmi
+      translated_sentences:
+        - Can you discover the solution to this problem?
+
+
+
+# Total sentences: 37
+srera:
+    # Sentence complexity: 1.492
+    - lojban_sentences:
+        - xu do jimpe fi le se srera be do
+      translated_sentences:
+        - Did you understand your mistake?
+
+    # Sentence complexity: 1.736
+    - lojban_sentences:
+        - ma te zgana lo se srera
+      translated_sentences:
+        - How is the error observed?
+
+    # Sentence complexity: 1.814
+    - lojban_sentences:
+        - ca ma se srera
+      translated_sentences:
+        - When did the error occur?
+
+    # Sentence complexity: 2.074
+    - lojban_sentences:
+        - pu se srera
+      translated_sentences:
+        - It was a mistake.
+
+    # Sentence complexity: 2.178
+    - lojban_sentences:
+        - mi pu djuno lo du'u mi ca'o srera
+      translated_sentences:
+        - I knew I was making mistakes.
+
+    # Sentence complexity: 2.401
+    - lojban_sentences:
+        - mi srera
+      translated_sentences:
+        - I made a mistake.
+
+    # Sentence complexity: 2.643
+    - lojban_sentences:
+        - za'a mi pu srera
+      translated_sentences:
+        - I realize I messed up.
+
+    # Sentence complexity: 2.648
+    - lojban_sentences:
+        - ko cusku fi mi va'o lo nu mi srera
+      translated_sentences:
+        - Tell me if I am wrong.
+
+    # Sentence complexity: 2.663
+    - lojban_sentences:
+        - cilre fo lo se srera
+      translated_sentences:
+        - One learns from one's mistakes.
+
+    # Sentence complexity: 3.227
+    - lojban_sentences:
+        - mi gleki lo nu mi pu srera
+      translated_sentences:
+        - I'm glad I was wrong.
+
+
+
+# Total sentences: 57
+bilga:
+    # Sentence complexity: 1.385
+    - lojban_sentences:
+        - mi bilga lo nu cusku lu na go'i li'u do
+      translated_sentences:
+        - I must say no to you.
+
+    # Sentence complexity: 1.772
+    - lojban_sentences:
+        - mi bilga lo nu sipna
+      translated_sentences:
+        - I have to go to sleep.
+
+    # Sentence complexity: 2.788
+    - lojban_sentences:
+        - mi bilga lo nu klama lo ckule
+      translated_sentences:
+        - I have to go to school.
+
+    # Sentence complexity: 2.790
+    - lojban_sentences:
+        - do na bilga lo ka cusku fi mi fe lo cmene be ko'a
+      translated_sentences:
+        - You don't have to tell me his name.
+
+    # Sentence complexity: 3.716
+    - lojban_sentences:
+        - do bilga lo nu jundi lo ctuca
+      translated_sentences:
+        - You must pay attention to the teacher.
+
+    # Sentence complexity: 4.213
+    - lojban_sentences:
+        - do bilga lo ka sidju
+      translated_sentences:
+        - You're required to help them.
+
+    # Sentence complexity: 4.596
+    - lojban_sentences:
+        - do bilga lo ka kansa mi
+      translated_sentences:
+        - You must join me.
+
+    # Sentence complexity: 4.646
+    - lojban_sentences:
+        - do na bilga lo ka spuda lo preti
+      translated_sentences:
+        - You don't need to answer this question.
+
+
+
+# Total sentences: 49
+zasti:
+    # Sentence complexity: 2.047
+    - lojban_sentences:
+        - mi zasti xu
+      translated_sentences:
+        - Do I exist?
+
+    # Sentence complexity: 2.053
+    - lojban_sentences:
+        - do zasti xu
+      translated_sentences:
+        - Do you exist?
+
+    # Sentence complexity: 2.670
+    - lojban_sentences:
+        - ko'a zasti xu
+      translated_sentences:
+        - Does he exist?
+
+    # Sentence complexity: 2.839
+    - lojban_sentences:
+        - lo nu prami na zasti
+      translated_sentences:
+        - Love doesn't exist.
+
+    # Sentence complexity: 3.294
+    - lojban_sentences:
+        - le cukta na zasti
+      translated_sentences:
+        - The book doesn't exist.
+
+    # Sentence complexity: 5.352
+    - lojban_sentences:
+        - lo si'o zasti na se smuni da
+      translated_sentences:
+        - Existence is a meaningless concept.
+
+    # Sentence complexity: 6.385
+    - lojban_sentences:
+        - lo prenu cu krici lo du'u lo cevni cu zasti
+      translated_sentences:
+        - People believe that god exists.
+
+
+
+# Total sentences: 86
+pinxe:
+    # Sentence complexity: 1.640
+    - lojban_sentences:
+        - do djica lo nu pinxe ma
+      translated_sentences:
+        - What do you want to drink?
+
+    # Sentence complexity: 1.680
+    - lojban_sentences:
+        - xu do djica tu'a lo se pinxe
+      translated_sentences:
+        - Would you like something to drink?
+
+    # Sentence complexity: 1.693
+    - lojban_sentences:
+        - mi djica fi le nu pinxe
+      translated_sentences:
+        - I want something to drink.
+
+    # Sentence complexity: 1.710
+    - lojban_sentences:
+        - mi djica lo nu pinxe da
+      translated_sentences:
+        - I want to drink something.
+
+    # Sentence complexity: 1.785
+    - lojban_sentences:
+        - mi djica tu'a lo se pinxe
+      translated_sentences:
+        - I want something to drink.
+
+    # Sentence complexity: 2.494
+    - lojban_sentences:
+        - ma do ca'o se pinxe
+      translated_sentences:
+        - What're you drinking?
+
+    # Sentence complexity: 2.623
+    - lojban_sentences:
+        - ko pinxe
+      translated_sentences:
+        - Have a drink.
+
+    # Sentence complexity: 4.227
+    - lojban_sentences:
+        - mi pu pinxe lo ckafi
+      translated_sentences:
+        - I drank coffee.
+
+    # Sentence complexity: 4.645
+    - lojban_sentences:
+        - mi pinxe lo ckafi
+      translated_sentences:
+        - I drink coffee.
+
+
+
+# Total sentences: 70
+mamta:
+    # Sentence complexity: 1.818
+    - lojban_sentences:
+        - ma se zvati le mamta be mi
+      translated_sentences:
+        - Where's my mother?
+
+    # Sentence complexity: 1.922
+    - lojban_sentences:
+        - ma se zvati lo do mamta
+      translated_sentences:
+        - Where's your mom?
+
+    # Sentence complexity: 2.156
+    - lojban_sentences:
+        - do mamta mi
+      translated_sentences:
+        - You are my mother.
+
+    # Sentence complexity: 2.500
+    - lojban_sentences:
+        - doi le mamta ma se zvati le mlatu
+      translated_sentences:
+        - Mom, where's the cat?
+
+    # Sentence complexity: 2.729
+    - lojban_sentences:
+        - mi se prami lo mi mamta
+      translated_sentences:
+        - I am loved by my mother.
+
+    # Sentence complexity: 2.933
+    - lojban_sentences:
+        - mi prami le mi mamta
+      translated_sentences:
+        - I love my mum.
+
+    # Sentence complexity: 4.015
+    - lojban_sentences:
+        - lo mamta be do cu mo ca lo nu do mo'u klama lo zdani
+      translated_sentences:
+        - What was your mother doing when you got home?
+
+    # Sentence complexity: 4.040
+    - lojban_sentences:
+        - mi djica lo nu da'i do na pu cusku le lisri lo mi mamta
+      translated_sentences:
+        - I wish you had not told the story to my mother.
+
+    # Sentence complexity: 4.178
+    - lojban_sentences:
+        - mu'i ma do tavla lo mamta be mi
+      translated_sentences:
+        - Why did you talk to my mother?
+
+
+
+# Total sentences: 18
+stidi:
+    # Sentence complexity: 3.498
+    - lojban_sentences:
+        - .ai mi da stidi
+      translated_sentences:
+        - I'd like to make a suggestion.
+
+    # Sentence complexity: 6.003
+    - lojban_sentences:
+        - da'i mi nitcu tu'a lo se stidi
+      translated_sentences:
+        - I would need some advice.
+
+    # Sentence complexity: 7.539
+    - lojban_sentences:
+        - lo glico ctuca be mi ba'o stidi lo nu mi tcidu loi vi cukta
+      translated_sentences:
+        - My English teacher advised me to read these books.
+
+    # Sentence complexity: 32.154
+    - lojban_sentences:
+        - ra pu stidi lo nu mi'a limna
+      translated_sentences:
+        - He suggested that we go for a swim.
+
+    # Sentence complexity: 36.039
+    - lojban_sentences:
+        - ra stidi lo nu clira cfari
+      translated_sentences:
+        - He advised an early start.
+
+    # Sentence complexity: 40.358
+    - lojban_sentences:
+        - lo se stidi cu simlu lo ka racli
+      translated_sentences:
+        - The suggestion seems logical.
+
+    # Sentence complexity: 93.917
+    - lojban_sentences:
+        - mi tinbe le se stidi
+      translated_sentences:
+        - I accept this proposal.
+
+
+
+# Total sentences: 27
+rinka:
+    # Sentence complexity: 2.785
+    - lojban_sentences:
+        - ma rinka
+      translated_sentences:
+        - What causes it?
+
+    # Sentence complexity: 4.301
+    - lojban_sentences:
+        - lo cabdei pu rinka lo nu tatpi
+      translated_sentences:
+        - Today was a tiring day.
+
+    # Sentence complexity: 4.865
+    - lojban_sentences:
+        - lo nu kucli cu rinka lo nu lo mlatu cu morsi
+      translated_sentences:
+        - Curiosity killed the cat.
+
+    # Sentence complexity: 6.772
+    - lojban_sentences:
+        - lo sance pu jai rinka lo nu mi co'a cikna
+      translated_sentences:
+        - The sound woke me up.
+
+    # Sentence complexity: 8.288
+    - lojban_sentences:
+        - ma pu rinka lo nu spoja
+      translated_sentences:
+        - What caused the explosion?
+
+    # Sentence complexity: 10.351
+    - lojban_sentences:
+        - na djuno fi lo rinka be lo nu fagri
+      translated_sentences:
+        - The cause of the fire was unknown.
+
+    # Sentence complexity: 11.053
+    - lojban_sentences:
+        - djuno fi lo rinka be lo nu fagri
+      translated_sentences:
+        - The cause of the fire was known.
+
+    # Sentence complexity: 26.135
+    - lojban_sentences:
+        - lo ka jai rapli cu rinka lo ka certu
+      translated_sentences:
+        - Practice makes perfect.
+
+
+
+# Total sentences: 8
+jbobau:
+    # Sentence complexity: 2.401
+    - lojban_sentences:
+        - mi ca se cinri lo nu cilre tu'a lo jbobau
+      translated_sentences:
+        - I'm interested in learning Lojban.
+
+    # Sentence complexity: 2.487
+    - lojban_sentences:
+        - mi se bangu lo jbobau
+      translated_sentences:
+        - I speak Lojban.
+
+    # Sentence complexity: 7.713
+    - lojban_sentences:
+        - caku mi djica lo nu tavla fo lo jbobau
+      translated_sentences:
+        - Right now, I want to speak Lojban.
+
+    # Sentence complexity: 1507576.768
+    - lojban_sentences:
+        - tadni lo jbobau ta'i lo ka tcidu fi lo saske brafi'a
+      translated_sentences:
+        - He's studying the Lojban language by reading science novels.
+
+
+
+# Total sentences: 15
+mapti:
+    # Sentence complexity: n/a
+    - lojban_sentences:
+        - xu mapti
+      translated_sentences:
+        - Is it suitable?
+        - Is it appropriate?
+
+    # Sentence complexity: 2.537
+    - lojban_sentences:
+        - xu ba mapti
+      translated_sentences:
+        - Will it fit?
+
+    # Sentence complexity: n/a
+    - lojban_sentences:
+        - ta mapti do
+      translated_sentences:
+        - That suits you.
+
+    # Sentence complexity: 7.970
+    - lojban_sentences:
+        - le finpe na mapti fi lo ka se citka
+      translated_sentences:
+        - This fish is not edible.
+
+    # Sentence complexity: 13.409
+    - lojban_sentences:
+        - mi za'o jinvi lo du'u lo kibro na mapti lo verba
+      translated_sentences:
+        - I still believe the Internet is not suitable for children.
+
+    # Sentence complexity: 44.306
+    - lojban_sentences:
+        - lo ra mapku cu mapti ra
+      translated_sentences:
+        - Her hat fits her.
+
+
+
+# Total sentences: 21
+zdile:
+    # Sentence complexity: 2.089
+    - lojban_sentences:
+        - ro da pu se zdile
+      translated_sentences:
+        - Everyone had fun.
+
+    # Sentence complexity: 2.680
+    - lojban_sentences:
+        - pu mutce zdile
+      translated_sentences:
+        - It was a lot of fun.
+
+    # Sentence complexity: 3.109
+    - lojban_sentences:
+        - lo nu cilre fi le cnino bangu cu zdile
+      translated_sentences:
+        - Learning a new language is fun.
+
+    # Sentence complexity: 3.135
+    - lojban_sentences:
+        - to'e zdile fa lo ka zgana
+      translated_sentences:
+        - It's boring to watch.
+
+    # Sentence complexity: 3.255
+    - lojban_sentences:
+        - lo ckule cu na jai zdile
+      translated_sentences:
+        - School's not fun.
+
+    # Sentence complexity: 4.599
+    - lojban_sentences:
+        - to'e zdile
+      translated_sentences:
+        - This is boring.
+
+    # Sentence complexity: 4.740
+    - lojban_sentences:
+        - lo cabdei pu jai zdile
+      translated_sentences:
+        - Today was fun.
+
+    # Sentence complexity: 8.272
+    - lojban_sentences:
+        - lo nu dansu cu zdile
+      translated_sentences:
+        - Dancing is fun.
+
+
+
+# Total sentences: 68
+ciska:
+    # Sentence complexity: 2.765
+    - lojban_sentences:
+        - ko'a na kakne lo nu ciska lo ko'a cmene
+      translated_sentences:
+        - He cannot write his own name.
+
+    # Sentence complexity: 3.151
+    - lojban_sentences:
+        - mi tatpi lo nu ciska
+      translated_sentences:
+        - I'm tired of writing.
+
+    # Sentence complexity: 4.968
+    - lojban_sentences:
+        - .e'o ko ciska lo bazi se cusku be mi
+      translated_sentences:
+        - Please write down what I am going to say.
+
+    # Sentence complexity: 5.074
+    - lojban_sentences:
+        - ma pu ciska lo vi jufra
+      translated_sentences:
+        - Who wrote this sentence?
+
+    # Sentence complexity: 5.421
+    - lojban_sentences:
+        - ko'a ciska lo cukta
+      translated_sentences:
+        - He writes books.
+
+    # Sentence complexity: 6.685
+    - lojban_sentences:
+        - ma pu ciska ta
+      translated_sentences:
+        - Who wrote that?
+
+
+
+# Total sentences: 42
+vajni:
+    # Sentence complexity: 1.739
+    - lojban_sentences:
+        - mi na pu djuno lo nu ca vajni do
+      translated_sentences:
+        - I didn't know that it was important to you.
+
+    # Sentence complexity: 1.947
+    - lojban_sentences:
+        - lo nu mi te cusku cu vajni
+      translated_sentences:
+        - It's important that I hear this.
+
+    # Sentence complexity: 1.951
+    - lojban_sentences:
+        - lo nu do te cusku cu vajni
+      translated_sentences:
+        - It's important that you hear this.
+
+    # Sentence complexity: 2.899
+    - lojban_sentences:
+        - mi jai vajni
+      translated_sentences:
+        - I'm important.
+
+    # Sentence complexity: 2.945
+    - lojban_sentences:
+        - mutce vajni
+      translated_sentences:
+        - It's very important.
+
+    # Sentence complexity: 3.115
+    - lojban_sentences:
+        - loi pendo be mi cu mutce vajni mi
+      translated_sentences:
+        - My friends are very important to me.
+
+    # Sentence complexity: 3.156
+    - lojban_sentences:
+        - vajni mi
+      translated_sentences:
+        - It's important to me.
+
+    # Sentence complexity: 3.178
+    - lojban_sentences:
+        - ua nai la'e di'u vajni fi ma
+      translated_sentences:
+        - Huh? How is that relevant?
+
+
+
+# Total sentences: 61
+cmalu:
+    # Sentence complexity: 3.128
+    - lojban_sentences:
+        - do cmalu prenu
+      translated_sentences:
+        - You are a small person.
+
+    # Sentence complexity: 3.254
+    - lojban_sentences:
+        - pu cmalu
+      translated_sentences:
+        - It was small.
+
+    # Sentence complexity: 5.014
+    - lojban_sentences:
+        - lo cukta cu cmalu
+      translated_sentences:
+        - The book is small.
+
+    # Sentence complexity: 5.799
+    - lojban_sentences:
+        - ti dukse cmalu
+      translated_sentences:
+        - This is too small.
+
+    # Sentence complexity: 6.191
+    - lojban_sentences:
+        - ti mutce cmalu cukta
+      translated_sentences:
+        - This is a very small book.
+
+    # Sentence complexity: 6.890
+    - lojban_sentences:
+        - ti cmalu cukta
+      translated_sentences:
+        - This is a small book.
+
+    # Sentence complexity: 8.914
+    - lojban_sentences:
+        - ta noi cukta cu cmalu
+      translated_sentences:
+        - That book is small.
+
+    # Sentence complexity: 13.661
+    - lojban_sentences:
+        - mi cmalu verba
+      translated_sentences:
+        - I'm a little child.
+
+
+

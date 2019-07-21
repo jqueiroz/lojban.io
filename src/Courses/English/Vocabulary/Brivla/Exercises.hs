@@ -39,3 +39,7 @@ exercises03 = buildBrivlaExerciseGenerator translations03
 -- | Exercises for the corresponding lesson.
 exercises04 :: ExerciseGenerator
 exercises04 = buildBrivlaExerciseGenerator translations04
+
+-- | Exercises for the corresponding lesson.
+exercises05 :: ExerciseGenerator
+exercises05 = buildBrivlaExerciseGenerator translations05

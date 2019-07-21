@@ -48,3 +48,7 @@ translations03 = loadTranslationsByExpressionFromRawText $(embedStringFile "cour
 -- | Translations for the corresponding lesson.
 translations04 :: TranslationsByExpression
 translations04 = loadTranslationsByExpressionFromYamlText $(embedStringFile "courses/english/vocabulary/brivla/04_easy.yaml")
+
+-- | Translations for the corresponding lesson.
+translations05 :: TranslationsByExpression
+translations05 = loadTranslationsByExpressionFromYamlText $(embedStringFile "courses/english/vocabulary/brivla/05_easy.yaml")
