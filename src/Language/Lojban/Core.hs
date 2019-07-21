@@ -1,6 +1,7 @@
 module Language.Lojban.Core
 ( SimpleBridi (..)
 , SimpleBridiDisplayer
+, SentenceCanonicalizer
 , Dictionary (..)
 , Gismu (..)
 , Cmavo (..)
@@ -20,6 +21,8 @@ data SimpleBridi = SimpleBridi
     } deriving (Show, Eq)
 
 type SimpleBridiDisplayer = StdGen -> SimpleBridi -> (T.Text, StdGen)
+
+type SentenceCanonicalizer = T.Text -> Either String T.Text
 
 -- * Lexicon
 data Dictionary = Dictionary

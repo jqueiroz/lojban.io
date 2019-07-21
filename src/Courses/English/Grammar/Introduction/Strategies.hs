@@ -9,6 +9,7 @@
 module Courses.English.Grammar.Introduction.Strategies  where
 
 import Core
+import Language.Lojban.Core
 import Language.Lojban.Canonicalization (basicSentenceCanonicalizer)
 import qualified Data.Text as T
 
