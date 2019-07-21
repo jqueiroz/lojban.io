@@ -26,11 +26,13 @@ COPY app /lojto/app
 COPY src /lojto/src
 COPY LICENSE /lojto/LICENSE
 
+# Copy resources
+COPY resources /lojto/resources
+
 # Compile source code
 RUN cd /lojto && stack build
 
 # Copy additional resources
-COPY resources /lojto/resources
 COPY static /lojto/static
 
 # Compile stylesheet files
