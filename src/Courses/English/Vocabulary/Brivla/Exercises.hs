@@ -5,6 +5,7 @@ module Courses.English.Vocabulary.Brivla.Exercises where
 
 import Core
 import Util (generatorFromList, combineFunctions)
+import Language.Lojban.Core
 import Language.Lojban.Dictionary (englishDictionary)
 import Control.Arrow (second)
 import Courses.Util.ExerciseGenerators

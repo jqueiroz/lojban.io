@@ -5,7 +5,7 @@ module Language.Lojban.Dictionary.English
 ( englishDictionary
 ) where
 
-import Core
+import Language.Lojban.Core
 import Util (subfield)
 import Control.Applicative ((<$>))
 import Control.Arrow (second)

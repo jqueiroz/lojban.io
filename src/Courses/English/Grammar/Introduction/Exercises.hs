@@ -6,6 +6,7 @@ module Courses.English.Grammar.Introduction.Exercises where
 import Core
 import Courses.Util.Vocabulary
 import Courses.Util.ExerciseGenerators
+import Language.Lojban.Core
 import Language.Lojban.Dictionary (englishDictionary)
 import Language.Lojban.Presentation (displayStandardSimpleBridi, displayVariantSimpleBridi, displayReorderedStandardSimpleBridi)
 import Language.Lojban.Refinement (simplifyTerminatorsInBridiDisplayer)

@@ -19,6 +19,7 @@ module Courses.Util.Vocabulary
 ) where
 
 import Core
+import Language.Lojban.Core
 import Util (sortUniq, (?:))
 import qualified Data.Text as T
 import qualified Data.Map as M

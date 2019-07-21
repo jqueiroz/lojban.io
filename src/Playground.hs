@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 module Playground where
 
-import Core
+import Language.Lojban.Core
 import Language.Lojban.Dictionary (englishDictionary)
 import Language.Lojban.Parsing (parse)
 import Language.Lojban.Canonicalization (basicSentenceCanonicalizer)
