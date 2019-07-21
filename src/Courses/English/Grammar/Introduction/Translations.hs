@@ -960,6 +960,7 @@ translationExercises1to6_simplified = simplifyCanonicalAnswer . combineFunctions
 -- * Lesson 8: Relative clauses
 -- questionExercises5 :: "What did you promise", "What did you say, ..."
 -- Interesting: xu do djuno lo se cusku
+-- TODO: add some translations involving "this computer" ("ti poi skami", but also accept "lo vi skami")
 
 -- TODO: questions with "ma"
 translations8_noi :: TranslationGenerator
