@@ -355,3 +355,75 @@ certu:
 xabju:
     x1: resident
     x2: location
+
+ckule:
+    x1: school
+    x2: location
+    x3: subject
+    x4: audience
+    x5: operators
+
+facki:
+    x1: discoverer
+    x2: facts
+    x3: subject/object
+
+srera:
+    x1: mistaker
+    x2: mistake
+    x3: conditions
+    x4: standard
+
+bilga:
+    x1: entity
+    x2: duty
+    x3: standard/agreement
+
+zasti:
+    x1: entity
+    x2: perceiver/observer
+    x3: metaphysics
+
+pinxe:
+    x1: drinker
+    x2: beverage
+    x3: container/source
+
+mamta:
+    x1: mother
+    x2: son
+
+stidi:
+    x1: proposer
+    x2: proposal/suggestion
+    x3: audience
+
+rinka:
+    x1: cause
+    x2: effect
+    x3: conditions
+
+jbobau:
+    x1: Lojban
+    x2: user
+    x3: expressed facts
+
+mapti:
+    x1: "entity #1"
+    x2: "entity #2"
+    x3: property/aspect
+
+zdile:
+    x1: amusing abstraction
+    x2: perceiver
+    x3: property/aspect
+
+vajni:
+    x1: important object/event
+    x2: person/event who finds something important
+    x3: aspect/reason
+
+cmalu:
+    x1: small thing
+    x2: property/dimension
+    x3: standard/norm
