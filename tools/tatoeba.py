@@ -140,6 +140,12 @@ def load_frequency_table():
             table[word.strip()] = int(frequency)
     return table
 
+def encode_text_to_yaml_string(text):
+    if "#" in text:
+        return "\"%s\"" % text
+    else:
+        return text
+
 # TODO: brivla, not just gismu
 def run():
     sentences_eng = filter_by_language(load_sentences_from_json(), 'eng')
@@ -187,21 +193,18 @@ def run():
             sentences = filter_by_word(sentences_eng, word)
             sentences.sort(key=compute_sentence_complexity)
             if debug:
-                print("%s: %d" % (word, len(sentences)))
-            else:
-                print("%s:" % word)
+                print("# Total sentences: %d" % len(sentences))
+            print("%s:" % word)
             for sentence in sentences[:10]:
-                # if debug:
-                    # print("    %.3f\t" % compute_sentence_complexity(sentence), end='')
                 if debug:
-                    print("%01.2f\t%s" % (compute_sentence_complexity(sentence), sentence['content']))
-                    print("\t\t%s" % sentence['translations'][0]['content'])
-                else:
-                    print("\t%s" % sentence['content'])
-                    print("\t\t%s" % sentence['translations'][0]['content'])
-            if debug:
+                    print("    # Sentence complexity: %.3f" % compute_sentence_complexity(sentence))
+                print("    - lojban_sentences:")
+                print("        - %s" % encode_text_to_yaml_string(sentence['content']))
+                print("      translated_sentences:")
+                print("        - %s" % encode_text_to_yaml_string(sentence['translations'][0]['content']))
                 print()
-                print()
+            print()
+            print()
 
     # display_interesting_sentences()
     display_top_brivla()
