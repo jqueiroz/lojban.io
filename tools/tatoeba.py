@@ -117,7 +117,6 @@ def load_taught_brivla():
     ret += load_brivla_from_raw_file("../courses/english/vocabulary/brivla/02_easy.txt")
     ret += load_brivla_from_raw_file("../courses/english/vocabulary/brivla/03_easy.txt")
     ret += load_brivla_from_yaml_file("../courses/english/vocabulary/brivla/04_easy.yaml")
-    print(ret)
     return ret
 
 def print_json(data):
@@ -181,7 +180,7 @@ def run(cmd):
         frequent_words = [k for k, v in frequency_table.items() if v >= 100]
         print(frequent_words)
         print("Frequent words: %d" % len(frequent_words))
-    def display_top_brivla():
+    def retrieve_top_brivla():
         blacklist = set(["selpa'i", "broda", "gerna", "lojbo", "tsani", "zmadu", "gerna", "binxo", "terdatni", "srana", "binxo", "casnu", "jbopre"])
         taught = set(load_taught_brivla())
         words = frequency_table.items()
@@ -190,6 +189,9 @@ def run(cmd):
         brivla = filter(lambda x: x[0] not in taught, brivla)
         brivla = list(brivla)
         brivla.sort(key=lambda x: -x[1])
+        return brivla
+    def display_top_brivla():
+        brivla = retrieve_top_brivla()
         interesting_brivla = brivla[:20]
         print("Brivla: %d" % len(brivla))
         for w, f in interesting_brivla:
@@ -199,7 +201,9 @@ def run(cmd):
         # print(sorted(list(map(lambda x: x[0], interesting_brivla))))
     def build_exercises():
         # prenu, tsani, zmadu
-        words = ['tsali', 'viska', 'casnu', 'jinvi', 'jbopre', 'tadni', 'ponse', 'bebna', 'pluka', 'nandu', 'preti', 'prami', 'tatpi', 'fonxa', 'morji', 'certu', 'xabju', 'ckule', 'facki', 'srera']
+        # words = ['tsali', 'viska', 'casnu', 'jinvi', 'jbopre', 'tadni', 'ponse', 'bebna', 'pluka', 'nandu', 'preti', 'prami', 'tatpi', 'fonxa', 'morji', 'certu', 'xabju', 'ckule', 'facki', 'srera']
+        brivla = retrieve_top_brivla()[:20]
+        words = list(map(lambda x: x[0], brivla))
         debug = True
         for word in words:
             sentences = filter_by_word(sentences_eng, word)
