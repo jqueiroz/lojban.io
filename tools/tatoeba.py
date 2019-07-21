@@ -111,12 +111,23 @@ def load_brivla_from_yaml_file(filename):
             ret.append(brivla)
     return ret
 
+raw_brivla_files = \
+    [ "../courses/english/vocabulary/brivla/01_easy.txt"
+    , "../courses/english/vocabulary/brivla/02_easy.txt"
+    , "../courses/english/vocabulary/brivla/03_easy.txt"
+    ]
+
+yaml_brivla_files = \
+    [ "../courses/english/vocabulary/brivla/04_easy.yaml"
+    , "../courses/english/vocabulary/brivla/05_easy.yaml"
+    ]
+
 def load_taught_brivla():
     ret = []
-    ret += load_brivla_from_raw_file("../courses/english/vocabulary/brivla/01_easy.txt")
-    ret += load_brivla_from_raw_file("../courses/english/vocabulary/brivla/02_easy.txt")
-    ret += load_brivla_from_raw_file("../courses/english/vocabulary/brivla/03_easy.txt")
-    ret += load_brivla_from_yaml_file("../courses/english/vocabulary/brivla/04_easy.yaml")
+    for filename in raw_brivla_files:
+        ret += load_brivla_from_raw_file(filename)
+    for filename in yaml_brivla_files:
+        ret += load_brivla_from_yaml_file(filename)
     return ret
 
 def print_json(data):
