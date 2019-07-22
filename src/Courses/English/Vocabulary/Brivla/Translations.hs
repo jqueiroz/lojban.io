@@ -13,15 +13,6 @@ import qualified Data.Map as M
 import qualified Data.Yaml as Y
 
 -- * Auxiliar functions
-loadTranslationsByExpressionFromRawText :: T.Text -> TranslationsByExpression
-loadTranslationsByExpressionFromRawText contents = map loadTranslations $ T.splitOn "\n\n\n" contents where
-    loadTranslations :: T.Text -> (T.Text, [Translation])
-    loadTranslations contents = (title, translations) where
-        title_line:translation_lines = T.lines contents
-        title = head $ T.splitOn ":" title_line
-        translations = map makeTranslation $ chunksOf 2 translation_lines where
-            makeTranslation [lojban_line, english_line] = ([(T.splitOn "\t" lojban_line) !! 1], [(T.splitOn "\t\t" english_line) !! 1])
-
 loadTranslationsByExpressionFromYamlText :: T.Text -> TranslationsByExpression
 loadTranslationsByExpressionFromYamlText yamlText = M.assocs $ M.map handleExpression yamlData where
     yamlData :: M.Map T.Text [M.Map T.Text [T.Text]]

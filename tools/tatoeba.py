@@ -94,15 +94,6 @@ def load_all_lujvo():
             all_lujvo.append(lujvo)
     return all_lujvo
 
-def load_brivla_from_raw_file(filename):
-    ret = []
-    with open(filename, "r") as f:
-        blocks = f.read().split('\n\n\n')
-        for block in blocks:
-            brivla = block.split('\n')[0].split(': ')[0]
-            ret.append(brivla)
-    return ret
-
 def load_brivla_from_yaml_file(filename):
     ret = []
     with open(filename, "r") as f:
@@ -110,8 +101,6 @@ def load_brivla_from_yaml_file(filename):
         for brivla, translations in data.items():
             ret.append(brivla)
     return ret
-
-raw_brivla_files = []
 
 yaml_brivla_files = \
     [ "../courses/english/vocabulary/brivla/01_easy.yaml"
@@ -123,8 +112,6 @@ yaml_brivla_files = \
 
 def load_taught_brivla():
     ret = []
-    for filename in raw_brivla_files:
-        ret += load_brivla_from_raw_file(filename)
     for filename in yaml_brivla_files:
         ret += load_brivla_from_yaml_file(filename)
     return ret
