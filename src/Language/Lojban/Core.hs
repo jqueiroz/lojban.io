@@ -5,6 +5,7 @@ module Language.Lojban.Core
 , Dictionary (..)
 , Gismu (..)
 , Cmavo (..)
+, Brivla (..)
 , retrieveBrivlaPlaces
 ) where
 
@@ -28,6 +29,7 @@ type SentenceCanonicalizer = T.Text -> Either String T.Text
 data Dictionary = Dictionary
     { dictGismu :: M.Map T.Text Gismu
     , dictCmavo :: M.Map T.Text Cmavo
+    , dictBrivla :: M.Map T.Text Brivla
     , dictValsiDefinition :: M.Map T.Text T.Text
     , dictBrivlaPlaces :: M.Map T.Text [T.Text]
     } deriving (Show)
@@ -53,6 +55,12 @@ data Cmavo = Cmavo
     , cmavoEnglishNotes :: T.Text
     , cmavoEnglishConfer :: [T.Text]
     , cmavoIRCFrequencyCount :: Int
+    } deriving (Show)
+
+data Brivla = Brivla
+    { brivlaText :: T.Text
+    , brivlaDefinition :: T.Text
+    , brivlaIRCFrequencyCount :: Int
     } deriving (Show)
 
 instance Eq Gismu where

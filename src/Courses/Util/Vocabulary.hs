@@ -6,7 +6,6 @@ module Courses.Util.Vocabulary
 , WordList
 , Selbri
 , Sumti
-, Brivla
 , vocabularyWords
 , vocabularyCategorizedSumti
 , vocabularyCategorizedSelbri
@@ -29,7 +28,6 @@ import qualified Data.Map as M
 type CategoryName = T.Text
 type Selbri = T.Text
 type Sumti = T.Text
-type Brivla = T.Text
 type CategorizedSelbri = [(CategoryName, [(Int, Selbri)])]
 type CategorizedSumti = [(CategoryName, [(Int, Sumti)])]
 

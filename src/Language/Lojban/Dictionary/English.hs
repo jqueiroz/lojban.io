@@ -18,7 +18,7 @@ import Data.FileEmbed (embedStringFile)
 
 -- Dictionary
 englishDictionary :: Dictionary
-englishDictionary = Dictionary gismuMap cmavoMap definitionsMap englishBrivlaPlacesMap where
+englishDictionary = Dictionary gismuMap cmavoMap brivlaMap definitionsMap englishBrivlaPlacesMap where
     -- Frequency map
     frequencyMap = loadFrequencyMapFromText $ T.pack $(embedStringFile "resources/MyFreq-COMB_without_dots.txt")
     -- Cmavo
@@ -30,10 +30,17 @@ englishDictionary = Dictionary gismuMap cmavoMap definitionsMap englishBrivlaPla
     gismu = filter isReallyGismu $ loadGismuFromText frequencyMap $ T.pack $(embedStringFile "resources/english/gismu.txt")
     gismuList = map (\g -> (gismuText g, g)) gismu
     gismuMap = M.fromList gismuList
+    -- Brivla
+    brivlaFromGismu = map (\g -> Brivla (gismuText g) (gismuEnglishDefinition g) (gismuIRCFrequencyCount g)) gismu
+    brivlaFromFile = loadBrivlaFromText frequencyMap $ T.pack $(embedStringFile "resources/english/brivla.yaml")
+    brivla = brivlaFromGismu ++ brivlaFromFile
+    brivlaList = map (\b -> (brivlaText b, b)) brivla
+    brivlaMap = M.fromList brivlaList
     -- Definitions
+    brivlaDefinitions = (second brivlaDefinition) <$> brivlaList
     cmavoDefinitions = (second cmavoEnglishDefinition) <$> cmavoList
     gismuDefinitions = (second gismuEnglishDefinition) <$> gismuList
-    definitionsList = cmavoDefinitions ++ gismuDefinitions
+    definitionsList = cmavoDefinitions ++ gismuDefinitions ++ brivlaDefinitions
     definitionsMap = M.fromList definitionsList
 
 -- Gismu
@@ -69,6 +76,16 @@ loadCmavoFromLine frequencyMap line =
 
 loadCmavoFromText :: FrequencyMap -> T.Text -> [Cmavo]
 loadCmavoFromText frequencyMap = fmap (loadCmavoFromLine frequencyMap) . tail . T.lines
+
+-- Brivla
+loadBrivlaFromText :: FrequencyMap -> T.Text -> [Brivla]
+loadBrivlaFromText frequencyMap yamlText = map handleBrivla yamlList where
+    yamlData :: M.Map T.Text (M.Map T.Text T.Text)
+    Right yamlData = Y.decodeEither $ TE.encodeUtf8 yamlText
+    yamlList :: [(T.Text, M.Map T.Text T.Text)]
+    yamlList = M.assocs yamlData
+    handleBrivla :: (T.Text, M.Map T.Text T.Text) -> Brivla
+    handleBrivla (brivlaKey, brivlaData) = Brivla brivlaKey (brivlaData M.! "definition") (frequencyMap M.! brivlaKey)
 
 -- Brivla places
 englishBrivlaPlacesMap :: M.Map T.Text [T.Text]
