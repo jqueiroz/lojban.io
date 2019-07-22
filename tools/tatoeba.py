@@ -182,8 +182,9 @@ def run(cmd):
     print()
     def compute_sentence_complexity(sentence):
         score = 0
-        words = sentence['content'].split(' ')
+        words = sentence.split(' ')
         for word in words:
+            word = word.replace(".", "")
             score += 10000000 / (1 + frequency_table.get(word, 0)**1.5)
         score /= len(words)**0.5
         return score
@@ -210,6 +211,32 @@ def run(cmd):
         print()
         print(list(map(lambda x: x[0], interesting_brivla)))
         # print(sorted(list(map(lambda x: x[0], interesting_brivla))))
+    def enrich_yaml(raw_data):
+        lines = []
+        data = yaml.load(raw_data, Loader=yaml.CLoader)
+        for brivla , translations in data.items():
+            lines.append("# Total sentences: %d" % len(filter_by_word(sentences_eng, brivla)))
+            lines.append("%s:" % brivla)
+            for translation in translations:
+                lines.append("    # Sentence complexity: %.3f" % compute_sentence_complexity(translation['lojban_sentences'][0]))
+                lines.append("    - lojban_sentences:")
+                for lojban_sentence in translation['lojban_sentences']:
+                    lines.append("        - %s" % encode_text_to_yaml_string(lojban_sentence))
+                lines.append("      translated_sentences:")
+                for translated_sentence in translation['translated_sentences']:
+                    lines.append("        - %s" % encode_text_to_yaml_string(translated_sentence))
+                lines.append("")
+            lines.append("")
+            lines.append("")
+        return '\n'.join(lines)
+    def enrich_exercises():
+        for filename in yaml_brivla_files:
+            with open(filename, "r+") as f:
+                raw_data = f.read()
+                enriched_data = enrich_yaml(raw_data)
+                f.seek(0)
+                f.truncate(0)
+                f.write(enriched_data)
     def build_exercises():
         # prenu, tsani, zmadu
         # words = ['tsali', 'viska', 'casnu', 'jinvi', 'jbopre', 'tadni', 'ponse', 'bebna', 'pluka', 'nandu', 'preti', 'prami', 'tatpi', 'fonxa', 'morji', 'certu', 'xabju', 'ckule', 'facki', 'srera']
@@ -218,7 +245,7 @@ def run(cmd):
         debug = True
         for word in words:
             sentences = filter_by_word(sentences_eng, word)
-            sentences.sort(key=compute_sentence_complexity)
+            sentences.sort(key=lambda s: compute_sentence_complexity(s['content']))
             if debug:
                 print("# Total sentences: %d" % len(sentences))
             print("%s:" % word)
@@ -237,6 +264,8 @@ def run(cmd):
         display_top_brivla()
     elif cmd == 'exercises':
         build_exercises()
+    elif cmd == 'enrich':
+        enrich_exercises()
     elif cmd == 'interesting_sentences':
         display_interesting_sentences()
     elif cmd == 'frequent_words':
@@ -258,6 +287,8 @@ def main():
         run('top')
     elif sys.argv[1] == 'exercises':
         run('exercises')
+    elif sys.argv[1] == 'enrich':
+        run('enrich')
     elif sys.argv[1] == 'search':
         if len(sys.argv) != 3:
             print("error: incorrect number of arguments")
