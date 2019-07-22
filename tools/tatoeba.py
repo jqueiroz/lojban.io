@@ -240,16 +240,13 @@ def run(cmd):
         # words = ['tsali', 'viska', 'casnu', 'jinvi', 'jbopre', 'tadni', 'ponse', 'bebna', 'pluka', 'nandu', 'preti', 'prami', 'tatpi', 'fonxa', 'morji', 'certu', 'xabju', 'ckule', 'facki', 'srera']
         brivla = retrieve_top_brivla()[:20]
         words = list(map(lambda x: x[0], brivla))
-        debug = True
         for word in words:
             sentences = filter_by_word(sentences_eng, word)
             sentences.sort(key=lambda s: compute_sentence_complexity(s['content']))
-            if debug:
-                print("# Total sentences: %d" % len(sentences))
+            print("# Total sentences: %d" % len(sentences))
             print("%s:" % word)
             for sentence in sentences[:10]:
-                if debug:
-                    print("    # Sentence complexity: %.3f" % compute_sentence_complexity(sentence))
+                print("    # Sentence complexity: %.3f" % compute_sentence_complexity(sentence))
                 print("    - lojban_sentences:")
                 print("        - %s" % encode_text_to_yaml_string(sentence['content']))
                 print("      translated_sentences:")
