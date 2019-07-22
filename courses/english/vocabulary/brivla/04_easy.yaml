@@ -100,7 +100,7 @@ viska:
       translated_sentences:
         - You can't see.
 
-    # Sentence complexity: 1.388
+    # Sentence complexity: 1.300
     - lojban_sentences:
         - mi djica lo nu viska do kei ji'a
       translated_sentences:
@@ -146,7 +146,7 @@ jinvi:
       translated_sentences:
         - What do you think I've been doing?
 
-    # Sentence complexity: 1.870
+    # Sentence complexity: 1.148
     - lojban_sentences:
         - mi djica lo ka djuno lo se jinvi be do
       translated_sentences:
@@ -238,7 +238,7 @@ ponse:
       translated_sentences:
         - She doesn't have a computer.
 
-    # Sentence complexity: 2.932
+    # Sentence complexity: 2.319
     - lojban_sentences:
         - xu do ponse ti
       translated_sentences:
@@ -320,7 +320,7 @@ bebna:
       translated_sentences:
         - You are stupid.
 
-    # Sentence complexity: 1.887
+    # Sentence complexity: 2.627
     - lojban_sentences:
         - bebna
       translated_sentences:
@@ -522,7 +522,7 @@ prami:
       translated_sentences:
         - I loved you.
 
-    # Sentence complexity: 1.519
+    # Sentence complexity: 1.631
     - lojban_sentences:
         - do mi prami
       translated_sentences:
@@ -622,7 +622,7 @@ tatpi:
       translated_sentences:
         - I'm tired of translating.
 
-    # Sentence complexity: 2.164
+    # Sentence complexity: 1.646
     - lojban_sentences:
         - mi na tatpi
       translated_sentences:
@@ -766,7 +766,7 @@ certu:
       translated_sentences:
         - You are really an expert at this.
 
-    # Sentence complexity: n/a
+    # Sentence complexity: 4.787
     - lojban_sentences:
         - do to'e certu lo ka ctuca
       translated_sentences:
@@ -835,6 +835,5 @@ xabju:
         - xu do da kansa le ka xabju
       translated_sentences:
         - Do you live with someone?
-
 
 

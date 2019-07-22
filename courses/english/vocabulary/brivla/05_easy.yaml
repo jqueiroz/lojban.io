@@ -146,7 +146,7 @@ srera:
       translated_sentences:
         - One learns from one's mistakes.
 
-    # Sentence complexity: 3.227
+    # Sentence complexity: 1.527
     - lojban_sentences:
         - mi gleki lo nu mi pu srera
       translated_sentences:
@@ -174,7 +174,7 @@ bilga:
       translated_sentences:
         - I have to go to school.
 
-    # Sentence complexity: 2.790
+    # Sentence complexity: 3.086
     - lojban_sentences:
         - do na bilga lo ka cusku fi mi fe lo cmene be ko'a
       translated_sentences:
@@ -232,7 +232,7 @@ zasti:
       translated_sentences:
         - Love doesn't exist.
 
-    # Sentence complexity: 3.294
+    # Sentence complexity: 4.550
     - lojban_sentences:
         - le cukta na zasti
       translated_sentences:
@@ -244,7 +244,7 @@ zasti:
       translated_sentences:
         - Existence is a meaningless concept.
 
-    # Sentence complexity: 6.385
+    # Sentence complexity: 6.610
     - lojban_sentences:
         - lo prenu cu krici lo du'u lo cevni cu zasti
       translated_sentences:
@@ -336,7 +336,7 @@ mamta:
       translated_sentences:
         - Mom, where's the cat?
 
-    # Sentence complexity: 2.729
+    # Sentence complexity: 2.684
     - lojban_sentences:
         - mi se prami lo mi mamta
       translated_sentences:
@@ -360,7 +360,7 @@ mamta:
       translated_sentences:
         - I wish you had not told the story to my mother.
 
-    # Sentence complexity: 4.178
+    # Sentence complexity: 2.016
     - lojban_sentences:
         - mu'i ma do tavla lo mamta be mi
       translated_sentences:
@@ -376,7 +376,7 @@ stidi:
       translated_sentences:
         - I'd like to make a suggestion.
 
-    # Sentence complexity: 6.003
+    # Sentence complexity: 3.123
     - lojban_sentences:
         - da'i mi nitcu tu'a lo se stidi
       translated_sentences:
@@ -446,13 +446,13 @@ rinka:
       translated_sentences:
         - What caused the explosion?
 
-    # Sentence complexity: 10.351
+    # Sentence complexity: 9.769
     - lojban_sentences:
         - na djuno fi lo rinka be lo nu fagri
       translated_sentences:
         - The cause of the fire was unknown.
 
-    # Sentence complexity: 11.053
+    # Sentence complexity: 10.350
     - lojban_sentences:
         - djuno fi lo rinka be lo nu fagri
       translated_sentences:
@@ -496,7 +496,7 @@ jbobau:
 
 # Total sentences: 15
 mapti:
-    # Sentence complexity: n/a
+    # Sentence complexity: 2.860
     - lojban_sentences:
         - xu mapti
       translated_sentences:
@@ -509,7 +509,7 @@ mapti:
       translated_sentences:
         - Will it fit?
 
-    # Sentence complexity: n/a
+    # Sentence complexity: 7.480
     - lojban_sentences:
         - ta mapti do
       translated_sentences:
@@ -527,7 +527,7 @@ mapti:
       translated_sentences:
         - I still believe the Internet is not suitable for children.
 
-    # Sentence complexity: 44.306
+    # Sentence complexity: 47.108
     - lojban_sentences:
         - lo ra mapku cu mapti ra
       translated_sentences:
@@ -573,7 +573,7 @@ zdile:
       translated_sentences:
         - This is boring.
 
-    # Sentence complexity: 4.740
+    # Sentence complexity: 4.168
     - lojban_sentences:
         - lo cabdei pu jai zdile
       translated_sentences:
@@ -653,7 +653,7 @@ vajni:
       translated_sentences:
         - I'm important.
 
-    # Sentence complexity: 2.945
+    # Sentence complexity: 3.411
     - lojban_sentences:
         - mutce vajni
       translated_sentences:
@@ -665,7 +665,7 @@ vajni:
       translated_sentences:
         - My friends are very important to me.
 
-    # Sentence complexity: 3.156
+    # Sentence complexity: 3.098
     - lojban_sentences:
         - vajni mi
       translated_sentences:
@@ -728,6 +728,5 @@ cmalu:
         - mi cmalu verba
       translated_sentences:
         - I'm a little child.
-
 
 
