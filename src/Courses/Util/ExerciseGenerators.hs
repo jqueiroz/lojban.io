@@ -42,6 +42,7 @@ import Control.Applicative (liftA2)
 import Control.Arrow ((***), first)
 import Control.Exception (assert)
 import Control.Monad (join)
+import Data.Maybe (fromMaybe)
 import qualified Data.Text as T
 import qualified Data.Map as M
 
@@ -312,7 +313,7 @@ generateIsolatedBrivlaPlacesExercise dictionary brivlaGenerator r0 =
 generateLexiconProvidingExercise :: T.Text -> Dictionary -> WordGenerator -> ExerciseGenerator
 generateLexiconProvidingExercise lexiconCategory dictionary wordGenerator r0 = TypingExercise title sentences validator canonicalAnswer where
     (word, r1) = wordGenerator r0
-    wordDefinition = dictValsiDefinition dictionary M.! word
+    wordDefinition = fromMaybe (error $ "Definition not found in dictionary: " ++ (T.unpack word)) (dictValsiDefinition dictionary M.!? word)
     title = "Provide the " `T.append` lexiconCategory
     sentences = [ExerciseSentence True wordDefinition]
     validator = (== word)
