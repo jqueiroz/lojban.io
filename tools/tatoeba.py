@@ -211,6 +211,18 @@ def run(cmd):
         print()
         print(list(map(lambda x: x[0], interesting_brivla)))
         # print(sorted(list(map(lambda x: x[0], interesting_brivla))))
+    def display_top_brivla_places():
+        brivla = retrieve_top_brivla()
+        interesting_brivla = brivla[:20]
+        print("Brivla: %d" % len(brivla))
+        print()
+        for w, f in interesting_brivla:
+            print("%s:" % w)
+            for x in range(1, 6):
+                print("    x%d: " % x)
+            print()
+        print()
+        print(list(map(lambda x: x[0], interesting_brivla)))
     def enrich_yaml(raw_data):
         lines = []
         data = yaml.load(raw_data, Loader=yaml.CLoader)
@@ -262,6 +274,8 @@ def run(cmd):
 
     if cmd == 'top':
         display_top_brivla()
+    if cmd == 'top-places':
+        display_top_brivla_places()
     elif cmd == 'exercises':
         build_exercises()
     elif cmd == 'enrich':
@@ -285,6 +299,8 @@ def main():
         prepare_json()
     elif sys.argv[1] == 'top':
         run('top')
+    elif sys.argv[1] == 'top-places':
+        run('top-places')
     elif sys.argv[1] == 'exercises':
         run('exercises')
     elif sys.argv[1] == 'enrich':
