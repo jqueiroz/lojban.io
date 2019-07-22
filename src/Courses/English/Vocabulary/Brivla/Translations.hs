@@ -31,19 +31,28 @@ loadTranslationsByExpressionFromYamlText yamlText = M.assocs $ M.map handleExpre
     handleTranslation :: M.Map T.Text [T.Text] -> Translation
     handleTranslation dict = (dict M.! "lojban_sentences", dict M.! "translated_sentences")
 
+saveTranslationsByExpressionToYamlText :: TranslationsByExpression -> T.Text
+saveTranslationsByExpressionToYamlText translationsByExpression = TE.decodeUtf8 $ Y.encode yamlData where
+    yamlData :: M.Map T.Text [M.Map T.Text [T.Text]]
+    yamlData = M.map encodeExpression $ M.fromList translationsByExpression
+    encodeExpression :: [Translation] -> [M.Map T.Text [T.Text]]
+    encodeExpression = map encodeTranslation
+    encodeTranslation :: Translation -> M.Map T.Text [T.Text]
+    encodeTranslation (lojban_sentences, english_sentences) = M.fromList $ [("lojban_sentences", lojban_sentences), ("translated_sentences", english_sentences)]
+
 -- * Translations
 
 -- | Translations for the corresponding lesson.
 translations01 :: TranslationsByExpression
-translations01 = loadTranslationsByExpressionFromRawText $(embedStringFile "courses/english/vocabulary/brivla/01_easy.txt")
+translations01 = loadTranslationsByExpressionFromYamlText $(embedStringFile "courses/english/vocabulary/brivla/01_easy.yaml")
 
 -- | Translations for the corresponding lesson.
 translations02 :: TranslationsByExpression
-translations02 = loadTranslationsByExpressionFromRawText $(embedStringFile "courses/english/vocabulary/brivla/02_easy.txt")
+translations02 = loadTranslationsByExpressionFromYamlText $(embedStringFile "courses/english/vocabulary/brivla/02_easy.yaml")
 
 -- | Translations for the corresponding lesson.
 translations03 :: TranslationsByExpression
-translations03 = loadTranslationsByExpressionFromRawText $(embedStringFile "courses/english/vocabulary/brivla/03_easy.txt")
+translations03 = loadTranslationsByExpressionFromYamlText $(embedStringFile "courses/english/vocabulary/brivla/03_easy.yaml")
 
 -- | Translations for the corresponding lesson.
 translations04 :: TranslationsByExpression

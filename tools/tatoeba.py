@@ -111,14 +111,13 @@ def load_brivla_from_yaml_file(filename):
             ret.append(brivla)
     return ret
 
-raw_brivla_files = \
-    [ "../courses/english/vocabulary/brivla/01_easy.txt"
-    , "../courses/english/vocabulary/brivla/02_easy.txt"
-    , "../courses/english/vocabulary/brivla/03_easy.txt"
-    ]
+raw_brivla_files = []
 
 yaml_brivla_files = \
-    [ "../courses/english/vocabulary/brivla/04_easy.yaml"
+    [ "../courses/english/vocabulary/brivla/01_easy.yaml"
+    , "../courses/english/vocabulary/brivla/02_easy.yaml"
+    , "../courses/english/vocabulary/brivla/03_easy.yaml"
+    , "../courses/english/vocabulary/brivla/04_easy.yaml"
     , "../courses/english/vocabulary/brivla/05_easy.yaml"
     ]
 

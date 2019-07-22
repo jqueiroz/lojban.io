@@ -1,0 +1,727 @@
+# Total sentences: 195
+citka:
+    # Sentence complexity: 0.432
+    - lojban_sentences:
+        - do citka ma
+      translated_sentences:
+        - What are you eating?
+
+    # Sentence complexity: 0.468
+    - lojban_sentences:
+        - do djica lo nu citka ma
+      translated_sentences:
+        - What would you like to eat?
+
+    # Sentence complexity: 0.486
+    - lojban_sentences:
+        - mi pu citka
+      translated_sentences:
+        - I ate.
+
+    # Sentence complexity: 0.504
+    - lojban_sentences:
+        - ko na citka
+      translated_sentences:
+        - Do not eat.
+
+    # Sentence complexity: 0.521
+    - lojban_sentences:
+        - mi djica fi le nu citka
+      translated_sentences:
+        - I want something to eat.
+
+    # Sentence complexity: 0.596
+    - lojban_sentences:
+        - mi ba citka
+      translated_sentences:
+        - I will eat.
+
+
+
+# Total sentences: 25
+cizra:
+    # Sentence complexity: 0.201
+    - lojban_sentences:
+        - do cizra
+      translated_sentences:
+        - You're weird.
+
+    # Sentence complexity: 0.235
+    - lojban_sentences:
+        - xu cizra
+      translated_sentences:
+        - Is that weird?
+
+    # Sentence complexity: 0.269
+    - lojban_sentences:
+        - cizra
+      translated_sentences:
+        - Crazy!
+
+    # Sentence complexity: 0.304
+    - lojban_sentences:
+        - pu cizra
+      translated_sentences:
+        - That was odd.
+
+    # Sentence complexity: 0.448
+    - lojban_sentences:
+        - lo cmene be mi cu cizra
+      translated_sentences:
+        - My name is strange.
+
+    # Sentence complexity: 0.458
+    - lojban_sentences:
+        - la cizra cu cmene mi
+      translated_sentences:
+        - I am called "Strange".
+
+    # Sentence complexity: 0.628
+    - lojban_sentences:
+        - lo prenu cu cizra
+      translated_sentences:
+        - People are strange.
+
+
+
+# Total sentences: 96
+cmene:
+    # Sentence complexity: 0.411
+    - lojban_sentences:
+        - do se cmene ma
+      translated_sentences:
+        - What is your name?
+
+    # Sentence complexity: 0.448
+    - lojban_sentences:
+        - lo cmene be mi cu cizra
+      translated_sentences:
+        - My name is strange.
+
+    # Sentence complexity: 0.451
+    - lojban_sentences:
+        - ma cmene do
+      translated_sentences:
+        - What is your name?
+
+    # Sentence complexity: 0.451
+    - lojban_sentences:
+        - ma do cmene
+      translated_sentences:
+        - May I have your name?
+
+    # Sentence complexity: 0.458
+    - lojban_sentences:
+        - la cizra cu cmene mi
+      translated_sentences:
+        - I am called "Strange".
+
+
+
+# Total sentences: 242
+cusku:
+    # Sentence complexity: 0.216
+    - lojban_sentences:
+        - na cusku
+      translated_sentences:
+        - He does not say.
+
+    # Sentence complexity: 0.232
+    - lojban_sentences:
+        - ma cusku
+      translated_sentences:
+        - Who said that?
+
+    # Sentence complexity: 0.301
+    - lojban_sentences:
+        - ma pu cusku fi do
+      translated_sentences:
+        - Who told you?
+
+    # Sentence complexity: 0.305
+    - lojban_sentences:
+        - ko cusku fi mi
+      translated_sentences:
+        - Tell me.
+
+
+
+# Total sentences: 356
+djica:
+    # Sentence complexity: 0.239
+    - lojban_sentences:
+        - ma se djica do
+      translated_sentences:
+        - What's your wish?
+
+    # Sentence complexity: 0.243
+    - lojban_sentences:
+        - xu se djica do
+      translated_sentences:
+        - Is that what you want?
+
+    # Sentence complexity: 0.252
+    - lojban_sentences:
+        - do djica ma
+      translated_sentences:
+        - What do you want?
+
+    # Sentence complexity: 0.257
+    - lojban_sentences:
+        - xu do djica
+      translated_sentences:
+        - Is this what you want?
+
+    # Sentence complexity: 0.257
+    - lojban_sentences:
+        - do djica lo nu mi mo
+      translated_sentences:
+        - What is it that you want me to do?
+
+    # Sentence complexity: 0.279
+    - lojban_sentences:
+        - do djica lo nu mo
+      translated_sentences:
+        - What do you want to do?
+
+    # Sentence complexity: 0.431
+    - lojban_sentences:
+        - xu do djica lo nu do klama
+      translated_sentences:
+        - Do you want to go?
+
+    # Sentence complexity: 0.446
+    - lojban_sentences:
+        - mi pu djica lo ka tavla do
+      translated_sentences:
+        - I wanted to talk with you.
+
+
+
+# Total sentences: 270
+djuno:
+    # Sentence complexity: 0.281
+    - lojban_sentences:
+        - mi na djuno
+      translated_sentences:
+        - I don't know.
+
+    # Sentence complexity: 0.310
+    - lojban_sentences:
+        - ma na djuno
+      translated_sentences:
+        - Who doesn't know?
+
+    # Sentence complexity: 0.320
+    - lojban_sentences:
+        - mi djuno
+      translated_sentences:
+        - I know.
+
+    # Sentence complexity: 0.444
+    - lojban_sentences:
+        - mi djuno ro da
+      translated_sentences:
+        - I know everything.
+
+    # Sentence complexity: 0.455
+    - lojban_sentences:
+        - mi djuno lo nu do djuno lo nu mi djuno
+      translated_sentences:
+        - I know that you know that I know.
+
+    # Sentence complexity: 0.599
+    - lojban_sentences:
+        - mi djuno lo du'u mi djuno no da
+      translated_sentences:
+        - I know that I know nothing.
+
+    # Sentence complexity: 0.714
+    - lojban_sentences:
+        - do djuno lo du'u mi na kakne
+      translated_sentences:
+        - You know I can't.
+
+
+
+# Total sentences: 112
+gleki:
+    # Sentence complexity: 0.279
+    - lojban_sentences:
+        - xu do na gleki
+      translated_sentences:
+        - Aren't you happy?
+
+    # Sentence complexity: 0.318
+    - lojban_sentences:
+        - mi gleki
+      translated_sentences:
+        - I'm happy.
+
+    # Sentence complexity: 0.332
+    - lojban_sentences:
+        - mi gleki lo nu do nelci
+      translated_sentences:
+        - I'm glad you liked it.
+
+    # Sentence complexity: 0.346
+    - lojban_sentences:
+        - mi gleki lo nu tavla do
+      translated_sentences:
+        - I'm happy about talking to you.
+
+    # Sentence complexity: 0.352
+    - lojban_sentences:
+        - mi pu gleki
+      translated_sentences:
+        - I was feeling happy.
+
+    # Sentence complexity: 0.451
+    - lojban_sentences:
+        - ma ka gleki
+      translated_sentences:
+        - What is happiness?
+
+    # Sentence complexity: 0.472
+    - lojban_sentences:
+        - xu ro da gleki
+      translated_sentences:
+        - Is everyone happy?
+
+
+
+# Total sentences: 81
+jimpe:
+    # Sentence complexity: 0.473
+    - lojban_sentences:
+        - mi jimpe
+      translated_sentences:
+        - I understand.
+
+    # Sentence complexity: 0.397
+    - lojban_sentences:
+        - mi na jimpe fi do
+      translated_sentences:
+        - I do not understand you.
+
+    # Sentence complexity: 0.406
+    - lojban_sentences:
+        - mi na jimpe
+      translated_sentences:
+        - I don't understand.
+
+    # Sentence complexity: 0.411
+    - lojban_sentences:
+        - xu do jimpe fi mi
+      translated_sentences:
+        - Do you understand me?
+
+    # Sentence complexity: 0.412
+    - lojban_sentences:
+        - do na jimpe
+      translated_sentences:
+        - You don't understand.
+
+    # Sentence complexity: 0.427
+    - lojban_sentences:
+        - mi jimpe fi do
+      translated_sentences:
+        - I understand you.
+
+    # Sentence complexity: 0.429
+    - lojban_sentences:
+        - xu do jimpe
+      translated_sentences:
+        - Do you understand?
+
+    # Sentence complexity: 0.432
+    - lojban_sentences:
+        - mi pu na jimpe
+      translated_sentences:
+        - I didn't understand.
+
+
+
+# Total sentences: 489
+klama:
+    # Sentence complexity: 0.413
+    - lojban_sentences:
+        - do klama ma
+      translated_sentences:
+        - Where are you going to?
+
+    # Sentence complexity: 0.431
+    - lojban_sentences:
+        - xu do djica lo nu do klama
+      translated_sentences:
+        - Do you want to go?
+
+    # Sentence complexity: 0.436
+    - lojban_sentences:
+        - ma klama ma
+      translated_sentences:
+        - Who goes where?
+
+    # Sentence complexity: 0.438
+    - lojban_sentences:
+        - do pu klama ma
+      translated_sentences:
+        - Where did you go?
+
+    # Sentence complexity: 0.442
+    - lojban_sentences:
+        - do klama fi ma
+      translated_sentences:
+        - Where do you come from?
+
+    # Sentence complexity: 0.459
+    - lojban_sentences:
+        - xu do djica lo nu klama
+      translated_sentences:
+        - Do you want to go?
+
+    # Sentence complexity: 0.468
+    - lojban_sentences:
+        - mi pu klama
+      translated_sentences:
+        - I have gone.
+
+    # Sentence complexity: 0.485
+    - lojban_sentences:
+        - ko na klama
+      translated_sentences:
+        - Don't come.
+
+    # Sentence complexity: 0.533
+    - lojban_sentences:
+        - do ma ba klama
+      translated_sentences:
+        - Where are you going to go?
+
+    # Sentence complexity: 0.537
+    - lojban_sentences:
+        - xu do ba klama
+      translated_sentences:
+        - Will you go?
+
+
+
+# Total sentences: 274
+mutce:
+    # Sentence complexity: 0.391
+    - lojban_sentences:
+        - mi mutce nelci do
+      translated_sentences:
+        - I like you a lot.
+
+    # Sentence complexity: 0.518
+    - lojban_sentences:
+        - mi mutce gleki
+      translated_sentences:
+        - I'm very happy.
+
+    # Sentence complexity: 0.682
+    - lojban_sentences:
+        - mi ba mutce jundi
+      translated_sentences:
+        - I'll be very careful.
+
+    # Sentence complexity: 1.147
+    - lojban_sentences:
+        - mi mutce gleki lo nu mi viska do
+      translated_sentences:
+        - I'm very glad to see you.
+
+    # Sentence complexity: 1.150
+    - lojban_sentences:
+        - do mutce melbi
+      translated_sentences:
+        - You are very beautiful.
+
+    # Sentence complexity: 1.397
+    - lojban_sentences:
+        - mutce melbi
+      translated_sentences:
+        - It's so beautiful.
+
+
+
+# Total sentences: 327
+nelci:
+    # Sentence complexity: 0.222
+    - lojban_sentences:
+        - do nelci ma
+      translated_sentences:
+        - What do you like?
+
+    # Sentence complexity: 0.256
+    - lojban_sentences:
+        - mi na pu nelci
+      translated_sentences:
+        - I didn't like it.
+
+    # Sentence complexity: 0.332
+    - lojban_sentences:
+        - mi gleki lo nu do nelci
+      translated_sentences:
+        - I'm glad you liked it.
+
+    # Sentence complexity: 0.341
+    - lojban_sentences:
+        - mi nelci lo nu mi sipna
+      translated_sentences:
+        - I like sleeping.
+
+    # Sentence complexity: 0.391
+    - lojban_sentences:
+        - mi mutce nelci do
+      translated_sentences:
+        - I like you a lot.
+
+
+
+# Total sentences: 61
+pilno:
+    # Sentence complexity: 0.966
+    - lojban_sentences:
+        - ko pilno ro ko'a
+      translated_sentences:
+        - Use them all.
+
+    # Sentence complexity: 1.492
+    - lojban_sentences:
+        - ko ti pilno
+      translated_sentences:
+        - Use this.
+
+    # Sentence complexity: 1.747
+    - lojban_sentences:
+        - ko pilno lo fonxa
+      translated_sentences:
+        - Use the telephone.
+
+    # Sentence complexity: 3.426
+    - lojban_sentences:
+        - ma'a pilno lo valsi lo nu cusku
+      translated_sentences:
+        - We use words in order to communicate.
+
+    # Sentence complexity: 4.801
+    - lojban_sentences:
+        - ko na curmi lo nu pilno lo skami
+      translated_sentences:
+        - Don't let him touch the computer.
+
+
+
+# Total sentences: 225
+prenu:
+    # Sentence complexity: 0.628
+    - lojban_sentences:
+        - lo prenu cu cizra
+      translated_sentences:
+        - People are strange.
+
+    # Sentence complexity: 0.678
+    - lojban_sentences:
+        - mi mo prenu
+      translated_sentences:
+        - What kind of person am I?
+
+    # Sentence complexity: 0.684
+    - lojban_sentences:
+        - do mo prenu
+      translated_sentences:
+        - What kind of person are you?
+
+    # Sentence complexity: 0.691
+    - lojban_sentences:
+        - do prenu
+      translated_sentences:
+        - You're a person.
+
+    # Sentence complexity: 0.941
+    - lojban_sentences:
+        - no prenu pu djuno
+      translated_sentences:
+        - No one knew it.
+
+    # Sentence complexity: 1.157
+    - lojban_sentences:
+        - no prenu pu zvati
+      translated_sentences:
+        - No one attended.
+
+    # Sentence complexity: 1.251
+    - lojban_sentences:
+        - ro prenu cu se bangu
+      translated_sentences:
+        - Everyone speaks a language.
+
+    # Sentence complexity: 1.301
+    - lojban_sentences:
+        - ko'a mo prenu
+      translated_sentences:
+        - What kind of person is she?
+
+
+
+# Total sentences: 67
+sipna:
+    # Sentence complexity: 0.341
+    - lojban_sentences:
+        - mi nelci lo nu mi sipna
+      translated_sentences:
+        - I like sleeping.
+
+    # Sentence complexity: 0.358
+    - lojban_sentences:
+        - xu do pu sipna
+      translated_sentences:
+        - Have you slept?
+
+    # Sentence complexity: 0.451
+    - lojban_sentences:
+        - ko sipna
+      translated_sentences:
+        - Get some sleep.
+
+    # Sentence complexity: 1.082
+    - lojban_sentences:
+        - do nitcu lo ka sipna
+      translated_sentences:
+        - You need sleep.
+
+    # Sentence complexity: 1.772
+    - lojban_sentences:
+        - mi bilga lo nu sipna
+      translated_sentences:
+        - I have to go to sleep.
+
+
+
+# Total sentences: 153
+tavla:
+    # Sentence complexity: 0.213
+    - lojban_sentences:
+        - ma tavla do mi
+      translated_sentences:
+        - Who is talking to you about me?
+
+    # Sentence complexity: 0.213
+    - lojban_sentences:
+        - mi tavla do
+      translated_sentences:
+        - I talk to you.
+
+    # Sentence complexity: 0.217
+    - lojban_sentences:
+        - xu do tavla mi
+      translated_sentences:
+        - Are you talking to me?
+
+    # Sentence complexity: 0.242
+    - lojban_sentences:
+        - do tavla ma
+      translated_sentences:
+        - Who are you talking to?
+
+    # Sentence complexity: 0.290
+    - lojban_sentences:
+        - do pu tavla ma
+      translated_sentences:
+        - Who were you talking to?
+
+    # Sentence complexity: 0.346
+    - lojban_sentences:
+        - mi gleki lo nu tavla do
+      translated_sentences:
+        - I'm happy about talking to you.
+
+
+
+# Total sentences: 117
+xamgu:
+    # Sentence complexity: 0.945
+    - lojban_sentences:
+        - do xamgu prenu
+      translated_sentences:
+        - You are a good person.
+
+    # Sentence complexity: 3.721
+    - lojban_sentences:
+        - do xamgu ctuca
+      translated_sentences:
+        - You are a good instructor.
+
+    # Sentence complexity: 6.001
+    - lojban_sentences:
+        - lo xe ctuca cu xamgu
+      translated_sentences:
+        - The teaching method is good.
+
+    # Sentence complexity: 0.633
+    - lojban_sentences:
+        - ro da xamgu
+      translated_sentences:
+        - Everything is fine.
+
+    # Sentence complexity: 0.660
+    - lojban_sentences:
+        - xamgu
+      translated_sentences:
+        - That's cool.
+
+    # Sentence complexity: 1.096
+    - lojban_sentences:
+        - lo nu troci cu xamgu
+      translated_sentences:
+        - Trying is good.
+
+    # Sentence complexity: 1.208
+    - lojban_sentences:
+        - ko'a xamgu tavla
+      translated_sentences:
+        - He talks well.
+
+    # Sentence complexity: 1.234
+    - lojban_sentences:
+        - ko'a xamgu
+      translated_sentences:
+        - He's good.
+
+    # Sentence complexity: 1.696
+    - lojban_sentences:
+        - pu xamgu pendo
+      translated_sentences:
+        - He was a good friend.
+
+
+
+# Total sentences: 47
+zgana:
+    # Sentence complexity: 0.284
+    - lojban_sentences:
+        - ko mi zgana
+      translated_sentences:
+        - Watch me.
+
+    # Sentence complexity: 0.883
+    - lojban_sentences:
+        - ro ko'a pu zgana
+      translated_sentences:
+        - They all watched.
+
+    # Sentence complexity: 1.984
+    - lojban_sentences:
+        - mi nelci lo nu zgana lo skina
+      translated_sentences:
+        - I like watching movies.
+
+    # Sentence complexity: 2.920
+    - lojban_sentences:
+        - ko mi'a zgana
+      translated_sentences:
+        - Watch us.
+
+

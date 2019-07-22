@@ -1,0 +1,743 @@
+# Total sentences: 57
+cilre:
+    # Sentence complexity: 1.146
+    - lojban_sentences:
+        - mi ba cilre
+      translated_sentences:
+        - I will learn.
+
+    # Sentence complexity: 1.319
+    - lojban_sentences:
+        - mi nelci lo nu cilre fi lo bangu
+      translated_sentences:
+        - I like learning languages.
+
+    # Sentence complexity: 1.593
+    - lojban_sentences:
+        - mi nitcu lo ka cilre
+      translated_sentences:
+        - I need to learn.
+
+    # Sentence complexity: 2.663
+    - lojban_sentences:
+        - cilre fo lo se srera
+      translated_sentences:
+        - One learns from one's mistakes.
+
+    # Sentence complexity: 3.109
+    - lojban_sentences:
+        - lo nu cilre fi le cnino bangu cu zdile
+      translated_sentences:
+        - Learning a new language is fun.
+
+
+
+# Total sentences: 71
+cnino:
+    # Sentence complexity: 1.336
+    - lojban_sentences:
+        - ma cnino
+      translated_sentences:
+        - What is new?
+
+    # Sentence complexity: 1.720
+    - lojban_sentences:
+        - na'e cnino
+      translated_sentences:
+        - It isn't new.
+
+    # Sentence complexity: 1.833
+    - lojban_sentences:
+        - cnino
+      translated_sentences:
+        - It's new.
+
+    # Sentence complexity: 2.346
+    - lojban_sentences:
+        - mi nitcu lo cnino skami
+      translated_sentences:
+        - I need a new computer.
+
+    # Sentence complexity: 2.481
+    - lojban_sentences:
+        - mi cnino tadni
+      translated_sentences:
+        - I am a new student.
+
+    # Sentence complexity: 2.574
+    - lojban_sentences:
+        - ro cnino bangu ku jai simsa lo nu kelci
+      translated_sentences:
+        - Every new language is like a game.
+
+    # Sentence complexity: 2.664
+    - lojban_sentences:
+        - ti cnino
+      translated_sentences:
+        - This is new.
+
+    # Sentence complexity: 3.109
+    - lojban_sentences:
+        - lo nu cilre fi le cnino bangu cu zdile
+      translated_sentences:
+        - Learning a new language is fun.
+
+
+
+# Total sentences: 57
+drani:
+    # Sentence complexity: 0.829
+    - lojban_sentences:
+        - lo se cusku be do cu drani
+      translated_sentences:
+        - What you said is correct.
+
+    # Sentence complexity: 1.171
+    - lojban_sentences:
+        - xu mi pu jai drani
+      translated_sentences:
+        - Did I get it right?
+
+    # Sentence complexity: 1.169
+    - lojban_sentences:
+        - do djuno lo du'u mi jai drani
+      translated_sentences:
+        - You know I'm right.
+
+    # Sentence complexity: 1.389
+    - lojban_sentences:
+        - pe'i do na jai drani
+      translated_sentences:
+        - I think you are mistaken.
+
+    # Sentence complexity: 1.382
+    - lojban_sentences:
+        - mi jai drani
+      translated_sentences:
+        - I'm right.
+
+    # Sentence complexity: 1.388
+    - lojban_sentences:
+        - do jai drani
+      translated_sentences:
+        - You're right.
+
+    # Sentence complexity: 1.261
+    - lojban_sentences:
+        - na drani
+      translated_sentences:
+        - It's wrong.
+
+    # Sentence complexity: 1.422
+    - lojban_sentences:
+        - ro lo re do jai drani
+      translated_sentences:
+        - Both of you are right.
+
+    # Sentence complexity: 1.282
+    - lojban_sentences:
+        - drani xu
+      translated_sentences:
+        - Is it correct?
+
+
+
+# Total sentences: 34
+fanva:
+    # Sentence complexity: 1.784
+    - lojban_sentences:
+        - lo nu fanva le valsi cu mutce nandu
+      translated_sentences:
+        - That word is very hard to translate.
+
+    # Sentence complexity: 2.017
+    - lojban_sentences:
+        - mi tatpi lo nu fanva
+      translated_sentences:
+        - I'm tired of translating.
+
+    # Sentence complexity: 4.281
+    - lojban_sentences:
+        - xu le xe fanva cu drani
+      translated_sentences:
+        - Is this translation correct?
+
+    # Sentence complexity: 5.773
+    - lojban_sentences:
+        - ko na fanva dei
+      translated_sentences:
+        - Do not translate this sentence!
+
+    # Sentence complexity: 8.572
+    - lojban_sentences:
+        - ma xe fanva zo plise lo do bangu
+      translated_sentences:
+        - How to say "apple" in your language?
+
+
+
+# Total sentences: 48
+gasnu:
+    # Sentence complexity: 1.799
+    - lojban_sentences:
+        - mi ba gasnu lo nu ko'a cliva
+      translated_sentences:
+        - I will make him go.
+
+    # Sentence complexity: 3.424
+    - lojban_sentences:
+        - xu do djuno lo du'u ma gasnu lo nabmi
+      translated_sentences:
+        - Do you know what's causing the problem?
+
+    # Sentence complexity: 4.019
+    - lojban_sentences:
+        - do gasnu lo nu mi senva
+      translated_sentences:
+        - You make me dream.
+
+    # Sentence complexity: 6.044
+    - lojban_sentences:
+        - mi pu gasnu lo drata cipra
+      translated_sentences:
+        - I did another test.
+
+    # Sentence complexity: 10.596
+    - lojban_sentences:
+        - do ma gasnu ca lo bavlamdei
+      translated_sentences:
+        - What are you doing tomorrow?
+
+
+
+# Total sentences: 40
+kelci:
+    # Sentence complexity: 1.261
+    - lojban_sentences:
+        - ma kelci
+      translated_sentences:
+        - Who's playing?
+
+    # Sentence complexity: 1.039
+    - lojban_sentences:
+        - do kelci ma
+      translated_sentences:
+        - What are you playing with?
+
+    # Sentence complexity: 2.574
+    - lojban_sentences:
+        - ro cnino bangu ku jai simsa lo nu kelci
+      translated_sentences:
+        - Every new language is like a game.
+
+    # Sentence complexity: 5.366
+    - lojban_sentences:
+        - ko no roi bu'u ti kelci
+      translated_sentences:
+        - Never play here.
+
+    # Sentence complexity: 11.018
+    - lojban_sentences:
+        - ko na kelci tu'a lo fagri
+      translated_sentences:
+        - Don't play with fire.
+
+    # Sentence complexity: 22.163
+    - lojban_sentences:
+        - le mlatu cu kelci le bolci
+      translated_sentences:
+        - The cat is playing with the ball.
+
+
+
+# Total sentences: 27
+milxe:
+    # Sentence complexity: 2.409
+    - lojban_sentences:
+        - milxe drani
+      translated_sentences:
+        - This is reasonably accurate.
+
+    # Sentence complexity: 3.153
+    - lojban_sentences:
+        - mi milxe se cfipu
+      translated_sentences:
+        - I'm a little confused.
+
+    # Sentence complexity: 13.020
+    - lojban_sentences:
+        - mi milxe lerci
+      translated_sentences:
+        - I'm a bit late.
+
+    # Sentence complexity: 11.230
+    - lojban_sentences:
+        - mi milxe lo ka senpi lo nu ko'a klama
+      translated_sentences:
+        - I have some doubts about his coming.
+
+    # Sentence complexity: 24.115
+    - lojban_sentences:
+        - milxe carvi ca lo prulamdei
+      translated_sentences:
+        - There was a light rain yesterday.
+
+    # Sentence complexity: 250.485
+    - lojban_sentences:
+        - milxe tilju
+      translated_sentences:
+        - It's a little heavy.
+
+
+
+# Total sentences: 99
+mlatu:
+    # Sentence complexity: 1.295
+    - lojban_sentences:
+        - do nelci lo mlatu
+      translated_sentences:
+        - You like cats.
+
+    # Sentence complexity: 1.601
+    - lojban_sentences:
+        - mi mlatu
+      translated_sentences:
+        - I'm a cat.
+
+    # Sentence complexity: 1.828
+    - lojban_sentences:
+        - lo mlatu ku na'e prenu
+      translated_sentences:
+        - A cat is not a person!
+
+    # Sentence complexity: 2.428
+    - lojban_sentences:
+        - loi mlatu cu cinri mi
+      translated_sentences:
+        - I'm fascinated by cats.
+
+    # Sentence complexity: 2.445
+    - lojban_sentences:
+        - mi nitcu lo pa po'o mlatu
+      translated_sentences:
+        - I need only one cat.
+
+    # Sentence complexity: 2.500
+    - lojban_sentences:
+        - doi le mamta ma se zvati le mlatu
+      translated_sentences:
+        - Mom, where's the cat?
+
+    # Sentence complexity: 3.511
+    - lojban_sentences:
+        - lo mlatu cu nanca li re no
+      translated_sentences:
+        - The cat has twenty years.
+
+    # Sentence complexity: 3.666
+    - lojban_sentences:
+        - le mlatu cu morsi
+      translated_sentences:
+        - The cat is dead.
+
+    # Sentence complexity: 4.270
+    - lojban_sentences:
+        - lo mlatu pe mi cu xagji
+      translated_sentences:
+        - My cat is hungry.
+
+    # Sentence complexity: 4.865
+    - lojban_sentences:
+        - lo nu kucli cu rinka lo nu lo mlatu cu morsi
+      translated_sentences:
+        - Curiosity killed the cat.
+
+
+
+# Total sentences: 128
+nitcu:
+    # Sentence complexity: 0.835
+    - lojban_sentences:
+        - mi nitcu lo nu cusku da do
+      translated_sentences:
+        - There's something I have to tell you.
+
+    # Sentence complexity: 0.835
+    - lojban_sentences:
+        - mi nitcu lo nu tavla do
+      translated_sentences:
+        - I've got to speak to you.
+
+    # Sentence complexity: 0.941
+    - lojban_sentences:
+        - do nitcu fi ma
+      translated_sentences:
+        - Why do you need it?
+
+    # Sentence complexity: 0.999
+    - lojban_sentences:
+        - mi nitcu da lo nu da jimpe mi
+      translated_sentences:
+        - I need someone to understand me.
+
+    # Sentence complexity: 1.082
+    - lojban_sentences:
+        - do nitcu lo ka sipna
+      translated_sentences:
+        - You need sleep.
+
+    # Sentence complexity: 1.152
+    - lojban_sentences:
+        - mi nitcu lo ka klama
+      translated_sentences:
+        - I gotta go.
+
+    # Sentence complexity: 1.100
+    - lojban_sentences:
+        - no da nitcu mi
+      translated_sentences:
+        - Nobody needs me.
+
+    # Sentence complexity: 1.159
+    - lojban_sentences:
+        - do ba nitcu
+      translated_sentences:
+        - You'll need it.
+
+
+
+# Total sentences: 106
+pendo:
+    # Sentence complexity: 1.101
+    - lojban_sentences:
+        - mi do pendo xu
+      translated_sentences:
+        - Are we friends?
+
+    # Sentence complexity: 1.172
+    - lojban_sentences:
+        - mi cusku lu coi pendo li'u
+      translated_sentences:
+        - I say "Hi, friend.".
+
+    # Sentence complexity: 1.235
+    - lojban_sentences:
+        - do pendo mi
+      translated_sentences:
+        - You are my friend.
+
+    # Sentence complexity: 1.259
+    - lojban_sentences:
+        - xu do nelci lo pendo pe mi
+      translated_sentences:
+        - Do you like my friend?
+
+    # Sentence complexity: 1.318
+    - lojban_sentences:
+        - pu pendo mi
+      translated_sentences:
+        - He was my friend.
+
+    # Sentence complexity: 1.633
+    - lojban_sentences:
+        - mi pu troci lo ka pendo do
+      translated_sentences:
+        - I've tried to be your friend.
+
+    # Sentence complexity: 1.696
+    - lojban_sentences:
+        - pu xamgu pendo
+      translated_sentences:
+        - He was a good friend.
+
+    # Sentence complexity: 1.884
+    - lojban_sentences:
+        - mi nitcu lo pendo
+      translated_sentences:
+        - I need friends.
+
+    # Sentence complexity: 1.985
+    - lojban_sentences:
+        - lo pendo be mi cu bebna
+      translated_sentences:
+        - My friend is stupid.
+
+    # Sentence complexity: 2.162
+    - lojban_sentences:
+        - coi slabu pendo
+      translated_sentences:
+        - Hello, old friend!
+
+
+
+# Total sentences: 47
+pensi:
+    # Sentence complexity: 1.046
+    - lojban_sentences:
+        - do pensi ma
+      translated_sentences:
+        - What are you thinking of?
+
+    # Sentence complexity: 1.345
+    - lojban_sentences:
+        - ko pensi
+      translated_sentences:
+        - Think about it.
+
+    # Sentence complexity: 1.686
+    - lojban_sentences:
+        - ma do ca'o se pensi
+      translated_sentences:
+        - What're you thinking?
+
+    # Sentence complexity: 1.928
+    - lojban_sentences:
+        - ca'o lo nu mi gunka kei mi pensi
+      translated_sentences:
+        - While I work, I reflect.
+
+    # Sentence complexity: 2.229
+    - lojban_sentences:
+        - mi pensi lo du'u do nitcu lo nu viska ko'a
+      translated_sentences:
+        - I think that you need to see him.
+
+    # Sentence complexity: 2.709
+    - lojban_sentences:
+        - ju'o do pu pensi da
+      translated_sentences:
+        - You must have thought of something.
+
+    # Sentence complexity: 3.684
+    - lojban_sentences:
+        - mi pensi lo du'u makau finti
+      translated_sentences:
+        - I wonder who invented it.
+
+
+
+# Total sentences: 40
+skami:
+    # Sentence complexity: 1.125
+    - lojban_sentences:
+        - ma se zvati lo do skami
+      translated_sentences:
+        - Where's your computer?
+
+    # Sentence complexity: 1.345
+    - lojban_sentences:
+        - ma se zvati lo skami pe mi
+      translated_sentences:
+        - Where's my computer?
+
+    # Sentence complexity: 1.731
+    - lojban_sentences:
+        - ma nitcu lo skami
+      translated_sentences:
+        - Who needs computers?
+
+    # Sentence complexity: 2.346
+    - lojban_sentences:
+        - mi nitcu lo cnino skami
+      translated_sentences:
+        - I need a new computer.
+
+    # Sentence complexity: 2.657
+    - lojban_sentences:
+        - ri na ponse lo skami
+      translated_sentences:
+        - She doesn't have a computer.
+
+    # Sentence complexity: 4.801
+    - lojban_sentences:
+        - ko na curmi lo nu pilno lo skami
+      translated_sentences:
+        - Don't let him touch the computer.
+
+    # Sentence complexity: 8.636
+    - lojban_sentences:
+        - ei mi cpacu lo cnino skami
+      translated_sentences:
+        - I have to get a new computer.
+
+    # Sentence complexity: 16.170
+    - lojban_sentences:
+        - lo skami cu pluja minji
+      translated_sentences:
+        - A computer is a complex machine.
+
+
+
+# Total sentences: 46
+slabu:
+    # Sentence complexity: 0.779
+    - lojban_sentences:
+        - xu do se slabu mi
+      translated_sentences:
+        - Do you remember me?
+
+    # Sentence complexity: 1.340
+    - lojban_sentences:
+        - lo cmene be lo finti cu slabu mi
+      translated_sentences:
+        - The author's name is familiar to us.
+
+    # Sentence complexity: 1.458
+    - lojban_sentences:
+        - mutce slabu
+      translated_sentences:
+        - It's very familiar.
+
+    # Sentence complexity: 2.162
+    - lojban_sentences:
+        - coi slabu pendo
+      translated_sentences:
+        - Hello, old friend!
+
+    # Sentence complexity: 3.122
+    - lojban_sentences:
+        - mi'a se slabu do
+      translated_sentences:
+        - We know you.
+
+    # Sentence complexity: 3.334
+    - lojban_sentences:
+        - do traji slabu do
+      translated_sentences:
+        - You know yourself best.
+
+    # Sentence complexity: 3.687
+    - lojban_sentences:
+        - mi se slabu lo nabmi pe do
+      translated_sentences:
+        - I am familiar with your problem.
+
+    # Sentence complexity: 1.502
+    - lojban_sentences:
+        - lo se slabu be ko'a cu nelci ko'a
+      translated_sentences:
+        - Those who know him like him.
+
+
+
+# Total sentences: 88
+troci:
+    # Sentence complexity: 0.843
+    - lojban_sentences:
+        - xu do djica lo nu do troci
+      translated_sentences:
+        - Do you want to try it?
+
+    # Sentence complexity: 1.048
+    - lojban_sentences:
+        - xu do troci
+      translated_sentences:
+        - Did you try it?
+
+    # Sentence complexity: 1.096
+    - lojban_sentences:
+        - lo nu troci cu xamgu
+      translated_sentences:
+        - Trying is good.
+
+    # Sentence complexity: 1.230
+    - lojban_sentences:
+        - mi troci
+      translated_sentences:
+        - I try.
+
+    # Sentence complexity: 1.273
+    - lojban_sentences:
+        - ko troci lo ka jimpe
+      translated_sentences:
+        - Try to understand.
+
+    # Sentence complexity: 1.633
+    - lojban_sentences:
+        - mi pu troci lo ka pendo do
+      translated_sentences:
+        - I've tried to be your friend.
+
+    # Sentence complexity: 1.726
+    - lojban_sentences:
+        - ei mi troci
+      translated_sentences:
+        - I have to try.
+
+    # Sentence complexity: 1.763
+    - lojban_sentences:
+        - mi ca ca'o troci lo ka jimpe da
+      translated_sentences:
+        - I'm trying to figure out something.
+
+    # Sentence complexity: 2.260
+    - lojban_sentences:
+        - ko troci tu'a lo fonxa pe do
+      translated_sentences:
+        - Try your phone.
+
+
+
+# Total sentences: 163
+zdani:
+    # Sentence complexity: 1.078
+    - lojban_sentences:
+        - mi na se zdani
+      translated_sentences:
+        - I don't have a house.
+
+    # Sentence complexity: 1.153
+    - lojban_sentences:
+        - do pu zdani ma
+      translated_sentences:
+        - Which house did you live in?
+
+    # Sentence complexity: 1.253
+    - lojban_sentences:
+        - ma se zvati lo do zdani
+      translated_sentences:
+        - Where's your house?
+
+    # Sentence complexity: 1.254
+    - lojban_sentences:
+        - ma se zdani
+      translated_sentences:
+        - Who lives here?
+
+    # Sentence complexity: 1.277
+    - lojban_sentences:
+        - mi djica lo ka klama lo zdani
+      translated_sentences:
+        - I want to go home.
+
+    # Sentence complexity: 1.278
+    - lojban_sentences:
+        - mi djica tu'a lo zdani
+      translated_sentences:
+        - I want to go home.
+
+    # Sentence complexity: 1.297
+    - lojban_sentences:
+        - xu do ca zvati lo zdani
+      translated_sentences:
+        - Are you at home?
+
+    # Sentence complexity: 1.338
+    - lojban_sentences:
+        - da zdani mi
+      translated_sentences:
+        - I have a home.
+
+    # Sentence complexity: 1.399
+    - lojban_sentences:
+        - ko cliva lo zdani be mi
+      translated_sentences:
+        - Get out of my house!
+
+    # Sentence complexity: 1.545
+    - lojban_sentences:
+        - lo zdani be mi cu zdani be do
+      translated_sentences:
+        - My home is your home.
+
+
