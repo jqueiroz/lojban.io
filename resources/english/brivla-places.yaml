@@ -427,3 +427,87 @@ cmalu:
     x1: small thing
     x2: property/dimension
     x3: standard/norm
+
+# TODO: fix this
+cabdei:
+    x1: today
+
+krici:
+    x1: believer
+    x2: belief
+    x3: subject
+
+skina:
+    x1: movie
+    x2: plot/theme/subject
+    x3: filmmaker
+    x4: audience
+
+# TODO: is this correct?
+gendra:
+    x1: gramatically correct thing
+    x2: situation
+    x3: grammar
+
+cfipu:
+    x1: confusing event/state
+    x2: observer
+    x3: reason/confusing property
+
+gerku:
+    x1: dog
+    x2: species/breed
+
+fasnu:
+    x1: event taking place
+
+kucli:
+    x1: curious entity
+    x2: object of curiousness
+
+spofu:
+    x1: broken thing
+    x2: function
+
+gletu:
+    x1: "entity #1"
+    x2: "entity #2"
+
+morsi:
+    x1: dead entity
+
+traji:
+    x1: entity
+    x2: property
+    x3: extreme
+    x4: set/range
+
+tirna:
+    x1: hearer
+    x2: sound
+    x3: background/noise
+
+jibri:
+    x1: job
+    x2: person
+
+glico:
+    x1: English thing
+    x2: aspect
+
+remna:
+    x1: human
+
+zgike:
+    x1: music
+    x2: event
+
+barda:
+    x1: big thing
+    x2: property/dimensions
+    x3: standard/norm
+
+nanca:
+    x1: entity
+    x2: duration in years
+    x3: standard
