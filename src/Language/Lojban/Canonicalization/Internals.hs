@@ -6,7 +6,7 @@ module Language.Lojban.Canonicalization.Internals
 , StructuredTerm
 , ExtraTerm
 , StructuredBridi
-, basicSentenceCanonicalizer
+, canonicalizeText
 , canonicalizeParsedText
 , canonicalizeParsedBridi
 , canonicalizeParsedTerm
@@ -236,8 +236,8 @@ expandBai = (`M.lookup` compressedBai)
 
 ---------- Canonicalization
 --TODO: canonicalize "do xu ciska" -> "xu do ciska"
-basicSentenceCanonicalizer :: SentenceCanonicalizer
-basicSentenceCanonicalizer sentence = parse sentence >>= canonicalizeParsedText
+canonicalizeText :: SentenceCanonicalizer
+canonicalizeText sentence = parse sentence >>= canonicalizeParsedText
 
 canonicalizeParsedText :: (ZG.Free, ZG.Text, ZG.Terminator) -> Either String T.Text
 canonicalizeParsedText parsedText = (canonicalizeParsedTerm parsedText) `mplus` (canonicalizeParsedBridi parsedText)
