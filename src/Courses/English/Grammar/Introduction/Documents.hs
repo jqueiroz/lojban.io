@@ -69,7 +69,7 @@ Right lecture14 = buildDocument $(embedStringFile "courses/english/grammar/intro
 lecture15 :: P.Pandoc
 Right lecture15 = buildDocument $(embedStringFile "courses/english/grammar/introduction/lectures/15.md")
 
--- | Lecture for the fifteenth lesson.
+-- | Lecture for the sixteenth lesson.
 lecture16 :: P.Pandoc
 Right lecture16 = buildDocument $(embedStringFile "courses/english/grammar/introduction/lectures/16.md")
 
