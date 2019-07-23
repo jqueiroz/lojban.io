@@ -73,6 +73,10 @@ Right lecture15 = buildDocument $(embedStringFile "courses/english/grammar/intro
 lecture16 :: P.Pandoc
 Right lecture16 = buildDocument $(embedStringFile "courses/english/grammar/introduction/lectures/16.md")
 
+-- | Lecture for the seventeenth lesson.
+lecture17 :: P.Pandoc
+Right lecture17 = buildDocument $(embedStringFile "courses/english/grammar/introduction/lectures/17.md")
+
 -- * Lesson plans
 
 -- | Plan for the first lesson.
@@ -138,3 +142,7 @@ Right plan15 = buildDocument $(embedStringFile "courses/english/grammar/introduc
 -- | Plan for the sixteenth lesson.
 plan16 :: P.Pandoc
 Right plan16 = buildDocument $(embedStringFile "courses/english/grammar/introduction/planning/16.md")
+
+-- | Plan for the seventeenth lesson.
+plan17 :: P.Pandoc
+Right plan17 = buildDocument $(embedStringFile "courses/english/grammar/introduction/planning/17.md")

@@ -68,3 +68,7 @@ lesson15 = Lesson "Relative phrases" exercises15 lecture15 plan15
 -- | Sixteenth lesson: Logical connectives 1
 lesson16 :: Lesson
 lesson16 = Lesson "Logical connectives 1" exercises16 lecture16 plan16
+
+-- | Seventeenth lesson: Negation 1
+lesson17 :: Lesson
+lesson17 = Lesson "Negation 1" exercises17 lecture17 plan17

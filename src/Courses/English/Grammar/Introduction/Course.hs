@@ -50,4 +50,4 @@ style = CourseStyle color1 iconUrl where
 course :: Course
 course = Course title style lessons where
     title = "Introduction to Grammar"
-    lessons = [lesson1, lesson2, lesson3, lesson4, lesson5, lesson6, checkpoint1to6, lesson8, lesson9, lesson10, lesson11, lesson12, checkpoint8to12, lesson14, lesson15, lesson16]
+    lessons = [lesson1, lesson2, lesson3, lesson4, lesson5, lesson6, checkpoint1to6, lesson8, lesson9, lesson10, lesson11, lesson12, checkpoint8to12, lesson14, lesson15, lesson16, lesson17]

@@ -249,3 +249,19 @@ vocabularyGenerator16 = createVocabularyBuilder
     -- Sumti
     [
     ]
+
+-- | Vocabulary for the seventeenth lesson.
+--
+-- * New brivla: NONE.
+-- * New cmavo: na, na'e, to'e
+vocabularyGenerator17 :: VocabularyBuilder
+vocabularyGenerator17 = createVocabularyBuilder
+    -- Selbri
+    [
+        ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska", "djuno", "nupre", "cusku", "vecnu", "pilno"])),
+        ("relations", ((0,) <$> ["pendo", "nelci", "gleki"]) ++ ((1,) <$> ["cmene", "bangu"])),
+        ("properties", (0,) <$> ["prenu", "pelxu", "zdani", "mlatu", "gerku", "melbi", "plise", "skami"])
+    ]
+    -- Sumti
+    [
+    ]

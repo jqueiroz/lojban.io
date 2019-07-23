@@ -203,3 +203,10 @@ exercises16 =
     combineFunctions
         [ (70, translationExercises16)
         ]
+
+-- | Exercises for the seventeenth lesson.
+exercises17 :: ExerciseGenerator
+exercises17 =
+    combineFunctions
+        [ (70, translationExercises17)
+        ]

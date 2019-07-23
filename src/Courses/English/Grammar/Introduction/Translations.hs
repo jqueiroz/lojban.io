@@ -1809,4 +1809,36 @@ translations16_u = expandTranslationGenerator $ combineFunctionsUniformly [zdani
 translationExercises16 :: ExerciseGenerator
 translationExercises16 = generateRestrictedTranslationExercise "Translate using <b>sumti connectives</b>" (const True) sentenceCanonicalizer sentenceComparer $ combineFunctionsUniformly [translations16_a, translations16_e, translations16_o, translations16_u]
 
+-- * Lesson 17: Negation 1
+translations17_na :: TranslationGenerator
+translations17_na = expandTranslationGenerator $ combineFunctionsUniformly [nelci] where
+    nelci = generatorFromList
+        [ (["mi na nelci do"], ["It is not true that I like you."])
+        , (["do na nelci mi"], ["It is not true that you like me."])
+        , (["mi na nelci lo mlatu"], ["It is not true that I like the cat."])
+        , (["mi na nelci lo gerku"], ["It is not true that I like the dog."])
+        ]
+
+translations17_na'e :: TranslationGenerator
+translations17_na'e = expandTranslationGenerator $ combineFunctionsUniformly [nelci] where
+    nelci = generatorFromList
+        [ (["mi na'e nelci do"], ["I don't really like you."])
+        , (["do na'e nelci mi"], ["You don't really like me."])
+        , (["mi na'e nelci lo mlatu"], ["I don't really like the cat.", "I don't really like cats."])
+        , (["mi na'e nelci lo gerku"], ["I don't really like the dog.", "I don't really like dogs."])
+        ]
+
+translations17_to'e :: TranslationGenerator
+translations17_to'e = expandTranslationGenerator $ combineFunctionsUniformly [nelci] where
+    nelci = generatorFromList
+        [ (["mi to'e nelci do"], ["I dislike you."])
+        , (["do to'e nelci mi"], ["You dislike me."])
+        , (["mi to'e nelci lo mlatu"], ["I dislike the cat.", "I dislike cats."])
+        , (["mi to'e nelci lo gerku"], ["I dislike the dog.", "I dislike dogs."])
+        ]
+
+-- TODO: fix canonicalization of "mi na prenu"
+translationExercises17 :: ExerciseGenerator
+translationExercises17 = generateTranslationExercise sentenceCanonicalizer sentenceComparer $ combineFunctionsUniformly [translations17_na, translations17_na'e, translations17_to'e]
+
 --TODO: pause immediately after lesson 5
