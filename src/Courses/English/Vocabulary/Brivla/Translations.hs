@@ -5,7 +5,6 @@
 module Courses.English.Vocabulary.Brivla.Translations where
 
 import Core
-import Data.List.Split (chunksOf)
 import Data.FileEmbed (embedStringFile)
 import qualified Data.Text as T
 import qualified Data.Text.Encoding as TE
