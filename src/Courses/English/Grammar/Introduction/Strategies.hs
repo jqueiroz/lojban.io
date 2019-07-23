@@ -10,7 +10,7 @@ module Courses.English.Grammar.Introduction.Strategies  where
 
 import Core
 import Language.Lojban.Core
-import Language.Lojban.Canonicalization (basicSentenceCanonicalizer)
+import Language.Lojban.Canonicalization (extendedSentenceCanonicalizer)
 import qualified Data.Text as T
 
 -- | Default sentence comparer.
@@ -44,4 +44,4 @@ sentenceComparer x y = (length xs == length ys) && (all wordComparer $ zip xs ys
 
 -- | Default sentence canonicalizer.
 sentenceCanonicalizer :: SentenceCanonicalizer
-sentenceCanonicalizer = basicSentenceCanonicalizer
+sentenceCanonicalizer = extendedSentenceCanonicalizer
