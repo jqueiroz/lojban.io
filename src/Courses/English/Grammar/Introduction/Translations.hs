@@ -1817,6 +1817,10 @@ translations17_na = expandTranslationGenerator $ combineFunctionsUniformly [nelc
         , (["do na nelci mi"], ["It is not true that you like me."])
         , (["mi na nelci lo mlatu"], ["It is not true that I like the cat."])
         , (["mi na nelci lo gerku"], ["It is not true that I like the dog."])
+        , (["mi na nelci lo mi mlatu"], ["It is not true that I like my cat."])
+        , (["mi na nelci lo mi gerku"], ["It is not true that I like my dog."])
+        , (["mi na nelci lo mi zdani"], ["It is not true that I like my house."])
+        , (["mi na nelci lo se dunda be do"], ["It is not true that I like the gift that you gave."])
         ]
 
 translations17_na'e :: TranslationGenerator
@@ -1826,6 +1830,10 @@ translations17_na'e = expandTranslationGenerator $ combineFunctionsUniformly [ne
         , (["do (na'e|na) nelci mi"], ["You don't like me."])
         , (["mi (na'e|na) nelci lo mlatu"], ["I don't like the cat.", "I don't like cats."])
         , (["mi (na'e|na) nelci lo gerku"], ["I don't like the dog.", "I don't like dogs."])
+        , (["mi na'e nelci lo mi mlatu"], ["I don't like my cat."])
+        , (["mi na'e nelci lo mi gerku"], ["I don't like my dog."])
+        , (["mi na'e nelci lo mi zdani"], ["I don't like my house."])
+        , (["mi na'e nelci lo se dunda be do"], ["I don't like the gift that you gave."])
         ]
 
 translations17_to'e :: TranslationGenerator
@@ -1835,6 +1843,10 @@ translations17_to'e = expandTranslationGenerator $ combineFunctionsUniformly [ne
         , (["do to'e nelci mi"], ["You dislike me."])
         , (["mi to'e nelci lo mlatu"], ["I dislike the cat.", "I dislike cats."])
         , (["mi to'e nelci lo gerku"], ["I dislike the dog.", "I dislike dogs."])
+        , (["mi to'e nelci lo mi mlatu"], ["I dislike my cat."])
+        , (["mi to'e nelci lo mi gerku"], ["I dislike my dog."])
+        , (["mi to'e nelci lo mi zdani"], ["I dislike my house."])
+        , (["mi to'e nelci lo se dunda be do"], ["I dislike the gift that you gave."])
         ]
 
 -- TODO: fix canonicalization of "mi na prenu"
