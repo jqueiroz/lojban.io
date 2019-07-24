@@ -1822,10 +1822,10 @@ translations17_na = expandTranslationGenerator $ combineFunctionsUniformly [nelc
 translations17_na'e :: TranslationGenerator
 translations17_na'e = expandTranslationGenerator $ combineFunctionsUniformly [nelci] where
     nelci = generatorFromList
-        [ (["mi na'e nelci do"], ["I don't really like you."])
-        , (["do na'e nelci mi"], ["You don't really like me."])
-        , (["mi na'e nelci lo mlatu"], ["I don't really like the cat.", "I don't really like cats."])
-        , (["mi na'e nelci lo gerku"], ["I don't really like the dog.", "I don't really like dogs."])
+        [ (["mi (na'e|na) nelci do"], ["I don't like you."])
+        , (["do (na'e|na) nelci mi"], ["You don't like me."])
+        , (["mi (na'e|na) nelci lo mlatu"], ["I don't like the cat.", "I don't like cats."])
+        , (["mi (na'e|na) nelci lo gerku"], ["I don't like the dog.", "I don't like dogs."])
         ]
 
 translations17_to'e :: TranslationGenerator
