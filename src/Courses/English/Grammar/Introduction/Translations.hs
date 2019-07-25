@@ -246,7 +246,7 @@ translations3_normal = combineFunctionsUniformly [talkingToAnimal, likingAnimals
 -- Defined separately so that they may be reused in the checkpoint lesson (Lesson 7).
 translationExercises3_nice :: ExerciseGenerator
 translationExercises3_nice = combineFunctions [(1, restricted), (5, nice)] where
-    restricted = generateBlacklistedWordTranslationExercise (T.pack "zo'e") sentenceCanonicalizer sentenceComparer translations3_restricted
+    restricted = generateBlacklistedWordTranslationExercise "zo'e" sentenceCanonicalizer sentenceComparer translations3_restricted
     nice = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations3_nice
 
 -- | Regular translation exercises for the third lesson.
@@ -499,7 +499,7 @@ translations4_normal = combineFunctions [(4, translations4_normal_xu), (4, trans
 
 translationExercises4 :: ExerciseGenerator
 translationExercises4 = combineFunctions [(1, restricted), (5, normal)] where
-    restricted = generateBlacklistedWordTranslationExercise (T.pack "zo'e") sentenceCanonicalizer sentenceComparer translations4_restricted
+    restricted = generateBlacklistedWordTranslationExercise "zo'e" sentenceCanonicalizer sentenceComparer translations4_restricted
     normal = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations4_normal
 
 questionExercises4 :: ExerciseGenerator
@@ -966,7 +966,7 @@ translations6_restricted = combineFunctions [(2, hasHouse), (3, nice), (3, givin
             ]
 
 translationExercises6_restricted :: ExerciseGenerator
-translationExercises6_restricted = generateBlacklistedWordTranslationExercise (T.pack "ku") sentenceCanonicalizer sentenceComparer translations6_restricted
+translationExercises6_restricted = generateBlacklistedWordTranslationExercise "ku" sentenceCanonicalizer sentenceComparer translations6_restricted
 
 -- * Lesson 7: Checkpoint -- Lessons 1-6
 translationExercises1to6_simplified :: ExerciseGenerator
