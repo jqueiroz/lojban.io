@@ -14,7 +14,7 @@ module Language.Lojban.Canonicalization.Internals
 ) where
 
 import Language.Lojban.Core
-import Language.Lojban.Parsing (parse)
+import Language.Lojban.Parsing (parseText)
 import Language.Lojban.Presentation (displayCanonicalBridi)
 import Util (headOrDefault, isContiguousSequence, concatET, unwordsET)
 import Control.Applicative (liftA2)
@@ -237,7 +237,7 @@ expandBai = (`M.lookup` compressedBai)
 ---------- Canonicalization
 --TODO: canonicalize "do xu ciska" -> "xu do ciska"
 canonicalizeText :: SentenceCanonicalizer
-canonicalizeText sentence = parse sentence >>= canonicalizeParsedText
+canonicalizeText sentence = parseText sentence >>= canonicalizeParsedText
 
 canonicalizeParsedText :: (ZG.Free, ZG.Text, ZG.Terminator) -> Either String T.Text
 canonicalizeParsedText parsedText = (canonicalizeParsedTerm parsedText) `mplus` (canonicalizeParsedBridi parsedText)
