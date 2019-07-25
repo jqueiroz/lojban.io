@@ -16,7 +16,7 @@ import qualified Data.Map as M
 import qualified Data.Yaml as Y
 import Data.FileEmbed (embedStringFile)
 
--- Dictionary
+-- | Dictionary in English.
 englishDictionary :: Dictionary
 englishDictionary = Dictionary gismuMap cmavoMap brivlaMap definitionsMap englishBrivlaPlacesMap where
     -- Frequency map

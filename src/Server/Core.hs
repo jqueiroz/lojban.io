@@ -17,7 +17,7 @@ import qualified Text.Blaze as B
 import qualified Text.Blaze.Html5 as H
 import qualified Text.Blaze.Html5.Attributes as A
 
--- Stylesheets
+-- * Stylesheets
 includeUniversalStylesheets :: H.Html
 includeUniversalStylesheets = do
     includeInternalStylesheet "bootstrap.min.css"
@@ -55,7 +55,7 @@ includeCourseStylesheet course = includeInlineStylesheet code where
         , "}"
         ]
 
--- Scripts
+-- * Scripts
 includeUniversalScripts :: H.Html
 includeUniversalScripts = do
     includeInternalScript "jquery-2.1.4.min.js"
@@ -70,7 +70,7 @@ includeExternalScript src =
       B.! A.type_ "text/javascript"
       B.! A.src (H.stringValue src)
 
--- Topbar
+-- * Topbar
 data TopbarCategory = TopbarHome | TopbarGrammar | TopbarVocabulary | TopbarResources deriving (Enum, Eq)
 
 displayTopbar :: TopbarCategory -> H.Html
