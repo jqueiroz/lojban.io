@@ -232,9 +232,9 @@ generateNarrowFillingBlanksExerciseByExpression :: TranslationGeneratorByExpress
 generateNarrowFillingBlanksExerciseByExpression translationGeneratorByExpression = generateBroadFillingBlanksExerciseByExpression (narrowTranslationGeneratorByExpression translationGeneratorByExpression)
 
 -- Exercise: identify the selbri
-generateSelbriIdentificationExercise :: Vocabulary -> SimpleBridiDisplayer -> ExerciseGenerator
-generateSelbriIdentificationExercise vocabulary displayBridi r0 = SingleChoiceExercise title sentences correctAlternative incorrectAlternatives False where
-    (bridi, r1) = generateSimpleBridi vocabulary r0
+generateSelbriIdentificationExercise :: SimpleBridiGenerator -> SimpleBridiDisplayer -> ExerciseGenerator
+generateSelbriIdentificationExercise simpleBridiGenerator displayBridi r0 = SingleChoiceExercise title sentences correctAlternative incorrectAlternatives False where
+    (bridi, r1) = simpleBridiGenerator r0
     correctAlternative = simpleBridiSelbri bridi
     incorrectAlternatives = take 4 $ simpleBridiSumti bridi
     title = "Identify the <b>selbri</b>"
@@ -242,11 +242,11 @@ generateSelbriIdentificationExercise vocabulary displayBridi r0 = SingleChoiceEx
     sentences = [ExerciseSentence True sentenceText]
 
 -- Exercises: tell gismu places of a sentence (TODO: typing exercises?)
-generateContextualizedGismuPlaceMeaningExercise :: Dictionary -> Vocabulary -> SimpleBridiDisplayer -> ExerciseGenerator
-generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi = combineFunctions [(1, f2)] where
+generateContextualizedGismuPlaceMeaningExercise :: Dictionary -> SimpleBridiGenerator -> SimpleBridiDisplayer -> ExerciseGenerator
+generateContextualizedGismuPlaceMeaningExercise dictionary simpleBridiGenerator displayBridi = combineFunctions [(1, f2)] where
     f2 r0 =
         let
-            (bridi, r1) = generateActionBridi vocabulary r0
+            (bridi, r1) = simpleBridiGenerator r0
             placesEnglish = gismuEnglishPlaces $ (dictGismu dictionary) M.! (simpleBridiSelbri bridi)
             placesLojban = simpleBridiSumti $ bridi
             places = zip placesEnglish (replace "" "zo'e" placesLojban)
@@ -258,11 +258,11 @@ generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBri
             sentences = [ExerciseSentence True sentenceText]
         in SingleChoiceExercise title sentences correctAlternative incorrectAlternatives False
 
-generateContextualizedGismuPlacePositionExercise :: Dictionary -> Vocabulary -> SimpleBridiDisplayer -> ExerciseGenerator
-generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBridi = combineFunctions [(1, f2)] where
+generateContextualizedGismuPlacePositionExercise :: Dictionary -> SimpleBridiGenerator -> SimpleBridiDisplayer -> ExerciseGenerator
+generateContextualizedGismuPlacePositionExercise dictionary simpleBridiGenerator displayBridi = combineFunctions [(1, f2)] where
     f2 r0 =
         let
-            (bridi, r1) = generateSimpleBridi vocabulary r0
+            (bridi, r1) = simpleBridiGenerator r0
             placesNumeric = map (('x' `T.cons`) . T.pack . show) $ [1..]
             placesLojban = simpleBridiSumti $ bridi
             places = zip placesNumeric (replace "" "zo'e" placesLojban)

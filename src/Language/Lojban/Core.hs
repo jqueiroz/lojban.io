@@ -1,5 +1,6 @@
 module Language.Lojban.Core
 ( SimpleBridi (..)
+, SimpleBridiGenerator
 , SimpleBridiDisplayer
 , SentenceCanonicalizer
 , Dictionary (..)
@@ -20,6 +21,8 @@ data SimpleBridi = SimpleBridi
     , simpleBridiSumti :: [T.Text]
     , simpleBridiExtraSumti :: [T.Text]
     } deriving (Show, Eq)
+
+type SimpleBridiGenerator = StdGen -> (SimpleBridi, StdGen)
 
 type SimpleBridiDisplayer = StdGen -> SimpleBridi -> (T.Text, StdGen)
 
