@@ -71,8 +71,8 @@ library
                      , Language.Lojban.Canonicalization
                      , Language.Lojban.Canonicalization.Internals
                      , Language.Lojban.Core
-                     , Language.Lojban.Dictionary
-                     , Language.Lojban.Dictionary.English
+                     , Language.Lojban.Dictionaries
+                     , Language.Lojban.Dictionaries.English
                      , Language.Lojban.Parsing
                      , Language.Lojban.Presentation
                      , Language.Lojban.Refinement

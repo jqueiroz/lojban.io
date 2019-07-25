@@ -2,7 +2,7 @@
 module Playground where
 
 import Language.Lojban.Core
-import Language.Lojban.Dictionary (englishDictionary)
+import Language.Lojban.Dictionaries (englishDictionary)
 import Language.Lojban.Canonicalization (basicSentenceCanonicalizer)
 import Control.Applicative ((<$>))
 import Data.Maybe (mapMaybe)

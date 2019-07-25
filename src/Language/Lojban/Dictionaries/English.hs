@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE TemplateHaskell #-}
 
-module Language.Lojban.Dictionary.English
+module Language.Lojban.Dictionaries.English
 ( englishDictionary
 ) where
 
