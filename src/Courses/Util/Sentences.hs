@@ -19,13 +19,13 @@ import Data.Maybe (fromMaybe)
 import qualified Data.Text as T
 import qualified Data.Map as M
 
-------------------------- ----------------------- Terminator ellisis
--- Simplifies the canonical answer of the exercise
+-- * Terminator ellisis
+-- | Decorates an exercise so that 'simplifyTerminatorsInSentence' is applied to its canonical answer.
 simplifyCanonicalAnswer :: Exercise -> Exercise
 simplifyCanonicalAnswer (TypingExercise title sentences validate canonicalAnswer) = TypingExercise title sentences validate (simplifyTerminatorsInSentence canonicalAnswer)
 simplifyCanonicalAnswer x = x
 
-------------------------- ----------------------- Sentence generators
+-- * Sentence generators
 generateNonbridi :: Vocabulary -> StdGen -> (T.Text, StdGen)
 generateNonbridi vocabulary r0 = chooseItem r0 . concatMap (getVocabularySumti vocabulary) $
     ["genericPersons", "semiGenericPersons", "animals", "genericPointable", "places", "subjects"]
