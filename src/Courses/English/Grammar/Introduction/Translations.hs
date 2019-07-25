@@ -258,6 +258,10 @@ translationExercises3 :: ExerciseGenerator
 translationExercises3 =  combineFunctions [(1, translationExercises2_nice), (10, translationExercises3_nice), (5, translationExercises3_normal)]
 
 -- * Lesson 4: Questions 1
+
+-- | Translations for the fourth lesson involving "xu", with the restriction that some intermediate place is missing.
+--
+-- Defined separately so that they may be used in 'Translate without using "zo'e"' exercises.
 translations4_restricted_xu :: TranslationGenerator
 translations4_restricted_xu = combineFunctions [(2, talkingAbout), (1, gaveSomething), (4, writing), (2, know)] where
     talkingAbout = generatorFromList
@@ -288,6 +292,7 @@ translations4_restricted_xu = combineFunctions [(2, talkingAbout), (1, gaveSomet
         , (["xu do djuno fi lo gerku ku"], ["Do you know about dogs?"])
         ]
 
+-- | Regular translations for the fourth lesson involving "xu".
 translations4_normal_xu :: TranslationGenerator
 translations4_normal_xu = combineFunctions $ [(3, translations4_restricted_xu), (3, writing), (2, know)] ++ ((1,) <$> [hasHouse, nice, talking, teaching, friends, others]) where
     hasHouse = generatorFromList
@@ -347,6 +352,9 @@ translations4_normal_xu = combineFunctions $ [(3, translations4_restricted_xu), 
         [ (["xu do nelci lo xe ctuca ku"], ["Do you like the teaching method?"])
         ]
 
+-- | Translations for the fourth lesson involving "ma", with the restriction that some intermediate place is missing.
+--
+-- Defined separately so that they may be used in 'Translate without using "zo'e"' exercises.
 translations4_restricted_ma :: TranslationGenerator
 translations4_restricted_ma = combineFunctions [(2, talkingAbout), (1, gaveSomething), (4, writing), (2, know)] where
     talkingAbout = generatorFromList
@@ -385,6 +393,7 @@ translations4_restricted_ma = combineFunctions [(2, talkingAbout), (1, gaveSomet
         , (["do djuno fi ma"], ["What subjects do you know?"])
         ]
 
+-- | Regular translations for the fourth lesson involving "ma".
 translations4_normal_ma :: TranslationGenerator
 translations4_normal_ma = combineFunctions $ [(3, translations4_restricted_ma), (3, writing), (2, know)] ++ ((1,) <$> [hasHouse, nice, talking, giving, teaching]) where
     hasHouse = generatorFromList
@@ -468,6 +477,7 @@ translations4_normal_ma = combineFunctions $ [(3, translations4_restricted_ma), 
         , (["do djuno fi ma"], ["What subjects do you know?"])
         ]
 
+-- | Translations for the fourth lesson involving "mo".
 translations4_normal_mo :: TranslationGenerator
 translations4_normal_mo = generatorFromList
     [ (["mi mo"], ["What am I doing?"])
@@ -477,9 +487,13 @@ translations4_normal_mo = generatorFromList
     , (["lo ciska ku mo"], ["What is the writer doing?"])
     ]
 
+-- | Overall translations for the fourth lesson involving "xu" or "ma", with the restriction that some intermediate place is missing.
+--
+-- Defined separately so that they may be used in 'Translate without using "zo'e"' exercises.
 translations4_restricted :: TranslationGenerator
 translations4_restricted = combineFunctionsUniformly [translations4_restricted_xu, translations4_restricted_ma]
 
+-- | Overall regular translations for the fourth lesson involving "xu", "ma" or "mo".
 translations4_normal :: TranslationGenerator
 translations4_normal = combineFunctions [(4, translations4_normal_xu), (4, translations4_normal_ma), (1, translations4_normal_mo)]
 
