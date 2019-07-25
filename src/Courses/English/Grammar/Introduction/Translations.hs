@@ -93,7 +93,6 @@ translations2_normal = combineFunctionsUniformly $ others ++ [talkingWithSecondP
 translationExercises2_nice :: ExerciseGenerator
 translationExercises2_nice = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations2_nice
 
-
 -- | Regular translation exercises for the second lesson.
 translationExercises2_normal :: ExerciseGenerator
 translationExercises2_normal = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations2_normal
