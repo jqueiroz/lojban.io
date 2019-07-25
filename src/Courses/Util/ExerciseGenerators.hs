@@ -243,17 +243,7 @@ generateSelbriIdentificationExercise vocabulary displayBridi r0 = SingleChoiceEx
 
 -- Exercises: tell gismu places of a sentence (TODO: typing exercises?)
 generateContextualizedGismuPlaceMeaningExercise :: Dictionary -> Vocabulary -> SimpleBridiDisplayer -> ExerciseGenerator
-generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi = combineFunctions [(0, f1), (1, f2)] where
-    f1 r0 =
-        let
-            (bridi, r1) = generateActionBridi vocabulary r0
-            placesEnglish = gismuEnglishPlaces $ (dictGismu dictionary) M.! (simpleBridiSelbri bridi)
-            placesLojban = simpleBridiSumti $ bridi
-            places = zip placesEnglish (replace "" "zo'e" placesLojban)
-            title = "Match the places"
-            (sentenceText, _) = displayBridi r1 bridi
-            sentences = [ExerciseSentence True sentenceText]
-        in MatchingExercise title sentences places
+generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBridi = combineFunctions [(1, f2)] where
     f2 r0 =
         let
             (bridi, r1) = generateActionBridi vocabulary r0
@@ -269,17 +259,7 @@ generateContextualizedGismuPlaceMeaningExercise dictionary vocabulary displayBri
         in SingleChoiceExercise title sentences correctAlternative incorrectAlternatives False
 
 generateContextualizedGismuPlacePositionExercise :: Dictionary -> Vocabulary -> SimpleBridiDisplayer -> ExerciseGenerator
-generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBridi = combineFunctions [(0, f1), (1, f2)] where
-    f1 r0 =
-        let
-            (bridi, r1) = generateActionBridi vocabulary r0
-            placesNumeric = map (('x' `T.cons`) . T.pack . show) $ [1..]
-            placesLojban = simpleBridiSumti $ bridi
-            places = zip placesNumeric (replace "" "zo'e" placesLojban)
-            title = "Match the places"
-            (sentenceText, _) = displayBridi r1 bridi
-            sentences = [ExerciseSentence True sentenceText]
-        in MatchingExercise title sentences places
+generateContextualizedGismuPlacePositionExercise dictionary vocabulary displayBridi = combineFunctions [(1, f2)] where
     f2 r0 =
         let
             (bridi, r1) = generateSimpleBridi vocabulary r0
