@@ -1813,14 +1813,14 @@ translationExercises16 = generateRestrictedTranslationExercise "Translate using 
 translations17_na :: TranslationGenerator
 translations17_na = expandTranslationGenerator $ combineFunctionsUniformly [nelci] where
     nelci = generatorFromList
-        [ (["mi na nelci do"], ["It is not true that I like you."])
-        , (["do na nelci mi"], ["It is not true that you like me."])
-        , (["mi na nelci lo mlatu"], ["It is not true that I like the cat."])
-        , (["mi na nelci lo gerku"], ["It is not true that I like the dog."])
-        , (["mi na nelci lo mi mlatu"], ["It is not true that I like my cat."])
-        , (["mi na nelci lo mi gerku"], ["It is not true that I like my dog."])
-        , (["mi na nelci lo mi zdani"], ["It is not true that I like my house."])
-        , (["mi na nelci lo se dunda be do"], ["It is not true that I like the gift that you gave."])
+        [ (["mi na nelci do"], ["Not true: I like you."])
+        , (["do na nelci mi"], ["Not true: you like me."])
+        , (["mi na nelci lo mlatu"], ["Not true: I like the cat."])
+        , (["mi na nelci lo gerku"], ["Not true: I like the dog."])
+        , (["mi na nelci lo mi mlatu"], ["Not true: I like my cat."])
+        , (["mi na nelci lo mi gerku"], ["Not true: I like my dog."])
+        , (["mi na nelci lo mi zdani"], ["Not true: I like my house."])
+        , (["mi na nelci lo se dunda be do"], ["Not true: I like the gift that you gave."])
         ]
 
 translations17_na'e :: TranslationGenerator
