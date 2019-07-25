@@ -38,12 +38,17 @@ buildSentenceDisplayer :: (StdGen -> SimpleBridi -> ([T.Text], StdGen)) -> Simpl
 buildSentenceDisplayer sentenceDisplayer r0 simpleBridi = (T.unwords $ replace "" "zo'e" sentence, r1) where
     (sentence, r1) = sentenceDisplayer r0 simpleBridi
 
+-- | Displays bridi in canonical form.
+--
+-- The main motivation for this function lies in determining bridi equivalence.
+-- Essentially, two bridi are syntactically equivalent if and only if they yield the same representation after canonicalization.
 displayCanonicalBridi :: SimpleBridi -> T.Text
 displayCanonicalBridi = fst . displayStandardSimpleBridi (mkStdGen 42)
 
--- The bridi is displayed in standard order ([x1] selbri x2 x3 x4 x5)
---   * Ellisis occurs in the first place and in the last places
---   * All other missing places are filled with "zo'e"
+-- | Displays bridi in standard form: [x1] selbri x2 x3 x4 x5 (...) xn.
+--
+-- * Ellisis occurs in the first place and in the last places.
+-- * All other missing places are filled with "zo'e".
 displayStandardSimpleBridi :: StdGen -> SimpleBridi -> (T.Text, StdGen)
 displayStandardSimpleBridi = buildSentenceDisplayer $ \r0 (SimpleBridi xu selbri sumti extraSumti) ->
     let
@@ -53,10 +58,17 @@ displayStandardSimpleBridi = buildSentenceDisplayer $ \r0 (SimpleBridi xu selbri
         prependXu xu $
         (extraSumti ++ sentence, r0)
 
--- The bridi is displayed with a random number of places before the selbri
---   * Exception: if the first place is empty, then this function behaves as displayStandardSimpleBridi
---   * Ellisis occurs in the last places
---   * All other missing places are filled with "zo'e"
+-- | Displays bridi with a random number of places before the selbri.
+--
+-- * Special case: if the first place is empty, then this function falls back to 'displayStandardSimpleBridi'.
+-- * Ellisis occurs in the last places.
+-- * All other missing places are filled with "zo'e".
+--
+-- Possible outputs are:
+--
+-- * selbri x1 x2 x3 x4 x5 (...) xn;
+-- * x1 selbri x2 x3 x4 x5 (...) xn;
+-- * x1 x2 selbri x3 x4 x5 (...) xn; and so on.
 displayVariantSimpleBridi :: StdGen -> SimpleBridi -> (T.Text, StdGen)
 displayVariantSimpleBridi = buildSentenceDisplayer $ \r0 (SimpleBridi xu selbri sumti extraSumti) ->
     let
