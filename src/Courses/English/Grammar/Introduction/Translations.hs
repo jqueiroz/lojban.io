@@ -265,8 +265,10 @@ translations4_restricted_xu = combineFunctions [(2, talkingAbout), (1, gaveSomet
         [ (["xu do tavla fi do", "xu do tavla fi vo'a"], ["Are you talking about yourself?", "Were you talking about yourself?"])
         , (["xu do tavla fi mi"], ["Are you talking about me?", "Were you talking about me?"])
         , (["xu tavla fi mi"], ["Was somebody talking about me?"])
+        , (["xu do tavla fi lo se dunda ku"], ["Are you talking about the gift?", "Did you talk about the gift?"])
         , (["xu do tavla fi lo mlatu ku"], ["Were you talking about the cat?", "Were you talking about the cats?", "Were you talking about cats?"])
         , (["xu do tavla fi lo gerku ku"], ["Were you talking about the dog?", "Were you talking about the dogs?", "Were you talking about dogs?"])
+        , (["xu tavla fi lo se dunda ku"], ["Did somebody talk about the gift?"])
         , (["xu tavla do lo mlatu ku"], ["Did somebody talk to you about the cat?", "Did somebody talk to you about the cats?"])
         , (["xu tavla do lo gerku ku"], ["Did somebody talk to you about the dog?", "Did somebody talk to you about the dogs?"])
         ]
