@@ -31,7 +31,6 @@ module Courses.Util.ExerciseGenerators
 
 import Core
 import Courses.Util.Vocabulary
-import Courses.Util.Sentences
 import Courses.Util.NumberTranslator
 import Language.Lojban.Core
 import Language.Lojban.Refinement (simplifyTerminatorsInSentence)
@@ -123,15 +122,15 @@ generateGrammaticalClassExercise vocabulary r0 = SingleChoiceExercise title sent
     sentences = []
 
 -- Exercise: jufra vs bridi
-generateBridiJufraExercise :: Vocabulary -> SimpleBridiDisplayer -> ExerciseGenerator
-generateBridiJufraExercise vocabulary displayBridi = combineFunctionsUniformly [generateEnglishBridiJufraExercise, generateLojbanBridiJufraExercise vocabulary displayBridi]
+generateBridiJufraExercise :: SimpleBridiGenerator -> TextGenerator -> SimpleBridiDisplayer -> ExerciseGenerator
+generateBridiJufraExercise simpleBridiGenerator nonbridiGenerator displayBridi = combineFunctionsUniformly [generateEnglishBridiJufraExercise, generateLojbanBridiJufraExercise simpleBridiGenerator nonbridiGenerator displayBridi]
 
-generateLojbanBridiJufraExercise :: Vocabulary -> SimpleBridiDisplayer -> ExerciseGenerator
-generateLojbanBridiJufraExercise vocabulary displayBridi r0 = SingleChoiceExercise title sentences correctAlternative incorrectAlternatives True where
+generateLojbanBridiJufraExercise :: SimpleBridiGenerator -> TextGenerator -> SimpleBridiDisplayer -> ExerciseGenerator
+generateLojbanBridiJufraExercise simpleBridiGenerator nonbridiGenerator displayBridi r0 = SingleChoiceExercise title sentences correctAlternative incorrectAlternatives True where
     chooseLojbanSentence :: T.Text -> StdGen -> (T.Text, StdGen)
-    chooseLojbanSentence "only jufra" r0 = generateNonbridi vocabulary r0
+    chooseLojbanSentence "only jufra" r0 = nonbridiGenerator r0
     chooseLojbanSentence "bridi and jufra" r0 = displayBridi r1 simpleBridi where
-        (simpleBridi, r1) = generateSimpleBridi vocabulary r0
+        (simpleBridi, r1) = simpleBridiGenerator r0
     allAlternatives = ["only jufra", "bridi and jufra"]
     (correctAlternative, r1) = chooseItemUniformly r0 allAlternatives
     incorrectAlternatives = filter (/= correctAlternative) allAlternatives

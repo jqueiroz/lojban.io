@@ -5,7 +5,7 @@ module Courses.English.Grammar.Introduction.Exercises where
 
 import Core
 import Courses.Util.Vocabulary
-import Courses.Util.Sentences (generateSimpleBridi, generateActionBridi)
+import Courses.Util.Sentences (generateSimpleBridi, generateActionBridi, generateNonbridi)
 import Courses.Util.ExerciseGenerators
 import Language.Lojban.Core
 import Language.Lojban.Dictionary (englishDictionary)
@@ -24,7 +24,7 @@ exercises1 :: ExerciseGenerator
 exercises1 =
     -- TODO: avoid generation of bridi with incomplete places
     combineFunctions
-        [ (25, generateBridiJufraExercise vocabulary displayBridi)
+        [ (25, generateBridiJufraExercise generalBridiGenerator nonbridiGenerator displayBridi)
         , (20, generateSelbriIdentificationExercise generalBridiGenerator displayBridi)
         , (10, generateContextualizedGismuPlacePositionExercise dictionary generalBridiGenerator displayBridi)
         , (20, generateContextualizedGismuPlaceMeaningExercise dictionary actionBridiGenerator displayBridi)
@@ -32,6 +32,7 @@ exercises1 =
         ]
     where
         vocabulary = vocabularyGenerator1 dictionary
+        nonbridiGenerator = generateNonbridi vocabulary
         generalBridiGenerator = generateSimpleBridi vocabulary
         actionBridiGenerator = generateActionBridi vocabulary
         displayBridi = displayStandardSimpleBridi
@@ -41,7 +42,7 @@ exercises2 :: ExerciseGenerator
 exercises2 =
     combineFunctions
         [ (20, generateGrammaticalClassExercise vocabulary)
-        , (15, generateBridiJufraExercise vocabulary displayBridi)
+        , (15, generateBridiJufraExercise generalBridiGenerator nonbridiGenerator displayBridi)
         , (20, generateSelbriIdentificationExercise generalBridiGenerator displayBridi)
         , (10, generateContextualizedGismuPlacePositionExercise dictionary generalBridiGenerator displayBridi)
         , (20, generateContextualizedGismuPlaceMeaningExercise dictionary actionBridiGenerator displayBridi)
@@ -49,6 +50,7 @@ exercises2 =
         ]
     where
         vocabulary = vocabularyGenerator2 dictionary
+        nonbridiGenerator = generateNonbridi vocabulary
         generalBridiGenerator = generateSimpleBridi vocabulary
         actionBridiGenerator = generateActionBridi vocabulary
         displayBridi = combineFunctions [(7, displayStandardSimpleBridi), (3, displayVariantSimpleBridi)]
@@ -58,7 +60,7 @@ exercises3 :: ExerciseGenerator
 exercises3 =
     combineFunctions
         [ (10, generateGrammaticalClassExercise vocabulary)
-        , (10, generateBridiJufraExercise vocabulary displayBridi)
+        , (10, generateBridiJufraExercise generalBridiGenerator nonbridiGenerator displayBridi)
         , (10, generateSelbriIdentificationExercise generalBridiGenerator displayBridi)
         , (20, generateContextualizedGismuPlacePositionExercise dictionary generalBridiGenerator displayBridi)
         , (20, generateContextualizedGismuPlaceMeaningExercise dictionary actionBridiGenerator displayBridi)
@@ -67,6 +69,7 @@ exercises3 =
         ]
     where
         vocabulary = vocabularyGenerator3 dictionary
+        nonbridiGenerator = generateNonbridi vocabulary
         generalBridiGenerator = generateSimpleBridi vocabulary
         actionBridiGenerator = generateActionBridi vocabulary
         displayBridi = combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
@@ -117,7 +120,7 @@ exercises1to6 :: ExerciseGenerator
 exercises1to6 =
     combineFunctions
         [ (5, generateGrammaticalClassExercise vocabulary)
-        , (5, generateBridiJufraExercise vocabulary displayBridi)
+        , (5, generateBridiJufraExercise generalBridiGenerator nonbridiGenerator displayBridi)
         , (5, generateSelbriIdentificationExercise generalBridiGenerator displayBridi)
         , (5, generateContextualizedGismuPlacePositionExercise dictionary generalBridiGenerator displayBridi)
         , (15, generateContextualizedGismuPlaceMeaningExercise dictionary actionBridiGenerator displayBridi)
@@ -130,6 +133,7 @@ exercises1to6 =
         vocabulary = vocabularyGenerator6 dictionary
         generalBridiGenerator = generateSimpleBridi vocabulary
         actionBridiGenerator = generateActionBridi vocabulary
+        nonbridiGenerator = generateNonbridi vocabulary
         displayBridi = simplifyTerminatorsInBridiDisplayer $ (combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)])
 
 -- | Exercises for the eighth lesson.

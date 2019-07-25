@@ -2,6 +2,7 @@ module Language.Lojban.Core
 ( SimpleBridi (..)
 , SimpleBridiGenerator
 , SimpleBridiDisplayer
+, TextGenerator
 , SentenceCanonicalizer
 , Dictionary (..)
 , Gismu (..)
@@ -25,6 +26,8 @@ data SimpleBridi = SimpleBridi
 type SimpleBridiGenerator = StdGen -> (SimpleBridi, StdGen)
 
 type SimpleBridiDisplayer = StdGen -> SimpleBridi -> (T.Text, StdGen)
+
+type TextGenerator = StdGen -> (T.Text, StdGen)
 
 type SentenceCanonicalizer = T.Text -> Either String T.Text
 
