@@ -253,7 +253,7 @@ translationExercises3_nice = combineFunctions [(1, restricted), (5, nice)] where
 translationExercises3_normal :: ExerciseGenerator
 translationExercises3_normal = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations3_normal
 
--- | Overall translation exercises for the third lesson: comprised interesting exercises from the second lesson, as well as both interesting and regular exercises from the third lesson.
+-- | Overall translation exercises for the third lesson: comprises interesting exercises from the second lesson, as well as both interesting and regular exercises from the third lesson.
 translationExercises3 :: ExerciseGenerator
 translationExercises3 =  combineFunctions [(1, translationExercises2_nice), (10, translationExercises3_nice), (5, translationExercises3_normal)]
 
