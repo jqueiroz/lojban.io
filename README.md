@@ -5,6 +5,8 @@ This project is heavily inspired by Duolingo, but it is somewhat more specific i
 
 An experimental version of the platform is available at [http://lojban.johnjq.com](http://lojban.johnjq.com).
 
+Documentation for the currently deployed version may be found at [http://lojban.johnjq.com/docs](http://lojban.johnjq.com/docs).
+
 ## Quickstart
 
 The only prerequisite for running this project is installing the [Nix package manager](https://nixos.org/nix/).
