@@ -5,7 +5,8 @@ module Language.Lojban.Canonicalization.Tests
 ) where
 
 import Language.Lojban.Core
-import Language.Lojban.Parsing (parse)
+import Language.Lojban.Parsing (parseText)
+import Language.Lojban.Canonicalization
 import Language.Lojban.Canonicalization.Internals
 import Test.Hspec
 import Data.Either
@@ -13,7 +14,7 @@ import qualified Data.Text as T
 
 validateSimpleBridiRetrieval :: T.Text -> SimpleBridi -> IO ()
 validateSimpleBridiRetrieval text expectedSimpleBridi = simpleBridi `shouldBe` (Right expectedSimpleBridi) where
-    simpleBridi = (parse text) >>= retrieveSimpleBridi
+    simpleBridi = (parseText text) >>= retrieveSimpleBridi
 
 validateTermCanonicalization :: T.Text -> T.Text -> IO ()
 validateTermCanonicalization term expectedCanonicalizedTerm = canonicalizedTerm `shouldBe` (Right expectedCanonicalizedTerm) where
