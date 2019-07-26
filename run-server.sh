@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 set -e
 
-stack build --fast
-./compile-less.sh
+make server
 stack exec server
