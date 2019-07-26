@@ -36,8 +36,8 @@ RUN cd /lojto && stack build
 COPY static /lojto/static
 
 # Compile stylesheet files
-COPY compile-less.sh /lojto/compile-less.sh
-RUN cd /lojto && ./compile-less.sh
+COPY buildscripts /lojto/buildscripts
+RUN cd /lojto && ./buildscripts/compile-less.sh
 
 ####################### Expose ports #######################
 EXPOSE 8000/tcp
