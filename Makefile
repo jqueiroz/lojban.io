@@ -1,10 +1,10 @@
 docs:
-	./compile-docs.sh
+	./buildscripts/compile-docs.sh
 
 less:
 	./buildscripts/compile-less.sh
 
 server: less
-	./compile-server.sh
+	./buildscripts/compile-server.sh
 
 all: docs server

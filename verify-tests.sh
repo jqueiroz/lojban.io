@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 set -e
 
-stack test --fast
+./buildscripts/stack.sh test --fast

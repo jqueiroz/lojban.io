@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 set -e
 
+echo "***** Compiling..."
 make server
-stack exec server
+
+echo ""
+echo "***** Running..."
+./buildscripts/stack.sh exec server
