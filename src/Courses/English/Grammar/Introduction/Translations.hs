@@ -9,7 +9,6 @@ import Courses.English.Grammar.Introduction.Strategies
 import Courses.Util.ExerciseGenerators
 import Courses.Util.Sentences
 import Util (combineFunctions, combineFunctionsUniformly, generatorFromSingleton, generatorFromList)
-import qualified Data.Text as T
 
 -- * Lesson 1: Basics 1
 
