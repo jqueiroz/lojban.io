@@ -2,7 +2,7 @@ docs:
 	./compile-docs.sh
 
 less:
-	./compile-less.sh
+	./buildscripts/compile-less.sh
 
 server: less
 	./compile-server.sh
