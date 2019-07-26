@@ -1,3 +1,5 @@
+all: server docs
+
 docs:
 	./buildscripts/compile-docs.sh
 
@@ -6,5 +8,3 @@ less:
 
 server: less
 	./buildscripts/compile-server.sh
-
-all: docs server
