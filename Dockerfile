@@ -29,8 +29,11 @@ COPY LICENSE /lojto/LICENSE
 # Copy resources
 COPY resources /lojto/resources
 
-# Compile source code
-RUN cd /lojto && stack build
+# Compile source code and documentation
+RUN cd /lojto && stack haddock --no-haddock-deps --haddock-internal
+
+# Move documentation
+RUN mv /lojto/.stack-work/install/x86_64-linux-nix/*/*/doc /lojto/doc
 
 # Copy additional resources
 COPY static /lojto/static

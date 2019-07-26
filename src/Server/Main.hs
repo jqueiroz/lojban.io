@@ -41,6 +41,8 @@ getBody = askRq >>= liftIO . takeRequestBody >>=
 handleRoot :: ServerPart Response
 handleRoot = msum
     [ forceSlash . ok . toResponse $ displayHome
+    , dir "docs" $ movedPermanently ("doc/lojto-0.1.0.0/index.html" :: String) (toResponse ())
+    , dir "doc" $ serveDirectory EnableBrowsing [] "doc"
     , dir "static" $ serveDirectory EnableBrowsing [] "static"
     , dir "grammar" handleGrammar
     , dir "vocabulary" handleVocabulary
