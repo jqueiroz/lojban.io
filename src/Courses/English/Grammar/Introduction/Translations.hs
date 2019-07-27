@@ -17,6 +17,8 @@ translations1 :: TranslationGenerator
 translations1 = combineFunctionsUniformly [dunda, demonstrative, zdani] where
     dunda = generatorFromList
         [ (["do dunda ti mi"], ["You give me this.", "You give us this."])
+        , (["do dunda ta mi"], ["You give me that.", "You give us that."])
+        , (["mi dunda ti do"], ["I give you this.", "We give you this."])
         , (["mi dunda ta do"], ["I give you that.", "We give you that."])
         ]
     demonstrative = generatorFromList
