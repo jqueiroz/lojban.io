@@ -10,12 +10,7 @@ import Courses.English.Grammar.Introduction.Lessons
 -- TODO: remove the translations that make the least sense (in progress...)
 
 -- Considerations
--- TODO: cleanup all tenses before canonicalization (translations with incorrect tenses will be accepted, but this is likely a small price to pay in order to accept correct translations including tenses)
 -- TODO: also accept "ma'a" (and similar terms) whenever "mi" is accepted
--- TODO: consider accepting "su'u" whenever "nu" and "du'u" are accepted
-
-
-
 
 -------- Tanru
 -- useful gismu: sutra, pelxu
