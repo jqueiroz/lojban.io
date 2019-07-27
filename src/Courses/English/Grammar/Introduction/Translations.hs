@@ -92,20 +92,18 @@ translations2_normal = combineFunctionsUniformly $ others ++ [talkingWithSecondP
         , (["mi dunda zo'e do"], ["I gave you something.", "I will give you something."])
         ]
 
--- | Interesting translation exercises for the second lesson.
---
--- Defined separately so that they may be reused in the third lesson.
-translationExercises2_nice :: ExerciseGenerator
-translationExercises2_nice = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations2_nice
-
--- | Overall translation exercises for the second lesson: comprises both interesting and regular translation exercises.
+-- | Translation exercises for the second lesson.
 translationExercises2 :: ExerciseGenerator
 translationExercises2 = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations2
 
 
 -- * Lesson 3: Basics 3
 
--- | Translation exercises for the third lesson, with the restriction that some intermediate place is missing.
+-- | Overall translations for the third lesson.
+translations3 :: TranslationGenerator
+translations3 =  combineFunctions [(1, translations2_nice), (10, translations3_nice), (5, translations3_normal)]
+
+-- | Translations for the third lesson, with the restriction that some intermediate place is missing.
 --
 -- Defined separately so that they may be used in 'Translate without using "zo'e"' exercises.
 translations3_restricted :: TranslationGenerator
@@ -254,9 +252,11 @@ translationExercises3_nice = combineFunctions [(1, restricted), (5, nice)] where
 translationExercises3_normal :: ExerciseGenerator
 translationExercises3_normal = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations3_normal
 
--- | Overall translation exercises for the third lesson: comprises interesting exercises from the second lesson, as well as both interesting and regular exercises from the third lesson.
+-- | Overall translation exercises for the third lesson.
 translationExercises3 :: ExerciseGenerator
-translationExercises3 =  combineFunctions [(1, translationExercises2_nice), (10, translationExercises3_nice), (5, translationExercises3_normal)]
+translationExercises3 =  combineFunctions [(1, restricted), (5, unrestricted)] where
+    restricted = generateBlacklistedWordTranslationExercise "zo'e" sentenceCanonicalizer sentenceComparer translations3_restricted
+    unrestricted = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations3
 
 -- * Lesson 4: Questions 1
 
