@@ -3,6 +3,7 @@
 module Language.Lojban.Canonicalization
 ( basicSentenceCanonicalizer
 , extendedSentenceCanonicalizer
+, extractSimpleBridi
 ) where
 
 import Language.Lojban.Core
