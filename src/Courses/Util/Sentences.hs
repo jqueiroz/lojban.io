@@ -6,7 +6,6 @@ module Courses.Util.Sentences
 , generatePropertyBridi
 , generateRelationBridi
 , generateActionBridi
-, simplifyCanonicalAnswer
 ) where
 
 import Core
@@ -18,12 +17,6 @@ import System.Random (StdGen)
 import Data.Maybe (fromMaybe)
 import qualified Data.Text as T
 import qualified Data.Map as M
-
--- * Terminator ellisis
--- | Decorates an exercise so that 'simplifyTerminatorsInSentence' is applied to its canonical answer.
-simplifyCanonicalAnswer :: Exercise -> Exercise
-simplifyCanonicalAnswer (TypingExercise title sentences validate canonicalAnswer) = TypingExercise title sentences validate (simplifyTerminatorsInSentence canonicalAnswer)
-simplifyCanonicalAnswer x = x
 
 -- * Sentence generators
 generateNonbridi :: Vocabulary -> StdGen -> (T.Text, StdGen)

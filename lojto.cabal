@@ -45,6 +45,7 @@ library
                      , Serializer
                      , Courses.Util.Documents
                      , Courses.Util.ExerciseGenerators
+                     , Courses.Util.ExerciseUtils
                      , Courses.Util.Extractors
                      , Courses.Util.NumberTranslator
                      , Courses.Util.Sentences
