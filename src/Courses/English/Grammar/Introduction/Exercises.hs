@@ -78,13 +78,13 @@ exercises4 :: ExerciseGenerator
 exercises4 =
     combineFunctions
         [ (20, generateIsolatedBrivlaPlacesExercise dictionary $ generatorFromWeightedList $ getVocabularySelbri vocabulary "actions")
-        , (20, generateContextualizedGismuPlaceMeaningExercise dictionary actionBridiGenerator displayBridi)
+        , (20, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator displayBridi)
         , (20, questionExercises4)
         , (80, translationExercises4)
         ]
     where
         vocabulary = vocabularyGenerator4 dictionary
-        actionBridiGenerator = generateActionBridi vocabulary
+        bridiGenerator = extractSimpleBridiFromTranslationGenerator translations4
         displayBridi = combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
 
 -- | Exercises for the fifth lesson.
