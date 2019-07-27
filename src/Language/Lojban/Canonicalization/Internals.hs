@@ -11,6 +11,7 @@ module Language.Lojban.Canonicalization.Internals
 , canonicalizeParsedBridi
 , canonicalizeParsedTerm
 , retrieveSimpleBridi
+, extractSimpleBridi
 ) where
 
 import Language.Lojban.Core
@@ -244,6 +245,9 @@ canonicalizeParsedText parsedText = (canonicalizeParsedTerm parsedText) `mplus` 
 
 canonicalizeParsedBridi :: (ZG.Free, ZG.Text, ZG.Terminator) -> Either String T.Text
 canonicalizeParsedBridi parsedBridi = displayCanonicalBridi <$> (retrieveSimpleBridi parsedBridi)
+
+extractSimpleBridi :: T.Text -> Either String SimpleBridi
+extractSimpleBridi text = parseText text >>= retrieveSimpleBridi
 
 retrieveSimpleBridi :: (ZG.Free, ZG.Text, ZG.Terminator) -> Either String SimpleBridi
 retrieveSimpleBridi (free, text, terminator) = retrieveStructuredBridi text >>= handleScalarNegation >>= handlePlaceTags >>= handlePlacePermutations >>= convertStructuredBridi xu where
