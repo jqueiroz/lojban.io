@@ -2,10 +2,12 @@
 
 -- | This module establishes algorithmic strategies to be used throughout the course.
 --
--- Currently, these strategies are used solely for evaluating student solutions to translation exercises.
--- First, both the student's response and the model response are normalized using a configurable sentence canonicalizer.
--- Then, the normalized responses are compared using a configurable sentence comparer.
--- If they match, the student's solution is considered correct.
+-- Currently, the only use for these strategies consists in evaluating student solutions to translation exercises.
+-- The process is as follows:
+--
+-- 1. First, both the student's response and the model response are normalized using a configurable sentence canonicalizer.
+-- 2. Then, the normalized responses are compared using a configurable sentence comparer.
+-- 3. If they match, the student's solution is considered correct.
 module Courses.English.Grammar.Introduction.Strategies  where
 
 import Core
@@ -13,7 +15,7 @@ import Language.Lojban.Core
 import Language.Lojban.Canonicalization (extendedSentenceCanonicalizer)
 import qualified Data.Text as T
 
--- | Default sentence comparer.
+-- | Default sentence comparer throughout the course.
 --
 -- Decides whether two sentences are equivalent taking into account the following allowances:
 --
@@ -26,7 +28,7 @@ import qualified Data.Text as T
 -- * Association words ("pe", "ne", "po" and "po'e") are interchangeable.
 -- * The quote delimiters "lu\/li'u" and "lo'u/le'u" are interchangeable.
 --
---     * Conveniently, it is nonetheless enforced that "lu\/li'u" must only be used around grammatical text, as otherwise the canonicalization fails due to a parsing failure.
+--     * Conveniently, it is nonetheless enforced that "lu\/li'u" must only be used around grammatical text, as otherwise the canonicalization fails (due to a parsing failure), and this yields a "mismatch" verdict.
 sentenceComparer :: SentenceComparer
 sentenceComparer x y = (length xs == length ys) && (all wordComparer $ zip xs ys) where
     xs = T.words x
@@ -42,6 +44,6 @@ sentenceComparer x y = (length xs == length ys) && (all wordComparer $ zip xs ys
     wordComparer' "du'u" "su'u" = True
     wordComparer' x y = x == y
 
--- | Default sentence canonicalizer.
+-- | Default sentence canonicalizer throughout the course.
 sentenceCanonicalizer :: SentenceCanonicalizer
 sentenceCanonicalizer = extendedSentenceCanonicalizer
