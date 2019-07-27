@@ -5,7 +5,7 @@ module Courses.English.Grammar.Introduction.Exercises where
 
 import Core
 import Courses.Util.Vocabulary
-import Courses.Util.Sentences (generateSimpleBridi, generateActionBridi, generateNonbridi)
+import Courses.Util.Sentences (generateNonbridi)
 import Courses.Util.Extractors (extractSimpleBridiFromTranslationGenerator)
 import Courses.Util.ExerciseGenerators
 import Language.Lojban.Core
@@ -119,10 +119,10 @@ exercises1to6 :: ExerciseGenerator
 exercises1to6 =
     combineFunctions
         [ (5, generateGrammaticalClassExercise vocabulary)
-        , (5, generateBridiJufraExercise generalBridiGenerator nonbridiGenerator displayBridi)
-        , (5, generateSelbriIdentificationExercise generalBridiGenerator displayBridi)
-        , (5, generateContextualizedGismuPlacePositionExercise dictionary generalBridiGenerator displayBridi)
-        , (15, generateContextualizedGismuPlaceMeaningExercise dictionary actionBridiGenerator displayBridi)
+        , (5, generateBridiJufraExercise bridiGenerator nonbridiGenerator displayBridi)
+        , (5, generateSelbriIdentificationExercise bridiGenerator displayBridi)
+        , (5, generateContextualizedGismuPlacePositionExercise dictionary bridiGenerator displayBridi)
+        , (15, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator displayBridi)
         , (15, generateIsolatedBrivlaPlacesExercise dictionary $ generatorFromWeightedList $ getVocabularySelbri vocabulary "actions")
         , (60, translationExercises1to6_simplified)
         , (12, questionExercises4_simplified)
@@ -130,8 +130,7 @@ exercises1to6 =
         ]
     where
         vocabulary = vocabularyGenerator6 dictionary
-        generalBridiGenerator = generateSimpleBridi vocabulary
-        actionBridiGenerator = generateActionBridi vocabulary
+        bridiGenerator = extractSimpleBridiFromTranslationGenerator translations1to6
         nonbridiGenerator = generateNonbridi vocabulary
         displayBridi = simplifyTerminatorsInBridiDisplayer $ (combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)])
 

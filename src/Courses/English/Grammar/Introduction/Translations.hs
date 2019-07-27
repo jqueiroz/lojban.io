@@ -973,6 +973,9 @@ translationExercises6_restricted :: ExerciseGenerator
 translationExercises6_restricted = generateBlacklistedWordTranslationExercise "ku" sentenceCanonicalizer sentenceComparer translations6_restricted
 
 -- * Lesson 7: Checkpoint -- Lessons 1-6
+translations1to6 :: TranslationGenerator
+translations1to6 = simplifyTranslationGenerator $ combineFunctionsUniformly [translations3, translations4, translations5, translations6]
+
 translationExercises1to6_simplified :: ExerciseGenerator
 translationExercises1to6_simplified = simplifyCanonicalAnswer . combineFunctions [(4, translationExercises3_nice), (1, translationExercises3_normal), (5, translationExercises4), (6, translationExercises5), (5, translationExercises6_restricted)]
 
