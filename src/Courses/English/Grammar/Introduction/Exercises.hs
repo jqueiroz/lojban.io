@@ -70,7 +70,7 @@ exercises3 =
     where
         vocabulary = vocabularyGenerator3 dictionary
         nonbridiGenerator = generateNonbridi vocabulary
-        bridiGenerator = extractSimpleBridiFromTranslationGenerator translations2
+        bridiGenerator = extractSimpleBridiFromTranslationGenerator translations3
         displayBridi = combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
 
 -- | Exercises for the fourth lesson.
