@@ -1,7 +1,14 @@
 #!/usr/bin/env bash
 set -e
-./docker-stop.sh $*
 
+# Change directory to the project's root
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+cd "$DIR/.."
+
+# Stop running containers
+./dist/docker-stop.sh $*
+
+# Start new containers
 echo -e ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Starting containers..."
 if [ -z "$DOCKER_OPTS" ]; then
     echo -ne "\t"
