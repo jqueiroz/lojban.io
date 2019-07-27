@@ -8,10 +8,13 @@ module Language.Lojban.Core
 , Gismu (..)
 , Cmavo (..)
 , Brivla (..)
+, dictFindBrivla
+, dictFindBrivla'
 , retrieveBrivlaPlaces
 ) where
 
 import System.Random (StdGen)
+import Data.Maybe (fromMaybe)
 import qualified Data.Text as T
 import qualified Data.Map as M
 
@@ -74,6 +77,15 @@ instance Eq Gismu where
 
 instance Eq Cmavo where
     x == y = (cmavoText x) == (cmavoText y)
+
+-- * Helper functions
+
+dictFindBrivla :: Dictionary -> T.Text -> Maybe Brivla
+dictFindBrivla dictionary key = (dictBrivla dictionary) M.!? key
+
+dictFindBrivla' :: Dictionary -> T.Text -> Brivla
+dictFindBrivla' dictionary key = fromMaybe errorResult (dictFindBrivla dictionary key) where
+    errorResult = error $ "Brivla not found in dictionary: " ++ (T.unpack key)
 
 retrieveBrivlaPlaces :: Dictionary -> T.Text -> [T.Text]
 retrieveBrivlaPlaces dictionary brivla =

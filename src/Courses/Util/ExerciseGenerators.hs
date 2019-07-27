@@ -245,10 +245,14 @@ generateContextualizedGismuPlaceMeaningExercise :: Dictionary -> SimpleBridiGene
 generateContextualizedGismuPlaceMeaningExercise dictionary simpleBridiGenerator displayBridi = combineFunctions [(1, f2)] where
     f2 r0 =
         let
+            -- Generate bridi
             (bridi, r1) = simpleBridiGenerator r0
-            placesEnglish = gismuEnglishPlaces $ (dictGismu dictionary) M.! (simpleBridiSelbri bridi)
-            placesLojban = simpleBridiSumti $ bridi
+            -- Extract brivla places
+            selbri = simpleBridiSelbri bridi
+            placesEnglish = retrieveBrivlaPlaces dictionary selbri
+            placesLojban = simpleBridiSumti bridi
             places = zip placesEnglish (replace "" "zo'e" placesLojban)
+            -- Construct exercise
             (place, r2) = chooseItemUniformly r1 places
             correctAlternative = snd place
             incorrectAlternatives = (simpleBridiSelbri bridi) : (filter (/= correctAlternative) . map snd $ places)
