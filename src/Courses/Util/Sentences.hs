@@ -4,9 +4,7 @@ module Courses.Util.Sentences
 ( generateNonbridi
 ) where
 
-import Core
 import Courses.Util.Vocabulary
-import Language.Lojban.Core
 import Util (chooseItem)
 import System.Random (StdGen)
 import qualified Data.Text as T

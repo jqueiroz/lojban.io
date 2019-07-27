@@ -3,8 +3,6 @@ module Courses.Util.ExerciseUtils
 ) where
 
 import Core
-import Courses.Util.Vocabulary
-import Language.Lojban.Core
 import Language.Lojban.Refinement (simplifyTerminatorsInSentence)
 
 -- * Terminator ellisis
