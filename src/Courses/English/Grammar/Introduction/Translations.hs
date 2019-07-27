@@ -259,6 +259,10 @@ translationExercises3 =  combineFunctions [(1, restricted), (5, unrestricted)] w
     unrestricted = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations3
 
 -- * Lesson 4: Questions 1
+--
+-- | Overall translations for the fourth lesson (always involving "xu", "ma" or "mo").
+translations4 :: TranslationGenerator
+translations4 = combineFunctions [(4, translations4_xu), (4, translations4_ma), (1, translations4_mo)]
 
 -- | Translations for the fourth lesson involving "xu", with the restriction that some intermediate place is missing.
 --
@@ -293,9 +297,9 @@ translations4_restricted_xu = combineFunctions [(2, talkingAbout), (1, gaveSomet
         , (["xu do djuno fi lo gerku ku"], ["Do you know about dogs?"])
         ]
 
--- | Regular translations for the fourth lesson involving "xu".
-translations4_normal_xu :: TranslationGenerator
-translations4_normal_xu = combineFunctions $ [(3, translations4_restricted_xu), (3, writing), (2, know)] ++ ((1,) <$> [hasHouse, nice, talking, teaching, friends, others]) where
+-- | Overall translations for the fourth lesson involving "xu".
+translations4_xu :: TranslationGenerator
+translations4_xu = combineFunctions $ [(3, translations4_restricted_xu), (3, writing), (2, know)] ++ ((1,) <$> [hasHouse, nice, talking, teaching, friends, others]) where
     hasHouse = generatorFromList
         [ (["xu do se zdani"], ["Do you have a house?"])
         , (["xu lo prenu ku se zdani"], ["Does the person have a house?"])
@@ -394,9 +398,9 @@ translations4_restricted_ma = combineFunctions [(2, talkingAbout), (1, gaveSomet
         , (["do djuno fi ma"], ["What subjects do you know?"])
         ]
 
--- | Regular translations for the fourth lesson involving "ma".
-translations4_normal_ma :: TranslationGenerator
-translations4_normal_ma = combineFunctions $ [(3, translations4_restricted_ma), (3, writing), (2, know)] ++ ((1,) <$> [hasHouse, nice, talking, giving, teaching]) where
+-- | Overall translations for the fourth lesson involving "ma".
+translations4_ma :: TranslationGenerator
+translations4_ma = combineFunctions $ [(3, translations4_restricted_ma), (3, writing), (2, know)] ++ ((1,) <$> [hasHouse, nice, talking, giving, teaching]) where
     hasHouse = generatorFromList
         [ (["ma se zdani"], ["Who has a house?"])
         , (["ta zdani ma", "zdani ma"], ["Whose house is that?"])
@@ -479,8 +483,8 @@ translations4_normal_ma = combineFunctions $ [(3, translations4_restricted_ma), 
         ]
 
 -- | Translations for the fourth lesson involving "mo".
-translations4_normal_mo :: TranslationGenerator
-translations4_normal_mo = generatorFromList
+translations4_mo :: TranslationGenerator
+translations4_mo = generatorFromList
     [ (["mi mo"], ["What am I doing?"])
     , (["do mo"], ["What are you doing?"])
     , (["lo prenu ku mo"], ["What is the person doing?"])
@@ -488,26 +492,22 @@ translations4_normal_mo = generatorFromList
     , (["lo ciska ku mo"], ["What is the writer doing?"])
     ]
 
--- | Overall translations for the fourth lesson involving "xu" or "ma", with the restriction that some intermediate place is missing.
+-- | Translations for the fourth lesson involving "xu" or "ma", with the restriction that some intermediate place is missing.
 --
 -- Defined separately so that they may be used in 'Translate without using "zo'e"' exercises.
 translations4_restricted :: TranslationGenerator
 translations4_restricted = combineFunctionsUniformly [translations4_restricted_xu, translations4_restricted_ma]
 
--- | Overall regular translations for the fourth lesson involving "xu", "ma" or "mo".
-translations4_normal :: TranslationGenerator
-translations4_normal = combineFunctions [(4, translations4_normal_xu), (4, translations4_normal_ma), (1, translations4_normal_mo)]
-
 translationExercises4 :: ExerciseGenerator
-translationExercises4 = combineFunctions [(1, restricted), (5, normal)] where
+translationExercises4 = combineFunctions [(1, restricted), (5, unrestricted)] where
     restricted = generateBlacklistedWordTranslationExercise "zo'e" sentenceCanonicalizer sentenceComparer translations4_restricted
-    normal = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations4_normal
+    unrestricted = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations4
 
 questionExercises4 :: ExerciseGenerator
-questionExercises4 = generateNarrowFillingBlanksExerciseByAlternatives ["mo", "ma"] $ combineFunctionsUniformly [translations4_normal_ma, translations4_normal_mo]
+questionExercises4 = generateNarrowFillingBlanksExerciseByAlternatives ["mo", "ma"] $ combineFunctionsUniformly [translations4_ma, translations4_mo]
 
 questionExercises4_simplified :: ExerciseGenerator
-questionExercises4_simplified = generateNarrowFillingBlanksExerciseByAlternatives ["mo", "ma"] $ simplifyTranslationGenerator $ combineFunctionsUniformly [translations4_normal_ma, translations4_normal_mo]
+questionExercises4_simplified = generateNarrowFillingBlanksExerciseByAlternatives ["mo", "ma"] $ simplifyTranslationGenerator $ combineFunctionsUniformly [translations4_ma, translations4_mo]
 
 -- * Lesson 5: Abstractions 1
 -- CHECK: Are events vs facts being used correctly?
