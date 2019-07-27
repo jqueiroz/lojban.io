@@ -40,7 +40,7 @@ COPY static /lojto/static
 
 # Compile stylesheet files
 COPY buildscripts /lojto/buildscripts
-RUN cd /lojto && ./buildscripts/compile-less.sh
+RUN cd /lojto && LOJBAN_TOOL_BYPASS_NIX=true ./buildscripts/compile-less.sh
 
 ####################### Expose ports #######################
 EXPOSE 8000/tcp

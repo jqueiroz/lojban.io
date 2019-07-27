@@ -4,7 +4,11 @@ set -e
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 run_command(){
-    nix-shell -I nixpkgs=https://github.com/NixOS/nixpkgs-channels/archive/nixos-19.03.tar.gz "$DIR/haskell-environment.nix" --run "$1"
+    if [[ -n "$LOJBAN_TOOL_BYPASS_NIX" ]]; then
+        $1
+    else
+        nix-shell -I nixpkgs=https://github.com/NixOS/nixpkgs-channels/archive/nixos-19.03.tar.gz "$DIR/haskell-environment.nix" --run "$1"
+    fi
 }
 
 # Setup nix-shell environment
