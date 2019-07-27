@@ -782,6 +782,9 @@ abstractionExercises5_simplified :: ExerciseGenerator
 abstractionExercises5_simplified = generateNarrowFillingBlanksExerciseByAlternatives ["lo nu", "lo du'u", "lo se du'u"] $ simplifyTranslationGenerator $ combineFunctionsUniformly [translations5_nu, translations5_du'u, translations5_sedu'u]
 
 -- * Lesson 6: Terminator elision
+translations6 :: TranslationGenerator
+translations6 = translations6_restricted
+
 translations6_restricted :: TranslationGenerator
 translations6_restricted = combineFunctions [(2, hasHouse), (3, nice), (3, giving), (2, talking), (3, gleki), (3, nupre), (3, djuno), (3, cusku)] where
     hasHouse = generatorFromList

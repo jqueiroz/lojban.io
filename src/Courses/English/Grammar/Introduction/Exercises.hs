@@ -106,12 +106,12 @@ exercises6 :: ExerciseGenerator
 exercises6 =
     combineFunctions
         [ (20, generateIsolatedBrivlaPlacesExercise dictionary $ generatorFromWeightedList $ getVocabularySelbri vocabulary "actions")
-        , (10, generateContextualizedGismuPlaceMeaningExercise dictionary actionBridiGenerator displayBridi)
+        , (10, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator displayBridi)
         , (70, translationExercises6_restricted)
         ]
     where
         vocabulary = vocabularyGenerator6 dictionary
-        actionBridiGenerator = generateActionBridi vocabulary
+        bridiGenerator = extractSimpleBridiFromTranslationGenerator translations6
         displayBridi = simplifyTerminatorsInBridiDisplayer $ (combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)])
 
 -- | Exercises for the seventh lesson.
