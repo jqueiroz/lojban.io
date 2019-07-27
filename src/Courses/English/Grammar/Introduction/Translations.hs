@@ -37,6 +37,10 @@ translationExercises1 = generateTranslationExercise sentenceCanonicalizer senten
 
 -- * Lesson 2: Basics 2
 
+-- | Overall translations for the second lesson.
+translations2 :: TranslationGenerator
+translations2 = combineFunctions [(1, translations2_nice), (4, translations2_normal)]
+
 -- | Interesting translations for the second lesson.
 --
 -- Defined separately so that they may be reused in the third lesson.
@@ -94,13 +98,9 @@ translations2_normal = combineFunctionsUniformly $ others ++ [talkingWithSecondP
 translationExercises2_nice :: ExerciseGenerator
 translationExercises2_nice = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations2_nice
 
--- | Regular translation exercises for the second lesson.
-translationExercises2_normal :: ExerciseGenerator
-translationExercises2_normal = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations2_normal
-
 -- | Overall translation exercises for the second lesson: comprises both interesting and regular translation exercises.
 translationExercises2 :: ExerciseGenerator
-translationExercises2 = combineFunctions [(1, translationExercises2_nice), (4, translationExercises2_normal)]
+translationExercises2 = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations2
 
 
 -- * Lesson 3: Basics 3
