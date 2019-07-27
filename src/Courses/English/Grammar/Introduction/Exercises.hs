@@ -43,17 +43,16 @@ exercises2 :: ExerciseGenerator
 exercises2 =
     combineFunctions
         [ (20, generateGrammaticalClassExercise vocabulary)
-        , (15, generateBridiJufraExercise generalBridiGenerator nonbridiGenerator displayBridi)
-        , (20, generateSelbriIdentificationExercise generalBridiGenerator displayBridi)
-        , (10, generateContextualizedGismuPlacePositionExercise dictionary generalBridiGenerator displayBridi)
-        , (20, generateContextualizedGismuPlaceMeaningExercise dictionary actionBridiGenerator displayBridi)
+        , (15, generateBridiJufraExercise bridiGenerator nonbridiGenerator displayBridi)
+        , (20, generateSelbriIdentificationExercise bridiGenerator displayBridi)
+        , (10, generateContextualizedGismuPlacePositionExercise dictionary bridiGenerator displayBridi)
+        , (20, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator displayBridi)
         , (40, translationExercises2)
         ]
     where
         vocabulary = vocabularyGenerator2 dictionary
         nonbridiGenerator = generateNonbridi vocabulary
-        generalBridiGenerator = generateSimpleBridi vocabulary
-        actionBridiGenerator = generateActionBridi vocabulary
+        bridiGenerator = extractSimpleBridiFromTranslationGenerator translations2
         displayBridi = combineFunctions [(7, displayStandardSimpleBridi), (3, displayVariantSimpleBridi)]
 
 -- | Exercises for the third lesson.

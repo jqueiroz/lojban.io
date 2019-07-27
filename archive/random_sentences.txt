@@ -9,3 +9,20 @@
 "ti pelxu"
 "ti zdani"
 
+=> Sentences randomly generated for the second lesson:
+
+"do dunda ta mi"
+"do dunda ti mi"
+"do pendo mi"
+"do prenu"
+"do tavla mi"
+"mi dunda ta do"
+"mi dunda ti do"
+"mi pendo do"
+"mi prenu"
+"ta mlatu"
+"ta pelxu"
+"ta zdani"
+"ti mlatu"
+"ti pelxu"
+"ti zdani"
