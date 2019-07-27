@@ -10,6 +10,7 @@ import Data.List.Ordered (nubSort)
 import qualified Data.Text.IO as TIO
 import qualified Data.Text as T
 import qualified Data.Map as M
+import System.Random (StdGen, mkStdGen)
 
 -- See also: https://mw.lojban.org/papri/N-grams_of_Lojban_corpus
 
@@ -40,3 +41,13 @@ terryWords = map gismuText <$> terry
 
 canonicalizeString :: String -> Either String T.Text
 canonicalizeString =  basicSentenceCanonicalizer . T.pack
+
+samplesFromGenerator :: (StdGen -> (a, StdGen)) -> [a]
+samplesFromGenerator gen = map applyGenerator [1..10000] where
+    applyGenerator x = fst $ gen (mkStdGen x)
+
+showSamplesFromGenerator :: (Show a) => (StdGen -> (a, StdGen)) -> String
+showSamplesFromGenerator = unlines . nubSort . (map show) . samplesFromGenerator
+
+displaySamplesFromGenerator :: (Show a) => (StdGen -> (a, StdGen)) -> IO ()
+displaySamplesFromGenerator = putStrLn . showSamplesFromGenerator
