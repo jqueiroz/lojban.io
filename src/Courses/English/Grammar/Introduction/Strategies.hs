@@ -20,7 +20,7 @@ import qualified Data.Text as T
 -- Decides whether two sentences are equivalent taking into account the following allowances:
 --
 -- * The descriptors "lo" and "le" are interchangeable.
--- * The generic abstractor "su'u" is exchangeable with the more specific abstractors "nu" and "du'u".
+-- * The generic abstractor "su'u" is exchangeable with the more specific abstractors "nu", "du'u" and "ka".
 -- * Tenses are optional, and may be missing from one or both of the sentences (however, if tenses are specified in both sentences, they must match).
 --
 --     * TODO: this still needs to be implemented
@@ -42,6 +42,7 @@ sentenceComparer x y = (length xs == length ys) && (all wordComparer $ zip xs ys
     wordComparer' "li'u" "le'u" = True
     wordComparer' "nu" "su'u" = True
     wordComparer' "du'u" "su'u" = True
+    wordComparer' "ka" "su'u" = True
     wordComparer' x y = x == y
 
 -- | Default sentence canonicalizer throughout the course.
