@@ -60,18 +60,17 @@ exercises3 :: ExerciseGenerator
 exercises3 =
     combineFunctions
         [ (10, generateGrammaticalClassExercise vocabulary)
-        , (10, generateBridiJufraExercise generalBridiGenerator nonbridiGenerator displayBridi)
-        , (10, generateSelbriIdentificationExercise generalBridiGenerator displayBridi)
-        , (20, generateContextualizedGismuPlacePositionExercise dictionary generalBridiGenerator displayBridi)
-        , (20, generateContextualizedGismuPlaceMeaningExercise dictionary actionBridiGenerator displayBridi)
+        , (10, generateBridiJufraExercise bridiGenerator nonbridiGenerator displayBridi)
+        , (10, generateSelbriIdentificationExercise bridiGenerator displayBridi)
+        , (20, generateContextualizedGismuPlacePositionExercise dictionary bridiGenerator displayBridi)
+        , (20, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator displayBridi)
         , (30, generateIsolatedBrivlaPlacesExercise dictionary $ generatorFromWeightedList $ getVocabularySelbri vocabulary "actions")
         , (60, translationExercises3)
         ]
     where
         vocabulary = vocabularyGenerator3 dictionary
         nonbridiGenerator = generateNonbridi vocabulary
-        generalBridiGenerator = generateSimpleBridi vocabulary
-        actionBridiGenerator = generateActionBridi vocabulary
+        bridiGenerator = extractSimpleBridiFromTranslationGenerator translations2
         displayBridi = combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
 
 -- | Exercises for the fourth lesson.
