@@ -15,10 +15,12 @@ import Courses.English.Grammar.Introduction.Translations
 import Courses.English.Grammar.Introduction.Vocabulary
 import Util (combineFunctions, generatorFromWeightedList)
 
+-- * Resources
 -- | Dictionary for the exercises.
 dictionary :: Dictionary
 dictionary = englishDictionary
 
+-- * Exercises
 -- | Exercises for the first lesson.
 exercises1 :: ExerciseGenerator
 exercises1 =
