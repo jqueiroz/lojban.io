@@ -5,7 +5,6 @@ module Courses.English.Vocabulary.Brivla.Exercises where
 
 import Core
 import Util (generatorFromList, combineFunctions)
-import Language.Lojban.Core
 import Language.Lojban.Dictionaries (englishDictionary)
 import Control.Arrow (second)
 import Courses.Util.ExerciseGenerators
@@ -16,10 +15,9 @@ buildBrivlaExerciseGenerator :: TranslationsByExpression -> ExerciseGenerator
 buildBrivlaExerciseGenerator translationsByExpression = combineFunctions [(6, translationExercises), (3, brivlaPlacesExercises), (3, brivlaProvidingExercises)] where
     dictionary = englishDictionary
     brivla = map fst translationsByExpression
-    brivlaWithAtLeastTwoPlaces = filter ((>= 2) . length . retrieveBrivlaPlaces dictionary) brivla
     translationExercises = generateBroadFillingBlanksExerciseByExpression translationGeneratorByExpression
     translationGeneratorByExpression = map (second generatorFromList) translationsByExpression
-    brivlaPlacesExercises = generateIsolatedBrivlaPlacesExercise dictionary $ generatorFromList brivlaWithAtLeastTwoPlaces
+    brivlaPlacesExercises = generateIsolatedBrivlaPlacesExercise dictionary brivla
     brivlaProvidingExercises = generateLexiconProvidingExercise "brivla" dictionary $ generatorFromList brivla
 
 -- * Exercises

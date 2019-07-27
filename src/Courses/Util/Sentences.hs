@@ -4,12 +4,20 @@ module Courses.Util.Sentences
 ( generateNonbridi
 ) where
 
-import Courses.Util.Vocabulary
-import Util (chooseItem)
+import Core
+import Util (generatorFromList)
+import Data.List (intersect)
 import System.Random (StdGen)
 import qualified Data.Text as T
 
 -- * Sentence generators
 generateNonbridi :: Vocabulary -> StdGen -> (T.Text, StdGen)
-generateNonbridi vocabulary r0 = chooseItem r0 . concatMap (getVocabularySumti vocabulary) $
-    ["genericPersons", "semiGenericPersons", "animals", "genericPointable", "places", "subjects"]
+generateNonbridi vocabulary = generatorFromList $ pronouns ++ nouns where
+    pronouns = cmavoList `intersect` [ "mi", "do", "ti", "ta" ]
+    nouns =
+        if "lo" `elem` cmavoList then
+            ["lo " `T.append` brivla `T.append` " ku" | brivla <- brivlaList]
+        else
+            []
+    cmavoList = vocabularyCmavoList vocabulary
+    brivlaList = vocabularyBrivlaList vocabulary

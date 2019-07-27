@@ -1,10 +1,7 @@
-{-# LANGUAGE OverloadedStrings #-}
-
 -- | This module defines exercises for each of the course lessons.
 module Courses.English.Grammar.Introduction.Exercises where
 
 import Core
-import Courses.Util.Vocabulary
 import Courses.Util.Sentences (generateNonbridi)
 import Courses.Util.Extractors (extractSimpleBridiFromTranslationGenerator)
 import Courses.Util.ExerciseGenerators
@@ -14,7 +11,7 @@ import Language.Lojban.Presentation (displayStandardSimpleBridi, displayVariantS
 import Language.Lojban.Refinement (simplifyTerminatorsInBridiDisplayer)
 import Courses.English.Grammar.Introduction.Translations
 import Courses.English.Grammar.Introduction.Vocabulary
-import Util (combineFunctions, generatorFromWeightedList)
+import Util (combineFunctions)
 
 -- * Resources
 -- | Dictionary for the exercises.
@@ -33,7 +30,7 @@ exercises1 =
         , (40, translationExercises1)
         ]
     where
-        vocabulary = vocabularyGenerator1 dictionary
+        vocabulary = vocabulary1_cumulative
         nonbridiGenerator = generateNonbridi vocabulary
         bridiGenerator = extractSimpleBridiFromTranslationGenerator translations1
         displayBridi = displayStandardSimpleBridi
@@ -50,7 +47,7 @@ exercises2 =
         , (40, translationExercises2)
         ]
     where
-        vocabulary = vocabularyGenerator2 dictionary
+        vocabulary = vocabulary2_cumulative
         nonbridiGenerator = generateNonbridi vocabulary
         bridiGenerator = extractSimpleBridiFromTranslationGenerator translations2
         displayBridi = combineFunctions [(7, displayStandardSimpleBridi), (3, displayVariantSimpleBridi)]
@@ -64,11 +61,11 @@ exercises3 =
         , (10, generateSelbriIdentificationExercise bridiGenerator displayBridi)
         , (20, generateContextualizedGismuPlacePositionExercise dictionary bridiGenerator displayBridi)
         , (20, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator displayBridi)
-        , (30, generateIsolatedBrivlaPlacesExercise dictionary $ generatorFromWeightedList $ getVocabularySelbri vocabulary "actions")
+        , (30, generateIsolatedBrivlaPlacesExercise dictionary $ vocabularyBrivlaList vocabulary)
         , (60, translationExercises3)
         ]
     where
-        vocabulary = vocabularyGenerator3 dictionary
+        vocabulary = vocabulary3_cumulative
         nonbridiGenerator = generateNonbridi vocabulary
         bridiGenerator = extractSimpleBridiFromTranslationGenerator translations3
         displayBridi = combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
@@ -77,13 +74,13 @@ exercises3 =
 exercises4 :: ExerciseGenerator
 exercises4 =
     combineFunctions
-        [ (20, generateIsolatedBrivlaPlacesExercise dictionary $ generatorFromWeightedList $ getVocabularySelbri vocabulary "actions")
+        [ (20, generateIsolatedBrivlaPlacesExercise dictionary $ vocabularyBrivlaList vocabulary)
         , (20, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator displayBridi)
         , (20, questionExercises4)
         , (80, translationExercises4)
         ]
     where
-        vocabulary = vocabularyGenerator4 dictionary
+        vocabulary = vocabulary4_cumulative
         bridiGenerator = extractSimpleBridiFromTranslationGenerator translations4
         displayBridi = combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
 
@@ -91,13 +88,13 @@ exercises4 =
 exercises5 :: ExerciseGenerator
 exercises5 =
     combineFunctions
-        [ (30, generateIsolatedBrivlaPlacesExercise dictionary $ generatorFromWeightedList $ getVocabularySelbri vocabulary "actions")
+        [ (30, generateIsolatedBrivlaPlacesExercise dictionary $ vocabularyBrivlaList vocabulary)
         , (10, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator displayBridi)
         , (40, abstractionExercises5)
         , (70, translationExercises5)
         ]
     where
-        vocabulary = vocabularyGenerator5 dictionary
+        vocabulary = vocabulary5_cumulative
         bridiGenerator = extractSimpleBridiFromTranslationGenerator translations5
         displayBridi = combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
 
@@ -105,12 +102,12 @@ exercises5 =
 exercises6 :: ExerciseGenerator
 exercises6 =
     combineFunctions
-        [ (20, generateIsolatedBrivlaPlacesExercise dictionary $ generatorFromWeightedList $ getVocabularySelbri vocabulary "actions")
+        [ (20, generateIsolatedBrivlaPlacesExercise dictionary $ vocabularyBrivlaList vocabulary)
         , (10, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator displayBridi)
         , (70, translationExercises6_restricted)
         ]
     where
-        vocabulary = vocabularyGenerator6 dictionary
+        vocabulary = vocabulary6_cumulative
         bridiGenerator = extractSimpleBridiFromTranslationGenerator translations6
         displayBridi = simplifyTerminatorsInBridiDisplayer $ (combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)])
 
@@ -123,13 +120,13 @@ exercises1to6 =
         , (5, generateSelbriIdentificationExercise bridiGenerator displayBridi)
         , (5, generateContextualizedGismuPlacePositionExercise dictionary bridiGenerator displayBridi)
         , (15, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator displayBridi)
-        , (15, generateIsolatedBrivlaPlacesExercise dictionary $ generatorFromWeightedList $ getVocabularySelbri vocabulary "actions")
+        , (15, generateIsolatedBrivlaPlacesExercise dictionary $ vocabularyBrivlaList vocabulary)
         , (60, translationExercises1to6_simplified)
         , (12, questionExercises4_simplified)
         , (12, abstractionExercises5_simplified)
         ]
     where
-        vocabulary = vocabularyGenerator6 dictionary
+        vocabulary = vocabulary6_cumulative
         bridiGenerator = extractSimpleBridiFromTranslationGenerator translations1to6
         nonbridiGenerator = generateNonbridi vocabulary
         displayBridi = simplifyTerminatorsInBridiDisplayer $ (combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)])
@@ -138,64 +135,64 @@ exercises1to6 =
 exercises8 :: ExerciseGenerator
 exercises8 =
     combineFunctions
-        [ (20, generateIsolatedBrivlaPlacesExercise dictionary $ generatorFromWeightedList $ getVocabularySelbri vocabulary "actions")
+        [ (20, generateIsolatedBrivlaPlacesExercise dictionary $ vocabularyBrivlaList vocabulary)
         , (70, translationExercises8)
         , (15, fillingBlanksExercises8)
         ]
     where
-        vocabulary = vocabularyGenerator8 dictionary
+        vocabulary = vocabulary8_cumulative
 
 -- | Exercises for the nineth lesson.
 exercises9 :: ExerciseGenerator
 exercises9 =
     combineFunctions
-        [ (20, generateIsolatedBrivlaPlacesExercise dictionary $ generatorFromWeightedList $ getVocabularySelbri vocabulary "actions" ++ getVocabularySelbri vocabulary "relations")
+        [ (20, generateIsolatedBrivlaPlacesExercise dictionary $ vocabularyBrivlaList vocabulary)
         , (70, translationExercises9)
         ]
     where
-        vocabulary = vocabularyGenerator9 dictionary
+        vocabulary = vocabulary9_cumulative
 
 -- | Exercises for the tenth lesson.
 exercises10 :: ExerciseGenerator
 exercises10 =
     combineFunctions
-        [ (20, generateIsolatedBrivlaPlacesExercise dictionary $ generatorFromWeightedList $ getVocabularySelbri vocabulary "actions" ++ getVocabularySelbri vocabulary "relations")
+        [ (20, generateIsolatedBrivlaPlacesExercise dictionary $ vocabularyBrivlaList vocabulary)
         , (80, translationExercises10)
         ]
     where
-        vocabulary = vocabularyGenerator10 dictionary
+        vocabulary = vocabulary10_cumulative
 
 -- | Exercises for the eleventh lesson.
 exercises11 :: ExerciseGenerator
 exercises11 =
     combineFunctions
-        [ (10, generateIsolatedBrivlaPlacesExercise dictionary $ generatorFromWeightedList $ getVocabularySelbri vocabulary "actions" ++ getVocabularySelbri vocabulary "relations")
+        [ (10, generateIsolatedBrivlaPlacesExercise dictionary $ vocabularyBrivlaList vocabulary)
         , (70, translationExercises11_restricted)
         , (15, translationExercises11_unrestricted)
         , (20, fillingBlanksExercises11)
         ]
     where
-        vocabulary = vocabularyGenerator11 dictionary
+        vocabulary = vocabulary11_cumulative
 
 -- | Exercises for the twelveth lesson.
 exercises12 :: ExerciseGenerator
 exercises12 =
     combineFunctions
-        [ (10, generateIsolatedBrivlaPlacesExercise dictionary $ generatorFromWeightedList $ getVocabularySelbri vocabulary "actions" ++ getVocabularySelbri vocabulary "relations")
+        [ (10, generateIsolatedBrivlaPlacesExercise dictionary $ vocabularyBrivlaList vocabulary)
         , (70, translationExercises12)
         ]
     where
-        vocabulary = vocabularyGenerator12 dictionary
+        vocabulary = vocabulary12_cumulative
 
 -- | Exercises for the thirteenth lesson.
 exercises8to12 :: ExerciseGenerator
 exercises8to12 =
     combineFunctions
-        [ (10, generateIsolatedBrivlaPlacesExercise dictionary $ generatorFromWeightedList $ getVocabularySelbri vocabulary "actions" ++ getVocabularySelbri vocabulary "relations")
+        [ (10, generateIsolatedBrivlaPlacesExercise dictionary $ vocabularyBrivlaList vocabulary)
         , (70, translationExercises8to12)
         ]
     where
-        vocabulary = vocabularyGenerator12 dictionary
+        vocabulary = vocabulary12_cumulative
 
 -- | Exercises for the fourteenth lesson.
 exercises14 :: ExerciseGenerator

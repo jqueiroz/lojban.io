@@ -27,6 +27,18 @@ data Lesson = Lesson
     , lessonPlan :: P.Pandoc
     }
 
+data Vocabulary = Vocabulary
+    { vocabularyBrivlaList :: [T.Text]
+    , vocabularyCmavoList :: [T.Text]
+    , vocabularyCmevlaList :: [T.Text]
+    } deriving (Show)
+
+instance Semigroup Vocabulary where
+    (<>) vocabulary1 vocabulary2 = Vocabulary gismu cmavo cmevla where
+        gismu = (vocabularyBrivlaList vocabulary1) ++ (vocabularyBrivlaList vocabulary2)
+        cmavo = (vocabularyCmavoList vocabulary1) ++ (vocabularyCmavoList vocabulary2)
+        cmevla = (vocabularyCmevlaList vocabulary1) ++ (vocabularyCmevlaList vocabulary2)
+
 instance Show Lesson where
     show lesson = "Lesson { title = " ++ show (lessonTitle lesson) ++ " }"
 

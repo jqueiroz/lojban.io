@@ -49,7 +49,6 @@ library
                      , Courses.Util.Extractors
                      , Courses.Util.NumberTranslator
                      , Courses.Util.Sentences
-                     , Courses.Util.Vocabulary
                      , Courses.English.Grammar.Introduction.Course
                      , Courses.English.Grammar.Introduction.Documents
                      , Courses.English.Grammar.Introduction.Exercises

@@ -30,7 +30,6 @@ module Courses.Util.ExerciseGenerators
 ) where
 
 import Core
-import Courses.Util.Vocabulary
 import Courses.Util.NumberTranslator
 import Language.Lojban.Core
 import Language.Lojban.Refinement (simplifyTerminatorsInSentence)
@@ -110,10 +109,9 @@ expandTranslationGenerator translationGenerator r0 = (expandTranslation translat
 -- Exercise: tell grammatical class of a word
 generateGrammaticalClassExercise :: Vocabulary -> ExerciseGenerator
 generateGrammaticalClassExercise vocabulary r0 = SingleChoiceExercise title sentences correctAlternative incorrectAlternatives True where
-    wordList = vocabularyWords vocabulary
-    words "gismu" = map gismuText $ gismuList wordList
-    words "cmavo" = map cmavoText $ cmavoList wordList
-    words "cmevla" = cmevlaList wordList
+    words "brivla" = vocabularyBrivlaList vocabulary
+    words "cmavo" = vocabularyBrivlaList vocabulary
+    words "cmevla" = vocabularyCmevlaList vocabulary
     allAlternatives = filter (not . null . words) ["gismu", "cmavo", "cmevla"]
     (correctAlternative, r1) = chooseItemUniformly r0 allAlternatives
     incorrectAlternatives = filter (/= correctAlternative) allAlternatives
@@ -278,10 +276,11 @@ generateContextualizedGismuPlacePositionExercise dictionary simpleBridiGenerator
         in SingleChoiceExercise title sentences correctAlternative incorrectAlternatives False
 
 -- Exercise: tell brivla places using se/te/ve/xe
-generateIsolatedBrivlaPlacesExercise :: Dictionary -> WordGenerator -> ExerciseGenerator
-generateIsolatedBrivlaPlacesExercise dictionary brivlaGenerator r0 =
+generateIsolatedBrivlaPlacesExercise :: Dictionary -> [T.Text] -> ExerciseGenerator
+generateIsolatedBrivlaPlacesExercise dictionary brivlaList r0 =
     let
-        (brivla, r1) = brivlaGenerator r0
+        brivlaWithAtLeastTwoPlaces = filter ((>= 2) . length . retrieveBrivlaPlaces dictionary) brivlaList
+        (brivla, r1) = chooseItemUniformly r0 brivlaWithAtLeastTwoPlaces
         placesLojban = map (\x -> x `T.append` " " `T.append` brivla `T.append` " ku") ["lo", "lo se", "lo te", "lo ve", "lo xe"]
         placesEnglish = retrieveBrivlaPlaces dictionary brivla
         places = zip placesLojban placesEnglish

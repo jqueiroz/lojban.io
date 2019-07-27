@@ -1,151 +1,176 @@
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE TupleSections #-}
 
 -- | This module defines vocabulary for the course.
 module Courses.English.Grammar.Introduction.Vocabulary where
 
-import Courses.Util.Vocabulary
+import Core
 
 -- | Vocabulary for the first lesson.
 --
 -- * Starting brivla: dunda, pelxu, zdani
 -- * Starting cmavo: mi, do, ti, ta.
-vocabularyGenerator1 :: VocabularyBuilder
-vocabularyGenerator1 = createVocabularyBuilder
-    -- Selbri
+vocabulary1 :: Vocabulary
+vocabulary1 = Vocabulary
+    -- Brivla
     [
-        ("actions", (1,) <$> ["dunda"]),
-        ("relations", (1,) <$> []),
-        ("properties", (1,) <$> ["pelxu", "zdani"])
+        "dunda", "pelxu", "zdani"
     ]
-    -- Sumti
+    -- Cmavo
     [
-        ("genericPersons", (1,) <$> ["mi", "do"]),
-        ("genericPointable", (1,) <$> ["ti", "ta"])
+        "mi", "do",
+        "ti", "ta"
     ]
+    -- Cmene
+    [
+    ]
+
+-- | Cumulative vocabulary up to the first lesson.
+vocabulary1_cumulative :: Vocabulary
+vocabulary1_cumulative = vocabulary1
 
 -- | Vocabulary for the second lesson.
 --
 -- * New brivla: tavla, pendo, prenu, mlatu.
 -- * New cmavo: NONE.
-vocabularyGenerator2 :: VocabularyBuilder
-vocabularyGenerator2 = createVocabularyBuilder
-    -- Selbri
+vocabulary2 :: Vocabulary
+vocabulary2 = Vocabulary
+    -- Brivla
     [
-        ("actions", (1,) <$> ["tavla", "dunda"]),
-        ("relations", (1,) <$> ["pendo"]),
-        ("properties", (1,) <$> ["prenu", "pelxu", "zdani", "mlatu"])
+        "tavla", "pendo", "prenu", "mlatu"
     ]
-    -- Sumti
+    -- Cmavo
     [
-        ("genericPersons", (1,) <$> ["mi", "do"]),
-        ("genericPointable", (1,) <$> ["ti", "ta"])
     ]
+    -- Cmene
+    [
+    ]
+
+-- | Cumulative vocabulary up to the second lesson.
+vocabulary2_cumulative :: Vocabulary
+vocabulary2_cumulative = vocabulary1_cumulative <> vocabulary2
 
 -- | Vocabulary for the third lesson.
 --
 -- * New brivla: ctuca, nelci, gerku, melbi.
 -- * New cmavo: lo, ku, fa\/fe\/fi\/fo\/fu, se\/te\/ve\/xe.
-vocabularyGenerator3 :: VocabularyBuilder
-vocabularyGenerator3 = createVocabularyBuilder
-    -- Selbri
+vocabulary3 :: Vocabulary
+vocabulary3 = Vocabulary
+    -- Brivla
     [
-        ("actions", ((1,) <$> ["tavla", "dunda"]) ++ ((2,) <$> ["ctuca"])),
-        ("relations", ((1,) <$> ["pendo"]) ++ ((2,) <$> ["nelci"])),
-        ("properties", ((1,) <$> ["prenu", "pelxu", "zdani", "mlatu"]) ++ ((2,) <$> ["gerku", "melbi"]))
+        "ctuca", "nelci", "gerku", "melbi"
     ]
-    -- Sumti
+    -- Cmavo
     [
-        ("genericPersons", (1,) <$> ["mi", "do", "lo prenu ku"]),
-        ("semiGenericPersons", (1,) <$> ["lo tavla ku", "lo se tavla ku", "lo dunda ku", "lo te dunda ku"]),
-        ("animals", (1,) <$> ["lo mlatu ku", "lo gerku ku"]),
-        ("genericPointable", (1,) <$> ["ti", "ta"]),
-        ("places", (1,) <$> ["lo zdani ku"]),
-        ("subjects", (1,) <$> ["lo zdani ku", "lo mlatu ku", "lo gerku ku", "lo se dunda ku"])
+        "lo", "ku",
+        "fa", "fe", "fi", "fo", "fu",
+        "se", "te", "ve", "xe"
     ]
+    -- Cmene
+    [
+    ]
+
+-- | Cumulative vocabulary up to the third lesson.
+vocabulary3_cumulative :: Vocabulary
+vocabulary3_cumulative = vocabulary2_cumulative <> vocabulary3
 
 -- | Vocabulary for the fourth lesson.
 --
 -- * New brivla: ciska, djuno.
 -- * New cmavo: xu, ma, mo.
-vocabularyGenerator4 :: VocabularyBuilder
-vocabularyGenerator4 = createVocabularyBuilder
-    -- Selbri
+vocabulary4 :: Vocabulary
+vocabulary4 = Vocabulary
+    -- Brivla
     [
-        ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca"]) ++ ((2,) <$> ["ciska", "djuno"])),
-        ("relations", (0,) <$> ["pendo", "nelci"]),
-        ("properties", (0,) <$> ["prenu", "pelxu", "zdani", "mlatu", "gerku", "melbi"])
+        "ciska", "duno"
     ]
-    -- Sumti
+    -- Cmavo
     [
-        ("genericPersons", (1,) <$> ["mi", "do", "lo prenu ku"]),
-        ("semiGenericPersons", (1,) <$> ["lo tavla ku", "lo se tavla ku", "lo dunda ku", "lo te dunda ku", "lo ciska ku"]),
-        ("animals", (1,) <$> ["lo mlatu ku", "lo gerku ku"]),
-        ("genericPointable", (1,) <$> ["ti", "ta"]),
-        ("places", (1,) <$> ["lo zdani ku"]),
-        ("subjects", (1,) <$> ["lo zdani ku", "lo mlatu ku", "lo gerku ku", "lo se dunda ku"])
+        "xu", "ma", "mo"
     ]
+    -- Cmene
+    [
+    ]
+
+-- | Cumulative vocabulary up to the fourth lesson.
+vocabulary4_cumulative :: Vocabulary
+vocabulary4_cumulative = vocabulary3_cumulative <> vocabulary4
 
 -- | Vocabulary for the fifth lesson.
 --
 -- * New brivla: nupre, cusku, gleki.
 -- * New cmavo: nu, du'u, sedu'u, kei.
-vocabularyGenerator5 :: VocabularyBuilder
-vocabularyGenerator5 = createVocabularyBuilder
-    -- Selbri
+vocabulary5 :: Vocabulary
+vocabulary5 = Vocabulary
+    -- Brivla
     [
-        ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska", "djuno"]) ++ ((2,) <$> ["nupre", "cusku"])),
-        ("relations", ((0,) <$> ["pendo", "nelci"]) ++ ((1,) <$> ["gleki"])),
-        ("properties", (0,) <$> ["prenu", "pelxu", "zdani", "mlatu", "gerku", "melbi"])
+        "nupre", "cusku", "gleki"
     ]
-    -- Sumti
+    -- Cmavo
     [
-        ("genericPersons", (1,) <$> ["mi", "do", "lo prenu ku"]),
-        ("semiGenericPersons", (1,) <$> ["lo tavla ku", "lo se tavla ku", "lo dunda ku", "lo te dunda ku", "lo ciska ku"]),
-        ("animals", (1,) <$> ["lo mlatu ku", "lo gerku ku"]),
-        ("genericPointable", (1,) <$> ["ti", "ta"]),
-        ("places", (1,) <$> ["lo zdani ku"]),
-        ("subjects", (1,) <$> ["lo zdani ku", "lo mlatu ku", "lo gerku ku", "lo se dunda ku"])
+        "nu", "du'u", "sedu'u", "kei"
     ]
+    -- Cmene
+    [
+    ]
+
+-- | Cumulative vocabulary up to the fifth lesson.
+vocabulary5_cumulative :: Vocabulary
+vocabulary5_cumulative = vocabulary4_cumulative <> vocabulary5
 
 -- | Vocabulary for the sixth lesson.
 --
 -- * New brivla: NONE.
 -- * New cmavo: cu.
-vocabularyGenerator6 :: VocabularyBuilder
-vocabularyGenerator6 = vocabularyGenerator5
+vocabulary6 :: Vocabulary
+vocabulary6 = vocabulary5_cumulative
+
+-- | Cumulative vocabulary up to the sixth lesson.
+vocabulary6_cumulative :: Vocabulary
+vocabulary6_cumulative = vocabulary6
 
 -- | Vocabulary for the eighth lesson.
 --
 -- * New brivla: plise, vecnu, skami, pilno.
 -- * New cmavo: poi, noi, ke'a, ku'o.
-vocabularyGenerator8 :: VocabularyBuilder
-vocabularyGenerator8 = createVocabularyBuilder
-    -- Selbri
+vocabulary8 :: Vocabulary
+vocabulary8 = Vocabulary
+    -- Brivla
     [
-        ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska", "djuno", "nupre", "cusku"]) ++ ((3,) <$> ["vecnu", "pilno"])),
-        ("relations", ((0,) <$> ["pendo", "nelci", "gleki"])),
-        ("properties", (0,) <$> ["prenu", "pelxu", "zdani", "mlatu", "gerku", "melbi", "plise", "skami"])
+        "plise", "vecnu", "skami", "pilno"
     ]
-    -- Sumti
+    -- Cmavo
+    [
+        "poi", "noi", "ke'a", "ku'o"
+    ]
+    -- Cmene
     [
     ]
+
+-- | Cumulative vocabulary up to the eighth lesson.
+vocabulary8_cumulative :: Vocabulary
+vocabulary8_cumulative = vocabulary6_cumulative <> vocabulary8
 
 -- | Vocabulary for the nineth lesson.
 --
 -- * New brivla: cmene, bangu.
 -- * New cmavo: be, bei, be'o.
-vocabularyGenerator9 :: VocabularyBuilder
-vocabularyGenerator9 = createVocabularyBuilder
-    -- Selbri
+vocabulary9 :: Vocabulary
+vocabulary9 = Vocabulary
+    -- Brivla
     [
-        ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska", "djuno", "nupre", "cusku"]) ++ ((2,) <$> ["vecnu", "pilno"])),
-        ("relations", ((0,) <$> ["pendo", "nelci", "gleki"]) ++ ((3,) <$> ["cmene", "bangu"])),
-        ("properties", (0,) <$> ["prenu", "pelxu", "zdani", "mlatu", "gerku", "melbi", "plise", "skami"])
+        "cmene", "bangu"
     ]
-    -- Sumti
+    -- Cmavo
+    [
+        "be", "bei", "be'o"
+    ]
+    -- Cmene
     [
     ]
+
+-- | Cumulative vocabulary up to the nineth lesson.
+vocabulary9_cumulative :: Vocabulary
+vocabulary9_cumulative = vocabulary8_cumulative <> vocabulary9
 
 -- | Vocabulary for the tenth lesson.
 --
@@ -158,110 +183,144 @@ vocabularyGenerator9 = createVocabularyBuilder
 -- * New cmavo: pi'o, mu'i, gau.
 --
 -- Other potentially interesting words: zgana, finti, srana, lifri, stidi, xamgu.
-vocabularyGenerator10 :: VocabularyBuilder
-vocabularyGenerator10 = createVocabularyBuilder
-    -- Selbri
-    [
-        ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska", "djuno", "nupre", "cusku", "vecnu"]) ++ ((4,) <$> ["pilno"])),
-        ("relations", ((0,) <$> ["pendo", "nelci", "gleki"]) ++ ((1,) <$> ["cmene", "bangu"])),
-        ("properties", (0,) <$> ["prenu", "pelxu", "zdani", "mlatu", "gerku", "melbi", "plise", "skami"])
-    ]
-    -- Sumti
+vocabulary10 :: Vocabulary
+vocabulary10 = Vocabulary
+    -- Brivla
     [
     ]
+    -- Cmavo
+    [
+        "pi'o", "mu'i", "gau"
+    ]
+    -- Cmene
+    [
+    ]
+
+-- | Cumulative vocabulary up to the tenth lesson.
+vocabulary10_cumulative :: Vocabulary
+vocabulary10_cumulative = vocabulary9_cumulative <> vocabulary10
 
 -- | Vocabulary for the eleventh lesson.
 --
 -- * New brivla: NONE.
 -- * New cmavo: pu, ca, ba.
-vocabularyGenerator11 :: VocabularyBuilder
-vocabularyGenerator11 = createVocabularyBuilder
-    -- Selbri
-    [
-        ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska", "djuno", "nupre", "cusku", "vecnu", "pilno"])),
-        ("relations", ((0,) <$> ["pendo", "nelci", "gleki"]) ++ ((1,) <$> ["cmene", "bangu"])),
-        ("properties", (0,) <$> ["prenu", "pelxu", "zdani", "mlatu", "gerku", "melbi", "plise", "skami"])
-    ]
-    -- Sumti
+vocabulary11 :: Vocabulary
+vocabulary11 = Vocabulary
+    -- Brivla
     [
     ]
+    -- Cmavo
+    [
+        "pu", "ca", "ba"
+    ]
+    -- Cmene
+    [
+    ]
+
+-- | Cumulative vocabulary up to the eleventh lesson.
+vocabulary11_cumulative :: Vocabulary
+vocabulary11_cumulative = vocabulary10_cumulative <> vocabulary11
 
 -- | Vocabulary for the twelveth lesson.
 --
 -- * New brivla: NONE.
 -- * New cmavo: NONE.
-vocabularyGenerator12 :: VocabularyBuilder
-vocabularyGenerator12 = createVocabularyBuilder
-    -- Selbri
-    [
-        ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska", "djuno", "nupre", "cusku", "vecnu", "pilno"])),
-        ("relations", ((0,) <$> ["pendo", "nelci", "gleki"]) ++ ((1,) <$> ["cmene", "bangu"])),
-        ("properties", (0,) <$> ["prenu", "pelxu", "zdani", "mlatu", "gerku", "melbi", "plise", "skami"])
-    ]
-    -- Sumti
+vocabulary12 :: Vocabulary
+vocabulary12 = Vocabulary
+    -- Brivla
     [
     ]
+    -- Cmavo
+    [
+    ]
+    -- Cmene
+    [
+    ]
+
+-- | Cumulative vocabulary up to the twelveth lesson.
+vocabulary12_cumulative :: Vocabulary
+vocabulary12_cumulative = vocabulary11_cumulative <> vocabulary12
 
 -- | Vocabulary for the fourteenth lesson.
 --
 -- * New brivla: NONE.
 -- * New cmavo: zo, lu, li'u
-vocabularyGenerator14 :: VocabularyBuilder
-vocabularyGenerator14 = createVocabularyBuilder
-    -- Selbri
-    [
-        ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska", "djuno", "nupre", "cusku", "vecnu", "pilno"])),
-        ("relations", ((0,) <$> ["pendo", "nelci", "gleki"]) ++ ((1,) <$> ["cmene", "bangu"])),
-        ("properties", (0,) <$> ["prenu", "pelxu", "zdani", "mlatu", "gerku", "melbi", "plise", "skami"])
-    ]
-    -- Sumti
+vocabulary14 :: Vocabulary
+vocabulary14 = Vocabulary
+    -- Brivla
     [
     ]
+    -- Cmavo
+    [
+        "zo", "lu", "li'u"
+    ]
+    -- Cmene
+    [
+    ]
+
+-- | Cumulative vocabulary up to the fourteenth lesson.
+vocabulary14_cumulative :: Vocabulary
+vocabulary14_cumulative = vocabulary12_cumulative <> vocabulary14
 
 -- | Vocabulary for the fifteenth lesson.
 --
 -- * New brivla: NONE.
 -- * New cmavo: ne, pe, po, po'e
-vocabularyGenerator15 :: VocabularyBuilder
-vocabularyGenerator15 = createVocabularyBuilder
-    -- Selbri
-    [
-        ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska", "djuno", "nupre", "cusku", "vecnu", "pilno"])),
-        ("relations", ((0,) <$> ["pendo", "nelci", "gleki"]) ++ ((1,) <$> ["cmene", "bangu"])),
-        ("properties", (0,) <$> ["prenu", "pelxu", "zdani", "mlatu", "gerku", "melbi", "plise", "skami"])
-    ]
-    -- Sumti
+vocabulary15 :: Vocabulary
+vocabulary15 = Vocabulary
+    -- Brivla
     [
     ]
+    -- Cmavo
+    [
+        "ne", "pe", "po", "po'e"
+    ]
+    -- Cmene
+    [
+    ]
+
+-- | Cumulative vocabulary up to the fifteenth lesson.
+vocabulary15_cumulative :: Vocabulary
+vocabulary15_cumulative = vocabulary14_cumulative <> vocabulary15
 
 -- | Vocabulary for the sixteenth lesson.
 --
 -- * New brivla: NONE.
 -- * New cmavo: .a, .e, .o, .u
-vocabularyGenerator16 :: VocabularyBuilder
-vocabularyGenerator16 = createVocabularyBuilder
-    -- Selbri
-    [
-        ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska", "djuno", "nupre", "cusku", "vecnu", "pilno"])),
-        ("relations", ((0,) <$> ["pendo", "nelci", "gleki"]) ++ ((1,) <$> ["cmene", "bangu"])),
-        ("properties", (0,) <$> ["prenu", "pelxu", "zdani", "mlatu", "gerku", "melbi", "plise", "skami"])
-    ]
-    -- Sumti
+vocabulary16 :: Vocabulary
+vocabulary16 = Vocabulary
+    -- Brivla
     [
     ]
+    -- Cmavo
+    [
+        ".a", ".e", ".o", ".u"
+    ]
+    -- Cmene
+    [
+    ]
+
+-- | Cumulative vocabulary up to the sixteenth lesson.
+vocabulary16_cumulative :: Vocabulary
+vocabulary16_cumulative = vocabulary15_cumulative <> vocabulary16
 
 -- | Vocabulary for the seventeenth lesson.
 --
 -- * New brivla: NONE.
 -- * New cmavo: na, na'e, to'e
-vocabularyGenerator17 :: VocabularyBuilder
-vocabularyGenerator17 = createVocabularyBuilder
-    -- Selbri
-    [
-        ("actions", ((0,) <$> ["tavla", "dunda"]) ++ ((1,) <$> ["ctuca", "ciska", "djuno", "nupre", "cusku", "vecnu", "pilno"])),
-        ("relations", ((0,) <$> ["pendo", "nelci", "gleki"]) ++ ((1,) <$> ["cmene", "bangu"])),
-        ("properties", (0,) <$> ["prenu", "pelxu", "zdani", "mlatu", "gerku", "melbi", "plise", "skami"])
-    ]
-    -- Sumti
+vocabulary17 :: Vocabulary
+vocabulary17 = Vocabulary
+    -- Brivla
     [
     ]
+    -- Cmavo
+    [
+        "na", "na'e", "to'e"
+    ]
+    -- Cmene
+    [
+    ]
+
+-- | Cumulative vocabulary up to the sixteenth lesson.
+vocabulary17_cumulative :: Vocabulary
+vocabulary17_cumulative = vocabulary16_cumulative <> vocabulary17
