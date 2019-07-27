@@ -6,6 +6,7 @@ module Courses.English.Grammar.Introduction.Exercises where
 import Core
 import Courses.Util.Vocabulary
 import Courses.Util.Sentences (generateSimpleBridi, generateActionBridi, generateNonbridi)
+import Courses.Util.Extractors (extractSimpleBridiFromTranslationGenerator)
 import Courses.Util.ExerciseGenerators
 import Language.Lojban.Core
 import Language.Lojban.Dictionaries (englishDictionary)
@@ -24,19 +25,17 @@ dictionary = englishDictionary
 -- | Exercises for the first lesson.
 exercises1 :: ExerciseGenerator
 exercises1 =
-    -- TODO: avoid generation of bridi with incomplete places
     combineFunctions
-        [ (25, generateBridiJufraExercise generalBridiGenerator nonbridiGenerator displayBridi)
-        , (20, generateSelbriIdentificationExercise generalBridiGenerator displayBridi)
-        , (10, generateContextualizedGismuPlacePositionExercise dictionary generalBridiGenerator displayBridi)
-        , (20, generateContextualizedGismuPlaceMeaningExercise dictionary actionBridiGenerator displayBridi)
+        [ (25, generateBridiJufraExercise bridiGenerator nonbridiGenerator displayBridi)
+        , (20, generateSelbriIdentificationExercise bridiGenerator displayBridi)
+        , (10, generateContextualizedGismuPlacePositionExercise dictionary bridiGenerator displayBridi)
+        , (20, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator displayBridi)
         , (40, translationExercises1)
         ]
     where
         vocabulary = vocabularyGenerator1 dictionary
         nonbridiGenerator = generateNonbridi vocabulary
-        generalBridiGenerator = generateSimpleBridi vocabulary
-        actionBridiGenerator = generateActionBridi vocabulary
+        bridiGenerator = extractSimpleBridiFromTranslationGenerator translations1
         displayBridi = displayStandardSimpleBridi
 
 -- | Exercises for the second lesson.
