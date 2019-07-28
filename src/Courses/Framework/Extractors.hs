@@ -1,5 +1,5 @@
 module Courses.Framework.Extractors
-( extractSimpleBridiFromTranslationGenerator
+( extractSimpleBridiGeneratorFromTranslationGenerator
 , extractLojbanSentencesFromTranslationGenerator
 , extractLojbanSentencesFromTranslation
 ) where
@@ -14,8 +14,8 @@ import qualified Data.Text as T
 --
 -- Warning: the translation generator must consist solely of parsable sentences, otherwise
 -- this function will yield an error upon encountering a non-parsable sentence.
-extractSimpleBridiFromTranslationGenerator :: TranslationGenerator -> SimpleBridiGenerator
-extractSimpleBridiFromTranslationGenerator translationGenerator r0 = (simpleBridi, r1) where
+extractSimpleBridiGeneratorFromTranslationGenerator :: TranslationGenerator -> SimpleBridiGenerator
+extractSimpleBridiGeneratorFromTranslationGenerator translationGenerator r0 = (simpleBridi, r1) where
     (sentence, r1) = extractLojbanSentencesFromTranslationGenerator translationGenerator r0
     simpleBridi = case (extractSimpleBridi sentence) of
         Left msg -> error $ "extractSimpleBridiFromTranslationGenerator: unable to parse sentence\nsentence: \"" ++ (T.unpack sentence) ++ "\"\nmessage: " ++ msg ++ "\""

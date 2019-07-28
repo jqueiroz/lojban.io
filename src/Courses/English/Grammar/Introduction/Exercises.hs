@@ -3,7 +3,7 @@ module Courses.English.Grammar.Introduction.Exercises where
 
 import Core
 import Courses.Framework.SentenceGenerators (generateNonbridi)
-import Courses.Framework.Extractors (extractSimpleBridiFromTranslationGenerator)
+import Courses.Framework.Extractors (extractSimpleBridiGeneratorFromTranslationGenerator)
 import Courses.Framework.ExerciseGenerators
 import Language.Lojban.Core
 import Language.Lojban.Dictionaries (englishDictionary)
@@ -32,7 +32,7 @@ exercises1 =
     where
         vocabulary = vocabulary1_cumulative
         nonbridiGenerator = generateNonbridi vocabulary
-        bridiGenerator = extractSimpleBridiFromTranslationGenerator translations1
+        bridiGenerator = extractSimpleBridiGeneratorFromTranslationGenerator translations1
         displayBridi = displayStandardSimpleBridi
 
 -- | Exercises for the second lesson.
@@ -49,7 +49,7 @@ exercises2 =
     where
         vocabulary = vocabulary2_cumulative
         nonbridiGenerator = generateNonbridi vocabulary
-        bridiGenerator = extractSimpleBridiFromTranslationGenerator translations2
+        bridiGenerator = extractSimpleBridiGeneratorFromTranslationGenerator translations2
         displayBridi = combineFunctions [(7, displayStandardSimpleBridi), (3, displayVariantSimpleBridi)]
 
 -- | Exercises for the third lesson.
@@ -67,7 +67,7 @@ exercises3 =
     where
         vocabulary = vocabulary3_cumulative
         nonbridiGenerator = generateNonbridi vocabulary
-        bridiGenerator = extractSimpleBridiFromTranslationGenerator translations3
+        bridiGenerator = extractSimpleBridiGeneratorFromTranslationGenerator translations3
         displayBridi = combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
 
 -- | Exercises for the fourth lesson.
@@ -81,7 +81,7 @@ exercises4 =
         ]
     where
         vocabulary = vocabulary4_cumulative
-        bridiGenerator = extractSimpleBridiFromTranslationGenerator translations4
+        bridiGenerator = extractSimpleBridiGeneratorFromTranslationGenerator translations4
         displayBridi = combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
 
 -- | Exercises for the fifth lesson.
@@ -95,7 +95,7 @@ exercises5 =
         ]
     where
         vocabulary = vocabulary5_cumulative
-        bridiGenerator = extractSimpleBridiFromTranslationGenerator translations5
+        bridiGenerator = extractSimpleBridiGeneratorFromTranslationGenerator translations5
         displayBridi = combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
 
 -- | Exercises for the sixth lesson.
@@ -108,7 +108,7 @@ exercises6 =
         ]
     where
         vocabulary = vocabulary6_cumulative
-        bridiGenerator = extractSimpleBridiFromTranslationGenerator translations6
+        bridiGenerator = extractSimpleBridiGeneratorFromTranslationGenerator translations6
         displayBridi = simplifyTerminatorsInBridiDisplayer $ (combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)])
 
 -- | Exercises for the seventh lesson.
@@ -127,7 +127,7 @@ exercises1to6 =
         ]
     where
         vocabulary = vocabulary6_cumulative
-        bridiGenerator = extractSimpleBridiFromTranslationGenerator translations1to6
+        bridiGenerator = extractSimpleBridiGeneratorFromTranslationGenerator translations1to6
         nonbridiGenerator = generateNonbridi vocabulary
         displayBridi = simplifyTerminatorsInBridiDisplayer $ (combineFunctions [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)])
 
