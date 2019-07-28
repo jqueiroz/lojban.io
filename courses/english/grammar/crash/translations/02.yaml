@@ -1,0 +1,24 @@
+- lojban_sentences:
+    - mi pinxe
+  translated_sentences:
+    - I drink.
+
+- lojban_sentences:
+    - do pinxe
+  translated_sentences:
+    - You drink.
+
+- lojban_sentences:
+    - ti ladru
+  translated_sentences:
+    - This is some milk.
+
+- lojban_sentences:
+    - (tu|ta) mlatu
+  translated_sentences:
+    - That is a cat.
+
+- lojban_sentences:
+    - do citka lo plise
+  translated_sentences:
+    - You like apples.
