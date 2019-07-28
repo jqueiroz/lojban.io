@@ -8,11 +8,11 @@ import qualified Data.Text as T
 import Data.List (group, sort, intersperse)
 import System.Random.Shuffle (shuffle')
 
--- Function manipulation
+-- * Function manipulation
 compose2 :: (t1 -> t2) -> (t3 -> t4 -> t1) -> t3 -> t4 -> t2
 compose2 f g x y = f (g x y)
 
--- List manipulation
+-- * List manipulation
 stripLeft :: (Eq a) => a -> [a] -> [a]
 stripLeft x = dropWhile (==x)
 
@@ -57,12 +57,7 @@ concatET = foldl1 (liftA2 T.append)
 unwordsET :: [Either String T.Text] -> Either String T.Text
 unwordsET = concatET . intersperse (Right $ T.pack " ")
 
--- | Lifts a function that transforms a Foo into a Bar into a function that transforms a FooGenerator into a BarGenerator.
-liftGen :: (a -> b) -> (StdGen -> (a, StdGen)) -> (StdGen -> (b, StdGen))
-liftGen f inputGenerator r0 = (f input, r1) where
-    (input, r1) = inputGenerator r0
-
--- String manipulation
+-- * String manipulation
 substr :: Int -> Int -> T.Text -> T.Text
 substr beg end = T.drop beg . T.take end
 
@@ -94,7 +89,7 @@ replaceFirstSubexpression old new = T.drop 1 . T.dropEnd 1 . replaceFirstSubstri
 replaceSubexpression :: T.Text -> T.Text -> T.Text -> T.Text
 replaceSubexpression old new = T.drop 1 . T.dropEnd 1 . T.replace (" " `T.append` old `T.append` " ") (" " `T.append` new `T.append` " ") . (`T.append` " ") . (" " `T.append`)
 
--- Random (TODO: assert that sum > 0)
+-- * Random (TODO: assert that sum > 0)
 shuffle_ :: StdGen -> [a] -> [a]
 shuffle_ r0 = fst . shuffle r0
 
@@ -129,6 +124,11 @@ generatorFromList = flip chooseItemUniformly
 
 generatorFromWeightedList :: [(Int, a)] -> StdGen -> (a, StdGen)
 generatorFromWeightedList = flip chooseItem
+
+-- | Lifts a function that transforms a Foo into a Bar into a function that transforms a FooGenerator into a BarGenerator.
+liftGen :: (a -> b) -> (StdGen -> (a, StdGen)) -> (StdGen -> (b, StdGen))
+liftGen f inputGenerator r0 = (f input, r1) where
+    (input, r1) = inputGenerator r0
 
 -- combineSimpleFunctions :: [(Int, a)] -> (StdGen -> a)
 
