@@ -2,6 +2,7 @@
 module Core where
 
 import System.Random (StdGen)
+import Language.Lojban.Core (Dictionary)
 import qualified Data.Text as T
 import qualified Text.Pandoc as P
 
@@ -12,6 +13,7 @@ type WordGenerator = StdGen -> (T.Text, StdGen)
 data Course = Course
     { courseTitle :: String
     , courseStyle :: CourseStyle
+    , courseDictionary :: Dictionary
     , courseLessons :: [Lesson]
     } deriving (Show)
 
@@ -25,6 +27,7 @@ data Lesson = Lesson
     , lessonExercises :: ExerciseGenerator
     , lessonLecture :: P.Pandoc
     , lessonPlan :: P.Pandoc
+    , lessonVocabulary :: Maybe Vocabulary
     }
 
 data Vocabulary = Vocabulary

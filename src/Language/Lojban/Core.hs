@@ -10,6 +10,7 @@ module Language.Lojban.Core
 , Brivla (..)
 , dictFindBrivla
 , dictFindBrivla'
+, dictLookupValsiDefinition
 , retrieveBrivlaPlaces
 ) where
 
@@ -86,6 +87,10 @@ dictFindBrivla dictionary key = (dictBrivla dictionary) M.!? key
 dictFindBrivla' :: Dictionary -> T.Text -> Brivla
 dictFindBrivla' dictionary key = fromMaybe errorResult (dictFindBrivla dictionary key) where
     errorResult = error $ "Brivla not found in dictionary: " ++ (T.unpack key)
+
+dictLookupValsiDefinition :: Dictionary -> T.Text -> T.Text
+dictLookupValsiDefinition dictionary key = fromMaybe errorResult ((dictValsiDefinition dictionary) M.!? key) where
+    errorResult = error $ "Valsi not found in dictionary: " ++ (T.unpack key)
 
 retrieveBrivlaPlaces :: Dictionary -> T.Text -> [T.Text]
 retrieveBrivlaPlaces dictionary brivla =

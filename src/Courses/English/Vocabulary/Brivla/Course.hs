@@ -5,6 +5,7 @@ module Courses.English.Vocabulary.Brivla.Course (course) where
 
 import Core
 import Courses.English.Vocabulary.Brivla.Lessons
+import Language.Lojban.Dictionaries (englishDictionary)
 
 -- | Course style.
 style :: CourseStyle
@@ -18,6 +19,6 @@ style = CourseStyle color1 iconUrl where
 
 -- | Course: Brivla.
 course :: Course
-course = Course title style lessons where
+course = Course title style englishDictionary lessons where
     title = "Common brivla"
     lessons = [lesson01, lesson02, lesson03, lesson04, lesson05]

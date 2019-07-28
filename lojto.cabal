@@ -69,6 +69,7 @@ library
                      , Courses.English.Vocabulary.Brivla.Exercises
                      , Courses.English.Vocabulary.Brivla.Lessons
                      , Courses.English.Vocabulary.Brivla.Translations
+                     , Courses.English.Vocabulary.Brivla.Vocabulary
                      , Language.Lojban.Canonicalization
                      , Language.Lojban.Canonicalization.Internals
                      , Language.Lojban.Core

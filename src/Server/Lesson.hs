@@ -8,7 +8,9 @@ module Server.Lesson
 import Core
 import Server.Core
 import Control.Monad (when)
+import Data.Maybe (isJust, fromJust)
 import Data.Either.Unwrap (fromRight)
+import Courses.Util.Documents (buildVocabularyDocument)
 import qualified Text.Pandoc as P
 import qualified Text.Pandoc.Writers.HTML as PWH
 import qualified Text.Blaze as B
@@ -19,6 +21,7 @@ data LessonSubpage = LessonHome | LessonVocabulary | LessonExercises deriving (E
 
 displayLessonHome :: TopbarCategory -> Course -> Int -> H.Html
 displayLessonHome topbarCategory course lessonNumber = do
+    let dictionary = courseDictionary course
     let baseLessonUrl = ""
     let lesson = (courseLessons course) !! (lessonNumber - 1)
     H.html $ do
@@ -34,18 +37,24 @@ displayLessonHome topbarCategory course lessonNumber = do
                 H.div B.! A.class_ (H.stringValue "lesson") $ do
                     displayLessonHeader baseLessonUrl LessonHome course lessonNumber
                     H.div B.! A.class_ (H.stringValue "lesson-body") $ do
-                        displayLessonTabs
+                        displayLessonTabs lesson
                         H.div B.! A.class_ (H.stringValue "lesson-lecture") $ do
                             H.div $ do
                                 fromRight $ P.runPure $ PWH.writeHtml5 P.def (lessonLecture lesson)
                         H.div B.! A.class_ (H.stringValue "lesson-plan") $ do
                             H.div $ do
                                 fromRight $ P.runPure $ PWH.writeHtml5 P.def (lessonPlan lesson)
+                        when (isJust $ lessonVocabulary lesson) $ do
+                            H.div B.! A.class_ (H.stringValue "lesson-vocabulary") $ do
+                                H.div $ do
+                                    fromRight . P.runPure . PWH.writeHtml5 P.def . buildVocabularyDocument dictionary $ fromJust (lessonVocabulary lesson)
 
-displayLessonTabs :: H.Html
-displayLessonTabs = do
+displayLessonTabs :: Lesson -> H.Html
+displayLessonTabs lesson = do
     displayLessonTab "lesson-tab-lecture" "Lecture" True
     displayLessonTab "lesson-tab-plan" "Plan" False
+    when (isJust $ lessonVocabulary lesson) $ do
+        displayLessonTab "lesson-tab-vocabulary" "Vocabulary" False
 
 displayLessonTab :: String -> String -> Bool -> H.Html
 displayLessonTab id title checked = do

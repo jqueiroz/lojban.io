@@ -5,6 +5,7 @@ module Courses.English.Vocabulary.Attitudinals.Course (course) where
 
 import Core
 import Courses.English.Vocabulary.Attitudinals.Lessons
+import Language.Lojban.Dictionaries (englishDictionary)
 
 -- | Course style.
 style :: CourseStyle
@@ -18,7 +19,7 @@ style = CourseStyle color1 iconUrl where
 
 -- | Course: Attitudinals.
 course :: Course
-course = Course title style lessons where
+course = Course title style englishDictionary lessons where
     title = "Attitudinals"
     lessons = [lesson1, lesson2, lesson3]
 

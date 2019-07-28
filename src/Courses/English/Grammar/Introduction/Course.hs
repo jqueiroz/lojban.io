@@ -5,6 +5,7 @@ module Courses.English.Grammar.Introduction.Course (course) where
 
 import Core
 import Courses.English.Grammar.Introduction.Lessons
+import Language.Lojban.Dictionaries (englishDictionary)
 
 -- introduce djica alongside questions: "I want you to be happy" / "Do you want me to be happy?" / "What do you want?" / "Who wants you to be happy" / "Who do you want to be happy?"
 -- TODO: remove the translations that make the least sense (in progress...)
@@ -43,6 +44,6 @@ style = CourseStyle color1 iconUrl where
 
 -- | Course: Introduction to Grammar.
 course :: Course
-course = Course title style lessons where
+course = Course title style englishDictionary lessons where
     title = "Introduction to Grammar"
     lessons = [lesson1, lesson2, lesson3, lesson4, lesson5, lesson6, checkpoint1to6, lesson8, lesson9, lesson10, lesson11, lesson12, checkpoint8to12, lesson14, lesson15, lesson16, lesson17]
