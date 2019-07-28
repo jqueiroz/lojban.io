@@ -35,13 +35,15 @@ import Data.Maybe (fromMaybe)
 import qualified Data.Text as T
 import qualified Data.Map as M
 
--- Exercise: translate a sentence from English to Lojban
+-- | Exercise: translate a given sentence into Lojban.
 generateTranslationExercise :: SentenceCanonicalizer -> SentenceComparer -> TranslationGenerator -> ExerciseGenerator
 generateTranslationExercise = generateRestrictedTranslationExercise "Translate this sentence" (const True)
 
+-- | Exercise: translate a given sentence into Lojban, with the restriction that a particular Lojban word cannot be used.
 generateBlacklistedWordTranslationExercise :: T.Text -> SentenceCanonicalizer -> SentenceComparer -> TranslationGenerator -> ExerciseGenerator
 generateBlacklistedWordTranslationExercise blacklistedWord = generateRestrictedTranslationExercise (T.concat ["Translate without using \"", blacklistedWord, "\""]) (not . isWordOf blacklistedWord)
 
+-- | Exercise: translate a given sentence into Lojban, with some arbitrary (algorithmically specified) restriction concerning the user's solution.
 generateRestrictedTranslationExercise :: T.Text -> (T.Text -> Bool) -> SentenceCanonicalizer -> SentenceComparer -> TranslationGenerator -> ExerciseGenerator
 generateRestrictedTranslationExercise title validator canonicalizer sentenceComparer translationGenerator r0 = TypingExercise title [ExerciseSentence False english_sentence] (liftA2 (&&) validator validateAll) (head lojban_sentences) where
     (translation, r1) = translationGenerator r0
@@ -54,7 +56,7 @@ generateRestrictedTranslationExercise title validator canonicalizer sentenceComp
             Left _ -> False
             Right lojban_sentence' -> typed_sentence' `sentenceComparer` lojban_sentence'
 
--- Exercise: tell grammatical class of a word
+-- | Exercise: tell grammatical class of a word (brivla, cmavo, or cmevla).
 generateGrammaticalClassExercise :: Vocabulary -> ExerciseGenerator
 generateGrammaticalClassExercise vocabulary r0 = SingleChoiceExercise title sentences correctAlternative incorrectAlternatives True where
     words "brivla" = vocabularyBrivlaList vocabulary
@@ -67,10 +69,11 @@ generateGrammaticalClassExercise vocabulary r0 = SingleChoiceExercise title sent
     title = "Classify <b>" `T.append` word `T.append` "</b>"
     sentences = []
 
--- Exercise: jufra vs bridi
+-- | Exercise: decide whether an utterance (in either English or Lojban) is a bridi or merely a jufra.
 generateBridiJufraExercise :: SimpleBridiGenerator -> TextGenerator -> SimpleBridiDisplayer -> ExerciseGenerator
 generateBridiJufraExercise simpleBridiGenerator nonbridiGenerator displayBridi = combineGeneratorsUniformly [generateEnglishBridiJufraExercise, generateLojbanBridiJufraExercise simpleBridiGenerator nonbridiGenerator displayBridi]
 
+-- | Exercise: decide whether a Lojban utterance is a bridi or merely a jufra.
 generateLojbanBridiJufraExercise :: SimpleBridiGenerator -> TextGenerator -> SimpleBridiDisplayer -> ExerciseGenerator
 generateLojbanBridiJufraExercise simpleBridiGenerator nonbridiGenerator displayBridi r0 = SingleChoiceExercise title sentences correctAlternative incorrectAlternatives True where
     chooseLojbanSentence :: T.Text -> StdGen -> (T.Text, StdGen)
@@ -84,6 +87,7 @@ generateLojbanBridiJufraExercise simpleBridiGenerator nonbridiGenerator displayB
     title = "Bridi or jufra?"
     sentences = [ExerciseSentence True sentenceText]
 
+-- | Exercise: decide whether an English utterance is a bridi or merely a jufra.
 generateEnglishBridiJufraExercise :: ExerciseGenerator
 generateEnglishBridiJufraExercise r0 = SingleChoiceExercise title sentences correctAlternative incorrectAlternatives True where
         allAlternatives = ["only jufra", "bridi and jufra"]
