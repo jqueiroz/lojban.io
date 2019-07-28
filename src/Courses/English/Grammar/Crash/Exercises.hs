@@ -29,5 +29,5 @@ exercises02 =
         [ (10, translationExercises)
         ]
     where
-        vocabulary = vocabulary01_cumulative
+        vocabulary = vocabulary02_cumulative
         translationExercises = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations02
