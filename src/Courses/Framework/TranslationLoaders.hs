@@ -2,7 +2,7 @@
 
 -- | This module provides utilities for loading translations from files.
 module Courses.Framework.TranslationLoaders
-( loadTranslationsByExpressionFromYamlText
+( loadTranslationsByExpressionFromYamlCode
 ) where
 
 import Core
@@ -12,10 +12,10 @@ import qualified Data.Text.Encoding as TE
 import qualified Data.Yaml as Y
 
 -- | Loads 'TranslationsByExpression' from yaml code.
-loadTranslationsByExpressionFromYamlText :: T.Text -> TranslationsByExpression
-loadTranslationsByExpressionFromYamlText yamlText = M.assocs $ M.map handleExpression yamlData where
+loadTranslationsByExpressionFromYamlCode :: T.Text -> TranslationsByExpression
+loadTranslationsByExpressionFromYamlCode yamlCode = M.assocs $ M.map handleExpression yamlData where
     yamlData :: M.Map T.Text [M.Map T.Text [T.Text]]
-    Right yamlData = Y.decodeEither $ TE.encodeUtf8 yamlText
+    Right yamlData = Y.decodeEither $ TE.encodeUtf8 yamlCode
     handleExpression :: [M.Map T.Text [T.Text]] -> [Translation]
     handleExpression = map handleTranslation
     handleTranslation :: M.Map T.Text [T.Text] -> Translation
