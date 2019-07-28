@@ -508,7 +508,7 @@ questionExercises4 :: ExerciseGenerator
 questionExercises4 = generateNarrowFillingBlanksExerciseByAlternatives ["mo", "ma"] $ combineFunctionsUniformly [translations4_ma, translations4_mo]
 
 questionExercises4_simplified :: ExerciseGenerator
-questionExercises4_simplified = generateNarrowFillingBlanksExerciseByAlternatives ["mo", "ma"] $ simplifyTranslationGenerator $ combineFunctionsUniformly [translations4_ma, translations4_mo]
+questionExercises4_simplified = generateNarrowFillingBlanksExerciseByAlternatives ["mo", "ma"] $ simplifyTerminatorsInTranslationGenerator $ combineFunctionsUniformly [translations4_ma, translations4_mo]
 
 -- * Lesson 5: Abstractions 1
 -- CHECK: Are events vs facts being used correctly?
@@ -780,7 +780,7 @@ abstractionExercises5 :: ExerciseGenerator
 abstractionExercises5 = generateNarrowFillingBlanksExerciseByAlternatives ["lo nu", "lo du'u", "lo se du'u"] $ combineFunctionsUniformly [translations5_nu, translations5_du'u, translations5_sedu'u]
 
 abstractionExercises5_simplified :: ExerciseGenerator
-abstractionExercises5_simplified = generateNarrowFillingBlanksExerciseByAlternatives ["lo nu", "lo du'u", "lo se du'u"] $ simplifyTranslationGenerator $ combineFunctionsUniformly [translations5_nu, translations5_du'u, translations5_sedu'u]
+abstractionExercises5_simplified = generateNarrowFillingBlanksExerciseByAlternatives ["lo nu", "lo du'u", "lo se du'u"] $ simplifyTerminatorsInTranslationGenerator $ combineFunctionsUniformly [translations5_nu, translations5_du'u, translations5_sedu'u]
 
 -- * Lesson 6: Terminator elision
 translations6 :: TranslationGenerator
@@ -975,7 +975,7 @@ translationExercises6_restricted = generateBlacklistedWordTranslationExercise "k
 
 -- * Lesson 7: Checkpoint -- Lessons 1-6
 translations1to6 :: TranslationGenerator
-translations1to6 = simplifyTranslationGenerator $ combineFunctionsUniformly [translations3, translations4, translations5, translations6]
+translations1to6 = simplifyTerminatorsInTranslationGenerator $ combineFunctionsUniformly [translations3, translations4, translations5, translations6]
 
 translationExercises1to6_simplified :: ExerciseGenerator
 translationExercises1to6_simplified = simplifyCanonicalAnswer . combineFunctions [(4, translationExercises3_nice), (1, translationExercises3_normal), (5, translationExercises4), (6, translationExercises5), (5, translationExercises6_restricted)]

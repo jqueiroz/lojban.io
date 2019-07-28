@@ -1,8 +1,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 module Courses.Framework.TranslationUtils
-( simplifyTranslation
-, simplifyTranslationGenerator
+( simplifyTerminatorsInTranslation
+, simplifyTerminatorsInTranslationGenerator
 , expandSentence
 , expandSentences
 , expandTranslation
@@ -16,12 +16,12 @@ import Control.Arrow ((***))
 import qualified Data.Text as T
 
 -- | Simplifies a 'Translation' by removing elidable terminators and/or replacing them with "cu" (see 'simplifyTerminatorsInSentence').
-simplifyTranslation :: Translation -> Translation
-simplifyTranslation (lojbanSentences, englishSentences) = (fmap simplifyTerminatorsInSentence lojbanSentences, englishSentences)
+simplifyTerminatorsInTranslation :: Translation -> Translation
+simplifyTerminatorsInTranslation (lojbanSentences, englishSentences) = (fmap simplifyTerminatorsInSentence lojbanSentences, englishSentences)
 
 -- | Simplifies a 'TranslationGenerator' by removing elidable terminators and/or replacing them with "cu" (see 'simplifyTerminatorsInSentence').
-simplifyTranslationGenerator :: TranslationGenerator -> TranslationGenerator
-simplifyTranslationGenerator translationGenerator r0 = (simplifyTranslation translation, r1) where
+simplifyTerminatorsInTranslationGenerator :: TranslationGenerator -> TranslationGenerator
+simplifyTerminatorsInTranslationGenerator translationGenerator r0 = (simplifyTerminatorsInTranslation translation, r1) where
     (translation, r1) = translationGenerator r0
 
 -- | Expands a list of sentences into a potentially larger list using syntax such as (x|y|z) or {x|y|z} (see 'expandSentence').
