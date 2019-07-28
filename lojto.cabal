@@ -43,12 +43,12 @@ library
   --ld-options: -static -pthread
   exposed-modules:     Core
                      , Serializer
-                     , Courses.Util.Documents
-                     , Courses.Util.ExerciseGenerators
-                     , Courses.Util.ExerciseUtils
-                     , Courses.Util.Extractors
-                     , Courses.Util.NumberTranslator
-                     , Courses.Util.Sentences
+                     , Courses.Framework.Documents
+                     , Courses.Framework.ExerciseGenerators
+                     , Courses.Framework.ExerciseUtils
+                     , Courses.Framework.Extractors
+                     , Courses.Framework.NumberTranslator
+                     , Courses.Framework.Sentences
                      , Courses.English.Grammar.Introduction.Course
                      , Courses.English.Grammar.Introduction.Documents
                      , Courses.English.Grammar.Introduction.Exercises
@@ -128,11 +128,11 @@ test-suite courses
   build-depends:       hspec
                      , QuickCheck
   other-modules:       Core
-                     , Courses.Util.ExerciseGenerators
-                     , Courses.Util.ExerciseGenerators.Tests
-                     , Courses.Util.NumberTranslator
-                     , Courses.Util.Sentences
-                     , Courses.Util.Vocabulary
+                     , Courses.Framework.ExerciseGenerators
+                     , Courses.Framework.ExerciseGenerators.Tests
+                     , Courses.Framework.NumberTranslator
+                     , Courses.Framework.Sentences
+                     , Courses.Framework.Vocabulary
                      , Language.Lojban.Canonicalization
                      , Language.Lojban.Canonicalization.Internals
                      , Language.Lojban.Core

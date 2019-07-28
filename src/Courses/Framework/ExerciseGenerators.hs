@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Courses.Util.ExerciseGenerators
+module Courses.Framework.ExerciseGenerators
 ( Translation
 , TranslationGenerator
 , generateTranslationExercise
@@ -30,7 +30,7 @@ module Courses.Util.ExerciseGenerators
 ) where
 
 import Core
-import Courses.Util.NumberTranslator
+import Courses.Framework.NumberTranslator
 import Language.Lojban.Core
 import Language.Lojban.Refinement (simplifyTerminatorsInSentence)
 import Util (narrowTranslationGenerator, narrowTranslationGeneratorByExpression, isSubexpressionOf, replace, replaceFirstSubexpression, replaceSubexpression, chooseItemUniformly, combineFunctions, combineFunctionsUniformly, isWordOf)

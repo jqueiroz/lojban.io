@@ -10,7 +10,7 @@ import Server.Core
 import Control.Monad (when)
 import Data.Maybe (isJust, fromJust)
 import Data.Either.Unwrap (fromRight)
-import Courses.Util.Documents (buildVocabularyDocument)
+import Courses.Framework.Documents (buildVocabularyDocument)
 import qualified Text.Pandoc as P
 import qualified Text.Pandoc.Writers.HTML as PWH
 import qualified Text.Blaze as B

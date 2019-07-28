@@ -4,7 +4,7 @@
 -- | This module defines documents pertaining to the course, such as lesson materials and lesson plans.
 module Courses.English.Grammar.Introduction.Documents where
 
-import Courses.Util.Documents (buildDocument)
+import Courses.Framework.Documents (buildDocument)
 import Data.FileEmbed (embedStringFile)
 import qualified Text.Pandoc as P
 

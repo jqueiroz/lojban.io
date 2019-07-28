@@ -6,8 +6,8 @@ module Courses.English.Grammar.Introduction.Translations where
 
 import Core
 import Courses.English.Grammar.Introduction.Strategies
-import Courses.Util.ExerciseGenerators
-import Courses.Util.ExerciseUtils
+import Courses.Framework.ExerciseGenerators
+import Courses.Framework.ExerciseUtils
 import Util (combineFunctions, combineFunctionsUniformly, generatorFromSingleton, generatorFromList)
 
 -- * Lesson 1: Basics 1

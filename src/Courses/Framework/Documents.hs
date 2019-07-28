@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Courses.Util.Documents
+module Courses.Framework.Documents
 ( buildDocument
 , buildVocabularyDocument
 ) where

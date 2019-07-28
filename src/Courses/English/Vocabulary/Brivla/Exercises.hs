@@ -7,7 +7,7 @@ import Core
 import Util (generatorFromList, combineFunctions)
 import Language.Lojban.Dictionaries (englishDictionary)
 import Control.Arrow (second)
-import Courses.Util.ExerciseGenerators
+import Courses.Framework.ExerciseGenerators
 import Courses.English.Vocabulary.Brivla.Translations
 
 -- * Auxiliar functions

@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Courses.Util.Sentences
+module Courses.Framework.Sentences
 ( generateNonbridi
 ) where
 

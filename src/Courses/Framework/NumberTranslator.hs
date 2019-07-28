@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Courses.Util.NumberTranslator
+module Courses.Framework.NumberTranslator
 ( numberToSimpleLojban
 , lojbanToNumber
 ) where

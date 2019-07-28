@@ -2,7 +2,7 @@
 module Courses.English.Grammar.Crash.Exercises where
 
 import Core
-import Courses.Util.ExerciseGenerators
+import Courses.Framework.ExerciseGenerators
 import Courses.English.Grammar.Crash.Translations
 import Courses.English.Grammar.Crash.Vocabulary
 import Util (combineFunctions)

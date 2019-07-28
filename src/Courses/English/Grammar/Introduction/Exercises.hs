@@ -2,9 +2,9 @@
 module Courses.English.Grammar.Introduction.Exercises where
 
 import Core
-import Courses.Util.Sentences (generateNonbridi)
-import Courses.Util.Extractors (extractSimpleBridiFromTranslationGenerator)
-import Courses.Util.ExerciseGenerators
+import Courses.Framework.Sentences (generateNonbridi)
+import Courses.Framework.Extractors (extractSimpleBridiFromTranslationGenerator)
+import Courses.Framework.ExerciseGenerators
 import Language.Lojban.Core
 import Language.Lojban.Dictionaries (englishDictionary)
 import Language.Lojban.Presentation (displayStandardSimpleBridi, displayVariantSimpleBridi, displayReorderedStandardSimpleBridi)

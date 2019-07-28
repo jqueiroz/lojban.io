@@ -1,4 +1,4 @@
-module Courses.Util.ExerciseUtils
+module Courses.Framework.ExerciseUtils
 ( simplifyCanonicalAnswer
 ) where
 

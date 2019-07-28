@@ -1,4 +1,4 @@
-module Courses.Util.Extractors
+module Courses.Framework.Extractors
 ( extractSimpleBridiFromTranslationGenerator
 , extractLojbanSentencesFromTranslationGenerator
 , extractLojbanSentencesFromTranslation
