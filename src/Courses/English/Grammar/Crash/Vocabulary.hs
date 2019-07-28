@@ -29,7 +29,7 @@ vocabulary01_cumulative = vocabulary01
 
 -- | Vocabulary for the second lesson.
 --
--- * New brivla: NONE.
+-- * New brivla: NONE
 -- * New cmavo: mi, do, ti, ta, tu.
 vocabulary02 :: Vocabulary
 vocabulary02 = Vocabulary
@@ -51,12 +51,13 @@ vocabulary02_cumulative = vocabulary01_cumulative <> vocabulary02
 
 -- | Vocabulary for the third lesson.
 --
--- * New brivla: NONE.
+-- * New brivla: stati, prenu, klama, nelci, zarci
 -- * New cmavo: pa, re, ci, vo, mu, xa, ze, bi, so, no
 vocabulary03 :: Vocabulary
 vocabulary03 = Vocabulary
     -- Brivla
     [
+        "stati", "prenu", "klama", "nelci", "zarci"
     ]
     -- Cmavo
     [
