@@ -8,12 +8,15 @@ module Courses.Framework.TranslationUtils
 , expandSentences
 , expandTranslation
 , expandTranslationGenerator
+, narrowTranslation
+, narrowTranslationGenerator
+, narrowTranslationGeneratorByExpression
 ) where
 
 import Core
 import Language.Lojban.Refinement (simplifyTerminatorsInSentence)
 import Control.Monad (join)
-import Control.Arrow ((***))
+import Control.Arrow ((***), second)
 import qualified Data.Text as T
 
 -- | Simplifies a 'Translation' by removing elidable terminators and/or replacing them with "cu" (see 'simplifyTerminatorsInSentence').
@@ -66,3 +69,25 @@ expandTranslation (lojban_sentences, english_sentences) = (expandSentences lojba
 expandTranslationGenerator :: TranslationGenerator -> TranslationGenerator
 expandTranslationGenerator translationGenerator r0 = (expandTranslation translation, r1) where
     (translation, r1) = translationGenerator r0
+
+-- | Returns a 'Translation' containing only the first (canonical) Lojban sentence.
+--
+-- Useful if you have a 'Translation' that you would like to display to the user, but some of its
+-- sentences in Lojban use words that have not yet been taught (perhaps to ensure that translations
+-- made by more advanced users are still accepted).
+--
+-- This function discards all Lojban sentences except for the first one.
+-- By convention, the first translation is expected to be suitable for presentation to the user.
+narrowTranslation :: Translation -> Translation
+narrowTranslation (lojban_sentences, english_sentences) = ([head lojban_sentences], english_sentences)
+
+-- | Decorates a TranslationGenerator so that the resulting translation contains only the first (canonical) Lojban sentence (see 'narrowTranslation').
+narrowTranslationGenerator :: TranslationGenerator -> TranslationGenerator
+narrowTranslationGenerator translationGenerator = translationGenerator' where
+    translationGenerator' :: TranslationGenerator
+    translationGenerator' r0 = (narrowTranslation originalTranslation, r1) where
+        (originalTranslation, r1) = translationGenerator r0
+
+-- | Decorates a TranslationGeneratorByExpression so that the resulting translation contains only the first (canonical) Lojban sentence (see 'narrowTranslation').
+narrowTranslationGeneratorByExpression :: TranslationGeneratorByExpression -> TranslationGeneratorByExpression
+narrowTranslationGeneratorByExpression = map (second narrowTranslationGenerator)

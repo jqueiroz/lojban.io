@@ -25,8 +25,9 @@ module Courses.Framework.ExerciseGenerators
 
 import Core
 import Courses.Framework.NumberTranslator
+import Courses.Framework.TranslationUtils (narrowTranslationGenerator, narrowTranslationGeneratorByExpression)
 import Language.Lojban.Core
-import Util (narrowTranslationGenerator, narrowTranslationGeneratorByExpression, isSubexpressionOf, replace, replaceFirstSubexpression, replaceSubexpression, chooseItemUniformly, combineGenerators, combineGeneratorsUniformly, isWordOf)
+import Util (isSubexpressionOf, replace, replaceFirstSubexpression, replaceSubexpression, chooseItemUniformly, combineGenerators, combineGeneratorsUniformly, isWordOf)
 import Text.Read (readMaybe)
 import System.Random (StdGen, random)
 import Control.Applicative (liftA2)

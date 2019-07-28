@@ -2,30 +2,11 @@
 {-# LANGUAGE TupleSections #-}
 module Util where
 
-import Core
-import Control.Arrow (second)
 import Control.Applicative (liftA2)
 import System.Random (StdGen, random, mkStdGen, split)
 import qualified Data.Text as T
 import Data.List (group, sort, intersperse)
 import System.Random.Shuffle (shuffle')
-
--- Domain-specific
-
--- Returns a Translation containing only the first (canonical) Lojban sentence
-narrowTranslation :: Translation -> Translation
-narrowTranslation (lojban_sentences, english_sentences) = ([head lojban_sentences], english_sentences)
-
--- Returns a TranslationGenerator containing only the first (canonical) Lojban sentence
-narrowTranslationGenerator :: TranslationGenerator -> TranslationGenerator
-narrowTranslationGenerator translationGenerator = translationGenerator' where
-    translationGenerator' :: TranslationGenerator
-    translationGenerator' r0 = (narrowTranslation originalTranslation, r1) where
-        (originalTranslation, r1) = translationGenerator r0
-
--- Returns a TranslationGeneratorByExpression containing only the first (canonical) Lojban sentence
-narrowTranslationGeneratorByExpression :: TranslationGeneratorByExpression -> TranslationGeneratorByExpression
-narrowTranslationGeneratorByExpression = map (second narrowTranslationGenerator)
 
 -- Function manipulation
 compose2 :: (t1 -> t2) -> (t3 -> t4 -> t1) -> t3 -> t4 -> t2
