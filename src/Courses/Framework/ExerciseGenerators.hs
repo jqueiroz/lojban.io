@@ -1,9 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 module Courses.Framework.ExerciseGenerators
-( Translation
-, TranslationGenerator
-, generateTranslationExercise
+( generateTranslationExercise
 , generateBlacklistedWordTranslationExercise
 , generateRestrictedTranslationExercise
 , generateGrammaticalClassExercise
