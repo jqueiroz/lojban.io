@@ -48,3 +48,24 @@ vocabulary02 = Vocabulary
 -- | Cumulative vocabulary up to the second lesson.
 vocabulary02_cumulative :: Vocabulary
 vocabulary02_cumulative = vocabulary01_cumulative <> vocabulary02
+
+-- | Vocabulary for the third lesson.
+--
+-- * New brivla: NONE.
+-- * New cmavo: pa, re, ci, vo, mu, xa, ze, bi, so, no
+vocabulary03 :: Vocabulary
+vocabulary03 = Vocabulary
+    -- Brivla
+    [
+    ]
+    -- Cmavo
+    [
+        "pa", "re", "ci", "vo", "mu", "xa", "ze", "bi", "so", "no"
+    ]
+    -- Cmene
+    [
+    ]
+
+-- | Cumulative vocabulary up to the third lesson.
+vocabulary03_cumulative :: Vocabulary
+vocabulary03_cumulative = vocabulary02_cumulative <> vocabulary03

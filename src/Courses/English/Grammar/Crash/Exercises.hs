@@ -31,3 +31,15 @@ exercises02 =
     where
         vocabulary = vocabulary02_cumulative
         translationExercises = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations02
+
+-- * Exercises
+-- | Exercises for the third lesson.
+exercises03 :: ExerciseGenerator
+exercises03 =
+    combineGenerators
+        [ (10, translationExercises)
+        , (10, generateBasicNumberExercise)
+        ]
+    where
+        vocabulary = vocabulary03_cumulative
+        translationExercises = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations03

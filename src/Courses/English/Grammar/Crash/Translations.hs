@@ -15,3 +15,7 @@ translations01 = loadTranslationGeneratorFromYamlCode $(embedStringFile "courses
 -- | Translations for the corresponding lesson.
 translations02 :: TranslationGenerator
 translations02 = loadTranslationGeneratorFromYamlCode $(embedStringFile "courses/english/grammar/crash/translations/02.yaml")
+
+-- | Translations for the corresponding lesson.
+translations03 :: TranslationGenerator
+translations03 = loadTranslationGeneratorFromYamlCode $(embedStringFile "courses/english/grammar/crash/translations/03.yaml")

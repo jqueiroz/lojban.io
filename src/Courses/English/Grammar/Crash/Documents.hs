@@ -17,3 +17,8 @@ Right lecture01 = buildDocumentFromMarkdownCode $(embedStringFile "courses/engli
 -- | Lecture for the corresponding lesson.
 lecture02 :: P.Pandoc
 Right lecture02 = buildDocumentFromMarkdownCode $(embedStringFile "courses/english/grammar/crash/lectures/02.md")
+
+-- * Lesson contents
+-- | Lecture for the corresponding lesson.
+lecture03 :: P.Pandoc
+Right lecture03 = buildDocumentFromMarkdownCode $(embedStringFile "courses/english/grammar/crash/lectures/03.md")
