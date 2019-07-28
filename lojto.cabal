@@ -132,7 +132,6 @@ test-suite courses
                      , Courses.Framework.ExerciseGenerators.Tests
                      , Courses.Framework.NumberTranslator
                      , Courses.Framework.Sentences
-                     , Courses.Framework.Vocabulary
                      , Language.Lojban.Canonicalization
                      , Language.Lojban.Canonicalization.Internals
                      , Language.Lojban.Core
