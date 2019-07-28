@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Courses.Framework.Documents
+module Courses.Framework.DocumentBuilders
 ( buildDocument
 , buildVocabularyDocument
 ) where
@@ -10,15 +10,18 @@ import Language.Lojban.Core
 import qualified Data.Text as T
 import qualified Text.Pandoc as P
 
+-- | Given Markdown code, produces a Pandoc document.
 buildDocument :: T.Text -> Either P.PandocError P.Pandoc
 buildDocument code = P.runPure $ P.readMarkdown P.def
     { P.readerStripComments = True
     , P.readerExtensions = P.extensionsFromList [ P.Ext_raw_html, P.Ext_subscript ]
     } $ preprocessCode code
 
+-- | Proprocess Markdown code to handle subscripts.
 preprocessCode :: T.Text -> T.Text
 preprocessCode = (T.replace "_1" "~1~") . (T.replace "_2" "~2~") . (T.replace "_3" "~3~") . (T.replace "_4" "~4~") . (T.replace "_5" "~5~")
 
+-- | Given a dictionary and a vocabulary, produces a glossary in the form of a Pandoc document.
 buildVocabularyDocument :: Dictionary -> Vocabulary -> P.Pandoc
 buildVocabularyDocument dictionary vocabulary = document where
     Right document = buildDocument code

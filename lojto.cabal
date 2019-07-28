@@ -43,7 +43,7 @@ library
   --ld-options: -static -pthread
   exposed-modules:     Core
                      , Serializer
-                     , Courses.Framework.Documents
+                     , Courses.Framework.DocumentBuilders
                      , Courses.Framework.ExerciseGenerators
                      , Courses.Framework.ExerciseUtils
                      , Courses.Framework.Extractors

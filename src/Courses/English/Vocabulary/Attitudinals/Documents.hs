@@ -3,7 +3,7 @@
 -- | This module defines documents pertaining to the course, such as lesson materials and lesson plans.
 module Courses.English.Vocabulary.Attitudinals.Documents where
 
-import Courses.Framework.Documents (buildDocument)
+import Courses.Framework.DocumentBuilders (buildDocument)
 import Data.FileEmbed (embedStringFile)
 import qualified Text.Pandoc as P
 
