@@ -57,11 +57,11 @@ expandSentence sentence = map (T.unwords . T.words) (expandSentence' sentence) w
     expandExpression :: T.Text -> [T.Text]
     expandExpression = T.splitOn "|"
 
--- | Expands the Lojban sentences in a 'Translations' using syntax such as (x|y|z) or {x|y|z} (see 'expandSentence').
+-- | Expands the Lojban sentences in a 'Translation' using syntax such as (x|y|z) or {x|y|z} (see 'expandSentence').
 expandTranslation :: Translation -> Translation
 expandTranslation (lojban_sentences, english_sentences) = (expandSentences lojban_sentences, english_sentences)
 
--- | Expands the Lojban sentences in a 'TranslationsGenerator' using syntax such as (x|y|z) or {x|y|z} (see 'expandSentence').
+-- | Expands the Lojban sentences in a 'TranslationGenerator' using syntax such as (x|y|z) or {x|y|z} (see 'expandSentence').
 expandTranslationGenerator :: TranslationGenerator -> TranslationGenerator
 expandTranslationGenerator translationGenerator r0 = (expandTranslation translation, r1) where
     (translation, r1) = translationGenerator r0
