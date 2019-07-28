@@ -6,5 +6,6 @@ docs:
 less:
 	./buildscripts/compile-less.sh
 
-server: less
+server:
 	./buildscripts/compile-server.sh
+	./buildscripts/compile-less.sh
