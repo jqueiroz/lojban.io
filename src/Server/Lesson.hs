@@ -38,9 +38,10 @@ displayLessonHome topbarCategory course lessonNumber = do
                     displayLessonHeader baseLessonUrl LessonHome course lessonNumber
                     H.div B.! A.class_ (H.stringValue "lesson-body") $ do
                         displayLessonTabs lesson
-                        H.div B.! A.class_ (H.stringValue "lesson-lecture") $ do
-                            H.div $ do
-                                fromRight $ P.runPure $ PWH.writeHtml5 P.def (lessonLecture lesson)
+                        when (isJust $ lessonLecture lesson) $ do
+                            H.div B.! A.class_ (H.stringValue "lesson-lecture") $ do
+                                H.div $ do
+                                    fromRight . P.runPure . PWH.writeHtml5 P.def $ fromJust (lessonLecture lesson)
                         when (isJust $ lessonPlan lesson) $ do
                             H.div B.! A.class_ (H.stringValue "lesson-plan") $ do
                                 H.div $ do
@@ -52,11 +53,15 @@ displayLessonHome topbarCategory course lessonNumber = do
 
 displayLessonTabs :: Lesson -> H.Html
 displayLessonTabs lesson = do
-    displayLessonTab "lesson-tab-lecture" "Lecture" True
-    when (isJust $ lessonPlan lesson) $ do
-        displayLessonTab "lesson-tab-plan" "Plan" False
-    when (isJust $ lessonVocabulary lesson) $ do
-        displayLessonTab "lesson-tab-vocabulary" "Vocabulary" False
+    let hasLecture = isJust $ lessonLecture lesson
+    let hasPlan = isJust $ lessonPlan lesson
+    let hasVocabulary = isJust $ lessonVocabulary lesson
+    when hasLecture $ do
+        displayLessonTab "lesson-tab-lecture" "Lecture" True
+    when hasPlan $ do
+        displayLessonTab "lesson-tab-plan" "Plan" (not hasLecture)
+    when hasVocabulary $ do
+        displayLessonTab "lesson-tab-vocabulary" "Vocabulary" $ (not hasLecture) && (not hasPlan)
 
 displayLessonTab :: String -> String -> Bool -> H.Html
 displayLessonTab id title checked = do

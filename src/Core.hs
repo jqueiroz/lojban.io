@@ -25,7 +25,7 @@ data CourseStyle = CourseStyle
 data Lesson = Lesson
     { lessonTitle :: String
     , lessonExercises :: ExerciseGenerator
-    , lessonLecture :: P.Pandoc
+    , lessonLecture :: Maybe P.Pandoc
     , lessonPlan :: Maybe P.Pandoc
     , lessonVocabulary :: Maybe Vocabulary
     }
