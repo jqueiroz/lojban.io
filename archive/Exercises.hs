@@ -2,14 +2,14 @@
 module Lessons.Exercises where
 
 import Core
-import Util (chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly)
+import Util (chooseItem, chooseItemUniformly, chooseItemsUniformly, combineGenerators, combineGeneratorsUniformly)
 import System.Random (StdGen)
 import qualified Data.Text as T
 import qualified Data.Map as M
 
 -- Exercise: recall gismu meaning
 generateGismuMeaningExercise :: [Gismu] -> StdGen -> Exercise
-generateGismuMeaningExercise gismuList = combineFunctions [(4, f1), (1, f2), (7, f3), (3, f4)] where
+generateGismuMeaningExercise gismuList = combineGenerators [(4, f1), (1, f2), (7, f3), (3, f4)] where
         -- Exercise: match gismu with keyword
         f1 :: StdGen -> Exercise
         f1 r0 = MatchingExercise title sentences items where
@@ -49,7 +49,7 @@ generateGismuMeaningExercise gismuList = combineFunctions [(4, f1), (1, f2), (7,
 
 -- Exercise: recall gismu place structure
 generateBasicGismuPlacesExercise :: [Gismu] -> StdGen -> Exercise
-generateBasicGismuPlacesExercise gismuList = combineFunctionsUniformly [f1, f2] where
+generateBasicGismuPlacesExercise gismuList = combineGeneratorsUniformly [f1, f2] where
     f1 :: StdGen -> Exercise
     f1 r0 = MatchingExercise title sentences items where
         (chosenGismu, _) = chooseItemUniformly r0 . filter ((>=3) . length . gismuEnglishPlaces) $ gismuList
@@ -67,7 +67,7 @@ generateBasicGismuPlacesExercise gismuList = combineFunctionsUniformly [f1, f2] 
         sentences = []
 
 generateAdvancedGismuPlacesExercise :: [Gismu] -> StdGen -> Exercise
-generateAdvancedGismuPlacesExercise gismuList = combineFunctionsUniformly [f1, f2] where
+generateAdvancedGismuPlacesExercise gismuList = combineGeneratorsUniformly [f1, f2] where
     f1 :: StdGen -> Exercise
     f1 r0 = MatchingExercise title sentences items where
         (chosenGismu, r1) = chooseItemUniformly r0 . filter ((>=3) . length . gismuEnglishPlaces) $ gismuList

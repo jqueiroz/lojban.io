@@ -12,7 +12,7 @@ import Core
 import Courses.Util.Vocabulary
 import Language.Lojban.Core
 import Language.Lojban.Refinement (simplifyTerminatorsInSentence)
-import Util (filterSnd, filterOutWord, filterOutWords, chooseItem, combineFunctions)
+import Util (filterSnd, filterOutWord, filterOutWords, chooseItem, combineGenerators)
 import System.Random (StdGen)
 import Data.Maybe (fromMaybe)
 import qualified Data.Text as T
@@ -24,7 +24,7 @@ generateNonbridi vocabulary r0 = chooseItem r0 . concatMap (getVocabularySumti v
     ["genericPersons", "semiGenericPersons", "animals", "genericPointable", "places", "subjects"]
 
 generateSimpleBridi :: Vocabulary -> StdGen -> (SimpleBridi, StdGen)
-generateSimpleBridi vocabulary = combineFunctions
+generateSimpleBridi vocabulary = combineGenerators
     [ (weight properties, generatePropertyBridi vocabulary)
     , (weight relations, generateRelationBridi vocabulary)
     , (weight actions, generateActionBridi vocabulary)

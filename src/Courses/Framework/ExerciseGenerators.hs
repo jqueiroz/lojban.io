@@ -25,7 +25,7 @@ module Courses.Framework.ExerciseGenerators
 import Core
 import Courses.Framework.NumberTranslator
 import Language.Lojban.Core
-import Util (narrowTranslationGenerator, narrowTranslationGeneratorByExpression, isSubexpressionOf, replace, replaceFirstSubexpression, replaceSubexpression, chooseItemUniformly, combineFunctions, combineFunctionsUniformly, isWordOf)
+import Util (narrowTranslationGenerator, narrowTranslationGeneratorByExpression, isSubexpressionOf, replace, replaceFirstSubexpression, replaceSubexpression, chooseItemUniformly, combineGenerators, combineGeneratorsUniformly, isWordOf)
 import Text.Read (readMaybe)
 import System.Random (StdGen, random)
 import Control.Applicative (liftA2)
@@ -69,7 +69,7 @@ generateGrammaticalClassExercise vocabulary r0 = SingleChoiceExercise title sent
 
 -- Exercise: jufra vs bridi
 generateBridiJufraExercise :: SimpleBridiGenerator -> TextGenerator -> SimpleBridiDisplayer -> ExerciseGenerator
-generateBridiJufraExercise simpleBridiGenerator nonbridiGenerator displayBridi = combineFunctionsUniformly [generateEnglishBridiJufraExercise, generateLojbanBridiJufraExercise simpleBridiGenerator nonbridiGenerator displayBridi]
+generateBridiJufraExercise simpleBridiGenerator nonbridiGenerator displayBridi = combineGeneratorsUniformly [generateEnglishBridiJufraExercise, generateLojbanBridiJufraExercise simpleBridiGenerator nonbridiGenerator displayBridi]
 
 generateLojbanBridiJufraExercise :: SimpleBridiGenerator -> TextGenerator -> SimpleBridiDisplayer -> ExerciseGenerator
 generateLojbanBridiJufraExercise simpleBridiGenerator nonbridiGenerator displayBridi r0 = SingleChoiceExercise title sentences correctAlternative incorrectAlternatives True where
@@ -188,7 +188,7 @@ generateSelbriIdentificationExercise simpleBridiGenerator displayBridi r0 = Sing
 
 -- Exercises: tell gismu places of a sentence (TODO: typing exercises?)
 generateContextualizedGismuPlaceMeaningExercise :: Dictionary -> SimpleBridiGenerator -> SimpleBridiDisplayer -> ExerciseGenerator
-generateContextualizedGismuPlaceMeaningExercise dictionary simpleBridiGenerator displayBridi = combineFunctions [(1, f2)] where
+generateContextualizedGismuPlaceMeaningExercise dictionary simpleBridiGenerator displayBridi = combineGenerators [(1, f2)] where
     f2 r0 =
         let
             -- Generate bridi
@@ -208,7 +208,7 @@ generateContextualizedGismuPlaceMeaningExercise dictionary simpleBridiGenerator 
         in SingleChoiceExercise title sentences correctAlternative incorrectAlternatives False
 
 generateContextualizedGismuPlacePositionExercise :: Dictionary -> SimpleBridiGenerator -> SimpleBridiDisplayer -> ExerciseGenerator
-generateContextualizedGismuPlacePositionExercise dictionary simpleBridiGenerator displayBridi = combineFunctions [(1, f2)] where
+generateContextualizedGismuPlacePositionExercise dictionary simpleBridiGenerator displayBridi = combineGenerators [(1, f2)] where
     f2 r0 =
         let
             (bridi, r1) = simpleBridiGenerator r0
@@ -251,7 +251,7 @@ generateLexiconProvidingExercise lexiconCategory dictionary wordGenerator r0 = T
 
 -- Exercise: convert numbers to and from lojban
 generateBasicNumberExercise :: ExerciseGenerator
-generateBasicNumberExercise = combineFunctionsUniformly [generateNumberToTextExercise, generateTextToNumberExercise]
+generateBasicNumberExercise = combineGeneratorsUniformly [generateNumberToTextExercise, generateTextToNumberExercise]
 
 generateNumberToTextExercise :: ExerciseGenerator
 generateNumberToTextExercise r0 =

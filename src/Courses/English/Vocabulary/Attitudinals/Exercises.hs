@@ -4,7 +4,7 @@
 module Courses.English.Vocabulary.Attitudinals.Exercises where
 
 import Core
-import Util (shuffle, chooseItemUniformly, combineFunctionsUniformly, mapRandom)
+import Util (shuffle, chooseItemUniformly, combineGeneratorsUniformly, mapRandom)
 import Courses.English.Vocabulary.Attitudinals.Model
 import Courses.English.Vocabulary.Attitudinals.Vocabulary
 import Courses.English.Vocabulary.Attitudinals.Util
@@ -57,14 +57,14 @@ generateAttitudinalClassificationExercise attitudinals r0 = SingleChoiceExercise
 -- * Exercises per lesson
 -- | Exercises for the first lesson.
 exercises1 :: ExerciseGenerator
-exercises1 = combineFunctionsUniformly
+exercises1 = combineGeneratorsUniformly
     [ generatePositiveAttitudinalBackwardMeaningExercise attitudinals1
     , generatePositiveAttitudinalForwardMeaningExercise attitudinals1
     ]
 
 -- | Exercises for the second lesson.
 exercises2 :: ExerciseGenerator
-exercises2 = combineFunctionsUniformly
+exercises2 = combineGeneratorsUniformly
     [ generatePositiveAttitudinalBackwardMeaningExercise attitudinals2
     , generatePositiveAttitudinalForwardMeaningExercise attitudinals2
     , generateAttitudinalClassificationExercise attitudinals2_cumulative
@@ -72,7 +72,7 @@ exercises2 = combineFunctionsUniformly
 
 -- | Exercises for the third lesson.
 exercises3 :: ExerciseGenerator
-exercises3 = combineFunctionsUniformly
+exercises3 = combineGeneratorsUniformly
     [ generateAttitudinalBackwardMeaningExercise attitudinals3_cumulative
     , generateAttitudinalForwardMeaningExercise attitudinals3_cumulative
     , generateAttitudinalClassificationExercise attitudinals3_cumulative

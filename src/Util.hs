@@ -151,13 +151,13 @@ generatorFromWeightedList = flip chooseItem
 
 -- combineSimpleFunctions :: [(Int, a)] -> (StdGen -> a)
 
-combineFunctions :: [(Int, StdGen -> a)] -> (StdGen -> a)
-combineFunctions fs r0 =
+combineGenerators :: [(Int, StdGen -> a)] -> (StdGen -> a)
+combineGenerators fs r0 =
     let (f, r1) = chooseItem r0 fs
     in f r1
 
-combineFunctionsUniformly :: [StdGen -> a] -> (StdGen -> a)
-combineFunctionsUniformly fs = combineFunctions $ map (1,) fs
+combineGeneratorsUniformly :: [StdGen -> a] -> (StdGen -> a)
+combineGeneratorsUniformly fs = combineGenerators $ map (1,) fs
 
 mapRandom :: StdGen -> (StdGen -> a -> (b, StdGen)) -> [a] -> ([b], StdGen)
 mapRandom r0 _ [] = ([], r0)
@@ -173,7 +173,7 @@ testChooseItemUniformly :: Int -> T.Text
 testChooseItemUniformly x = fst $ chooseItemUniformly (mkStdGen x) ["a", "b", "c", "d"]
 
 testChooseFunctionUniformly :: Int -> T.Text
-testChooseFunctionUniformly x = combineFunctionsUniformly [const "a", const "b", const "c"] (mkStdGen x)
+testChooseFunctionUniformly x = combineGeneratorsUniformly [const "a", const "b", const "c"] (mkStdGen x)
 
 -- Old implementations
 

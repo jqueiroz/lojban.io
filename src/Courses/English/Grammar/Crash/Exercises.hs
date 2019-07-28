@@ -5,7 +5,7 @@ import Core
 import Courses.Framework.ExerciseGenerators
 import Courses.English.Grammar.Crash.Translations
 import Courses.English.Grammar.Crash.Vocabulary
-import Util (combineFunctions)
+import Util (combineGenerators)
 
 -- For now, let's just reuse the strategies from the "Introduction" course.
 import Courses.English.Grammar.Introduction.Strategies (sentenceCanonicalizer, sentenceComparer)
@@ -14,7 +14,7 @@ import Courses.English.Grammar.Introduction.Strategies (sentenceCanonicalizer, s
 -- | Exercises for the first lesson.
 exercises01 :: ExerciseGenerator
 exercises01 =
-    combineFunctions
+    combineGenerators
         [ (10, translationExercises)
         ]
     where
@@ -25,7 +25,7 @@ exercises01 =
 -- | Exercises for the second lesson.
 exercises02 :: ExerciseGenerator
 exercises02 =
-    combineFunctions
+    combineGenerators
         [ (10, translationExercises)
         ]
     where

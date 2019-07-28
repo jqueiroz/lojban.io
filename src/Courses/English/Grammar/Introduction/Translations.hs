@@ -9,13 +9,13 @@ import Courses.English.Grammar.Introduction.Strategies
 import Courses.Framework.ExerciseGenerators
 import Courses.Framework.ExerciseUtils
 import Courses.Framework.TranslationUtils
-import Util (combineFunctions, combineFunctionsUniformly, generatorFromSingleton, generatorFromList)
+import Util (combineGenerators, combineGeneratorsUniformly, generatorFromSingleton, generatorFromList)
 
 -- * Lesson 1: Basics 1
 
 -- | Translations for the first lesson.
 translations1 :: TranslationGenerator
-translations1 = combineFunctionsUniformly [dunda, demonstrative, zdani] where
+translations1 = combineGeneratorsUniformly [dunda, demonstrative, zdani] where
     dunda = generatorFromList
         [ (["do dunda ti mi"], ["You give me this.", "You give us this."])
         , (["do dunda ta mi"], ["You give me that.", "You give us that."])
@@ -40,13 +40,13 @@ translationExercises1 = generateTranslationExercise sentenceCanonicalizer senten
 
 -- | Overall translations for the second lesson.
 translations2 :: TranslationGenerator
-translations2 = combineFunctions [(1, translations2_nice), (4, translations2_normal)]
+translations2 = combineGenerators [(1, translations2_nice), (4, translations2_normal)]
 
 -- | Interesting translations for the second lesson.
 --
 -- Defined separately so that they may be reused in the third lesson.
 translations2_nice :: TranslationGenerator
-translations2_nice = combineFunctionsUniformly [tavlaReflexive, dundaReordered] where
+translations2_nice = combineGeneratorsUniformly [tavlaReflexive, dundaReordered] where
     tavlaReflexive = generatorFromList
         [ (["mi tavla mi", "mi tavla vo'a"], ["I am talking to myself.", "I was talking to myself.", "We were talking to ourselves."])
         , (["do tavla do", "do tavla vo'a"], ["You are talking to yourself."])
@@ -58,7 +58,7 @@ translations2_nice = combineFunctionsUniformly [tavlaReflexive, dundaReordered] 
 
 -- | Regular translations for the second lesson.
 translations2_normal :: TranslationGenerator
-translations2_normal = combineFunctionsUniformly $ others ++ [talkingWithSecondPerson, pendo, prenu, demonstrative, zdani] where
+translations2_normal = combineGeneratorsUniformly $ others ++ [talkingWithSecondPerson, pendo, prenu, demonstrative, zdani] where
     talkingWithSecondPerson = generatorFromList
         [ (["mi tavla do"], ["I am talking to you.", "I was talking to you.", "We are talking to you.", "We were talking to you."])
         , (["do tavla mi"], ["You are talking to me.", "You are talking to us."])
@@ -102,13 +102,13 @@ translationExercises2 = generateTranslationExercise sentenceCanonicalizer senten
 
 -- | Overall translations for the third lesson.
 translations3 :: TranslationGenerator
-translations3 =  combineFunctions [(1, translations2_nice), (10, translations3_nice), (5, translations3_normal)]
+translations3 =  combineGenerators [(1, translations2_nice), (10, translations3_nice), (5, translations3_normal)]
 
 -- | Translations for the third lesson, with the restriction that some intermediate place is missing.
 --
 -- Defined separately so that they may be used in 'Translate without using "zo'e"' exercises.
 translations3_restricted :: TranslationGenerator
-translations3_restricted = combineFunctions [(2, talkingAbout), (1, gaveSomething)] where
+translations3_restricted = combineGenerators [(2, talkingAbout), (1, gaveSomething)] where
     talkingAbout = generatorFromList
         [ (["mi tavla fi mi", "mi tavla fi vo'a"], ["I was talking about myself.", "We were talking about ourselves.", "I will talk about myself."])
         , (["mi tavla fi do"], ["I was talking about you.", "We were talking about you.", "I am talking about you.", "We are talking about you.", "I will talk about you.", "We will talk about you."])
@@ -128,7 +128,7 @@ translations3_restricted = combineFunctions [(2, talkingAbout), (1, gaveSomethin
 --
 -- Defined separately so that they may be reused in the checkpoint lesson (Lesson 7).
 translations3_nice :: TranslationGenerator
-translations3_nice = combineFunctions $ [(2, translations3_restricted), (2, teaching)] ++ ((1,) <$> [hasHouse, niceGift, giftingAnimal, friends, pelxu, others]) where
+translations3_nice = combineGenerators $ [(2, translations3_restricted), (2, teaching)] ++ ((1,) <$> [hasHouse, niceGift, giftingAnimal, friends, pelxu, others]) where
     hasHouse = generatorFromList
         [ (["lo ctuca ku se zdani"], ["The instructor has a house."])
         , (["lo prenu ku se zdani"], ["The person has a house."])
@@ -137,7 +137,7 @@ translations3_nice = combineFunctions $ [(2, translations3_restricted), (2, teac
         , (["lo dunda ku se zdani"], ["The donor has a house."])
         , (["lo te dunda ku se zdani"], ["The beneficiary has a house."])
         ]
-    niceGift = combineFunctionsUniformly [beautifulGift, likedGift] where
+    niceGift = combineGeneratorsUniformly [beautifulGift, likedGift] where
         beautifulGift = generatorFromList
             [ (["lo se dunda ku melbi mi"], ["The gift is beautiful to me.", "The gifts are beautiful to me."])
             , (["lo se dunda ku melbi"], ["The gift is beautiful.", "The gifts are beautiful."])
@@ -195,7 +195,7 @@ translations3_nice = combineFunctions $ [(2, translations3_restricted), (2, teac
 -- | Regular translations for the third lesson.
 --
 translations3_normal :: TranslationGenerator
-translations3_normal = combineFunctionsUniformly [talkingToAnimal, likingAnimals, animalFriends, beautiful, person, others] where
+translations3_normal = combineGeneratorsUniformly [talkingToAnimal, likingAnimals, animalFriends, beautiful, person, others] where
         talkingToAnimal = generatorFromList
             [ (["lo prenu ku tavla lo mlatu ku"], ["A person is talking to a cat.", "The person talks to cats."])
             , (["lo prenu ku tavla lo gerku ku"], ["A person is talking to a dog.", "The person talks to dogs."])
@@ -245,7 +245,7 @@ translations3_normal = combineFunctionsUniformly [talkingToAnimal, likingAnimals
 --
 -- Defined separately so that they may be reused in the checkpoint lesson (Lesson 7).
 translationExercises3_nice :: ExerciseGenerator
-translationExercises3_nice = combineFunctions [(1, restricted), (5, nice)] where
+translationExercises3_nice = combineGenerators [(1, restricted), (5, nice)] where
     restricted = generateBlacklistedWordTranslationExercise "zo'e" sentenceCanonicalizer sentenceComparer translations3_restricted
     nice = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations3_nice
 
@@ -255,7 +255,7 @@ translationExercises3_normal = generateTranslationExercise sentenceCanonicalizer
 
 -- | Overall translation exercises for the third lesson.
 translationExercises3 :: ExerciseGenerator
-translationExercises3 =  combineFunctions [(1, restricted), (5, unrestricted)] where
+translationExercises3 =  combineGenerators [(1, restricted), (5, unrestricted)] where
     restricted = generateBlacklistedWordTranslationExercise "zo'e" sentenceCanonicalizer sentenceComparer translations3_restricted
     unrestricted = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations3
 
@@ -263,13 +263,13 @@ translationExercises3 =  combineFunctions [(1, restricted), (5, unrestricted)] w
 --
 -- | Overall translations for the fourth lesson (always involving "xu", "ma" or "mo").
 translations4 :: TranslationGenerator
-translations4 = combineFunctions [(4, translations4_xu), (4, translations4_ma), (1, translations4_mo)]
+translations4 = combineGenerators [(4, translations4_xu), (4, translations4_ma), (1, translations4_mo)]
 
 -- | Translations for the fourth lesson involving "xu", with the restriction that some intermediate place is missing.
 --
 -- Defined separately so that they may be used in 'Translate without using "zo'e"' exercises.
 translations4_restricted_xu :: TranslationGenerator
-translations4_restricted_xu = combineFunctions [(2, talkingAbout), (1, gaveSomething), (4, writing), (2, know)] where
+translations4_restricted_xu = combineGenerators [(2, talkingAbout), (1, gaveSomething), (4, writing), (2, know)] where
     talkingAbout = generatorFromList
         [ (["xu do tavla fi do", "xu do tavla fi vo'a"], ["Are you talking about yourself?", "Were you talking about yourself?"])
         , (["xu do tavla fi mi"], ["Are you talking about me?", "Were you talking about me?"])
@@ -300,13 +300,13 @@ translations4_restricted_xu = combineFunctions [(2, talkingAbout), (1, gaveSomet
 
 -- | Overall translations for the fourth lesson involving "xu".
 translations4_xu :: TranslationGenerator
-translations4_xu = combineFunctions $ [(3, translations4_restricted_xu), (3, writing), (2, know)] ++ ((1,) <$> [hasHouse, nice, talking, teaching, friends, others]) where
+translations4_xu = combineGenerators $ [(3, translations4_restricted_xu), (3, writing), (2, know)] ++ ((1,) <$> [hasHouse, nice, talking, teaching, friends, others]) where
     hasHouse = generatorFromList
         [ (["xu do se zdani"], ["Do you have a house?"])
         , (["xu lo prenu ku se zdani"], ["Does the person have a house?"])
         , (["xu lo ctuca ku se zdani"], ["Does the instructor have a house?"])
         ]
-    nice = combineFunctionsUniformly [beautiful, like] where
+    nice = combineGeneratorsUniformly [beautiful, like] where
         beautiful = generatorFromList
             [ (["xu lo se dunda ku melbi do"], ["Is the gift beautiful to you?", "Are the gifts beatiful to you?"])
             , (["xu lo se dunda ku melbi"], ["Is the gift beautiful?", "Are the gifts beautiful?"])
@@ -362,7 +362,7 @@ translations4_xu = combineFunctions $ [(3, translations4_restricted_xu), (3, wri
 --
 -- Defined separately so that they may be used in 'Translate without using "zo'e"' exercises.
 translations4_restricted_ma :: TranslationGenerator
-translations4_restricted_ma = combineFunctions [(2, talkingAbout), (1, gaveSomething), (4, writing), (2, know)] where
+translations4_restricted_ma = combineGenerators [(2, talkingAbout), (1, gaveSomething), (4, writing), (2, know)] where
     talkingAbout = generatorFromList
         [ (["ma tavla fi mi"], ["Who is talking about me?", "Who is talking about us?", "Who was talking about me?", "Who was walking about us?"])
         , (["ma tavla fi do"], ["Who is talking about you?", "Who was talking about you?"])
@@ -401,13 +401,13 @@ translations4_restricted_ma = combineFunctions [(2, talkingAbout), (1, gaveSomet
 
 -- | Overall translations for the fourth lesson involving "ma".
 translations4_ma :: TranslationGenerator
-translations4_ma = combineFunctions $ [(3, translations4_restricted_ma), (3, writing), (2, know)] ++ ((1,) <$> [hasHouse, nice, talking, giving, teaching]) where
+translations4_ma = combineGenerators $ [(3, translations4_restricted_ma), (3, writing), (2, know)] ++ ((1,) <$> [hasHouse, nice, talking, giving, teaching]) where
     hasHouse = generatorFromList
         [ (["ma se zdani"], ["Who has a house?"])
         , (["ta zdani ma", "zdani ma"], ["Whose house is that?"])
         , (["do nelci ma"], ["What do you like?"])
         ]
-    nice = combineFunctionsUniformly [what, who] where
+    nice = combineGeneratorsUniformly [what, who] where
         what = generatorFromList
             [ (["ma melbi do"], ["What is beautiful to you?"])
             , (["ma melbi"], ["What is beautiful?"])
@@ -428,7 +428,7 @@ translations4_ma = combineFunctions $ [(3, translations4_restricted_ma), (3, wri
         , (["ma tavla mi"], ["Who is talking to me?"])
         , (["ma tavla do"], ["Who is talking to you?"])
         ]
-    giving = combineFunctions [(2, general), (1, mlatu), (1, gerku)] where
+    giving = combineGenerators [(2, general), (1, mlatu), (1, gerku)] where
         general = generatorFromList
             [ (["do te dunda ma"], ["What were you given?", "What did you receive?"])
             , (["do dunda ma mi"], ["What did you give me?", "What will you give me?"])
@@ -497,24 +497,24 @@ translations4_mo = generatorFromList
 --
 -- Defined separately so that they may be used in 'Translate without using "zo'e"' exercises.
 translations4_restricted :: TranslationGenerator
-translations4_restricted = combineFunctionsUniformly [translations4_restricted_xu, translations4_restricted_ma]
+translations4_restricted = combineGeneratorsUniformly [translations4_restricted_xu, translations4_restricted_ma]
 
 translationExercises4 :: ExerciseGenerator
-translationExercises4 = combineFunctions [(1, restricted), (5, unrestricted)] where
+translationExercises4 = combineGenerators [(1, restricted), (5, unrestricted)] where
     restricted = generateBlacklistedWordTranslationExercise "zo'e" sentenceCanonicalizer sentenceComparer translations4_restricted
     unrestricted = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations4
 
 questionExercises4 :: ExerciseGenerator
-questionExercises4 = generateNarrowFillingBlanksExerciseByAlternatives ["mo", "ma"] $ combineFunctionsUniformly [translations4_ma, translations4_mo]
+questionExercises4 = generateNarrowFillingBlanksExerciseByAlternatives ["mo", "ma"] $ combineGeneratorsUniformly [translations4_ma, translations4_mo]
 
 questionExercises4_simplified :: ExerciseGenerator
-questionExercises4_simplified = generateNarrowFillingBlanksExerciseByAlternatives ["mo", "ma"] $ simplifyTerminatorsInTranslationGenerator $ combineFunctionsUniformly [translations4_ma, translations4_mo]
+questionExercises4_simplified = generateNarrowFillingBlanksExerciseByAlternatives ["mo", "ma"] $ simplifyTerminatorsInTranslationGenerator $ combineGeneratorsUniformly [translations4_ma, translations4_mo]
 
 -- * Lesson 5: Abstractions 1
 -- CHECK: Are events vs facts being used correctly?
 translations5_nu :: TranslationGenerator
-translations5_nu = combineFunctions [(2, gleki), (1, tavla), (2, nupre)] where
-    gleki = combineFunctionsUniformly [talking, beautiful, givingAnimals, liking, teaching, owningHouse, know, other] where
+translations5_nu = combineGenerators [(2, gleki), (1, tavla), (2, nupre)] where
+    gleki = combineGeneratorsUniformly [talking, beautiful, givingAnimals, liking, teaching, owningHouse, know, other] where
         talking = generatorFromList
             -- talking to someone
             [ (["mi gleki lo nu do tavla mi kei ku"], ["I am happy that you talked to me."])
@@ -568,7 +568,7 @@ translations5_nu = combineFunctions [(2, gleki), (1, tavla), (2, nupre)] where
             , (["mi gleki lo nu lo te dunda ku pendo mi kei ku"], ["I am happy that the beneficiary is my friend."])
             , (["do gleki ma"], ["Why are you happy?", "What are you happy about?"])
             ]
-    tavla = combineFunctionsUniformly [owningHouse, promisorTalked, promiseeTalked] where
+    tavla = combineGeneratorsUniformly [owningHouse, promisorTalked, promiseeTalked] where
         owningHouse = generatorFromList
             [ (["mi tavla fi lo nu do se zdani kei ku"], ["I talked about you having a house.", "We talked about you having a house."])
             ]
@@ -590,7 +590,7 @@ translations5_nu = combineFunctions [(2, gleki), (1, tavla), (2, nupre)] where
             , (["lo te nupre ku tavla mi lo gerku ku"], ["The promisee talked to me about the dog.", "The promisee talked to me about the dogs."])
             , (["lo te nupre ku tavla mi lo zdani ku"], ["The promisee talked to me about the house.", "The promisee talked to me about the houses."])
             ]
-    nupre = combineFunctionsUniformly [donatingAnimals, donatingHouses, teaching, beingFriendly] where
+    nupre = combineGeneratorsUniformly [donatingAnimals, donatingHouses, teaching, beingFriendly] where
         donatingAnimals = generatorFromList
             [ (["do nupre lo nu dunda lo mlatu ku kei ku", "do nupre lo nu do dunda lo mlatu ku kei ku"], ["You promised to donate the cat.", "You promised to donate the cats."])
             , (["do nupre lo nu dunda lo gerku ku kei ku", "do nupre lo nu do dunda lo gerku ku kei ku"], ["You promised to donate the dog.", "You promised to donate the dogs."])
@@ -614,8 +614,8 @@ translations5_nu = combineFunctions [(2, gleki), (1, tavla), (2, nupre)] where
             ]
 
 translations5_du'u :: TranslationGenerator
-translations5_du'u = combineFunctions [(2, djuno)] where
-    djuno = combineFunctionsUniformly [teaching, friend, donating, promising, liking, talking, writing] where
+translations5_du'u = combineGenerators [(2, djuno)] where
+    djuno = combineGeneratorsUniformly [teaching, friend, donating, promising, liking, talking, writing] where
         teaching = generatorFromList
             [ (["mi djuno lo du'u do ctuca mi kei ku"], ["I know that you taught me."])
             ]
@@ -670,8 +670,8 @@ translations5_du'u = combineFunctions [(2, djuno)] where
             ]
 
 translations5_sedu'u :: TranslationGenerator
-translations5_sedu'u = combineFunctions [(2, cusku)] where
-    cusku = combineFunctionsUniformly [beautiful, likingPeople, likingAnimals, donatingAnimals, beingFriendly, others] where
+translations5_sedu'u = combineGenerators [(2, cusku)] where
+    cusku = combineGeneratorsUniformly [beautiful, likingPeople, likingAnimals, donatingAnimals, beingFriendly, others] where
         beautiful = generatorFromList
             [ (["mi cusku lo se du'u do melbi kei ku"], ["I said that you are beautiful."])
             , (["mi cusku lo se du'u lo prenu ku melbi kei ku"], ["I said that the person is beautiful."])
@@ -739,7 +739,7 @@ translations5_sedu'u = combineFunctions [(2, cusku)] where
             ]
 
 translations5_extra :: TranslationGenerator
-translations5_extra = combineFunctionsUniformly [gleki, tavla, nupre, cusku, ciska] where
+translations5_extra = combineGeneratorsUniformly [gleki, tavla, nupre, cusku, ciska] where
     gleki = generatorFromList
         [ (["mi gleki"], ["I am happy."])
         , (["lo prenu ku gleki"], ["The person is happy."])
@@ -770,24 +770,24 @@ translations5_extra = combineFunctionsUniformly [gleki, tavla, nupre, cusku, cis
         ]
 
 translations5 :: TranslationGenerator
-translations5 = combineFunctions $ ((4,) <$> [translations5_nu, translations5_du'u, translations5_sedu'u]) ++ ((1,) <$> [translations5_extra])
+translations5 = combineGenerators $ ((4,) <$> [translations5_nu, translations5_du'u, translations5_sedu'u]) ++ ((1,) <$> [translations5_extra])
 
 translationExercises5 :: ExerciseGenerator
 translationExercises5 = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations5
 
 -- "narrow" is required to avoid alternative translations using "ko'a"
 abstractionExercises5 :: ExerciseGenerator
-abstractionExercises5 = generateNarrowFillingBlanksExerciseByAlternatives ["lo nu", "lo du'u", "lo se du'u"] $ combineFunctionsUniformly [translations5_nu, translations5_du'u, translations5_sedu'u]
+abstractionExercises5 = generateNarrowFillingBlanksExerciseByAlternatives ["lo nu", "lo du'u", "lo se du'u"] $ combineGeneratorsUniformly [translations5_nu, translations5_du'u, translations5_sedu'u]
 
 abstractionExercises5_simplified :: ExerciseGenerator
-abstractionExercises5_simplified = generateNarrowFillingBlanksExerciseByAlternatives ["lo nu", "lo du'u", "lo se du'u"] $ simplifyTerminatorsInTranslationGenerator $ combineFunctionsUniformly [translations5_nu, translations5_du'u, translations5_sedu'u]
+abstractionExercises5_simplified = generateNarrowFillingBlanksExerciseByAlternatives ["lo nu", "lo du'u", "lo se du'u"] $ simplifyTerminatorsInTranslationGenerator $ combineGeneratorsUniformly [translations5_nu, translations5_du'u, translations5_sedu'u]
 
 -- * Lesson 6: Terminator elision
 translations6 :: TranslationGenerator
 translations6 = translations6_restricted
 
 translations6_restricted :: TranslationGenerator
-translations6_restricted = combineFunctions [(2, hasHouse), (3, nice), (3, giving), (2, talking), (3, gleki), (3, nupre), (3, djuno), (3, cusku)] where
+translations6_restricted = combineGenerators [(2, hasHouse), (3, nice), (3, giving), (2, talking), (3, gleki), (3, nupre), (3, djuno), (3, cusku)] where
     hasHouse = generatorFromList
         [ (["lo ctuca cu se zdani"], ["The instructor has a house."])
         , (["lo prenu cu se zdani"], ["The person has a house."])
@@ -798,7 +798,7 @@ translations6_restricted = combineFunctions [(2, hasHouse), (3, nice), (3, givin
         , (["xu lo prenu cu se zdani"], ["Does the person have a house?"])
         , (["xu lo ctuca cu se zdani"], ["Does the instructor have a house?"])
         ]
-    nice = combineFunctionsUniformly [beautiful, like] where
+    nice = combineGeneratorsUniformly [beautiful, like] where
         beautiful = generatorFromList
             [ (["lo se dunda cu melbi mi"], ["The gift is beautiful to me.", "The gifts are beautiful to me."])
             , (["lo se dunda cu melbi"], ["The gift is beautiful.", "The gifts are beautiful."])
@@ -827,7 +827,7 @@ translations6_restricted = combineFunctions [(2, hasHouse), (3, nice), (3, givin
             , (["ma nelci lo mlatu"], ["Who likes cats?", "Who likes the cat?"])
             , (["ma nelci lo gerku"], ["Who likes dogs?", "Who likes the dog?"])
             ]
-    giving = combineFunctions [(1, general), (3, mlatu), (3, gerku)] where
+    giving = combineGenerators [(1, general), (3, mlatu), (3, gerku)] where
         general = generatorFromList
             [ (["lo ctuca cu dunda ma do"], ["What did the instructor give you?"])
             , (["ma dunda lo zdani"], ["Who donated the house?"])
@@ -870,7 +870,7 @@ translations6_restricted = combineFunctions [(2, hasHouse), (3, nice), (3, givin
         , (["lo ciska cu tavla fi ma"], ["What is the writer talking about?", "What was the writer talking about?"])
         , (["xu do tavla fi lo gerku"], ["Were you talking about the dog?", "Were you talking about the dogs?", "Were you talking about dogs?"])
         ]
-    gleki = combineFunctionsUniformly [givingAnimals, liking, know, other] where
+    gleki = combineGeneratorsUniformly [givingAnimals, liking, know, other] where
         givingAnimals = generatorFromList
             [ (["mi gleki lo nu do dunda lo mlatu mi"], ["I am happy that you gave me the cat.", "I am happy that you gave me the cats."])
             , (["mi gleki lo nu do dunda lo gerku mi"], ["I am happy that you gave me the dog.", "I am happy that you gave me the dogs."])
@@ -896,7 +896,7 @@ translations6_restricted = combineFunctions [(2, hasHouse), (3, nice), (3, givin
             , (["mi gleki lo nu lo ciska cu pendo mi"], ["I am happy that the writer is my friend."])
             , (["mi gleki lo nu lo te dunda cu pendo mi"], ["I am happy that the beneficiary is my friend."])
             ]
-    nupre = combineFunctionsUniformly [donatingAnimals, donatingHouses] where
+    nupre = combineGeneratorsUniformly [donatingAnimals, donatingHouses] where
         donatingAnimals = generatorFromList
             [ (["do nupre lo nu dunda lo mlatu", "do nupre lo nu do dunda lo mlatu"], ["You promised to donate the cat.", "You promised to donate the cats."])
             , (["do nupre lo nu dunda lo gerku", "do nupre lo nu do dunda lo gerku"], ["You promised to donate the dog.", "You promised to donate the dogs."])
@@ -909,7 +909,7 @@ translations6_restricted = combineFunctions [(2, hasHouse), (3, nice), (3, givin
             [ (["do nupre lo nu dunda lo zdani kei mi", "do nupre lo nu do dunda lo zdani kei mi"], ["You promised me to donate the house.", "You promised me to donate the houses.", "You promised us to donate the house.", "You promised us to donate the houses."])
             , (["do nupre lo nu dunda lo zdani mi", "do nupre lo nu do dunda lo zdani mi"], ["You promised to donate the house to me.", "You promised to donate the houses to us."]) -- excellent!
             ]
-    djuno = combineFunctionsUniformly [liking, talking] where
+    djuno = combineGeneratorsUniformly [liking, talking] where
         liking = generatorFromList
             [ (["mi djuno lo du'u do nelci lo ciska"], ["I know that you like the writer."])
             , (["mi djuno lo du'u do nelci lo mlatu"], ["I know that you like cats."])
@@ -930,7 +930,7 @@ translations6_restricted = combineFunctions [(2, hasHouse), (3, nice), (3, givin
             , (["mi djuno lo du'u do tavla fi lo mlatu"], ["I know that you were talking about the cat."])
             , (["mi djuno lo du'u do tavla fi lo gerku"], ["I know that you were talking about the dog."])
             ]
-    cusku = combineFunctionsUniformly [likingPeople, likingAnimals, donatingAnimals, others] where
+    cusku = combineGeneratorsUniformly [likingPeople, likingAnimals, donatingAnimals, others] where
         likingPeople = generatorFromList
             [ (["mi cusku lo se du'u mi nelci lo ciska", "mi cusku lo se du'u nelci lo ciska"], ["I said that I like the writer."])
             , (["lo prenu cu cusku lo se du'u mi nelci do"], ["The person said that I like you."])
@@ -975,10 +975,10 @@ translationExercises6_restricted = generateBlacklistedWordTranslationExercise "k
 
 -- * Lesson 7: Checkpoint -- Lessons 1-6
 translations1to6 :: TranslationGenerator
-translations1to6 = simplifyTerminatorsInTranslationGenerator $ combineFunctionsUniformly [translations3, translations4, translations5, translations6]
+translations1to6 = simplifyTerminatorsInTranslationGenerator $ combineGeneratorsUniformly [translations3, translations4, translations5, translations6]
 
 translationExercises1to6_simplified :: ExerciseGenerator
-translationExercises1to6_simplified = simplifyCanonicalAnswer . combineFunctions [(4, translationExercises3_nice), (1, translationExercises3_normal), (5, translationExercises4), (6, translationExercises5), (5, translationExercises6_restricted)]
+translationExercises1to6_simplified = simplifyCanonicalAnswer . combineGenerators [(4, translationExercises3_nice), (1, translationExercises3_normal), (5, translationExercises4), (6, translationExercises5), (5, translationExercises6_restricted)]
 
 -- * Lesson 8: Relative clauses
 -- questionExercises5 :: "What did you promise", "What did you say, ..."
@@ -987,7 +987,7 @@ translationExercises1to6_simplified = simplifyCanonicalAnswer . combineFunctions
 
 -- TODO: questions with "ma"
 translations8_noi :: TranslationGenerator
-translations8_noi = expandTranslationGenerator $ combineFunctionsUniformly [computer, uses, knower, instructor, friend, house, animals] where
+translations8_noi = expandTranslationGenerator $ combineGeneratorsUniformly [computer, uses, knower, instructor, friend, house, animals] where
     usesComputers =
         [ (["lo ctuca noi {ke'a} pilno lo skami cu pendo"], ["The instructor, who uses computers, is friendly."])
         , (["lo ctuca noi {ke'a} pilno lo skami cu tavla mi"], ["The instructor, who uses computers, talked to me."])
@@ -1034,7 +1034,7 @@ translations8_noi = expandTranslationGenerator $ combineFunctionsUniformly [comp
         , (["lo zdani noi {ke'a} melbi do cu se vecnu lo ctuca"], ["The house, which you found beautiful, was sold by the instructor."])
         , (["lo zdani noi {ke'a} melbi do cu se vecnu fi lo ctuca"], ["The house, which you found beautiful, was sold to the instructor."])
         ]
-    animals = combineFunctionsUniformly [mlatu, gerku] where
+    animals = combineGeneratorsUniformly [mlatu, gerku] where
         mlatu = generatorFromList
             [ (["lo mlatu noi {ke'a} melbi do cu nelci lo gerku"], ["The cat, which you find beautiful, likes dogs."])
             , (["mi nelci lo mlatu noi {ke'a} melbi"], ["I like the cat, which is beautiful."])
@@ -1051,7 +1051,7 @@ translations8_noi = expandTranslationGenerator $ combineFunctionsUniformly [comp
             ]
 
 translations8_poi :: TranslationGenerator
-translations8_poi = expandTranslationGenerator $ combineFunctionsUniformly [computer, uses, house, animals, general] where
+translations8_poi = expandTranslationGenerator $ combineGeneratorsUniformly [computer, uses, house, animals, general] where
     usesComputers =
         [ (["lo skami poi mi pilno (ke'a|) ku'o melbi"], ["The computer that I use is beautiful."])
         , (["lo skami poi do pilno (ke'a|) ku'o melbi"], ["The computer that you use is beautiful."])
@@ -1092,7 +1092,7 @@ translations8_poi = expandTranslationGenerator $ combineFunctionsUniformly [comp
         , (["xu do vecnu lo zdani poi melbi mi"], ["Did you sell the house that I found beautiful?", "Are you selling the house that I found beautiful?"])
         , (["xu lo ctuca vecnu lo zdani poi {ke'a} melbi do"], ["Did the instructor sell the house that you found beautiful?", "Will the instructor sell the house that you found beautiful?"])
         ]
-    animals = combineFunctionsUniformly [mlatu, gerku] where
+    animals = combineGeneratorsUniformly [mlatu, gerku] where
         mlatu = generatorFromList
             -- [ (["mi nelci lo mlatu poi {ke'a} simsa lo gerku"], ["I like cats that look like dogs."])
             [ (["mi nelci lo mlatu poi {ke'a} pendo lo gerku"], ["I like cats that are friendly to dogs."])
@@ -1145,7 +1145,7 @@ translations8_poi = expandTranslationGenerator $ combineFunctionsUniformly [comp
         ]
 
 translations8 :: TranslationGenerator
-translations8 = combineFunctionsUniformly [translations8_noi, translations8_poi]
+translations8 = combineGeneratorsUniformly [translations8_noi, translations8_poi]
 
 translationExercises8 :: ExerciseGenerator
 translationExercises8 = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations8
@@ -1155,7 +1155,7 @@ fillingBlanksExercises8 = generateContextualizedBroadFillingBlanksExerciseByAlte
 
 -- * Lesson 9: Linked sumti
 translations9 :: TranslationGenerator
-translations9 = expandTranslationGenerator $ combineFunctionsUniformly [required_terminator, cmene_complex, general, vecnu_zdani, ctuca, tavla, bangu, zdani, cmene] where
+translations9 = expandTranslationGenerator $ combineGeneratorsUniformly [required_terminator, cmene_complex, general, vecnu_zdani, ctuca, tavla, bangu, zdani, cmene] where
     required_terminator = generatorFromList
         [ (["mi nelci lo cmene (be do be'o|pe do ge'u) noi melbi"], ["I like your name, which is beautiful."])
         , (["mi nelci lo zdani (be do be'o|pe do ge'u) noi melbi"], ["I like your house, which is beautiful."])
@@ -1247,7 +1247,7 @@ translationExercises9 = generateTranslationExercise sentenceCanonicalizer senten
 -- TODO: include sentences like "lo jinga be gau do"
 -- TODO: include sentences like "lo dunda be fi do" (will require significant improvements in text canonicalizer)
 translations10 :: TranslationGenerator
-translations10 = expandTranslationGenerator $ combineFunctionsUniformly [pi'o, mu'i, gau] where
+translations10 = expandTranslationGenerator $ combineGeneratorsUniformly [pi'o, mu'i, gau] where
     pi'o = generatorFromList
         -- fanva
         [ (["mi fanva sepi'o lo skami"], ["I translated using the computer."])
@@ -1346,7 +1346,7 @@ translationExercises10 = generateTranslationExercise sentenceCanonicalizer sente
 
 -- * Lesson 11: Tenses 1
 translations11_pu :: TranslationGenerator
-translations11_pu = expandTranslationGenerator $ combineFunctionsUniformly [dunda, vecnu, gleki, ciska] where
+translations11_pu = expandTranslationGenerator $ combineGeneratorsUniformly [dunda, vecnu, gleki, ciska] where
     dunda = generatorFromList
         [ (["mi pu dunda lo mlatu"], ["I donated the cat."])
         , (["mi pu dunda lo gerku"], ["I donated the dog."])
@@ -1381,7 +1381,7 @@ translations11_pu = expandTranslationGenerator $ combineFunctionsUniformly [dund
         ]
 
 translations11_ca :: TranslationGenerator
-translations11_ca = expandTranslationGenerator $ combineFunctionsUniformly [dunda, vecnu, gleki, ciska] where
+translations11_ca = expandTranslationGenerator $ combineGeneratorsUniformly [dunda, vecnu, gleki, ciska] where
     dunda = generatorFromList
         [ (["mi ca dunda lo mlatu"], ["I am donating the cat."])
         , (["mi ca dunda lo gerku"], ["I am donating the dog."])
@@ -1418,7 +1418,7 @@ translations11_ca = expandTranslationGenerator $ combineFunctionsUniformly [dund
         ]
 
 translations11_ba :: TranslationGenerator
-translations11_ba = expandTranslationGenerator $ combineFunctionsUniformly [dunda, vecnu, gleki, ciska] where
+translations11_ba = expandTranslationGenerator $ combineGeneratorsUniformly [dunda, vecnu, gleki, ciska] where
     dunda = generatorFromList
         [ (["mi ba dunda lo mlatu"], ["I will donate the cat."])
         , (["mi ba dunda lo gerku"], ["I will donate the dog."])
@@ -1451,7 +1451,7 @@ translations11_ba = expandTranslationGenerator $ combineFunctionsUniformly [dund
         ]
 
 translations11_unrestricted :: TranslationGenerator
-translations11_unrestricted = expandTranslationGenerator $ combineFunctionsUniformly [cmene, vecnu] where
+translations11_unrestricted = expandTranslationGenerator $ combineGeneratorsUniformly [cmene, vecnu] where
     cmene = generatorFromList
         [ (["mi nelci lo pu cmene (be|pe) do"], ["I like your former name."])
         , (["xu do nelci lo pu cmene (be|pe) do"], ["Did you like your former name?"])
@@ -1462,7 +1462,7 @@ translations11_unrestricted = expandTranslationGenerator $ combineFunctionsUnifo
         ]
 
 translations11_restricted :: TranslationGenerator
-translations11_restricted = combineFunctionsUniformly [translations11_pu, translations11_ca, translations11_ba]
+translations11_restricted = combineGeneratorsUniformly [translations11_pu, translations11_ca, translations11_ba]
 
 translationExercises11_restricted :: ExerciseGenerator
 translationExercises11_restricted = generateRestrictedTranslationExercise "Translate <b>specifying tenses</b>" (const True) sentenceCanonicalizer sentenceComparer translations11_restricted
@@ -1476,7 +1476,7 @@ fillingBlanksExercises11 = generateContextualizedBroadFillingBlanksExerciseByAlt
 -- * Lesson 12: Tanru
 -- TODO: tanru for "adverbs", in addition to the existing tanru for "adjectives" (changes in the canonicalizer will likely be necessary)
 translations12_expressions :: TranslationGenerator
-translations12_expressions = expandTranslationGenerator $ combineFunctionsUniformly [pendo, gleki, melbi, others] where
+translations12_expressions = expandTranslationGenerator $ combineGeneratorsUniformly [pendo, gleki, melbi, others] where
     pendo = generatorFromList
         [ (["lo pendo prenu"], ["The friendly person."])
         , (["lo pendo dunda"], ["The friendly donor."])
@@ -1521,7 +1521,7 @@ translations12_expressions = expandTranslationGenerator $ combineFunctionsUnifor
         ]
 
 translations12_sentences :: TranslationGenerator
-translations12_sentences = expandTranslationGenerator $ combineFunctionsUniformly [pendo, gleki] where
+translations12_sentences = expandTranslationGenerator $ combineGeneratorsUniformly [pendo, gleki] where
     pendo = generatorFromList
         -- tavla (mi)
         [ (["mi tavla lo pendo prenu", "mi tavla lo prenu poi pendo"], ["I talked to the friendly person."])
@@ -1590,13 +1590,13 @@ translations99 = generateTranslationExercise sentenceCanonicalizer sentenceCompa
     ]
 
 translationExercises12 :: ExerciseGenerator
-translationExercises12 = combineFunctions [(1, translationExercises12_expressions), (1, translationExercises12_sentences)] where
+translationExercises12 = combineGenerators [(1, translationExercises12_expressions), (1, translationExercises12_sentences)] where
     translationExercises12_expressions = generateRestrictedTranslationExercise "Translate this expression as a tanru" (const True) sentenceCanonicalizer sentenceComparer translations12_expressions
     translationExercises12_sentences = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations12_sentences
 
 -- * Lesson 13: Checkpoint -- Lessons 8-12
 translationExercises8to12 :: ExerciseGenerator
-translationExercises8to12 = combineFunctions
+translationExercises8to12 = combineGenerators
     [ (5, translationExercises8)
     , (2, fillingBlanksExercises8)
     , (5, translationExercises9)
@@ -1609,7 +1609,7 @@ translationExercises8to12 = combineFunctions
 
 -- * Lesson 14: Quotations 1
 translations14_zo :: TranslationGenerator
-translations14_zo = expandTranslationGenerator $ combineFunctionsUniformly [cusku] where
+translations14_zo = expandTranslationGenerator $ combineGeneratorsUniformly [cusku] where
     cusku = generatorFromList
         -- mi cusku
         [ (["mi cusku zo do"], ["I said \"do\".", "I said \"you\"."])
@@ -1647,7 +1647,7 @@ translations14_zo = expandTranslationGenerator $ combineFunctionsUniformly [cusk
         ]
 
 translations14_lu :: TranslationGenerator
-translations14_lu = expandTranslationGenerator $ combineFunctionsUniformly [cusku] where
+translations14_lu = expandTranslationGenerator $ combineGeneratorsUniformly [cusku] where
     cusku = generatorFromList
         -- Propositions
         [ (["mi cusku lu mi nelci do li'u"], ["I said \"mi nelci do\".", "I said \"I like you\"."])
@@ -1670,11 +1670,11 @@ translations14_lu = expandTranslationGenerator $ combineFunctionsUniformly [cusk
         ]
 
 translationExercises14 :: ExerciseGenerator
-translationExercises14 = generateTranslationExercise sentenceCanonicalizer sentenceComparer $ combineFunctionsUniformly [translations14_zo, translations14_lu]
+translationExercises14 = generateTranslationExercise sentenceCanonicalizer sentenceComparer $ combineGeneratorsUniformly [translations14_zo, translations14_lu]
 
 -- * Lesson 15: Relative phrases
 translations15_expressions :: TranslationGenerator
-translations15_expressions = expandTranslationGenerator $ combineFunctionsUniformly [gerku, mlatu, pendo] where
+translations15_expressions = expandTranslationGenerator $ combineGeneratorsUniformly [gerku, mlatu, pendo] where
     gerku = generatorFromList
         [ (["lo mi gerku"], ["My dog."])
         , (["lo gerku pe lo prenu"], ["The person's dog."])
@@ -1707,7 +1707,7 @@ translations15_expressions = expandTranslationGenerator $ combineFunctionsUnifor
         ]
 
 translations15_sentences :: TranslationGenerator
-translations15_sentences = expandTranslationGenerator $ combineFunctionsUniformly [gerku, mlatu, pendo] where
+translations15_sentences = expandTranslationGenerator $ combineGeneratorsUniformly [gerku, mlatu, pendo] where
     gerku = generatorFromList
         [ (["mi dunda lo mi gerku"], ["I donated my dog."])
         , (["lo mi gerku cu pendo"], ["My dog is friendly."])
@@ -1742,11 +1742,11 @@ translations15_sentences = expandTranslationGenerator $ combineFunctionsUniforml
         ]
 
 translationExercises15 :: ExerciseGenerator
-translationExercises15 = generateTranslationExercise sentenceCanonicalizer sentenceComparer $ combineFunctionsUniformly [translations15_expressions, translations15_sentences]
+translationExercises15 = generateTranslationExercise sentenceCanonicalizer sentenceComparer $ combineGeneratorsUniformly [translations15_expressions, translations15_sentences]
 
 -- * Lesson 16: Logical connectives 1
 translations16_a :: TranslationGenerator
-translations16_a = expandTranslationGenerator $ combineFunctionsUniformly [zdani, tavla, gleki] where
+translations16_a = expandTranslationGenerator $ combineGeneratorsUniformly [zdani, tavla, gleki] where
     zdani = generatorFromList
         [ (["mi .a do se zdani"], ["I have a house, or you have a house (or both)."])
         , (["mi .a lo mi pendo cu se zdani"], ["I have a house, or my friend has a house (or both)."])
@@ -1767,7 +1767,7 @@ translations16_a = expandTranslationGenerator $ combineFunctionsUniformly [zdani
         ]
 
 translations16_e :: TranslationGenerator
-translations16_e = expandTranslationGenerator $ combineFunctionsUniformly [zdani, tavla, gleki] where
+translations16_e = expandTranslationGenerator $ combineGeneratorsUniformly [zdani, tavla, gleki] where
     zdani = generatorFromList
         [ (["mi .e do se zdani"], ["I have a house, and you have a house."])
         , (["mi .e lo mi pendo cu se zdani"], ["I have a house, and my friend has a house."])
@@ -1788,7 +1788,7 @@ translations16_e = expandTranslationGenerator $ combineFunctionsUniformly [zdani
         ]
 
 translations16_o :: TranslationGenerator
-translations16_o = expandTranslationGenerator $ combineFunctionsUniformly [zdani, tavla, gleki] where
+translations16_o = expandTranslationGenerator $ combineGeneratorsUniformly [zdani, tavla, gleki] where
     zdani = generatorFromList
         [ (["mi .o do se zdani"], ["I have a house, if and only if you have a house."])
         , (["mi .o lo mi pendo cu se zdani"], ["I have a house, if and only if my friend has a house."])
@@ -1809,7 +1809,7 @@ translations16_o = expandTranslationGenerator $ combineFunctionsUniformly [zdani
         ]
 
 translations16_u :: TranslationGenerator
-translations16_u = expandTranslationGenerator $ combineFunctionsUniformly [zdani] where
+translations16_u = expandTranslationGenerator $ combineGeneratorsUniformly [zdani] where
     zdani = generatorFromList
         [ (["mi .u do se zdani"], ["I have a house, regardless of whether you have a house."])
         , (["mi .u lo mi pendo cu se zdani"], ["I have a house, regardless of whether my friend has a house."])
@@ -1830,11 +1830,11 @@ translations16_u = expandTranslationGenerator $ combineFunctionsUniformly [zdani
         ]
 
 translationExercises16 :: ExerciseGenerator
-translationExercises16 = generateRestrictedTranslationExercise "Translate using <b>sumti connectives</b>" (const True) sentenceCanonicalizer sentenceComparer $ combineFunctionsUniformly [translations16_a, translations16_e, translations16_o, translations16_u]
+translationExercises16 = generateRestrictedTranslationExercise "Translate using <b>sumti connectives</b>" (const True) sentenceCanonicalizer sentenceComparer $ combineGeneratorsUniformly [translations16_a, translations16_e, translations16_o, translations16_u]
 
 -- * Lesson 17: Negation 1
 translations17_na :: TranslationGenerator
-translations17_na = expandTranslationGenerator $ combineFunctionsUniformly [nelci] where
+translations17_na = expandTranslationGenerator $ combineGeneratorsUniformly [nelci] where
     nelci = generatorFromList
         [ (["mi na nelci do"], ["Not true: I like you."])
         , (["do na nelci mi"], ["Not true: you like me."])
@@ -1847,7 +1847,7 @@ translations17_na = expandTranslationGenerator $ combineFunctionsUniformly [nelc
         ]
 
 translations17_na'e :: TranslationGenerator
-translations17_na'e = expandTranslationGenerator $ combineFunctionsUniformly [nelci] where
+translations17_na'e = expandTranslationGenerator $ combineGeneratorsUniformly [nelci] where
     nelci = generatorFromList
         [ (["mi (na'e|na) nelci do"], ["I don't like you."])
         , (["do (na'e|na) nelci mi"], ["You don't like me."])
@@ -1860,7 +1860,7 @@ translations17_na'e = expandTranslationGenerator $ combineFunctionsUniformly [ne
         ]
 
 translations17_to'e :: TranslationGenerator
-translations17_to'e = expandTranslationGenerator $ combineFunctionsUniformly [nelci] where
+translations17_to'e = expandTranslationGenerator $ combineGeneratorsUniformly [nelci] where
     nelci = generatorFromList
         [ (["mi to'e nelci do"], ["I dislike you."])
         , (["do to'e nelci mi"], ["You dislike me."])
@@ -1874,6 +1874,6 @@ translations17_to'e = expandTranslationGenerator $ combineFunctionsUniformly [ne
 
 -- TODO: fix canonicalization of "mi na prenu"
 translationExercises17 :: ExerciseGenerator
-translationExercises17 = generateTranslationExercise sentenceCanonicalizer sentenceComparer $ combineFunctionsUniformly [translations17_na, translations17_na'e, translations17_to'e]
+translationExercises17 = generateTranslationExercise sentenceCanonicalizer sentenceComparer $ combineGeneratorsUniformly [translations17_na, translations17_na'e, translations17_to'e]
 
 --TODO: pause immediately after lesson 5

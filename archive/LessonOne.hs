@@ -4,7 +4,7 @@ module Lessons.LessonOne where
 import Core
 import Lessons.Exercises
 import Number (lojbanToNumber, numberToSimpleLojban)
-import Util (chooseItem, chooseItemUniformly, chooseItemsUniformly, combineFunctions, combineFunctionsUniformly, stripRight, replace)
+import Util (chooseItem, chooseItemUniformly, chooseItemsUniformly, combineGenerators, combineGeneratorsUniformly, stripRight, replace)
 import Text.Read (readMaybe)
 import System.Random (StdGen, random)
 import Data.List.Utils (uniq)
@@ -42,7 +42,7 @@ vocabulary11 dictionary = buildVocabulary dictionary
 
 lesson11 :: Dictionary -> StdGen -> Exercise
 lesson11 dictionary =
-    combineFunctions
+    combineGenerators
         [ (4, generateBridiJufraExercise vocabulary)
         , (4, generateGismuMeaningExercise vocabulary)
         , (2, generateBasicGismuPlacesExercise vocabulary)
