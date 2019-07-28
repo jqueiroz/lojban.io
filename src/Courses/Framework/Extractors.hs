@@ -1,3 +1,4 @@
+-- | This module provides utilities for extracting a desired entity from a broader one.
 module Courses.Framework.Extractors
 ( extractSimpleBridiGeneratorFromTranslationGenerator
 , extractLojbanSentencesFromTranslationGenerator

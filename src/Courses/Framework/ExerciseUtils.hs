@@ -1,3 +1,4 @@
+-- | This module provides utilities for manipulating exercises.
 module Courses.Framework.ExerciseUtils
 ( simplifyTerminatorsInCanonicalAnswer
 ) where

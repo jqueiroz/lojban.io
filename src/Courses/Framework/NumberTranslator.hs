@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- | This module provides utilities for converting numbers to/from Lojban.
 module Courses.Framework.NumberTranslator
 ( numberToSimpleLojban
 , lojbanToNumber

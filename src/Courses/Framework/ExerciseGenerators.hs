@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- | This module provides utilities for constructing exercise generators.
 module Courses.Framework.ExerciseGenerators
 ( generateTranslationExercise
 , generateBlacklistedWordTranslationExercise
