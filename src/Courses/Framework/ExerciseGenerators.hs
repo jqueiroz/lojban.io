@@ -6,7 +6,6 @@ module Courses.Framework.ExerciseGenerators
 , generateTranslationExercise
 , generateBlacklistedWordTranslationExercise
 , generateRestrictedTranslationExercise
-, simplifyTranslationGenerator
 , generateGrammaticalClassExercise
 , generateBridiJufraExercise
 , generateLojbanBridiJufraExercise
@@ -23,23 +22,17 @@ module Courses.Framework.ExerciseGenerators
 , generateIsolatedBrivlaPlacesExercise
 , generateLexiconProvidingExercise
 , generateBasicNumberExercise
-, expandSentence
-, expandSentences
-, expandTranslation
-, expandTranslationGenerator
 ) where
 
 import Core
 import Courses.Framework.NumberTranslator
 import Language.Lojban.Core
-import Language.Lojban.Refinement (simplifyTerminatorsInSentence)
 import Util (narrowTranslationGenerator, narrowTranslationGeneratorByExpression, isSubexpressionOf, replace, replaceFirstSubexpression, replaceSubexpression, chooseItemUniformly, combineFunctions, combineFunctionsUniformly, isWordOf)
 import Text.Read (readMaybe)
 import System.Random (StdGen, random)
 import Control.Applicative (liftA2)
-import Control.Arrow ((***), first)
+import Control.Arrow (first)
 import Control.Exception (assert)
-import Control.Monad (join)
 import Data.Maybe (fromMaybe)
 import qualified Data.Text as T
 import qualified Data.Map as M
@@ -62,49 +55,6 @@ generateRestrictedTranslationExercise title validator canonicalizer sentenceComp
         Right typed_sentence' -> case canonicalizer (T.toLower lojban_sentence) of
             Left _ -> False
             Right lojban_sentence' -> typed_sentence' `sentenceComparer` lojban_sentence'
-
--- Simplifies Lojban translation
-simplifyTranslation :: Translation -> Translation
-simplifyTranslation (lojbanSentences, englishSentences) = (fmap simplifyTerminatorsInSentence lojbanSentences, englishSentences)
-
--- Simplifies the Lojban translation produced by the generator
-simplifyTranslationGenerator :: TranslationGenerator -> TranslationGenerator
-simplifyTranslationGenerator translationGenerator r0 = (simplifyTranslation translation, r1) where
-    (translation, r1) = translationGenerator r0
-
--- Expands sentences
-expandSentences :: [T.Text] -> [T.Text]
-expandSentences = join . map expandSentence
-
-expandSentence :: T.Text -> [T.Text]
-expandSentence sentence = map (T.unwords . T.words) (expandSentence' sentence) where
-    expandSentence' :: T.Text -> [T.Text]
-    expandSentence' sentence
-        | (T.null sentence) =
-            [ "" ]
-        | (T.head sentence) == '(' = do
-            let (expression, sentence') = ((T.drop 1) *** (T.drop 1)) $ T.breakOn ")" sentence
-            expandedExpression <- expandExpression expression
-            expandedSentence' <- expandSentence' sentence'
-            return $ expandedExpression `T.append` expandedSentence'
-        | (T.head sentence) == '{' = do
-            let (expression, sentence') = ((T.drop 1) *** (T.drop 1)) $ T.breakOn "}" sentence
-            expandedExpression <- "" : (expandExpression expression)
-            expandedSentence' <- expandSentence' sentence'
-            return $ expandedExpression `T.append` expandedSentence'
-        | otherwise = do
-            let (expression, sentence') = T.break (`elem` ['(', '{']) sentence
-            expandedSentence' <- expandSentence' sentence'
-            return $ expression `T.append` expandedSentence'
-    expandExpression :: T.Text -> [T.Text]
-    expandExpression = T.splitOn "|"
-
-expandTranslation :: Translation -> Translation
-expandTranslation (lojban_sentences, english_sentences) = (expandSentences lojban_sentences, english_sentences)
-
-expandTranslationGenerator :: TranslationGenerator -> TranslationGenerator
-expandTranslationGenerator translationGenerator r0 = (expandTranslation translation, r1) where
-    (translation, r1) = translationGenerator r0
 
 -- Exercise: tell grammatical class of a word
 generateGrammaticalClassExercise :: Vocabulary -> ExerciseGenerator

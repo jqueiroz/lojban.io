@@ -8,6 +8,7 @@ import Core
 import Courses.English.Grammar.Introduction.Strategies
 import Courses.Framework.ExerciseGenerators
 import Courses.Framework.ExerciseUtils
+import Courses.Framework.TranslationUtils
 import Util (combineFunctions, combineFunctionsUniformly, generatorFromSingleton, generatorFromList)
 
 -- * Lesson 1: Basics 1

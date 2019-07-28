@@ -49,6 +49,7 @@ library
                      , Courses.Framework.Extractors
                      , Courses.Framework.NumberTranslator
                      , Courses.Framework.SentenceGenerators
+                     , Courses.Framework.TranslationUtils
                      , Courses.English.Grammar.Introduction.Course
                      , Courses.English.Grammar.Introduction.Documents
                      , Courses.English.Grammar.Introduction.Exercises
