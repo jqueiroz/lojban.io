@@ -20,7 +20,7 @@ buildDocumentFromMarkdownCode code = P.runPure $ P.readMarkdown P.def
 
 -- | Proprocess Markdown code to handle subscripts.
 preprocessMarkdownCode :: T.Text -> T.Text
-preprocessMarkdownCode = (T.replace "_1" "~1~") . (T.replace "_2" "~2~") . (T.replace "_3" "~3~") . (T.replace "_4" "~4~") . (T.replace "_5" "~5~")
+preprocessMarkdownCode = (T.replace "x_1" "x~1~") . (T.replace "x_2" "x~2~") . (T.replace "x_3" "x~3~") . (T.replace "x_4" "x~4~") . (T.replace "x_5" "x~5~")
 
 -- | Given a dictionary and a vocabulary, produces a glossary in the form of a Pandoc document.
 buildGlossaryDocument :: Dictionary -> Vocabulary -> P.Pandoc
