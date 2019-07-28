@@ -52,11 +52,15 @@ generateRestrictedTranslationExercise title validator canonicalizer sentenceComp
     (lojban_sentences, english_sentences) = translation
     (english_sentence, r2) = chooseItemUniformly r1 english_sentences
     validateAll typed_sentence = any (validateSingle typed_sentence) lojban_sentences
-    validateSingle typed_sentence lojban_sentence = case canonicalizer (T.toLower typed_sentence) of
-        Left _ -> False
-        Right typed_sentence' -> case canonicalizer (T.toLower lojban_sentence) of
-            Left _ -> False
-            Right lojban_sentence' -> typed_sentence' `sentenceComparer` lojban_sentence'
+    validateSingle typed_sentence lojban_sentence =
+        let lower_lojban_sentence = T.toLower lojban_sentence
+            lower_typed_sentence = T.toLower typed_sentence
+        in (lower_lojban_sentence == lower_typed_sentence) ||
+            case canonicalizer lower_typed_sentence of
+                Left _ -> False
+                Right canonicalized_typed_sentence -> case canonicalizer lower_lojban_sentence of
+                    Left _ -> False
+                    Right canonicalized_lojban_sentence -> canonicalized_lojban_sentence `sentenceComparer` canonicalized_typed_sentence
 
 -- | Exercise: tell grammatical class of a word (brivla, cmavo, or cmevla).
 generateGrammaticalClassExercise :: Vocabulary -> ExerciseGenerator
