@@ -41,9 +41,10 @@ displayLessonHome topbarCategory course lessonNumber = do
                         H.div B.! A.class_ (H.stringValue "lesson-lecture") $ do
                             H.div $ do
                                 fromRight $ P.runPure $ PWH.writeHtml5 P.def (lessonLecture lesson)
-                        H.div B.! A.class_ (H.stringValue "lesson-plan") $ do
-                            H.div $ do
-                                fromRight $ P.runPure $ PWH.writeHtml5 P.def (lessonPlan lesson)
+                        when (isJust $ lessonPlan lesson) $ do
+                            H.div B.! A.class_ (H.stringValue "lesson-plan") $ do
+                                H.div $ do
+                                    fromRight . P.runPure . PWH.writeHtml5 P.def $ fromJust (lessonPlan lesson)
                         when (isJust $ lessonVocabulary lesson) $ do
                             H.div B.! A.class_ (H.stringValue "lesson-vocabulary") $ do
                                 H.div $ do
@@ -52,7 +53,8 @@ displayLessonHome topbarCategory course lessonNumber = do
 displayLessonTabs :: Lesson -> H.Html
 displayLessonTabs lesson = do
     displayLessonTab "lesson-tab-lecture" "Lecture" True
-    displayLessonTab "lesson-tab-plan" "Plan" False
+    when (isJust $ lessonPlan lesson) $ do
+        displayLessonTab "lesson-tab-plan" "Plan" False
     when (isJust $ lessonVocabulary lesson) $ do
         displayLessonTab "lesson-tab-vocabulary" "Vocabulary" False
 

@@ -26,7 +26,7 @@ data Lesson = Lesson
     { lessonTitle :: String
     , lessonExercises :: ExerciseGenerator
     , lessonLecture :: P.Pandoc
-    , lessonPlan :: P.Pandoc
+    , lessonPlan :: Maybe P.Pandoc
     , lessonVocabulary :: Maybe Vocabulary
     }
 

@@ -27,25 +27,3 @@ Right lecture04 = buildDocument ""
 -- | Lecture for the corresponding lesson.
 lecture05 :: P.Pandoc
 Right lecture05 = buildDocument ""
-
--- * Lesson plans
-
--- | Plan for the corresponding lesson.
-plan01 :: P.Pandoc
-Right plan01 = buildDocument ""
-
--- | Plan for the corresponding lesson.
-plan02 :: P.Pandoc
-Right plan02 = buildDocument ""
-
--- | Plan for the corresponding lesson.
-plan03 :: P.Pandoc
-Right plan03 = buildDocument ""
-
--- | Plan for the corresponding lesson.
-plan04 :: P.Pandoc
-Right plan04 = buildDocument ""
-
--- | Plan for the corresponding lesson.
-plan05 :: P.Pandoc
-Right plan05 = buildDocument ""
