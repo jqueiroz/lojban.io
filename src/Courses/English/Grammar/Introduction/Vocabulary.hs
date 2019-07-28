@@ -81,7 +81,7 @@ vocabulary4 :: Vocabulary
 vocabulary4 = Vocabulary
     -- Brivla
     [
-        "ciska", "duno"
+        "ciska", "djuno"
     ]
     -- Cmavo
     [
