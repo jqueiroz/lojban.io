@@ -6,6 +6,7 @@ module Server.Main (main) where
 import Core
 import Serializer (exerciseToJSON, validateExerciseAnswer)
 import qualified Courses.English.Grammar.Introduction.Course
+import qualified Courses.English.Grammar.Crash.Course
 import qualified Courses.English.Vocabulary.Attitudinals.Course
 import qualified Courses.English.Vocabulary.Brivla.Course
 import Server.Core
@@ -53,6 +54,7 @@ handleGrammar :: ServerPart Response
 handleGrammar = msum
     [ forceSlash . ok . toResponse $ displayGrammarHome
     , dir "introduction" $ handleCourse TopbarGrammar Courses.English.Grammar.Introduction.Course.course
+    , dir "crash" $ handleCourse TopbarGrammar Courses.English.Grammar.Crash.Course.course
     ]
 
 handleVocabulary :: ServerPart Response
