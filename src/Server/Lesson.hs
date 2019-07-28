@@ -10,7 +10,7 @@ import Server.Core
 import Control.Monad (when)
 import Data.Maybe (isJust, fromJust)
 import Data.Either.Unwrap (fromRight)
-import Courses.Framework.DocumentBuilders (buildVocabularyDocument)
+import Courses.Framework.DocumentBuilders (buildGlossaryDocument)
 import qualified Text.Pandoc as P
 import qualified Text.Pandoc.Writers.HTML as PWH
 import qualified Text.Blaze as B
@@ -49,7 +49,7 @@ displayLessonHome topbarCategory course lessonNumber = do
                         when (isJust $ lessonVocabulary lesson) $ do
                             H.div B.! A.class_ (H.stringValue "lesson-vocabulary") $ do
                                 H.div $ do
-                                    fromRight . P.runPure . PWH.writeHtml5 P.def . buildVocabularyDocument dictionary $ fromJust (lessonVocabulary lesson)
+                                    fromRight . P.runPure . PWH.writeHtml5 P.def . buildGlossaryDocument dictionary $ fromJust (lessonVocabulary lesson)
 
 displayLessonTabs :: Lesson -> H.Html
 displayLessonTabs lesson = do
