@@ -48,7 +48,7 @@ library
                      , Courses.Framework.ExerciseUtils
                      , Courses.Framework.Extractors
                      , Courses.Framework.NumberTranslator
-                     , Courses.Framework.Sentences
+                     , Courses.Framework.SentenceGenerators
                      , Courses.English.Grammar.Introduction.Course
                      , Courses.English.Grammar.Introduction.Documents
                      , Courses.English.Grammar.Introduction.Exercises
@@ -131,7 +131,7 @@ test-suite courses
                      , Courses.Framework.ExerciseGenerators
                      , Courses.Framework.ExerciseGenerators.Tests
                      , Courses.Framework.NumberTranslator
-                     , Courses.Framework.Sentences
+                     , Courses.Framework.SentenceGenerators
                      , Language.Lojban.Canonicalization
                      , Language.Lojban.Canonicalization.Internals
                      , Language.Lojban.Core

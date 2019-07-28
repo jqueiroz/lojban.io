@@ -2,7 +2,7 @@
 module Courses.English.Grammar.Introduction.Exercises where
 
 import Core
-import Courses.Framework.Sentences (generateNonbridi)
+import Courses.Framework.SentenceGenerators (generateNonbridi)
 import Courses.Framework.Extractors (extractSimpleBridiFromTranslationGenerator)
 import Courses.Framework.ExerciseGenerators
 import Language.Lojban.Core
