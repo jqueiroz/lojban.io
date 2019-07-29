@@ -8,7 +8,6 @@ import Util (generatorFromList, combineGenerators)
 import Language.Lojban.Dictionaries (englishDictionary)
 import Control.Arrow (second)
 import Courses.Framework.ExerciseGenerators
-import Courses.Framework.TranslationUtils (narrowTranslationGenerator, narrowTranslationGeneratorByExpression)
 import Courses.English.Vocabulary.Brivla.Translations
 
 -- * Auxiliar functions
