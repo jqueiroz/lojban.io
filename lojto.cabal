@@ -51,6 +51,7 @@ library
                      , Courses.Framework.SentenceGenerators
                      , Courses.Framework.TranslationLoaders
                      , Courses.Framework.TranslationUtils
+                     , Courses.Framework.VocabularyLoaders
                      , Courses.English.Grammar.Introduction.Course
                      , Courses.English.Grammar.Introduction.Documents
                      , Courses.English.Grammar.Introduction.Exercises
