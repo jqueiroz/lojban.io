@@ -73,8 +73,8 @@ expandTranslationGenerator translationGenerator r0 = (expandTranslation translat
 -- | Returns a 'Translation' containing only the first (canonical) Lojban sentence.
 --
 -- Useful if you have a 'Translation' that you would like to display to the user, but some of its
--- sentences in Lojban use words that have not yet been taught (perhaps to ensure that translations
--- made by more advanced users are still accepted).
+-- sentences in Lojban use words that have not yet been taught (perhaps you added them to ensure that
+-- translations made by more advanced users are still accepted by the validator).
 --
 -- This function discards all Lojban sentences except for the first one.
 -- By convention, the first translation is expected to be suitable for presentation to the user.
