@@ -28,17 +28,17 @@ dictionary = englishDictionary
 exercises1 :: ExerciseGenerator
 exercises1 =
     combineGenerators
-        [ (25, generateEnglishOrLojbanBridiJufraExercise bridiGenerator nonbridiGenerator displayBridi)
-        , (20, generateSelbriIdentificationExercise bridiGenerator displayBridi)
-        , (10, generateContextualizedGismuPlacePositionExercise dictionary bridiGenerator displayBridi)
-        , (20, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator displayBridi)
+        [ (25, generateEnglishOrLojbanBridiJufraExercise bridiGenerator nonbridiGenerator bridiDisplayer)
+        , (20, generateSelbriIdentificationExercise bridiGenerator bridiDisplayer)
+        , (10, generateContextualizedGismuPlacePositionExercise dictionary bridiGenerator bridiDisplayer)
+        , (20, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator bridiDisplayer)
         , (40, translationExercises1)
         ]
     where
         vocabulary = vocabulary1_cumulative
         nonbridiGenerator = generateNonbridi vocabulary
         bridiGenerator = extractSimpleBridiGeneratorFromTranslationGenerator translations1
-        displayBridi = displayStandardSimpleBridi
+        bridiDisplayer = displayStandardSimpleBridi
 
 -- | Translation exercises for the first lesson.
 translationExercises1 :: ExerciseGenerator
@@ -50,17 +50,17 @@ exercises2 :: ExerciseGenerator
 exercises2 =
     combineGenerators
         [ (20, generateGrammaticalClassExercise vocabulary)
-        , (15, generateEnglishOrLojbanBridiJufraExercise bridiGenerator nonbridiGenerator displayBridi)
-        , (20, generateSelbriIdentificationExercise bridiGenerator displayBridi)
-        , (10, generateContextualizedGismuPlacePositionExercise dictionary bridiGenerator displayBridi)
-        , (20, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator displayBridi)
+        , (15, generateEnglishOrLojbanBridiJufraExercise bridiGenerator nonbridiGenerator bridiDisplayer)
+        , (20, generateSelbriIdentificationExercise bridiGenerator bridiDisplayer)
+        , (10, generateContextualizedGismuPlacePositionExercise dictionary bridiGenerator bridiDisplayer)
+        , (20, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator bridiDisplayer)
         , (40, translationExercises2)
         ]
     where
         vocabulary = vocabulary2_cumulative
         nonbridiGenerator = generateNonbridi vocabulary
         bridiGenerator = extractSimpleBridiGeneratorFromTranslationGenerator translations2
-        displayBridi = combineGenerators [(7, displayStandardSimpleBridi), (3, displayVariantSimpleBridi)]
+        bridiDisplayer = combineGenerators [(7, displayStandardSimpleBridi), (3, displayVariantSimpleBridi)]
 
 -- | Translation exercises for the second lesson.
 translationExercises2 :: ExerciseGenerator
@@ -73,10 +73,10 @@ exercises3 :: ExerciseGenerator
 exercises3 =
     combineGenerators
         [ (10, generateGrammaticalClassExercise vocabulary)
-        , (10, generateEnglishOrLojbanBridiJufraExercise bridiGenerator nonbridiGenerator displayBridi)
-        , (10, generateSelbriIdentificationExercise bridiGenerator displayBridi)
-        , (20, generateContextualizedGismuPlacePositionExercise dictionary bridiGenerator displayBridi)
-        , (20, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator displayBridi)
+        , (10, generateEnglishOrLojbanBridiJufraExercise bridiGenerator nonbridiGenerator bridiDisplayer)
+        , (10, generateSelbriIdentificationExercise bridiGenerator bridiDisplayer)
+        , (20, generateContextualizedGismuPlacePositionExercise dictionary bridiGenerator bridiDisplayer)
+        , (20, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator bridiDisplayer)
         , (30, generateIsolatedBrivlaPlacesExercise dictionary $ vocabularyBrivlaList vocabulary)
         , (60, translationExercises3)
         ]
@@ -84,7 +84,7 @@ exercises3 =
         vocabulary = vocabulary3_cumulative
         nonbridiGenerator = generateNonbridi vocabulary
         bridiGenerator = extractSimpleBridiGeneratorFromTranslationGenerator translations3
-        displayBridi = combineGenerators [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
+        bridiDisplayer = combineGenerators [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
 
 -- | Interesting translation exercises for the third lesson: comprises regular exercises involving interesting translations, as well as "Translate without using zo'e" exercises involving restricted translations.
 --
@@ -110,14 +110,14 @@ exercises4 :: ExerciseGenerator
 exercises4 =
     combineGenerators
         [ (20, generateIsolatedBrivlaPlacesExercise dictionary $ vocabularyBrivlaList vocabulary)
-        , (20, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator displayBridi)
+        , (20, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator bridiDisplayer)
         , (20, questionExercises4)
         , (80, translationExercises4)
         ]
     where
         vocabulary = vocabulary4_cumulative
         bridiGenerator = extractSimpleBridiGeneratorFromTranslationGenerator translations4
-        displayBridi = combineGenerators [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
+        bridiDisplayer = combineGenerators [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
 
 translationExercises4 :: ExerciseGenerator
 translationExercises4 = combineGenerators [(1, restricted), (5, unrestricted)] where
@@ -136,14 +136,14 @@ exercises5 :: ExerciseGenerator
 exercises5 =
     combineGenerators
         [ (30, generateIsolatedBrivlaPlacesExercise dictionary $ vocabularyBrivlaList vocabulary)
-        , (10, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator displayBridi)
+        , (10, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator bridiDisplayer)
         , (40, abstractionExercises5)
         , (70, translationExercises5)
         ]
     where
         vocabulary = vocabulary5_cumulative
         bridiGenerator = extractSimpleBridiGeneratorFromTranslationGenerator translations5
-        displayBridi = combineGenerators [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
+        bridiDisplayer = combineGenerators [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
 
 translationExercises5 :: ExerciseGenerator
 translationExercises5 = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations5
@@ -161,13 +161,13 @@ exercises6 :: ExerciseGenerator
 exercises6 =
     combineGenerators
         [ (20, generateIsolatedBrivlaPlacesExercise dictionary $ vocabularyBrivlaList vocabulary)
-        , (10, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator displayBridi)
+        , (10, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator bridiDisplayer)
         , (70, translationExercises6_restricted)
         ]
     where
         vocabulary = vocabulary6_cumulative
         bridiGenerator = extractSimpleBridiGeneratorFromTranslationGenerator translations6
-        displayBridi = simplifyTerminatorsInBridiDisplayer $ (combineGenerators [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)])
+        bridiDisplayer = simplifyTerminatorsInBridiDisplayer $ (combineGenerators [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)])
 
 translationExercises6_restricted :: ExerciseGenerator
 translationExercises6_restricted = generateBlacklistedWordTranslationExercise "ku" sentenceCanonicalizer sentenceComparer translations6_restricted
@@ -178,10 +178,10 @@ exercises1to6 :: ExerciseGenerator
 exercises1to6 =
     combineGenerators
         [ (5, generateGrammaticalClassExercise vocabulary)
-        , (5, generateEnglishOrLojbanBridiJufraExercise bridiGenerator nonbridiGenerator displayBridi)
-        , (5, generateSelbriIdentificationExercise bridiGenerator displayBridi)
-        , (5, generateContextualizedGismuPlacePositionExercise dictionary bridiGenerator displayBridi)
-        , (15, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator displayBridi)
+        , (5, generateEnglishOrLojbanBridiJufraExercise bridiGenerator nonbridiGenerator bridiDisplayer)
+        , (5, generateSelbriIdentificationExercise bridiGenerator bridiDisplayer)
+        , (5, generateContextualizedGismuPlacePositionExercise dictionary bridiGenerator bridiDisplayer)
+        , (15, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator bridiDisplayer)
         , (15, generateIsolatedBrivlaPlacesExercise dictionary $ vocabularyBrivlaList vocabulary)
         , (60, translationExercises1to6_simplified)
         , (12, questionExercises4_simplified)
@@ -191,7 +191,7 @@ exercises1to6 =
         vocabulary = vocabulary6_cumulative
         bridiGenerator = extractSimpleBridiGeneratorFromTranslationGenerator translations1to6
         nonbridiGenerator = generateNonbridi vocabulary
-        displayBridi = simplifyTerminatorsInBridiDisplayer $ (combineGenerators [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)])
+        bridiDisplayer = simplifyTerminatorsInBridiDisplayer $ (combineGenerators [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)])
 
 translationExercises1to6_simplified :: ExerciseGenerator
 translationExercises1to6_simplified = simplifyTerminatorsInCanonicalAnswer . combineGenerators [(4, translationExercises3_nice), (1, translationExercises3_normal), (5, translationExercises4), (6, translationExercises5), (5, translationExercises6_restricted)]
