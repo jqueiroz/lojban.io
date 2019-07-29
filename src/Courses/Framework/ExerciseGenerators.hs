@@ -9,12 +9,9 @@ module Courses.Framework.ExerciseGenerators
 , generateEnglishOrLojbanBridiJufraExercise
 , generateLojbanBridiJufraExercise
 , generateEnglishBridiJufraExercise
-, generateBroadFillingBlanksExerciseByAlternatives
-, generateNarrowFillingBlanksExerciseByAlternatives
-, generateContextualizedBroadFillingBlanksExerciseByAlternatives
-, generateContextualizedNarrowFillingBlanksExerciseByAlternatives
-, generateBroadFillingBlanksExerciseByExpression
-, generateNarrowFillingBlanksExerciseByExpression
+, generateFillingBlanksExerciseByAlternatives
+, generateContextualizedFillingBlanksExerciseByAlternatives
+, generateFillingBlanksExerciseByExpression
 , generateSelbriIdentificationExercise
 , generateContextualizedGismuPlacePositionExercise
 , generateContextualizedGismuPlaceMeaningExercise
@@ -25,7 +22,6 @@ module Courses.Framework.ExerciseGenerators
 
 import Core
 import Courses.Framework.NumberTranslator
-import Courses.Framework.TranslationUtils (narrowTranslationGenerator, narrowTranslationGeneratorByExpression)
 import Language.Lojban.Core
 import Util (isSubexpressionOf, replace, replaceFirstSubexpression, replaceSubexpression, chooseItemUniformly, combineGenerators, combineGeneratorsUniformly, isWordOf)
 import Text.Read (readMaybe)
@@ -133,12 +129,10 @@ englishSentences "bridi and jufra" =
     , "I refuse to answer that question on the grounds that I don't know the answer."
     ]
 
--- Exercise: fill in the blanks (by alternatives)
+-- | Exercise: fill in the blanks (by alternatives)
 -- Expects a translation generator whose resulting sentences contain precisely one of the alternatives.
-
--- "Broad": this function chooses an arbitrary Lojban sentence, not necessarily the first in the Translation
-generateBroadFillingBlanksExerciseByAlternatives :: [T.Text] -> TranslationGenerator -> ExerciseGenerator
-generateBroadFillingBlanksExerciseByAlternatives alternatives translationGenerator r0 = SingleChoiceExercise title sentences correctAlternative incorrectAlternatives True where
+generateFillingBlanksExerciseByAlternatives :: [T.Text] -> TranslationGenerator -> ExerciseGenerator
+generateFillingBlanksExerciseByAlternatives alternatives translationGenerator r0 = SingleChoiceExercise title sentences correctAlternative incorrectAlternatives True where
     (translation, r1) = translationGenerator r0
     (sentenceText, r2) = chooseItemUniformly r1 (fst translation)
     correctAlternatives = filter (`isSubexpressionOf` sentenceText) $ alternatives
@@ -148,8 +142,8 @@ generateBroadFillingBlanksExerciseByAlternatives alternatives translationGenerat
     redactedSentenceText = replaceFirstSubexpression correctAlternative "____" sentenceText
     sentences = [ExerciseSentence True redactedSentenceText]
 
-generateContextualizedBroadFillingBlanksExerciseByAlternatives :: [T.Text] -> TranslationGenerator -> ExerciseGenerator
-generateContextualizedBroadFillingBlanksExerciseByAlternatives alternatives translationGenerator r0 = SingleChoiceExercise title sentences correctAlternative incorrectAlternatives True where
+generateContextualizedFillingBlanksExerciseByAlternatives :: [T.Text] -> TranslationGenerator -> ExerciseGenerator
+generateContextualizedFillingBlanksExerciseByAlternatives alternatives translationGenerator r0 = SingleChoiceExercise title sentences correctAlternative incorrectAlternatives True where
     (translation, r1) = translationGenerator r0
     (lojbanSentenceText, r2) = chooseItemUniformly r1 (fst translation)
     (englishSentenceText, r3) = chooseItemUniformly r2 (snd translation)
@@ -160,19 +154,10 @@ generateContextualizedBroadFillingBlanksExerciseByAlternatives alternatives tran
     redactedLojbanSentenceText = replaceFirstSubexpression correctAlternative "____" lojbanSentenceText
     sentences = [ExerciseSentence False englishSentenceText, ExerciseSentence True redactedLojbanSentenceText]
 
--- "Narrow": this function always chooses the first (canonical) Lojban sentence from the Translation
-generateNarrowFillingBlanksExerciseByAlternatives :: [T.Text] -> TranslationGenerator -> ExerciseGenerator
-generateNarrowFillingBlanksExerciseByAlternatives alternatives translationGenerator = generateBroadFillingBlanksExerciseByAlternatives alternatives (narrowTranslationGenerator translationGenerator)
-
-generateContextualizedNarrowFillingBlanksExerciseByAlternatives :: [T.Text] -> TranslationGenerator -> ExerciseGenerator
-generateContextualizedNarrowFillingBlanksExerciseByAlternatives alternatives translationGenerator = generateContextualizedBroadFillingBlanksExerciseByAlternatives alternatives (narrowTranslationGenerator translationGenerator)
-
--- Exercise: fill in the blanks (by expression)
-
--- "Broad": this function chooses an arbitrary Lojban sentence, not necessarily the first in the Translation
--- TODO: create a proper exercise type instead of using "TypingExercise"
-generateBroadFillingBlanksExerciseByExpression :: TranslationGeneratorByExpression -> ExerciseGenerator
-generateBroadFillingBlanksExerciseByExpression translationGeneratorByExpression r0 = TypingExercise title sentences validator expression where
+-- | Exercise: fill in the blanks (by expression)
+generateFillingBlanksExerciseByExpression :: TranslationGeneratorByExpression -> ExerciseGenerator
+generateFillingBlanksExerciseByExpression translationGeneratorByExpression r0 = TypingExercise title sentences validator expression where
+    -- TODO: create a proper exercise type instead of using "TypingExercise"
     ((expression, translationGenerator), r1) = chooseItemUniformly r0 translationGeneratorByExpression
     (translation, r2) = translationGenerator r1
     (lojbanSentenceText, r3) = chooseItemUniformly r2 (fst translation)
@@ -181,10 +166,6 @@ generateBroadFillingBlanksExerciseByExpression translationGeneratorByExpression 
     redactedLojbanSentenceText = replaceSubexpression expression "____" lojbanSentenceText
     sentences = [ExerciseSentence False englishSentenceText, ExerciseSentence True redactedLojbanSentenceText]
     validator = (== expression)
-
--- "Narrow": this function always chooses the first (canonical) Lojban sentence from the Translation
-generateNarrowFillingBlanksExerciseByExpression :: TranslationGeneratorByExpression -> ExerciseGenerator
-generateNarrowFillingBlanksExerciseByExpression translationGeneratorByExpression = generateBroadFillingBlanksExerciseByExpression (narrowTranslationGeneratorByExpression translationGeneratorByExpression)
 
 -- Exercise: identify the selbri
 generateSelbriIdentificationExercise :: SimpleBridiGenerator -> SimpleBridiDisplayer -> ExerciseGenerator

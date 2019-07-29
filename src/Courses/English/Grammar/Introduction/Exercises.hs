@@ -8,7 +8,7 @@ import Courses.Framework.SentenceGenerators (generateNonbridi)
 import Courses.Framework.Extractors (extractSimpleBridiGeneratorFromTranslationGenerator)
 import Courses.Framework.ExerciseGenerators
 import Courses.Framework.ExerciseUtils (simplifyTerminatorsInCanonicalAnswer)
-import Courses.Framework.TranslationUtils (simplifyTerminatorsInTranslationGenerator)
+import Courses.Framework.TranslationUtils (simplifyTerminatorsInTranslationGenerator, narrowTranslationGenerator)
 import Language.Lojban.Core
 import Language.Lojban.Dictionaries (englishDictionary)
 import Language.Lojban.Presentation (displayStandardSimpleBridi, displayVariantSimpleBridi, displayReorderedStandardSimpleBridi)
@@ -125,10 +125,10 @@ translationExercises4 = combineGenerators [(1, restricted), (5, unrestricted)] w
     unrestricted = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations4
 
 questionExercises4 :: ExerciseGenerator
-questionExercises4 = generateNarrowFillingBlanksExerciseByAlternatives ["mo", "ma"] $ combineGeneratorsUniformly [translations4_ma, translations4_mo]
+questionExercises4 = generateFillingBlanksExerciseByAlternatives ["mo", "ma"] $ narrowTranslationGenerator $ combineGeneratorsUniformly [translations4_ma, translations4_mo]
 
 questionExercises4_simplified :: ExerciseGenerator
-questionExercises4_simplified = generateNarrowFillingBlanksExerciseByAlternatives ["mo", "ma"] $ simplifyTerminatorsInTranslationGenerator $ combineGeneratorsUniformly [translations4_ma, translations4_mo]
+questionExercises4_simplified = generateFillingBlanksExerciseByAlternatives ["mo", "ma"] $ simplifyTerminatorsInTranslationGenerator $ narrowTranslationGenerator $ combineGeneratorsUniformly [translations4_ma, translations4_mo]
 
 -- * Lesson 5: Abstractions 1
 -- | Exercises for the fifth lesson.
@@ -148,12 +148,13 @@ exercises5 =
 translationExercises5 :: ExerciseGenerator
 translationExercises5 = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations5
 
--- "narrow" is required to avoid alternative translations using "ko'a"
+-- Narrowing the 'TranslationGenerator' is required to avoid alternative translations using "ko'a"
 abstractionExercises5 :: ExerciseGenerator
-abstractionExercises5 = generateNarrowFillingBlanksExerciseByAlternatives ["lo nu", "lo du'u", "lo se du'u"] $ combineGeneratorsUniformly [translations5_nu, translations5_du'u, translations5_sedu'u]
+abstractionExercises5 = generateFillingBlanksExerciseByAlternatives ["lo nu", "lo du'u", "lo se du'u"] $ narrowTranslationGenerator $ combineGeneratorsUniformly [translations5_nu, translations5_du'u, translations5_sedu'u]
 
+-- Narrowing the 'TranslationGenerator' is required to avoid alternative translations using "ko'a"
 abstractionExercises5_simplified :: ExerciseGenerator
-abstractionExercises5_simplified = generateNarrowFillingBlanksExerciseByAlternatives ["lo nu", "lo du'u", "lo se du'u"] $ simplifyTerminatorsInTranslationGenerator $ combineGeneratorsUniformly [translations5_nu, translations5_du'u, translations5_sedu'u]
+abstractionExercises5_simplified = generateFillingBlanksExerciseByAlternatives ["lo nu", "lo du'u", "lo se du'u"] $ simplifyTerminatorsInTranslationGenerator $ narrowTranslationGenerator $ combineGeneratorsUniformly [translations5_nu, translations5_du'u, translations5_sedu'u]
 
 -- * Lesson 6: Terminator elision
 -- | Exercises for the sixth lesson.
@@ -212,7 +213,7 @@ translationExercises8 :: ExerciseGenerator
 translationExercises8 = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations8
 
 fillingBlanksExercises8 :: ExerciseGenerator
-fillingBlanksExercises8 = generateContextualizedBroadFillingBlanksExerciseByAlternatives ["poi", "noi"] translations8
+fillingBlanksExercises8 = generateContextualizedFillingBlanksExerciseByAlternatives ["poi", "noi"] translations8
 
 -- * Lesson 9: Linked sumti
 -- | Exercises for the nineth lesson.
@@ -262,7 +263,7 @@ translationExercises11_unrestricted :: ExerciseGenerator
 translationExercises11_unrestricted = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations11_unrestricted
 
 fillingBlanksExercises11 :: ExerciseGenerator
-fillingBlanksExercises11 = generateContextualizedBroadFillingBlanksExerciseByAlternatives ["pu", "ca", "ba"] translations11_restricted
+fillingBlanksExercises11 = generateContextualizedFillingBlanksExerciseByAlternatives ["pu", "ca", "ba"] translations11_restricted
 
 -- * Lesson 12: Tanru
 -- | Exercises for the twelveth lesson.
