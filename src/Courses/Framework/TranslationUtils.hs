@@ -70,13 +70,12 @@ expandTranslationGenerator :: TranslationGenerator -> TranslationGenerator
 expandTranslationGenerator translationGenerator r0 = (expandTranslation translation, r1) where
     (translation, r1) = translationGenerator r0
 
--- | Returns a 'Translation' containing only the first (canonical) Lojban sentence.
+-- | Returns a 'Translation' containing only the first (i.e., canonical) Lojban sentence.
 --
+-- This function discards all Lojban sentences except for the first one.
 -- Useful if you have a 'Translation' that you would like to display to the user, but some of its
 -- sentences in Lojban use words that have not yet been taught (perhaps you added them to ensure that
 -- translations made by more advanced users are still accepted by the validator).
---
--- This function discards all Lojban sentences except for the first one.
 -- By convention, the first translation is expected to be suitable for presentation to the user.
 narrowTranslation :: Translation -> Translation
 narrowTranslation (lojban_sentences, english_sentences) = ([head lojban_sentences], english_sentences)
