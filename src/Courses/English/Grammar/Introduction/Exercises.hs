@@ -28,7 +28,7 @@ dictionary = englishDictionary
 exercises1 :: ExerciseGenerator
 exercises1 =
     combineGenerators
-        [ (25, generateBridiJufraExercise bridiGenerator nonbridiGenerator displayBridi)
+        [ (25, generateEnglishOrLojbanBridiJufraExercise bridiGenerator nonbridiGenerator displayBridi)
         , (20, generateSelbriIdentificationExercise bridiGenerator displayBridi)
         , (10, generateContextualizedGismuPlacePositionExercise dictionary bridiGenerator displayBridi)
         , (20, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator displayBridi)
@@ -50,7 +50,7 @@ exercises2 :: ExerciseGenerator
 exercises2 =
     combineGenerators
         [ (20, generateGrammaticalClassExercise vocabulary)
-        , (15, generateBridiJufraExercise bridiGenerator nonbridiGenerator displayBridi)
+        , (15, generateEnglishOrLojbanBridiJufraExercise bridiGenerator nonbridiGenerator displayBridi)
         , (20, generateSelbriIdentificationExercise bridiGenerator displayBridi)
         , (10, generateContextualizedGismuPlacePositionExercise dictionary bridiGenerator displayBridi)
         , (20, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator displayBridi)
@@ -73,7 +73,7 @@ exercises3 :: ExerciseGenerator
 exercises3 =
     combineGenerators
         [ (10, generateGrammaticalClassExercise vocabulary)
-        , (10, generateBridiJufraExercise bridiGenerator nonbridiGenerator displayBridi)
+        , (10, generateEnglishOrLojbanBridiJufraExercise bridiGenerator nonbridiGenerator displayBridi)
         , (10, generateSelbriIdentificationExercise bridiGenerator displayBridi)
         , (20, generateContextualizedGismuPlacePositionExercise dictionary bridiGenerator displayBridi)
         , (20, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator displayBridi)
@@ -178,7 +178,7 @@ exercises1to6 :: ExerciseGenerator
 exercises1to6 =
     combineGenerators
         [ (5, generateGrammaticalClassExercise vocabulary)
-        , (5, generateBridiJufraExercise bridiGenerator nonbridiGenerator displayBridi)
+        , (5, generateEnglishOrLojbanBridiJufraExercise bridiGenerator nonbridiGenerator displayBridi)
         , (5, generateSelbriIdentificationExercise bridiGenerator displayBridi)
         , (5, generateContextualizedGismuPlacePositionExercise dictionary bridiGenerator displayBridi)
         , (15, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator displayBridi)

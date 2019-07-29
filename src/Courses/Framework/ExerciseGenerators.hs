@@ -6,7 +6,7 @@ module Courses.Framework.ExerciseGenerators
 , generateBlacklistedWordTranslationExercise
 , generateRestrictedTranslationExercise
 , generateGrammaticalClassExercise
-, generateBridiJufraExercise
+, generateEnglishOrLojbanBridiJufraExercise
 , generateLojbanBridiJufraExercise
 , generateEnglishBridiJufraExercise
 , generateBroadFillingBlanksExerciseByAlternatives
@@ -76,8 +76,8 @@ generateGrammaticalClassExercise vocabulary r0 = SingleChoiceExercise title sent
     sentences = []
 
 -- | Exercise: decide whether an utterance (in either English or Lojban) is a bridi or merely a jufra.
-generateBridiJufraExercise :: SimpleBridiGenerator -> TextGenerator -> SimpleBridiDisplayer -> ExerciseGenerator
-generateBridiJufraExercise simpleBridiGenerator nonbridiGenerator displayBridi = combineGeneratorsUniformly [generateEnglishBridiJufraExercise, generateLojbanBridiJufraExercise simpleBridiGenerator nonbridiGenerator displayBridi]
+generateEnglishOrLojbanBridiJufraExercise :: SimpleBridiGenerator -> TextGenerator -> SimpleBridiDisplayer -> ExerciseGenerator
+generateEnglishOrLojbanBridiJufraExercise simpleBridiGenerator nonbridiGenerator displayBridi = combineGeneratorsUniformly [generateEnglishBridiJufraExercise, generateLojbanBridiJufraExercise simpleBridiGenerator nonbridiGenerator displayBridi]
 
 -- | Exercise: decide whether a Lojban utterance is a bridi or merely a jufra.
 generateLojbanBridiJufraExercise :: SimpleBridiGenerator -> TextGenerator -> SimpleBridiDisplayer -> ExerciseGenerator
