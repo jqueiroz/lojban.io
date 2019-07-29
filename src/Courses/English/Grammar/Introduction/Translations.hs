@@ -1875,5 +1875,3 @@ translations17_to'e = expandTranslationGenerator $ combineGeneratorsUniformly [n
 -- TODO: fix canonicalization of "mi na prenu"
 translationExercises17 :: ExerciseGenerator
 translationExercises17 = generateTranslationExercise sentenceCanonicalizer sentenceComparer $ combineGeneratorsUniformly [translations17_na, translations17_na'e, translations17_to'e]
-
---TODO: pause immediately after lesson 5
