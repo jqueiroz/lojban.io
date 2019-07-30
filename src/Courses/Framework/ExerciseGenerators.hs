@@ -21,8 +21,8 @@ module Courses.Framework.ExerciseGenerators
 ) where
 
 import Core
-import Courses.Framework.NumberTranslator
 import Language.Lojban.Core
+import Language.Lojban.Numbers
 import Util (isSubexpressionOf, replace, replaceFirstSubexpression, replaceSubexpression, chooseItemUniformly, combineGenerators, combineGeneratorsUniformly, isWordOf)
 import Text.Read (readMaybe)
 import System.Random (StdGen, random)
@@ -250,7 +250,7 @@ generateNumberToTextExercise r0 =
         v = \text -> case lojbanToNumber text of
             Nothing -> False
             Just x' -> x' == x
-    in TypingExercise ("Number to text: <b>" `T.append` (T.pack $ show x) `T.append` "</b>") [] v (numberToSimpleLojban x)
+    in TypingExercise ("Number to text: <b>" `T.append` (T.pack $ show x) `T.append` "</b>") [] v (numberToLojban x)
 
 generateTextToNumberExercise :: ExerciseGenerator
 generateTextToNumberExercise r0 =
@@ -258,4 +258,4 @@ generateTextToNumberExercise r0 =
         v = \text -> case readMaybe (T.unpack text) of
             Nothing -> False
             Just x' -> x' == x
-    in TypingExercise ("Text to number: <b>" `T.append` (numberToSimpleLojban x) `T.append` "</b>") [] v (T.pack . show $ x)
+    in TypingExercise ("Text to number: <b>" `T.append` (numberToLojban x) `T.append` "</b>") [] v (T.pack . show $ x)

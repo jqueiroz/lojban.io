@@ -1,8 +1,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 
--- | This module provides utilities for converting numbers to/from Lojban.
-module Courses.Framework.NumberTranslator
-( numberToSimpleLojban
+-- | This module provides utilities for manipulating numbers in Lojban.
+module Language.Lojban.Numbers
+( numberToLojban
 , lojbanToNumber
 ) where
 
@@ -10,7 +10,7 @@ import Text.Read (readMaybe)
 import Control.Applicative ((<$>), (<*>))
 import qualified Data.Text as T
 
--- Digit
+-- | Converts a decimal digit character into the corresponding Lojban cmavo.
 digitToLojban :: Char -> T.Text
 digitToLojban '0' = "no"
 digitToLojban '1' = "pa"
@@ -23,6 +23,7 @@ digitToLojban '7' = "ze"
 digitToLojban '8' = "bi"
 digitToLojban '9' = "so"
 
+-- | Converts Lojban cmavo into the corresponding decimal digit character.
 lojbanToDigit :: T.Text -> Maybe Char
 lojbanToDigit "no" = Just '0'
 lojbanToDigit "pa" = Just '1'
@@ -36,10 +37,13 @@ lojbanToDigit "bi" = Just '8'
 lojbanToDigit "so" = Just '9'
 lojbanToDigit _ = Nothing
 
--- Text
-numberToSimpleLojban :: Integer -> T.Text
-numberToSimpleLojban = T.concat . map digitToLojban . show
+-- | Converts an integer into Lojban text.
+numberToLojban :: Integer -> T.Text
+numberToLojban = T.concat . map digitToLojban . show
 
+-- | Converts Lojban text into an integer.
+--
+-- Supports the separator "ki'o", e.g. "pa ki'o ci" (1003).
 lojbanToNumber :: T.Text -> Maybe Integer
 lojbanToNumber t =
     case sequence subnumbers of

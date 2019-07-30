@@ -47,7 +47,6 @@ library
                      , Courses.Framework.ExerciseGenerators
                      , Courses.Framework.ExerciseUtils
                      , Courses.Framework.Extractors
-                     , Courses.Framework.NumberTranslator
                      , Courses.Framework.SentenceGenerators
                      , Courses.Framework.TranslationLoaders
                      , Courses.Framework.TranslationUtils
@@ -83,6 +82,7 @@ library
                      , Language.Lojban.Core
                      , Language.Lojban.Dictionaries
                      , Language.Lojban.Dictionaries.English
+                     , Language.Lojban.Numbers
                      , Language.Lojban.Parsing
                      , Language.Lojban.Presentation
                      , Language.Lojban.Refinement
@@ -133,11 +133,11 @@ test-suite courses
   other-modules:       Core
                      , Courses.Framework.ExerciseGenerators
                      , Courses.Framework.ExerciseGenerators.Tests
-                     , Courses.Framework.NumberTranslator
                      , Courses.Framework.SentenceGenerators
                      , Language.Lojban.Canonicalization
                      , Language.Lojban.Canonicalization.Internals
                      , Language.Lojban.Core
+                     , Language.Lojban.Numbers
                      , Language.Lojban.Parsing
                      , Language.Lojban.Presentation
                      , Language.Lojban.Refinement
