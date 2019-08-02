@@ -5,18 +5,27 @@ module Server.Grammar
 ) where
 
 import Server.Core
+import Server.Modules
+import qualified Courses.English.Grammar.Introduction.Course
+import qualified Courses.English.Grammar.Crash.Course
 import qualified Text.Blaze as B
 import qualified Text.Blaze.Html5 as H
 import qualified Text.Blaze.Html5.Attributes as A
 
 displayGrammarHome :: H.Html
-displayGrammarHome =
+displayGrammarHome = do
+    let moduleTitle = "Grammar"
+    let moduleCourses =
+            [ ("/grammar/introduction", Courses.English.Grammar.Introduction.Course.course)
+            , ("/grammar/crash", Courses.English.Grammar.Crash.Course.course)
+            ]
     H.html $ do
         H.head $ do
             H.title $ H.toHtml ("Grammar" :: String)
             includeUniversalStylesheets
             includeUniversalScripts
+            includeInternalStylesheet "module.css"
         H.body $ do
             displayTopbar TopbarGrammar
             H.div B.! A.class_ (H.stringValue "main") $ do
-                H.h1 $ H.toHtml ("Grammar module" :: String)
+                displayModule moduleTitle moduleCourses

@@ -1,0 +1,48 @@
+@import "general.less";
+
+.module {
+    &:extend(.content);
+
+    background-color: #eee;
+    border: 1px solid #bbb;
+    padding: 1em;
+
+    .course-list {
+        .course {
+            /* Position */
+            margin: 2em;
+            width: 20em;
+            height: 16em;
+            padding: 1em;
+
+            /* Text */
+            display: inline-block;
+
+            /* Border */
+            border-radius: 5px;
+        }
+
+        .course-title {
+            /* Position */
+            margin-top: 0.5em;
+            margin-bottom: 1em;
+
+            /* Text */
+            text-align: center;
+            font-size: 1.5em;
+            color: #fff;
+        }
+
+        .course-title a {
+            color: #fff;
+        }
+
+        img {
+            margin-top: 0.5em;
+            margin-left: 5em;
+            width: 10em;
+            height: 10em;
+        }
+
+    }
+}
