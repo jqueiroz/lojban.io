@@ -162,7 +162,8 @@
 .dictionary-tooltip-holder {
     /* Position */
     position: fixed;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateY(-100%);
+    margin-top: -0.7em;
     left: 50%;
     z-index: 1000;
 }
@@ -173,7 +174,7 @@
     height: 20px;
     width: 20px;
     left: calc(50% - 10px);
-    top: calc(3em - 20px + 2px + 20px);
+    top: calc(100% - 10px);
     /* Style */
     border-bottom: 2px solid #ddd;
     border-right: 2px solid #ddd;
@@ -183,8 +184,6 @@
 }
 
 .exercise-holder .dictionary-tooltip {
-    /* Position */
-    margin-top: calc(-3em - 20px);
     /* Border */
     border: 2px solid #ddd;
     border-radius: 8px;
