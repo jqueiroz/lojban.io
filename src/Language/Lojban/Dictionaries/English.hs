@@ -18,7 +18,7 @@ import Data.FileEmbed (embedStringFile)
 
 -- | Dictionary in English.
 englishDictionary :: Dictionary
-englishDictionary = Dictionary gismuMap cmavoMap brivlaMap definitionsMap englishBrivlaPlacesMap where
+englishDictionary = Dictionary "english" gismuMap cmavoMap brivlaMap definitionsMap englishBrivlaPlacesMap where
     -- Frequency map
     frequencyMap = loadFrequencyMapFromText $ T.pack $(embedStringFile "resources/MyFreq-COMB_without_dots.txt")
     -- Cmavo

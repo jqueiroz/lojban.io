@@ -1,3 +1,5 @@
+{-# LANGUAGE OverloadedStrings #-}
+
 module Language.Lojban.Core
 ( SimpleBridi (..)
 , SimpleBridiGenerator
@@ -18,6 +20,7 @@ import System.Random (StdGen)
 import Data.Maybe (fromMaybe)
 import qualified Data.Text as T
 import qualified Data.Map as M
+import qualified Data.Aeson as A
 
 -- * Syntax
 data SimpleBridi = SimpleBridi
@@ -37,7 +40,8 @@ type SentenceCanonicalizer = T.Text -> Either String T.Text
 
 -- * Lexicon
 data Dictionary = Dictionary
-    { dictGismu :: M.Map T.Text Gismu
+    { dictIdentifier :: T.Text
+    , dictGismu :: M.Map T.Text Gismu
     , dictCmavo :: M.Map T.Text Cmavo
     , dictBrivla :: M.Map T.Text Brivla
     , dictValsiDefinition :: M.Map T.Text T.Text
@@ -98,3 +102,9 @@ retrieveBrivlaPlaces dictionary brivla =
     in if null places
         then error $ "Missing brivla places for '" ++ (T.unpack brivla) ++ "'"
         else places
+
+-- * Serialization
+instance A.ToJSON Dictionary where
+    toJSON dictionary = A.object
+        [ ("valsiDefinition", A.toJSON $ dictValsiDefinition dictionary)
+        ]

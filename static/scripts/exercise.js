@@ -155,6 +155,9 @@ var createExercisesManager = function(holder) {
                 let sentenceElement = $("<div/>")
                     .addClass("sentence")
                     .html(sentence.text);
+                if (sentence.lojbanic) {
+                    sentenceElement.addClass("lojbanic");
+                }
                 if (data.sentences.length === 1) {
                     sentenceElement.addClass("single");
                 }
@@ -318,6 +321,9 @@ var createExercisesManager = function(holder) {
                 let sentenceElement = $("<div/>")
                     .addClass("sentence")
                     .html(sentence.text);
+                if (sentence.lojbanic) {
+                    sentenceElement.addClass("lojbanic");
+                }
                 if (data.sentences.length === 1) {
                     sentenceElement.addClass("single");
                 }
@@ -378,6 +384,9 @@ var createExercisesManager = function(holder) {
                 let sentenceElement = $("<div/>")
                     .addClass("sentence")
                     .html(sentence.text);
+                if (sentence.lojbanic) {
+                    sentenceElement.addClass("lojbanic");
+                }
                 table.append(sentenceElement);
             }
             if (data.sentences.length >= 2) {
@@ -421,6 +430,48 @@ var createExercisesManager = function(holder) {
                 }
             });
         }
+        // Dictionary
+        body.find(".sentence.lojbanic").each(function() {
+            let $this = $(this);
+            $this.html($this.text().replace(/\b(\w+)\b/g, "<span class='lojbanic'>$1</span>"));
+        });
+        $("span.lojbanic").mouseover(function() {
+            // Delete old tooltips
+            $(".dictionary-tooltip-holder").remove();
+            // Lookup definition
+            let dictionary = window.dictionary || null;
+            if (!dictionary || !dictionary.valsiDefinition) {
+                return;
+            }
+            let word = $(this).text();
+            let definitionText = dictionary.valsiDefinition[word];
+            if (!definitionText) {
+                return;
+            }
+            definitionText = definitionText.replace(/x1/g, "x₁");
+            definitionText = definitionText.replace(/x2/g, "x₂");
+            definitionText = definitionText.replace(/x3/g, "x₃");
+            definitionText = definitionText.replace(/x4/g, "x₄");
+            definitionText = definitionText.replace(/x5/g, "x₅");
+            // Calculate position
+            let position = $(this).offset();
+            position.left -= $(document).scrollLeft();
+            position.top -= $(document).scrollTop();
+            position.left += $(this).width() / 2;
+            // Create tooltip
+            let tooltipHolder = $("<div>").addClass("dictionary-tooltip-holder").css(position);
+            let tooltip = $(tooltipHolder).addClass("dictionary-tooltip").css(position);
+            tooltip.text(definitionText);
+            tooltipHolder.append(tooltip);
+            body.append(tooltip);
+            // Animate tooltip
+            tooltipHolder.css("opacity", 0);
+            tooltipHolder.animate({opacity: 1}, 200);
+        });
+        $("span.lojbanic").mouseout(function() {
+            // Delete tooltips
+            $(".dictionary-tooltip-holder").remove();
+        });
     };
 
     nextExercise();

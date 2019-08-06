@@ -8,11 +8,14 @@ module Server.Core
 , includeUniversalScripts
 , includeInternalScript
 , includeExternalScript
+, includeDictionaryScript
 , TopbarCategory (..)
 , displayTopbar
 ) where
 
 import Core
+import Language.Lojban.Core
+import qualified Data.Text as T
 import qualified Text.Blaze as B
 import qualified Text.Blaze.Html5 as H
 import qualified Text.Blaze.Html5.Attributes as A
@@ -69,6 +72,9 @@ includeExternalScript src =
     H.script ""
       B.! A.type_ "text/javascript"
       B.! A.src (H.stringValue src)
+
+includeDictionaryScript :: Dictionary -> H.Html
+includeDictionaryScript dictionary = includeInternalScript $ T.unpack $ "dictionaries/" `T.append` (dictIdentifier dictionary) `T.append` ".js"
 
 -- * Topbar
 data TopbarCategory = TopbarHome | TopbarGrammar | TopbarVocabulary | TopbarResources deriving (Enum, Eq)

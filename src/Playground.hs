@@ -5,11 +5,15 @@ import Language.Lojban.Core
 import Language.Lojban.Dictionaries (englishDictionary)
 import Language.Lojban.Canonicalization (basicSentenceCanonicalizer)
 import Control.Applicative ((<$>))
+import Control.Monad (sequence_)
 import Data.Maybe (mapMaybe)
 import Data.List.Ordered (nubSort)
-import qualified Data.Text.IO as TIO
 import qualified Data.Text as T
+import qualified Data.Text.IO as TIO
+import qualified Data.Text.Lazy as TL
+import qualified Data.Text.Lazy.Encoding as TLE
 import qualified Data.Map as M
+import qualified Data.Aeson as A
 import System.Random (StdGen, mkStdGen)
 
 -- See also: https://mw.lojban.org/papri/N-grams_of_Lojban_corpus
@@ -51,3 +55,11 @@ showSamplesFromGenerator = unlines . nubSort . (map show) . samplesFromGenerator
 
 displaySamplesFromGenerator :: (Show a) => (StdGen -> (a, StdGen)) -> IO ()
 displaySamplesFromGenerator = putStrLn . showSamplesFromGenerator
+
+saveDictionaries :: IO ()
+saveDictionaries = sequence_ [saveDictionary "static/scripts/dictionaries/english.js" englishDictionary]
+
+saveDictionary :: FilePath -> Dictionary -> IO ()
+saveDictionary filePath dictionary = do
+    let contents = "let dictionary=" `T.append` TL.toStrict (TLE.decodeUtf8 $ A.encode dictionary)
+    TIO.writeFile filePath contents

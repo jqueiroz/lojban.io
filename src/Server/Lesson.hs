@@ -72,6 +72,7 @@ displayLessonTab id title checked = do
 -- Embedded dictionary: consider using tooltips (https://getbootstrap.com/docs/4.0/components/tooltips/)
 displayLessonExercise :: TopbarCategory -> Course -> Int -> H.Html
 displayLessonExercise topbarCategory course lessonNumber = do
+    let dictionary = courseDictionary course
     let baseLessonUrl = "../"
     H.html $ do
         H.head $ do
@@ -82,6 +83,7 @@ displayLessonExercise topbarCategory course lessonNumber = do
             includeInternalStylesheet "list-group-horizontal.css"
             includeInternalStylesheet "exercise.css"
             includeUniversalScripts
+            includeDictionaryScript dictionary
             includeInternalScript "exercise.js"
             includeCourseStylesheet course
         H.body $ do
