@@ -433,7 +433,7 @@ var createExercisesManager = function(holder) {
         // Dictionary
         body.find(".sentence.lojbanic").each(function() {
             let $this = $(this);
-            $this.html($this.text().replace(/\b(\w+)\b/g, "<span class='lojbanic'>$1</span>"));
+            $this.html($this.text().replace(/\b([\w']+)\b/g, "<span class='lojbanic'>$1</span>"));
         });
         $("span.lojbanic").mouseover(function() {
             // Delete old tooltips
