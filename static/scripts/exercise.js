@@ -448,11 +448,11 @@ var createExercisesManager = function(holder) {
             if (!definitionText) {
                 return;
             }
-            definitionText = definitionText.replace(/x1/g, "x₁");
-            definitionText = definitionText.replace(/x2/g, "x₂");
-            definitionText = definitionText.replace(/x3/g, "x₃");
-            definitionText = definitionText.replace(/x4/g, "x₄");
-            definitionText = definitionText.replace(/x5/g, "x₅");
+            //definitionText = definitionText.replace(/x1/g, "x₁");
+            //definitionText = definitionText.replace(/x2/g, "x₂");
+            //definitionText = definitionText.replace(/x3/g, "x₃");
+            //definitionText = definitionText.replace(/x4/g, "x₄");
+            //definitionText = definitionText.replace(/x5/g, "x₅");
             // Calculate position
             let position = $(this).offset();
             position.left -= $(document).scrollLeft();
