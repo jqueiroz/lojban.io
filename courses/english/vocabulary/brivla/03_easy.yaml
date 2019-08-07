@@ -374,12 +374,6 @@ nitcu:
       translated_sentences:
         - Why do you need it?
 
-    # Sentence complexity: 0.999
-    - lojban_sentences:
-        - mi nitcu da lo nu da jimpe mi
-      translated_sentences:
-        - I need someone to understand me.
-
     # Sentence complexity: 1.082
     - lojban_sentences:
         - do nitcu lo ka sipna
