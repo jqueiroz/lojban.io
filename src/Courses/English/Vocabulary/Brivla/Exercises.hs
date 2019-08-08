@@ -12,7 +12,7 @@ import Courses.English.Vocabulary.Brivla.Translations
 
 -- * Auxiliar functions
 buildBrivlaExerciseGenerator :: TranslationsByExpression -> ExerciseGenerator
-buildBrivlaExerciseGenerator translationsByExpression = combineGenerators [(6, translationExercises), (3, brivlaPlacesExercises), (3, brivlaProvidingExercises)] where
+buildBrivlaExerciseGenerator translationsByExpression = combineGenerators [(6, translationExercises), (2, brivlaPlacesExercises), (2, brivlaProvidingExercises)] where
     dictionary = englishDictionary
     brivla = map fst translationsByExpression
     translationExercises = generateFillingBlanksExerciseByExpression translationGeneratorByExpression
