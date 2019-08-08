@@ -162,12 +162,6 @@ bilga:
       translated_sentences:
         - I must say no to you.
 
-    # Sentence complexity: 1.772
-    - lojban_sentences:
-        - mi bilga lo nu sipna
-      translated_sentences:
-        - I have to go to sleep.
-
     # Sentence complexity: 2.788
     - lojban_sentences:
         - mi bilga lo nu klama lo ckule
