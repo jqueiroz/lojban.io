@@ -30,4 +30,4 @@ vocabulary04 = extractVocabulary translations04
 
 -- | Vocabulary for the corresponding lesson.
 vocabulary05 :: Vocabulary
-vocabulary05 = extractVocabulary translations04
+vocabulary05 = extractVocabulary translations05
