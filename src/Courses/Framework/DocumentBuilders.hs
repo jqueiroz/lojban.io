@@ -15,7 +15,7 @@ import qualified Text.Pandoc as P
 buildDocumentFromMarkdownCode :: T.Text -> Either P.PandocError P.Pandoc
 buildDocumentFromMarkdownCode code = P.runPure $ P.readMarkdown P.def
     { P.readerStripComments = True
-    , P.readerExtensions = P.extensionsFromList [ P.Ext_raw_html, P.Ext_subscript ]
+    , P.readerExtensions = P.extensionsFromList [ P.Ext_raw_html, P.Ext_markdown_in_html_blocks, P.Ext_subscript, P.Ext_simple_tables, P.Ext_multiline_tables, P.Ext_pipe_tables ]
     } $ preprocessMarkdownCode code
 
 -- | Proprocess Markdown code to handle subscripts.
