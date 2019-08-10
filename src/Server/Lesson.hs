@@ -58,10 +58,10 @@ displayLessonTabs lesson = do
     let hasVocabulary = isJust $ lessonVocabulary lesson
     when hasLecture $ do
         displayLessonTab "lesson-tab-lecture" "Lecture" True
-    when hasPlan $ do
-        displayLessonTab "lesson-tab-plan" "Plan" (not hasLecture)
     when hasVocabulary $ do
-        displayLessonTab "lesson-tab-vocabulary" "Vocabulary" $ (not hasLecture) && (not hasPlan)
+        displayLessonTab "lesson-tab-vocabulary" "Vocabulary" $ (not hasLecture)
+    when hasPlan $ do
+        displayLessonTab "lesson-tab-plan" "Plan" $ (not hasLecture) && (not hasVocabulary)
 
 displayLessonTab :: String -> String -> Bool -> H.Html
 displayLessonTab id title checked = do
