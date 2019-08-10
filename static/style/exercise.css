@@ -186,9 +186,17 @@
 .exercise-holder .dictionary-tooltip {
     /* Border */
     border: 2px solid #ddd;
+    border-bottom: none;
     border-radius: 8px;
     /* Style */
-    font-size: 1.3em;
+    font-size: 1.2em;
     background-color: #fff;
-    padding: 20px;
+}
+
+.exercise-holder .dictionary-tooltip-definition {
+    /* Border */
+    border-bottom: 2px solid #ddd;
+    /* Style */
+    text-align: center;
+    padding: 10px;
 }

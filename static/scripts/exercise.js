@@ -461,7 +461,12 @@ var createExercisesManager = function(holder) {
             // Create tooltip
             let tooltipHolder = $("<div>").addClass("dictionary-tooltip-holder").css(position);
             let tooltip = $(tooltipHolder).addClass("dictionary-tooltip").css(position);
-            tooltip.text(definitionText);
+            let definitions = definitionText.split("; ");
+            for (let i = 0; i < definitions.length; ++i) {
+                let definition = definitions[i];
+                let definitionElement = $("<div/>").addClass("dictionary-tooltip-definition").text(definition);
+                tooltip.append(definitionElement);
+            }
             tooltipHolder.append(tooltip);
             body.append(tooltip);
             // Animate tooltip
