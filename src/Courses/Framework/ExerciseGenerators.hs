@@ -62,9 +62,9 @@ generateRestrictedTranslationExercise title validator canonicalizer sentenceComp
 generateGrammaticalClassExercise :: Vocabulary -> ExerciseGenerator
 generateGrammaticalClassExercise vocabulary r0 = SingleChoiceExercise title sentences correctAlternative incorrectAlternatives True where
     words "brivla" = vocabularyBrivlaList vocabulary
-    words "cmavo" = vocabularyBrivlaList vocabulary
+    words "cmavo" = vocabularyCmavoList vocabulary
     words "cmevla" = vocabularyCmevlaList vocabulary
-    allAlternatives = filter (not . null . words) ["gismu", "cmavo", "cmevla"]
+    allAlternatives = filter (not . null . words) ["brivla", "cmavo", "cmevla"]
     (correctAlternative, r1) = chooseItemUniformly r0 allAlternatives
     incorrectAlternatives = filter (/= correctAlternative) allAlternatives
     (word, _) = chooseItemUniformly r1 $ words correctAlternative
