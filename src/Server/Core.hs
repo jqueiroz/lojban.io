@@ -82,7 +82,9 @@ data TopbarCategory = TopbarHome | TopbarGrammar | TopbarVocabulary | TopbarReso
 displayTopbar :: TopbarCategory -> H.Html
 displayTopbar topbarCategory = do
     H.div B.! A.class_ (H.stringValue "topbar") $ do
-        H.div B.! A.class_ "logo" $ H.toHtml ("lojban" :: String)
+        H.div B.! A.class_ "logo" $ do
+            H.a (H.toHtml ("lojban" :: String))
+                B.! A.href (H.stringValue "/")
         displayTopbarMenu topbarCategory
 
 displayTopbarMenu :: TopbarCategory -> H.Html
