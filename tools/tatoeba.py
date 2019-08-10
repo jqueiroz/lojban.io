@@ -246,7 +246,7 @@ def run(cmd):
             print("# Total sentences: %d" % len(sentences))
             print("%s:" % word)
             for sentence in sentences[:10]:
-                print("    # Sentence complexity: %.3f" % compute_sentence_complexity(sentence))
+                print("    # Sentence complexity: %.3f" % compute_sentence_complexity(sentence['content']))
                 print("    - lojban_sentences:")
                 print("        - %s" % encode_text_to_yaml_string(sentence['content']))
                 print("      translated_sentences:")
