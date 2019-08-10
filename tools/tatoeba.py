@@ -5,6 +5,7 @@ import csv
 import json
 import yaml
 import copy
+import csv
 
 class TatoebaDatabase:
     def __init__(self, directory):
@@ -76,6 +77,44 @@ def load_sentences_from_json():
 
     with open('/storage/Databases/Lojban/tatoeba-dumps/2018-03-30/tatoeba-lojban.json', 'r') as f:
         return retrieve_normalized_sentences(json.load(f))
+
+def load_sentences_from_csv():
+    with open('/storage/Databases/Lojban/tatoeba-refined/2017.csv') as csvfile:
+        reader = csv.reader(csvfile, delimiter=',')
+        sentences = []
+        first = True
+        for row in reader:
+            if first:
+                first = False
+                continue
+            # print(row)
+            sentence_in_english = row[1]
+            original_sentence_in_lojban = row[2]
+            ilmen_tags = row[3]
+            ilmen_alternative_proposal = row[4]
+            gleki_tags = row[5]
+            gleki_alternative_proposal = row[6]
+            sentence_in_lojban = None
+            if 'G' in ilmen_tags or 'A' in ilmen_tags or 'G' in gleki_tags or 'A' in gleki_tags:
+                sentence_in_lojban = original_sentence_in_lojban
+            if ilmen_alternative_proposal:
+                sentence_in_lojban = ilmen_alternative_proposal
+            elif gleki_alternative_proposal:
+                sentence_in_lojban = gleki_alternative_proposal
+            ilmen_tags = row[3]
+            if sentence_in_lojban is None:
+                continue
+            sentence_in_lojban = sentence_in_lojban.replace(".i ", "")
+            sentence = {
+                'content': sentence_in_lojban,
+                'translations': [
+                    {'content': sentence_in_english, 'language': 'eng'}
+                ]
+            }
+            sentences.append(sentence)
+            # print("\t", (sentence_in_english, sentence_in_lojban, ilmen_tags, ilmen_alternative_proposal, gleki_tags, gleki_alternative_proposal))
+            # print("\t", sentence)
+        return sentences
 
 def load_all_gismu():
     all_gismu = []
