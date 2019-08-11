@@ -482,19 +482,13 @@ pensi:
     - lojban_sentences:
         - ma do ca'o se pensi
       translated_sentences:
-        - What're you thinking?
+        - What are you thinking?
 
     # Sentence complexity: 1.928
     - lojban_sentences:
         - ca'o lo nu mi gunka kei mi pensi
       translated_sentences:
         - While I work, I reflect.
-
-    # Sentence complexity: 2.229
-    - lojban_sentences:
-        - mi pensi lo du'u do nitcu lo nu viska ko'a
-      translated_sentences:
-        - I think that you need to see him.
 
     # Sentence complexity: 2.709
     - lojban_sentences:

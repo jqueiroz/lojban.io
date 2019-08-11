@@ -158,6 +158,12 @@ jinvi:
       translated_sentences:
         - Do you take me for a fool?
 
+    # Sentence complexity: 2.431
+    - lojban_sentences:
+        - mi jinvi lo du'u do nitcu lo nu viska ko'a
+      translated_sentences:
+        - I think that you need to see him.
+
     # Sentence complexity: 3.199
     - lojban_sentences:
         - mi jinvi lo du'u le se cukta cu mutce cinri
