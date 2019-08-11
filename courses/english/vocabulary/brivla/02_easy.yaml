@@ -294,11 +294,11 @@ gunka:
 
 # Total sentences: 47
 jundi:
-    # Sentence complexity: 0.436
+    # Sentence complexity: 0.421
     - lojban_sentences:
-        - ko ca jundi mi
+        - ko jundi mi
       translated_sentences:
-        - Watch me now.
+        - Pay attention to me.
 
     # Sentence complexity: 0.512
     - lojban_sentences:
