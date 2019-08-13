@@ -1,8 +1,8 @@
 cabal-version:       2.2
 name:                lojto
 version:             0.1.0.0
-synopsis:            Lojban learning tool
-description:         Please see README.md
+synopsis:            Lojban teaching platform
+description:         Robust teaching platform for the artificial language Lojban.
 homepage:            None
 license:             NONE
 license-file:        LICENSE
