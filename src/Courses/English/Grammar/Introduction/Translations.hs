@@ -51,7 +51,7 @@ translations2_nice = combineGeneratorsUniformly [tavlaReflexive, dundaReordered]
 
 -- | Regular translations for the second lesson.
 translations2_normal :: TranslationGenerator
-translations2_normal = combineGeneratorsUniformly $ others ++ [talkingWithSecondPerson, pendo, prenu, demonstrative, zdani] where
+translations2_normal = combineGeneratorsUniformly $ others ++ [talkingWithSecondPerson, pendo, prenu, dunda, demonstrative, zdani] where
     talkingWithSecondPerson = generatorFromList
         [ (["mi tavla do"], ["I am talking to you.", "I was talking to you.", "We are talking to you.", "We were talking to you."])
         , (["do tavla mi"], ["You are talking to me.", "You are talking to us."])
@@ -63,6 +63,10 @@ translations2_normal = combineGeneratorsUniformly $ others ++ [talkingWithSecond
     prenu = generatorFromList
         [ (["mi prenu"], ["I am a person."])
         , (["do prenu"], ["You are a person."])
+        ]
+    dunda = generatorFromList
+        [ (["mi dunda zo'e do"], ["I gave something to you."])
+        , (["do dunda zo'e mi"], ["You gave something to me."])
         ]
     demonstrative = generatorFromList
         [ (["ti mlatu"], ["This is a cat.", "These are cats."])
