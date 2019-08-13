@@ -56,7 +56,7 @@ viska:
     - lojban_sentences:
         - xu do djica lo nu viska
       translated_sentences:
-        - Do you want to look at it?
+        - Do you want to see it?
 
     # Sentence complexity: 1.147
     - lojban_sentences:
@@ -69,12 +69,6 @@ viska:
         - xu da pu viska do
       translated_sentences:
         - Did anybody see you?
-
-    # Sentence complexity: 1.246
-    - lojban_sentences:
-        - ko na viska mi
-      translated_sentences:
-        - Don't look at me!
 
     # Sentence complexity: 1.283
     - lojban_sentences:
