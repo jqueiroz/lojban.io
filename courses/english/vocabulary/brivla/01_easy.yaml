@@ -24,11 +24,11 @@ citka:
       translated_sentences:
         - Do not eat.
 
-    # Sentence complexity: 0.521
+    # Sentence complexity: 0.484
     - lojban_sentences:
-        - mi djica fi le nu citka
+        - mi djica lo nu citka
       translated_sentences:
-        - I want something to eat.
+        - I want to eat.
 
     # Sentence complexity: 0.596
     - lojban_sentences:
@@ -56,7 +56,7 @@ cizra:
     - lojban_sentences:
         - cizra
       translated_sentences:
-        - Crazy!
+        - Weird!
 
     # Sentence complexity: 0.304
     - lojban_sentences:
@@ -86,8 +86,9 @@ cizra:
 
 # Total sentences: 96
 cmene:
-    # Sentence complexity: 0.411
+    # Sentence complexity: 0.451
     - lojban_sentences:
+        - ma do cmene
         - do se cmene ma
       translated_sentences:
         - What is your name?
@@ -104,12 +105,6 @@ cmene:
       translated_sentences:
         - What is your name?
 
-    # Sentence complexity: 0.451
-    - lojban_sentences:
-        - ma do cmene
-      translated_sentences:
-        - May I have your name?
-
     # Sentence complexity: 0.458
     - lojban_sentences:
         - la cizra cu cmene mi
@@ -120,11 +115,11 @@ cmene:
 
 # Total sentences: 242
 cusku:
-    # Sentence complexity: 0.216
+    # Sentence complexity: 0.180
     - lojban_sentences:
-        - na cusku
+        - mi na cusku
       translated_sentences:
-        - He does not say.
+        - I will not say.
 
     # Sentence complexity: 0.232
     - lojban_sentences:
@@ -151,26 +146,22 @@ djica:
     # Sentence complexity: 0.239
     - lojban_sentences:
         - ma se djica do
-      translated_sentences:
-        - What's your wish?
-
-    # Sentence complexity: 0.243
-    - lojban_sentences:
-        - xu se djica do
-      translated_sentences:
-        - Is that what you want?
-
-    # Sentence complexity: 0.252
-    - lojban_sentences:
         - do djica ma
       translated_sentences:
+        - What's your wish?
         - What do you want?
 
     # Sentence complexity: 0.257
     - lojban_sentences:
         - xu do djica
       translated_sentences:
-        - Is this what you want?
+        - Do you wish?
+
+    # Sentence complexity: 0.297
+    - lojban_sentences:
+        - ma djica
+      translated_sentences:
+        - Who wishes?
 
     # Sentence complexity: 0.257
     - lojban_sentences:
@@ -190,9 +181,9 @@ djica:
       translated_sentences:
         - Do you want to go?
 
-    # Sentence complexity: 0.446
+    # Sentence complexity: 0.352
     - lojban_sentences:
-        - mi pu djica lo ka tavla do
+        - mi pu djica lo nu tavla do
       translated_sentences:
         - I wanted to talk with you.
 
@@ -298,35 +289,23 @@ jimpe:
       translated_sentences:
         - I understand.
 
-    # Sentence complexity: 0.397
-    - lojban_sentences:
-        - mi na jimpe fi do
-      translated_sentences:
-        - I do not understand you.
-
     # Sentence complexity: 0.406
     - lojban_sentences:
         - mi na jimpe
       translated_sentences:
         - I don't understand.
 
-    # Sentence complexity: 0.411
+    # Sentence complexity: 0.429
     - lojban_sentences:
-        - xu do jimpe fi mi
+        - xu do jimpe
       translated_sentences:
-        - Do you understand me?
+        - Do you understand?
 
     # Sentence complexity: 0.412
     - lojban_sentences:
         - do na jimpe
       translated_sentences:
         - You don't understand.
-
-    # Sentence complexity: 0.427
-    - lojban_sentences:
-        - mi jimpe fi do
-      translated_sentences:
-        - I understand you.
 
     # Sentence complexity: 0.429
     - lojban_sentences:
@@ -353,6 +332,7 @@ klama:
     # Sentence complexity: 0.431
     - lojban_sentences:
         - xu do djica lo nu do klama
+        - xu do djica lo nu klama
       translated_sentences:
         - Do you want to go?
 
@@ -376,15 +356,9 @@ klama:
 
     # Sentence complexity: 0.459
     - lojban_sentences:
-        - xu do djica lo nu klama
+        - mi klama
       translated_sentences:
-        - Do you want to go?
-
-    # Sentence complexity: 0.468
-    - lojban_sentences:
-        - mi pu klama
-      translated_sentences:
-        - I have gone.
+        - I'm going.
 
     # Sentence complexity: 0.485
     - lojban_sentences:
@@ -424,7 +398,7 @@ mutce:
     - lojban_sentences:
         - mi ba mutce jundi
       translated_sentences:
-        - I'll be very careful.
+        - I'll be very attentive.
 
     # Sentence complexity: 1.147
     - lojban_sentences:
@@ -466,12 +440,6 @@ nelci:
       translated_sentences:
         - I'm glad you liked it.
 
-    # Sentence complexity: 0.341
-    - lojban_sentences:
-        - mi nelci lo nu mi sipna
-      translated_sentences:
-        - I like sleeping.
-
     # Sentence complexity: 0.391
     - lojban_sentences:
         - mi mutce nelci do
@@ -510,7 +478,7 @@ pilno:
     - lojban_sentences:
         - ko na curmi lo nu pilno lo skami
       translated_sentences:
-        - Don't let him touch the computer.
+        - Don't let him use the computer.
 
 
 
@@ -544,19 +512,19 @@ prenu:
     - lojban_sentences:
         - no prenu pu djuno
       translated_sentences:
-        - No one knew it.
+        - No person knew it.
 
     # Sentence complexity: 1.157
     - lojban_sentences:
         - no prenu pu zvati
       translated_sentences:
-        - No one attended.
+        - No person attended.
 
     # Sentence complexity: 1.251
     - lojban_sentences:
         - ro prenu cu se bangu
       translated_sentences:
-        - Everyone speaks a language.
+        - Every person speaks a language.
 
     # Sentence complexity: 1.301
     - lojban_sentences:
@@ -591,12 +559,6 @@ sipna:
         - do nitcu lo ka sipna
       translated_sentences:
         - You need sleep.
-
-    # Sentence complexity: 1.772
-    - lojban_sentences:
-        - mi bilga lo nu sipna
-      translated_sentences:
-        - I have to go to sleep.
 
 
 
@@ -648,11 +610,17 @@ xamgu:
       translated_sentences:
         - You are a good person.
 
-    # Sentence complexity: 3.721
+    # Sentence complexity: 0.939
     - lojban_sentences:
-        - do xamgu ctuca
+        - mi xamgu prenu
       translated_sentences:
-        - You are a good instructor.
+        - I am a good person.
+
+    # Sentence complexity: 1.612
+    - lojban_sentences:
+        - do xamgu pendo
+      translated_sentences:
+        - You are a good friend.
 
     # Sentence complexity: 6.001
     - lojban_sentences:
@@ -660,29 +628,17 @@ xamgu:
       translated_sentences:
         - The teaching method is good.
 
-    # Sentence complexity: 0.633
-    - lojban_sentences:
-        - ro da xamgu
-      translated_sentences:
-        - Everything is fine.
-
     # Sentence complexity: 0.660
     - lojban_sentences:
         - xamgu
       translated_sentences:
-        - That's cool.
+        - That's good.
 
     # Sentence complexity: 1.096
     - lojban_sentences:
         - lo nu troci cu xamgu
       translated_sentences:
         - Trying is good.
-
-    # Sentence complexity: 1.208
-    - lojban_sentences:
-        - ko'a xamgu tavla
-      translated_sentences:
-        - He talks well.
 
     # Sentence complexity: 1.234
     - lojban_sentences:
