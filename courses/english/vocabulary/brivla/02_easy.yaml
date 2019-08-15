@@ -50,17 +50,23 @@ cinri:
     - lojban_sentences:
         - ba cinri
       translated_sentences:
-        - This'll be interesting.
+        - This will be interesting.
 
-    # Sentence complexity: 1.683
+    # Sentence complexity: 0.737
     - lojban_sentences:
-        - ti na cinri mi
+        - mi na se cinri
       translated_sentences:
-        - I am not interested in this.
+        - I am not interested.
 
-    # Sentence complexity: 2.428
+    # Sentence complexity: 1.930
     - lojban_sentences:
-        - loi mlatu cu cinri mi
+        - lo mlatu cu jai cinri
+      translated_sentences:
+        - Cats are interesting.
+
+    # Sentence complexity: 1.764
+    - lojban_sentences:
+        - lo mlatu cu jai cinri mi
       translated_sentences:
         - I'm fascinated by cats.
 
@@ -70,15 +76,15 @@ cinri:
       translated_sentences:
         - That's an interesting question.
 
-    # Sentence complexity: 2.988
+    # Sentence complexity: 2.989
     - lojban_sentences:
-        - lo zgike cu cinri mi
+        - lo zgike cu jai cinri mi
       translated_sentences:
         - I am interested in music.
 
-    # Sentence complexity: 3.123
+    # Sentence complexity: 2.897
     - lojban_sentences:
-        - lo cukta cu cinri mi
+        - lo se cukta cu jai cinri mi
       translated_sentences:
         - The book interests me.
 
@@ -92,11 +98,11 @@ cliva:
       translated_sentences:
         - I don't want you to leave.
 
-    # Sentence complexity: 0.717
+    # Sentence complexity: 0.778
     - lojban_sentences:
-        - mi ca cliva
+        - mi cliva
       translated_sentences:
-        - I'm on my way.
+        - I'm leaving.
 
     # Sentence complexity: 0.729
     - lojban_sentences:
@@ -115,12 +121,6 @@ cliva:
         - ko mi na cliva
       translated_sentences:
         - Don't leave me.
-
-    # Sentence complexity: 0.778
-    - lojban_sentences:
-        - mi cliva
-      translated_sentences:
-        - I'm going to go.
 
     # Sentence complexity: 0.783
     - lojban_sentences:
@@ -144,7 +144,7 @@ cliva:
     - lojban_sentences:
         - ko cliva
       translated_sentences:
-        - Get out.
+        - Go away!
 
 
 
@@ -172,7 +172,7 @@ drata:
     - lojban_sentences:
         - ba drata
       translated_sentences:
-        - This'll be different.
+        - This will be different.
 
     # Sentence complexity: 1.028
     - lojban_sentences:
@@ -195,11 +195,6 @@ finti:
         - lo cmene be lo finti cu slabu mi
       translated_sentences:
         - The author's name is familiar to us.
-
-    # Sentence complexity: 1.340
-    - lojban_sentences:
-        - lo cmene be lo finti cu slabu mi
-      translated_sentences:
         - The inventor's name is familiar to us.
 
     # Sentence complexity: 3.687
@@ -236,9 +231,9 @@ gunka:
       translated_sentences:
         - You're really a hard worker.
 
-    # Sentence complexity: 0.928
+    # Sentence complexity: 0.772
     - lojban_sentences:
-        - do ba mo gunka
+        - do mo ba lo nu gunka
       translated_sentences:
         - What will you do after work?
 
@@ -264,12 +259,6 @@ gunka:
     - lojban_sentences:
         - mi ca'o gunka
       translated_sentences:
-        - I'm working on it.
-
-    # Sentence complexity: 1.850
-    - lojban_sentences:
-        - mi ca'o gunka
-      translated_sentences:
         - I am working.
 
     # Sentence complexity: 1.928
@@ -282,13 +271,7 @@ gunka:
     - lojban_sentences:
         - ko'a na kakne lo nu drani gunka
       translated_sentences:
-        - He doesn't have the ability to do the work properly.
-
-    # Sentence complexity: 2.222
-    - lojban_sentences:
-        - ko'a pu ca'o gunka
-      translated_sentences:
-        - She continued working.
+        - He is not capable of doing the work properly.
 
 
 
@@ -310,19 +293,19 @@ jundi:
     - lojban_sentences:
         - mi ba mutce jundi
       translated_sentences:
-        - I'll be very careful.
+        - I'll be very attentive.
 
     # Sentence complexity: 1.044
     - lojban_sentences:
         - ko ko'a jundi
       translated_sentences:
-        - Listen to her!
+        - Pay attention to her!
 
     # Sentence complexity: 3.157
     - lojban_sentences:
         - ro ko'a pu tirna jundi
       translated_sentences:
-        - They all listened carefully.
+        - They all listened attentively.
 
     # Sentence complexity: 3.276
     - lojban_sentences:
@@ -336,9 +319,9 @@ jundi:
       translated_sentences:
         - You must pay attention to the teacher.
 
-    # Sentence complexity: 5.261
+    # Sentence complexity: 0.921
     - lojban_sentences:
-        - ko na jundi ra
+        - ko na jundi ko'a
       translated_sentences:
         - Don't pay attention to him.
 
@@ -350,43 +333,50 @@ kakne:
     - lojban_sentences:
         - mi na kakne
       translated_sentences:
-        - I can't.
+        - I'm not capable of doing it.
+        - I'm not able.
 
     # Sentence complexity: 0.714
     - lojban_sentences:
         - do djuno lo du'u mi na kakne
       translated_sentences:
-        - You know I can't.
+        - You know I'm not able to.
 
     # Sentence complexity: 0.744
     - lojban_sentences:
         - mi na kakne lo ka tavla
       translated_sentences:
-        - I can't talk.
+        - I'm not able to talk.
 
     # Sentence complexity: 0.825
     - lojban_sentences:
         - do kakne
       translated_sentences:
-        - You can do it.
+        - You are capable of doing it.
 
-    # Sentence complexity: 0.951
+    # Sentence complexity: 0.947
     - lojban_sentences:
-        - do na kakne lo nu cliva
+        - mi na kakne lo nu cliva
       translated_sentences:
-        - You can't leave.
+        - I am not able to leave.
 
-    # Sentence complexity: 1.439
+    # Sentence complexity: 0.963
     - lojban_sentences:
-        - do na kakne lo nu viska
+        - xu do kakne lo nu cliva
       translated_sentences:
-        - You can't see.
+        - Are you able to leave?
+
+    # Sentence complexity: 1.435
+    - lojban_sentences:
+        - mi na kakne lo nu viska
+      translated_sentences:
+        - I am not able to see it.
 
     # Sentence complexity: 2.017
     - lojban_sentences:
         - ko'a na kakne lo nu drani gunka
       translated_sentences:
-        - He doesn't have the ability to do the work properly.
+        - He is not capable of doing the work properly.
 
 
 
@@ -427,12 +417,6 @@ klaku:
         - ko'a pu ca'o klaku
       translated_sentences:
         - He was crying.
-
-    # Sentence complexity: 2.678
-    - lojban_sentences:
-        - ca lo nu ve nuzba ku mi klaku
-      translated_sentences:
-        - When I heard the news, I cried.
 
     # Sentence complexity: 5.136
     - lojban_sentences:
@@ -483,14 +467,9 @@ melbi:
     # Sentence complexity: 1.330
     - lojban_sentences:
         - pe'i do mutce melbi
-      translated_sentences:
-        - I think you're very cute.
-
-    # Sentence complexity: 1.668
-    - lojban_sentences:
         - mi jinvi lo nu do mutce melbi
       translated_sentences:
-        - I think you're very cute.
+        - I think you're very beautiful.
 
     # Sentence complexity: 1.397
     - lojban_sentences:
@@ -508,7 +487,7 @@ melbi:
     - lojban_sentences:
         - lo re ko'a mutce melbi
       translated_sentences:
-        - Both of them are very cute.
+        - Both of them are very beautifu.
 
 
 
@@ -520,9 +499,9 @@ simsa:
       translated_sentences:
         - I'm not like you.
 
-    # Sentence complexity: 1.398
+    # Sentence complexity: 1.651
     - lojban_sentences:
-        - mi na simsa ro drata
+        - mi na'e simsa ro drata
       translated_sentences:
         - I'm not like everybody else.
 
@@ -532,9 +511,9 @@ simsa:
       translated_sentences:
         - Death is similar to sleep.
 
-    # Sentence complexity: 7.481
+    # Sentence complexity: 3.244
     - lojban_sentences:
-        - ko'a simsa le ko'a mamta loka melbi
+        - ko'a simsa le ko'a mamta lo ka melbi
       translated_sentences:
         - She is beautiful like her mother.
 
@@ -542,12 +521,14 @@ simsa:
 
 # Total sentences: 36
 smuni:
-    # Sentence complexity: 0.813
+    # TODO: is this translation acceptable?
+    # Sentence complexity: 0.888
     - lojban_sentences:
-        - na se smuni fi mi
+        - na smuni fi mi
       translated_sentences:
         - That's not what I meant.
 
+    # TODO: is this translation acceptable?
     # Sentence complexity: 0.904
     - lojban_sentences:
         - ma smuni fi do
@@ -560,12 +541,6 @@ smuni:
       translated_sentences:
         - What does this word mean?
 
-    # Sentence complexity: 4.888
-    - lojban_sentences:
-        - mi na pu te smuni ra
-      translated_sentences:
-        - I didn't mean that.
-
 
 
 # Total sentences: 86
@@ -576,53 +551,53 @@ tcidu:
       translated_sentences:
         - What are you reading?
 
-    # Sentence complexity: 0.862
+    # Sentence complexity: 0.943
     - lojban_sentences:
-        - do pu tcidu
+        - do tcidu
       translated_sentences:
-        - You had read.
+        - You are reading.
 
-    # Sentence complexity: 1.716
+    # Sentence complexity: 0.807
     - lojban_sentences:
-        - ma ca ca'o tcidu
+        - xu do tcidu
+      translated_sentences:
+        - Are you reading?
+
+    # Sentence complexity: 0.970
+    - lojban_sentences:
+        - ma tcidu
       translated_sentences:
         - Who is reading?
 
-    # Sentence complexity: 3.190
+    # Sentence complexity: 2.957
     - lojban_sentences:
-        - mi jimpe tcidu lo glico
+        - mi pu tcidu fi le cukta
       translated_sentences:
-        - I can read English.
+        - I read the book.
 
-    # Sentence complexity: 2.946
+    # Sentence complexity: 2.949
     - lojban_sentences:
-        - mi pu tcidu fi lo cukta
+        - mi ca tcidu fi le cukta
       translated_sentences:
-        - I read a book.
+        - I am reading the book.
 
-    # Sentence complexity: 3.143
+    # Sentence complexity: 3.237
     - lojban_sentences:
-        - mi ca tcidu lo cukta
+        - ko tcidu fi le cukta
       translated_sentences:
-        - I am reading a book.
+        - Read the book!
 
-    # Sentence complexity: 3.522
+    # Sentence complexity: 4.022
     - lojban_sentences:
-        - ko tcidu lo cukta
+        - ca'o tcidu fi le cukta
       translated_sentences:
-        - Read a book!
+        - He is reading the book.
 
-    # Sentence complexity: 4.010
+    # Sentence complexity: 3.795
     - lojban_sentences:
-        - ca'o tcidu fi lo cukta
+        - xu do ba'o tcidu fi le cukta
       translated_sentences:
-        - He is reading a book.
-
-    # Sentence complexity: 4.030
-    - lojban_sentences:
-        - xu do ba'o tcidu le cukta
-      translated_sentences:
-        - Have you finished reading that book yet?
+        - Have you finished reading that book?
 
 
 
@@ -646,11 +621,17 @@ valsi:
       translated_sentences:
         - Commit these words to memory.
 
-    # Sentence complexity: 3.416
+    # Sentence complexity: 9.196
     - lojban_sentences:
-        - srana lo jufra .e nai lo valsi
+        - .ai nai mi jmina lo valsi poi mi finti
       translated_sentences:
-        - It's all about sentences. Not words.
+        - I don't mean to add words of my own devising.
+
+    # Sentence complexity: 1587.209
+    - lojban_sentences:
+        - do nenri sau tu'a le ckiku valsi
+      translated_sentences:
+        - You enter, with the key word being a requirement.
 
     # Sentence complexity: 3.426
     - lojban_sentences:
@@ -665,26 +646,23 @@ zvati:
     # Sentence complexity: 0.490
     - lojban_sentences:
         - ma mi se zvati
+        - mi ma zvati
       translated_sentences:
         - Where am I?
 
     # Sentence complexity: 0.510
     - lojban_sentences:
         - ma pu se zvati mi
+        - mi pu zvati ma
       translated_sentences:
         - Where was I?
 
     # Sentence complexity: 0.515
     - lojban_sentences:
         - ma pu se zvati do
+        - do pu zvati ma
       translated_sentences:
-        - Where've you been?
-
-    # Sentence complexity: 0.542
-    - lojban_sentences:
-        - mi zvati ma
-      translated_sentences:
-        - Where am I?
+        - Where have you been?
 
     # Sentence complexity: 0.548
     - lojban_sentences:
