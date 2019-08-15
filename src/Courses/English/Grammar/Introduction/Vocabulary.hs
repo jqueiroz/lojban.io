@@ -31,7 +31,7 @@ vocabulary1_cumulative = vocabulary1
 -- | Vocabulary for the second lesson.
 --
 -- * New brivla: tavla, pendo, prenu, mlatu.
--- * New cmavo: NONE.
+-- * New cmavo: zo'e.
 vocabulary2 :: Vocabulary
 vocabulary2 = Vocabulary
     -- Brivla
@@ -40,6 +40,7 @@ vocabulary2 = Vocabulary
     ]
     -- Cmavo
     [
+        "zo'e"
     ]
     -- Cmene
     [
