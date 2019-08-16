@@ -5,5 +5,40 @@ set -e
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 cd "$DIR/.."
 
+# Process options
+show_usage() {
+    echo "Usage: docker-build.sh [-h|--help] [--full]"
+}
+
+FULL_BUILD="false"
+
+while :; do
+    case $1 in
+        -h|--help)
+            show_usage
+            exit
+            ;;
+        --full)
+            FULL_BUILD="true"
+            ;;
+        --)
+            shift
+            break
+            ;;
+        -?*)
+            show_usage
+            exit 1
+            ;;
+        *)
+            break
+    esac
+
+    shift
+done
+
 # Build docker image
-./dist/docker.sh build -t lojban-dev-server -f Dockerfile .
+if [[ "$FULL_BUILD" == "true" ]]; then
+    ./dist/docker.sh build -t lojban-dev-server -f Dockerfile2 .
+else
+    ./dist/docker.sh build -t lojban-dev-server -f Dockerfile .
+fi
