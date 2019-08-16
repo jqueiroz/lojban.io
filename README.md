@@ -7,17 +7,42 @@ An experimental version of the platform is available at [http://lojban.johnjq.co
 
 Documentation for the currently deployed version may be found at [http://lojban.johnjq.com/docs](http://lojban.johnjq.com/docs).
 
-## Quickstart
+## Quickstart (using Docker)
 
-The only prerequisite for running this project is installing the [Nix package manager](https://nixos.org/nix/).
+The simplest way to run this project is to execute the webserver inside a [Docker](https://www.docker.com/) container.
+First, run `./dist/docker-build.sh` to build the image.
+Then, run `./dist/docker-run.sh` to start the container.
+This command will bind the webserver running on the container to port 8080 on the host, thus letting you access the application at [http://localhost:8080](http://localhost:8080).
+To publish a port other than 8080, use `./dist/docker-run.sh -p <port>`.
+
+By default, `./dist/docker-build.sh` uses an [intermediary image](https://cloud.docker.com/u/johnjq/repository/docker/johnjq/lojban-tool-dependencies) to speed up the build.
+This image includes development tools such as stack and ghc as well as prebuilt dependent libraries, so that only the project's own source code needs to be compiled.
+If you would like to perform a full build instead, run `./dist/docker-build.sh --full` (but beware that compiling all of the dependencies may take between 10 minutes and one hour).
+
+## Quickstart (using Nix)
+
+If you are making significant changes and/or rebuilding frequently, you will probably benefit from building and running the project outside of Docker.
+First, rebuilding after making small changes will be quicker as it will not be necessary to recompile all source files (due to docker layers).
+Second, you will be able to use helper scripts to run development tools such as ghci and code linters.
+
+All you need is to install the [Nix package manager](https://nixos.org/nix/).
 On most Linux distributions, this can be achieved by running `curl https://nixos.org/nix/install | sh` and following the instructions, if any (see also [Getting Nix](https://nixos.org/nix/download.html)).
 
-Once you have installed Nix, you should be able to start the webserver by running `./run-server.sh` (for the first run, this may take between 10 minutes and one hour).
+Once you have installed Nix, you should be able to start the webserver by running `./run-server.sh` (for the first run, this may take between 10 minutes and one hour as all of the dependencies will need to be compiled).
 The webserver may then be accessed at [http://localhost:8000](http://localhost:8000).
 
-For more details on building and running, see the next section.
+Other useful commands:
+* `make`: builds the webserver as well as the associated documentation for the Haskell code.
+* `make server`: builds the webserver.
+* `make docs`: builds the documentation for the Haskell code.
+* `make less`: compiles _*.less_ files into _*.css_ files (this step is also performed when running `make server`).
+* `./run-ghci.sh`: starts a [GHCi](https://wiki.haskell.org/GHC/GHCi) prompt.
+* `./verify-lint.sh`: run source code linters ([hlint](https://hackage.haskell.org/package/hlint) for Haskell code and [prettier](https://prettier.io/) for Javascript/Less/CSS code)
+* `./verify-tests.sh`: run tests for the project.
 
-## Building and running
+For more details on building and running, see [Building and running (using Nix)](#building-and-running-using-nix).
+
+## Building and running (using Nix)
 
 In order to build and run this project, all you need is a Linux machine with the [Nix package manager](https://nixos.org/nix/) installed somewhere in the path.
 On the off-chance that you are running [NixOS](https://nixos.org/), then you are already all set.
