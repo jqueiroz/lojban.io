@@ -98,7 +98,8 @@ displayTopbarMenu topbarCategory = do
 displayTopbarMenuItem :: Bool -> String -> String -> H.Html
 displayTopbarMenuItem selected text url = do
     let selectedClass = if selected then "selected" else ""
-    H.li B.! A.class_ selectedClass $ do
+    H.li $ do
         H.a (H.toHtml text)
             B.! A.href (H.stringValue url)
+            B.! A.class_ selectedClass
 
