@@ -32,13 +32,14 @@ Once you have installed Nix, you should be able to start the webserver by runnin
 The webserver may then be accessed at [http://localhost:8000](http://localhost:8000).
 
 Other useful commands:
-* `make`: builds the webserver as well as the associated documentation for the Haskell code.
-* `make server`: builds the webserver.
+* `make`: builds the webserver executable as well as the associated documentation for the Haskell code.
+* `make server`: builds the webserver executable.
 * `make docs`: builds the documentation for the Haskell code.
 * `make less`: compiles _*.less_ files into _*.css_ files (this step is also performed when running `make server`).
 * `./run-ghci.sh`: starts a [GHCi](https://wiki.haskell.org/GHC/GHCi) prompt.
-* `./verify-lint.sh`: run source code linters ([hlint](https://hackage.haskell.org/package/hlint) for Haskell code and [prettier](https://prettier.io/) for Javascript/Less/CSS code)
-* `./verify-tests.sh`: run tests for the project.
+* `./verify-lint.sh`: runs source code linters ([hlint](https://hackage.haskell.org/package/hlint) for Haskell code and [prettier](https://prettier.io/) for Javascript/Less/CSS code)
+* `./verify-tests.sh`: runs tests for the project.
+* `./buildscripts/stack.sh`: runs [stack](https://docs.haskellstack.org/en/stable/README/) inside an isolated nix-shell environment, eg. `./buildscripts/stack.sh build` will build the webserver executable and `./buildscripts/stack.sh haddock --no-haddock-deps` will build the Haskell documentation.
 
 For more details on building and running, see [Building and running (using Nix)](#building-and-running-using-nix).
 
