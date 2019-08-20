@@ -9,6 +9,7 @@ import Core
 import Language.Lojban.Core
 import Util (chooseItemUniformly)
 import Language.Lojban.Canonicalization (extractSimpleBridi)
+import Courses.Framework.TranslationUtils (narrowTranslationGenerator)
 import qualified Data.Text as T
 
 -- | Extracts a SimpleBridi among the sentences included in the translation generator.
@@ -17,7 +18,8 @@ import qualified Data.Text as T
 -- this function will yield an error upon encountering a non-parsable sentence.
 extractSimpleBridiGeneratorFromTranslationGenerator :: TranslationGenerator -> SimpleBridiGenerator
 extractSimpleBridiGeneratorFromTranslationGenerator translationGenerator r0 = (simpleBridi, r1) where
-    (sentence, r1) = extractLojbanSentencesFromTranslationGenerator translationGenerator r0
+    narrowedTranslationGenerator = narrowTranslationGenerator translationGenerator
+    (sentence, r1) = extractLojbanSentencesFromTranslationGenerator narrowedTranslationGenerator r0
     simpleBridi = case (extractSimpleBridi sentence) of
         Left msg -> error $ "extractSimpleBridiFromTranslationGenerator: unable to parse sentence\nsentence: \"" ++ (T.unpack sentence) ++ "\"\nmessage: " ++ msg ++ "\""
         Right simpleBridi' -> simpleBridi'
