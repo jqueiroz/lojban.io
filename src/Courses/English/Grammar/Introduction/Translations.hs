@@ -110,6 +110,7 @@ translations3_restricted = combineGenerators [(2, talkingAbout), (1, gaveSomethi
         , (["tavla fi lo mlatu ku"], ["Somebody was talking about the cat.", "Somebody was talking about the cats.", "Somebody was talking about cats."])
         , (["mi tavla fi lo gerku ku"], ["I was talking about the dog.", "I was talking about the dogs.", "I was talking about dogs.", "I am talking about the dog.", "I am talking about the dogs.", "I am talking about dogs."])
         , (["tavla fi lo gerku ku"], ["Somebody was talking about the dog.", "Somebody was talking about the dogs.", "Somebody was talking about dogs."])
+        , (["mi tavla fi lo se dunda ku"], ["I was talking about the gift.", "We were talking about the gift.", "I am talking about the gift.", "We are talking about the gift."])
         ]
     gaveSomething = generatorFromList
         [ (["mi dunda fi do"], ["I gave you something.", "I will give you something."])
@@ -137,6 +138,7 @@ translations3_nice = combineGenerators $ [(2, translations3_restricted), (2, tea
         likedGift = generatorFromList
             [ (["lo te dunda ku nelci lo se dunda ku"], ["The recipient liked the gift.", "The recipient will like the gift.", "The recipients liked the gifts."])
             , (["lo ctuca ku nelci lo se dunda ku"], ["The instructor liked the gift.", "The instructor will like the gift."])
+            , (["mi nelci lo se dunda ku"], ["I liked the gift.", "I liked the gifts."])
             ]
     giftingAnimal = generatorFromList
         -- mlatu
