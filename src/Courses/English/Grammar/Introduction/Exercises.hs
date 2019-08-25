@@ -49,8 +49,7 @@ translationExercises1 = generateTranslationExercise sentenceCanonicalizer senten
 exercises2 :: ExerciseGenerator
 exercises2 =
     combineGenerators
-        [ (20, generateGrammaticalClassExercise vocabulary)
-        , (15, generateEnglishOrLojbanBridiJufraExercise bridiGenerator nonbridiGenerator bridiDisplayer)
+        [ (15, generateEnglishOrLojbanBridiJufraExercise bridiGenerator nonbridiGenerator bridiDisplayer)
         , (20, generateSelbriIdentificationExercise bridiGenerator bridiDisplayer)
         , (10, generateContextualizedGismuPlacePositionExercise dictionary bridiGenerator bridiDisplayer)
         , (20, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator bridiDisplayer)
@@ -72,8 +71,7 @@ translationExercises2 = generateTranslationExercise sentenceCanonicalizer senten
 exercises3 :: ExerciseGenerator
 exercises3 =
     combineGenerators
-        [ (10, generateGrammaticalClassExercise vocabulary)
-        , (10, generateEnglishOrLojbanBridiJufraExercise bridiGenerator nonbridiGenerator bridiDisplayer)
+        [ (10, generateEnglishOrLojbanBridiJufraExercise bridiGenerator nonbridiGenerator bridiDisplayer)
         , (10, generateSelbriIdentificationExercise bridiGenerator bridiDisplayer)
         , (20, generateContextualizedGismuPlacePositionExercise dictionary bridiGenerator bridiDisplayer)
         , (20, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator bridiDisplayer)
@@ -178,8 +176,7 @@ translationExercises6_restricted = generateBlacklistedWordTranslationExercise "k
 exercises1to6 :: ExerciseGenerator
 exercises1to6 =
     combineGenerators
-        [ (5, generateGrammaticalClassExercise vocabulary)
-        , (5, generateEnglishOrLojbanBridiJufraExercise bridiGenerator nonbridiGenerator bridiDisplayer)
+        [ (5, generateEnglishOrLojbanBridiJufraExercise bridiGenerator nonbridiGenerator bridiDisplayer)
         , (5, generateSelbriIdentificationExercise bridiGenerator bridiDisplayer)
         , (5, generateContextualizedGismuPlacePositionExercise dictionary bridiGenerator bridiDisplayer)
         , (15, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator bridiDisplayer)
