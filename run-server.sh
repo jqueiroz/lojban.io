@@ -6,4 +6,4 @@ make server
 
 echo ""
 echo "***** Running..."
-./buildscripts/stack.sh exec server
+./buildscripts/stack.sh exec server -- $*

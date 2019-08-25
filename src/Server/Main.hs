@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE LambdaCase #-}
 
-module Server.Main (main) where
+module Server.Main (runServer) where
 
 import Core
 import Serializer (exerciseToJSON, validateExerciseAnswer)
@@ -25,8 +25,8 @@ import Happstack.Server
 
 -- TODO: consider adding breadcrumbs (https://getbootstrap.com/docs/4.0/components/breadcrumb/)
 
-main :: IO ()
-main = simpleHTTP nullConf handleRoot
+runServer :: Int -> IO ()
+runServer portNumber = simpleHTTP nullConf { port = portNumber } handleRoot
 
 -- Utility functions
 forceSlash :: ServerPart Response -> ServerPart Response

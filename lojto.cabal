@@ -104,6 +104,7 @@ executable server
   main-is:             Main.hs
   ghc-options:         -j8 -threaded
   build-depends:       base
+                     , optparse-applicative
                      , lojto
 
 test-suite language
