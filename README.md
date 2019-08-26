@@ -32,7 +32,7 @@ Once you have installed Nix, you should be able to start the webserver by runnin
 The webserver may then be accessed at [http://localhost:8000](http://localhost:8000).
 
 Other useful commands:
-* `./run-server.sh -p <port>`: builds the webserver executable and then starts it on the specified port.
+* `./run-server.sh -p <port>`: builds the webserver executable and then starts it on the specified port (defaults to port 8000).
 * `make`: builds the webserver executable as well as the associated documentation for the Haskell code.
 * `make server`: builds the webserver executable.
 * `make docs`: builds the documentation for the Haskell code.
