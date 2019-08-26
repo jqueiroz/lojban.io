@@ -86,15 +86,17 @@ library
                      , Language.Lojban.Parsing
                      , Language.Lojban.Presentation
                      , Language.Lojban.Refinement
-                     , Server.Core
-                     , Server.Course
-                     , Server.Grammar
-                     , Server.Home
-                     , Server.Lesson
                      , Server.Main
-                     , Server.Modules
-                     , Server.Resources
-                     , Server.Vocabulary
+                     , Server.Util
+                     , Server.Website.Core
+                     , Server.Website.Course
+                     , Server.Website.Grammar
+                     , Server.Website.Home
+                     , Server.Website.Lesson
+                     , Server.Website.Main
+                     , Server.Website.Modules
+                     , Server.Website.Resources
+                     , Server.Website.Vocabulary
                      , Util
                      , Playground
 

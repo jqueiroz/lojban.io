@@ -1,10 +1,10 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Server.Resources
+module Server.Website.Resources
 ( displayResourcesHome
 ) where
 
-import Server.Core
+import Server.Website.Core
 import qualified Text.Blaze as B
 import qualified Text.Blaze.Html5 as H
 import qualified Text.Blaze.Html5.Attributes as A

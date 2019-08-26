@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Server.Core
+module Server.Website.Core
 ( includeUniversalStylesheets
 , includeInternalStylesheet
 , includeExternalStylesheet

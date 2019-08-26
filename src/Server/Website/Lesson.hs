@@ -1,12 +1,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Server.Lesson
+module Server.Website.Lesson
 ( displayLessonHome
 , displayLessonExercise
 ) where
 
 import Core
-import Server.Core
+import Server.Website.Core
 import Control.Monad (when)
 import Data.Maybe (isJust, fromJust)
 import Data.Either.Unwrap (fromRight)
