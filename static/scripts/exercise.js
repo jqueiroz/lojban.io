@@ -30,6 +30,7 @@ var createExercisesManager = function(holder) {
             number: function(num, callback) {
                 if (num < 0 || num > 9) throw new Error("Illegal argument.");
                 map[48 + num] = callback;
+                map[96 + num] = callback;
             },
             next: function(callback) {
                 map[32] = callback;
