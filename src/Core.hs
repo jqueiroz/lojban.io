@@ -6,10 +6,10 @@ import Language.Lojban.Core (Dictionary)
 import qualified Data.Text as T
 import qualified Text.Pandoc as P
 
--- Dictionary
+-- * Dictionary
 type WordGenerator = StdGen -> (T.Text, StdGen)
 
--- Course
+-- * Course
 data Course = Course
     { courseId :: String
     , courseTitle :: String
@@ -46,7 +46,7 @@ instance Semigroup Vocabulary where
 instance Show Lesson where
     show lesson = "Lesson { title = " ++ show (lessonTitle lesson) ++ " }"
 
--- Translations
+-- * Translations
 type Translation = ([LojbanSentence], [EnglishSentence])
 type TranslationGenerator = StdGen -> (Translation, StdGen)
 type EnglishSentence = T.Text
@@ -57,7 +57,7 @@ type TranslationGeneratorByExpression = [(T.Text, TranslationGenerator)]
 
 type SentenceComparer = LojbanSentence -> LojbanSentence -> Bool
 
--- Exercises
+-- * Exercises
 data Exercise =
     MultipleChoiceExercise
         { mceTitle :: T.Text
