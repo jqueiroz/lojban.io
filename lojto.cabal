@@ -86,6 +86,8 @@ library
                      , Language.Lojban.Parsing
                      , Language.Lojban.Presentation
                      , Language.Lojban.Refinement
+                     , Server.Api.Main
+                     , Server.Api.V0.Main
                      , Server.Main
                      , Server.Util
                      , Server.Website.Core

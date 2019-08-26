@@ -6,6 +6,7 @@ import Server.Website.Main (handleHome, handleGrammar, handleVocabulary, handleR
 import Server.Util (forceSlash)
 import Control.Monad (msum)
 import Happstack.Server
+import qualified Server.Api.Main as Api
 
 -- TODO: consider adding breadcrumbs (https://getbootstrap.com/docs/4.0/components/breadcrumb/)
 
@@ -21,4 +22,5 @@ handleRoot = msum
     , dir "grammar" handleGrammar
     , dir "vocabulary" handleVocabulary
     , dir "resources" handleResources
+    , dir "api" Api.handleRoot
     ]
