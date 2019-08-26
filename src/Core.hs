@@ -11,7 +11,8 @@ type WordGenerator = StdGen -> (T.Text, StdGen)
 
 -- Course
 data Course = Course
-    { courseTitle :: String
+    { courseId :: String
+    , courseTitle :: String
     , courseStyle :: CourseStyle
     , courseDictionary :: Dictionary
     , courseLessons :: [Lesson]
