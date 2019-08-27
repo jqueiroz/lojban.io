@@ -5,14 +5,25 @@ import System.Random (StdGen)
 import Language.Lojban.Core (Dictionary)
 import qualified Data.Text as T
 import qualified Text.Pandoc as P
+import qualified Data.Map as M
 
 -- * Dictionary
 type WordGenerator = StdGen -> (T.Text, StdGen)
 
 -- * Course
+data CourseStore = CourseStore
+    { courseStoreCollections :: M.Map T.Text CourseCollection
+    , courseStoreCourses :: M.Map T.Text Course
+    }
+
+data CourseCollection = CourseCollection
+    { courseCollectionId :: T.Text
+    , courseCollectionCourses :: [Course]
+    }
+
 data Course = Course
-    { courseId :: String
-    , courseTitle :: String
+    { courseId :: T.Text
+    , courseTitle :: T.Text
     , courseStyle :: CourseStyle
     , courseDictionary :: Dictionary
     , courseLessons :: [Lesson]

@@ -43,6 +43,7 @@ library
   --ld-options: -static -pthread
   exposed-modules:     Core
                      , Serializer
+                     , Courses.CourseStore
                      , Courses.Framework.DocumentBuilders
                      , Courses.Framework.ExerciseGenerators
                      , Courses.Framework.ExerciseUtils
@@ -87,7 +88,9 @@ library
                      , Language.Lojban.Presentation
                      , Language.Lojban.Refinement
                      , Server.Api.Main
+                     , Server.Api.V0.Contract
                      , Server.Api.V0.Main
+                     , Server.Api.V0.Serializers
                      , Server.Main
                      , Server.Util
                      , Server.Website.Core
