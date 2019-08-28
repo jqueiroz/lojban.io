@@ -43,6 +43,7 @@ library
   --ld-options: -static -pthread
   exposed-modules:     Core
                      , Serializer
+                     , Courses.CourseStore
                      , Courses.Framework.DocumentBuilders
                      , Courses.Framework.ExerciseGenerators
                      , Courses.Framework.ExerciseUtils
@@ -86,15 +87,21 @@ library
                      , Language.Lojban.Parsing
                      , Language.Lojban.Presentation
                      , Language.Lojban.Refinement
-                     , Server.Core
-                     , Server.Course
-                     , Server.Grammar
-                     , Server.Home
-                     , Server.Lesson
+                     , Server.Api.Main
+                     , Server.Api.V0.Contract
+                     , Server.Api.V0.Main
+                     , Server.Api.V0.Serializers
                      , Server.Main
-                     , Server.Modules
-                     , Server.Resources
-                     , Server.Vocabulary
+                     , Server.Util
+                     , Server.Website.Core
+                     , Server.Website.Course
+                     , Server.Website.Grammar
+                     , Server.Website.Home
+                     , Server.Website.Lesson
+                     , Server.Website.Main
+                     , Server.Website.Modules
+                     , Server.Website.Resources
+                     , Server.Website.Vocabulary
                      , Util
                      , Playground
 

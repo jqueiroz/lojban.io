@@ -19,7 +19,7 @@ style = CourseStyle color1 iconUrl where
 
 -- | Course: Attitudinals.
 course :: Course
-course = Course title style englishDictionary lessons where
+course = Course "attitudinals_eng" title style englishDictionary lessons where
     title = "Attitudinals"
     lessons = [lesson1, lesson2, lesson3]
 

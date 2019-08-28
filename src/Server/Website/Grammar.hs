@@ -1,11 +1,11 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Server.Grammar
+module Server.Website.Grammar
 ( displayGrammarHome
 ) where
 
-import Server.Core
-import Server.Modules
+import Server.Website.Core
+import Server.Website.Modules
 import qualified Courses.English.Grammar.Introduction.Course
 import qualified Courses.English.Grammar.Crash.Course
 import qualified Text.Blaze as B

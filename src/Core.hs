@@ -5,13 +5,25 @@ import System.Random (StdGen)
 import Language.Lojban.Core (Dictionary)
 import qualified Data.Text as T
 import qualified Text.Pandoc as P
+import qualified Data.Map as M
 
--- Dictionary
+-- * Dictionary
 type WordGenerator = StdGen -> (T.Text, StdGen)
 
--- Course
+-- * Course
+data CourseStore = CourseStore
+    { courseStoreCollections :: M.Map T.Text CourseCollection
+    , courseStoreCourses :: M.Map T.Text Course
+    }
+
+data CourseCollection = CourseCollection
+    { courseCollectionId :: T.Text
+    , courseCollectionCourses :: [Course]
+    }
+
 data Course = Course
-    { courseTitle :: String
+    { courseId :: T.Text
+    , courseTitle :: T.Text
     , courseStyle :: CourseStyle
     , courseDictionary :: Dictionary
     , courseLessons :: [Lesson]
@@ -45,7 +57,7 @@ instance Semigroup Vocabulary where
 instance Show Lesson where
     show lesson = "Lesson { title = " ++ show (lessonTitle lesson) ++ " }"
 
--- Translations
+-- * Translations
 type Translation = ([LojbanSentence], [EnglishSentence])
 type TranslationGenerator = StdGen -> (Translation, StdGen)
 type EnglishSentence = T.Text
@@ -56,7 +68,7 @@ type TranslationGeneratorByExpression = [(T.Text, TranslationGenerator)]
 
 type SentenceComparer = LojbanSentence -> LojbanSentence -> Bool
 
--- Exercises
+-- * Exercises
 data Exercise =
     MultipleChoiceExercise
         { mceTitle :: T.Text

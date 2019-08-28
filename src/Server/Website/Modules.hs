@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Server.Modules
+module Server.Website.Modules
 ( displayModule
 ) where
 
