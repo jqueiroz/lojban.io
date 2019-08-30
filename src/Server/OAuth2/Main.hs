@@ -8,7 +8,6 @@ module Server.OAuth2.Main
 import Control.Monad (msum)
 import Happstack.Server
 import Server.Core
-import Server.OAuth2.Core
 import qualified Server.OAuth2.Google as Google
 
 handleRoot :: ServerResources -> ServerPart Response

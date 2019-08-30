@@ -10,7 +10,6 @@ module Server.OAuth2.Google
 
 import GHC.Generics
 import Server.Core
-import Server.OAuth2.Core
 import Happstack.Server
 import System.Environment (getEnv)
 import Data.Either.Combinators (rightToMaybe)

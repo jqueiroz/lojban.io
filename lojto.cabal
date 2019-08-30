@@ -102,7 +102,6 @@ library
                      , Server.Api.V0.Serializers
                      , Server.Core
                      , Server.Main
-                     , Server.OAuth2.Core
                      , Server.OAuth2.Main
                      , Server.OAuth2.Google
                      , Server.Util
