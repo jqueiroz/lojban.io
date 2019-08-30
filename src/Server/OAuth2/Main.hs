@@ -16,4 +16,4 @@ handleRoot serverResources = msum
     ]
 
 readUserIdentityFromCookies :: ServerResources -> ServerPart (Maybe UserIdentity)
-readUserIdentityFromCookies = Google.readUserIdentityFromCookies
+readUserIdentityFromCookies serverResources = msum [ Google.readUserIdentityFromCookies serverResources, return Nothing ]
