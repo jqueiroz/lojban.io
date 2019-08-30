@@ -28,6 +28,7 @@ import qualified Network.OAuth.OAuth2 as OA2
 import qualified Data.Aeson as A
 import qualified Data.Text as T
 import qualified Data.Text.Encoding as TE
+import Data.ByteString.Base64 as B64
 
 data Claims = Claims
     { email :: T.Text
@@ -52,26 +53,36 @@ identityTokenCookieName = "google_identityToken"
 userInfoCookieName :: String
 userInfoCookieName = "google_userInfo"
 
+-- The cookie for user info needs to be encoded as it contains the character ";", which causes issues in some browsers
+encodeUserInfoText :: T.Text -> T.Text
+encodeUserInfoText = TE.decodeUtf8 . B64.encode . TE.encodeUtf8
+
+decodeUserInfoText :: T.Text -> Either String T.Text
+decodeUserInfoText = fmap TE.decodeUtf8 . B64.decode . TE.encodeUtf8
+
 readUserIdentityFromCookies :: ServerResources -> ServerPart (Maybe UserIdentity)
 readUserIdentityFromCookies serverResources = do
     -- Fetch cookie values
     identityTokenText <- T.pack <$> lookCookieValue identityTokenCookieName
-    userInfoByteString <- BS.pack <$> lookCookieValue userInfoCookieName
-    -- Extract claims
-    claimsMaybe <- liftIO $ runMaybeT $ extractClaims serverResources identityTokenText
-    case claimsMaybe of
-        Nothing -> return Nothing
-        Just claims -> do
-            -- Decode user info
-            let userInfoMaybe = A.decode userInfoByteString :: Maybe UserInfo
-            case userInfoMaybe of
+    userInfoTextMaybe <- decodeUserInfoText . T.pack <$> lookCookieValue userInfoCookieName
+    case userInfoTextMaybe of
+        Left _ -> return Nothing
+        Right userInfoText -> do
+            -- Extract claims
+            claimsMaybe <- liftIO $ runMaybeT $ extractClaims serverResources identityTokenText
+            case claimsMaybe of
                 Nothing -> return Nothing
-                Just userInfo -> do
-                    let userIdentifier = UserIdentifier "google" (email claims)
-                    let userPictureUrl = picture userInfo
-                    let userGivenName = given_name userInfo
-                    let userFamilyName = family_name userInfo
-                    return . Just $ UserIdentity userIdentifier userPictureUrl userGivenName userFamilyName
+                Just claims -> do
+                    -- Decode user info
+                    let userInfoMaybe = A.decodeStrict (TE.encodeUtf8 userInfoText) :: Maybe UserInfo
+                    case userInfoMaybe of
+                        Nothing -> return Nothing
+                        Just userInfo -> do
+                            let userIdentifier = UserIdentifier "google" (email claims)
+                            let userPictureUrl = picture userInfo
+                            let userGivenName = given_name userInfo
+                            let userFamilyName = family_name userInfo
+                            return . Just $ UserIdentity userIdentifier userPictureUrl userGivenName userFamilyName
 
 extractClaims :: ServerResources -> T.Text -> MaybeT IO Claims
 extractClaims serverResources identityTokenText = do
@@ -127,28 +138,28 @@ handleCallback serverResources = do
                         Nothing -> unauthorized $ toResponse ("Decoding of identity token failed." :: T.Text)
                         Just claims -> do
                             -- Fetch user info
-                            userInfoByteString <- liftIO $ fetchUserInfo serverResources accessToken
+                            userInfoText <- liftIO $ fetchUserInfo serverResources accessToken
                             -- Validate user info
-                            let userInfoMaybe = A.decode userInfoByteString :: Maybe UserInfo
+                            let userInfoMaybe = A.decodeStrict (TE.encodeUtf8 userInfoText) :: Maybe UserInfo
                             case userInfoMaybe of
                                 Nothing -> unauthorized $ toResponse ("Decoding of user info failed." :: T.Text)
                                 Just userInfo -> do
                                     -- Save identity token and user info to cookies
                                     let cookieDuration = (MaxAge $ 30 * 86400)
                                     addCookies $ (cookieDuration,) <$>
-                                        [ mkCookie identityTokenCookieName (T.unpack identityTokenText)
-                                        , mkCookie userInfoCookieName (BS.unpack userInfoByteString)
+                                        [ mkCookie identityTokenCookieName $ T.unpack identityTokenText
+                                        , mkCookie userInfoCookieName $ T.unpack . encodeUserInfoText $ userInfoText
                                         ]
                                     -- Redirect user to the homepage
                                     tempRedirect ("/" :: T.Text) $ toResponse ("" :: T.Text)
 
-fetchUserInfo :: ServerResources -> OA2.AccessToken -> IO BS.ByteString
+fetchUserInfo :: ServerResources -> OA2.AccessToken -> IO T.Text
 fetchUserInfo serverResources accessToken = do
     let tlsManager = serverResourcesTlsManager serverResources
     let accessTokenString = T.unpack $ OA2.atoken accessToken
     request <- HC.parseRequest $ "https://www.googleapis.com/oauth2/v3/userinfo?access_token=" ++ accessTokenString
     response <- HC.httpLbs request tlsManager
-    return $ HC.responseBody response
+    return $ TE.decodeUtf8 . BS.toStrict $ HC.responseBody response
 
 getGooglePublicKeys :: ServerResources -> IO [JWK.Jwk]
 getGooglePublicKeys serverResources = do
