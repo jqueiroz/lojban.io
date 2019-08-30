@@ -127,7 +127,6 @@ handleCallback serverResources = do
         Right oauth2Token -> do
             -- Extract access token
             let accessToken = OA2.accessToken oauth2Token
-            liftIO $ print accessToken
             -- Extract identity token
             case  OA2.idtoken <$> (OA2.idToken oauth2Token) of
                 Nothing -> unauthorized $ toResponse ("Acquisition of identity token failed." :: T.Text)
