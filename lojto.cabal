@@ -20,6 +20,9 @@ common deps
                      , containers
                      , data-ordlist
                      , transformers
+                     , either
+                     , monad-extras
+                     , mtl
                      , file-embed
                      , either-unwrap
                      , pandoc
@@ -31,6 +34,12 @@ common deps
                      , blaze-html
                      , blaze-markup
                      , happstack-server
+                     , hoauth2
+                     , uri-bytestring
+                     , http-client
+                     , http-client-tls
+                     , jose-jwt
+                     , oidc-client
                      , papillon
                      , zasni-gerna
 
@@ -91,7 +100,11 @@ library
                      , Server.Api.V0.Contract
                      , Server.Api.V0.Main
                      , Server.Api.V0.Serializers
+                     , Server.Core
                      , Server.Main
+                     , Server.OAuth2.Core
+                     , Server.OAuth2.Main
+                     , Server.OAuth2.Google
                      , Server.Util
                      , Server.Website.Core
                      , Server.Website.Course
