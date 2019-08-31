@@ -97,6 +97,7 @@ extractClaims serverResources identityTokenText = do
 handleRoot :: ServerResources -> ServerPart Response
 handleRoot serverResources = msum
     [ dir "login" $ handleLogin
+    , dir "logout" $ handleLogout
     , dir "callback" $ handleCallback serverResources
     ]
 
@@ -104,6 +105,12 @@ handleLogin :: ServerPart Response
 handleLogin = do
     authorizationUrl <- liftIO getAuthorizationUrl
     tempRedirect authorizationUrl $ toResponse ("" :: T.Text)
+
+handleLogout :: ServerPart Response
+handleLogout = do
+    expireCookie identityTokenCookieName
+    expireCookie userInfoCookieName
+    tempRedirect ("/" :: T.Text) $ toResponse ("" :: T.Text)
 
 handleCallback :: ServerResources -> ServerPart Response
 handleCallback serverResources = do
