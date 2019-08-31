@@ -1,4 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE ScopedTypeVariables #-}
 {-# LANGUAGE TupleSections #-}
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE QuasiQuotes #-}
@@ -15,8 +16,8 @@ import System.Environment (getEnv)
 import Data.Either.Combinators (rightToMaybe)
 import Control.Monad (msum)
 import Control.Monad.Extra (liftMaybe)
-import Control.Monad.Trans (liftIO)
-import Control.Monad.Trans.Maybe (MaybeT, runMaybeT)
+import Control.Monad.Trans (lift, liftIO)
+import Control.Monad.Trans.Maybe (MaybeT(..), runMaybeT)
 import URI.ByteString.QQ (uri)
 import URI.ByteString (serializeURIRef')
 import qualified Network.HTTP.Client as HC
@@ -57,32 +58,24 @@ userInfoCookieName = "google_userInfo"
 encodeUserInfoText :: T.Text -> T.Text
 encodeUserInfoText = TE.decodeUtf8 . B64.encode . TE.encodeUtf8
 
-decodeUserInfoText :: T.Text -> Either String T.Text
-decodeUserInfoText = fmap TE.decodeUtf8 . B64.decode . TE.encodeUtf8
+decodeUserInfoText :: T.Text -> Maybe T.Text
+decodeUserInfoText = rightToMaybe . fmap TE.decodeUtf8 . B64.decode . TE.encodeUtf8
 
 readUserIdentityFromCookies :: ServerResources -> ServerPart (Maybe UserIdentity)
-readUserIdentityFromCookies serverResources = do
+readUserIdentityFromCookies serverResources = runMaybeT $ do
     -- Fetch cookie values
-    identityTokenText <- T.pack <$> lookCookieValue identityTokenCookieName
-    userInfoTextMaybe <- decodeUserInfoText . T.pack <$> lookCookieValue userInfoCookieName
-    case userInfoTextMaybe of
-        Left _ -> return Nothing
-        Right userInfoText -> do
-            -- Extract claims
-            claimsMaybe <- liftIO $ runMaybeT $ extractClaims serverResources identityTokenText
-            case claimsMaybe of
-                Nothing -> return Nothing
-                Just claims -> do
-                    -- Decode user info
-                    let userInfoMaybe = A.decodeStrict (TE.encodeUtf8 userInfoText) :: Maybe UserInfo
-                    case userInfoMaybe of
-                        Nothing -> return Nothing
-                        Just userInfo -> do
-                            let userIdentifier = UserIdentifier "google" (email claims)
-                            let userPictureUrl = picture userInfo
-                            let userGivenName = given_name userInfo
-                            let userFamilyName = family_name userInfo
-                            return . Just $ UserIdentity userIdentifier userPictureUrl userGivenName userFamilyName
+    identityTokenText <- lift $ T.pack <$> lookCookieValue identityTokenCookieName
+    userInfoText <- MaybeT $ decodeUserInfoText . T.pack <$> lookCookieValue userInfoCookieName
+    -- Extract claims
+    claims <- MaybeT . liftIO . runMaybeT $ extractClaims serverResources identityTokenText
+    -- Decode user info
+    userInfo :: UserInfo <- liftMaybe $ A.decodeStrict (TE.encodeUtf8 userInfoText)
+    -- Build response
+    let userIdentifier = UserIdentifier "google" (email claims)
+    let userPictureUrl = picture userInfo
+    let userGivenName = given_name userInfo
+    let userFamilyName = family_name userInfo
+    return $ UserIdentity userIdentifier userPictureUrl userGivenName userFamilyName
 
 extractClaims :: ServerResources -> T.Text -> MaybeT IO Claims
 extractClaims serverResources identityTokenText = do
