@@ -14,7 +14,7 @@
 - ignore: {name: "Use map once"}
 #- ignore: {name: "Use <$>"}
 #- ignore: {name: "Use mapMaybe"}
-#- ignore: {name: "Use newtype instead of data"}
+- ignore: {name: "Use newtype instead of data"}
 - ignore: {name: "Redundant $"} # TODO: add it back later
 #- ignore: {name: "Use fewer imports"}
 #- ignore: {name: "Use any"}
