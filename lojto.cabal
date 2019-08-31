@@ -36,6 +36,7 @@ common deps
                      , happstack-server
                      , hoauth2
                      , uri-bytestring
+                     , base64-bytestring
                      , http-client
                      , http-client-tls
                      , jose-jwt
