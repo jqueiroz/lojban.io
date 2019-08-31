@@ -94,6 +94,39 @@ h6 {
             padding: 0.8em 1.2em;
         }
     }
+
+    .user-signin {
+        position: absolute;
+        right: 0;
+        display: inline-block;
+
+        a {
+            margin-right: 5em;
+            font-family: "Open Sans";
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #fff;
+        }
+    }
+
+    .user-profile {
+        @picture-size: 3.5em;
+
+        position: absolute;
+        right: 0;
+        display: inline-block;
+        height: @picture-size;
+        margin-top: calc((@topbar-height - @picture-size) / 2);
+
+        img {
+            margin-right: 1em;
+            width: @picture-size;
+            height: @picture-size;
+            border: solid 1px #1493d1;
+
+            border-radius: 50%;
+        }
+    }
 }
 
 .main {

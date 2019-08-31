@@ -4,6 +4,7 @@ module Server.Website.Grammar
 ( displayGrammarHome
 ) where
 
+import Server.Core
 import Server.Website.Core
 import Server.Website.Modules
 import qualified Courses.English.Grammar.Introduction.Course
@@ -12,8 +13,8 @@ import qualified Text.Blaze as B
 import qualified Text.Blaze.Html5 as H
 import qualified Text.Blaze.Html5.Attributes as A
 
-displayGrammarHome :: H.Html
-displayGrammarHome = do
+displayGrammarHome :: Maybe UserIdentity -> H.Html
+displayGrammarHome userIdentityMaybe = do
     let moduleTitle = "Grammar"
     let moduleCourses =
             [ ("/grammar/introduction", Courses.English.Grammar.Introduction.Course.course)
@@ -26,6 +27,6 @@ displayGrammarHome = do
             includeUniversalScripts
             includeInternalStylesheet "module.css"
         H.body $ do
-            displayTopbar TopbarGrammar
+            displayTopbar userIdentityMaybe TopbarGrammar
             H.div B.! A.class_ (H.stringValue "main") $ do
                 displayModule moduleTitle moduleCourses

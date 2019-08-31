@@ -14,6 +14,7 @@ module Server.Website.Core
 ) where
 
 import Core
+import Server.Core
 import Language.Lojban.Core
 import qualified Data.Text as T
 import qualified Text.Blaze as B
@@ -79,13 +80,27 @@ includeDictionaryScript dictionary = includeInternalScript $ T.unpack $ "diction
 -- * Topbar
 data TopbarCategory = TopbarHome | TopbarGrammar | TopbarVocabulary | TopbarResources deriving (Enum, Eq)
 
-displayTopbar :: TopbarCategory -> H.Html
-displayTopbar topbarCategory = do
+displayTopbar :: Maybe UserIdentity -> TopbarCategory -> H.Html
+displayTopbar userIdentityMaybe topbarCategory = do
     H.div B.! A.class_ (H.stringValue "topbar") $ do
         H.div B.! A.class_ "logo" $ do
             H.a (H.toHtml ("lojban" :: String))
                 B.! A.href (H.stringValue "/")
         displayTopbarMenu topbarCategory
+        displayUserProfile userIdentityMaybe
+
+displayUserProfile :: Maybe UserIdentity -> H.Html
+displayUserProfile userIdentityMaybe =
+    case userIdentityMaybe of
+        Nothing -> do
+            H.div B.! A.class_ "user-signin" $ do
+                H.a (H.toHtml ("sign in" :: String))
+                    B.! A.href (H.stringValue "/oauth2/google/login")
+        Just userIdentity -> do
+            let pictureUrl = userPictureUrl userIdentity
+            H.div B.! A.class_ "user-profile" $ do
+                H.a B.! A.href (H.stringValue "/oauth2/google/logout") $ do
+                    H.img B.! A.class_ "picture" B.! A.src (H.textValue pictureUrl)
 
 displayTopbarMenu :: TopbarCategory -> H.Html
 displayTopbarMenu topbarCategory = do

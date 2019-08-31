@@ -6,6 +6,7 @@ module Server.Website.Lesson
 ) where
 
 import Core
+import Server.Core
 import Server.Website.Core
 import Control.Monad (when)
 import Data.Maybe (isJust, fromJust)
@@ -19,8 +20,8 @@ import qualified Text.Blaze.Html5.Attributes as A
 
 data LessonSubpage = LessonHome | LessonVocabulary | LessonExercises deriving (Enum, Eq)
 
-displayLessonHome :: TopbarCategory -> Course -> Int -> H.Html
-displayLessonHome topbarCategory course lessonNumber = do
+displayLessonHome :: Maybe UserIdentity -> TopbarCategory -> Course -> Int -> H.Html
+displayLessonHome userIdentityMaybe topbarCategory course lessonNumber = do
     let dictionary = courseDictionary course
     let baseLessonUrl = ""
     let lesson = (courseLessons course) !! (lessonNumber - 1)
@@ -32,7 +33,7 @@ displayLessonHome topbarCategory course lessonNumber = do
             includeInternalStylesheet "lesson.css"
             includeCourseStylesheet course
         H.body $ do
-            displayTopbar topbarCategory
+            displayTopbar userIdentityMaybe topbarCategory
             H.div B.! A.class_ (H.stringValue "main") $ do
                 H.div B.! A.class_ (H.stringValue "lesson") $ do
                     displayLessonHeader baseLessonUrl LessonHome course lessonNumber
@@ -70,8 +71,8 @@ displayLessonTab id title checked = do
         H.toHtml title
 
 -- Embedded dictionary: consider using tooltips (https://getbootstrap.com/docs/4.0/components/tooltips/)
-displayLessonExercise :: TopbarCategory -> Course -> Int -> H.Html
-displayLessonExercise topbarCategory course lessonNumber = do
+displayLessonExercise :: Maybe UserIdentity -> TopbarCategory -> Course -> Int -> H.Html
+displayLessonExercise userIdentityMaybe topbarCategory course lessonNumber = do
     let dictionary = courseDictionary course
     let baseLessonUrl = "../"
     H.html $ do
@@ -87,7 +88,7 @@ displayLessonExercise topbarCategory course lessonNumber = do
             includeInternalScript "exercise.js"
             includeCourseStylesheet course
         H.body $ do
-            displayTopbar topbarCategory
+            displayTopbar userIdentityMaybe topbarCategory
             H.div B.! A.class_ (H.stringValue "main") $ do
                 H.div B.! A.class_ (H.stringValue "lesson") $ do
                     displayLessonHeader baseLessonUrl LessonExercises course lessonNumber

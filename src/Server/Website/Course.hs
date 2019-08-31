@@ -5,6 +5,7 @@ module Server.Website.Course
 ) where
 
 import Core
+import Server.Core
 import Server.Website.Core
 import Control.Monad (forM_)
 import qualified Text.Blaze as B
@@ -12,8 +13,8 @@ import qualified Text.Blaze.Html5 as H
 import qualified Text.Blaze.Html5.Attributes as A
 
 -- TODO: consider using list groups (https://getbootstrap.com/docs/4.0/components/list-group/)
-displayCourseHome :: TopbarCategory -> Course -> H.Html
-displayCourseHome topbarCategory course = do
+displayCourseHome :: Maybe UserIdentity -> TopbarCategory -> Course -> H.Html
+displayCourseHome userIdentityMaybe topbarCategory course = do
     let baseCourseUrl = ""
     let title = courseTitle course
     H.html $ do
@@ -24,7 +25,7 @@ displayCourseHome topbarCategory course = do
             includeInternalStylesheet "course.css"
             includeCourseStylesheet course
         H.body $ do
-            displayTopbar topbarCategory
+            displayTopbar userIdentityMaybe topbarCategory
             H.div B.! A.class_ (H.stringValue "main") $ do
                 H.div B.! A.class_ (H.stringValue "course") $ do
                     displayCourseMenu baseCourseUrl course
