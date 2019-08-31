@@ -61,7 +61,7 @@
   - { name: [Data.Map], as: M}
   - { name: [Data.Text], as: T}
   - { name: [Text.Pandoc], as: P}
-  - { name: [Data.ByteString.Lazy.Char8], as: BS}
+  - { name: [Data.ByteString.Lazy.Char8], as: BS8}
   - { name: [Data.ByteString.Lazy], as: BS}
   - { name: [Data.Aeson], as: A}
   - { name: [Text.Blaze], as: B}

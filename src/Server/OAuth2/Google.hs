@@ -21,7 +21,7 @@ import Control.Monad.Trans.Maybe (MaybeT(..), runMaybeT)
 import URI.ByteString.QQ (uri)
 import URI.ByteString (serializeURIRef')
 import qualified Network.HTTP.Client as HC
-import qualified Data.ByteString.Lazy.Char8 as BS
+import qualified Data.ByteString.Lazy.Char8 as BS8
 import qualified Jose.Jwk as JWK
 import qualified Jose.Jwt as JWT
 import qualified Web.OIDC.Client as OIDC
@@ -158,7 +158,7 @@ fetchUserInfo serverResources accessToken = do
     let accessTokenString = T.unpack $ OA2.atoken accessToken
     request <- HC.parseRequest $ "https://www.googleapis.com/oauth2/v3/userinfo?access_token=" ++ accessTokenString
     response <- HC.httpLbs request tlsManager
-    return $ TE.decodeUtf8 . BS.toStrict $ HC.responseBody response
+    return $ TE.decodeUtf8 . BS8.toStrict $ HC.responseBody response
 
 getGooglePublicKeys :: ServerResources -> IO [JWK.Jwk]
 getGooglePublicKeys serverResources = do
