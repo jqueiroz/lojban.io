@@ -106,15 +106,15 @@ library
                      , Server.OAuth2.Main
                      , Server.OAuth2.Google
                      , Server.Util
-                     , Server.Website.Core
-                     , Server.Website.Course
-                     , Server.Website.Grammar
-                     , Server.Website.Home
-                     , Server.Website.Lesson
                      , Server.Website.Main
-                     , Server.Website.Modules
-                     , Server.Website.Resources
-                     , Server.Website.Vocabulary
+                     , Server.Website.Views.Core
+                     , Server.Website.Views.Course
+                     , Server.Website.Views.Grammar
+                     , Server.Website.Views.Home
+                     , Server.Website.Views.Lesson
+                     , Server.Website.Views.Modules
+                     , Server.Website.Views.Resources
+                     , Server.Website.Views.Vocabulary
                      , Util
                      , Playground
 

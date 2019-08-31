@@ -12,13 +12,13 @@ import qualified Courses.English.Vocabulary.Attitudinals.Course
 import qualified Courses.English.Vocabulary.Brivla.Course
 import Server.Core
 import Server.Util (forceSlash, getBody)
-import Server.Website.Core
-import Server.Website.Home (displayHome)
-import Server.Website.Grammar (displayGrammarHome)
-import Server.Website.Vocabulary (displayVocabularyHome)
-import Server.Website.Resources (displayResourcesHome)
-import Server.Website.Course (displayCourseHome)
-import Server.Website.Lesson (displayLessonHome, displayLessonExercise)
+import Server.Website.Views.Core
+import Server.Website.Views.Home (displayHome)
+import Server.Website.Views.Grammar (displayGrammarHome)
+import Server.Website.Views.Vocabulary (displayVocabularyHome)
+import Server.Website.Views.Resources (displayResourcesHome)
+import Server.Website.Views.Course (displayCourseHome)
+import Server.Website.Views.Lesson (displayLessonHome, displayLessonExercise)
 import Control.Monad (msum, guard)
 import Control.Monad.IO.Class (liftIO)
 import System.Random (newStdGen, mkStdGen)

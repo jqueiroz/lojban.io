@@ -1,12 +1,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Server.Website.Course
+module Server.Website.Views.Course
 ( displayCourseHome
 ) where
 
 import Core
 import Server.Core
-import Server.Website.Core
+import Server.Website.Views.Core
 import Control.Monad (forM_)
 import qualified Text.Blaze as B
 import qualified Text.Blaze.Html5 as H

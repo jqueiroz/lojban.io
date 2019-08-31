@@ -1,12 +1,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Server.Website.Vocabulary
+module Server.Website.Views.Vocabulary
 ( displayVocabularyHome
 ) where
 
 import Server.Core
-import Server.Website.Core
-import Server.Website.Modules
+import Server.Website.Views.Core
+import Server.Website.Views.Modules
 import qualified Courses.English.Vocabulary.Brivla.Course
 import qualified Courses.English.Vocabulary.Attitudinals.Course
 import qualified Text.Blaze as B

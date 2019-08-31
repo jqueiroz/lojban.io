@@ -1,11 +1,11 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Server.Website.Home
+module Server.Website.Views.Home
 ( displayHome
 ) where
 
 import Server.Core
-import Server.Website.Core
+import Server.Website.Views.Core
 import qualified Text.Blaze as B
 import qualified Text.Blaze.Html5 as H
 import qualified Text.Blaze.Html5.Attributes as A
