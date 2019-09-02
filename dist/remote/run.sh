@@ -4,6 +4,26 @@ set -e
 # Change directory to the script's location
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
+# Stop: redis
+echo "Stopping: lojban-redis-server..."
+if [ -n "`./docker.sh ps -a | grep lojban-redis-server$`" ]; then
+    previously_running=true
+    echo -ne "\t"
+    ./docker.sh stop lojban-redis-server
+fi
+
+if [ -n "`./docker.sh ps -a | grep lojban-redis-server$`" ]; then
+    echo -ne "\t"
+    ./docker.sh rm lojban-redis-server
+fi
+
+# Run: redis
+echo "Starting: lojban-redis-server..."
+echo -ne "\t"
+./docker.sh run -d --name lojban-redis-server \
+    -v /lojban-redis-database/:/database \
+    lojban-redis-server
+
 # Stop: master-http
 echo "Stopping: lojban-master-http-server..."
 if [ -n "`./docker.sh ps -a | grep lojban-master-http-server$`" ]; then
@@ -52,23 +72,3 @@ echo -ne "\t"
     -v /lojban-letsencrypt-certificates:/letsencrypt-certificates:ro \
     --link lojban-server \
     lojban-master-https-server
-
-# Stop: redis
-echo "Stopping: lojban-redis-server..."
-if [ -n "`./docker.sh ps -a | grep lojban-redis-server$`" ]; then
-    previously_running=true
-    echo -ne "\t"
-    ./docker.sh stop lojban-redis-server
-fi
-
-if [ -n "`./docker.sh ps -a | grep lojban-redis-server$`" ]; then
-    echo -ne "\t"
-    ./docker.sh rm lojban-redis-server
-fi
-
-# Run: redis
-echo "Starting: lojban-redis-server..."
-echo -ne "\t"
-./docker.sh run -d --name lojban-redis-server \
-    -v /lojban-redis-database/:/database \
-    lojban-redis-server

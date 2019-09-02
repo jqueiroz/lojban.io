@@ -1,4 +1,5 @@
 FROM redis
 
-COPY config/redis.conf /usr/local/etc/redis/redis.conf
-CMD [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
+COPY config/redis.conf /redis.conf
+RUN chown redis /redis.conf
+CMD chown -R redis /database && redis-server /redis.conf
