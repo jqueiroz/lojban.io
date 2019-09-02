@@ -27,3 +27,7 @@ translations04 = loadTranslationsByExpressionFromYamlCode $(embedStringFile "cou
 -- | Translations for the corresponding lesson.
 translations05 :: TranslationsByExpression
 translations05 = loadTranslationsByExpressionFromYamlCode $(embedStringFile "courses/english/vocabulary/brivla/05_easy.yaml")
+
+-- | All translations.
+translations :: TranslationsByExpression
+translations = mconcat [translations01, translations02, translations03, translations04, translations05]

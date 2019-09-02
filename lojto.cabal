@@ -31,6 +31,7 @@ common deps
                      , random
                      , random-shuffle
                      , split
+                     , hedis
                      , blaze-html
                      , blaze-markup
                      , happstack-server
@@ -88,6 +89,8 @@ library
                      , Courses.English.Vocabulary.Brivla.Lessons
                      , Courses.English.Vocabulary.Brivla.Translations
                      , Courses.English.Vocabulary.Brivla.Vocabulary
+                     , Decks.DeckStore
+                     , Decks.English.ContextualizedBrivla
                      , Language.Lojban.Canonicalization
                      , Language.Lojban.Canonicalization.Internals
                      , Language.Lojban.Core
@@ -102,6 +105,8 @@ library
                      , Server.Api.V0.Main
                      , Server.Api.V0.Serializers
                      , Server.Core
+                     , Server.Logic.Decks
+                     , Server.Logic.Redis
                      , Server.Main
                      , Server.OAuth2.Main
                      , Server.OAuth2.Google

@@ -7,6 +7,7 @@ import Control.Monad (msum)
 import Happstack.Server
 import Network.HTTP.Client (newManager)
 import Network.HTTP.Client.TLS (tlsManagerSettings)
+import qualified Database.Redis as Redis
 import qualified Server.Website.Main as Website
 import qualified Server.Api.Main as Api
 import qualified Server.OAuth2.Main as OAuth2
@@ -23,7 +24,7 @@ handleRoot serverResources = msum
     [ dir "docs" $ movedPermanently ("doc/lojto-0.1.0.0/index.html" :: String) (toResponse ())
     , dir "doc" $ serveDirectory EnableBrowsing [] "doc"
     , dir "static" $ serveDirectory EnableBrowsing [] "static"
-    , dir "api" Api.handleRoot
+    , dir "api" $ Api.handleRoot serverResources
     , dir "oauth2" $ OAuth2.handleRoot serverResources
     , Website.handleRoot serverResources
     ]
@@ -31,4 +32,5 @@ handleRoot serverResources = msum
 acquireServerResources :: IO ServerResources
 acquireServerResources = do
     tlsManager <- newManager tlsManagerSettings
-    return $ ServerResources tlsManager
+    redisConnection <- Redis.checkedConnect Redis.defaultConnectInfo
+    return $ ServerResources tlsManager redisConnection

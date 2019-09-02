@@ -1,4 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE DuplicateRecordFields #-}
 module Core where
 
 import System.Random (StdGen)
@@ -10,7 +11,7 @@ import qualified Data.Map as M
 -- * Dictionary
 type WordGenerator = StdGen -> (T.Text, StdGen)
 
--- * Course
+-- * Courses
 data CourseStore = CourseStore
     { courseStoreCollections :: M.Map T.Text CourseCollection
     , courseStoreCourses :: M.Map T.Text Course
@@ -56,6 +57,23 @@ instance Semigroup Vocabulary where
 
 instance Show Lesson where
     show lesson = "Lesson { title = " ++ show (lessonTitle lesson) ++ " }"
+
+-- * Decks
+data DeckStore = DeckStore
+    { deckStoreDecks :: M.Map T.Text Deck
+    }
+
+data Deck = Deck
+    { deckId :: T.Text
+    , deckTitle :: T.Text
+    , deckDictionary :: Dictionary
+    , deckCards :: [Card]
+    }
+
+data Card = Card
+    { cardTitle :: T.Text
+    , cardExercises :: ExerciseGenerator
+    }
 
 -- * Translations
 type Translation = ([LojbanSentence], [EnglishSentence])
