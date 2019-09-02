@@ -4,6 +4,8 @@ module Server.Main (runServer, acquireServerResources) where
 
 import Server.Core
 import Control.Monad (msum)
+import Data.Maybe (fromMaybe)
+import System.Environment (lookupEnv)
 import Happstack.Server
 import Network.HTTP.Client (newManager)
 import Network.HTTP.Client.TLS (tlsManagerSettings)
@@ -32,5 +34,8 @@ handleRoot serverResources = msum
 acquireServerResources :: IO ServerResources
 acquireServerResources = do
     tlsManager <- newManager tlsManagerSettings
+    redisHostname <- fromMaybe "127.0.0.1" <$> lookupEnv "LOJBAN_TOOL_REDIS_HOSTNAME"
     redisConnection <- Redis.checkedConnect Redis.defaultConnectInfo
+        { Redis.connectHost = redisHostname
+        }
     return $ ServerResources tlsManager redisConnection
