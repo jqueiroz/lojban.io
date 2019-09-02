@@ -38,7 +38,7 @@ done
 
 # Build docker image
 if [[ "$FULL_BUILD" == "true" ]]; then
-    ./dist/docker.sh build -t lojban-dev-server -f Dockerfile2 .
+    ./dist/docker.sh build -t lojban-dev-server -f Dockerfile_full .
 else
     ./dist/docker.sh build -t lojban-dev-server -f Dockerfile .
 fi
