@@ -9,25 +9,25 @@ import Courses.Framework.TranslationLoaders (loadTranslationsByExpressionFromYam
 import Data.FileEmbed (embedStringFile)
 
 -- | Translations for the corresponding lesson.
-translations01 :: TranslationsByExpression
-translations01 = loadTranslationsByExpressionFromYamlCode $(embedStringFile "courses/english/vocabulary/brivla/01_easy.yaml")
+translationsByExpression01 :: TranslationsByExpression
+translationsByExpression01 = loadTranslationsByExpressionFromYamlCode $(embedStringFile "courses/english/vocabulary/brivla/01_easy.yaml")
 
 -- | Translations for the corresponding lesson.
-translations02 :: TranslationsByExpression
-translations02 = loadTranslationsByExpressionFromYamlCode $(embedStringFile "courses/english/vocabulary/brivla/02_easy.yaml")
+translationsByExpression02 :: TranslationsByExpression
+translationsByExpression02 = loadTranslationsByExpressionFromYamlCode $(embedStringFile "courses/english/vocabulary/brivla/02_easy.yaml")
 
 -- | Translations for the corresponding lesson.
-translations03 :: TranslationsByExpression
-translations03 = loadTranslationsByExpressionFromYamlCode $(embedStringFile "courses/english/vocabulary/brivla/03_easy.yaml")
+translationsByExpression03 :: TranslationsByExpression
+translationsByExpression03 = loadTranslationsByExpressionFromYamlCode $(embedStringFile "courses/english/vocabulary/brivla/03_easy.yaml")
 
 -- | Translations for the corresponding lesson.
-translations04 :: TranslationsByExpression
-translations04 = loadTranslationsByExpressionFromYamlCode $(embedStringFile "courses/english/vocabulary/brivla/04_easy.yaml")
+translationsByExpression04 :: TranslationsByExpression
+translationsByExpression04 = loadTranslationsByExpressionFromYamlCode $(embedStringFile "courses/english/vocabulary/brivla/04_easy.yaml")
 
 -- | Translations for the corresponding lesson.
-translations05 :: TranslationsByExpression
-translations05 = loadTranslationsByExpressionFromYamlCode $(embedStringFile "courses/english/vocabulary/brivla/05_easy.yaml")
+translationsByExpression05 :: TranslationsByExpression
+translationsByExpression05 = loadTranslationsByExpressionFromYamlCode $(embedStringFile "courses/english/vocabulary/brivla/05_easy.yaml")
 
 -- | All translations.
-translations :: TranslationsByExpression
-translations = mconcat [translations01, translations02, translations03, translations04, translations05]
+translationsByExpression :: TranslationsByExpression
+translationsByExpression = mconcat [translationsByExpression01, translationsByExpression02, translationsByExpression03, translationsByExpression04, translationsByExpression05]

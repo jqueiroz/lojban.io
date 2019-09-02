@@ -9,7 +9,7 @@ import Core
 import Language.Lojban.Core
 import Language.Lojban.Dictionaries (englishDictionary)
 import Courses.Framework.ExerciseGenerators (generateFillingBlanksExerciseByExpression, generateIsolatedBrivlaPlacesExercise, generateLexiconProvidingExercise)
-import Courses.English.Vocabulary.Brivla.Translations (translations)
+import Courses.English.Vocabulary.Brivla.Translations (translationsByExpression)
 import Util (combineGenerators, generatorFromList)
 import Control.Arrow (second)
 import qualified Data.Text as T
@@ -31,12 +31,12 @@ cards = map buildCard brivlaList where
 
 -- | List of brivla in the deck.
 brivlaList :: [T.Text]
-brivlaList = map fst translations
+brivlaList = map fst translationsByExpression
 
 -- * Auxiliar functions
 buildBrivlaExerciseGenerator :: T.Text -> ExerciseGenerator
 buildBrivlaExerciseGenerator brivla = combineGenerators [(12, translationExercises), (2, brivlaPlacesExercises), (3, brivlaProvidingExercises)] where
     translationExercises = generateFillingBlanksExerciseByExpression $ filter ((== brivla) . fst) translationGeneratorByExpression
-    translationGeneratorByExpression = map (second generatorFromList) translations
+    translationGeneratorByExpression = map (second generatorFromList) translationsByExpression
     brivlaPlacesExercises = generateIsolatedBrivlaPlacesExercise dictionary [brivla]
     brivlaProvidingExercises = generateLexiconProvidingExercise "brivla" dictionary $ generatorFromList [brivla]

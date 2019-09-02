@@ -24,20 +24,20 @@ buildBrivlaExerciseGenerator translationsByExpression = combineGenerators [(12, 
 
 -- | Exercises for the corresponding lesson.
 exercises01 :: ExerciseGenerator
-exercises01 = buildBrivlaExerciseGenerator translations01
+exercises01 = buildBrivlaExerciseGenerator translationsByExpression01
 
 -- | Exercises for the corresponding lesson.
 exercises02 :: ExerciseGenerator
-exercises02 = buildBrivlaExerciseGenerator translations02
+exercises02 = buildBrivlaExerciseGenerator translationsByExpression02
 
 -- | Exercises for the corresponding lesson.
 exercises03 :: ExerciseGenerator
-exercises03 = buildBrivlaExerciseGenerator translations03
+exercises03 = buildBrivlaExerciseGenerator translationsByExpression03
 
 -- | Exercises for the corresponding lesson.
 exercises04 :: ExerciseGenerator
-exercises04 = buildBrivlaExerciseGenerator translations04
+exercises04 = buildBrivlaExerciseGenerator translationsByExpression04
 
 -- | Exercises for the corresponding lesson.
 exercises05 :: ExerciseGenerator
-exercises05 = buildBrivlaExerciseGenerator translations05
+exercises05 = buildBrivlaExerciseGenerator translationsByExpression05
