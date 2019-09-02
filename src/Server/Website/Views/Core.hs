@@ -105,7 +105,6 @@ displayUserProfile userIdentityMaybe =
 displayTopbarMenu :: TopbarCategory -> H.Html
 displayTopbarMenu topbarCategory = do
     H.ul $ do
-        displayTopbarMenuItem (topbarCategory == TopbarHome) "Home" "/"
         displayTopbarMenuItem (topbarCategory == TopbarGrammar) "Grammar" "/grammar/"
         displayTopbarMenuItem (topbarCategory == TopbarVocabulary) "Vocabulary" "/vocabulary/"
         displayTopbarMenuItem (topbarCategory == TopbarResources) "Resources" "/resources/"

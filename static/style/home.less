@@ -1,0 +1,102 @@
+@import "general.less";
+
+h1 {
+    /* Position */
+    margin-bottom: 0.5em;
+
+    /* Style */
+    font-family: Roboto;
+    font-weight: 500;
+    color: #2C2C2C;
+}
+
+.header {
+    /* Position */
+    margin-top: 7em;
+    margin-left: 5em;
+    width: 35em;
+}
+
+.header {
+    h1 .logically {
+        /* TODO: consider this */
+        /*font-family: 'Open Sans';*/
+        /*font-weight: 300;*/
+    }
+
+    p {
+        font-family: Roboto;
+        color: rgba(0, 0, 0, 0.54);
+    }
+
+    .buttons {
+        margin-top: 4em;
+    }
+
+    .buttons a {
+        /* Position */
+        display: inline-block;
+        margin-left: 1em;
+        width: 48%;
+        padding: 1em 1.5em;
+        /* Style */
+        font-family: Roboto;
+        border-radius: 4px;
+        font-size: 1.1em;
+    }
+
+    li a {
+        color: linear-gradient(197.12deg, #9054FF 0%, #8255FE 48.63%, #235FF8 135.27%);
+    }
+
+    /* TODO: changes on mouse hover */
+    .buttons a:first-child {
+        /* Position */
+        margin-left: 0;
+        /* Border */
+        border-style: none;
+        padding-top: calc(1em + 1px);
+        padding-bottom: calc(1em + 1px);
+        /* Style */
+        background: linear-gradient(204.74deg, #9054FF 0%, #8255FE 48.63%, #235FF8 135.27%);
+        color: #fff;
+    }
+
+    /* TODO: changes on mouse hover */
+    .buttons a:not(:first-child) {
+        /* Border */
+        border-style: solid;
+        border-color: #8255FE;
+        border-width: 2px;
+
+        /*border-color: linear-gradient(197.12deg, #9054FF 0%, #8255FE 48.63%, #235FF8 135.27%);*/
+        background: linear-gradient(198.35deg, #9054FF 0%, #8255FE 48.63%, #235FF8 135.27%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .buttons a:not(:first-child):before {
+        -webkit-text-fill-color: #8255FE;
+    }
+
+    .buttons a:before {
+        /* Position */
+        position: relative;
+        left: 95%;
+        /* Style */
+        font-family: fontawesome;
+        /*font-size: 1.5em;*/
+        /* TODO: decide icon */
+        content: "\f101";
+    }
+}
+
+.courses {
+    /* Position */
+    margin-top: 7em;
+    margin-left: 5em;
+    width: 35em;
+}
+
+.courses {
+}
