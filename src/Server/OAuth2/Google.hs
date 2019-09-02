@@ -18,8 +18,8 @@ import Control.Monad (msum)
 import Control.Monad.Extra (liftMaybe)
 import Control.Monad.Trans (lift, liftIO)
 import Control.Monad.Trans.Maybe (MaybeT(..), runMaybeT)
+import URI.ByteString (URI, parseURI, strictURIParserOptions, serializeURIRef')
 import URI.ByteString.QQ (uri)
-import URI.ByteString (serializeURIRef')
 import qualified Network.HTTP.Client as HC
 import qualified Data.ByteString.Lazy.Char8 as BS8
 import qualified Jose.Jwk as JWK
@@ -103,7 +103,7 @@ handleRoot serverResources = msum
 
 handleLogin :: ServerPart Response
 handleLogin = do
-    authorizationUrl <- liftIO getAuthorizationUrl
+    authorizationUrl <- getAuthorizationUrl
     tempRedirect authorizationUrl $ toResponse ("" :: T.Text)
 
 handleLogout :: ServerPart Response
@@ -120,7 +120,7 @@ handleCallback serverResources = do
     let exchangeToken = OA2.ExchangeToken code
     -- Acquire oauth2 token from Google
     let tlsManager = serverResourcesTlsManager serverResources
-    oauth2Config <- liftIO getOAuth2Config
+    oauth2Config <- getOAuth2Config
     oauth2TokenEither <- liftIO $ OA2.fetchAccessToken tlsManager oauth2Config exchangeToken
     case oauth2TokenEither of
         Left _ -> unauthorized $ toResponse ("Acquisition of oauth2 token failed." :: T.Text)
@@ -166,19 +166,33 @@ getGooglePublicKeys serverResources = do
     provider <- OIDC.discover "https://accounts.google.com" tlsManager
     return $ OIDC.jwkSet provider
 
-getOAuth2Config :: IO OA2.OAuth2
+getOAuth2Config :: ServerPart OA2.OAuth2
 getOAuth2Config = do
-    clientId <- getEnv "LOJBAN_TOOL_OAUTH2_GOOGLE_CLIENT_ID"
-    clientSecret <- getEnv "LOJBAN_TOOL_OAUTH2_GOOGLE_CLIENT_SECRET"
+    clientId <- liftIO $ getEnv "LOJBAN_TOOL_OAUTH2_GOOGLE_CLIENT_ID"
+    clientSecret <- liftIO $ getEnv "LOJBAN_TOOL_OAUTH2_GOOGLE_CLIENT_SECRET"
+    let defaultCallbackUri = [uri|https://lojban.johnjq.com/oauth2/google/callback|]
+    callbackUri <- msum [ getCallbackUri, return defaultCallbackUri ]
     return $ OA2.OAuth2
         { OA2.oauthClientId = T.pack clientId
         , OA2.oauthClientSecret = T.pack clientSecret
-        , OA2.oauthCallback = Just [uri|http://127.0.0.1:8000/oauth2/google/callback|]
+        , OA2.oauthCallback = Just callbackUri
         , OA2.oauthOAuthorizeEndpoint = [uri|https://accounts.google.com/o/oauth2/auth|]
         , OA2.oauthAccessTokenEndpoint = [uri|https://www.googleapis.com/oauth2/v3/token|]
         }
 
-getAuthorizationUrl :: IO T.Text
+getCallbackUri :: ServerPart URI
+getCallbackUri = do
+    rq <- askRq
+    case getHeader "host" rq of
+        Nothing -> mempty
+        Just rawHost -> do
+            let host = TE.decodeUtf8 rawHost
+            let scheme = if (T.takeWhile (/= ':') host) `elem` ["localhost", "127.0.0.1"] then "http" else "https"
+            case parseURI strictURIParserOptions $ TE.encodeUtf8 $ T.concat [scheme, "://", host, "/oauth2/google/callback"] of
+                Left _ -> mempty
+                Right parsedURI -> return parsedURI
+
+getAuthorizationUrl :: ServerPart T.Text
 getAuthorizationUrl = do
     oauth2Config <- getOAuth2Config
     let params = [ ("scope", "email profile") ]
