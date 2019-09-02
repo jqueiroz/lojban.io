@@ -21,3 +21,9 @@ echo ">>>>>>>>>>>>>> master-https"
 ./docker.sh $DOCKER_OPTS build -t lojban-master-https-server -f master-https/Dockerfile master-https
 echo ""
 echo ""
+
+# Build: redis
+echo ">>>>>>>>>>>>>> redis"
+./docker.sh $DOCKER_OPTS build -t lojban-redis-server -f redis/Dockerfile redis
+echo ""
+echo ""
