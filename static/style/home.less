@@ -91,12 +91,97 @@ h1 {
     }
 }
 
+.card {
+    /* Position */
+    display: inline-block;
+    width: 20em;
+    margin-right: 5em;
+    margin-top: 3em;
+}
+
+.card-title {
+    /* Style */
+    font-family: Roboto;
+    font-size: 1.4em;
+    font-weight: 500;
+}
+
+.card-description {
+    /* Position */
+    margin-top: 0.5em;
+    /* Style */
+    font-family: Roboto;
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.card-link {
+    /* Position */
+    margin-top: 1em;
+    /* Style */
+    background: linear-gradient(206.21deg, #9054FF 0%, #8255FE 48.63%, #235FF8 135.27%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+h2 {
+    font-family: Roboto;
+    font-weight: 500;
+}
+
 .courses {
     /* Position */
     margin-top: 7em;
     margin-left: 5em;
-    width: 35em;
+    margin-right: 5em;
+
+    .course-list {
+        margin-top: -1em;
+    }
+
+    .course {
+        &:extend(.card);
+    }
+
+    .course-title {
+        &:extend(.card-title);
+    }
+
+    .course-description {
+        &:extend(.card-description);
+    }
+
+    .course-link {
+        &:extend(.card-link);
+    }
 }
 
-.courses {
+.decks {
+    /* Border */
+    padding-top: 3.5em;
+    border-top: 1px solid rgba(0, 0, 0, 0.34);
+
+    /* Position */
+    margin-top: 3.5em;
+    margin-left: 5em;
+    margin-right: 5em;
+
+    .deck-list {
+        margin-top: -1em;
+    }
+
+    .deck {
+        &:extend(.card);
+    }
+
+    .deck-title {
+        &:extend(.card-title);
+    }
+
+    .deck-description {
+        &:extend(.card-description);
+    }
+
+    .deck-link {
+        &:extend(.card-link);
+    }
 }

@@ -147,3 +147,30 @@ h6 {
     top: @topbar-height;
     margin-top: 2.5em;
 }
+
+.footer {
+    /* Border */
+    padding-top: 1.5em;
+    border-top: solid 1px rgba(0, 0, 0, 0.54);
+
+    /* Position */
+    margin-top: 10em;
+    margin-left: 5em;
+    margin-right: 5em;
+    padding-bottom: 2em;
+
+    .links {
+        text-align: center;
+
+        a {
+            margin-left: 2em;
+            color: rgba(0, 0, 0, 0.54);
+        }
+
+        a:hover {
+            background: linear-gradient(198.35deg, #9054FF 0%, #8255FE 48.63%, #235FF8 135.27%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    }
+}
