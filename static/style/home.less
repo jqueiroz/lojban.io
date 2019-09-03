@@ -1,32 +1,68 @@
 @import "general.less";
 
-h1 {
-    /* Position */
-    margin-bottom: 0.5em;
-
-    /* Style */
-    font-family: Roboto;
-    font-weight: 500;
-    color: #2C2C2C;
-}
+/* TODO: background image */
+/* TODO: carrousel for courses and decks */
 
 .header {
     /* Position */
     margin-top: 7em;
     margin-left: 5em;
-    width: 35em;
+    margin-right: 5em;
+
+    /* Align */
+    text-align: center;
+}
+
+.header2:after {
+    /* Position */
+    float: right;
+    display: inline-block;
+    height: 20em;
+    width: 20em;
+
+    /* content */
+    content: "";
+    background: url(/static/images/homepage.svg);
+    background-size: 100% 100%;
 }
 
 .header {
-    h1 .logically {
-        /* TODO: consider this */
-        /*font-family: 'Open Sans';*/
-        /*font-weight: 300;*/
+    h1 {
+        /* Position */
+        margin-bottom: 0.5em;
+
+        /* Style */
+        font-family: Roboto;
+        font-weight: 500;
+        color: #2C2C2C;
+
+        font-weight: 400;
     }
 
-    p {
+    h1 .logically {
+        /* TODO: consider this */
+        font-family: 'Open Sans';
+        font-weight: 300;
+    }
+
+    .speak-lojban, .what-lojban, .why-lojban, .learn-logically {
+        /* Restore text-align */
+        text-align: left;
+
+        /* Position */
+        display: inline-block;
+        vertical-align: top;
+        width: 30em;
+        margin-left: 9em;
+    }
+
+    .speak-lojban {
+        margin-left: 0;
+    }
+
+    p, ul {
         font-family: Roboto;
-        color: rgba(0, 0, 0, 0.54);
+        color: rgba(0, 0, 0, 0.74);
     }
 
     .buttons {
@@ -84,10 +120,9 @@ h1 {
         position: relative;
         left: 95%;
         /* Style */
-        font-family: fontawesome;
-        /*font-size: 1.5em;*/
-        /* TODO: decide icon */
-        content: "\f101";
+        font-family: 'Material Icons';
+        /*font-size: 1.2em;*/
+        content: "\e5c8";
     }
 }
 
@@ -117,6 +152,7 @@ h1 {
 .card-link {
     /* Position */
     margin-top: 1em;
+
     /* Style */
     background: linear-gradient(206.21deg, #9054FF 0%, #8255FE 48.63%, #235FF8 135.27%);
     -webkit-background-clip: text;
@@ -152,6 +188,13 @@ h2 {
 
     .course-link {
         &:extend(.card-link);
+
+        a:after {
+            vertical-align: middle;
+            margin-left: 0.3em;
+            font-family: 'Material Icons';
+            content: "\e5c8";
+        }
     }
 }
 
@@ -183,5 +226,12 @@ h2 {
 
     .deck-link {
         &:extend(.card-link);
+
+        a:after {
+            vertical-align: middle;
+            margin-left: 0.3em;
+            font-family: 'Material Icons';
+            content: "\e5c8";
+        }
     }
 }
