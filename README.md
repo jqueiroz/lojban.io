@@ -175,7 +175,7 @@ Cards are generally associated with a single Lojban word or construct, and requi
 #### 3. You may define the course entirely in a JSON file
 
 As long as you are able to provide a JSON file with information about your course, such as title, lessons, exercises for each lesson, and so on, we will be able to host the course on our website.
-I actually prepared a [draft schema](https://github.com/jqueiroz/lojban.io/tree/master/contracts/lojbanios.graphql) in [GraphQL](https://graphql.org/) with the necessary definitions for both courses and decks.
+I actually prepared a [draft schema](https://github.com/jqueiroz/lojban.io/tree/master/schemas/lojbanios.graphql) in [GraphQL](https://graphql.org/) syntax with the necessary definitions for both courses and decks.
 It is not yet final, but it is pretty close.
 If you are interested in creating a new course or deck, please let me know, and I will (1) finalize the schema; and (2) start working on the server side implementation for consuming these files.
 <!-- TODO: add draft schema (and rename to lojbanios) -->
