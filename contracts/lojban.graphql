@@ -1,0 +1,343 @@
+type Course {
+    """
+    Identifier for the course (does not need to be human-readable).
+
+    Example: "eng_crash-course".
+    """
+    id: String
+
+    """
+    Title of the course.
+
+    Example: "The Crash Course".
+    """
+    title: String
+
+    """
+    Identifier of the dictionary to be used in the course.
+
+    Example: "english".
+    """
+    dictionaryId: String
+
+    """
+    Lessons for the course.
+    """
+    lessons: [Lesson!]!
+}
+
+type Lesson {
+    """
+    Title of the course.
+
+    Example: "Basics 1".
+    """
+    title: String
+
+    """
+    Lecture contents of the lesson, in Markdown.
+    """
+    lecture: String
+
+    """
+    Plan for the lesson, in Markdown.
+    """
+    plan: String
+
+    """
+    Vocabulary for the lesson.
+    """
+    vocabulary: Vocabulary
+
+    """
+    Tutorial exercises for the lesson.
+
+    These exercises are always displayed sequentially.
+    """
+    tutorialExercises: [CourseExercise!]
+
+    """
+    Practice exercises for the lesson.
+
+    These exercises are displayed in random order.
+    """
+    practiceExercises: [CourseExercise!]
+}
+
+type Vocabulary {
+    brivlaList: [String!]!
+    cmavoList: [String!]!
+    cmevlaList: [String!]!
+}
+
+type Deck {
+    """
+    Identifier for the deck (does not need to be human-readable).
+
+    Example: "eng_contextualized-brivla".
+    """
+    id: String
+
+    """
+    Collection of cards in the deck.
+    """
+    cards: [Card!]!
+}
+
+type Card {
+    """Title of the card (usually an isolated word)."""
+    title: String!
+
+    """Short description of the card (usually a short sentence indicating the word's meaning)."""
+    shortDescription: String!
+
+    """Hint to facilitate memorization of the card."""
+    hint: Hint
+
+    """Collection of exercises associated with the card, to enable practice."""
+    exercises: [DeckExercise!]!
+}
+
+#type Hint {
+    #TODO: come up with the schema (probably a short text and/or image and/or sound)
+#}
+
+"""Exercises for use in courses"""
+union CourseExercise = ExplanationExercise | TranslationExercise | FillingBlanksInSentenceExercise | FillingBlanksInTranslationTargetExercise | SingleChoiceExercise | TypingExercise
+
+"""Exercises for use in decks"""
+union DeckExercise = TranslationExercise | FillingBlanksInSentenceExercise | FillingBlanksInTranslationTargetExercise | SingleChoiceExercise | TypingExercise
+
+"""
+Pseudo-exercise: present the user with some information.
+
+Presents the user with some information, which they will need to acknowledge before proceeding to the next exercise.
+
+Example: TODO
+"""
+type ExplanationExercise {
+    """
+    Explanation text.
+
+    May include arbitrary Markdown content.
+    """
+    text: String!
+}
+
+"""
+Exercise: translate a given sentence.
+
+Asks the user to translate a sentence from the source language into the target language.
+
+Example: https://github.com/jqueiroz/lojban-tool/blob/jqueiroz/graphql/docs/exercises/examples/translation.jpg
+"""
+type TranslationExercise {
+    """
+    Title of the translation exercise.
+
+    Usually "Translate this sentence" or "Translate this expression".
+    """
+    title: String!
+
+    """
+    Type of the translation exercise.
+
+    Valid types:
+      - "typing": indicates that the user will be asked to type the translated sentence.
+      - "assembling": indicates that a bag of words will be displayed to the user, who will be asked to assemble them in the appropriate order to make the translation.
+      - "auto": automatically selects the most appropriate exercise type ("typing" for users in a browser or "assembling" for users in a mobile app).
+    """
+    type: String!
+
+    """Translation associated with the exercise."""
+    translation: Translation!
+
+    """Words which the user is forbidden to use while answering the exercise."""
+    blacklistedWords: [String!]!
+}
+
+type Translation {
+    """Source language (usually English)"""
+    sourceLanguage: String!
+
+    """Target language (usually Lojban)"""
+    targetLanguage: String!
+
+    """
+    Collection of sentences in the source language (usually English).
+
+    For convenience, more than a single sentence may be specified.
+    If more than a single sentence is specified, then the client will randomly choose one of them to display to the user, to increase diversity.
+    """
+    sentencesInSourceLanguage: [String!]!
+
+    """
+    Collection of sentences in the target language (usually Lojban).
+
+    All sentences in this list should be appropriate for presentation to the user (in particular, sentences containing syntactic constructs or words which have not yet been taught should generally be avoided).
+
+    The user's answer to the exercise will be considered correct if it matches one of these sentences.
+
+    When the target language is Lojban, the matching does not need to be perfect; rather, syntactically equivalent sentences are automatically identified (eg., sentences including fa/fe/fi/fo/fu or se/te/ve/xe).
+    For more details, see the documentation of sentence canonicalizers and sentence comparers (TODO: link).
+
+    When the target language is English, the sentences currently need to match exactly; in the near future, some very simple canonicalization will be implemented (eg., "I am = I'm", "do not" = "don't", and ignoring articles).
+    """
+    mainSentencesInTargetLanguage: [String!]!
+
+    """
+    Additional sentences in the target language (usually Lojban).
+
+    These sentences will be accepted as correct answers (in addition to "mainSentencesInTargetLanguage"), but will never be displayed to the user.
+    Generally used for sentences containing syntactic constructs or words which have not yet been taught, but whose usage is nonetheless acceptable if the user somehow knows about them.
+    """
+    extraSentencesInTargetLanguage: [String!]!
+
+    # TODO: document syntax expansion syntax.
+    # TODO: auxiliar words for use in "assembling" exercises.
+}
+
+"""
+Exercise: fill in the blanks in a sentence given alternatives.
+
+Asks the user to fill in the blanks in a sentence, given a set of alternatives.
+
+Example: https://github.com/jqueiroz/lojban-tool/blob/jqueiroz/graphql/docs/exercises/examples/filling-blanks-in-sentence.jpg
+"""
+type FillingBlanksInSentenceExercise {
+    """
+    Title of the exercise.
+
+    Usually "Fill in the blanks".
+    """
+    title: String!
+
+    """
+    Collection of sentences.
+
+    All sentences in this list must contain exactly one of the alternatives as subexpressions.
+
+    The platform will randomly select a sentence from this list, then redact the subexpression that it contains and present the user with the redacted sentence and the list of alternatives.
+    """
+    sentences: [String!]!
+
+    """
+    List of alternatives.
+    """
+    alternatives: [String!]!
+}
+
+"""
+Exercise: complete the translation.
+
+Asks the user to fill in the blanks in the target sentence of a translation.
+
+Example 1 (typing): https://github.com/jqueiroz/lojban-tool/blob/jqueiroz/graphql/docs/exercises/examples/filling-blanks-in-translation-target_1.jpg
+Example 2 (selecting): https://github.com/jqueiroz/lojban-tool/blob/jqueiroz/graphql/docs/exercises/examples/filling-blanks-in-translation-target_2.jpg
+"""
+type FillingBlanksInTranslationTargetExercise {
+    """
+    Title of the exercise.
+
+    Usually "Complete the translation".
+    """
+    title: String!
+
+    """
+    Word (or expression) to be hidden from the target sentence.
+    """
+    word: String!
+
+    """
+    Type of the exercise.
+
+    Valid types:
+      - "typing": indicates that the user will be asked to type the missing word.
+      - "selecting": indicates that the user will be asked to select a missing word among a set of words.
+      - "auto": automatically selects the most appropriate exercise type ("typing" for users in a browser, and let users decide between "typing" and "selecting" when in a mobile app).
+    """
+    type: String!
+
+    """
+    Alternative (incorrect) words (or expressions) to display when type="selecting".
+
+    For exercises that will be used inside a deck (as opposed to a course), you may set "alternativeWords" to null, in which case alternative words will be automatically selected among the remaining cards in the deck.
+    """
+    alternativeWords: [String!]
+}
+
+"""
+Low-level single-choice exercise.
+
+Asks the user to select one of the alternatives.
+
+Example: https://github.com/jqueiroz/lojban-tool/blob/jqueiroz/graphql/docs/exercises/examples/single-choice_1.jpg
+"""
+type SingleChoiceExercise {
+    """
+    Title of the exercise.
+
+    May include arbitrary Markdown content (and, in particular, images).
+    """
+    title: String!
+
+    """Sentences to be displayed as part of the exercise."""
+    sentences: [Sentence!]!
+
+    """
+    Correct alternative.
+
+    May include arbitrary Markdown content (and, in particular, images).
+    """
+    correctAlternative: String!
+
+    """
+    Incorrect alternatives.
+
+    May include arbitrary Markdown content (and, in particular, images).
+    """
+    incorrectAlternatives: [String!]!
+
+    """
+    Whether to use fixed ordering.
+
+    If set to true, the alternatives will always be displayed in lexicographical order.
+    Otherwise, the alternatives will be randomly shuffled each time the exercise is presented.
+    """
+    incorrectAlternatives: Bool
+}
+
+"""
+Low-level typing exercise.
+
+Asks the user to type the answer.
+
+Example: https://github.com/jqueiroz/lojban-tool/blob/jqueiroz/graphql/docs/exercises/examples/typing_1.jpg
+"""
+type TypingExercise {
+    """
+    Title of the exercise.
+
+    May include arbitrary Markdown content (and, in particular, images).
+    """
+    title: String!
+
+    """Sentences to be displayed as part of the exercise."""
+    sentences: [Sentence!]!
+
+    """
+    Canonical correct answer.
+    """
+    canonicalAnswer: String!
+
+    """
+    Alternative correct answers.
+    """
+    alternativeAnswers: [String!]!
+}
+
+type Sentence {
+    language: String!
+
+    text: String!
+}
