@@ -128,10 +128,8 @@
 
 .card {
     /* Position */
-    display: inline-block;
+    display: table-cell;
     width: 20em;
-    margin-right: 5em;
-    margin-top: 3em;
 }
 
 .card-title {
@@ -159,20 +157,11 @@
     -webkit-text-fill-color: transparent;
 }
 
-h2 {
-    font-family: Roboto;
-    font-weight: 500;
-}
-
 .courses {
     /* Position */
     margin-top: 7em;
     margin-left: 5em;
     margin-right: 5em;
-
-    .course-list {
-        margin-top: -1em;
-    }
 
     .course {
         &:extend(.card);
@@ -199,7 +188,7 @@ h2 {
 }
 
 .decks {
-    /* Border */
+    /* Divider */
     padding-top: 3.5em;
     border-top: 1px solid rgba(0, 0, 0, 0.34);
 
@@ -207,10 +196,6 @@ h2 {
     margin-top: 3.5em;
     margin-left: 5em;
     margin-right: 5em;
-
-    .deck-list {
-        margin-top: -1em;
-    }
 
     .deck {
         &:extend(.card);
@@ -232,6 +217,45 @@ h2 {
             margin-left: 0.3em;
             font-family: 'Material Icons';
             content: "\e5c8";
+        }
+    }
+}
+
+.courses, .decks {
+    h2 {
+        /* Position */
+        margin-bottom: 1.5em;
+
+        /* Style */
+        font-family: Roboto;
+        font-weight: 500;
+    }
+
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+        border-spacing: 5em 0;
+    }
+
+    .carousel {
+        width: auto;
+    }
+
+    .carousel, .prev, .next {
+        display : flex;
+        align-items : center;
+        justify-content: center;
+    }
+
+    .previous, .next {
+        /* Position */
+        display: inline-block;
+
+        /* Style */
+        .material-icons {
+            font-size: 3em;
+            color: rgba(0, 0, 0, 0.44);
+            cursor: pointer;
         }
     }
 }

@@ -25,6 +25,7 @@ displayHome userIdentityMaybe =
             includeUniversalStylesheets
             includeUniversalScripts
             includeInternalStylesheet "home.css"
+            includeInternalScript "home.js"
         H.body $ do
             displayTopbar userIdentityMaybe TopbarHome
             H.div B.! A.class_ (H.textValue "main") $ do
@@ -32,18 +33,28 @@ displayHome userIdentityMaybe =
                     displayHeader2
                 H.div B.! A.class_ (H.textValue "courses") $ do
                     H.h2 $ H.toHtml ("Courses" :: T.Text)
-                    H.div B.! A.class_ (H.stringValue "course-list") $ do
-                        displayCourse ("/grammar/introduction", Courses.English.Grammar.Introduction.Course.course)
-                        displayCourse ("/grammar/crash", Courses.English.Grammar.Crash.Course.course)
-                        displayCourse ("/vocabulary/attitudinals", Courses.English.Vocabulary.Attitudinals.Course.course)
-                        displayCourse ("/vocabulary/brivla", Courses.English.Vocabulary.Brivla.Course.course)
+                    H.div B.! A.class_ (H.textValue "carousel") $ do
+                        H.div B.! A.class_ (H.textValue "previous") $ do
+                            H.span B.! A.class_ (H.textValue "material-icons") $ H.toHtml ("navigate_before" :: T.Text)
+                        H.ul $ do
+                            displayCourse ("/grammar/introduction", Courses.English.Grammar.Introduction.Course.course)
+                            displayCourse ("/grammar/crash", Courses.English.Grammar.Crash.Course.course)
+                            displayCourse ("/vocabulary/attitudinals", Courses.English.Vocabulary.Attitudinals.Course.course)
+                            displayCourse ("/vocabulary/brivla", Courses.English.Vocabulary.Brivla.Course.course)
+                        H.div B.! A.class_ (H.textValue "next") $ do
+                            H.span B.! A.class_ (H.textValue "material-icons") $ H.toHtml ("navigate_next" :: T.Text)
                 H.div B.! A.class_ (H.textValue "decks") $ do
                     H.h2 $ H.toHtml ("Decks" :: T.Text)
-                    H.div B.! A.class_ (H.stringValue "deck-list") $ do
-                        displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
-                        displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
-                        displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
-                        displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
+                    H.div B.! A.class_ (H.textValue "carousel") $ do
+                        H.div B.! A.class_ (H.textValue "previous") $ do
+                            H.span B.! A.class_ (H.textValue "material-icons") $ H.toHtml ("navigate_before" :: T.Text)
+                        H.ul $ do
+                            displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
+                            displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
+                            displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
+                            displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
+                        H.div B.! A.class_ (H.textValue "next") $ do
+                            H.span B.! A.class_ (H.textValue "material-icons") $ H.toHtml ("navigate_next" :: T.Text)
                 displayFooter
 
 displayHeader1 :: H.Html
@@ -111,7 +122,7 @@ displayCourse (url, course) = do
     let title = courseTitle course
     let shortDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor." :: T.Text
     let linkText = "Learn more" :: T.Text
-    H.div B.! A.class_ (H.textValue "course") $ do
+    H.li B.! A.class_ (H.textValue "course") $ do
         H.div B.! A.class_ (H.textValue "course-title") $ H.toHtml title
         H.div B.! A.class_ (H.textValue "course-description") $ H.toHtml shortDescription
         H.div B.! A.class_ (H.textValue "course-link") $ do
@@ -122,7 +133,7 @@ displayDeck (url, course) = do
     let title = deckTitle course
     let shortDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor." :: T.Text
     let linkText = "Learn more" :: T.Text
-    H.div B.! A.class_ (H.textValue "deck") $ do
+    H.li B.! A.class_ (H.textValue "deck") $ do
         H.div B.! A.class_ (H.textValue "deck-title") $ H.toHtml title
         H.div B.! A.class_ (H.textValue "deck-description") $ H.toHtml shortDescription
         H.div B.! A.class_ (H.textValue "deck-link") $ do
