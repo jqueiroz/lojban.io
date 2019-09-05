@@ -1,14 +1,18 @@
 let setupCarousel = function(previousButton, nextButton, elements) {
     // TODO: dynamically compute the number of pages
     // TODO: implement animations
+    let numberOfElements = elements.length;
     let numberOfElementsPerPage = 3;
-    let numberOfPages = Math.ceil(elements.length / numberOfElementsPerPage);
+    let numberOfPages = Math.ceil(numberOfElements / numberOfElementsPerPage);
 
     let displayPage = function(pageNumber) {
         elements.hide();
         let indexOfFirstElement = pageNumber * numberOfElementsPerPage;
         for (let i = 0; i < numberOfElementsPerPage; ++i) {
-            $(elements[indexOfFirstElement + i]).show();
+            let indexOfCurrentElement = indexOfFirstElement + i;
+            if (indexOfCurrentElement < numberOfElements) {
+                $(elements[indexOfCurrentElement]).show();
+            }
         }
     }
     displayPage(0);
