@@ -24,6 +24,20 @@
     background-size: 100% 100%;
 }
 
+.foreground-gradient1 {
+    color: linear-gradient(198.35deg, #9054FF 0%, #8255FE 48.63%, #235FF8 135.27%);
+}
+
+.foreground-gradient1-hack {
+    background: linear-gradient(198.35deg, #9054FF 0%, #8255FE 48.63%, #235FF8 135.27%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.background-gradient1 {
+    background: linear-gradient(204.74deg, #9054FF 0%, #8255FE 48.63%, #235FF8 135.27%);
+}
+
 .header {
     h1 {
         /* Position */
@@ -76,7 +90,7 @@
     }
 
     li a {
-        color: linear-gradient(197.12deg, #9054FF 0%, #8255FE 48.63%, #235FF8 135.27%);
+        &:extend(.foreground-gradient1);
     }
 
     /* TODO: changes on mouse hover */
@@ -88,7 +102,7 @@
         padding-top: calc(1em + 1px);
         padding-bottom: calc(1em + 1px);
         /* Style */
-        background: linear-gradient(204.74deg, #9054FF 0%, #8255FE 48.63%, #235FF8 135.27%);
+        &:extend(.background-gradient1);
         color: #fff;
     }
 
@@ -100,9 +114,7 @@
         border-width: 2px;
 
         /*border-color: linear-gradient(197.12deg, #9054FF 0%, #8255FE 48.63%, #235FF8 135.27%);*/
-        background: linear-gradient(198.35deg, #9054FF 0%, #8255FE 48.63%, #235FF8 135.27%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        &:extend(.foreground-gradient1-hack);
     }
 
     .buttons a:not(:first-child):before {
