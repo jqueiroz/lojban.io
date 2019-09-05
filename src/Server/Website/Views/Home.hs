@@ -93,7 +93,7 @@ displayWhat = do
 displayWhy :: H.Html
 displayWhy = do
     H.div B.! A.class_ (H.textValue "why-lojban") $ do
-        H.h1 $ H.toHtml ("Why Lojban" :: T.Text)
+        H.h1 $ H.toHtml ("Why lojban?" :: T.Text)
         H.p $ H.toHtml ("Lojban means different things to different people:" :: T.Text)
         H.ul $ do
             H.li $ H.toHtml ("a new perspective on languages;" :: T.Text)
