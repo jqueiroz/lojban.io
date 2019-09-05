@@ -27,6 +27,6 @@ displayGrammarHome userIdentityMaybe = do
             includeUniversalScripts
             includeInternalStylesheet "module.css"
         H.body $ do
-            displayTopbar userIdentityMaybe TopbarGrammar
+            displayTopbar userIdentityMaybe TopbarCourses
             H.div B.! A.class_ (H.stringValue "main") $ do
                 displayModule moduleTitle moduleCourses

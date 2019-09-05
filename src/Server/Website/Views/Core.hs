@@ -79,7 +79,7 @@ includeDictionaryScript :: Dictionary -> H.Html
 includeDictionaryScript dictionary = includeInternalScript $ T.unpack $ "dictionaries/" `T.append` (dictIdentifier dictionary) `T.append` ".js"
 
 -- * Topbar
-data TopbarCategory = TopbarHome | TopbarGrammar | TopbarVocabulary | TopbarResources deriving (Enum, Eq)
+data TopbarCategory = TopbarHome | TopbarCourses | TopbarDecks | TopbarResources deriving (Enum, Eq)
 
 displayTopbar :: Maybe UserIdentity -> TopbarCategory -> H.Html
 displayTopbar userIdentityMaybe topbarCategory = do
@@ -106,8 +106,8 @@ displayUserProfile userIdentityMaybe =
 displayTopbarMenu :: TopbarCategory -> H.Html
 displayTopbarMenu topbarCategory = do
     H.ul $ do
-        displayTopbarMenuItem (topbarCategory == TopbarGrammar) "Grammar" "/grammar/"
-        displayTopbarMenuItem (topbarCategory == TopbarVocabulary) "Vocabulary" "/vocabulary/"
+        displayTopbarMenuItem (topbarCategory == TopbarCourses) "Courses" "/courses/"
+        displayTopbarMenuItem (topbarCategory == TopbarDecks) "Decks" "/decks/"
         displayTopbarMenuItem (topbarCategory == TopbarResources) "Resources" "/resources/"
 
 displayTopbarMenuItem :: Bool -> String -> String -> H.Html

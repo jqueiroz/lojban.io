@@ -45,15 +45,15 @@ handleHome userIdentityMaybe = ok . toResponse $ displayHome userIdentityMaybe
 handleGrammar :: Maybe UserIdentity -> ServerPart Response
 handleGrammar userIdentityMaybe = msum
     [ forceSlash . ok . toResponse $ displayGrammarHome userIdentityMaybe
-    , dir "introduction" $ handleCourse userIdentityMaybe TopbarGrammar Courses.English.Grammar.Introduction.Course.course
-    , dir "crash" $ handleCourse userIdentityMaybe TopbarGrammar Courses.English.Grammar.Crash.Course.course
+    , dir "introduction" $ handleCourse userIdentityMaybe TopbarCourses Courses.English.Grammar.Introduction.Course.course
+    , dir "crash" $ handleCourse userIdentityMaybe TopbarCourses Courses.English.Grammar.Crash.Course.course
     ]
 
 handleVocabulary :: Maybe UserIdentity -> ServerPart Response
 handleVocabulary userIdentityMaybe = msum
     [ forceSlash . ok . toResponse $ displayVocabularyHome userIdentityMaybe
-    , dir "attitudinals" $ handleCourse userIdentityMaybe TopbarVocabulary Courses.English.Vocabulary.Attitudinals.Course.course
-    , dir "brivla" $ handleCourse userIdentityMaybe TopbarVocabulary Courses.English.Vocabulary.Brivla.Course.course
+    , dir "attitudinals" $ handleCourse userIdentityMaybe TopbarCourses Courses.English.Vocabulary.Attitudinals.Course.course
+    , dir "brivla" $ handleCourse userIdentityMaybe TopbarCourses Courses.English.Vocabulary.Brivla.Course.course
     ]
 
 handleResources :: Maybe UserIdentity -> ServerPart Response
