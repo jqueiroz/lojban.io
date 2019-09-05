@@ -68,7 +68,7 @@ displayHeader2 = do
     displaySpeak
     displayWhy
 
--- TODO: url to official lojban website
+-- TODO: url to official lojban website (with "external website" icon)
 displaySpeak :: H.Html
 displaySpeak = do
     H.div B.! A.class_ (H.textValue "speak-lojban") $ do
