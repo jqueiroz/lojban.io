@@ -1,0 +1,118 @@
+@import "main.less";
+
+.header {
+    &:extend(.background-gradient1);
+    height: 15em;
+    padding: 3em;
+
+    h1 {
+        /* Position */
+        margin-bottom: 0.5em;
+
+        /* Style */
+        font-family: Roboto;
+        font-weight: 500;
+        color: #fff;
+
+        font-weight: 400;
+    }
+}
+
+.body {
+    margin-top: 2.5em;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 5em;
+    padding-right: 5em;
+    max-width: 110em;
+}
+
+.card {
+    /* Position */
+    margin-top: 3em;
+    margin-right: 3em;
+    display: inline-block;
+    width: 22em;
+
+    /* Border */
+    /*border: solid 1px #aaa;*/
+    /*border-radius: 3px;*/
+    /*padding: 1em;*/
+}
+
+.card-title {
+    /* Style */
+    font-family: Roboto;
+    font-size: 1.4em;
+    font-weight: 500;
+}
+
+.card-description {
+    /* Position */
+    margin-top: 0.5em;
+    /* Style */
+    font-family: Roboto;
+    color: rgba(0, 0, 0, 0.54);
+}
+
+h2 {
+    /* Style */
+    font-family: Roboto;
+    font-weight: 400;
+}
+
+.grid {
+    .course {
+        &:extend(.card);
+    }
+
+    .course:before {
+        /* Content */
+        font-family: 'Material Icons';
+        font-size: 2em;
+        content: "school";
+    }
+
+    .course-title {
+        &:extend(.card-title);
+    }
+
+    .course-description {
+        &:extend(.card-description);
+    }
+
+    .course-link {
+        &:extend(.card-link);
+
+        a:after {
+            vertical-align: middle;
+            margin-left: 0.3em;
+            font-family: 'Material Icons';
+            content: "\e5c8";
+        }
+    }
+
+}
+
+.card-link {
+    /* Position */
+    margin-top: 1em;
+
+    /* Style */
+    &:extend(.foreground-gradient1-hack);
+}
+
+.grammar {
+    /* Position */
+    margin-top: 3em;
+}
+
+.vocabulary {
+    /* Divider */
+    padding-top: 5em;
+    border-top: 1px solid rgba(0, 0, 0, 0.34);
+
+    /* Position */
+    margin-top: 5em;
+}
+
