@@ -26,7 +26,6 @@ import qualified Text.Blaze.Html5.Attributes as A
 includeUniversalStylesheets :: H.Html
 includeUniversalStylesheets = do
     includeInternalStylesheet "bootstrap.min.css"
-    includeInternalStylesheet "main.css"
     includeExternalStylesheet "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
     includeExternalStylesheet "https://fonts.googleapis.com/icon?family=Material+Icons"
 

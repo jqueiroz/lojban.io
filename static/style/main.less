@@ -31,6 +31,20 @@ h6 {
     margin: 0;
 }
 
+.foreground-gradient1 {
+    color: linear-gradient(204.74deg, #9054FF 0%, #8255FE 48.63%, #235FF8 135.27%);
+}
+
+.foreground-gradient1-hack {
+    background: linear-gradient(204.74deg, #9054FF 0%, #8255FE 48.63%, #235FF8 135.27%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.background-gradient1 {
+    background: linear-gradient(204.74deg, #9054FF 0%, #8255FE 48.63%, #235FF8 135.27%);
+}
+
 @topbar-height: 4.8em;
 
 .topbar {
@@ -136,12 +150,6 @@ h6 {
 .main {
     position: relative;
     top: @topbar-height;
-    margin-top: 2.5em;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 5em;
-    padding-right: 5em;
-    max-width: 110em;
 }
 
 .footer {
