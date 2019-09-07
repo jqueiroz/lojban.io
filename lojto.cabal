@@ -115,6 +115,7 @@ library
                      , Server.Website.Views.Core
                      , Server.Website.Views.Course
                      , Server.Website.Views.Courses
+                     , Server.Website.Views.Decks
                      , Server.Website.Views.Grammar
                      , Server.Website.Views.Home
                      , Server.Website.Views.Lesson

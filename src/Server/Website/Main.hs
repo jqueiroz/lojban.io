@@ -15,6 +15,7 @@ import Server.Util (forceSlash, getBody)
 import Server.Website.Views.Core
 import Server.Website.Views.Home (displayHome)
 import Server.Website.Views.Courses (displayCoursesHome)
+import Server.Website.Views.Decks (displayDecksHome)
 import Server.Website.Views.Grammar (displayGrammarHome)
 import Server.Website.Views.Vocabulary (displayVocabularyHome)
 import Server.Website.Views.Resources (displayResourcesHome)
@@ -36,6 +37,7 @@ handleRoot serverResources = do
     msum
         [ forceSlash $ handleHome userIdentityMaybe
         , dir "courses" $ handleCourses userIdentityMaybe
+        , dir "decks" $ handleDecks userIdentityMaybe
         , dir "grammar" $ handleGrammar userIdentityMaybe
         , dir "vocabulary" $ handleVocabulary userIdentityMaybe
         , dir "resources" $ handleResources userIdentityMaybe
@@ -46,6 +48,9 @@ handleHome userIdentityMaybe = ok . toResponse $ displayHome userIdentityMaybe
 
 handleCourses :: Maybe UserIdentity -> ServerPart Response
 handleCourses userIdentityMaybe = ok . toResponse $ displayCoursesHome userIdentityMaybe
+
+handleDecks :: Maybe UserIdentity -> ServerPart Response
+handleDecks userIdentityMaybe = ok . toResponse $ displayDecksHome userIdentityMaybe
 
 handleGrammar :: Maybe UserIdentity -> ServerPart Response
 handleGrammar userIdentityMaybe = msum
