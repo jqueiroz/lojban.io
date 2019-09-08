@@ -17,7 +17,9 @@ displayResourcesHome userIdentityMaybe =
             H.title $ H.toHtml ("Additional resources" :: String)
             includeUniversalStylesheets
             includeUniversalScripts
+            includeInternalStylesheet "resources.css"
         H.body $ do
             displayTopbar userIdentityMaybe TopbarResources
             H.div B.! A.class_ (H.stringValue "main") $ do
-                H.h1 $ H.toHtml ("Additional resources" :: String)
+                H.div B.! A.class_ (H.textValue "header") $ do
+                    H.h1 $ H.toHtml ("Additional resources" :: String)
