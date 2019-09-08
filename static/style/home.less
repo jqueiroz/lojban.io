@@ -2,13 +2,25 @@
 
 /* TODO: background image */
 
-.main {
-    margin-top: 2.5em;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 5em;
-    padding-right: 5em;
-    max-width: 110em;
+.main::after {
+    /* Position */
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1000;
+
+    /* Image: building blocks */
+    opacity: 0.08;
+    content: "";
+
+    /*background: url(https://as1.ftcdn.net/jpg/01/44/55/82/500_F_144558230_SZVWMflJMRZthG0F4sNNFniMYfPE2NNK.jpg);*/
+    /*background-size: 35em;*/
+
+    /*background: url(https://t4.ftcdn.net/jpg/02/67/59/33/500_F_267593396_XMzwGVqNfVU2wM5uP21T7mHYt2Z7wSJJ.jpg);*/
+    /*background-size: 20em;*/
 }
 
 .header {

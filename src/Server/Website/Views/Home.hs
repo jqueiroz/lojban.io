@@ -29,33 +29,34 @@ displayHome userIdentityMaybe =
         H.body $ do
             displayTopbar userIdentityMaybe TopbarHome
             H.div B.! A.class_ (H.textValue "main") $ do
-                H.div B.! A.class_ (H.textValue "header") $ do
-                    displayHeader2
-                H.div B.! A.class_ (H.textValue "courses") $ do
-                    H.h2 $ H.toHtml ("Courses" :: T.Text)
-                    H.div B.! A.class_ (H.textValue "carousel") $ do
-                        H.div B.! A.class_ (H.textValue "previous") $ do
-                            H.span B.! A.class_ (H.textValue "material-icons") $ H.toHtml ("navigate_before" :: T.Text)
-                        H.ul $ do
-                            displayCourse ("/courses/introduction", Courses.English.Grammar.Introduction.Course.course)
-                            displayCourse ("/courses/crash", Courses.English.Grammar.Crash.Course.course)
-                            displayCourse ("/courses/attitudinals", Courses.English.Vocabulary.Attitudinals.Course.course)
-                            displayCourse ("/courses/brivla", Courses.English.Vocabulary.Brivla.Course.course)
-                        H.div B.! A.class_ (H.textValue "next") $ do
-                            H.span B.! A.class_ (H.textValue "material-icons") $ H.toHtml ("navigate_next" :: T.Text)
-                H.div B.! A.class_ (H.textValue "decks") $ do
-                    H.h2 $ H.toHtml ("Decks" :: T.Text)
-                    H.div B.! A.class_ (H.textValue "carousel") $ do
-                        H.div B.! A.class_ (H.textValue "previous") $ do
-                            H.span B.! A.class_ (H.textValue "material-icons") $ H.toHtml ("navigate_before" :: T.Text)
-                        H.ul $ do
-                            displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
-                            displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
-                            displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
-                            displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
-                        H.div B.! A.class_ (H.textValue "next") $ do
-                            H.span B.! A.class_ (H.textValue "material-icons") $ H.toHtml ("navigate_next" :: T.Text)
-                displayFooter
+                H.div B.! A.class_ (H.textValue "body") $ do
+                    H.div B.! A.class_ (H.textValue "header") $ do
+                        displayHeader2
+                    H.div B.! A.class_ (H.textValue "courses") $ do
+                        H.h2 $ H.toHtml ("Courses" :: T.Text)
+                        H.div B.! A.class_ (H.textValue "carousel") $ do
+                            H.div B.! A.class_ (H.textValue "previous") $ do
+                                H.span B.! A.class_ (H.textValue "material-icons") $ H.toHtml ("navigate_before" :: T.Text)
+                            H.ul $ do
+                                displayCourse ("/courses/introduction", Courses.English.Grammar.Introduction.Course.course)
+                                displayCourse ("/courses/crash", Courses.English.Grammar.Crash.Course.course)
+                                displayCourse ("/courses/attitudinals", Courses.English.Vocabulary.Attitudinals.Course.course)
+                                displayCourse ("/courses/brivla", Courses.English.Vocabulary.Brivla.Course.course)
+                            H.div B.! A.class_ (H.textValue "next") $ do
+                                H.span B.! A.class_ (H.textValue "material-icons") $ H.toHtml ("navigate_next" :: T.Text)
+                    H.div B.! A.class_ (H.textValue "decks") $ do
+                        H.h2 $ H.toHtml ("Decks" :: T.Text)
+                        H.div B.! A.class_ (H.textValue "carousel") $ do
+                            H.div B.! A.class_ (H.textValue "previous") $ do
+                                H.span B.! A.class_ (H.textValue "material-icons") $ H.toHtml ("navigate_before" :: T.Text)
+                            H.ul $ do
+                                displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
+                                displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
+                                displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
+                                displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
+                            H.div B.! A.class_ (H.textValue "next") $ do
+                                H.span B.! A.class_ (H.textValue "material-icons") $ H.toHtml ("navigate_next" :: T.Text)
+                    displayFooter
 
 displayHeader1 :: H.Html
 displayHeader1 = do
