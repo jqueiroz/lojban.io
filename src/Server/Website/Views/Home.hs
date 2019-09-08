@@ -30,8 +30,8 @@ displayHome userIdentityMaybe =
             displayTopbar userIdentityMaybe TopbarHome
             H.div B.! A.class_ (H.textValue "main") $ do
                 H.div B.! A.class_ (H.textValue "body") $ do
-                    H.div B.! A.class_ (H.textValue "header") $ do
-                        displayHeader2
+                    H.div B.! A.class_ (H.textValue "welcome") $ do
+                        displayWelcome2
                     H.div B.! A.class_ (H.textValue "courses") $ do
                         H.h2 $ H.toHtml ("Courses" :: T.Text)
                         H.div B.! A.class_ (H.textValue "carousel") $ do
@@ -58,14 +58,14 @@ displayHome userIdentityMaybe =
                                 H.span B.! A.class_ (H.textValue "material-icons") $ H.toHtml ("navigate_next" :: T.Text)
                     displayFooter
 
-displayHeader1 :: H.Html
-displayHeader1 = do
+displayWelcome1 :: H.Html
+displayWelcome1 = do
     displayWhat
     displayWhy
     displayLearn
 
-displayHeader2 :: H.Html
-displayHeader2 = do
+displayWelcome2 :: H.Html
+displayWelcome2 = do
     displaySpeak
     displayWhy
 
