@@ -33,21 +33,21 @@ displayCoursesHome userIdentityMaybe = do
                     H.div B.! A.class_ (H.textValue "grammar") $ do
                         H.h2 $ H.toHtml ("Learn from the beginning" :: T.Text)
                         H.div B.! A.class_ (H.textValue "grid") $ do
-                            displayCourse ("/grammar/introduction", Courses.English.Grammar.Introduction.Course.course)
-                            displayCourse ("/grammar/crash", Courses.English.Grammar.Crash.Course.course)
+                            displayCourse ("/courses/introduction", Courses.English.Grammar.Introduction.Course.course)
+                            displayCourse ("/courses/crash", Courses.English.Grammar.Crash.Course.course)
                     H.div B.! A.class_ (H.textValue "vocabulary") $ do
                         H.h2 $ H.toHtml ("Learn by subject" :: T.Text)
                         H.div B.! A.class_ (H.textValue "grid") $ do
-                            displayCourse ("/vocabulary/attitudinals", Courses.English.Vocabulary.Attitudinals.Course.course)
-                            displayCourse ("/vocabulary/brivla", Courses.English.Vocabulary.Brivla.Course.course)
-                            displayCourse ("/vocabulary/attitudinals", Courses.English.Vocabulary.Attitudinals.Course.course)
-                            displayCourse ("/vocabulary/attitudinals", Courses.English.Vocabulary.Attitudinals.Course.course)
-                            displayCourse ("/vocabulary/brivla", Courses.English.Vocabulary.Brivla.Course.course)
-                            displayCourse ("/vocabulary/brivla", Courses.English.Vocabulary.Brivla.Course.course)
-                            displayCourse ("/vocabulary/brivla", Courses.English.Vocabulary.Brivla.Course.course)
-                            displayCourse ("/vocabulary/brivla", Courses.English.Vocabulary.Brivla.Course.course)
-                            displayCourse ("/vocabulary/brivla", Courses.English.Vocabulary.Brivla.Course.course)
-                            displayCourse ("/vocabulary/brivla", Courses.English.Vocabulary.Brivla.Course.course)
+                            displayCourse ("/courses/attitudinals", Courses.English.Vocabulary.Attitudinals.Course.course)
+                            displayCourse ("/courses/brivla", Courses.English.Vocabulary.Brivla.Course.course)
+                            displayCourse ("/courses/attitudinals", Courses.English.Vocabulary.Attitudinals.Course.course)
+                            displayCourse ("/courses/attitudinals", Courses.English.Vocabulary.Attitudinals.Course.course)
+                            displayCourse ("/courses/brivla", Courses.English.Vocabulary.Brivla.Course.course)
+                            displayCourse ("/courses/brivla", Courses.English.Vocabulary.Brivla.Course.course)
+                            displayCourse ("/courses/brivla", Courses.English.Vocabulary.Brivla.Course.course)
+                            displayCourse ("/courses/brivla", Courses.English.Vocabulary.Brivla.Course.course)
+                            displayCourse ("/courses/brivla", Courses.English.Vocabulary.Brivla.Course.course)
+                            displayCourse ("/courses/brivla", Courses.English.Vocabulary.Brivla.Course.course)
                 displayFooter
 
 displayCourse :: (T.Text, Course) -> H.Html

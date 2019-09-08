@@ -47,7 +47,13 @@ handleHome :: Maybe UserIdentity -> ServerPart Response
 handleHome userIdentityMaybe = ok . toResponse $ displayHome userIdentityMaybe
 
 handleCourses :: Maybe UserIdentity -> ServerPart Response
-handleCourses userIdentityMaybe = ok . toResponse $ displayCoursesHome userIdentityMaybe
+handleCourses userIdentityMaybe = msum
+    [ forceSlash . ok . toResponse $ displayCoursesHome userIdentityMaybe
+    , dir "introduction" $ handleCourse userIdentityMaybe TopbarCourses Courses.English.Grammar.Introduction.Course.course
+    , dir "crash" $ handleCourse userIdentityMaybe TopbarCourses Courses.English.Grammar.Crash.Course.course
+    , dir "attitudinals" $ handleCourse userIdentityMaybe TopbarCourses Courses.English.Vocabulary.Attitudinals.Course.course
+    , dir "brivla" $ handleCourse userIdentityMaybe TopbarCourses Courses.English.Vocabulary.Brivla.Course.course
+    ]
 
 handleDecks :: Maybe UserIdentity -> ServerPart Response
 handleDecks userIdentityMaybe = ok . toResponse $ displayDecksHome userIdentityMaybe
