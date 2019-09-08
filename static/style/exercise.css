@@ -4,19 +4,23 @@
     /*box-shadow: 0 0 30px rgba(0,0,0,0.08);*/
 /*}*/
 
-.exercise-holder .body {
-    min-height: 24em;
+body {
+    background-color: #aaa;
+}
+
+.exercise-holder .exercise-body {
+    min-height: 30em;
     padding: 1em 2em;
 }
 
-.exercise-holder .body .title {
+.exercise-holder .exercise-body .title {
     text-align: center;
     font-size: 2.5em;
     margin-bottom: .6em;
     font-family: "Times New Roman";
 }
 
-.exercise-holder .body .table {
+.exercise-holder .exercise-body .table {
     margin-left: auto;
     margin-right: auto;
     width: auto;
@@ -25,7 +29,7 @@
     border-spacing: 30px 0;
 }
 
-.exercise-holder .body .sentence {
+.exercise-holder .exercise-body .sentence {
     display: table-cell;
     width: 19em;
     padding: 0.8em 1em 1em 0.8em;
@@ -37,7 +41,7 @@
     font-style: italic;
 }
 
-.exercise-holder .body .sentence.single {
+.exercise-holder .exercise-body .sentence.single {
     display: block;
     width: 100%;
     box-shadow: 0 0 20px #92e2ff;
@@ -84,7 +88,7 @@
 }
 
 /* Footer */
-.exercise-holder .footer {
+.exercise-holder .exercise-footer {
     position: relative;
     padding: 1.5em 3em;
     min-height: 8em;
@@ -92,35 +96,35 @@
     background-color: #ddd;
 }
 
-.exercise-holder .footer.correct {
+.exercise-holder .exercise-footer.correct {
     background-color: #def0a5;
 }
 
-.exercise-holder .footer.incorrect {
+.exercise-holder .exercise-footer.incorrect {
     background-color: #ffd4cc;
 }
 
-.exercise-holder .footer .title {
+.exercise-holder .exercise-footer .title {
     font-size: 1.6em;
     font-weight: bold;
 }
 
-.exercise-holder .footer .answer {
+.exercise-holder .exercise-footer .answer {
     margin-top: .3em;
     margin-left: 2em;
     font-size: 1.2em;
     font-weight: bold;
 }
 
-.exercise-holder .footer.correct .title, .exercise-holder .footer.correct .answer {
+.exercise-holder .exercise-footer.correct .title, .exercise-holder .exercise-footer.correct .answer {
     color: #769c00;
 }
 
-.exercise-holder .footer.incorrect .title, .exercise-holder .footer.incorrect .answer {
+.exercise-holder .exercise-footer.incorrect .title, .exercise-holder .exercise-footer.incorrect .answer {
     color: #dd381d;
 }
 
-.exercise-holder .footer button {
+.exercise-holder .exercise-footer button {
     position: absolute;
     bottom: 1em;
     border: none;
@@ -131,17 +135,17 @@
     font-size: 1.1em;
 }
 
-.exercise-holder .footer button.skip {
+.exercise-holder .exercise-footer button.skip {
     border: solid #aaa 1.5px;
     color: #888;
 }
 
-.exercise-holder .footer button.skip:hover {
+.exercise-holder .exercise-footer button.skip:hover {
     background-color: #aaa;
     color: #333;
 }
 
-.exercise-holder .footer button.success {
+.exercise-holder .exercise-footer button.success {
     position: absolute;
     right: 3em;
     background-color: #7eb530;
@@ -149,13 +153,13 @@
     border: solid #7eb530 1px;
 }
 
-.exercise-holder .footer button.success:disabled {
+.exercise-holder .exercise-footer button.success:disabled {
     background-color: #bbb !important;
     color: #fff;
     border: solid #bbb 1px;
 }
 
-.exercise-holder .footer button.success:hover {
+.exercise-holder .exercise-footer button.success:hover {
     background-color: #94c500;
 }
 

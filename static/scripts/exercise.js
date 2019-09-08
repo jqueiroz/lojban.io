@@ -5,8 +5,8 @@ var createExercisesManager = function(holder) {
     var resetElements = function() {
         holder.empty();
         holder.attr("class", "exercise-holder");
-        body = $("<div/>").addClass("body");
-        footer = $("<div/>").addClass("footer");
+        body = $("<div/>").addClass("exercise-body");
+        footer = $("<div/>").addClass("exercise-footer");
         holder.append(body);
         holder.append(footer);
     };

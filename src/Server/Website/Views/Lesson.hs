@@ -93,9 +93,11 @@ displayLessonExercise userIdentityMaybe topbarCategory course lessonNumber = do
         H.body $ do
             displayTopbar userIdentityMaybe topbarCategory
             H.div B.! A.class_ (H.stringValue "main") $ do
-                H.div B.! A.class_ (H.stringValue "lesson") $ do
+                H.div B.! A.class_ (H.textValue "header") $ do
                     displayLessonHeader baseLessonUrl LessonExercises course lessonNumber
-                    H.div B.! A.id (H.stringValue "exercise-holder") $ H.toHtml ("" :: String)
+                H.div B.! A.class_ (H.textValue "body") $ do
+                    H.div B.! A.class_ (H.stringValue "lesson") $ do
+                        H.div B.! A.id (H.stringValue "exercise-holder") $ H.toHtml ("" :: String)
     where
         lesson = (courseLessons course) !! (lessonNumber - 1)
 
