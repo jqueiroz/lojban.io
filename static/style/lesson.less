@@ -1,13 +1,21 @@
 @import "main.less";
 
+.body {
+    /* Override maximum body width for this page, to avoid lessons stretching too widely */
+    max-width: 80em;
+}
+
 .lesson-header,
 .lesson-header a {
     /* Text */
     color: #fff;
 }
 
+@lesson-info-height: 4.5em;
+
 .lesson-header {
-    @lesson-info-height: 4.5em;
+    position: relative;
+    padding-bottom: 1em;
 
     .lesson-info:before {
         /* Position */
@@ -58,10 +66,9 @@
 
     .lesson-buttons {
         /* Position */
-        position: absolute;
-        top: calc(50% - 1.5em);
-        left: 40em;
+        float: right;
         margin-right: 1em;
+        margin-top: -1em;
 
         a.button {
             /* Position */
@@ -109,12 +116,17 @@
     }
 
     .lesson-tab-label {
+        /* Position */
         display: inline-block;
-        margin-bottom: -1px;
+        position: relative;
+        top: calc(-3em - 50px + 5px);
+        min-width: 10em;
+
+        /* Style */
         padding: 15px 25px;
         font-weight: 600;
         text-align: center;
-        color: #abc;
+        color: #eee;
         border: 1px solid transparent;
     }
 
@@ -138,30 +150,28 @@
     }
 
     .lesson-tab-label:hover {
-        color: #789;
+        color: #fff;
         cursor: pointer;
     }
 
     .lesson-tab-input:checked + label {
-        color: #0af;
-        border: 1px solid #abc;
-        border-top: 2px solid #0af;
-        border-bottom: 2px solid #fff;
+        color: #235ff8;
+        background-color: #fff;
+        border-radius: 2px;
     }
 
     .lesson-lecture,
     .lesson-plan,
     .lesson-vocabulary {
         display: none;
-        border-top: 1px solid #abc;
-        padding-top: 20px;
+        margin-top: -3em;
     }
 
     .lesson-lecture,
     .lesson-plan,
     .lesson-vocabulary {
         font-family: "Open Sans";
-        font-size: 1.1em;
+        font-size: 1.2em;
         line-height: 1.4em;
     }
 
