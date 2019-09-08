@@ -1,24 +1,7 @@
-@import "general.less";
-
-.course {
-    &:extend(.content);
-
-    /* Style */
-    background-color: var(--course-color1);
-}
+@import "main.less";
 
 .course-header {
-    &:extend(.content-header);
-
-    /* Style */
-    background-color: var(--course-color1);
-    padding: 2.5em;
-    /* Text */
-    color: #fff;
-}
-
-.course-header {
-    @course-info-height: 5.7rem;
+    @course-info-height: 4.5em;
 
     .course-info:before {
         /* Position */
@@ -35,15 +18,15 @@
     .course-info {
         /* Position */
         position: relative;
-        margin-left: calc(@course-info-height + 0.3em);
-        padding-left: 2em;
+        margin-left: calc(@course-info-height);
+        padding-left: 1em;
         height: @course-info-height;
     }
 
     .course-title {
         /* Text */
         font-size: 1.5em;
-        font-weight: bolder;
+        font-weight: 600;
         font-family: "Varela Round";
     }
 
@@ -66,7 +49,7 @@
 
     .course-lessons-count {
         /* Position */
-        margin-top: 0.2em;
+        margin-top: -0.3em;
         margin-left: 1em;
     }
 }
@@ -74,17 +57,13 @@
 .course-contents {
     /* Style */
     line-height: 1.5em;
-    background-color: #fff;
-    padding: 10px 30px 30px 30px;
-    /* Border */
-    border-radius: 0 0 10px 10px;
     /* Text */
     font-size: 1em;
     color: #333;
 }
 
 .course-contents h2 {
-    border-bottom: solid 1px #000;
+    /*border-bottom: solid 1px #000;*/
     margin-bottom: 0.5em;
     color: #000;
 }

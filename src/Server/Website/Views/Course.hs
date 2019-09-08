@@ -27,9 +27,12 @@ displayCourseHome userIdentityMaybe topbarCategory course = do
         H.body $ do
             displayTopbar userIdentityMaybe topbarCategory
             H.div B.! A.class_ (H.stringValue "main") $ do
-                H.div B.! A.class_ (H.stringValue "course") $ do
+                H.div B.! A.class_ (H.textValue "header") $ do
                     displayCourseMenu baseCourseUrl course
-                    displayCourseContents baseCourseUrl course
+                H.div B.! A.class_ (H.textValue "body") $ do
+                    H.div B.! A.class_ (H.stringValue "course") $ do
+                        displayCourseContents baseCourseUrl course
+                    displayFooter
 
 displayCourseMenu :: String -> Course -> H.Html
 displayCourseMenu baseCourseUrl course = do
