@@ -82,7 +82,6 @@ displayLessonExercise userIdentityMaybe topbarCategory course lessonNumber = do
         H.head $ do
             H.title (H.toHtml (lessonTitle lesson ++ " :: Practice"))
             includeUniversalStylesheets
-            includeInternalStylesheet "lesson.css"
             includeInternalStylesheet "funkyradio.css"
             includeInternalStylesheet "list-group-horizontal.css"
             includeInternalStylesheet "exercise.css"
@@ -93,9 +92,8 @@ displayLessonExercise userIdentityMaybe topbarCategory course lessonNumber = do
         H.body $ do
             displayTopbar userIdentityMaybe topbarCategory
             H.div B.! A.class_ (H.stringValue "main") $ do
-                H.div B.! A.class_ (H.textValue "header") $ do
-                    displayLessonHeader baseLessonUrl LessonExercises course lessonNumber
                 H.div B.! A.class_ (H.textValue "body") $ do
+                    displayLessonHeader baseLessonUrl LessonExercises course lessonNumber
                     H.div B.! A.class_ (H.stringValue "lesson") $ do
                         H.div B.! A.id (H.stringValue "exercise-holder") $ H.toHtml ("" :: String)
     where

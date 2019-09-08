@@ -1,3 +1,106 @@
+@import "main.less";
+
+.body {
+    /* Override maximum body width for this page, to avoid exercises stretching too widely */
+    max-width: 80em;
+    padding-top: 2em;
+}
+
+.lesson-header,
+.lesson-header a {
+    /* Text */
+    color: #fff;
+}
+
+.exercise-body {
+    background-color: #fff;
+}
+
+@lesson-info-height: 4.5em;
+
+.lesson-header {
+    padding: 3em;
+    position: relative;
+    border-radius: 10px 10px 0 0;
+    /*&:extend(.background-gradient1);*/
+    background-color: hsl(0, 0, 30%);
+
+    .lesson-info:before {
+        /* Position */
+        position: absolute;
+        left: -@lesson-info-height;
+        width: @lesson-info-height;
+        height: @lesson-info-height;
+        /* Background */
+        background: var(--course-icon);
+        background-size: @lesson-info-height @lesson-info-height;
+        content: "";
+    }
+
+    .lesson-info {
+        /* Position */
+        position: relative;
+        display: inline-block;
+        margin-left: calc(@lesson-info-height);
+        padding-left: 2em;
+        height: @lesson-info-height;
+    }
+
+    .course-title {
+        /* Text */
+        font-size: 1.5em;
+        font-weight: 600;
+        font-family: "Varela Round";
+        /* Border */
+        border-bottom: solid 1px #fff;
+        display: inline-block;
+    }
+
+    .lesson-title {
+        /* Position */
+        margin-top: 0.6em;
+        /* Text */
+        font-size: 1.2em;
+        font-family: "Helvetica", "Arial", "sans-serif";
+
+        span {
+            vertical-align: -5%;
+            padding: 0 1em;
+        }
+
+        a {
+            font-weight: bold;
+        }
+    }
+
+    .lesson-buttons {
+        /* Position */
+        float: right;
+        display: inline-block;
+        vertical-align: bottom;
+        margin-right: 1em;
+
+        a.button {
+            /* Position */
+            display: inline-block;
+            /*width: 9em;*/
+            width: 12em;
+            text-align: center;
+            margin-left: 2em;
+            /* Style */
+            background-color: #fff;
+            border-radius: 98px;
+            padding: 0.75em 1.25em;
+            /* Text */
+            color: var(--course-color1);
+            font-family: "Varela Round";
+            font-size: 1.2em;
+            font-variant: small-caps;
+            font-weight: bold;
+        }
+    }
+}
+
 /*.exercise-holder {*/
     /*background-color: #fff;*/
     /*border-radius: 20px;*/
@@ -9,7 +112,7 @@ body {
 }
 
 .exercise-holder .exercise-body {
-    min-height: 30em;
+    min-height: 24em;
     padding: 1em 2em;
 }
 
