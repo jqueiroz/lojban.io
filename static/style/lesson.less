@@ -1,19 +1,4 @@
-@import "general.less";
-
-.lesson {
-    &:extend(.content);
-
-    /* Style */
-    background-color: var(--course-color1);
-}
-
-.lesson-header {
-    &:extend(.content-header);
-
-    /* Style */
-    background-color: var(--course-color1);
-    padding: 2.5em;
-}
+@import "main.less";
 
 .lesson-header,
 .lesson-header a {
@@ -22,7 +7,7 @@
 }
 
 .lesson-header {
-    @lesson-info-height: 5.7rem;
+    @lesson-info-height: 4.5em;
 
     .lesson-info:before {
         /* Position */
@@ -38,16 +23,16 @@
 
     .lesson-info {
         /* Position */
-        float: left;
         position: relative;
-        left: calc(@lesson-info-height + 0.3em);
+        margin-left: calc(@lesson-info-height);
         padding-left: 2em;
+        height: @lesson-info-height;
     }
 
     .course-title {
         /* Text */
         font-size: 1.5em;
-        font-weight: bolder;
+        font-weight: 600;
         font-family: "Varela Round";
         /* Border */
         border-bottom: solid 1px #fff;
@@ -56,7 +41,7 @@
 
     .lesson-title {
         /* Position */
-        margin-top: 0.8em;
+        margin-top: 0em;
         /* Text */
         font-size: 1.2em;
         font-family: "Helvetica", "Arial", "sans-serif";
@@ -73,7 +58,9 @@
 
     .lesson-buttons {
         /* Position */
-        float: right;
+        position: absolute;
+        top: calc(50% - 1.5em);
+        left: 40em;
         margin-right: 1em;
 
         a.button {
@@ -101,9 +88,6 @@
     /* Style */
     line-height: 1.5em;
     background-color: #fff;
-    padding: 10px 30px 30px 30px;
-    /* Border */
-    border-radius: 0 0 10px 10px;
     /* Text */
     font-size: 1em;
     color: #333;

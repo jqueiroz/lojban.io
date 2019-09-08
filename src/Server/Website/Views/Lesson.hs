@@ -35,22 +35,25 @@ displayLessonHome userIdentityMaybe topbarCategory course lessonNumber = do
         H.body $ do
             displayTopbar userIdentityMaybe topbarCategory
             H.div B.! A.class_ (H.stringValue "main") $ do
-                H.div B.! A.class_ (H.stringValue "lesson") $ do
+                H.div B.! A.class_ (H.textValue "header") $ do
                     displayLessonHeader baseLessonUrl LessonHome course lessonNumber
-                    H.div B.! A.class_ (H.stringValue "lesson-body") $ do
-                        displayLessonTabs lesson
-                        when (isJust $ lessonLecture lesson) $ do
-                            H.div B.! A.class_ (H.stringValue "lesson-lecture") $ do
-                                H.div $ do
-                                    fromRight . P.runPure . PWH.writeHtml5 P.def $ fromJust (lessonLecture lesson)
-                        when (isJust $ lessonPlan lesson) $ do
-                            H.div B.! A.class_ (H.stringValue "lesson-plan") $ do
-                                H.div $ do
-                                    fromRight . P.runPure . PWH.writeHtml5 P.def $ fromJust (lessonPlan lesson)
-                        when (isJust $ lessonVocabulary lesson) $ do
-                            H.div B.! A.class_ (H.stringValue "lesson-vocabulary") $ do
-                                H.div $ do
-                                    fromRight . P.runPure . PWH.writeHtml5 P.def . buildGlossaryDocument dictionary $ fromJust (lessonVocabulary lesson)
+                H.div B.! A.class_ (H.textValue "body") $ do
+                    H.div B.! A.class_ (H.stringValue "lesson") $ do
+                        H.div B.! A.class_ (H.stringValue "lesson-body") $ do
+                            displayLessonTabs lesson
+                            when (isJust $ lessonLecture lesson) $ do
+                                H.div B.! A.class_ (H.stringValue "lesson-lecture") $ do
+                                    H.div $ do
+                                        fromRight . P.runPure . PWH.writeHtml5 P.def $ fromJust (lessonLecture lesson)
+                            when (isJust $ lessonPlan lesson) $ do
+                                H.div B.! A.class_ (H.stringValue "lesson-plan") $ do
+                                    H.div $ do
+                                        fromRight . P.runPure . PWH.writeHtml5 P.def $ fromJust (lessonPlan lesson)
+                            when (isJust $ lessonVocabulary lesson) $ do
+                                H.div B.! A.class_ (H.stringValue "lesson-vocabulary") $ do
+                                    H.div $ do
+                                        fromRight . P.runPure . PWH.writeHtml5 P.def . buildGlossaryDocument dictionary $ fromJust (lessonVocabulary lesson)
+                    displayFooter
 
 displayLessonTabs :: Lesson -> H.Html
 displayLessonTabs lesson = do
