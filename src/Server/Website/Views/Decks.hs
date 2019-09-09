@@ -39,7 +39,7 @@ displayDecksHome userIdentityMaybe = do
                             displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
                             displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
                             displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
-                displayFooter
+                    displayFooter
 
 displayDeck :: (T.Text, Deck) -> H.Html
 displayDeck (url, deck) = do

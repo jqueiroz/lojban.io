@@ -50,7 +50,7 @@ displayCoursesHome userIdentityMaybe = do
                             displayCourse ("/courses/brivla", Courses.English.Vocabulary.Brivla.Course.course)
                             displayCourse ("/courses/brivla", Courses.English.Vocabulary.Brivla.Course.course)
                             displayCourse ("/courses/brivla", Courses.English.Vocabulary.Brivla.Course.course)
-                displayFooter
+                    displayFooter
 
 displayCourse :: (T.Text, Course) -> H.Html
 displayCourse (url, course) = do
