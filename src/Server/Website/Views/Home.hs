@@ -21,7 +21,7 @@ displayHome :: Maybe UserIdentity -> H.Html
 displayHome userIdentityMaybe =
     H.html $ do
         H.head $ do
-            H.title $ H.toHtml ("Home" :: String)
+            H.title $ H.toHtml ("lojban" :: T.Text)
             includeUniversalStylesheets
             includeUniversalScripts
             includeInternalStylesheet "home.css"

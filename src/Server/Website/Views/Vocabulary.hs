@@ -9,6 +9,7 @@ import Server.Website.Views.Core
 import Server.Website.Views.Modules
 import qualified Courses.English.Vocabulary.Brivla.Course
 import qualified Courses.English.Vocabulary.Attitudinals.Course
+import qualified Data.Text as T
 import qualified Text.Blaze as B
 import qualified Text.Blaze.Html5 as H
 import qualified Text.Blaze.Html5.Attributes as A
@@ -22,7 +23,7 @@ displayVocabularyHome userIdentityMaybe = do
             ]
     H.html $ do
         H.head $ do
-            H.title $ H.toHtml ("Vocabulary" :: String)
+            H.title $ H.toHtml ("lojban :: Vocabulary" :: T.Text)
             includeUniversalStylesheets
             includeUniversalScripts
             includeInternalStylesheet "module.css"

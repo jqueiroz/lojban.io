@@ -9,6 +9,7 @@ import Server.Website.Views.Core
 import Server.Website.Views.Modules
 import qualified Courses.English.Grammar.Introduction.Course
 import qualified Courses.English.Grammar.Crash.Course
+import qualified Data.Text as T
 import qualified Text.Blaze as B
 import qualified Text.Blaze.Html5 as H
 import qualified Text.Blaze.Html5.Attributes as A
@@ -22,7 +23,7 @@ displayGrammarHome userIdentityMaybe = do
             ]
     H.html $ do
         H.head $ do
-            H.title $ H.toHtml ("Grammar" :: String)
+            H.title $ H.toHtml ("lojban :: Grammar" :: T.Text)
             includeUniversalStylesheets
             includeUniversalScripts
             includeInternalStylesheet "module.css"
