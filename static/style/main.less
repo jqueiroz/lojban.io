@@ -205,6 +205,7 @@ h6 {
 
 .header2::after {
     /* Position */
+    z-index: 0;
     position: absolute;
     display: block;
     left: 0;
@@ -218,6 +219,10 @@ h6 {
 
     background: url(https://as1.ftcdn.net/jpg/01/44/55/82/500_F_144558230_SZVWMflJMRZthG0F4sNNFniMYfPE2NNK.jpg);
     background-size: 35em;
+}
+
+.header * {
+    z-index: 1;
 }
 
 .body {
