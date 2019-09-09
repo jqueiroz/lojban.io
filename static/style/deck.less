@@ -1,0 +1,69 @@
+@import "main.less";
+
+.deck-header {
+    @deck-info-height: 4.5em;
+
+    .deck-info:before {
+        /* Position */
+        position: absolute;
+        left: -@deck-info-height;
+        width: @deck-info-height;
+        height: @deck-info-height;
+        /* Background */
+        background: url(https://image.flaticon.com/icons/svg/993/993723.svg);
+        background-size: @deck-info-height @deck-info-height;
+        content: "";
+    }
+
+    .deck-info {
+        /* Position */
+        position: relative;
+        margin-left: calc(@deck-info-height);
+        padding-left: 1em;
+        height: @deck-info-height;
+    }
+
+    .deck-title {
+        /* Text */
+        font-size: 1.5em;
+        font-weight: 600;
+        font-family: "Varela Round";
+    }
+
+    .deck-cards-count,
+    .deck-cards-count:before,
+    .deck-cards-count:after {
+        /* Text */
+        font-size: 1.2em;
+        font-weight: normal;
+        font-family: "Helvetica", "Arial", "sans-serif";
+    }
+
+    .deck-cards-count:before {
+        content: "< ";
+    }
+
+    .deck-cards-count:after {
+        content: " >";
+    }
+
+    .deck-cards-count {
+        /* Position */
+        margin-top: -0.3em;
+        margin-left: 1em;
+    }
+}
+
+.deck-contents {
+    /* Style */
+    line-height: 1.5em;
+    /* Text */
+    font-size: 1em;
+    color: #333;
+}
+
+.deck-contents h2 {
+    /*border-bottom: solid 1px #000;*/
+    margin-bottom: 0.5em;
+    color: #000;
+}

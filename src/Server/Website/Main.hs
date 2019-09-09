@@ -10,12 +10,14 @@ import qualified Courses.English.Grammar.Introduction.Course
 import qualified Courses.English.Grammar.Crash.Course
 import qualified Courses.English.Vocabulary.Attitudinals.Course
 import qualified Courses.English.Vocabulary.Brivla.Course
+import qualified Decks.English.ContextualizedBrivla
 import Server.Core
 import Server.Util (forceSlash, getBody)
 import Server.Website.Views.Core
 import Server.Website.Views.Home (displayHome)
 import Server.Website.Views.Courses (displayCoursesHome)
 import Server.Website.Views.Decks (displayDecksHome)
+import Server.Website.Views.Deck (displayDeckHome)
 import Server.Website.Views.Grammar (displayGrammarHome)
 import Server.Website.Views.Vocabulary (displayVocabularyHome)
 import Server.Website.Views.Resources (displayResourcesHome)
@@ -56,7 +58,10 @@ handleCourses userIdentityMaybe = msum
     ]
 
 handleDecks :: Maybe UserIdentity -> ServerPart Response
-handleDecks userIdentityMaybe = ok . toResponse $ displayDecksHome userIdentityMaybe
+handleDecks userIdentityMaybe = msum
+    [ forceSlash . ok . toResponse $ displayDecksHome userIdentityMaybe
+    , dir "contextualized-brivla" $ handleDeck userIdentityMaybe Decks.English.ContextualizedBrivla.deck
+    ]
 
 handleGrammar :: Maybe UserIdentity -> ServerPart Response
 handleGrammar userIdentityMaybe = msum
@@ -84,6 +89,14 @@ handleCourse userIdentityMaybe topbarCategory course =
         [ forceSlash . ok . toResponse . displayCourseHome userIdentityMaybe topbarCategory $ course
         , path $ \n -> (guard $ 1 <= n && n <= (length lessons)) >> (handleLesson userIdentityMaybe topbarCategory course n)
         ]
+
+handleDeck :: Maybe UserIdentity -> Deck -> ServerPart Response
+handleDeck userIdentityMaybe deck = msum
+    [ forceSlash . ok . toResponse $ displayDeckHome userIdentityMaybe deck
+    , dir "exercises" $ msum
+        [
+        ]
+    ]
 
 handleLesson :: Maybe UserIdentity -> TopbarCategory -> Course -> Int -> ServerPart Response
 handleLesson userIdentityMaybe topbarCategory course lessonNumber = msum
