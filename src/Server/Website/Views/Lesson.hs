@@ -12,6 +12,7 @@ import Control.Monad (when)
 import Data.Maybe (isJust, fromJust)
 import Data.Either.Unwrap (fromRight)
 import Courses.Framework.DocumentBuilders (buildGlossaryDocument)
+import qualified Data.Text as T
 import qualified Text.Pandoc as P
 import qualified Text.Pandoc.Writers.HTML as PWH
 import qualified Text.Blaze as B
@@ -36,6 +37,7 @@ displayLessonHome userIdentityMaybe topbarCategory course lessonNumber = do
             displayTopbar userIdentityMaybe topbarCategory
             H.div B.! A.class_ (H.stringValue "main") $ do
                 H.div B.! A.class_ (H.textValue "header") $ do
+                    H.div B.! A.class_ (H.textValue "header-bg") $ H.toHtml ("" :: T.Text)
                     displayLessonHeader baseLessonUrl LessonHome course lessonNumber
                 H.div B.! A.class_ (H.textValue "body") $ do
                     H.div B.! A.class_ (H.stringValue "lesson") $ do

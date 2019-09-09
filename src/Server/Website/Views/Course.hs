@@ -8,6 +8,7 @@ import Core
 import Server.Core
 import Server.Website.Views.Core
 import Control.Monad (forM_)
+import qualified Data.Text as T
 import qualified Text.Blaze as B
 import qualified Text.Blaze.Html5 as H
 import qualified Text.Blaze.Html5.Attributes as A
@@ -28,6 +29,7 @@ displayCourseHome userIdentityMaybe topbarCategory course = do
             displayTopbar userIdentityMaybe topbarCategory
             H.div B.! A.class_ (H.stringValue "main") $ do
                 H.div B.! A.class_ (H.textValue "header") $ do
+                    H.div B.! A.class_ (H.textValue "header-bg") $ H.toHtml ("" :: T.Text)
                     displayCourseMenu baseCourseUrl course
                 H.div B.! A.class_ (H.textValue "body") $ do
                     H.div B.! A.class_ (H.stringValue "course") $ do

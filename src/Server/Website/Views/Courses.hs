@@ -28,6 +28,7 @@ displayCoursesHome userIdentityMaybe = do
             displayTopbar userIdentityMaybe TopbarCourses
             H.div B.! A.class_ (H.textValue "main") $ do
                 H.div B.! A.class_ (H.textValue "header") $ do
+                    H.div B.! A.class_ (H.textValue "header-bg") $ H.toHtml ("" :: T.Text)
                     H.h1 $ H.toHtml ("Courses" :: T.Text)
                     H.p $ H.toHtml ("Learn lojban with carefully designed courses, and practice with entertaining interactive exercises." :: T.Text)
                     H.p $ H.toHtml ("Learn from the beginning if you are a newcomer, or learn by subject if you are already familiar with the core aspects of the language." :: T.Text)
