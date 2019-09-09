@@ -30,7 +30,7 @@ displayCoursesHome userIdentityMaybe = do
                 H.div B.! A.class_ (H.textValue "header") $ do
                     H.h1 $ H.toHtml ("Courses" :: T.Text)
                     H.p $ H.toHtml ("Learn lojban with carefully designed courses, and practice with entertaining interactive exercises." :: T.Text)
-                    H.p $ H.toHtml ("Either learn from the beginning if you are a newcomer, or learn by subject if you are already familiar with the core aspects of the language." :: T.Text)
+                    H.p $ H.toHtml ("Learn from the beginning if you are a newcomer, or learn by subject if you are already familiar with the core aspects of the language." :: T.Text)
                 H.div B.! A.class_ (H.textValue "body") $ do
                     H.div B.! A.class_ (H.textValue "grammar") $ do
                         H.h2 $ H.toHtml ("Learn from the beginning" :: T.Text)
