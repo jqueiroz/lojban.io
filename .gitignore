@@ -1,3 +1,4 @@
 *.swp
 .docker-binary
 .stack-work
+node_modules
