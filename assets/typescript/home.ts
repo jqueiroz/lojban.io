@@ -1,3 +1,6 @@
+
+import * as $ from 'jquery';
+
 let setupCarousel = function(previousButton, nextButton, elements) {
     // TODO: dynamically compute the number of pages
     // TODO: implement animations
