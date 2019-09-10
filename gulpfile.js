@@ -41,6 +41,8 @@ gulp.task("vendors:scripts", function () {
         .pipe(gulp.dest("./static/scripts"));
 });
 
+gulp.task('default', gulp.series('scripts', 'vendors:scripts'));
+
 gulp.task("watch", function () {
     // gulp.watch(SCSS_FILES, gulp.series("sass"));
     gulp.watch(TYPESCRIPT_FILES, gulp.series("scripts"));
