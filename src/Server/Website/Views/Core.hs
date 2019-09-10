@@ -62,8 +62,8 @@ includeCourseStylesheet course = includeInlineStylesheet code where
 -- * Scripts
 includeUniversalScripts :: H.Html
 includeUniversalScripts = do
-    includeInternalScript "jquery-2.1.4.min.js"
-    includeInternalScript "bootstrap.min.js"
+    includeInternalScript "vendors.js"
+    -- * includeInternalScript "bootstrap.min.js"
 
 includeInternalScript :: String -> H.Html
 includeInternalScript = includeExternalScript . ("/static/scripts/"++)
