@@ -32,4 +32,4 @@ RUN cd /lojto && LOJBAN_TOOL_BYPASS_NIX=true ./buildscripts/compile-less.sh
 EXPOSE 8000/tcp
 
 ####################### Default command #######################
-CMD echo "hosts: files dns" > /etc/nsswitch.conf && cd /lojto && .stack-work/install/x86_64-linux-nix/*/*/bin/server
+CMD echo "hosts: files dns" > /etc/nsswitch.conf && (redis-server >/dev/null 2>/dev/null &) && cd /lojto && .stack-work/install/x86_64-linux-nix/*/*/bin/server

@@ -5,7 +5,7 @@ FROM nixorg/nix:latest
 RUN mkdir -p /etc/nix && echo 'sandbox = false' > /etc/nix/nix.conf
 RUN nix-channel --add https://nixos.org/channels/nixos-19.03 nixpkgs
 RUN nix-channel --update
-RUN nix-env -iA nixpkgs.stack nixpkgs.coreutils nixpkgs.lessc nixpkgs.findutils
+RUN nix-env -iA nixpkgs.stack nixpkgs.coreutils nixpkgs.lessc nixpkgs.findutils nixpkgs.redis
 
 ####################### Configure the project #######################
 
@@ -46,4 +46,4 @@ RUN cd /lojto && LOJBAN_TOOL_BYPASS_NIX=true ./buildscripts/compile-less.sh
 EXPOSE 8000/tcp
 
 ####################### Default command #######################
-CMD echo "hosts: files dns" > /etc/nsswitch.conf && cd /lojto && .stack-work/install/x86_64-linux-nix/*/*/bin/server
+CMD echo "hosts: files dns" > /etc/nsswitch.conf && (redis-server >/dev/null 2>/dev/null &) && cd /lojto && .stack-work/install/x86_64-linux-nix/*/*/bin/server
