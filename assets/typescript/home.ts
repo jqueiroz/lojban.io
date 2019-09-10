@@ -1,7 +1,9 @@
 
-import * as $ from 'jquery';
+//import * as $ from 'jquery';
 
-let setupCarousel = function(previousButton, nextButton, elements) {
+//$ = require('jquery');
+
+let setupCarousel = function(previousButton, nextButton, elements : JQuery) {
     // TODO: dynamically compute the number of pages
     // TODO: implement animations
     let numberOfElements = elements.length;

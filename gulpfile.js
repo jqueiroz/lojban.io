@@ -13,6 +13,7 @@ var gulp = require('gulp');
 var concat = require("gulp-concat");
 var ts = require('gulp-typescript');
 var uglify = require("gulp-uglify");
+var tsProject = ts.createProject('./tsconfig.json');
 
 /*
 gulp.task("fonts",
@@ -29,8 +30,8 @@ gulp.task("sass", function () {
 */
 
 gulp.task("scripts", function () {
-    return gulp.src(TYPESCRIPT_FILES)
-        .pipe(ts())
+    return tsProject.src()
+        .pipe(tsProject())
         .pipe(gulp.dest("./static/scripts"));
 });
 
