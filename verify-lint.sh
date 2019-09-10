@@ -11,7 +11,7 @@ run_command(){
 }
 
 if [[ -n "$LOJBAN_TOOL_BYPASS_NIX" ]]; then
-    ./buildscripts/aux/lint.sh
+    ./buildscripts/helpers/lint.sh
 else
     # Setup nix-shell environment
     echo "--> Step 1 - Preparing nix-shell environment..."
@@ -19,5 +19,5 @@ else
 
     # Compile .less files
     echo "--> Step 2 - Running linters..."
-    run_command "./buildscripts/aux/lint.sh"
+    run_command "./buildscripts/helpers/lint.sh"
 fi

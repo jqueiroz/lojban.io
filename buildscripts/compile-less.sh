@@ -12,7 +12,7 @@ run_command(){
 
 if [[ -n "$LOJBAN_TOOL_BYPASS_NIX" ]]; then
     echo "--> Compiling *.less files..."
-    ./buildscripts/aux/lessc.sh
+    ./buildscripts/helpers/lessc.sh
 else
     # Setup nix-shell environment
     echo "--> Step 1 - Preparing nix-shell environment..."
@@ -20,5 +20,5 @@ else
 
     # Compile .less files
     echo "--> Step 2 - Compiling *.less files..."
-    run_command "./buildscripts/aux/lessc.sh"
+    run_command "./buildscripts/helpers/lessc.sh"
 fi
