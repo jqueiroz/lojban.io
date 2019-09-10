@@ -1,0 +1,33 @@
+{
+  "name": "lojban-tool",
+  "version": "1.0.0",
+  "description": "The main goal of this project is to create a robust teaching platform for the artificial language [Lojban](https://mw.lojban.org/papri/Lojban).\r This project is heavily inspired by Duolingo, but it is somewhat more specific in that it attempts to exploit some of Lojban's unique features, such as machine-parsability.",
+  "main": "gulpfile.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jqueiroz/lojban-tool.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jqueiroz/lojban-tool/issues"
+  },
+  "homepage": "https://github.com/jqueiroz/lojban-tool#readme",
+  "dependencies": {
+    "@types/jquery": "^3.3.31",
+    "@types/typescript": "^2.0.0",
+    "bootstrap": "3.3.7",
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-typescript": "^5.0.1",
+    "gulp-uglify": "^3.0.2",
+    "jquery": "^3.4.1",
+    "typescript": "^3.6.2"
+  }
+}
