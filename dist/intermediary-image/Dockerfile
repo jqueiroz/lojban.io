@@ -17,5 +17,5 @@ COPY lojto.cabal /lojto/lojto.cabal
 RUN cd /lojto && stack setup
 
 # Install dependencies
-COPY libs /lojto/libs
+COPY haskell/libs /lojto/haskell/libs
 RUN cd /lojto && stack install --only-dependencies
