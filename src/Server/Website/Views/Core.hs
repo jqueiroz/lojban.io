@@ -63,7 +63,7 @@ includeCourseStylesheet course = includeInlineStylesheet code where
 -- * Scripts
 includeUniversalScripts :: H.Html
 includeUniversalScripts = do
-    includeInternalScript "vendors.js"
+    H.toHtml ("" :: T.Text)
 
 includeInternalScript :: String -> H.Html
 includeInternalScript = includeExternalScript . ("/static/scripts/"++)
