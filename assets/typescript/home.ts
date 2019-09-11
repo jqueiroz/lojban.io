@@ -1,5 +1,4 @@
-
-import * as $ from 'jquery';
+import * as $ from "jquery";
 
 let setupCarousel = function(previousButton, nextButton, elements) {
     // TODO: dynamically compute the number of pages
@@ -17,7 +16,7 @@ let setupCarousel = function(previousButton, nextButton, elements) {
                 $(elements[indexOfCurrentElement]).show();
             }
         }
-    }
+    };
     displayPage(0);
 
     let currentPage = 0;
@@ -35,6 +34,10 @@ let setupCarousel = function(previousButton, nextButton, elements) {
 };
 
 $(document).ready(function() {
-    setupCarousel($(".courses .previous"), $(".courses .next"), $(".courses .course"));
+    setupCarousel(
+        $(".courses .previous"),
+        $(".courses .next"),
+        $(".courses .course")
+    );
     setupCarousel($(".decks .previous"), $(".decks .next"), $(".decks .deck"));
 });
