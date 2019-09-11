@@ -24,9 +24,17 @@ RUN mv /lojto/.stack-work/install/x86_64-linux-nix/*/*/doc /lojto/doc
 # Copy assets
 COPY assets /lojto/assets
 
-# Compile stylesheet files
+# Copy buildscripts
 COPY buildscripts /lojto/buildscripts
+
+# Generate stylesheet files
 RUN cd /lojto && LOJBAN_TOOL_BYPASS_NIX=true ./buildscripts/compile-less.sh
+
+# Generate javascript files
+COPY package.json /lojto/package.json
+COPY package-lock.json /lojto/package-lock.json
+COPY gulpfile.js /lojto/gulpfile.js
+RUN cd /lojto && npm install && LOJBAN_TOOL_BYPASS_NIX=true ./buildscripts/make-javascript.sh
 
 ####################### Expose ports #######################
 EXPOSE 8000/tcp

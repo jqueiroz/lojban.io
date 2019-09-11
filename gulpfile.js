@@ -1,6 +1,7 @@
 'use strict';
 
 const LESS_FILES = 'assets/less/**/*.less';
+const JAVASCRIPT_FILES = 'assets/javascript/**/*.js';
 const TYPESCRIPT_FILES = 'assets/typescript/**/*.ts';
 const FONT_FILES = [
     './node_modules/bootstrap/fonts/*.*',
@@ -27,11 +28,18 @@ gulp.task("fonts", function() {
         .pipe(gulp.dest("./Assets/fonts"));
 });
 
-gulp.task("scripts", function () {
+gulp.task("typescript", function () {
     return gulp.src(TYPESCRIPT_FILES)
         .pipe(ts())
         .pipe(gulp.dest("./static/scripts"));
 });
+
+gulp.task("javascript", function () {
+    return gulp.src(JAVASCRIPT_FILES)
+        .pipe(gulp.dest("./static/scripts"));
+});
+
+gulp.task('scripts', gulp.series('typescript', 'javascript'));
 
 gulp.task("styles", function(){
     return gulp.src(LESS_FILES)

@@ -6,7 +6,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 cd "$DIR/../.."
 
 # Compile first-party scripts
-gulp scripts
+./node_modules/.bin/gulp scripts
 
 # Compile third-party scripts
-gulp vendors:scripts
+./node_modules/.bin/gulp vendors:scripts
