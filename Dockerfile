@@ -8,8 +8,7 @@ COPY lojto.cabal /lojto/lojto.cabal
 
 # Copy source code
 COPY courses /lojto/courses
-COPY app /lojto/app
-COPY src /lojto/src
+COPY haskell /lojto/haskell
 COPY LICENSE /lojto/LICENSE
 
 # Copy resources
