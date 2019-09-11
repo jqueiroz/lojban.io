@@ -434,7 +434,14 @@ var createExercisesManager = function(holder) {
         // Dictionary
         body.find(".sentence.lojbanic").each(function() {
             let $this = $(this);
-            $this.html($this.text().replace(/\b([\w']+)\b/g, "<span class='lojbanic'>$1</span>"));
+            $this.html(
+                $this
+                    .text()
+                    .replace(
+                        /\b([\w']+)\b/g,
+                        "<span class='lojbanic'>$1</span>"
+                    )
+            );
         });
         $("span.lojbanic").mouseover(function() {
             // Delete old tooltips
@@ -460,12 +467,18 @@ var createExercisesManager = function(holder) {
             position.top -= $(document).scrollTop();
             position.left += $(this).width() / 2;
             // Create tooltip
-            let tooltipHolder = $("<div>").addClass("dictionary-tooltip-holder").css(position);
-            let tooltip = $(tooltipHolder).addClass("dictionary-tooltip").css(position);
+            let tooltipHolder = $("<div>")
+                .addClass("dictionary-tooltip-holder")
+                .css(position);
+            let tooltip = $(tooltipHolder)
+                .addClass("dictionary-tooltip")
+                .css(position);
             let definitions = definitionText.split("; ");
             for (let i = 0; i < definitions.length; ++i) {
                 let definition = definitions[i];
-                let definitionElement = $("<div/>").addClass("dictionary-tooltip-definition").text(definition);
+                let definitionElement = $("<div/>")
+                    .addClass("dictionary-tooltip-definition")
+                    .text(definition);
                 tooltip.append(definitionElement);
             }
             tooltipHolder.append(tooltip);
