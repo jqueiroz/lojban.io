@@ -28,13 +28,31 @@ else
     echo -e "Try running: ${BLUE}hlint src${NC}"
 fi
 
+# Run linter for Typescript
+echo ""
+echo "=====> Typescript:"
+echo "=> Checking formatting..."
+
+ALL_FILES_OKAY="true"
+for file in $(prettier --list-different "assets/typescript/*.ts"); do
+    ALL_FILES_OKAY="false"
+    echo -e "${RED}$file${NC}"
+done
+
+if [ "$ALL_FILES_OKAY" == "true" ]; then
+    echo -e "${GREEN}All files passed.${NC}"
+else
+    echo -e "Deviations from coding style found in the above file(s). Forgot to run Prettier?"
+    echo -e "Try running: ${BLUE}prettier --write assets/typescript/*.ts${NC}"
+fi
+
 # Run linter for Javascript
 echo ""
 echo "=====> Javascript:"
 echo "=> Checking formatting..."
 
 ALL_FILES_OKAY="true"
-for file in $(prettier --list-different "static/scripts/*.js" | grep -v "\.min\.js$"); do
+for file in $(prettier --list-different "assets/javascript/*.js" | grep -v "\.min\.js$"); do
     ALL_FILES_OKAY="false"
     echo -e "${RED}$file${NC}"
 done
@@ -43,16 +61,16 @@ if [ "$ALL_FILES_OKAY" == "true" ]; then
     echo -e "${GREEN}All files passed.${NC}"
 else
     echo -e "Deviations from coding style found in the above file(s). Forgot to run Prettier?"
-    echo -e "Try running: ${BLUE}prettier --write static/scripts/*.js${NC}"
+    echo -e "Try running: ${BLUE}prettier --write assets/javascript/*.js${NC}"
 fi
 
-# Run linter for CSS/Less
+# Run linter for Less
 echo ""
 echo "=====> Less:"
 echo "=> Checking formatting..."
 
 ALL_FILES_OKAY="true"
-for file in $(prettier --list-different "static/style/*.less"); do
+for file in $(prettier --list-different "assets/less/*.less"); do
     ALL_FILES_OKAY="false"
     echo -e "${RED}$file${NC}"
 done
@@ -61,5 +79,5 @@ if [ "$ALL_FILES_OKAY" == "true" ]; then
     echo -e "${GREEN}All files passed.${NC}"
 else
     echo -e "Deviations from coding style found in the above file(s). Forgot to run Prettier?"
-    echo -e "Try running: ${BLUE}prettier --write static/style/*.less${NC}"
+    echo -e "Try running: ${BLUE}prettier --write assets/less/*.less${NC}"
 fi
