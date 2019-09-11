@@ -36,7 +36,7 @@ Other useful commands:
 * `make`: builds the webserver executable as well as the associated documentation for the Haskell code.
 * `make server`: builds the webserver executable.
 * `make docs`: builds the documentation for the Haskell code.
-* `make less`: compiles _*.less_ files into _*.css_ files (this step is also performed when running `make server`).
+* `make css`: compiles _*.less_ files (located in `./assets/less`) into _*.css_ files (to be saved in `./static/style`). This step is also performed when running `make server`.
 * `./run-ghci.sh`: starts a [GHCi](https://wiki.haskell.org/GHC/GHCi) prompt.
 * `./verify-lint.sh`: runs source code linters ([hlint](https://hackage.haskell.org/package/hlint) for Haskell code and [prettier](https://prettier.io/) for Javascript/Less/CSS code)
 * `./verify-tests.sh`: runs tests for the project.
