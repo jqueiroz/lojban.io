@@ -1,11 +1,3 @@
 .git
-.stack-work
-*/.stack-work
-*/*/.stack-work
-*/*/*/.stack-work
-*/*/*/*/.stack-work
-node_modules
-*/node_modules
-*/*/node_modules
-*/*/*/node_modules
-*/*/*/*/node_modules
+**/.stack-work
+**/node_modules
