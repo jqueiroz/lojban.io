@@ -15,4 +15,4 @@ npm install
 ./node_modules/.bin/gulp scripts
 
 # Compile third-party scripts
-./node_modules/.bin/gulp vendors:scripts
+#./node_modules/.bin/gulp vendors:scripts
