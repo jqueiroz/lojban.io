@@ -39,7 +39,7 @@ Other useful commands:
 * `make css`: compiles _*.less_ files (located in `./assets/less`) into _*.css_ files (to be saved in `./static/style`). This step is also performed when running `make server`.
 * `make js`: compiles _*.ts_ files (located in `./assets/typescript`) into _*.js_ files (to be saved in `./static/scripts`). This step is also performed when running `make server`.
 * `./run-ghci.sh`: starts a [GHCi](https://wiki.haskell.org/GHC/GHCi) prompt.
-* `./verify-lint.sh`: runs source code linters ([hlint](https://hackage.haskell.org/package/hlint) for Haskell code and [prettier](https://prettier.io/) for Javascript/Less/CSS code)
+* `./verify-lint.sh`: runs source code linters ([hlint](https://hackage.haskell.org/package/hlint) for Haskell code and [prettier](https://prettier.io/) for Typescript/Javascript/Less/CSS code)
 * `./verify-tests.sh`: runs tests for the project.
 * `./buildscripts/stack.sh`: runs [stack](https://docs.haskellstack.org/en/stable/README/) inside an isolated nix-shell environment, eg. `./buildscripts/stack.sh build` will build the webserver executable and `./buildscripts/stack.sh haddock --no-haddock-deps` will build the Haskell documentation.
 
