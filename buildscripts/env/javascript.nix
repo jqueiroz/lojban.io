@@ -4,7 +4,8 @@ stdenv.mkDerivation {
   name = "javascript";
 
   buildInputs = [
-    nodePackages.typescript
-    nodePackages.gulp
+    nodejs-10_x
+    #nodePackages.typescript
+    #nodePackages.gulp
   ];
 }
