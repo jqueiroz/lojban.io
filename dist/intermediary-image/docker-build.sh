@@ -6,4 +6,4 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 cd "$DIR/../.."
 
 # Build docker image
-docker build -t lojban-dependencies -f ./dist/dependencies/Dockerfile .
+docker build -t lojban-dependencies -f ./dist/intermediary-image/Dockerfile .
