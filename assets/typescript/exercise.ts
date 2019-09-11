@@ -1,3 +1,7 @@
+import * as $ from "jquery";
+
+declare var dictionary;
+
 var createExercisesManager = function(holder) {
     // Elements
     var body = null;
@@ -51,7 +55,7 @@ var createExercisesManager = function(holder) {
         };
     })();
     // Requests
-    var retrieve = function() {
+    var retrieve = function(exercise_id) {
         return $.ajax({
             url: exercise_id + "/get",
             method: "GET",
@@ -447,7 +451,6 @@ var createExercisesManager = function(holder) {
             // Delete old tooltips
             $(".dictionary-tooltip-holder").remove();
             // Lookup definition
-            let dictionary = window.dictionary || null;
             if (!dictionary || !dictionary.valsiDefinition) {
                 return;
             }
@@ -469,10 +472,10 @@ var createExercisesManager = function(holder) {
             // Create tooltip
             let tooltipHolder = $("<div>")
                 .addClass("dictionary-tooltip-holder")
-                .css(position);
+                .css({left: position.left, top: position.top});
             let tooltip = $(tooltipHolder)
                 .addClass("dictionary-tooltip")
-                .css(position);
+                .css({left: position.left, top: position.top});
             let definitions = definitionText.split("; ");
             for (let i = 0; i < definitions.length; ++i) {
                 let definition = definitions[i];
