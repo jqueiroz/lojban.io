@@ -1,8 +1,8 @@
 'use strict';
 
-const LESS_FILES = 'assets/less/**/*.less';
-const JAVASCRIPT_FILES = 'assets/javascript/**/*.js';
-const TYPESCRIPT_FILES = 'assets/typescript/**/*.ts';
+const LESS_FILES = './less/**/*.less';
+const JAVASCRIPT_FILES = './javascript/**/*.js';
+const TYPESCRIPT_FILES = './typescript/**/*.ts';
 const FONT_FILES = [
     './node_modules/bootstrap/fonts/*.*',
     './node_modules/font-awesome/fonts/*.*'
@@ -26,7 +26,7 @@ var uglify = require("gulp-uglify");
 /* TASK'S */
 gulp.task("fonts", function() {
     return gulp.src(FONT_FILES)
-        .pipe(gulp.dest("./static/fonts"));
+        .pipe(gulp.dest("../static/fonts"));
 });
 
 gulp.task("typescript", function () {
@@ -35,12 +35,12 @@ gulp.task("typescript", function () {
         .pipe(browserify({
             insertGlobals : true
         }))
-        .pipe(gulp.dest("./static/scripts"));
+        .pipe(gulp.dest("../static/scripts"));
 });
 
 gulp.task("javascript", function () {
     return gulp.src(JAVASCRIPT_FILES)
-        .pipe(gulp.dest("./static/scripts"));
+        .pipe(gulp.dest("../static/scripts"));
 });
 
 gulp.task('scripts', gulp.series('typescript', 'javascript'));
@@ -49,20 +49,20 @@ gulp.task("styles", function(){
     return gulp.src(LESS_FILES)
         .pipe(less({
         }))
-        .pipe(gulp.dest('./static/style'));
+        .pipe(gulp.dest('../static/style'));
 });
 
 gulp.task("vendors:scripts", function () {
     return gulp.src(VENDORS_SCRIPTS_FILES)
         .pipe(concat("vendors.js"))
         .pipe(uglify())
-        .pipe(gulp.dest("./static/scripts"));
+        .pipe(gulp.dest("../static/scripts"));
 });
 
 gulp.task("vendors:styles", function() {
     return gulp.src(VENDORS_STYLES_FILES)
         .pipe(concat("vendors.css"))
-        .pipe(gulp.dest("./static/style"));
+        .pipe(gulp.dest("../static/style"));
 });
 
 gulp.task('default', gulp.series('fonts', 'scripts', 'styles', 'vendors:scripts', 'vendors:styles'));
