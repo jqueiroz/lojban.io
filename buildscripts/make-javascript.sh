@@ -11,14 +11,14 @@ run_command(){
 }
 
 if [[ -n "$LOJBAN_TOOL_BYPASS_NIX" ]]; then
-    echo "--> Building scripts..."
+    echo "--> Generating javascript files..."
     ./buildscripts/helpers/gulp.sh
 else
     # Setup nix-shell environment
     echo "--> Step 1 - Preparing nix-shell environment..."
     run_command ""
 
-    # Compile .less files
-    echo "--> Step 2 - Building scripts..."
+    # Compile .ts files
+    echo "--> Step 2 - Generating javascript files..."
     run_command "./buildscripts/helpers/gulp.sh"
 fi
