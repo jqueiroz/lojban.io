@@ -1,7 +1,7 @@
 with import <nixpkgs> {};
 
 stdenv.mkDerivation {
-  name = "less-environment";
+  name = "css-environment";
 
   buildInputs = [
     pkgs.lessc

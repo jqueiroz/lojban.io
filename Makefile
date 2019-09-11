@@ -14,13 +14,13 @@ deep-clean: clean
 docs:
 	./buildscripts/compile-docs.sh
 
-less:
-	./buildscripts/compile-less.sh
+css:
+	./buildscripts/make-css.sh
 
 js:
 	./buildscripts/make-javascript.sh
 
 server:
 	./buildscripts/compile-server.sh
-	./buildscripts/compile-less.sh
+	./buildscripts/make-css.sh
 	./buildscripts/make-javascript.sh
