@@ -21,6 +21,12 @@ RUN cd /lojto && stack haddock --no-haddock-deps --haddock-internal
 # Move documentation
 RUN mv /lojto/.stack-work/install/x86_64-linux-nix/*/*/doc /lojto/doc
 
+# Copy audio files
+COPY static/audio /lojto/static/audio
+
+# Copy image files
+COPY static/images /lojto/static/images
+
 # Copy assets
 COPY assets /lojto/assets
 
