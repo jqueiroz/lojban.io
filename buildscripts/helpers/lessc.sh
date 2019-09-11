@@ -12,12 +12,17 @@ run_lessc() {
     lessc "$INPUT_FILENAME" "$OUTPUT_FILENAME"
 }
 
-cd static/style
-echo > .gitignore
+mkdir -p static/style
+cd assets/less
 for less_filename in $(find . -name "*.less"); do
     less_filename="${less_filename:2}"
     css_filename="${less_filename/".less"/".css"}"
     echo "Compiling: $less_filename"
-    run_lessc "$less_filename" "$css_filename"
-    echo "$css_filename" >> .gitignore
+    run_lessc "$less_filename" "../../static/style/$css_filename"
+done
+
+cd ../css
+for css_filename in $(find . -name "*.css"); do
+    echo "Copying: $css_filename"
+    run_lessc "$css_filename" "../../static/style/$css_filename"
 done
