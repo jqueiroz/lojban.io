@@ -17,6 +17,7 @@ const VENDORS_STYLES_FILES = [
 ];
 
 var gulp = require('gulp');
+var browserify = require('gulp-browserify');
 var concat = require("gulp-concat");
 var less = require('gulp-less');
 var ts = require('gulp-typescript');
@@ -31,6 +32,9 @@ gulp.task("fonts", function() {
 gulp.task("typescript", function () {
     return gulp.src(TYPESCRIPT_FILES)
         .pipe(ts())
+        .pipe(browserify({
+            insertGlobals : true
+        }))
         .pipe(gulp.dest("./static/scripts"));
 });
 
