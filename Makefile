@@ -12,3 +12,4 @@ js:
 server:
 	./buildscripts/compile-server.sh
 	./buildscripts/compile-less.sh
+	./buildscripts/make-javascript.sh
