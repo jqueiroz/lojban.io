@@ -51,9 +51,6 @@ COPY buildscripts /lojto/buildscripts
 RUN cd /lojto && LOJBAN_TOOL_BYPASS_NIX=true ./buildscripts/make-css.sh
 
 # Generate javascript files
-COPY package.json /lojto/package.json
-COPY package-lock.json /lojto/package-lock.json
-COPY gulpfile.js /lojto/gulpfile.js
 RUN cd /lojto && LOJBAN_TOOL_BYPASS_NIX=true ./buildscripts/make-javascript.sh
 
 ####################### Expose ports #######################

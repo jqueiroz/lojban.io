@@ -5,6 +5,9 @@ set -e
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 cd "$DIR/../.."
 
+# Change directory to assets
+cd assets
+
 # Install node packages
 npm install
 
