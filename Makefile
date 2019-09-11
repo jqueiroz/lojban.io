@@ -12,7 +12,7 @@ deep-clean: clean
 	echo "deep clean is not yet enabled"
 
 docs:
-	./buildscripts/compile-docs.sh
+	./buildscripts/make-docs.sh
 
 css:
 	./buildscripts/make-css.sh
