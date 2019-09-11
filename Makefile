@@ -21,6 +21,6 @@ js:
 	./buildscripts/make-javascript.sh
 
 server:
-	./buildscripts/compile-server.sh
+	./buildscripts/make-server.sh
 	./buildscripts/make-css.sh
 	./buildscripts/make-javascript.sh
