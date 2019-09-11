@@ -34,7 +34,7 @@ COPY assets /lojto/assets
 COPY buildscripts /lojto/buildscripts
 
 # Generate stylesheet files
-RUN cd /lojto && LOJBAN_TOOL_BYPASS_NIX=true ./buildscripts/compile-less.sh
+RUN cd /lojto && LOJBAN_TOOL_BYPASS_NIX=true ./buildscripts/make-css.sh
 
 # Generate javascript files
 COPY package.json /lojto/package.json
