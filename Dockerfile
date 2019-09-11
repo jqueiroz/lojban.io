@@ -40,7 +40,7 @@ RUN cd /lojto && LOJBAN_TOOL_BYPASS_NIX=true ./buildscripts/make-css.sh
 COPY package.json /lojto/package.json
 COPY package-lock.json /lojto/package-lock.json
 COPY gulpfile.js /lojto/gulpfile.js
-RUN cd /lojto && npm install && LOJBAN_TOOL_BYPASS_NIX=true ./buildscripts/make-javascript.sh
+RUN cd /lojto && LOJBAN_TOOL_BYPASS_NIX=true ./buildscripts/make-javascript.sh
 
 ####################### Expose ports #######################
 EXPOSE 8000/tcp
