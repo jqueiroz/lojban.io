@@ -26,7 +26,7 @@ var uglify = require("gulp-uglify");
 /* TASK'S */
 gulp.task("fonts", function() {
     return gulp.src(FONT_FILES)
-        .pipe(gulp.dest("./assets/fonts"));
+        .pipe(gulp.dest("./static/fonts"));
 });
 
 gulp.task("typescript", function () {
