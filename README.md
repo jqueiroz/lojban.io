@@ -66,7 +66,8 @@ Subsequent builds will be much faster (roughly a minute for a clean build of the
 By default, `make` will build both the webserver executable and the associated documentation, powered by [Haddock](https://haskell-haddock.readthedocs.io/en/latest/).
 If you only want to build the webserver, run `make server`.
 If you only want to build the documentation, run `make docs`.
-If you only want to compile the _\*.less_ files, perhaps because you are editing them and want to see the style changes on the fly, run `make less`.
+If you only want to compile the _\*.less_ files (located in `./assets/less`), perhaps because you are editing them and want to see the style changes on the fly, run `make css`.
+Similarly, if you only want to compile the _\*.ts_ files (located in `./assets/typescript`), run `make js`.
 
 When you run `make docs`, the project's documentation will be placed into _".stack-work/install/x86\_64-linux-nix/lts-13.27/8.6.5/doc/index.html"_ (the command's output shows the full path).
 Similarly, when you run `make server`, the webserver executable will be placed into _".stack-work/install/x86\_64-linux-nix/lts-13.27/8.6.5/bin/lojto"_, and you may execute it directly if you want.
