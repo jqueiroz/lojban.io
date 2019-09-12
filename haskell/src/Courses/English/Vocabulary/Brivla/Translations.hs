@@ -10,23 +10,23 @@ import Data.FileEmbed (embedStringFile)
 
 -- | Translations for the corresponding lesson.
 translationsByExpression01 :: TranslationsByExpression
-translationsByExpression01 = loadTranslationsByExpressionFromYamlCode $(embedStringFile "courses/english/vocabulary/brivla/01_easy.yaml")
+translationsByExpression01 = loadTranslationsByExpressionFromYamlCode $(embedStringFile "resources/courses/english/vocabulary/brivla/01_easy.yaml")
 
 -- | Translations for the corresponding lesson.
 translationsByExpression02 :: TranslationsByExpression
-translationsByExpression02 = loadTranslationsByExpressionFromYamlCode $(embedStringFile "courses/english/vocabulary/brivla/02_easy.yaml")
+translationsByExpression02 = loadTranslationsByExpressionFromYamlCode $(embedStringFile "resources/courses/english/vocabulary/brivla/02_easy.yaml")
 
 -- | Translations for the corresponding lesson.
 translationsByExpression03 :: TranslationsByExpression
-translationsByExpression03 = loadTranslationsByExpressionFromYamlCode $(embedStringFile "courses/english/vocabulary/brivla/03_easy.yaml")
+translationsByExpression03 = loadTranslationsByExpressionFromYamlCode $(embedStringFile "resources/courses/english/vocabulary/brivla/03_easy.yaml")
 
 -- | Translations for the corresponding lesson.
 translationsByExpression04 :: TranslationsByExpression
-translationsByExpression04 = loadTranslationsByExpressionFromYamlCode $(embedStringFile "courses/english/vocabulary/brivla/04_easy.yaml")
+translationsByExpression04 = loadTranslationsByExpressionFromYamlCode $(embedStringFile "resources/courses/english/vocabulary/brivla/04_easy.yaml")
 
 -- | Translations for the corresponding lesson.
 translationsByExpression05 :: TranslationsByExpression
-translationsByExpression05 = loadTranslationsByExpressionFromYamlCode $(embedStringFile "courses/english/vocabulary/brivla/05_easy.yaml")
+translationsByExpression05 = loadTranslationsByExpressionFromYamlCode $(embedStringFile "resources/courses/english/vocabulary/brivla/05_easy.yaml")
 
 -- | All translations.
 translationsByExpression :: TranslationsByExpression

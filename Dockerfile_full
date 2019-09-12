@@ -21,7 +21,6 @@ COPY haskell/libs /lojto/haskell/libs
 RUN cd /lojto && stack install --only-dependencies
 
 # Copy source code
-COPY courses /lojto/courses
 COPY haskell /lojto/haskell
 COPY LICENSE /lojto/LICENSE
 
