@@ -28,7 +28,7 @@ includeUniversalStylesheets = do
     -- TODO: consider removing
     includeInternalStylesheet "bootstrap.min.css"
     --includeExternalStylesheet "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
-    includeExternalStylesheet "https://fonts.googleapis.com/icon?family=Material+Icons"
+    --includeExternalStylesheet "https://fonts.googleapis.com/icon?family=Material+Icons"
 
 includeInternalStylesheet :: String -> H.Html
 includeInternalStylesheet = includeExternalStylesheet . ("/static/style/"++)
