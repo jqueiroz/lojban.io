@@ -23,6 +23,7 @@ displayDeckHome userIdentityMaybe deck = do
             includeUniversalStylesheets
             includeUniversalScripts
             includeInternalStylesheet "deck.css"
+            includeInternalScript "deck.js"
         H.body $ do
             displayTopbar userIdentityMaybe TopbarDecks
             H.div B.! A.class_ (H.stringValue "main") $ do
