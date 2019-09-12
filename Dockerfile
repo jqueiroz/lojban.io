@@ -7,7 +7,6 @@ COPY stack.yaml /lojto/stack.yaml
 COPY lojto.cabal /lojto/lojto.cabal
 
 # Copy source code
-COPY courses /lojto/courses
 COPY haskell /lojto/haskell
 COPY LICENSE /lojto/LICENSE
 

@@ -11,14 +11,14 @@ import qualified Text.Pandoc as P
 -- * Lesson contents
 -- | Lecture for the corresponding lesson.
 lecture01 :: P.Pandoc
-Right lecture01 = buildDocumentFromMarkdownCode $(embedStringFile "courses/english/grammar/crash/lectures/01.md")
+Right lecture01 = buildDocumentFromMarkdownCode $(embedStringFile "resources/courses/english/grammar/crash/lectures/01.md")
 
 -- * Lesson contents
 -- | Lecture for the corresponding lesson.
 lecture02 :: P.Pandoc
-Right lecture02 = buildDocumentFromMarkdownCode $(embedStringFile "courses/english/grammar/crash/lectures/02.md")
+Right lecture02 = buildDocumentFromMarkdownCode $(embedStringFile "resources/courses/english/grammar/crash/lectures/02.md")
 
 -- * Lesson contents
 -- | Lecture for the corresponding lesson.
 lecture03 :: P.Pandoc
-Right lecture03 = buildDocumentFromMarkdownCode $(embedStringFile "courses/english/grammar/crash/lectures/03.md")
+Right lecture03 = buildDocumentFromMarkdownCode $(embedStringFile "resources/courses/english/grammar/crash/lectures/03.md")
