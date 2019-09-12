@@ -10,14 +10,14 @@ Documentation for the currently deployed version may be found at [http://lojban.
 ## Quickstart (using Docker)
 
 The simplest way to run this project is to execute the webserver inside a [Docker](https://www.docker.com/) container.
-First, run `./dist/docker-build.sh` to build the image.
-Then, run `./dist/docker-run.sh` to start the container.
+First, run `./virtualization/docker-build.sh` to build the image.
+Then, run `./virtualization/docker-run.sh` to start the container.
 This command will bind the webserver running on the container to port 8080 on the host, thus letting you access the application at [http://localhost:8080](http://localhost:8080).
-To publish a port other than 8080, use `./dist/docker-run.sh -p <port>`.
+To publish a port other than 8080, use `./virtualization/docker-run.sh -p <port>`.
 
-By default, `./dist/docker-build.sh` uses an [intermediary image](https://hub.docker.com/r/johnjq/lojban-tool-dependencies) to speed up the build.
+By default, `./virtualization/docker-build.sh` uses an [intermediary image](https://hub.docker.com/r/johnjq/lojban-tool-dependencies) to speed up the build.
 This image includes development tools such as stack and ghc as well as prebuilt dependent libraries, so that only the project's own source code needs to be compiled.
-If you would like to perform a full build instead, run `./dist/docker-build.sh --full` (but beware that compiling all of the dependencies may take between 10 minutes and one hour).
+If you would like to perform a full build instead, run `./virtualization/docker-build.sh --full` (but beware that compiling all of the dependencies may take between 10 minutes and one hour).
 
 ## Quickstart (using Nix)
 

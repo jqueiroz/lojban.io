@@ -46,4 +46,4 @@ while :; do
 done
 
 # Start new containers
-./dist/docker.sh run -p "$EXTERNAL_PORT":8000/tcp -it --rm --name lojban-dev-server lojban-dev-server
+./virtualization/docker.sh run -p "$EXTERNAL_PORT":8000/tcp -it --rm --name lojban-dev-server lojban-dev-server

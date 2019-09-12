@@ -3,7 +3,7 @@ set -e
 
 # Change directory to the project's root
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-cd "$DIR/../.."
+cd "$DIR/.."
 
-# Build docker image
-docker build -t lojban-dependencies -f ./dist/intermediary-image/Dockerfile .
+# Display logs
+./virtualization/docker.sh logs lojban-dev-server
