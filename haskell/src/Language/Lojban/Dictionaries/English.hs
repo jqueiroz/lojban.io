@@ -20,19 +20,19 @@ import Data.FileEmbed (embedStringFile)
 englishDictionary :: Dictionary
 englishDictionary = Dictionary "english" gismuMap cmavoMap brivlaMap definitionsMap englishBrivlaPlacesMap where
     -- Frequency map
-    frequencyMap = loadFrequencyMapFromText $ T.pack $(embedStringFile "resources/MyFreq-COMB_without_dots.txt")
+    frequencyMap = loadFrequencyMapFromText $ T.pack $(embedStringFile "resources/language/frequency-lists/MyFreq-COMB_without_dots.txt")
     -- Cmavo
-    cmavo = loadCmavoFromText frequencyMap $ T.pack $(embedStringFile "resources/english/cmavo.txt")
+    cmavo = loadCmavoFromText frequencyMap $ T.pack $(embedStringFile "resources/language/dictionary-generation/english/cmavo.txt")
     cmavoList = map (\c -> (cmavoText c, c)) cmavo
     cmavoMap = M.fromList cmavoList
     -- Gismu
     isReallyGismu gismu = isNothing $ M.lookup (gismuText gismu) cmavoMap
-    gismu = filter isReallyGismu $ loadGismuFromText frequencyMap $ T.pack $(embedStringFile "resources/english/gismu.txt")
+    gismu = filter isReallyGismu $ loadGismuFromText frequencyMap $ T.pack $(embedStringFile "resources/language/dictionary-generation/english/gismu.txt")
     gismuList = map (\g -> (gismuText g, g)) gismu
     gismuMap = M.fromList gismuList
     -- Brivla
     brivlaFromGismu = map (\g -> Brivla (gismuText g) (gismuEnglishDefinition g) (gismuIRCFrequencyCount g)) gismu
-    brivlaFromFile = loadBrivlaFromText frequencyMap $ T.pack $(embedStringFile "resources/english/brivla.yaml")
+    brivlaFromFile = loadBrivlaFromText frequencyMap $ T.pack $(embedStringFile "resources/language/dictionary-generation/english/brivla.yaml")
     brivla = brivlaFromGismu ++ brivlaFromFile
     brivlaList = map (\b -> (brivlaText b, b)) brivla
     brivlaMap = M.fromList brivlaList
@@ -89,7 +89,7 @@ loadBrivlaFromText frequencyMap yamlText = map handleBrivla yamlList where
 
 -- Brivla places
 englishBrivlaPlacesMap :: M.Map T.Text [T.Text]
-englishBrivlaPlacesMap = loadBrivlaPlacesMapFromYaml $ T.pack $(embedStringFile "resources/english/brivla-places.yaml")
+englishBrivlaPlacesMap = loadBrivlaPlacesMapFromYaml $ T.pack $(embedStringFile "resources/language/dictionary-generation/english/brivla-places.yaml")
 
 loadBrivlaPlacesMapFromYaml :: T.Text -> M.Map T.Text [T.Text]
 loadBrivlaPlacesMapFromYaml yamlText = M.map extractPlaces yamlData where
