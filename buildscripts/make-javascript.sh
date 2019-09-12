@@ -7,7 +7,7 @@ cd "$DIR/.."
 
 # Function to run commands inside a Nix shell
 run_command(){
-    nix-shell -I nixpkgs=https://github.com/NixOS/nixpkgs-channels/archive/nixos-19.03.tar.gz --pure "./buildscripts/env/javascript.nix" --run "$1"
+    nix-shell -I nixpkgs=https://github.com/NixOS/nixpkgs-channels/archive/nixos-19.03.tar.gz --pure "./buildscripts/environments/javascript.nix" --run "$1"
 }
 
 if [[ -n "$LOJBAN_TOOL_BYPASS_NIX" ]]; then
