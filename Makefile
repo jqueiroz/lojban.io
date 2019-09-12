@@ -8,8 +8,7 @@ clean:
 	rm -f ./static/style/*.css
 
 deep-clean: clean
-	#rm -rf ./.stack-work
-	echo "deep clean is not yet enabled"
+	rm -rf ./.stack-work
 
 docs:
 	./buildscripts/make-docs.sh
