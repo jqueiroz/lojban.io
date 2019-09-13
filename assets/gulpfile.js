@@ -4,7 +4,7 @@
 
 const LESS_FILES = './less/**/*.less';
 const JAVASCRIPT_FILES = './javascript/**/*.js';
-const TYPESCRIPT_FILES = ['./typescript/**/*.ts', './typescript/**/*.tsx'];
+const TYPESCRIPT_FILES = './typescript/**/*.ts';//, './typescript/**/*.tsx'];
 const FONT_FILES = [
     './node_modules/bootstrap/fonts/*.*',
     './node_modules/font-awesome/fonts/*.*'
@@ -21,6 +21,7 @@ const VENDORS_STYLES_FILES = [
 var browserify = require('browserify');
 var buffer = require('vinyl-buffer');
 var concat = require("gulp-concat");
+var glob = require('glob');
 var gulp = require('gulp');
 var less = require('gulp-less');
 var react = require('gulp-react');
@@ -35,15 +36,20 @@ gulp.task("fonts", function () {
 });
 
 gulp.task("typescript", function () {
-    return browserify({ entries: './typescript/main.ts' })
-    .transform("babelify", { presets: ["es2015"] })
-    .plugin("tsify")
-    .bundle()
-    .pipe(source('main.js'))
-    .pipe(buffer())
-    .pipe(sourcemaps.init({ loadMaps: true }))
-    .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest('../static/scripts'));
+    return glob(TYPESCRIPT_FILES, function(err, files){
+        if(err) return;
+        files.map(function(entry) {
+            browserify({ entries: [entry] })
+                .transform("babelify", { presets: ["es2015"] })
+                .plugin("tsify")
+                .bundle()
+                .pipe(source(entry.replace('/typescript', '').replace('ts', 'js')))
+                .pipe(buffer())
+                .pipe(sourcemaps.init({ loadMaps: true }))
+                .pipe(sourcemaps.write('./'))
+                .pipe(gulp.dest('../static/scripts'));
+        })
+    });
 });
 
 gulp.task("javascript", function () {

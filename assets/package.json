@@ -28,6 +28,7 @@
     "bootstrap": "3.3.7",
     "browserify": "^16.5.0",
     "font-awesome": "^4.7.0",
+    "glob": "^7.1.4",
     "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
     "gulp-less": "^4.0.1",
