@@ -18,27 +18,32 @@ const VENDORS_STYLES_FILES = [
     './node_modules/font-awesome/css/font-awesome.min.css'
 ];
 
-var gulp = require('gulp');
-var react = require('gulp-react');
-var browserify = require('gulp-browserify');
+var browserify = require('browserify');
+var buffer = require('vinyl-buffer');
 var concat = require("gulp-concat");
+var gulp = require('gulp');
 var less = require('gulp-less');
-var ts = require('gulp-typescript');
+var react = require('gulp-react');
+var source = require('vinyl-source-stream');
+var sourcemaps  = require('gulp-sourcemaps');
 var uglify = require("gulp-uglify");
 
 /* TASK'S */
-gulp.task("fonts", function() {
+gulp.task("fonts", function () {
     return gulp.src(FONT_FILES)
         .pipe(gulp.dest("../static/fonts"));
 });
 
 gulp.task("typescript", function () {
-    return gulp.src(TYPESCRIPT_FILES)
-        .pipe(ts('tsconfig.json'))
-        .pipe(browserify({
-            insertGlobals: true,
-        }))
-        .pipe(gulp.dest("../static/scripts"));
+    return browserify({ entries: './typescript/main.ts' })
+    .transform("babelify", { presets: ["es2015"] })
+    .plugin("tsify")
+    .bundle()
+    .pipe(source('main.js'))
+    .pipe(buffer())
+    .pipe(sourcemaps.init({ loadMaps: true }))
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest('../static/scripts'));
 });
 
 gulp.task("javascript", function () {
@@ -48,7 +53,7 @@ gulp.task("javascript", function () {
 
 gulp.task('scripts', gulp.series('typescript', 'javascript'));
 
-gulp.task("styles", function(){
+gulp.task("styles", function () {
     return gulp.src(LESS_FILES)
         .pipe(less({
         }))
@@ -62,7 +67,7 @@ gulp.task("vendors:scripts", function () {
         .pipe(gulp.dest("../static/scripts"));
 });
 
-gulp.task("vendors:styles", function() {
+gulp.task("vendors:styles", function () {
     return gulp.src(VENDORS_STYLES_FILES)
         .pipe(concat("vendors.css"))
         .pipe(gulp.dest("../static/style"));
