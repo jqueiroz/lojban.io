@@ -1,5 +1,11 @@
 import * as $ from "jquery";
 
+//import * as React from 'react'
+//import * as card from './card'
+import { x } from './arquivo'
+
+//const element = <h1>Hello, {name}</h1>;
+
 let retrieveDeck = deck_id => {
     return $.ajax({
         url: "/api/v0/deck/" + deck_id,
@@ -27,4 +33,8 @@ $(document).ready(function() {
     let root_element = $(".deck");
     let deck_id = "eng_contextualized-brivla";
     setupDeck(root_element, deck_id);
+
+    //console.log(x);
+    //console.log(aaa.x);
+    //console.log(card);
 });

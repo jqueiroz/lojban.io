@@ -1,8 +1,10 @@
 'use strict';
 
+// TODO: migrate to gulp-babel instead of using gulp-react
+
 const LESS_FILES = './less/**/*.less';
 const JAVASCRIPT_FILES = './javascript/**/*.js';
-const TYPESCRIPT_FILES = './typescript/**/*.ts';
+const TYPESCRIPT_FILES = ['./typescript/**/*.ts', './typescript/**/*.tsx'];
 const FONT_FILES = [
     './node_modules/bootstrap/fonts/*.*',
     './node_modules/font-awesome/fonts/*.*'
@@ -17,6 +19,7 @@ const VENDORS_STYLES_FILES = [
 ];
 
 var gulp = require('gulp');
+var react = require('gulp-react');
 var browserify = require('gulp-browserify');
 var concat = require("gulp-concat");
 var less = require('gulp-less');
@@ -31,9 +34,9 @@ gulp.task("fonts", function() {
 
 gulp.task("typescript", function () {
     return gulp.src(TYPESCRIPT_FILES)
-        .pipe(ts())
+        .pipe(ts('tsconfig.json'))
         .pipe(browserify({
-            insertGlobals : true
+            insertGlobals: true,
         }))
         .pipe(gulp.dest("../static/scripts"));
 });
