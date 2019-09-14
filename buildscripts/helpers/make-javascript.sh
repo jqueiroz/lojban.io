@@ -14,22 +14,27 @@ PACKAGE_LOCK_JSON_CACHE="./node_modules/.package-lock.json.last"
 
 should_install_npm() {
     if [ ! -f "$PACKAGE_JSON_CACHE" ]; then
-        echo "Missing cached file: package.json"
+        echo "Missing cache for file: package.json"
         return
     fi
 
     if ! diff "./package.json" "$PACKAGE_JSON_CACHE" 2> /dev/null; then
-        echo "Outdated cached file: package.json"
+        echo "Outdated cache for file: package.json"
+        return
+    fi
+
+    if [ ! -f "./package-lock.json" ]; then
+        echo "Missing file: package-lock.json"
         return
     fi
 
     if [ ! -f "$PACKAGE_LOCK_JSON_CACHE" ]; then
-        echo "Missing cached file: package-lock.json"
+        echo "Missing cache for file: package-lock.json"
         return
     fi
 
     if ! diff "./package-lock.json" "$PACKAGE_LOCK_JSON_CACHE" 2> /dev/null; then
-        echo "Outdated cached file: package-lock.json"
+        echo "Outdated cache for file: package-lock.json"
         return
     fi
 
@@ -39,7 +44,7 @@ should_install_npm() {
 
 if should_install_npm; then
     echo "Runing npm install..."
-    npm install
+    npm install --no-audit
     cp "./package.json" "$PACKAGE_JSON_CACHE"
     cp "./package-lock.json" "$PACKAGE_LOCK_JSON_CACHE"
 else
