@@ -38,6 +38,7 @@
     "jquery": "^3.4.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-star-ratings": "^2.3.0",
     "tsify": "^4.0.1",
     "typescript": "^3.6.2",
     "vinyl-buffer": "^1.0.1",

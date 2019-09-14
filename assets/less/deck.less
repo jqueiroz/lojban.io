@@ -54,16 +54,74 @@
     }
 }
 
-.deck-contents {
-    /* Style */
-    line-height: 1.5em;
-    /* Text */
-    font-size: 1em;
-    color: #333;
-}
+.deck {
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
 
-.deck-contents h2 {
-    /*border-bottom: solid 1px #000;*/
-    margin-bottom: 0.5em;
-    color: #000;
+    li {
+        display: inline-block;
+    }
+
+    .card {
+        /* Position */
+        width: 20em;
+        margin-top: 2em;
+        margin-left: 5em;
+
+        /* Style */
+        padding: 2em;
+        cursor: pointer;
+
+        /* Border */
+        border: solid 1px hsl(0, 0, 70%);
+        border-radius: 0.2em;
+    }
+
+    .card.enabled {
+        background-color: hsl(120, 15%, 90%);
+    }
+
+    .card.disabled {
+        background-color: hsl(0, 0%, 90%);
+    }
+
+    .card.updating {
+        background-color: #fff;
+    }
+
+    .card-header {
+    }
+
+    .card-title {
+        /* Position */
+        display: inline;
+
+        /* Style */
+        font-family: Roboto;
+        font-size: 1.5em;
+        font-weight: 700;
+    }
+
+    .card-proficiency {
+        float: right;
+        font-size: 1.2em;
+
+        .star-container {
+            padding-left: 0.08em !important;
+            padding-right: 0.08em !important;
+        }
+
+        .widget-svg {
+            width: 1em !important;
+            height: 1em !important;
+        }
+    }
+
+    .card-description {
+        /* Style */
+        font-family: Roboto;
+        padding-top: 1em;
+    }
 }
