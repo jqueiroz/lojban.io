@@ -29,12 +29,13 @@ else
 fi
 
 # Run linter for Typescript
+# TODO: once migration to Typescript is complete, start running tslint as well; also make tsconfig way more strict
 echo ""
 echo "=====> Typescript:"
 echo "=> Checking formatting..."
 
 ALL_FILES_OKAY="true"
-for file in $(prettier --list-different "assets/typescript/*.ts"); do
+for file in $(prettier --list-different "assets/typescript/*.ts" --list-different "assets/typescript/*.tsx"); do
     ALL_FILES_OKAY="false"
     echo -e "${RED}$file${NC}"
 done
@@ -43,7 +44,7 @@ if [ "$ALL_FILES_OKAY" == "true" ]; then
     echo -e "${GREEN}All files passed.${NC}"
 else
     echo -e "Deviations from coding style found in the above file(s). Forgot to run Prettier?"
-    echo -e "Try running: ${BLUE}prettier --write assets/typescript/*.ts${NC}"
+    echo -e "Try running: ${BLUE}prettier --write assets/typescript/*.ts assets/typescript/*.tsx${NC}"
 fi
 
 # Run linter for Javascript
