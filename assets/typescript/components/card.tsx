@@ -1,7 +1,15 @@
+import * as Jquery from "jquery";
 import * as React from 'react'
 import StarRatings from 'react-star-ratings';
 
+const PROFICIENCY_MAXIMUM_STARS = 5;
+
 interface ICardProps {
+    // Identifiers
+    deckId: string;
+    cardId: string;
+
+    // Content
     title: string;
     shortDescription: string;
     score: number;
@@ -12,13 +20,11 @@ enum CardEnabledState {
     Enabled = "enabled",
     Disabled = "disabled",
     Updating = "updating",
-}
+};
 
 interface ICardState {
     enabledState: CardEnabledState;
-}
-
-const PROFICIENCY_MAXIMUM_STARS = 5;
+};
 
 export class Card extends React.Component<ICardProps, ICardState> {
     constructor(props) {
@@ -27,30 +33,56 @@ export class Card extends React.Component<ICardProps, ICardState> {
         this.state = {
             enabledState: props.enabled ? CardEnabledState.Enabled : CardEnabledState.Disabled,
         };
-
-        this.toggleEnabledState = this.toggleEnabledState.bind(this);
     }
 
     computeProficiencyStars() {
         return this.props.score * PROFICIENCY_MAXIMUM_STARS;
     }
 
-    toggleEnabledState() {
-        if (this.state.enabledState == CardEnabledState.Enabled) {
+    setCardState(cardNewState: boolean) {
+        if (cardNewState == true) {
+            this.setState({
+                enabledState: CardEnabledState.Enabled,
+            });
+        } else {
             this.setState({
                 enabledState: CardEnabledState.Disabled,
             });
         }
-        else if (this.state.enabledState == CardEnabledState.Disabled) {
-            this.setState({
-                enabledState: CardEnabledState.Enabled,
-            });
+    }
+
+    persistCardState(cardNewState: boolean) {
+        Jquery.ajax({
+            url: "/api/v0/deck/" + this.props.deckId + "/setCardStatus/" + this.props.cardId + "/" + (cardNewState ? "enabled" : "disabled"),
+            method: "POST",
+            dataType: "text",
+            statusCode: {
+                401: () => {
+                    alert("To enable cards, You must be signed in.");
+                },
+            }
+        }).done(response => {
+            this.setCardState(cardNewState);
+        }).fail(response => {
+            this.setCardState(!cardNewState);
+        });
+    }
+
+    toggleEnabledState() {
+        if (this.state.enabledState == CardEnabledState.Enabled) {
+            this.persistCardState(false);
+        } else if (this.state.enabledState == CardEnabledState.Disabled) {
+            this.persistCardState(true);
         }
+
+        this.setState({
+            enabledState: CardEnabledState.Updating,
+        });
     }
 
     render() {
         return (
-            <div className={"card " + this.state.enabledState} onClick={this.toggleEnabledState}>
+            <div className={"card " + this.state.enabledState} onClick={this.toggleEnabledState.bind(this)}>
                 <div className="card-header">
                     <div className="card-title">{ this.props.title }</div>
                     <div className="card-proficiency">

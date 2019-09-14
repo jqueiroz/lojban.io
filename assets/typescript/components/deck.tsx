@@ -23,15 +23,20 @@ export class Deck extends React.Component<IDeckProps, IDeckState> {
     }
 
     createCards() {
-        return this.state.deckExternalData.cards.map(cardExternalData => {
+        let deckExternalData = this.state.deckExternalData;
+        return deckExternalData.cards.map(cardExternalData => {
+            let cardPreferences = deckExternalData.deckPreferences && deckExternalData.deckPreferences.cardPreferences;
+            let cardProficiency = deckExternalData.deckProficiency && deckExternalData.deckProficiency.cardProficiency;
             let cardProps = {
+                deckId: this.props.deckId,
+                cardId: cardExternalData.title,
                 title: cardExternalData.title,
                 shortDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
-                score: 0.5,
-                enabled: true,
+                enabled: cardPreferences == null ? false : cardPreferences[cardExternalData.title].enabled,
+                score: cardProficiency == null ? 0 : cardProficiency[cardExternalData.title].score,
             };
             return (
-                <li key={cardExternalData.title}>
+                <li key={cardProps.cardId}>
                     { React.createElement(Card, cardProps) }
                 </li>
             );

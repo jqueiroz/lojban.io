@@ -6,6 +6,7 @@ module Server.Logic.Decks
 , updateDeckProficiency
 , computeCardProficiencyScore
 , retrieveDeckPreferences
+, updateDeckPreferencesByTogglingCard
 ) where
 
 import Core
@@ -65,6 +66,11 @@ retrieveDeckPreferences userIdentifier deck = do
     let adjustedDeckPreferences = DeckPreferences adjustedCardPreferences'
     return adjustedDeckPreferences
 
+saveDeckPreferences :: UserIdentifier -> Deck -> DeckPreferences -> Redis.Redis (Either Redis.Reply Redis.Status)
+saveDeckPreferences userIdentifier deck deckPreferences = do
+    let key = deckPreferencesKey userIdentifier deck
+    Redis.set (TE.encodeUtf8 key) . BS.toStrict . A.encode $ deckPreferences
+
 retrieveDeckProficiency :: UserIdentifier -> Deck -> Redis.Redis DeckProficiency
 retrieveDeckProficiency userIdentifier deck = do
     let key = deckProficiencyKey userIdentifier deck
@@ -94,3 +100,11 @@ updateDeckProficiency userIdentifier deck cardTitle success =
         let newCardProficiencies = M.adjust updateCardProficiency cardTitle oldCardProficiencies
         let newDeckProficiency = DeckProficiency newCardProficiencies
         saveDeckProficiency userIdentifier deck newDeckProficiency
+
+updateDeckPreferencesByTogglingCard :: UserIdentifier -> Deck -> T.Text -> Bool -> Redis.Redis (Either Redis.Reply Redis.Status)
+updateDeckPreferencesByTogglingCard userIdentifier deck cardTitle cardNewState = do
+        oldDeckPreferences <- retrieveDeckPreferences userIdentifier deck
+        let oldCardPreferences = cardPreferences oldDeckPreferences
+        let newCardPreferences = M.insert cardTitle (CardPreferences cardNewState) oldCardPreferences
+        let newDeckPreferences = DeckPreferences newCardPreferences
+        saveDeckPreferences userIdentifier deck newDeckPreferences
