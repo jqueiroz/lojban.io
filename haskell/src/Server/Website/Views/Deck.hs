@@ -59,16 +59,17 @@ displayDeckExercise userIdentityMaybe deck = do
                     H.div B.! A.class_ (H.stringValue "deck") $ do
                         H.div B.! A.id (H.stringValue "exercise-holder") $ H.toHtml ("" :: T.Text)
 
-displayDeckHomeHeader :: String -> Deck -> H.Html
+displayDeckHomeHeader :: T.Text -> Deck -> H.Html
 displayDeckHomeHeader baseDeckUrl deck = do
     let title = deckTitle deck
-    --let shortDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor." :: T.Text
-    let shortDescription = "" :: T.Text
+    --let shortDescription = deckShortDescription deck
     H.div B.! A.class_ (H.stringValue "deck-header") $ do
         H.div B.! A.class_ (H.stringValue "deck-info") $ do
             H.h1 B.! A.class_ "deck-title" $ H.toHtml title
             H.h1 B.! A.class_ "deck-cards-count" $ H.toHtml (showNumberOfCards . length . deckCards $ deck)
-            H.p B.! A.class_ "deck-description" $ H.toHtml shortDescription
+            --H.p B.! A.class_ "deck-description" $ H.toHtml shortDescription
+        H.div B.! A.class_ "deck-buttons" $ do
+            H.a B.! A.class_ (H.textValue "button") B.! A.href (H.textValue $ baseDeckUrl `T.append` "./exercises") $ (H.toHtml ("Practice" :: T.Text))
 
 displayDeckExerciseHeader :: T.Text -> Deck -> H.Html
 displayDeckExerciseHeader baseDeckUrl deck = do
@@ -79,7 +80,7 @@ displayDeckExerciseHeader baseDeckUrl deck = do
             H.h1 B.! A.class_ "deck-title" $
                 H.a B.! A.href (H.textValue baseDeckUrl) $ H.toHtml (deckTitle deck)
         H.div B.! A.class_ "deck-buttons" $ do
-            H.a B.! A.class_ (H.textValue "button") B.! A.href (H.textValue baseDeckUrl) $ (H.toHtml ("Review Deck" :: String))
+            H.a B.! A.class_ (H.textValue "button") B.! A.href (H.textValue baseDeckUrl) $ (H.toHtml ("Review Deck" :: T.Text))
 
 showNumberOfCards :: Int -> String
 showNumberOfCards 0 = "No cards yet..."

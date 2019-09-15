@@ -3,6 +3,8 @@
 .deck-header {
     @deck-info-height: 4.5em;
 
+    position: relative;
+
     .deck-info:before {
         /* Position */
         position: absolute;
@@ -21,6 +23,7 @@
         margin-left: calc(@deck-info-height);
         padding-left: 1em;
         height: @deck-info-height;
+        display: inline-block;
     }
 
     .deck-title {
@@ -51,6 +54,33 @@
         /* Position */
         margin-top: -0.3em;
         margin-left: 1em;
+    }
+
+    .deck-buttons {
+        /* Position */
+        float: right;
+        display: inline-block;
+        margin-right: 1em;
+        margin-top: 0.5em;
+
+        a.button {
+            /* Position */
+            display: inline-block;
+            /*width: 9em;*/
+            width: 12em;
+            text-align: center;
+            margin-left: 2em;
+            /* Style */
+            background-color: #fff;
+            border-radius: 98px;
+            padding: 0.75em 1.25em;
+            /* Text */
+            color: hsl(0, 0, 30%);
+            font-family: "Varela Round";
+            font-size: 1.2em;
+            font-variant: small-caps;
+            font-weight: bold;
+        }
     }
 }
 
