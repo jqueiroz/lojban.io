@@ -31,7 +31,7 @@ displayDeckHome userIdentityMaybe deck = do
             H.div B.! A.class_ (H.stringValue "main") $ do
                 H.div B.! A.class_ (H.textValue "header") $ do
                     H.div B.! A.class_ (H.textValue "header-bg") $ H.toHtml ("" :: T.Text)
-                    displayDeckMenu baseDeckUrl deck
+                    displayDeckHomeHeader baseDeckUrl deck
                 H.div B.! A.class_ (H.textValue "body") $ do
                     H.div B.! A.class_ (H.stringValue "deck") $ H.toHtml ("" :: T.Text)
                     displayFooter
@@ -59,8 +59,8 @@ displayDeckExercise userIdentityMaybe deck = do
                     H.div B.! A.class_ (H.stringValue "deck") $ do
                         H.div B.! A.id (H.stringValue "exercise-holder") $ H.toHtml ("" :: T.Text)
 
-displayDeckMenu :: String -> Deck -> H.Html
-displayDeckMenu baseDeckUrl deck = do
+displayDeckHomeHeader :: String -> Deck -> H.Html
+displayDeckHomeHeader baseDeckUrl deck = do
     let title = deckTitle deck
     --let shortDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor." :: T.Text
     let shortDescription = "" :: T.Text
