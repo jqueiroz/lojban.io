@@ -72,6 +72,7 @@ data Deck = Deck
 
 data Card = Card
     { cardTitle :: T.Text
+    , cardShortDescription :: T.Text
     , cardExercises :: ExerciseGenerator
     }
 

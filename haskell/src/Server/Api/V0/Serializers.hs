@@ -30,8 +30,9 @@ serializeDeck deck deckPreferences deckProficiency = Contract.Deck title diction
     serializedDeckProficiency = serializeDeckProficiency <$> deckProficiency
 
 serializeCard :: Card -> Contract.Card
-serializeCard card = Contract.Card title where
+serializeCard card = Contract.Card title shortDescription where
     title = cardTitle card
+    shortDescription = cardShortDescription card
 
 serializeDeckPreferences :: DeckPreferences -> Contract.DeckPreferences
 serializeDeckPreferences deckPreferences = Contract.DeckPreferences serializedCardPreferences where

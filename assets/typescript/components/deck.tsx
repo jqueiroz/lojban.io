@@ -31,7 +31,7 @@ export class Deck extends React.Component<IDeckProps, IDeckState> {
                 deckId: this.props.deckId,
                 cardId: cardExternalData.title,
                 title: cardExternalData.title,
-                shortDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
+                shortDescription: cardExternalData.shortDescription,
                 enabled: cardPreferences == null ? false : cardPreferences[cardExternalData.title].enabled,
                 score: cardProficiencies == null ? 0 : cardProficiencies[cardExternalData.title].score,
             };

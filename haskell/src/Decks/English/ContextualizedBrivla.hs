@@ -27,7 +27,7 @@ dictionary = englishDictionary
 -- | Cards for the deck
 cards :: [Card]
 cards = map buildCard brivlaList where
-    buildCard brivla = Card brivla (buildBrivlaExerciseGenerator brivla)
+    buildCard brivla = Card brivla (dictLookupValsiDefinition dictionary brivla) (buildBrivlaExerciseGenerator brivla)
 
 -- | List of brivla in the deck.
 brivlaList :: [T.Text]

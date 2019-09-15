@@ -29,6 +29,7 @@ data Deck = Deck
 
 data Card = Card
     { title :: T.Text
+    , shortDescription :: T.Text
     } deriving (Generic, Show)
 
 data DeckPreferences = DeckPreferences
