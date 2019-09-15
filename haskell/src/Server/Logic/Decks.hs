@@ -2,11 +2,12 @@
 {-# LANGUAGE ScopedTypeVariables #-}
 
 module Server.Logic.Decks
-( retrieveDeckProficiency
-, updateDeckProficiency
-, computeCardProficiencyScore
+( computeCardProficiencyScore
+, retrieveDeckProficiency
+, updateDeckProficiencyByRegisteringExerciseAttempt
 , retrieveDeckPreferences
 , updateDeckPreferencesByTogglingCard
+, retrieveDeckWeightedActiveCards
 ) where
 
 import Core
@@ -21,13 +22,16 @@ import qualified Data.Text as T
 import qualified Data.Text.Encoding as TE
 import qualified Data.ByteString.Lazy as BS
 import qualified Data.ByteString as BSS
-import Decks.English.ContextualizedBrivla (deck)
 
 -- * Logic
 computeCardProficiencyScore :: CardProficiency -> Double
 computeCardProficiencyScore cardProficiency = min 1 $ (fromIntegral $ length successfulAttempts) / (fromIntegral minimumSuccessfulAttemptsForPerfectScore) where
     attempts = take numberOfAttemptsTracked $ lastAttempts cardProficiency ++ repeat False
     successfulAttempts = filter (== True) attempts
+
+-- TODO: implement logic here
+computeCardProficiencyWeight :: CardProficiency -> Int
+computeCardProficiencyWeight cardProficiency = 1
 
 -- * Configuration
 
@@ -87,8 +91,8 @@ saveDeckProficiency userIdentifier deck deckProficiency = do
     let key = deckProficiencyKey userIdentifier deck
     Redis.set (TE.encodeUtf8 key) . BS.toStrict . A.encode $ deckProficiency
 
-updateDeckProficiency :: UserIdentifier -> Deck -> T.Text -> Bool -> Redis.Redis (Either Redis.Reply Redis.Status)
-updateDeckProficiency userIdentifier deck cardTitle success =
+updateDeckProficiencyByRegisteringExerciseAttempt :: UserIdentifier -> Deck -> T.Text -> Bool -> Redis.Redis (Either Redis.Reply Redis.Status)
+updateDeckProficiencyByRegisteringExerciseAttempt userIdentifier deck cardTitle success =
     let
         updateCardProficiency :: CardProficiency -> CardProficiency
         updateCardProficiency oldCardProficiency = CardProficiency newLastAttempts where
@@ -108,3 +112,22 @@ updateDeckPreferencesByTogglingCard userIdentifier deck cardTitle cardNewState =
         let newCardPreferences = M.insert cardTitle (CardPreferences cardNewState) oldCardPreferences
         let newDeckPreferences = DeckPreferences newCardPreferences
         saveDeckPreferences userIdentifier deck newDeckPreferences
+
+retrieveDeckWeightedActiveCards :: UserIdentifier -> Deck -> Redis.Redis [(Int, Card)]
+retrieveDeckWeightedActiveCards userIdentifier deck = do
+    -- Retrieve enabled cards
+    preferences <- cardPreferences <$> retrieveDeckPreferences userIdentifier deck
+    let allCards = deckCards deck
+    let enabledCards = (flip filter) allCards $ \card ->
+            let
+                title = cardTitle card
+            in
+                maybe False cardEnabled $ M.lookup title preferences
+    -- Retrieve weights for cards
+    proficiency <- cardProficiencies <$> retrieveDeckProficiency userIdentifier deck
+    return $ (flip map) enabledCards $ \card ->
+            let
+                title = cardTitle card
+                weight = maybe 0 computeCardProficiencyWeight $ M.lookup title proficiency
+            in
+                (weight, card) 

@@ -1,6 +1,7 @@
 import * as $ from "jquery";
 
 declare var dictionary;
+declare var deckId: string | any;
 
 var createExercisesManager = function(holder) {
     // Elements
@@ -55,9 +56,14 @@ var createExercisesManager = function(holder) {
         };
     })();
     // Requests
+    var baseUrl = "";
+    if ('deckId' in window) {
+        baseUrl = "/api/v0/deck/" + deckId + "/exercises/";
+    }
+
     var retrieve = function(exercise_id) {
         return $.ajax({
-            url: exercise_id + "/get",
+            url: baseUrl + exercise_id + "/get",
             method: "GET",
             dataType: "json",
         });
@@ -65,7 +71,7 @@ var createExercisesManager = function(holder) {
 
     var submit = function(data) {
         return $.ajax({
-            url: exercise_id + "/submit",
+            url: baseUrl + exercise_id + "/submit",
             method: "POST",
             dataType: "json",
             data: JSON.stringify(data),

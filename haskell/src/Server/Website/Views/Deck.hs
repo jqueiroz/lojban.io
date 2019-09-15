@@ -2,6 +2,7 @@
 
 module Server.Website.Views.Deck
 ( displayDeckHome
+, displayDeckExercise
 ) where
 
 import Core
@@ -23,6 +24,7 @@ displayDeckHome userIdentityMaybe deck = do
             includeUniversalStylesheets
             includeUniversalScripts
             includeInternalStylesheet "deck.css"
+            includeDeckScript deck
             includeInternalScript "deck.js"
         H.body $ do
             displayTopbar userIdentityMaybe TopbarDecks
@@ -34,6 +36,29 @@ displayDeckHome userIdentityMaybe deck = do
                     H.div B.! A.class_ (H.stringValue "deck") $ H.toHtml ("" :: T.Text)
                     displayFooter
 
+displayDeckExercise :: Maybe UserIdentity -> Deck -> H.Html
+displayDeckExercise userIdentityMaybe deck = do
+    let dictionary = deckDictionary deck
+    let baseDeckUrl = "./"
+    H.html $ do
+        H.head $ do
+            H.title (H.toHtml $ "lojban :: " `T.append` (deckTitle deck) `T.append` " :: Practice")
+            includeUniversalStylesheets
+            includeInternalStylesheet "funkyradio.css"
+            includeInternalStylesheet "list-group-horizontal.css"
+            includeInternalStylesheet "exercise.css"
+            includeUniversalScripts
+            includeDictionaryScript dictionary
+            includeDeckScript deck
+            includeInternalScript "exercise.js"
+        H.body $ do
+            displayTopbar userIdentityMaybe TopbarDecks
+            H.div B.! A.class_ (H.stringValue "main") $ do
+                H.div B.! A.class_ (H.textValue "body") $ do
+                    displayDeckExerciseHeader baseDeckUrl deck
+                    H.div B.! A.class_ (H.stringValue "deck") $ do
+                        H.div B.! A.id (H.stringValue "exercise-holder") $ H.toHtml ("" :: T.Text)
+
 displayDeckMenu :: String -> Deck -> H.Html
 displayDeckMenu baseDeckUrl deck = do
     let title = deckTitle deck
@@ -44,6 +69,17 @@ displayDeckMenu baseDeckUrl deck = do
             H.h1 B.! A.class_ "deck-title" $ H.toHtml title
             H.h1 B.! A.class_ "deck-cards-count" $ H.toHtml (showNumberOfCards . length . deckCards $ deck)
             H.p B.! A.class_ "deck-description" $ H.toHtml shortDescription
+
+displayDeckExerciseHeader :: T.Text -> Deck -> H.Html
+displayDeckExerciseHeader baseDeckUrl deck = do
+    -- TODO: consider displaying: "x active cards out of y"
+    let cardsCount = length (deckCards deck)
+    H.div B.! A.class_ (H.stringValue "deck-header") $ do
+        H.div B.! A.class_ (H.stringValue "deck-info") $ do
+            H.h1 B.! A.class_ "deck-title" $
+                H.a B.! A.href (H.textValue baseDeckUrl) $ H.toHtml (deckTitle deck)
+        H.div B.! A.class_ "deck-buttons" $ do
+            H.a B.! A.class_ (H.textValue "button") B.! A.href (H.textValue baseDeckUrl) $ (H.toHtml ("Review Deck" :: String))
 
 showNumberOfCards :: Int -> String
 showNumberOfCards 0 = "No cards yet..."

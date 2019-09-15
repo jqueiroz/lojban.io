@@ -7,7 +7,9 @@
 }
 
 .lesson-header,
-.lesson-header a {
+.lesson-header a,
+.deck-header,
+.deck-header a {
     /* Text */
     color: #fff;
 }
@@ -16,9 +18,82 @@
     background-color: #fff;
 }
 
-@lesson-info-height: 4.5em;
+.deck-header {
+    @deck-info-height: 4.5em;
+
+    /* Position */
+    position: relative;
+
+    /* Style */
+    padding: 3em;
+    border-radius: 10px 10px 0 0;
+    /*&:extend(.background-gradient1);*/
+    background-color: hsl(0, 0, 30%);
+
+    .deck-info:before {
+        /* Position */
+        position: absolute;
+        left: -@deck-info-height;
+        width: @deck-info-height;
+        height: @deck-info-height;
+        /* Background */
+        background: url(https://image.flaticon.com/icons/svg/993/993723.svg);
+        background-size: @deck-info-height @deck-info-height;
+        content: "";
+    }
+
+    .deck-info {
+        /* Position */
+        position: relative;
+        display: inline-block;
+        margin-left: calc(@deck-info-height);
+        height: @deck-info-height;
+
+        /* Style */
+        padding-left: 2em;
+    }
+
+    .deck-title {
+        /* Text */
+        padding-top: 0.75em;
+        font-size: 1.6em;
+        font-weight: 600;
+        font-family: "Varela Round";
+        /* Border */
+        display: inline-block;
+    }
+
+    .deck-buttons {
+        /* Position */
+        float: right;
+        display: inline-block;
+        vertical-align: bottom;
+        margin-right: 1em;
+
+        a.button {
+            /* Position */
+            display: inline-block;
+            /*width: 9em;*/
+            width: 12em;
+            text-align: center;
+            margin-left: 2em;
+            /* Style */
+            background-color: #fff;
+            border-radius: 98px;
+            padding: 0.75em 1.25em;
+            /* Text */
+            color: hsl(0, 0, 30%);
+            font-family: "Varela Round";
+            font-size: 1.2em;
+            font-variant: small-caps;
+            font-weight: bold;
+        }
+    }
+}
 
 .lesson-header {
+    @lesson-info-height: 4.5em;
+
     padding: 3em;
     position: relative;
     border-radius: 10px 10px 0 0;

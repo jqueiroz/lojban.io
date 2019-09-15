@@ -9,6 +9,7 @@ module Server.Website.Views.Core
 , includeInternalScript
 , includeExternalScript
 , includeDictionaryScript
+, includeDeckScript
 , TopbarCategory (..)
 , displayTopbar
 , displayFooter
@@ -74,8 +75,15 @@ includeExternalScript src =
       B.! A.type_ "text/javascript"
       B.! A.src (H.stringValue src)
 
+includeInlineScript :: T.Text -> H.Html
+includeInlineScript code =
+    H.script (H.toHtml code) B.! A.type_ "text/javascript"
+
 includeDictionaryScript :: Dictionary -> H.Html
 includeDictionaryScript dictionary = includeInternalScript $ T.unpack $ "dictionaries/" `T.append` (dictIdentifier dictionary) `T.append` ".js"
+
+includeDeckScript :: Deck -> H.Html
+includeDeckScript deck = includeInlineScript $ "deckId = \"" `T.append` (deckId deck) `T.append` "\";"
 
 -- * Topbar
 data TopbarCategory = TopbarHome | TopbarCourses | TopbarDecks | TopbarResources deriving (Enum, Eq)

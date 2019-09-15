@@ -26,14 +26,14 @@ export class Deck extends React.Component<IDeckProps, IDeckState> {
         let deckExternalData = this.state.deckExternalData;
         return deckExternalData.cards.map(cardExternalData => {
             let cardPreferences = deckExternalData.deckPreferences && deckExternalData.deckPreferences.cardPreferences;
-            let cardProficiency = deckExternalData.deckProficiency && deckExternalData.deckProficiency.cardProficiency;
+            let cardProficiencies = deckExternalData.deckProficiency && deckExternalData.deckProficiency.cardProficiencies;
             let cardProps = {
                 deckId: this.props.deckId,
                 cardId: cardExternalData.title,
                 title: cardExternalData.title,
                 shortDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
                 enabled: cardPreferences == null ? false : cardPreferences[cardExternalData.title].enabled,
-                score: cardProficiency == null ? 0 : cardProficiency[cardExternalData.title].score,
+                score: cardProficiencies == null ? 0 : cardProficiencies[cardExternalData.title].score,
             };
             return (
                 <li key={cardProps.cardId}>

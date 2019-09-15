@@ -17,7 +17,7 @@ import Server.Website.Views.Core
 import Server.Website.Views.Home (displayHome)
 import Server.Website.Views.Courses (displayCoursesHome)
 import Server.Website.Views.Decks (displayDecksHome)
-import Server.Website.Views.Deck (displayDeckHome)
+import Server.Website.Views.Deck (displayDeckHome, displayDeckExercise)
 import Server.Website.Views.Grammar (displayGrammarHome)
 import Server.Website.Views.Vocabulary (displayVocabularyHome)
 import Server.Website.Views.Resources (displayResourcesHome)
@@ -28,6 +28,7 @@ import Control.Monad.IO.Class (liftIO)
 import System.Random (newStdGen, mkStdGen)
 import qualified Server.OAuth2.Main as OAuth2
 import qualified Data.Aeson as A
+import qualified Data.Text as T
 import Happstack.Server
 
 -- TODO: consider adding breadcrumbs (https://getbootstrap.com/docs/4.0/components/breadcrumb/)
@@ -39,7 +40,7 @@ handleRoot serverResources = do
     msum
         [ forceSlash $ handleHome userIdentityMaybe
         , dir "courses" $ handleCourses userIdentityMaybe
-        , dir "decks" $ handleDecks userIdentityMaybe
+        , dir "decks" $ handleDecks serverResources userIdentityMaybe
         , dir "grammar" $ handleGrammar userIdentityMaybe
         , dir "vocabulary" $ handleVocabulary userIdentityMaybe
         , dir "resources" $ handleResources userIdentityMaybe
@@ -57,10 +58,10 @@ handleCourses userIdentityMaybe = msum
     , dir "brivla" $ handleCourse userIdentityMaybe TopbarCourses Courses.English.Vocabulary.Brivla.Course.course
     ]
 
-handleDecks :: Maybe UserIdentity -> ServerPart Response
-handleDecks userIdentityMaybe = msum
+handleDecks :: ServerResources -> Maybe UserIdentity -> ServerPart Response
+handleDecks serverResources userIdentityMaybe = msum
     [ forceSlash . ok . toResponse $ displayDecksHome userIdentityMaybe
-    , dir "contextualized-brivla" $ handleDeck userIdentityMaybe Decks.English.ContextualizedBrivla.deck
+    , dir "contextualized-brivla" $ handleDeck serverResources userIdentityMaybe Decks.English.ContextualizedBrivla.deck
     ]
 
 handleGrammar :: Maybe UserIdentity -> ServerPart Response
@@ -90,12 +91,14 @@ handleCourse userIdentityMaybe topbarCategory course =
         , path $ \n -> (guard $ 1 <= n && n <= (length lessons)) >> (handleLesson userIdentityMaybe topbarCategory course n)
         ]
 
-handleDeck :: Maybe UserIdentity -> Deck -> ServerPart Response
-handleDeck userIdentityMaybe deck = msum
+handleDeck :: ServerResources -> Maybe UserIdentity -> Deck -> ServerPart Response
+handleDeck serverResources userIdentityMaybe deck = msum
     [ forceSlash . ok . toResponse $ displayDeckHome userIdentityMaybe deck
-    , dir "exercises" $ msum
-        [
-        ]
+    , dir "exercises" $ do
+        identityMaybe <- OAuth2.readUserIdentityFromCookies serverResources
+        case identityMaybe of
+            Nothing -> tempRedirect ("/oauth2/google/login" :: T.Text) . toResponse $ ("You must be signed in." :: T.Text)
+            Just identity -> ok . toResponse $ displayDeckExercise userIdentityMaybe deck
     ]
 
 handleLesson :: Maybe UserIdentity -> TopbarCategory -> Course -> Int -> ServerPart Response

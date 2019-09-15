@@ -40,7 +40,7 @@ data CardPreferences = CardPreferences
     } deriving (Generic, Show)
 
 data DeckProficiency = DeckProficiency
-    { cardProficiency :: M.Map T.Text CardProficiency
+    { cardProficiencies :: M.Map T.Text CardProficiency
     } deriving (Generic, Show)
 
 data CardProficiency = CardProficiency
