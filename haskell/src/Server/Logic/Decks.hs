@@ -15,6 +15,7 @@ import Server.Core
 import Server.Logic.Redis (encodeRedisKey)
 import Data.Maybe (fromMaybe)
 import Data.Either (fromRight)
+import Control.Exception (assert)
 import qualified Database.Redis as Redis
 import qualified Data.Aeson as A
 import qualified Data.Map as M
@@ -25,21 +26,31 @@ import qualified Data.ByteString as BSS
 
 -- * Logic
 computeCardProficiencyScore :: CardProficiency -> Double
-computeCardProficiencyScore cardProficiency = min 1 $ (fromIntegral $ length successfulAttempts) / (fromIntegral minimumSuccessfulAttemptsForPerfectScore) where
-    attempts = take numberOfAttemptsTracked $ lastAttempts cardProficiency ++ repeat False
+computeCardProficiencyScore cardProficiency = min 1 $ (fromIntegral $ length successfulAttempts) / (fromIntegral minimumSuccessfulAttemptsForPerfectProficiencyScore) where
+    attempts = take numberOfAttemptsUsedInProficiencyScoreCalculation $ lastAttempts cardProficiency ++ repeat False
     successfulAttempts = filter (== True) attempts
 
 -- TODO: implement logic here
 computeCardProficiencyWeight :: CardProficiency -> Int
-computeCardProficiencyWeight cardProficiency = 1
+computeCardProficiencyWeight cardProficiency = 1 + totalWeightOfFailedAttempts where
+    weightOfMostRecentAttempt = 20
+    attempts = lastAttempts cardProficiency
+    weightedAttempts = assert (weightOfMostRecentAttempt >= numberOfAttemptsTracked) $ zip [weightOfMostRecentAttempt,weightOfMostRecentAttempt-1..] attempts
+    weightedFailedAttempts = filter (not . snd) weightedAttempts
+    totalWeightOfFailedAttempts = sum $ map fst weightedFailedAttempts
 
 -- * Configuration
 
+-- | Last X attempts will be saved into the database.
 numberOfAttemptsTracked :: Int
 numberOfAttemptsTracked = 20
 
-minimumSuccessfulAttemptsForPerfectScore :: Int
-minimumSuccessfulAttemptsForPerfectScore = 16
+-- | Last Y (Y <= X) attempts will be used to compute the user's proficiency score.
+numberOfAttemptsUsedInProficiencyScoreCalculation :: Int
+numberOfAttemptsUsedInProficiencyScoreCalculation = 10
+
+minimumSuccessfulAttemptsForPerfectProficiencyScore :: Int
+minimumSuccessfulAttemptsForPerfectProficiencyScore = 8
 
 -- * Redis bindings
 
