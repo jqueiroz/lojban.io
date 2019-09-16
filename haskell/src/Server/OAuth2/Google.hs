@@ -18,10 +18,12 @@ import Control.Monad (msum)
 import Control.Monad.Extra (liftMaybe)
 import Control.Monad.Trans (lift, liftIO)
 import Control.Monad.Trans.Maybe (MaybeT(..), runMaybeT)
+import Data.List (isPrefixOf)
 import URI.ByteString (URI, parseURI, strictURIParserOptions, serializeURIRef')
 import URI.ByteString.QQ (uri)
 import qualified Network.HTTP.Client as HC
 import qualified Data.ByteString.Lazy.Char8 as BS8
+import qualified Data.ByteString.Char8 as BSS8
 import qualified Jose.Jwk as JWK
 import qualified Jose.Jwt as JWT
 import qualified Web.OIDC.Client as OIDC
@@ -30,6 +32,16 @@ import qualified Data.Aeson as A
 import qualified Data.Text as T
 import qualified Data.Text.Encoding as TE
 import Data.ByteString.Base64 as B64
+
+allowedRefererPrefixes :: [String]
+allowedRefererPrefixes =
+    [ "http://localhost:8000/"
+    , "http://localhost:8080/"
+    , "https://lojban.johnjq.com/"
+    ]
+
+isAllowedReferer :: String -> Bool
+isAllowedReferer referer = any (`isPrefixOf` referer) allowedRefererPrefixes
 
 data Claims = Claims
     { email :: T.Text
@@ -47,6 +59,9 @@ data UserInfo = UserInfo
 
 instance A.FromJSON UserInfo where
     parseJSON = A.genericParseJSON A.defaultOptions
+
+refererCookieName :: String
+refererCookieName = "google_referer"
 
 identityTokenCookieName :: String
 identityTokenCookieName = "google_identityToken"
@@ -101,8 +116,49 @@ handleRoot serverResources = msum
     , dir "callback" $ handleCallback serverResources
     ]
 
+saveReferer :: ServerPart ()
+saveReferer = do
+    rq <- askRq
+    let refererMaybe = do
+            originalReferer <- BSS8.unpack <$> getHeader "Referer" rq
+            if isAllowedReferer originalReferer then
+                return originalReferer
+            else
+                Nothing
+    case refererMaybe of
+        Just referer -> addCookie Session $ mkCookie refererCookieName referer
+        Nothing -> expireCookie refererCookieName
+    return ()
+
+redirectToSavedReferer :: ServerPart Response
+redirectToSavedReferer = do
+    referer <- lookCookieValue refererCookieName
+    if isAllowedReferer referer then
+        -- Redirect to referer
+        tempRedirect referer $ toResponse ("" :: T.Text)
+    else
+        -- Redirect the homepage
+        tempRedirect ("/" :: T.Text) $ toResponse ("" :: T.Text)
+
+redirectToCurrentReferer :: ServerPart Response
+redirectToCurrentReferer = do
+    refererMaybe <- getHeader "Referer" <$> askRq
+    case refererMaybe of
+        Nothing -> do
+            -- Redirect the homepage
+            tempRedirect ("/" :: T.Text) $ toResponse ("" :: T.Text)
+        Just referer -> do
+            let referer' = BSS8.unpack referer
+            if isAllowedReferer referer' then
+                -- Redirect to referer
+                tempRedirect referer' $ toResponse ("" :: T.Text)
+            else
+                -- Redirect the homepage
+                tempRedirect ("/" :: T.Text) $ toResponse ("" :: T.Text)
+
 handleLogin :: ServerPart Response
 handleLogin = do
+    saveReferer
     authorizationUrl <- getAuthorizationUrl
     tempRedirect authorizationUrl $ toResponse ("" :: T.Text)
 
@@ -110,7 +166,7 @@ handleLogout :: ServerPart Response
 handleLogout = do
     expireCookie identityTokenCookieName
     expireCookie userInfoCookieName
-    tempRedirect ("/" :: T.Text) $ toResponse ("" :: T.Text)
+    redirectToCurrentReferer
 
 handleCallback :: ServerResources -> ServerPart Response
 handleCallback serverResources = do
@@ -149,8 +205,8 @@ handleCallback serverResources = do
                                         [ mkCookie identityTokenCookieName $ T.unpack identityTokenText
                                         , mkCookie userInfoCookieName $ T.unpack . encodeUserInfoText $ userInfoText
                                         ]
-                                    -- Redirect user to the homepage
-                                    tempRedirect ("/" :: T.Text) $ toResponse ("" :: T.Text)
+                                    -- Redirect user back to referer
+                                    redirectToSavedReferer
 
 fetchUserInfo :: ServerResources -> OA2.AccessToken -> IO T.Text
 fetchUserInfo serverResources accessToken = do
