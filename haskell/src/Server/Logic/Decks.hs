@@ -37,7 +37,7 @@ computeCardProficiencyWeight cardProficiency = 1 + totalWeightOfFailedAttempts w
     attempts = lastAttempts cardProficiency
     weightedAttempts = assert (baseWeightOfMostRecentAttempt >= numberOfAttemptsTracked) $ zip [baseWeightOfMostRecentAttempt,baseWeightOfMostRecentAttempt-1..] attempts
     weightedFailedAttempts = filter (not . snd) weightedAttempts
-    totalWeightOfFailedAttempts = sum $ map (\x -> x*x) $ map fst weightedFailedAttempts
+    totalWeightOfFailedAttempts = sum $ map (\x -> x*x*x) $ map fst weightedFailedAttempts
 
 -- * Configuration
 
