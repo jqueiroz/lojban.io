@@ -33,11 +33,11 @@ computeCardProficiencyScore cardProficiency = min 1 $ (fromIntegral $ length suc
 -- TODO: implement logic here
 computeCardProficiencyWeight :: CardProficiency -> Int
 computeCardProficiencyWeight cardProficiency = 1 + totalWeightOfFailedAttempts where
-    weightOfMostRecentAttempt = 20
+    baseWeightOfMostRecentAttempt = 20
     attempts = lastAttempts cardProficiency
-    weightedAttempts = assert (weightOfMostRecentAttempt >= numberOfAttemptsTracked) $ zip [weightOfMostRecentAttempt,weightOfMostRecentAttempt-1..] attempts
+    weightedAttempts = assert (baseWeightOfMostRecentAttempt >= numberOfAttemptsTracked) $ zip [baseWeightOfMostRecentAttempt,baseWeightOfMostRecentAttempt-1..] attempts
     weightedFailedAttempts = filter (not . snd) weightedAttempts
-    totalWeightOfFailedAttempts = sum $ map fst weightedFailedAttempts
+    totalWeightOfFailedAttempts = sum $ map (\x -> x*x) $ map fst weightedFailedAttempts
 
 -- * Configuration
 
