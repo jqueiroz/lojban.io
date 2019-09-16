@@ -58,7 +58,7 @@ export class Card extends React.Component<ICardProps, ICardState> {
             dataType: "text",
             statusCode: {
                 401: () => {
-                    alert("To enable cards, You must be signed in.");
+                    alert("To manage cards, you need to sign in.");
                 },
             }
         }).done(response => {
