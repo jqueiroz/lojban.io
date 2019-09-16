@@ -97,7 +97,9 @@ handleDeck serverResources userIdentityMaybe deck = msum
     , dir "exercises" $ do
         identityMaybe <- OAuth2.readUserIdentityFromCookies serverResources
         case identityMaybe of
-            Nothing -> tempRedirect ("/oauth2/google/login" :: T.Text) . toResponse $ ("You must be signed in." :: T.Text)
+            Nothing -> do
+                --tempRedirect ("./" :: T.Text) . toResponse $ ("You must be signed in." :: T.Text)
+                ok . toResponse $ includeInlineScript ("alert('To practice with decks, you need to sign in.'); window.location.href='./';" :: T.Text)
             Just identity -> ok . toResponse $ displayDeckExercise userIdentityMaybe deck
     ]
 
