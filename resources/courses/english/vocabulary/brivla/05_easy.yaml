@@ -66,9 +66,9 @@ facki:
 
     # Sentence complexity: 2.250
     - lojban_sentences:
-        - ma pu facki tu'a ko'a
+        - ma pu facki fi ko'a
       translated_sentences:
-        - Who found her?
+        - Who found out about her?
 
     # Sentence complexity: 5.402
     - lojban_sentences:
