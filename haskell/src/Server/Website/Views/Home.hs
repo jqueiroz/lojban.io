@@ -14,7 +14,7 @@ import qualified Text.Blaze.Html5.Attributes as A
 import qualified Courses.English.Grammar.Introduction.Course
 import qualified Courses.English.Grammar.Crash.Course
 import qualified Courses.English.Vocabulary.Attitudinals.Course
-import qualified Courses.English.Vocabulary.Brivla.Course
+--import qualified Courses.English.Vocabulary.Brivla.Course
 import qualified Decks.English.ContextualizedBrivla
 
 displayHome :: Maybe UserIdentity -> H.Html
@@ -41,7 +41,7 @@ displayHome userIdentityMaybe =
                                 displayCourse ("/courses/introduction", Courses.English.Grammar.Introduction.Course.course)
                                 displayCourse ("/courses/crash", Courses.English.Grammar.Crash.Course.course)
                                 displayCourse ("/courses/attitudinals", Courses.English.Vocabulary.Attitudinals.Course.course)
-                                displayCourse ("/courses/brivla", Courses.English.Vocabulary.Brivla.Course.course)
+                                --displayCourse ("/courses/brivla", Courses.English.Vocabulary.Brivla.Course.course)
                             H.div B.! A.class_ (H.textValue "next") $ do
                                 H.span B.! A.class_ (H.textValue "material-icons") $ H.toHtml ("navigate_next" :: T.Text)
                     H.div B.! A.class_ (H.textValue "decks") $ do
@@ -53,7 +53,7 @@ displayHome userIdentityMaybe =
                                 displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
                                 displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
                                 displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
-                                displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
+                                --displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
                             H.div B.! A.class_ (H.textValue "next") $ do
                                 H.span B.! A.class_ (H.textValue "material-icons") $ H.toHtml ("navigate_next" :: T.Text)
                     displayFooter

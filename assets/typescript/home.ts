@@ -34,10 +34,12 @@ let setupCarousel = function(previousButton, nextButton, elements) {
 };
 
 $(document).ready(function() {
-    setupCarousel(
-        $(".courses .previous"),
-        $(".courses .next"),
-        $(".courses .course")
-    );
-    setupCarousel($(".decks .previous"), $(".decks .next"), $(".decks .deck"));
+    $(".courses .previous, .courses .next").hide();
+    $(".decks .previous, .decks .next").hide();
+    //setupCarousel(
+        //$(".courses .previous"),
+        //$(".courses .next"),
+        //$(".courses .course")
+    //);
+    //setupCarousel($(".decks .previous"), $(".decks .next"), $(".decks .deck"));
 });
