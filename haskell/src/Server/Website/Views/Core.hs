@@ -4,10 +4,12 @@ module Server.Website.Views.Core
 ( includeUniversalStylesheets
 , includeInternalStylesheet
 , includeExternalStylesheet
+, includeInlineStylesheet
 , includeCourseStylesheet
 , includeUniversalScripts
 , includeInternalScript
 , includeExternalScript
+, includeInlineScript
 , includeDictionaryScript
 , includeDeckScript
 , TopbarCategory (..)
