@@ -7,7 +7,7 @@ module Server.Logic.Decks
 , updateDeckProficiencyByRegisteringExerciseAttempt
 , retrieveDeckPreferences
 , updateDeckPreferencesByTogglingCard
-, retrieveDeckWeightedActiveCards
+, retrieveDeckActiveCards
 ) where
 
 import Core
@@ -124,21 +124,24 @@ updateDeckPreferencesByTogglingCard userIdentifier deck cardTitle cardNewState =
         let newDeckPreferences = DeckPreferences newCardPreferences
         saveDeckPreferences userIdentifier deck newDeckPreferences
 
-retrieveDeckWeightedActiveCards :: UserIdentifier -> Deck -> Redis.Redis [(Int, Card)]
-retrieveDeckWeightedActiveCards userIdentifier deck = do
+retrieveDeckActiveCards :: UserIdentifier -> Deck -> Redis.Redis [(Card, Int, Double)]
+retrieveDeckActiveCards userIdentifier deck = do
     -- Retrieve enabled cards
-    preferences <- cardPreferences <$> retrieveDeckPreferences userIdentifier deck
+    preferencesMap <- cardPreferences <$> retrieveDeckPreferences userIdentifier deck
     let allCards = deckCards deck
     let enabledCards = (flip filter) allCards $ \card ->
             let
                 title = cardTitle card
+                preferences = M.lookup title preferencesMap
             in
-                maybe False cardEnabled $ M.lookup title preferences
+                maybe False cardEnabled preferences
     -- Retrieve weights for cards
-    proficiency <- cardProficiencies <$> retrieveDeckProficiency userIdentifier deck
+    proficiencyMap <- cardProficiencies <$> retrieveDeckProficiency userIdentifier deck
     return $ (flip map) enabledCards $ \card ->
             let
                 title = cardTitle card
-                weight = maybe 0 computeCardProficiencyWeight $ M.lookup title proficiency
+                proficiency = M.lookup title proficiencyMap
+                proficiencyWeight = maybe 0 computeCardProficiencyWeight proficiency
+                proficiencyScore = maybe 0 computeCardProficiencyScore proficiency
             in
-                (weight, card) 
+                (card, proficiencyWeight, proficiencyScore)
