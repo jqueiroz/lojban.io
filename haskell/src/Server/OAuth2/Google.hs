@@ -31,7 +31,7 @@ import qualified Network.OAuth.OAuth2 as OA2
 import qualified Data.Aeson as A
 import qualified Data.Text as T
 import qualified Data.Text.Encoding as TE
-import Data.ByteString.Base64 as B64
+import qualified Data.ByteString.Base64 as B64
 
 allowedRefererPrefixes :: [String]
 allowedRefererPrefixes =
