@@ -17,6 +17,7 @@ import qualified Courses.English.Vocabulary.Attitudinals.Course
 --import qualified Courses.English.Vocabulary.Brivla.Course
 import qualified Decks.English.ContextualizedBrivla
 
+-- TODO: link to official lojban wiki
 displayHome :: Maybe UserIdentity -> H.Html
 displayHome userIdentityMaybe =
     H.html $ do
