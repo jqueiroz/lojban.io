@@ -86,7 +86,8 @@ vocabulary4 = Vocabulary
     ]
     -- Cmavo
     [
-        "xu", "ma", "mo"
+        "xu", "ma", "mo",
+        "na", "go'i"
     ]
     -- Cmene
     [
