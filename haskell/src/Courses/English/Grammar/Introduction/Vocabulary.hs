@@ -109,7 +109,7 @@ vocabulary5 = Vocabulary
     ]
     -- Cmavo
     [
-        "nu", "du'u", "sedu'u", "kei"
+        "su'u", "nu", "du'u", "sedu'u", "kei"
     ]
     -- Cmene
     [
