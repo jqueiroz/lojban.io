@@ -918,11 +918,11 @@ translations6_restricted = combineGenerators [(2, hasHouse), (3, nice), (3, givi
             , (["lo prenu cu cusku lo se du'u do dunda lo gerku mi"], ["The person said that you would give me the dog.", "The person said that you would give me the dogs."])
             ]
         others = generatorFromList
-            [ (["mi cusku lo se du'u lo ciska ku pendo kei ku"], ["I said that the writer would be friendly."])
-            , (["mi cusku lo se du'u mi nelci lo nu tavla do", "mi cusku lo se du'u mi nelci lo nu mi tavla do kei ku kei ku"], ["I said that I like to talk to you."]) -- is nelci really adequate?
-            , (["mi cusku lo se du'u do nelci lo nu tavla mi", "mi cusku lo se du'u do nelci lo nu do tavla mi kei ku kei ku"], ["I said that you like to talk to me."]) -- is nelci really adequate?
-            , (["xu do cusku lo se du'u mi melbi do kei ku", "xu do cusku lo se du'u mi melbi kei ku"], ["Did you say that you find me beautiful?"])
-            , (["xu do cusku lo se du'u mi melbi kei ku", "xu do cusku lo se du'u mi melbi do kei ku"], ["Did you say that I am beautiful?"])
+            [ (["mi cusku lo se du'u lo ciska cu pendo"], ["I said that the writer would be friendly."])
+            , (["mi cusku lo se du'u mi nelci lo nu {mi} tavla do", "mi cusku lo se du'u mi nelci lo nu mi tavla do"], ["I said that I like to talk to you."]) -- is nelci really adequate?
+            , (["mi cusku lo se du'u do nelci lo nu {do} tavla mi"], ["I said that you like to talk to me."]) -- is nelci really adequate?
+            , (["xu do cusku lo se du'u mi melbi do", "xu do cusku lo se du'u mi melbi"], ["Did you say that you find me beautiful?"])
+            , (["xu do cusku lo se du'u mi melbi", "xu do cusku lo se du'u mi melbi do"], ["Did you say that I am beautiful?"])
             ]
 
 -- * Lesson 7: Checkpoint -- Lessons 1-6
