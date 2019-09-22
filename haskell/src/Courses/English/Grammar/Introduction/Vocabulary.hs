@@ -122,13 +122,23 @@ vocabulary5_cumulative = vocabulary4_cumulative <> vocabulary5
 -- | Vocabulary for the sixth lesson.
 --
 -- * New brivla: NONE.
--- * New cmavo: cu.
+-- * New cmavo: vau, cu.
 vocabulary6 :: Vocabulary
-vocabulary6 = vocabulary5_cumulative
+vocabulary6 = Vocabulary
+    -- Brivla
+    [
+    ]
+    -- Cmavo
+    [
+        "vau", "cu"
+    ]
+    -- Cmene
+    [
+    ]
 
 -- | Cumulative vocabulary up to the sixth lesson.
 vocabulary6_cumulative :: Vocabulary
-vocabulary6_cumulative = vocabulary6
+vocabulary6_cumulative = vocabulary5_cumulative <> vocabulary6
 
 -- | Vocabulary for the eighth lesson.
 --
