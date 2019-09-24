@@ -56,8 +56,8 @@ Let's practice this by means of another example.
 |lojbo nanla ckule| (Lojbanic boy) school | A school for lojbanic boys |
 |lojbo **bo** nanla **bo** ckule| Lojbanic (boy school) | A lojbanic school for boys |
 
-Therefore, while **lojbo nanla ckule** is a school for boys which (presumably) teaches lojban,
-we have that **lojbo bo nanla ckule** is a school (which presumably teaches anything), but only for lojbanic boys.
+Therefore, while **lojbo nanla bo ckule** is a school for boys which (presumably) teaches lojban,
+we have that **lojbo nanla ckule** is a school (which presumably teaches anything), but only for lojbanic boys.
 
 Again, imaginary parenthesis are placed around the first **bo**, in a right-to-left reading. Otherwise, left-to-right parenthesis are the standard.
 
@@ -128,7 +128,7 @@ Now it is your turn. Try to translate these, being precise, and non-ambiguous.
 
 
 <!--- To consider remove the four brivla tanru from here. It may be too complex. --->
-<!--- To consider give four brivla Tanru in Tanru 4. But.. Tanru 4 should be more than 'bo' right? --->
+<!--- BUT.. Tanru 3 should be more than 'bo' right? Then, maybe to insert here as curiosity? --->
 ### Curiosity: Four Brivla Tanru
 Consider the phrase: *Pretty Little Girls’ School*, again taken from the Lojban Reference Grammar.
 
@@ -138,6 +138,6 @@ Consider the phrase: *Pretty Little Girls’ School*, again taken from the Lojba
 |melbi **bo** cmalu nixli ckule| [(Pretty little) girl] school | A school for girls that are beautifully small |
 |melbi cmalu **bo** nixli ckule| [Pretty (little girl)] school | A school for small girls who are beautiful|
 |melbi cmalu nixli **bo** ckule| [Pretty little] (girl school) | A girls' school which is beautifully small |
-|melbi cmalu **bo** nixli **bo** ckule| Pretty [(little girl) school] | A small school for girls which is beautiful|
+|melbi cmalu **bo** nixli **bo** ckule| Pretty [little (girl school)] | A small school for girls which is beautiful|
 
 Notice that, no **bo** constructs reads from left to right, while with multipole **bo** constructs, one must read from right to left.
