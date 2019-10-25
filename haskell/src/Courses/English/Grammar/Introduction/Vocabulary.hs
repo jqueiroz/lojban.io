@@ -241,6 +241,7 @@ vocabulary12 :: Vocabulary
 vocabulary12 = Vocabulary
     -- Brivla
     [
+        "sutra", "lojbo"
     ]
     -- Cmavo
     [
