@@ -113,7 +113,8 @@ exercises4 =
         ]
     where
         vocabulary = vocabulary4_cumulative
-        bridiGenerator = extractSimpleBridiGeneratorFromTranslationGenerator translations4_sentences
+        -- Narrowing the 'TranslationGenerator' is required to avoid alternative translations using "poi"
+        bridiGenerator = extractSimpleBridiGeneratorFromTranslationGenerator $ narrowTranslationGenerator translations4_sentences
         bridiDisplayer = combineGenerators [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
 
 translationExercises4 :: ExerciseGenerator
