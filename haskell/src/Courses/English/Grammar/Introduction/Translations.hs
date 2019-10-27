@@ -239,6 +239,7 @@ translations3_normal = combineGeneratorsUniformly [talkingToAnimal, likingAnimal
 -- TODO: tanru for "adverbs", in addition to the existing tanru for "adjectives" (changes in the canonicalizer will likely be necessary)
 -- TODO: sentences/expressions using "sutra" and "lojbo"
 -- TODO: if this lesson is placed before "Questions", remove translations using "xu"
+-- TODO: add missing "ku"
 translations4_expressions :: TranslationGenerator
 translations4_expressions = expandTranslationGenerator $ combineGeneratorsUniformly [pendo, gleki, melbi, others] where
     pendo = generatorFromList
