@@ -94,7 +94,7 @@ translations2_normal = combineGeneratorsUniformly $ others ++ [talkingWithSecond
 
 -- | Overall translations for the third lesson.
 translations3 :: TranslationGenerator
-translations3 =  combineGenerators [(1, translations2_nice), (10, translations3_nice), (5, translations3_normal)]
+translations3 =  combineGenerators [(1, translations3_nice), (10, translations3_nice), (5, translations3_normal)]
 
 -- | Translations for the third lesson, with the restriction that some intermediate place is missing.
 --
@@ -235,17 +235,135 @@ translations3_normal = combineGeneratorsUniformly [talkingToAnimal, likingAnimal
             , (["lo ctuca ku nelci mi"], ["The instructor likes me", "The instructors like me."])
             ]
 
--- * Lesson 4: Questions 1
+-- * Lesson 4: Tanru
+-- TODO: tanru for "adverbs", in addition to the existing tanru for "adjectives" (changes in the canonicalizer will likely be necessary)
+-- TODO: sentences/expressions using "sutra" and "lojbo"
+-- TODO: if this lesson is placed before "Questions", remove translations using "xu"
+translations4_expressions :: TranslationGenerator
+translations4_expressions = expandTranslationGenerator $ combineGeneratorsUniformly [pendo, gleki, melbi, others] where
+    pendo = generatorFromList
+        [ (["lo pendo prenu"], ["The friendly person."])
+        , (["lo pendo dunda"], ["The friendly donor."])
+        , (["lo pendo te dunda "], ["The friendly recipient."])
+        , (["lo pendo vecnu"], ["The friendly seller."])
+        , (["lo pendo te vecnu"], ["The friendly buyer."])
+        , (["lo pendo tavla"], ["The friendly speaker."])
+        , (["lo pendo ctuca"], ["The friendly teacher."])
+        , (["lo pendo gerku"], ["The friendly dog."])
+        , (["lo pendo mlatu"], ["The friendly cat."])
+        ]
+    gleki = generatorFromList
+        [ (["lo gleki prenu"], ["The happy person."])
+        , (["lo gleki dunda"], ["The happy donor."])
+        , (["lo gleki te dunda "], ["The happy recipient."])
+        , (["lo gleki vecnu"], ["The happy seller."])
+        , (["lo gleki te vecnu"], ["The happy buyer."])
+        , (["lo gleki tavla"], ["The happy speaker."])
+        , (["lo gleki ctuca"], ["The happy teacher."])
+        , (["lo gleki gerku"], ["The happy dog."])
+        , (["lo gleki mlatu"], ["The happy cat."])
+        ]
+    melbi = generatorFromList
+        [ (["lo melbi prenu"], ["The beautiful person."])
+        , (["lo melbi dunda"], ["The beautiful donor."])
+        , (["lo melbi te dunda "], ["The beautiful recipient."])
+        , (["lo melbi vecnu"], ["The beautiful seller."])
+        , (["lo melbi te vecnu"], ["The beautiful buyer."])
+        , (["lo melbi tavla"], ["The beautiful speaker."])
+        , (["lo melbi ctuca"], ["The beautiful teacher."])
+        , (["lo melbi gerku"], ["The beautiful dog."])
+        , (["lo melbi mlatu"], ["The beautiful cat."])
+        , (["lo melbi skami"], ["The beautiful computer."])
+        , (["lo melbi plise"], ["The beautiful apple."])
+        ]
+    others = generatorFromList
+        [ (["lo nupre se dunda"], ["The promised gift."])
+        , (["lo gerku zdani"], ["The dog house."])
+        , (["lo tavla skami"], ["The talking computer."])
+        , (["lo tavla gerku"], ["The talking dog."])
+        , (["lo tavla mlatu"], ["The talking cat."])
+        ]
+
+translations4_sentences :: TranslationGenerator
+translations4_sentences = expandTranslationGenerator $ combineGeneratorsUniformly [pendo, gleki] where
+    pendo = generatorFromList
+        -- tavla (mi)
+        [ (["mi tavla lo pendo prenu", "mi tavla lo prenu poi pendo"], ["I talked to the friendly person."])
+        , (["mi tavla lo pendo dunda", "mi tavla lo dunda poi pendo"], ["I talked to the friendly donor."])
+        , (["mi tavla lo pendo te dunda ", "mi tavla lo te dunda poi pendo"], ["I talked to the friendly recipient."])
+        , (["mi tavla lo pendo vecnu", "mi tavla lo vecnu poi pendo"], ["I talked to the friendly seller."])
+        , (["mi tavla lo pendo te vecnu", "mi tavla lo te vecnu poi pendo"], ["I talked to the friendly buyer."])
+        , (["mi tavla lo pendo ctuca", "mi tavla lo ctuca poi pendo"], ["I talked to the friendly teacher."])
+        -- tavla (xu do)
+        , (["xu do tavla lo pendo prenu", "xu do tavla lo prenu poi pendo"], ["Did you talk to the friendly person?"])
+        , (["xu do tavla lo pendo dunda", "xu do tavla lo dunda poi pendo"], ["Did you talk to the friendly donor?"])
+        , (["xu do tavla lo pendo te dunda ", "xu do tavla lo te dunda poi pendo"], ["Did you talk to the friendly recipient?"])
+        , (["xu do tavla lo pendo vecnu", "xu do tavla lo vecnu poi pendo"], ["Did you talk to the friendly seller?"])
+        , (["xu do tavla lo pendo te vecnu", "xu do tavla lo te vecnu poi pendo"], ["Did you talk to the friendly buyer?"])
+        , (["xu do tavla lo pendo ctuca", "xu do tavla lo ctuca poi pendo"], ["Did you talk to the friendly teacher?"])
+        -- nelci (mi)
+        , (["mi nelci lo pendo prenu", "mi nelci lo prenu poi pendo"], ["I like friendly people."])
+        , (["mi nelci lo pendo dunda", "mi nelci lo dunda poi pendo"], ["I like friendly donors."])
+        , (["mi nelci lo pendo te dunda", "mi nelci lo te dunda poi pendo"], ["I like friendly recipients."])
+        , (["mi nelci lo pendo vecnu", "mi nelci lo vecnu poi pendo"], ["I like friendly sellers."])
+        , (["mi nelci lo pendo te vecnu", "mi nelci lo te vecnu poi pendo"], ["I like friendly buyers."])
+        , (["mi nelci lo pendo ctuca", "mi nelci lo ctuca poi pendo"], ["I like friendly teachers."])
+        , (["mi nelci lo pendo gerku", "mi nelci lo gerku poi pendo"], ["I like friendly dogs."])
+        , (["mi nelci lo pendo mlatu", "mi nelci lo mlatu poi pendo"], ["I like friendly cats."])
+        -- nelci (xu do)
+        , (["xu do nelci lo pendo prenu", "xu do nelci lo prenu poi pendo"], ["Do you like friendly people?"])
+        , (["xu do nelci lo pendo dunda", "xu do nelci lo dunda poi pendo"], ["Do you like friendly donors?"])
+        , (["xu do nelci lo pendo te dunda", "xu do nelci lo te dunda poi pendo"], ["Do you like friendly recipients?"])
+        , (["xu do nelci lo pendo vecnu", "xu do nelci lo vecnu poi pendo"], ["Do you like friendly sellers?"])
+        , (["xu do nelci lo pendo te vecnu", "xu do nelci lo te vecnu poi pendo"], ["Do you like friendly buyers?"])
+        , (["xu do nelci lo pendo ctuca", "xu do nelci lo ctuca poi pendo"], ["Do you like friendly teachers?"])
+        , (["xu do nelci lo pendo gerku", "xu do nelci lo gerku poi pendo"], ["Do you like friendly dogs?"])
+        , (["xu do nelci lo pendo mlatu", "xu do nelci lo mlatu poi pendo"], ["Do you like friendly cats?"])
+        ]
+    gleki = generatorFromList
+        -- tavla (mi)
+        [ (["mi tavla lo gleki prenu", "mi tavla lo prenu poi gleki"], ["I talked to the happy person."])
+        , (["mi tavla lo gleki dunda", "mi tavla lo dunda poi gleki"], ["I talked to the happy donor."])
+        , (["mi tavla lo gleki te dunda ", "mi tavla lo te dunda poi gleki"], ["I talked to the happy recipient."])
+        , (["mi tavla lo gleki vecnu", "mi tavla lo vecnu poi gleki"], ["I talked to the happy seller."])
+        , (["mi tavla lo gleki te vecnu", "mi tavla lo te vecnu poi gleki"], ["I talked to the happy buyer."])
+        , (["mi tavla lo gleki ctuca", "mi tavla lo ctuca poi gleki"], ["I talked to the happy teacher."])
+        -- tavla (xu do)
+        , (["xu do tavla lo gleki prenu", "xu do tavla lo prenu poi gleki"], ["Did you talk to the happy person?"])
+        , (["xu do tavla lo gleki dunda", "xu do tavla lo dunda poi gleki"], ["Did you talk to the happy donor?"])
+        , (["xu do tavla lo gleki te dunda ", "xu do tavla lo te dunda poi gleki"], ["Did you talk to the happy recipient?"])
+        , (["xu do tavla lo gleki vecnu", "xu do tavla lo vecnu poi gleki"], ["Did you talk to the happy seller?"])
+        , (["xu do tavla lo gleki te vecnu", "xu do tavla lo te vecnu poi gleki"], ["Did you talk to the happy buyer?"])
+        , (["xu do tavla lo gleki ctuca", "xu do tavla lo ctuca poi gleki"], ["Did you talk to the happy teacher?"])
+        -- nelci (mi)
+        , (["mi nelci lo gleki prenu", "mi nelci lo prenu poi gleki"], ["I like happy people."])
+        , (["mi nelci lo gleki ctuca", "mi nelci lo ctuca poi gleki"], ["I like happy teachers."])
+        , (["mi nelci lo gleki gerku", "mi nelci lo gerku poi gleki"], ["I like happy dogs."])
+        , (["mi nelci lo gleki mlatu", "mi nelci lo mlatu poi gleki"], ["I like happy cats."])
+        -- nelci (xu do)
+        , (["xu do nelci lo gleki prenu", "xu do nelci lo prenu poi gleki"], ["Do you like happy people?"])
+        , (["xu do nelci lo gleki ctuca", "xu do nelci lo ctuca poi gleki"], ["Do you like happy teachers?"])
+        , (["xu do nelci lo gleki gerku", "xu do nelci lo gerku poi gleki"], ["Do you like happy dogs?"])
+        , (["xu do nelci lo gleki mlatu", "xu do nelci lo mlatu poi gleki"], ["Do you like happy cats?"])
+        ]
+
+-- TODO: use the following sentences
+--translations99 :: [ExerciseGenerator]
+--translations99 = generateTranslationExercise sentenceCanonicalizer sentenceComparer <$> generatorFromSingleton <$>
+    --[ (["lo prenu ku sutra tavla"], ["The person talks quickly.", "The person is talking quickly.", "A person is talking quickly.", "People talk quickly"])
+    --]
+
+-- * Lesson 5: Questions 1
 --
 -- | Overall translations for the fourth lesson (always involving "xu", "ma" or "mo").
-translations4 :: TranslationGenerator
-translations4 = combineGenerators [(4, translations4_xu), (4, translations4_ma), (1, translations4_mo)]
+translations5 :: TranslationGenerator
+translations5 = combineGenerators [(4, translations5_xu), (4, translations5_ma), (1, translations5_mo)]
 
 -- | Translations for the fourth lesson involving "xu", with the restriction that some intermediate place is missing.
 --
 -- Defined separately so that they may be used in 'Translate without using "zo'e"' exercises.
-translations4_restricted_xu :: TranslationGenerator
-translations4_restricted_xu = combineGenerators [(2, talkingAbout), (1, gaveSomething), (4, writing), (2, know)] where
+translations5_restricted_xu :: TranslationGenerator
+translations5_restricted_xu = combineGenerators [(2, talkingAbout), (1, gaveSomething), (4, writing), (2, know)] where
     talkingAbout = generatorFromList
         [ (["xu do tavla fi do", "xu do tavla fi vo'a"], ["Are you talking about yourself?", "Were you talking about yourself?"])
         , (["xu do tavla fi mi"], ["Are you talking about me?", "Were you talking about me?"])
@@ -275,8 +393,8 @@ translations4_restricted_xu = combineGenerators [(2, talkingAbout), (1, gaveSome
         ]
 
 -- | Overall translations for the fourth lesson involving "xu".
-translations4_xu :: TranslationGenerator
-translations4_xu = combineGenerators $ [(3, translations4_restricted_xu), (3, writing), (2, know)] ++ ((1,) <$> [hasHouse, nice, talking, teaching, friends, others]) where
+translations5_xu :: TranslationGenerator
+translations5_xu = combineGenerators $ [(3, translations5_restricted_xu), (3, writing), (2, know)] ++ ((1,) <$> [hasHouse, nice, talking, teaching, friends, others]) where
     hasHouse = generatorFromList
         [ (["xu do se zdani"], ["Do you have a house?"])
         , (["xu lo prenu ku se zdani"], ["Does the person have a house?"])
@@ -337,8 +455,8 @@ translations4_xu = combineGenerators $ [(3, translations4_restricted_xu), (3, wr
 -- | Translations for the fourth lesson involving "ma", with the restriction that some intermediate place is missing.
 --
 -- Defined separately so that they may be used in 'Translate without using "zo'e"' exercises.
-translations4_restricted_ma :: TranslationGenerator
-translations4_restricted_ma = combineGenerators [(2, talkingAbout), (1, gaveSomething), (4, writing), (2, know)] where
+translations5_restricted_ma :: TranslationGenerator
+translations5_restricted_ma = combineGenerators [(2, talkingAbout), (1, gaveSomething), (4, writing), (2, know)] where
     talkingAbout = generatorFromList
         [ (["ma tavla fi mi"], ["Who is talking about me?", "Who is talking about us?", "Who was talking about me?", "Who was walking about us?"])
         , (["ma tavla fi do"], ["Who is talking about you?", "Who was talking about you?"])
@@ -376,8 +494,8 @@ translations4_restricted_ma = combineGenerators [(2, talkingAbout), (1, gaveSome
         ]
 
 -- | Overall translations for the fourth lesson involving "ma".
-translations4_ma :: TranslationGenerator
-translations4_ma = combineGenerators $ [(3, translations4_restricted_ma), (3, writing), (2, know)] ++ ((1,) <$> [hasHouse, nice, talking, giving, teaching]) where
+translations5_ma :: TranslationGenerator
+translations5_ma = combineGenerators $ [(3, translations5_restricted_ma), (3, writing), (2, know)] ++ ((1,) <$> [hasHouse, nice, talking, giving, teaching]) where
     hasHouse = generatorFromList
         [ (["ma se zdani"], ["Who has a house?"])
         , (["ta zdani ma", "zdani ma"], ["Whose house is that?"])
@@ -460,8 +578,8 @@ translations4_ma = combineGenerators $ [(3, translations4_restricted_ma), (3, wr
         ]
 
 -- | Translations for the fourth lesson involving "mo".
-translations4_mo :: TranslationGenerator
-translations4_mo = generatorFromList
+translations5_mo :: TranslationGenerator
+translations5_mo = generatorFromList
     [ (["mi mo"], ["What am I doing?"])
     , (["do mo"], ["What are you doing?"])
     , (["lo prenu ku mo"], ["What is the person doing?"])
@@ -472,13 +590,13 @@ translations4_mo = generatorFromList
 -- | Translations for the fourth lesson involving "xu" or "ma", with the restriction that some intermediate place is missing.
 --
 -- Defined separately so that they may be used in 'Translate without using "zo'e"' exercises.
-translations4_restricted :: TranslationGenerator
-translations4_restricted = combineGeneratorsUniformly [translations4_restricted_xu, translations4_restricted_ma]
+translations5_restricted :: TranslationGenerator
+translations5_restricted = combineGeneratorsUniformly [translations5_restricted_xu, translations5_restricted_ma]
 
--- * Lesson 5: Abstractions 1
+-- * Lesson 6: Abstractions 1
 -- CHECK: Are events vs facts being used correctly?
-translations5_nu :: TranslationGenerator
-translations5_nu = combineGenerators [(2, gleki), (1, tavla), (2, nupre)] where
+translations6_nu :: TranslationGenerator
+translations6_nu = combineGenerators [(2, gleki), (1, tavla), (2, nupre)] where
     gleki = combineGeneratorsUniformly [talking, beautiful, givingAnimals, liking, teaching, owningHouse, know, other] where
         talking = generatorFromList
             -- talking to someone
@@ -578,8 +696,8 @@ translations5_nu = combineGenerators [(2, gleki), (1, tavla), (2, nupre)] where
             , (["lo ciska ku nupre lo nu pendo kei ku"], ["The writer promised to be friendly."])
             ]
 
-translations5_du'u :: TranslationGenerator
-translations5_du'u = combineGenerators [(2, djuno)] where
+translations6_du'u :: TranslationGenerator
+translations6_du'u = combineGenerators [(2, djuno)] where
     djuno = combineGeneratorsUniformly [teaching, friend, donating, promising, liking, talking, writing] where
         teaching = generatorFromList
             [ (["mi djuno lo du'u do ctuca mi kei ku"], ["I know that you taught me."])
@@ -634,8 +752,8 @@ translations5_du'u = combineGenerators [(2, djuno)] where
             , (["mi djuno lo du'u lo ctuca ku ciska fi ta kei ku"], ["I know that the instructor wrote something there."])
             ]
 
-translations5_sedu'u :: TranslationGenerator
-translations5_sedu'u = combineGenerators [(2, cusku)] where
+translations6_sedu'u :: TranslationGenerator
+translations6_sedu'u = combineGenerators [(2, cusku)] where
     cusku = combineGeneratorsUniformly [beautiful, likingPeople, likingAnimals, donatingAnimals, beingFriendly, others] where
         beautiful = generatorFromList
             [ (["mi cusku lo se du'u do melbi kei ku"], ["I said that you are beautiful."])
@@ -703,8 +821,8 @@ translations5_sedu'u = combineGenerators [(2, cusku)] where
             {-, (["mi cusku lo se du'u do nelci lo nu tavla mi kei ku kei ku", "mi cusku lo se du'u do nelci lo nu do tavla mi kei ku kei ku"], ["I said that you like to talk to me."])-}
             ]
 
-translations5_extra :: TranslationGenerator
-translations5_extra = combineGeneratorsUniformly [gleki, tavla, nupre, cusku, ciska] where
+translations6_extra :: TranslationGenerator
+translations6_extra = combineGeneratorsUniformly [gleki, tavla, nupre, cusku, ciska] where
     gleki = generatorFromList
         [ (["mi gleki"], ["I am happy."])
         , (["lo prenu ku gleki"], ["The person is happy."])
@@ -734,15 +852,15 @@ translations5_extra = combineGeneratorsUniformly [gleki, tavla, nupre, cusku, ci
         , (["lo ctuca ku ciska fi ta"], ["The instructor wrote something there."])
         ]
 
-translations5 :: TranslationGenerator
-translations5 = combineGenerators $ ((4,) <$> [translations5_nu, translations5_du'u, translations5_sedu'u]) ++ ((1,) <$> [translations5_extra])
-
--- * Lesson 6: Terminator elision
 translations6 :: TranslationGenerator
-translations6 = translations6_restricted
+translations6 = combineGenerators $ ((4,) <$> [translations6_nu, translations6_du'u, translations6_sedu'u]) ++ ((1,) <$> [translations6_extra])
 
-translations6_restricted :: TranslationGenerator
-translations6_restricted = combineGenerators [(2, hasHouse), (3, nice), (3, giving), (2, talking), (3, gleki), (3, nupre), (3, djuno), (3, cusku)] where
+-- * Lesson 7: Terminator elision
+translations7 :: TranslationGenerator
+translations7 = translations7_restricted
+
+translations7_restricted :: TranslationGenerator
+translations7_restricted = combineGenerators [(2, hasHouse), (3, nice), (3, giving), (2, talking), (3, gleki), (3, nupre), (3, djuno), (3, cusku)] where
     hasHouse = generatorFromList
         [ (["lo ctuca cu se zdani"], ["The instructor has a house."])
         , (["lo prenu cu se zdani"], ["The person has a house."])
@@ -925,18 +1043,18 @@ translations6_restricted = combineGenerators [(2, hasHouse), (3, nice), (3, givi
             , (["xu do cusku lo se du'u mi melbi", "xu do cusku lo se du'u mi melbi do"], ["Did you say that I am beautiful?"])
             ]
 
--- * Lesson 7: Checkpoint -- Lessons 1-6
-translations1to6 :: TranslationGenerator
-translations1to6 = simplifyTerminatorsInTranslationGenerator $ combineGeneratorsUniformly [translations3, translations4, translations5, translations6]
+-- * Lesson 8: Checkpoint -- Lessons 1-7
+translations1to7 :: TranslationGenerator
+translations1to7 = simplifyTerminatorsInTranslationGenerator $ combineGeneratorsUniformly [translations3, translations4_sentences, translations5, translations6, translations7]
 
--- * Lesson 8: Relative clauses
+-- * Lesson 9: Relative clauses
 -- questionExercises5 :: "What did you promise", "What did you say, ..."
 -- Interesting: xu do djuno lo se cusku
 -- TODO: add some translations involving "this computer" ("ti poi skami", but also accept "lo vi skami")
 
 -- TODO: questions with "ma"
-translations8_noi :: TranslationGenerator
-translations8_noi = expandTranslationGenerator $ combineGeneratorsUniformly [computer, uses, knower, instructor, friend, house, animals] where
+translations9_noi :: TranslationGenerator
+translations9_noi = expandTranslationGenerator $ combineGeneratorsUniformly [computer, uses, knower, instructor, friend, house, animals] where
     usesComputers =
         [ (["lo ctuca noi {ke'a} pilno lo skami cu pendo"], ["The instructor, who uses computers, is friendly."])
         , (["lo ctuca noi {ke'a} pilno lo skami cu tavla mi"], ["The instructor, who uses computers, talked to me."])
@@ -999,8 +1117,8 @@ translations8_noi = expandTranslationGenerator $ combineGeneratorsUniformly [com
             , (["lo pendo noi {ke'a} vecnu lo skami cu nelci lo gerku"], ["The friend, who sells computers, likes dogs."])
             ]
 
-translations8_poi :: TranslationGenerator
-translations8_poi = expandTranslationGenerator $ combineGeneratorsUniformly [computer, uses, house, animals, general] where
+translations9_poi :: TranslationGenerator
+translations9_poi = expandTranslationGenerator $ combineGeneratorsUniformly [computer, uses, house, animals, general] where
     usesComputers =
         [ (["lo skami poi mi pilno (ke'a|) ku'o melbi"], ["The computer that I use is beautiful."])
         , (["lo skami poi do pilno (ke'a|) ku'o melbi"], ["The computer that you use is beautiful."])
@@ -1093,12 +1211,12 @@ translations8_poi = expandTranslationGenerator $ combineGeneratorsUniformly [com
         , (["xu do nelci lo plise poi mi te vecnu ke'a"], ["Did you like the apple that I bought?"])
         ]
 
-translations8 :: TranslationGenerator
-translations8 = combineGeneratorsUniformly [translations8_noi, translations8_poi]
-
--- * Lesson 9: Linked sumti
 translations9 :: TranslationGenerator
-translations9 = expandTranslationGenerator $ combineGeneratorsUniformly [required_terminator, cmene_complex, general, vecnu_zdani, ctuca, tavla, bangu, zdani, cmene] where
+translations9 = combineGeneratorsUniformly [translations9_noi, translations9_poi]
+
+-- * Lesson 10: Linked sumti
+translations10 :: TranslationGenerator
+translations10 = expandTranslationGenerator $ combineGeneratorsUniformly [required_terminator, cmene_complex, general, vecnu_zdani, ctuca, tavla, bangu, zdani, cmene] where
     required_terminator = generatorFromList
         [ (["mi nelci lo cmene (be do be'o|pe do ge'u) noi melbi"], ["I like your name, which is beautiful."])
         , (["mi nelci lo zdani (be do be'o|pe do ge'u) noi melbi"], ["I like your house, which is beautiful."])
@@ -1183,11 +1301,11 @@ translations9 = expandTranslationGenerator $ combineGeneratorsUniformly [require
         , (["xu do nelci lo cmene (be|pe) do"], ["Do you like your name?"])
         ]
 
--- * Lesson 10: Sumtcita
+-- * Lesson 11: Sumtcita
 -- TODO: include sentences like "lo jinga be gau do"
 -- TODO: include sentences like "lo dunda be fi do" (will require significant improvements in text canonicalizer)
-translations10 :: TranslationGenerator
-translations10 = expandTranslationGenerator $ combineGeneratorsUniformly [pi'o, mu'i, gau] where
+translations11 :: TranslationGenerator
+translations11 = expandTranslationGenerator $ combineGeneratorsUniformly [pi'o, mu'i, gau] where
     pi'o = generatorFromList
         -- fanva
         [ (["mi fanva sepi'o lo skami"], ["I translated using the computer."])
@@ -1281,9 +1399,9 @@ translations10 = expandTranslationGenerator $ combineGeneratorsUniformly [pi'o, 
         , (["gau mi cmene lo mlatu"], ["I named the cat."])
         ]
 
--- * Lesson 11: Tenses 1
-translations11_pu :: TranslationGenerator
-translations11_pu = expandTranslationGenerator $ combineGeneratorsUniformly [dunda, vecnu, gleki, ciska] where
+-- * Lesson 12: Tenses 1
+translations12_pu :: TranslationGenerator
+translations12_pu = expandTranslationGenerator $ combineGeneratorsUniformly [dunda, vecnu, gleki, ciska] where
     dunda = generatorFromList
         [ (["mi pu dunda lo mlatu"], ["I donated the cat."])
         , (["mi pu dunda lo gerku"], ["I donated the dog."])
@@ -1317,8 +1435,8 @@ translations11_pu = expandTranslationGenerator $ combineGeneratorsUniformly [dun
         , (["xu do pu ciska fo ta"], ["Did you write something using that?"])
         ]
 
-translations11_ca :: TranslationGenerator
-translations11_ca = expandTranslationGenerator $ combineGeneratorsUniformly [dunda, vecnu, gleki, ciska] where
+translations12_ca :: TranslationGenerator
+translations12_ca = expandTranslationGenerator $ combineGeneratorsUniformly [dunda, vecnu, gleki, ciska] where
     dunda = generatorFromList
         [ (["mi ca dunda lo mlatu"], ["I am donating the cat."])
         , (["mi ca dunda lo gerku"], ["I am donating the dog."])
@@ -1354,8 +1472,8 @@ translations11_ca = expandTranslationGenerator $ combineGeneratorsUniformly [dun
         , (["xu do ca ciska fo ta"], ["Are you writing something using that?"])
         ]
 
-translations11_ba :: TranslationGenerator
-translations11_ba = expandTranslationGenerator $ combineGeneratorsUniformly [dunda, vecnu, gleki, ciska] where
+translations12_ba :: TranslationGenerator
+translations12_ba = expandTranslationGenerator $ combineGeneratorsUniformly [dunda, vecnu, gleki, ciska] where
     dunda = generatorFromList
         [ (["mi ba dunda lo mlatu"], ["I will donate the cat."])
         , (["mi ba dunda lo gerku"], ["I will donate the dog."])
@@ -1387,8 +1505,8 @@ translations11_ba = expandTranslationGenerator $ combineGeneratorsUniformly [dun
         , (["xu do ba ciska fo ta"], ["Will you write something using that?"])
         ]
 
-translations11_unrestricted :: TranslationGenerator
-translations11_unrestricted = expandTranslationGenerator $ combineGeneratorsUniformly [cmene, vecnu] where
+translations12_unrestricted :: TranslationGenerator
+translations12_unrestricted = expandTranslationGenerator $ combineGeneratorsUniformly [cmene, vecnu] where
     cmene = generatorFromList
         [ (["mi nelci lo pu cmene (be|pe) do"], ["I like your former name."])
         , (["xu do nelci lo pu cmene (be|pe) do"], ["Did you like your former name?"])
@@ -1398,126 +1516,8 @@ translations11_unrestricted = expandTranslationGenerator $ combineGeneratorsUnif
         , (["lo ba te vecnu cu gleki"], ["The future buyer is happy."])
         ]
 
-translations11_restricted :: TranslationGenerator
-translations11_restricted = combineGeneratorsUniformly [translations11_pu, translations11_ca, translations11_ba]
-
--- * Lesson 12: Tanru
--- TODO: tanru for "adverbs", in addition to the existing tanru for "adjectives" (changes in the canonicalizer will likely be necessary)
--- TODO: sentences/expressions using "sutra" and "lojbo"
--- TODO: if this lesson is placed before "Questions", remove translations using "xu"
-translations12_expressions :: TranslationGenerator
-translations12_expressions = expandTranslationGenerator $ combineGeneratorsUniformly [pendo, gleki, melbi, others] where
-    pendo = generatorFromList
-        [ (["lo pendo prenu"], ["The friendly person."])
-        , (["lo pendo dunda"], ["The friendly donor."])
-        , (["lo pendo te dunda "], ["The friendly recipient."])
-        , (["lo pendo vecnu"], ["The friendly seller."])
-        , (["lo pendo te vecnu"], ["The friendly buyer."])
-        , (["lo pendo tavla"], ["The friendly speaker."])
-        , (["lo pendo ctuca"], ["The friendly teacher."])
-        , (["lo pendo gerku"], ["The friendly dog."])
-        , (["lo pendo mlatu"], ["The friendly cat."])
-        ]
-    gleki = generatorFromList
-        [ (["lo gleki prenu"], ["The happy person."])
-        , (["lo gleki dunda"], ["The happy donor."])
-        , (["lo gleki te dunda "], ["The happy recipient."])
-        , (["lo gleki vecnu"], ["The happy seller."])
-        , (["lo gleki te vecnu"], ["The happy buyer."])
-        , (["lo gleki tavla"], ["The happy speaker."])
-        , (["lo gleki ctuca"], ["The happy teacher."])
-        , (["lo gleki gerku"], ["The happy dog."])
-        , (["lo gleki mlatu"], ["The happy cat."])
-        ]
-    melbi = generatorFromList
-        [ (["lo melbi prenu"], ["The beautiful person."])
-        , (["lo melbi dunda"], ["The beautiful donor."])
-        , (["lo melbi te dunda "], ["The beautiful recipient."])
-        , (["lo melbi vecnu"], ["The beautiful seller."])
-        , (["lo melbi te vecnu"], ["The beautiful buyer."])
-        , (["lo melbi tavla"], ["The beautiful speaker."])
-        , (["lo melbi ctuca"], ["The beautiful teacher."])
-        , (["lo melbi gerku"], ["The beautiful dog."])
-        , (["lo melbi mlatu"], ["The beautiful cat."])
-        , (["lo melbi skami"], ["The beautiful computer."])
-        , (["lo melbi plise"], ["The beautiful apple."])
-        ]
-    others = generatorFromList
-        [ (["lo nupre se dunda"], ["The promised gift."])
-        , (["lo gerku zdani"], ["The dog house."])
-        , (["lo tavla skami"], ["The talking computer."])
-        , (["lo tavla gerku"], ["The talking dog."])
-        , (["lo tavla mlatu"], ["The talking cat."])
-        ]
-
-translations12_sentences :: TranslationGenerator
-translations12_sentences = expandTranslationGenerator $ combineGeneratorsUniformly [pendo, gleki] where
-    pendo = generatorFromList
-        -- tavla (mi)
-        [ (["mi tavla lo pendo prenu", "mi tavla lo prenu poi pendo"], ["I talked to the friendly person."])
-        , (["mi tavla lo pendo dunda", "mi tavla lo dunda poi pendo"], ["I talked to the friendly donor."])
-        , (["mi tavla lo pendo te dunda ", "mi tavla lo te dunda poi pendo"], ["I talked to the friendly recipient."])
-        , (["mi tavla lo pendo vecnu", "mi tavla lo vecnu poi pendo"], ["I talked to the friendly seller."])
-        , (["mi tavla lo pendo te vecnu", "mi tavla lo te vecnu poi pendo"], ["I talked to the friendly buyer."])
-        , (["mi tavla lo pendo ctuca", "mi tavla lo ctuca poi pendo"], ["I talked to the friendly teacher."])
-        -- tavla (xu do)
-        , (["xu do tavla lo pendo prenu", "xu do tavla lo prenu poi pendo"], ["Did you talk to the friendly person?"])
-        , (["xu do tavla lo pendo dunda", "xu do tavla lo dunda poi pendo"], ["Did you talk to the friendly donor?"])
-        , (["xu do tavla lo pendo te dunda ", "xu do tavla lo te dunda poi pendo"], ["Did you talk to the friendly recipient?"])
-        , (["xu do tavla lo pendo vecnu", "xu do tavla lo vecnu poi pendo"], ["Did you talk to the friendly seller?"])
-        , (["xu do tavla lo pendo te vecnu", "xu do tavla lo te vecnu poi pendo"], ["Did you talk to the friendly buyer?"])
-        , (["xu do tavla lo pendo ctuca", "xu do tavla lo ctuca poi pendo"], ["Did you talk to the friendly teacher?"])
-        -- nelci (mi)
-        , (["mi nelci lo pendo prenu", "mi nelci lo prenu poi pendo"], ["I like friendly people."])
-        , (["mi nelci lo pendo dunda", "mi nelci lo dunda poi pendo"], ["I like friendly donors."])
-        , (["mi nelci lo pendo te dunda", "mi nelci lo te dunda poi pendo"], ["I like friendly recipients."])
-        , (["mi nelci lo pendo vecnu", "mi nelci lo vecnu poi pendo"], ["I like friendly sellers."])
-        , (["mi nelci lo pendo te vecnu", "mi nelci lo te vecnu poi pendo"], ["I like friendly buyers."])
-        , (["mi nelci lo pendo ctuca", "mi nelci lo ctuca poi pendo"], ["I like friendly teachers."])
-        , (["mi nelci lo pendo gerku", "mi nelci lo gerku poi pendo"], ["I like friendly dogs."])
-        , (["mi nelci lo pendo mlatu", "mi nelci lo mlatu poi pendo"], ["I like friendly cats."])
-        -- nelci (xu do)
-        , (["xu do nelci lo pendo prenu", "xu do nelci lo prenu poi pendo"], ["Do you like friendly people?"])
-        , (["xu do nelci lo pendo dunda", "xu do nelci lo dunda poi pendo"], ["Do you like friendly donors?"])
-        , (["xu do nelci lo pendo te dunda", "xu do nelci lo te dunda poi pendo"], ["Do you like friendly recipients?"])
-        , (["xu do nelci lo pendo vecnu", "xu do nelci lo vecnu poi pendo"], ["Do you like friendly sellers?"])
-        , (["xu do nelci lo pendo te vecnu", "xu do nelci lo te vecnu poi pendo"], ["Do you like friendly buyers?"])
-        , (["xu do nelci lo pendo ctuca", "xu do nelci lo ctuca poi pendo"], ["Do you like friendly teachers?"])
-        , (["xu do nelci lo pendo gerku", "xu do nelci lo gerku poi pendo"], ["Do you like friendly dogs?"])
-        , (["xu do nelci lo pendo mlatu", "xu do nelci lo mlatu poi pendo"], ["Do you like friendly cats?"])
-        ]
-    gleki = generatorFromList
-        -- tavla (mi)
-        [ (["mi tavla lo gleki prenu", "mi tavla lo prenu poi gleki"], ["I talked to the happy person."])
-        , (["mi tavla lo gleki dunda", "mi tavla lo dunda poi gleki"], ["I talked to the happy donor."])
-        , (["mi tavla lo gleki te dunda ", "mi tavla lo te dunda poi gleki"], ["I talked to the happy recipient."])
-        , (["mi tavla lo gleki vecnu", "mi tavla lo vecnu poi gleki"], ["I talked to the happy seller."])
-        , (["mi tavla lo gleki te vecnu", "mi tavla lo te vecnu poi gleki"], ["I talked to the happy buyer."])
-        , (["mi tavla lo gleki ctuca", "mi tavla lo ctuca poi gleki"], ["I talked to the happy teacher."])
-        -- tavla (xu do)
-        , (["xu do tavla lo gleki prenu", "xu do tavla lo prenu poi gleki"], ["Did you talk to the happy person?"])
-        , (["xu do tavla lo gleki dunda", "xu do tavla lo dunda poi gleki"], ["Did you talk to the happy donor?"])
-        , (["xu do tavla lo gleki te dunda ", "xu do tavla lo te dunda poi gleki"], ["Did you talk to the happy recipient?"])
-        , (["xu do tavla lo gleki vecnu", "xu do tavla lo vecnu poi gleki"], ["Did you talk to the happy seller?"])
-        , (["xu do tavla lo gleki te vecnu", "xu do tavla lo te vecnu poi gleki"], ["Did you talk to the happy buyer?"])
-        , (["xu do tavla lo gleki ctuca", "xu do tavla lo ctuca poi gleki"], ["Did you talk to the happy teacher?"])
-        -- nelci (mi)
-        , (["mi nelci lo gleki prenu", "mi nelci lo prenu poi gleki"], ["I like happy people."])
-        , (["mi nelci lo gleki ctuca", "mi nelci lo ctuca poi gleki"], ["I like happy teachers."])
-        , (["mi nelci lo gleki gerku", "mi nelci lo gerku poi gleki"], ["I like happy dogs."])
-        , (["mi nelci lo gleki mlatu", "mi nelci lo mlatu poi gleki"], ["I like happy cats."])
-        -- nelci (xu do)
-        , (["xu do nelci lo gleki prenu", "xu do nelci lo prenu poi gleki"], ["Do you like happy people?"])
-        , (["xu do nelci lo gleki ctuca", "xu do nelci lo ctuca poi gleki"], ["Do you like happy teachers?"])
-        , (["xu do nelci lo gleki gerku", "xu do nelci lo gerku poi gleki"], ["Do you like happy dogs?"])
-        , (["xu do nelci lo gleki mlatu", "xu do nelci lo mlatu poi gleki"], ["Do you like happy cats?"])
-        ]
-
--- TODO: use the following sentences
---translations99 :: [ExerciseGenerator]
---translations99 = generateTranslationExercise sentenceCanonicalizer sentenceComparer <$> generatorFromSingleton <$>
-    --[ (["lo prenu ku sutra tavla"], ["The person talks quickly.", "The person is talking quickly.", "A person is talking quickly.", "People talk quickly"])
-    --]
+translations12_restricted :: TranslationGenerator
+translations12_restricted = combineGeneratorsUniformly [translations12_pu, translations12_ca, translations12_ba]
 
 -- * Lesson 14: Quotations 1
 translations14_zo :: TranslationGenerator

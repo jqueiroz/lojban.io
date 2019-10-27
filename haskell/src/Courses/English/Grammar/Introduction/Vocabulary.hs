@@ -5,7 +5,7 @@ module Courses.English.Grammar.Introduction.Vocabulary where
 
 import Core
 
--- | Vocabulary for the first lesson.
+-- | Vocabulary for the appropriate lesson.
 --
 -- * Starting brivla: dunda, pelxu, zdani
 -- * Starting cmavo: mi, do, ti, ta.
@@ -24,11 +24,11 @@ vocabulary1 = Vocabulary
     [
     ]
 
--- | Cumulative vocabulary up to the first lesson.
+-- | Cumulative vocabulary up to the appropriate lesson.
 vocabulary1_cumulative :: Vocabulary
 vocabulary1_cumulative = vocabulary1
 
--- | Vocabulary for the second lesson.
+-- | Vocabulary for the appropriate lesson.
 --
 -- * New brivla: tavla, pendo, prenu, mlatu.
 -- * New cmavo: zo'e.
@@ -46,11 +46,11 @@ vocabulary2 = Vocabulary
     [
     ]
 
--- | Cumulative vocabulary up to the second lesson.
+-- | Cumulative vocabulary up to the appropriate lesson.
 vocabulary2_cumulative :: Vocabulary
 vocabulary2_cumulative = vocabulary1_cumulative <> vocabulary2
 
--- | Vocabulary for the third lesson.
+-- | Vocabulary for the appropriate lesson.
 --
 -- * New brivla: ctuca, nelci, gerku, melbi.
 -- * New cmavo: lo, ku, fa\/fe\/fi\/fo\/fu, se\/te\/ve\/xe.
@@ -70,16 +70,38 @@ vocabulary3 = Vocabulary
     [
     ]
 
--- | Cumulative vocabulary up to the third lesson.
+-- | Cumulative vocabulary up to the appropriate lesson.
 vocabulary3_cumulative :: Vocabulary
 vocabulary3_cumulative = vocabulary2_cumulative <> vocabulary3
 
--- | Vocabulary for the fourth lesson.
+-- | Vocabulary for the appropriate lesson.
+--
+-- * New brivla: NONE.
+-- * New cmavo: NONE.
+vocabulary4 :: Vocabulary
+vocabulary4 = Vocabulary
+    -- Brivla
+    [
+        "sutra", "lojbo"
+    ]
+    -- Cmavo
+    [
+    ]
+    -- Cmene
+    [
+    ]
+
+-- | Cumulative vocabulary up to the appropriate lesson.
+vocabulary4_cumulative :: Vocabulary
+vocabulary4_cumulative = vocabulary3_cumulative <> vocabulary4
+
+
+-- | Vocabulary for the appropriate lesson.
 --
 -- * New brivla: ciska, djuno.
 -- * New cmavo: xu, ma, mo.
-vocabulary4 :: Vocabulary
-vocabulary4 = Vocabulary
+vocabulary5 :: Vocabulary
+vocabulary5 = Vocabulary
     -- Brivla
     [
         "ciska", "djuno"
@@ -93,16 +115,16 @@ vocabulary4 = Vocabulary
     [
     ]
 
--- | Cumulative vocabulary up to the fourth lesson.
-vocabulary4_cumulative :: Vocabulary
-vocabulary4_cumulative = vocabulary3_cumulative <> vocabulary4
+-- | Cumulative vocabulary up to the appropriate lesson.
+vocabulary5_cumulative :: Vocabulary
+vocabulary5_cumulative = vocabulary4_cumulative <> vocabulary5
 
--- | Vocabulary for the fifth lesson.
+-- | Vocabulary for the appropriate lesson.
 --
 -- * New brivla: nupre, cusku, gleki.
 -- * New cmavo: nu, du'u, sedu'u, kei.
-vocabulary5 :: Vocabulary
-vocabulary5 = Vocabulary
+vocabulary6 :: Vocabulary
+vocabulary6 = Vocabulary
     -- Brivla
     [
         "nupre", "cusku", "gleki"
@@ -115,16 +137,16 @@ vocabulary5 = Vocabulary
     [
     ]
 
--- | Cumulative vocabulary up to the fifth lesson.
-vocabulary5_cumulative :: Vocabulary
-vocabulary5_cumulative = vocabulary4_cumulative <> vocabulary5
+-- | Cumulative vocabulary up to the appropriate lesson.
+vocabulary6_cumulative :: Vocabulary
+vocabulary6_cumulative = vocabulary5_cumulative <> vocabulary6
 
--- | Vocabulary for the sixth lesson.
+-- | Vocabulary for the appropriate lesson.
 --
 -- * New brivla: NONE.
 -- * New cmavo: vau, cu.
-vocabulary6 :: Vocabulary
-vocabulary6 = Vocabulary
+vocabulary7 :: Vocabulary
+vocabulary7 = Vocabulary
     -- Brivla
     [
     ]
@@ -136,16 +158,16 @@ vocabulary6 = Vocabulary
     [
     ]
 
--- | Cumulative vocabulary up to the sixth lesson.
-vocabulary6_cumulative :: Vocabulary
-vocabulary6_cumulative = vocabulary5_cumulative <> vocabulary6
+-- | Cumulative vocabulary up to the appropriate lesson.
+vocabulary7_cumulative :: Vocabulary
+vocabulary7_cumulative = vocabulary6_cumulative <> vocabulary7
 
--- | Vocabulary for the eighth lesson.
+-- | Vocabulary for the appropriate lesson.
 --
 -- * New brivla: plise, vecnu, skami, pilno.
 -- * New cmavo: poi, noi, ke'a, ku'o.
-vocabulary8 :: Vocabulary
-vocabulary8 = Vocabulary
+vocabulary9 :: Vocabulary
+vocabulary9 = Vocabulary
     -- Brivla
     [
         "plise", "vecnu", "skami", "pilno"
@@ -158,16 +180,16 @@ vocabulary8 = Vocabulary
     [
     ]
 
--- | Cumulative vocabulary up to the eighth lesson.
-vocabulary8_cumulative :: Vocabulary
-vocabulary8_cumulative = vocabulary6_cumulative <> vocabulary8
+-- | Cumulative vocabulary up to the appropriate lesson.
+vocabulary9_cumulative :: Vocabulary
+vocabulary9_cumulative = vocabulary7_cumulative <> vocabulary9
 
--- | Vocabulary for the nineth lesson.
+-- | Vocabulary for the appropriate lesson.
 --
 -- * New brivla: cmene, bangu.
 -- * New cmavo: be, bei, be'o.
-vocabulary9 :: Vocabulary
-vocabulary9 = Vocabulary
+vocabulary10 :: Vocabulary
+vocabulary10 = Vocabulary
     -- Brivla
     [
         "cmene", "bangu"
@@ -180,11 +202,11 @@ vocabulary9 = Vocabulary
     [
     ]
 
--- | Cumulative vocabulary up to the nineth lesson.
-vocabulary9_cumulative :: Vocabulary
-vocabulary9_cumulative = vocabulary8_cumulative <> vocabulary9
+-- | Cumulative vocabulary up to the appropriate lesson.
+vocabulary10_cumulative :: Vocabulary
+vocabulary10_cumulative = vocabulary9_cumulative <> vocabulary10
 
--- | Vocabulary for the tenth lesson.
+-- | Vocabulary for the appropriate lesson.
 --
 -- * New brivla: NONE.
 --
@@ -195,8 +217,8 @@ vocabulary9_cumulative = vocabulary8_cumulative <> vocabulary9
 -- * New cmavo: pi'o, mu'i, gau.
 --
 -- Other potentially interesting words: zgana, finti, srana, lifri, stidi, xamgu.
-vocabulary10 :: Vocabulary
-vocabulary10 = Vocabulary
+vocabulary11 :: Vocabulary
+vocabulary11 = Vocabulary
     -- Brivla
     [
     ]
@@ -208,16 +230,16 @@ vocabulary10 = Vocabulary
     [
     ]
 
--- | Cumulative vocabulary up to the tenth lesson.
-vocabulary10_cumulative :: Vocabulary
-vocabulary10_cumulative = vocabulary9_cumulative <> vocabulary10
+-- | Cumulative vocabulary up to the appropriate lesson.
+vocabulary11_cumulative :: Vocabulary
+vocabulary11_cumulative = vocabulary10_cumulative <> vocabulary11
 
--- | Vocabulary for the eleventh lesson.
+-- | Vocabulary for the appropriate lesson.
 --
 -- * New brivla: NONE.
 -- * New cmavo: pu, ca, ba.
-vocabulary11 :: Vocabulary
-vocabulary11 = Vocabulary
+vocabulary12 :: Vocabulary
+vocabulary12 = Vocabulary
     -- Brivla
     [
     ]
@@ -229,32 +251,11 @@ vocabulary11 = Vocabulary
     [
     ]
 
--- | Cumulative vocabulary up to the eleventh lesson.
-vocabulary11_cumulative :: Vocabulary
-vocabulary11_cumulative = vocabulary10_cumulative <> vocabulary11
-
--- | Vocabulary for the twelveth lesson.
---
--- * New brivla: NONE.
--- * New cmavo: NONE.
-vocabulary12 :: Vocabulary
-vocabulary12 = Vocabulary
-    -- Brivla
-    [
-        "sutra", "lojbo"
-    ]
-    -- Cmavo
-    [
-    ]
-    -- Cmene
-    [
-    ]
-
--- | Cumulative vocabulary up to the twelveth lesson.
+-- | Cumulative vocabulary up to the appropriate lesson.
 vocabulary12_cumulative :: Vocabulary
 vocabulary12_cumulative = vocabulary11_cumulative <> vocabulary12
 
--- | Vocabulary for the fourteenth lesson.
+-- | Vocabulary for the appropriate lesson.
 --
 -- * New brivla: NONE.
 -- * New cmavo: zo, lu, li'u
@@ -271,11 +272,11 @@ vocabulary14 = Vocabulary
     [
     ]
 
--- | Cumulative vocabulary up to the fourteenth lesson.
+-- | Cumulative vocabulary up to the appropriate lesson.
 vocabulary14_cumulative :: Vocabulary
 vocabulary14_cumulative = vocabulary12_cumulative <> vocabulary14
 
--- | Vocabulary for the fifteenth lesson.
+-- | Vocabulary for the appropriate lesson.
 --
 -- * New brivla: NONE.
 -- * New cmavo: ne, pe, po, po'e
@@ -292,11 +293,11 @@ vocabulary15 = Vocabulary
     [
     ]
 
--- | Cumulative vocabulary up to the fifteenth lesson.
+-- | Cumulative vocabulary up to the appropriate lesson.
 vocabulary15_cumulative :: Vocabulary
 vocabulary15_cumulative = vocabulary14_cumulative <> vocabulary15
 
--- | Vocabulary for the sixteenth lesson.
+-- | Vocabulary for the appropriate lesson.
 --
 -- * New brivla: NONE.
 -- * New cmavo: .a, .e, .o, .u
@@ -313,11 +314,11 @@ vocabulary16 = Vocabulary
     [
     ]
 
--- | Cumulative vocabulary up to the sixteenth lesson.
+-- | Cumulative vocabulary up to the appropriate lesson.
 vocabulary16_cumulative :: Vocabulary
 vocabulary16_cumulative = vocabulary15_cumulative <> vocabulary16
 
--- | Vocabulary for the seventeenth lesson.
+-- | Vocabulary for the appropriate lesson.
 --
 -- * New brivla: NONE.
 -- * New cmavo: na, na'e, to'e
@@ -334,6 +335,6 @@ vocabulary17 = Vocabulary
     [
     ]
 
--- | Cumulative vocabulary up to the sixteenth lesson.
+-- | Cumulative vocabulary up to the appropriate lesson.
 vocabulary17_cumulative :: Vocabulary
 vocabulary17_cumulative = vocabulary16_cumulative <> vocabulary17

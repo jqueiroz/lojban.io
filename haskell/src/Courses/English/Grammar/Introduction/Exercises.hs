@@ -24,7 +24,7 @@ dictionary :: Dictionary
 dictionary = englishDictionary
 
 -- * Lesson 1: Basics 1
--- | Exercises for the first lesson.
+-- | Exercises for the lesson.
 exercises1 :: ExerciseGenerator
 exercises1 =
     combineGenerators
@@ -45,7 +45,7 @@ translationExercises1 :: ExerciseGenerator
 translationExercises1 = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations1
 
 -- * Lesson 2: Basics 2
--- | Exercises for the second lesson.
+-- | Exercises for the lesson.
 exercises2 :: ExerciseGenerator
 exercises2 =
     combineGenerators
@@ -66,8 +66,7 @@ translationExercises2 :: ExerciseGenerator
 translationExercises2 = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations2
 
 -- * Lesson 3: Basics 3
-
--- | Exercises for the third lesson.
+-- | Exercises for the lesson.
 exercises3 :: ExerciseGenerator
 exercises3 =
     combineGenerators
@@ -86,7 +85,7 @@ exercises3 =
 
 -- | Interesting translation exercises for the third lesson: comprises regular exercises involving interesting translations, as well as "Translate without using zo'e" exercises involving restricted translations.
 --
--- Defined separately so that they may be reused in the checkpoint lesson (Lesson 7).
+-- Defined separately so that they may be reused in the next checkpoint lesson.
 translationExercises3_nice :: ExerciseGenerator
 translationExercises3_nice = combineGenerators [(1, restricted), (5, nice)] where
     restricted = generateBlacklistedWordTranslationExercise "zo'e" sentenceCanonicalizer sentenceComparer translations3_restricted
@@ -102,41 +101,31 @@ translationExercises3 =  combineGenerators [(1, restricted), (5, unrestricted)] 
     restricted = generateBlacklistedWordTranslationExercise "zo'e" sentenceCanonicalizer sentenceComparer translations3_restricted
     unrestricted = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations3
 
--- * Lesson 4: Questions 1
--- | Exercises for the fourth lesson.
+-- * Lesson 4: Tanru
+-- | Exercises for the lesson.
 exercises4 :: ExerciseGenerator
 exercises4 =
     combineGenerators
-        [ (20, generateIsolatedBrivlaPlacesExercise dictionary $ vocabularyBrivlaList vocabulary)
-        , (20, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator bridiDisplayer)
-        , (20, questionExercises4)
-        , (80, translationExercises4)
+        [ (10, generateIsolatedBrivlaPlacesExercise dictionary $ vocabularyBrivlaList vocabulary)
+        , (70, translationExercises4)
         ]
     where
         vocabulary = vocabulary4_cumulative
-        bridiGenerator = extractSimpleBridiGeneratorFromTranslationGenerator translations4
-        bridiDisplayer = combineGenerators [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
 
 translationExercises4 :: ExerciseGenerator
-translationExercises4 = combineGenerators [(1, restricted), (5, unrestricted)] where
-    restricted = generateBlacklistedWordTranslationExercise "zo'e" sentenceCanonicalizer sentenceComparer translations4_restricted
-    unrestricted = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations4
+translationExercises4 = combineGenerators [(1, translationExercises4_expressions), (1, translationExercises4_sentences)] where
+    translationExercises4_expressions = generateRestrictedTranslationExercise "Translate this expression as a tanru" (const True) sentenceCanonicalizer sentenceComparer translations4_expressions
+    translationExercises4_sentences = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations4_sentences
 
-questionExercises4 :: ExerciseGenerator
-questionExercises4 = generateFillingBlanksExerciseByAlternatives ["mo", "ma"] $ narrowTranslationGenerator $ combineGeneratorsUniformly [translations4_ma, translations4_mo]
-
-questionExercises4_simplified :: ExerciseGenerator
-questionExercises4_simplified = generateFillingBlanksExerciseByAlternatives ["mo", "ma"] $ simplifyTerminatorsInTranslationGenerator $ narrowTranslationGenerator $ combineGeneratorsUniformly [translations4_ma, translations4_mo]
-
--- * Lesson 5: Abstractions 1
--- | Exercises for the fifth lesson.
+-- * Lesson 5: Questions 1
+-- | Exercises for the lesson.
 exercises5 :: ExerciseGenerator
 exercises5 =
     combineGenerators
-        [ (30, generateIsolatedBrivlaPlacesExercise dictionary $ vocabularyBrivlaList vocabulary)
-        , (10, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator bridiDisplayer)
-        , (40, abstractionExercises5)
-        , (70, translationExercises5)
+        [ (20, generateIsolatedBrivlaPlacesExercise dictionary $ vocabularyBrivlaList vocabulary)
+        , (20, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator bridiDisplayer)
+        , (20, questionExercises5)
+        , (80, translationExercises5)
         ]
     where
         vocabulary = vocabulary5_cumulative
@@ -144,81 +133,90 @@ exercises5 =
         bridiDisplayer = combineGenerators [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
 
 translationExercises5 :: ExerciseGenerator
-translationExercises5 = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations5
+translationExercises5 = combineGenerators [(1, restricted), (5, unrestricted)] where
+    restricted = generateBlacklistedWordTranslationExercise "zo'e" sentenceCanonicalizer sentenceComparer translations5_restricted
+    unrestricted = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations5
 
--- Narrowing the 'TranslationGenerator' is required to avoid alternative translations using "ko'a"
-abstractionExercises5 :: ExerciseGenerator
-abstractionExercises5 = generateFillingBlanksExerciseByAlternatives ["lo nu", "lo du'u", "lo se du'u"] $ narrowTranslationGenerator $ combineGeneratorsUniformly [translations5_nu, translations5_du'u, translations5_sedu'u]
+questionExercises5 :: ExerciseGenerator
+questionExercises5 = generateFillingBlanksExerciseByAlternatives ["mo", "ma"] $ narrowTranslationGenerator $ combineGeneratorsUniformly [translations5_ma, translations5_mo]
 
--- Narrowing the 'TranslationGenerator' is required to avoid alternative translations using "ko'a"
-abstractionExercises5_simplified :: ExerciseGenerator
-abstractionExercises5_simplified = generateFillingBlanksExerciseByAlternatives ["lo nu", "lo du'u", "lo se du'u"] $ simplifyTerminatorsInTranslationGenerator $ narrowTranslationGenerator $ combineGeneratorsUniformly [translations5_nu, translations5_du'u, translations5_sedu'u]
+questionExercises5_simplified :: ExerciseGenerator
+questionExercises5_simplified = generateFillingBlanksExerciseByAlternatives ["mo", "ma"] $ simplifyTerminatorsInTranslationGenerator $ narrowTranslationGenerator $ combineGeneratorsUniformly [translations5_ma, translations5_mo]
 
--- * Lesson 6: Terminator elision
--- | Exercises for the sixth lesson.
+-- * Lesson 6: Abstractions 1
+-- | Exercises for the lesson.
 exercises6 :: ExerciseGenerator
 exercises6 =
     combineGenerators
-        [ (20, generateIsolatedBrivlaPlacesExercise dictionary $ vocabularyBrivlaList vocabulary)
+        [ (30, generateIsolatedBrivlaPlacesExercise dictionary $ vocabularyBrivlaList vocabulary)
         , (10, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator bridiDisplayer)
-        , (70, translationExercises6_restricted)
+        , (40, abstractionExercises6)
+        , (70, translationExercises6)
         ]
     where
         vocabulary = vocabulary6_cumulative
         bridiGenerator = extractSimpleBridiGeneratorFromTranslationGenerator translations6
+        bridiDisplayer = combineGenerators [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
+
+translationExercises6 :: ExerciseGenerator
+translationExercises6 = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations6
+
+-- Narrowing the 'TranslationGenerator' is required to avoid alternative translations using "ko'a"
+abstractionExercises6 :: ExerciseGenerator
+abstractionExercises6 = generateFillingBlanksExerciseByAlternatives ["lo nu", "lo du'u", "lo se du'u"] $ narrowTranslationGenerator $ combineGeneratorsUniformly [translations6_nu, translations6_du'u, translations6_sedu'u]
+
+-- Narrowing the 'TranslationGenerator' is required to avoid alternative translations using "ko'a"
+abstractionExercises6_simplified :: ExerciseGenerator
+abstractionExercises6_simplified = generateFillingBlanksExerciseByAlternatives ["lo nu", "lo du'u", "lo se du'u"] $ simplifyTerminatorsInTranslationGenerator $ narrowTranslationGenerator $ combineGeneratorsUniformly [translations6_nu, translations6_du'u, translations6_sedu'u]
+
+-- * Lesson 7: Terminator elision
+-- | Exercises for the lesson.
+exercises7 :: ExerciseGenerator
+exercises7 =
+    combineGenerators
+        [ (20, generateIsolatedBrivlaPlacesExercise dictionary $ vocabularyBrivlaList vocabulary)
+        , (10, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator bridiDisplayer)
+        , (70, translationExercises7_restricted)
+        ]
+    where
+        vocabulary = vocabulary6_cumulative
+        bridiGenerator = extractSimpleBridiGeneratorFromTranslationGenerator translations7
         bridiDisplayer = simplifyTerminatorsInBridiDisplayer $ (combineGenerators [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)])
 
-translationExercises6_restricted :: ExerciseGenerator
-translationExercises6_restricted = generateBlacklistedWordTranslationExercise "ku" sentenceCanonicalizer sentenceComparer translations6_restricted
+translationExercises7_restricted :: ExerciseGenerator
+translationExercises7_restricted = generateBlacklistedWordTranslationExercise "ku" sentenceCanonicalizer sentenceComparer translations7_restricted
 
--- * Lesson 7: Checkpoint -- Lessons 1-6
+-- * Lesson 8: Checkpoint -- Lessons 1-7
 -- | Exercises for the seventh lesson.
-exercises1to6 :: ExerciseGenerator
-exercises1to6 =
+exercises1to7 :: ExerciseGenerator
+exercises1to7 =
     combineGenerators
         [ (5, generateEnglishOrLojbanBridiJufraExercise bridiGenerator nonbridiGenerator bridiDisplayer)
         , (5, generateSelbriIdentificationExercise bridiGenerator bridiDisplayer)
         , (5, generateContextualizedGismuPlacePositionExercise dictionary bridiGenerator bridiDisplayer)
         , (15, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator bridiDisplayer)
         , (15, generateIsolatedBrivlaPlacesExercise dictionary $ vocabularyBrivlaList vocabulary)
-        , (60, translationExercises1to6_simplified)
-        , (12, questionExercises4_simplified)
-        , (12, abstractionExercises5_simplified)
+        , (60, translationExercises1to7_simplified)
+        , (12, questionExercises5_simplified)
+        , (12, abstractionExercises6_simplified)
         ]
     where
-        vocabulary = vocabulary6_cumulative
-        bridiGenerator = extractSimpleBridiGeneratorFromTranslationGenerator translations1to6
+        vocabulary = vocabulary7_cumulative
+        bridiGenerator = extractSimpleBridiGeneratorFromTranslationGenerator translations1to7
         nonbridiGenerator = generateNonbridi vocabulary
         bridiDisplayer = simplifyTerminatorsInBridiDisplayer $ (combineGenerators [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)])
 
-translationExercises1to6_simplified :: ExerciseGenerator
-translationExercises1to6_simplified = simplifyTerminatorsInCanonicalAnswer . combineGenerators [(4, translationExercises3_nice), (1, translationExercises3_normal), (5, translationExercises4), (6, translationExercises5), (5, translationExercises6_restricted)]
+translationExercises1to7_simplified :: ExerciseGenerator
+translationExercises1to7_simplified = simplifyTerminatorsInCanonicalAnswer . combineGenerators [(4, translationExercises3_nice), (1, translationExercises3_normal), (5, translationExercises4), (5, translationExercises5), (6, translationExercises6), (5, translationExercises7_restricted)]
 
--- * Lesson 8: Relative clauses
--- | Exercises for the eighth lesson.
-exercises8 :: ExerciseGenerator
-exercises8 =
-    combineGenerators
-        [ (20, generateIsolatedBrivlaPlacesExercise dictionary $ vocabularyBrivlaList vocabulary)
-        , (70, translationExercises8)
-        , (15, fillingBlanksExercises8)
-        ]
-    where
-        vocabulary = vocabulary8_cumulative
-
-translationExercises8 :: ExerciseGenerator
-translationExercises8 = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations8
-
-fillingBlanksExercises8 :: ExerciseGenerator
-fillingBlanksExercises8 = generateContextualizedFillingBlanksExerciseByAlternatives ["poi", "noi"] translations8
-
--- * Lesson 9: Linked sumti
--- | Exercises for the nineth lesson.
+-- * Lesson 9: Relative clauses
+-- | Exercises for the lesson.
 exercises9 :: ExerciseGenerator
 exercises9 =
     combineGenerators
         [ (20, generateIsolatedBrivlaPlacesExercise dictionary $ vocabularyBrivlaList vocabulary)
         , (70, translationExercises9)
+        , (15, fillingBlanksExercises9)
         ]
     where
         vocabulary = vocabulary9_cumulative
@@ -226,13 +224,16 @@ exercises9 =
 translationExercises9 :: ExerciseGenerator
 translationExercises9 = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations9
 
--- * Lesson 10: Sumtcita
--- | Exercises for the tenth lesson.
+fillingBlanksExercises9 :: ExerciseGenerator
+fillingBlanksExercises9 = generateContextualizedFillingBlanksExerciseByAlternatives ["poi", "noi"] translations9
+
+-- * Lesson 10: Linked sumti
+-- | Exercises for the lesson.
 exercises10 :: ExerciseGenerator
 exercises10 =
     combineGenerators
         [ (20, generateIsolatedBrivlaPlacesExercise dictionary $ vocabularyBrivlaList vocabulary)
-        , (80, translationExercises10)
+        , (70, translationExercises10)
         ]
     where
         vocabulary = vocabulary10_cumulative
@@ -240,70 +241,67 @@ exercises10 =
 translationExercises10 :: ExerciseGenerator
 translationExercises10 = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations10
 
--- * Lesson 11: Tenses 1
--- | Exercises for the eleventh lesson.
+-- * Lesson 11: Sumtcita
+-- | Exercises for the lesson.
 exercises11 :: ExerciseGenerator
 exercises11 =
     combineGenerators
-        [ (10, generateIsolatedBrivlaPlacesExercise dictionary $ vocabularyBrivlaList vocabulary)
-        , (70, translationExercises11_restricted)
-        , (15, translationExercises11_unrestricted)
-        , (20, fillingBlanksExercises11)
+        [ (20, generateIsolatedBrivlaPlacesExercise dictionary $ vocabularyBrivlaList vocabulary)
+        , (80, translationExercises11)
         ]
     where
         vocabulary = vocabulary11_cumulative
 
-translationExercises11_restricted :: ExerciseGenerator
-translationExercises11_restricted = generateRestrictedTranslationExercise "Translate <b>specifying tenses</b>" (const True) sentenceCanonicalizer sentenceComparer translations11_restricted
+translationExercises11 :: ExerciseGenerator
+translationExercises11 = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations11
 
-translationExercises11_unrestricted :: ExerciseGenerator
-translationExercises11_unrestricted = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations11_unrestricted
-
-fillingBlanksExercises11 :: ExerciseGenerator
-fillingBlanksExercises11 = generateContextualizedFillingBlanksExerciseByAlternatives ["pu", "ca", "ba"] translations11_restricted
-
--- * Lesson 12: Tanru
--- | Exercises for the twelveth lesson.
+-- * Lesson 12: Tenses 1
+-- | Exercises for the lesson.
 exercises12 :: ExerciseGenerator
 exercises12 =
     combineGenerators
         [ (10, generateIsolatedBrivlaPlacesExercise dictionary $ vocabularyBrivlaList vocabulary)
-        , (70, translationExercises12)
+        , (70, translationExercises12_restricted)
+        , (15, translationExercises12_unrestricted)
+        , (20, fillingBlanksExercises12)
         ]
     where
         vocabulary = vocabulary12_cumulative
 
-translationExercises12 :: ExerciseGenerator
-translationExercises12 = combineGenerators [(1, translationExercises12_expressions), (1, translationExercises12_sentences)] where
-    translationExercises12_expressions = generateRestrictedTranslationExercise "Translate this expression as a tanru" (const True) sentenceCanonicalizer sentenceComparer translations12_expressions
-    translationExercises12_sentences = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations12_sentences
+translationExercises12_restricted :: ExerciseGenerator
+translationExercises12_restricted = generateRestrictedTranslationExercise "Translate <b>specifying tenses</b>" (const True) sentenceCanonicalizer sentenceComparer translations12_restricted
 
--- * Lesson 13: Checkpoint -- Lessons 8-12
--- | Exercises for the thirteenth lesson.
-exercises8to12 :: ExerciseGenerator
-exercises8to12 =
+translationExercises12_unrestricted :: ExerciseGenerator
+translationExercises12_unrestricted = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations12_unrestricted
+
+fillingBlanksExercises12 :: ExerciseGenerator
+fillingBlanksExercises12 = generateContextualizedFillingBlanksExerciseByAlternatives ["pu", "ca", "ba"] translations12_restricted
+
+-- * Lesson 13: Checkpoint -- Lessons 9-12
+-- | Exercises for the lesson.
+exercises9to12 :: ExerciseGenerator
+exercises9to12 =
     combineGenerators
         [ (10, generateIsolatedBrivlaPlacesExercise dictionary $ vocabularyBrivlaList vocabulary)
-        , (70, translationExercises8to12)
+        , (70, translationExercises9to12)
         ]
     where
         vocabulary = vocabulary12_cumulative
 
-translationExercises8to12 :: ExerciseGenerator
-translationExercises8to12 = combineGenerators
-    [ (5, translationExercises8)
-    , (2, fillingBlanksExercises8)
-    , (5, translationExercises9)
+translationExercises9to12 :: ExerciseGenerator
+translationExercises9to12 = combineGenerators
+    [ (5, translationExercises9)
+    , (2, fillingBlanksExercises9)
     , (5, translationExercises10)
-    , (5, translationExercises11_restricted)
-    , (1, translationExercises11_unrestricted)
-    , (2, fillingBlanksExercises11)
-    , (5, translationExercises12)
+    , (5, translationExercises11)
+    , (5, translationExercises12_restricted)
+    , (1, translationExercises12_unrestricted)
+    , (2, fillingBlanksExercises12)
     ]
 
 
 -- * Lesson 14: Quotations 1
--- | Exercises for the fourteenth lesson.
+-- | Exercises for the lesson.
 exercises14 :: ExerciseGenerator
 exercises14 =
     combineGenerators
@@ -314,7 +312,7 @@ translationExercises14 :: ExerciseGenerator
 translationExercises14 = generateTranslationExercise sentenceCanonicalizer sentenceComparer $ combineGeneratorsUniformly [translations14_zo, translations14_lu]
 
 -- * Lesson 15: Relative phrases
--- | Exercises for the fifteenth lesson.
+-- | Exercises for the lesson.
 exercises15 :: ExerciseGenerator
 exercises15 =
     combineGenerators
@@ -325,7 +323,7 @@ translationExercises15 :: ExerciseGenerator
 translationExercises15 = generateTranslationExercise sentenceCanonicalizer sentenceComparer $ combineGeneratorsUniformly [translations15_expressions, translations15_sentences]
 
 -- * Lesson 16: Logical connectives 1
--- | Exercises for the sixteenth lesson.
+-- | Exercises for the lesson.
 exercises16 :: ExerciseGenerator
 exercises16 =
     combineGenerators
@@ -336,7 +334,7 @@ translationExercises16 :: ExerciseGenerator
 translationExercises16 = generateRestrictedTranslationExercise "Translate using <b>sumti connectives</b>" (const True) sentenceCanonicalizer sentenceComparer $ combineGeneratorsUniformly [translations16_a, translations16_e, translations16_o, translations16_u]
 
 -- * Lesson 17: Negation 1
--- | Exercises for the seventeenth lesson.
+-- | Exercises for the lesson.
 exercises17 :: ExerciseGenerator
 exercises17 =
     combineGenerators
