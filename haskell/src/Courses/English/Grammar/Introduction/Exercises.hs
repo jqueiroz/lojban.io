@@ -106,11 +106,15 @@ translationExercises3 =  combineGenerators [(1, restricted), (5, unrestricted)] 
 exercises4 :: ExerciseGenerator
 exercises4 =
     combineGenerators
-        [ (10, generateIsolatedBrivlaPlacesExercise dictionary $ vocabularyBrivlaList vocabulary)
-        , (70, translationExercises4)
+        [ (10, generateContextualizedGismuPlacePositionExercise dictionary bridiGenerator bridiDisplayer)
+        , (20, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator bridiDisplayer)
+        , (20, generateIsolatedBrivlaPlacesExercise dictionary $ vocabularyBrivlaList vocabulary)
+        , (100, translationExercises4)
         ]
     where
         vocabulary = vocabulary4_cumulative
+        bridiGenerator = extractSimpleBridiGeneratorFromTranslationGenerator translations4_sentences
+        bridiDisplayer = combineGenerators [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
 
 translationExercises4 :: ExerciseGenerator
 translationExercises4 = combineGenerators [(1, translationExercises4_expressions), (1, translationExercises4_sentences)] where
