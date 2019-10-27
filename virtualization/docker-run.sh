@@ -45,5 +45,13 @@ while :; do
     shift
 done
 
+# Ensure that the image exists
+if ! docker image ls -a | grep -q "lojban-dev-server"; then
+    echo "Failed to start the container -- unable to find docker image: lojban-dev-server"
+    echo ""
+    echo "Before attempting to start the container, please ensure that the appropriate image is built using: ./virtualization/docker-build.sh"
+    exit 1
+fi
+
 # Start new containers
 ./virtualization/docker.sh run -p "$EXTERNAL_PORT":8000/tcp -it --rm --name lojban-dev-server lojban-dev-server
