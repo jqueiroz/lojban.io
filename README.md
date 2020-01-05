@@ -32,9 +32,9 @@ Once you have installed Nix, you should be able to start the webserver by runnin
 The webserver may then be accessed at [http://localhost:8000](http://localhost:8000).
 
 Other useful commands:
-* `./run-server.sh -p <port>`: builds the webserver executable and then starts it on the specified port (defaults to port 8000).
-* `make`: builds the webserver executable as well as the associated documentation for the Haskell code.
-* `make server`: builds the webserver executable.
+* `./run-server.sh -p <port>`: builds the webserver executable (including assets) and then starts it on the specified port (defaults to port 8000).
+* `make`: builds the webserver executable (including assets) as well as the associated documentation for the Haskell code.
+* `make server`: builds the webserver executable (including assets).
 * `make docs`: builds the documentation for the Haskell code.
 * `make css`: compiles _*.less_ files (located in `./assets/less`) into _*.css_ files (to be saved in `./static/style`). This step is also performed when running `make server`.
 * `make js`: compiles _*.ts_ files (located in `./assets/typescript`) into _*.js_ files (to be saved in `./static/scripts`). This step is also performed when running `make server`.
