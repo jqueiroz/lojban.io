@@ -29,7 +29,7 @@ displayDecksHome userIdentityMaybe = do
                     H.h1 $ H.toHtml ("Decks" :: T.Text)
                     H.p $ H.toHtml ("Learn vocabulary at your own pace, boosted by spaced repetition." :: T.Text)
                     H.p $ H.toHtml ("Start practicing with a deck that picks your interest, and enable new cards as you progress." :: T.Text)
-                    H.p $ H.toHtml ("You have full control over your learning experience." :: T.Text)
+                    --H.p $ H.toHtml ("You have full control over your learning experience." :: T.Text)
                 H.div B.! A.class_ (H.textValue "body") $ do
                     H.div B.! A.class_ (H.textValue "decks") $ do
                         H.h2 $ H.toHtml ("Learn from decks" :: T.Text)
