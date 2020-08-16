@@ -76,6 +76,22 @@
         margin-left: 9em;
     }
 
+    .why-lojban a {
+        /* Style */
+        &:extend(.foreground-gradient1-hack);
+    }
+
+    .why-lojban a.external:before {
+        /* Position */
+        padding-right: 0.3em;
+        display: inline-block;
+
+        /* Style */
+        vertical-align: top;
+        font-family: 'Material Icons';
+        content: "launch";
+    }
+
     .speak-lojban {
         margin-left: 0;
     }

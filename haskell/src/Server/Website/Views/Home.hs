@@ -104,7 +104,9 @@ displayWhy = do
             H.li $ H.toHtml ("a linguistic curiosity – a test-bed for language experimentation;" :: T.Text)
             H.li $ H.toHtml ("a domain for exploring the intersection of human language and software." :: T.Text)
         --H.p $ H.toHtml ("What will Lojban mean for you?" :: T.Text)
-        --TODO: "learn more" linking to lojban.org and/or lojban.pw (with an "external link" icon)
+        H.a (H.toHtml ("Find out more" :: T.Text))
+            B.! A.href (H.textValue "https://mw.lojban.org/papri/Lojban")
+            B.! A.class_ (H.textValue "external")
 
 displayLearn :: H.Html
 displayLearn = do
