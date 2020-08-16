@@ -106,6 +106,7 @@ displayUserProfile userIdentityMaybe =
             H.div B.! A.class_ "user-signin" $ do
                 H.a (H.toHtml ("sign in" :: String))
                     B.! A.href (H.stringValue "/oauth2/google/login")
+                    B.! A.title (H.stringValue "Sign in with Google")
         Just userIdentity -> do
             let pictureUrl = userPictureUrl userIdentity
             H.div B.! A.class_ "user-profile" $ do
