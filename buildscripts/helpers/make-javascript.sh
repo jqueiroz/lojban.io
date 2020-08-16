@@ -39,7 +39,6 @@ should_run_npm_install() {
     fi
 
     false
-
 }
 
 if should_run_npm_install; then
