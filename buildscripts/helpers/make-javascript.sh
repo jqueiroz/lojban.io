@@ -12,7 +12,7 @@ cd assets
 PACKAGE_JSON_CACHE="./node_modules/.package.json.last"
 PACKAGE_LOCK_JSON_CACHE="./node_modules/.package-lock.json.last"
 
-should_install_npm() {
+should_run_npm_install() {
     if [ ! -f "$PACKAGE_JSON_CACHE" ]; then
         echo "Missing cache for file: package.json"
         return
@@ -42,7 +42,7 @@ should_install_npm() {
 
 }
 
-if should_install_npm; then
+if should_run_npm_install; then
     echo "Runing npm install..."
     npm install --no-audit
     cp "./package.json" "$PACKAGE_JSON_CACHE"
