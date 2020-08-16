@@ -45,6 +45,7 @@ isAllowedReferer referer = any (`isPrefixOf` referer) allowedRefererPrefixes
 
 data Claims = Claims
     { email :: T.Text
+    , sub :: T.Text
     , email_verified :: Bool
     } deriving (Generic, Show)
 
@@ -86,7 +87,7 @@ readUserIdentityFromCookies serverResources = runMaybeT $ do
     -- Decode user info
     userInfo :: UserInfo <- liftMaybe $ A.decodeStrict (TE.encodeUtf8 userInfoText)
     -- Build response
-    let userIdentifier = UserIdentifier "google" (email claims)
+    let userIdentifier = UserIdentifier "google" (sub claims)
     let userPictureUrl = picture userInfo
     let userGivenName = given_name userInfo
     let userFamilyName = family_name userInfo

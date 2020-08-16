@@ -63,7 +63,7 @@ deckProficiencyKey userIdentifier deck = "DeckProficiency" `T.append` deckKey us
 deckKey :: UserIdentifier -> Deck -> T.Text
 deckKey userIdentifier deck = encodeRedisKey
     [ ("provider", userIdentifierProvider userIdentifier)
-    , ("email", userIdentifierEmail userIdentifier)
+    , ("subject", userIdentifierSubject userIdentifier)
     , ("deck", deckId deck)
     ]
 

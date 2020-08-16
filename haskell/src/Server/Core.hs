@@ -16,7 +16,7 @@ data ServerResources = ServerResources
 
 data UserIdentifier = UserIdentifier
     { userIdentifierProvider :: T.Text
-    , userIdentifierEmail :: T.Text
+    , userIdentifierSubject :: T.Text -- Must be unique per provider
     }
 
 data UserIdentity = UserIdentity
