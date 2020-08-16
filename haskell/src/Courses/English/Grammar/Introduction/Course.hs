@@ -44,6 +44,7 @@ style = CourseStyle color1 iconUrl where
 
 -- | Course: Introduction to Grammar.
 course :: Course
-course = Course "grammar-intro_eng" title style englishDictionary lessons where
+course = Course "grammar-intro_eng" title shortDescription style englishDictionary lessons where
     title = "Introduction to Grammar (alpha)"
+    shortDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
     lessons = [lesson1, lesson2, lesson3, lesson4, lesson5, lesson6, lesson7, checkpoint1to7, lesson9, lesson10, lesson11, lesson12, checkpoint9to12, lesson14, lesson15, lesson16, lesson17]

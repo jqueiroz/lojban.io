@@ -16,9 +16,10 @@ import qualified Data.Text as T
 
 -- | Deck: Contextualized Brivla.
 deck :: Deck
-deck = Deck id title dictionary cards where
+deck = Deck id title shortDescription dictionary cards where
     id = "eng_contextualized-brivla"
     title = "Contextualized brivla"
+    shortDescription = "Learn the most commonly used brivla, while also developing your comprehension skills."
 
 -- | Dictionary for the deck.
 dictionary :: Dictionary

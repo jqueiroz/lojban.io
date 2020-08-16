@@ -45,7 +45,7 @@ displayDecksHome userIdentityMaybe = do
 displayDeck :: (T.Text, Deck) -> H.Html
 displayDeck (url, deck) = do
     let title = deckTitle deck
-    let shortDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor." :: T.Text
+    let shortDescription = deckShortDescription deck
     let linkText = "Learn more" :: T.Text
     H.li B.! A.class_ (H.textValue "deck") $ do
         H.div B.! A.class_ (H.textValue "deck-title") $ H.toHtml title

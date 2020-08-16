@@ -25,6 +25,7 @@ data CourseCollection = CourseCollection
 data Course = Course
     { courseId :: T.Text
     , courseTitle :: T.Text
+    , courseShortDescription :: T.Text
     , courseStyle :: CourseStyle
     , courseDictionary :: Dictionary
     , courseLessons :: [Lesson]
@@ -66,6 +67,7 @@ data DeckStore = DeckStore
 data Deck = Deck
     { deckId :: T.Text
     , deckTitle :: T.Text
+    , deckShortDescription :: T.Text
     , deckDictionary :: Dictionary
     , deckCards :: [Card]
     }

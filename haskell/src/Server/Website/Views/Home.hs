@@ -123,7 +123,7 @@ displayLearn = do
 displayCourse :: (T.Text, Course) -> H.Html
 displayCourse (url, course) = do
     let title = courseTitle course
-    let shortDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor." :: T.Text
+    let shortDescription = courseShortDescription course
     let linkText = "Learn more" :: T.Text
     H.li B.! A.class_ (H.textValue "course") $ do
         H.div B.! A.class_ (H.textValue "course-title") $ H.toHtml title
@@ -134,7 +134,7 @@ displayCourse (url, course) = do
 displayDeck :: (T.Text, Deck) -> H.Html
 displayDeck (url, course) = do
     let title = deckTitle course
-    let shortDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor." :: T.Text
+    let shortDescription = deckShortDescription course
     let linkText = "Learn more" :: T.Text
     H.li B.! A.class_ (H.textValue "deck") $ do
         H.div B.! A.class_ (H.textValue "deck-title") $ H.toHtml title
