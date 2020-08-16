@@ -66,6 +66,7 @@ includeCourseStylesheet course = includeInlineStylesheet code where
 -- * Scripts
 includeUniversalScripts :: H.Html
 includeUniversalScripts = do
+    includeExternalScript "https://kit.fontawesome.com/ae6f2dc037.js"
     includeInternalScript "vendors.js"
 
 includeInternalScript :: String -> H.Html
@@ -76,6 +77,7 @@ includeExternalScript src =
     H.script ""
       B.! A.type_ "text/javascript"
       B.! A.src (H.stringValue src)
+      --TODO: B.! A.crossorigin (H.stringValue "anonymous")
 
 includeInlineScript :: T.Text -> H.Html
 includeInlineScript code =
