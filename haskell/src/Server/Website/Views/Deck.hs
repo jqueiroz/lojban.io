@@ -65,12 +65,12 @@ displayDeckExercise userIdentityMaybe deck = do
 displayDeckHomeHeader :: T.Text -> Deck -> H.Html
 displayDeckHomeHeader baseDeckUrl deck = do
     let title = deckTitle deck
-    --let shortDescription = deckShortDescription deck
+    let shortDescription = deckShortDescription deck
     H.div B.! A.class_ (H.stringValue "deck-header") $ do
         H.div B.! A.class_ (H.stringValue "deck-info") $ do
             H.h1 B.! A.class_ "deck-title" $ H.toHtml title
             H.h1 B.! A.class_ "deck-cards-count" $ H.toHtml (showNumberOfCards . length . deckCards $ deck)
-            --H.p B.! A.class_ "deck-description" $ H.toHtml shortDescription
+            H.p B.! A.class_ "deck-description" $ H.toHtml shortDescription
         H.div B.! A.class_ "deck-buttons" $ do
             H.a B.! A.class_ (H.textValue "button") B.! A.href (H.textValue $ baseDeckUrl `T.append` "./exercises") $ (H.toHtml ("Practice" :: T.Text))
 
