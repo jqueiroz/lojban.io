@@ -40,8 +40,8 @@ displayHome userIdentityMaybe =
                                 H.span B.! A.class_ (H.textValue "material-icons") $ H.toHtml ("navigate_before" :: T.Text)
                             H.ul $ do
                                 displayCourse ("/courses/introduction", Courses.English.Grammar.Introduction.Course.course)
-                                displayCourse ("/courses/crash", Courses.English.Grammar.Crash.Course.course)
-                                displayCourse ("/courses/attitudinals", Courses.English.Vocabulary.Attitudinals.Course.course)
+                                --displayCourse ("/courses/crash", Courses.English.Grammar.Crash.Course.course)
+                                --displayCourse ("/courses/attitudinals", Courses.English.Vocabulary.Attitudinals.Course.course)
                                 --displayCourse ("/courses/brivla", Courses.English.Vocabulary.Brivla.Course.course)
                             H.div B.! A.class_ (H.textValue "next") $ do
                                 H.span B.! A.class_ (H.textValue "material-icons") $ H.toHtml ("navigate_next" :: T.Text)

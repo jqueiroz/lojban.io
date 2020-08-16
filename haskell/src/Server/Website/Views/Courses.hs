@@ -37,7 +37,7 @@ displayCoursesHome userIdentityMaybe = do
                         H.h2 $ H.toHtml ("Learn from the beginning" :: T.Text)
                         H.div B.! A.class_ (H.textValue "grid") $ do
                             displayCourse ("/courses/introduction", Courses.English.Grammar.Introduction.Course.course)
-                            displayCourse ("/courses/crash", Courses.English.Grammar.Crash.Course.course)
+                            --displayCourse ("/courses/crash", Courses.English.Grammar.Crash.Course.course)
                     H.div B.! A.class_ (H.textValue "vocabulary") $ do
                         H.h2 $ H.toHtml ("Learn by subject" :: T.Text)
                         H.div B.! A.class_ (H.textValue "grid") $ do
