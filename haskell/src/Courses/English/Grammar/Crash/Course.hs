@@ -21,5 +21,5 @@ style = CourseStyle color1 iconUrl where
 -- | Course: The Crash Course.
 course :: Course
 course = Course "crash-course_eng" title style englishDictionary lessons where
-    title = "The Crash Course"
+    title = "The Crash Course (WIP)"
     lessons = [lesson01, lesson02, lesson03]

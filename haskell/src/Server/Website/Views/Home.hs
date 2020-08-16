@@ -52,8 +52,8 @@ displayHome userIdentityMaybe =
                                 H.span B.! A.class_ (H.textValue "material-icons") $ H.toHtml ("navigate_before" :: T.Text)
                             H.ul $ do
                                 displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
-                                displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
-                                displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
+                                --displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
+                                --displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
                                 --displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
                             H.div B.! A.class_ (H.textValue "next") $ do
                                 H.span B.! A.class_ (H.textValue "material-icons") $ H.toHtml ("navigate_next" :: T.Text)

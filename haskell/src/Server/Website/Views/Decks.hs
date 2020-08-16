@@ -35,11 +35,11 @@ displayDecksHome userIdentityMaybe = do
                         H.h2 $ H.toHtml ("Learn from decks" :: T.Text)
                         H.div B.! A.class_ (H.textValue "grid") $ do
                             displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
-                            displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
-                            displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
-                            displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
-                            displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
-                            displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
+                            --displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
+                            --displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
+                            --displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
+                            --displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
+                            --displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
                     displayFooter
 
 displayDeck :: (T.Text, Deck) -> H.Html
