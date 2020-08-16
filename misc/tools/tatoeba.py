@@ -118,7 +118,7 @@ def load_sentences_from_csv():
 
 def load_all_gismu():
     all_gismu = []
-    with open ("../resources/english/gismu.txt", "r") as f:
+    with open ("../../resources/language/dictionary-generation/english/gismu.txt", "r") as f:
         for line in f.readlines()[1:]:
             gismu = line[1:6]
             if len(gismu.strip()) == 5:
@@ -127,7 +127,7 @@ def load_all_gismu():
 
 def load_all_lujvo():
     all_lujvo = []
-    with open ("../resources/english/lujvo2.txt", "r") as f:
+    with open ("../../resources/language/dictionary-generation/english/lujvo2.txt", "r") as f:
         for line in f.readlines()[1:]:
             lujvo = line.strip().split('    ')[0]
             all_lujvo.append(lujvo)
@@ -142,11 +142,11 @@ def load_brivla_from_yaml_file(filename):
     return ret
 
 yaml_brivla_files = \
-    [ "../courses/english/vocabulary/brivla/01_easy.yaml"
-    , "../courses/english/vocabulary/brivla/02_easy.yaml"
-    , "../courses/english/vocabulary/brivla/03_easy.yaml"
-    , "../courses/english/vocabulary/brivla/04_easy.yaml"
-    , "../courses/english/vocabulary/brivla/05_easy.yaml"
+    [ "../../resources/courses/english/vocabulary/brivla/01_easy.yaml"
+    , "../../resources/courses/english/vocabulary/brivla/02_easy.yaml"
+    , "../../resources/courses/english/vocabulary/brivla/03_easy.yaml"
+    , "../../resources/courses/english/vocabulary/brivla/04_easy.yaml"
+    , "../../resources/courses/english/vocabulary/brivla/05_easy.yaml"
     ]
 
 def load_taught_brivla():
@@ -180,7 +180,7 @@ def build_frequency_table(sentences):
 
 # loads frequency table from https://mw.lojban.org/papri/File:MyFreq-COMB_without_dots.txt
 def load_frequency_table():
-    with open("../resources/MyFreq-COMB_without_dots.txt", "r") as f:
+    with open("../../resources/language/frequency-lists/MyFreq-COMB_without_dots.txt", "r") as f:
         table = {}
         for line in f.readlines():
             frequency, word = line.split(' ')
