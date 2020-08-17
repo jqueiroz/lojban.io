@@ -96,7 +96,7 @@ displayTopbar :: Maybe UserIdentity -> TopbarCategory -> H.Html
 displayTopbar userIdentityMaybe topbarCategory = do
     H.div B.! A.class_ (H.stringValue "topbar") $ do
         H.div B.! A.class_ "logo" $ do
-            H.a (H.toHtml ("lojban" :: String))
+            H.a (H.toHtml ("lojban.io" :: String))
                 B.! A.href (H.stringValue "/")
         displayTopbarMenu topbarCategory
         displayUserProfile userIdentityMaybe
