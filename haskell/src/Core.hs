@@ -69,6 +69,7 @@ data Deck = Deck
     { deckId :: T.Text
     , deckTitle :: T.Text
     , deckShortDescription :: T.Text
+    , deckLongDescription :: Maybe P.Pandoc
     , deckDictionary :: Dictionary
     , deckCards :: [Card]
     }

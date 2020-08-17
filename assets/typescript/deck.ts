@@ -7,7 +7,7 @@ import { Deck } from './components/deck'
 declare var deckId: string;
 
 $(document).ready(function() {
-    let root_element = $(".deck");
+    let root_element = $(".deck-cards");
     let deckProps = {
         deckId: deckId,
     };

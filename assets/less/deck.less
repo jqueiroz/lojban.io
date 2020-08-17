@@ -1,5 +1,9 @@
 @import "main.less";
 
+.body {
+    max-width: 100em;
+}
+
 .deck-header {
     @deck-info-height: 4.5em;
 
@@ -94,7 +98,20 @@
     }
 }
 
-.deck {
+.deck-about {
+    margin-bottom: 3em;
+
+    h2 {
+        margin-bottom: 0.5em;
+    }
+
+    p {
+        /* Style */
+        font-size: 1.2em;
+    }
+}
+
+.deck-cards {
     ul {
         list-style-type: none;
         padding-left: 0;
