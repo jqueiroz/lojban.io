@@ -7,8 +7,12 @@ module Server.Website.Views.Course
 import Core
 import Server.Core
 import Server.Website.Views.Core
-import Control.Monad (forM_)
+import Control.Monad (when, forM_)
+import Data.Maybe (isJust, fromJust)
+import Data.Either.Unwrap (fromRight)
 import qualified Data.Text as T
+import qualified Text.Pandoc as P
+import qualified Text.Pandoc.Writers.HTML as PWH
 import qualified Text.Blaze as B
 import qualified Text.Blaze.Html5 as H
 import qualified Text.Blaze.Html5.Attributes as A
@@ -48,8 +52,14 @@ displayCourseContents :: String -> Course -> H.Html
 displayCourseContents baseCourseUrl course = do
     let lessons = courseLessons course
     H.div B.! A.class_ (H.stringValue "course-contents") $ do
-        H.h2 $ H.toHtml ("Lessons" :: String)
-        H.ol $ forM_ (zip [1..] lessons) displayCourseLessonItem
+        when (isJust $ courseLongDescription course) $ do
+            H.div B.! A.class_ (H.stringValue "course-about") $ do
+                H.h2 $ H.toHtml ("About this course" :: String)
+                H.div $ do
+                    fromRight . P.runPure . PWH.writeHtml5 P.def $ fromJust (courseLongDescription course)
+        H.div B.! A.class_ (H.stringValue "course-lessons") $ do
+            H.h2 $ H.toHtml ("Lessons" :: String)
+            H.ol $ forM_ (zip [1..] lessons) displayCourseLessonItem
 
 displayCourseLessonItem :: (Int, Lesson) -> H.Html
 displayCourseLessonItem (lessonNumber, lesson) = do

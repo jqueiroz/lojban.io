@@ -20,7 +20,8 @@ style = CourseStyle color1 iconUrl where
 
 -- | Course: The Crash Course.
 course :: Course
-course = Course "crash-course_eng" title shortDescription style englishDictionary lessons where
+course = Course "crash-course_eng" title shortDescription longDescription style englishDictionary lessons where
     title = "The Crash Course (WIP)"
     shortDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
+    longDescription = Nothing
     lessons = [lesson01, lesson02, lesson03]

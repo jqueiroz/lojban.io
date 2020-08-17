@@ -1,4 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE TemplateHaskell #-}
 
 -- | This modules exposes the overall "Introduction to Grammar" course.
 module Courses.English.Grammar.Introduction.Course (course) where
@@ -6,6 +7,9 @@ module Courses.English.Grammar.Introduction.Course (course) where
 import Core
 import Courses.English.Grammar.Introduction.Lessons
 import Language.Lojban.Dictionaries (englishDictionary)
+import Courses.Framework.DocumentBuilders (buildDocumentFromMarkdownCode)
+import qualified Text.Pandoc as P
+import Data.FileEmbed (embedStringFile)
 
 -- introduce djica alongside questions: "I want you to be happy" / "Do you want me to be happy?" / "What do you want?" / "Who wants you to be happy" / "Who do you want to be happy?"
 -- TODO: remove the translations that make the least sense (in progress...)
@@ -23,6 +27,10 @@ import Language.Lojban.Dictionaries (englishDictionary)
 
 
 -- Reminder: from Lesson 4 onwards, mix propositions and questions
+
+-- | Course description.
+longDescription :: P.Pandoc
+Right longDescription = buildDocumentFromMarkdownCode $(embedStringFile "resources/courses/english/grammar/introduction/description.md")
 
 
 -- | Course style.
@@ -44,7 +52,7 @@ style = CourseStyle color1 iconUrl where
 
 -- | Course: Introduction to Grammar.
 course :: Course
-course = Course "grammar-intro_eng" title shortDescription style englishDictionary lessons where
+course = Course "grammar-intro_eng" title shortDescription (Just longDescription) style englishDictionary lessons where
     --title = "Introduction to Grammar (alpha)"
     title = "Getting started with Lojban (alpha)"
     shortDescription = "Get started with Lojban, and grasp beginner to intermediate concepts of the grammar."

@@ -26,6 +26,7 @@ data Course = Course
     { courseId :: T.Text
     , courseTitle :: T.Text
     , courseShortDescription :: T.Text
+    , courseLongDescription :: Maybe P.Pandoc
     , courseStyle :: CourseStyle
     , courseDictionary :: Dictionary
     , courseLessons :: [Lesson]
