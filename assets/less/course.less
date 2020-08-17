@@ -67,3 +67,50 @@
     margin-bottom: 0.5em;
     color: #000;
 }
+
+.course-contents ol {
+    counter-reset: li-count;
+
+    li {
+        counter-increment: li-count;
+
+        /* Position */
+        display: inline-block;
+        margin-left: 2em;
+        margin-right: 2em;
+        margin-top: 3em;
+        margin-bottom: 3em;
+        width: 16em;
+        text-align: center;
+    }
+
+    a {
+        /* Style */
+        font-size: 1.2em;
+        font-weight: 800;
+        font-family: "Varela Round", Roboto;
+        color: #555;
+    }
+
+    a:before {
+        content: counter( li-count);
+
+        /* Position */
+        display: block;
+        width: 2em;
+        height: 2em;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 0.3em;
+        padding-top: 0.57em;
+
+        /* Style */
+        font-family: cursive, "Varela Round", Roboto;
+        border-radius: 50%;
+        border: solid 0.2em #555;
+        color: #555;
+        text-align: center;
+        vertical-align: middle;
+        font-size: 2.5em;
+    }
+}
