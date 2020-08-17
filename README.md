@@ -1,11 +1,11 @@
 # Lojban teaching platform
 
 The main goal of this project is to create a robust teaching platform for the artificial language [Lojban](https://mw.lojban.org/papri/Lojban).
-This project is heavily inspired by Duolingo, but it is somewhat more specific in that it attempts to exploit some of Lojban's unique features, such as machine-parsability.
+This project is inspired by Duolingo, but it is somewhat more specific in that it attempts to exploit some of Lojban's unique features, such as machine-parsability.
 
-An experimental version of the platform is available at [http://lojban.johnjq.com](http://lojban.johnjq.com).
+An experimental version of the platform is available at [https://lojban.io](https://lojban.io).
 
-Documentation for the currently deployed version may be found at [http://lojban.johnjq.com/docs](http://lojban.johnjq.com/docs).
+Documentation for the currently deployed version may be found at [https://lojban.io/docs](https://lojban.io/docs).
 
 ## Quickstart (using Docker)
 
