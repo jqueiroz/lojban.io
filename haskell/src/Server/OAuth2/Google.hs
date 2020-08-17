@@ -38,6 +38,7 @@ allowedRefererPrefixes =
     [ "http://localhost:8000/"
     , "http://localhost:8080/"
     , "https://lojban.johnjq.com/"
+    , "https://lojban.io/"
     ]
 
 isAllowedReferer :: String -> Bool
@@ -227,7 +228,7 @@ getOAuth2Config :: ServerPart OA2.OAuth2
 getOAuth2Config = do
     clientId <- liftIO $ getEnv "LOJBAN_TOOL_OAUTH2_GOOGLE_CLIENT_ID"
     clientSecret <- liftIO $ getEnv "LOJBAN_TOOL_OAUTH2_GOOGLE_CLIENT_SECRET"
-    let defaultCallbackUri = [uri|https://lojban.johnjq.com/oauth2/google/callback|]
+    let defaultCallbackUri = [uri|https://lojban.io/oauth2/google/callback|]
     callbackUri <- msum [ getCallbackUri, return defaultCallbackUri ]
     return $ OA2.OAuth2
         { OA2.oauthClientId = T.pack clientId
