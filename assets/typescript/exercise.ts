@@ -15,6 +15,9 @@ var createExercisesManager = function(holder) {
         holder.append(body);
         holder.append(footer);
     };
+    // Audio
+    var audioCorrect = new Audio("/static/audio/correct.mp3");
+    var audioIncorrect = new Audio("/static/audio/incorrect2.wav");
     // Key map
     var keyMap = (function() {
         var map = {};
@@ -131,9 +134,9 @@ var createExercisesManager = function(holder) {
         keyMap.enter(nextExercise);
         // Sound
         if (data.correct) {
-            new Audio("/static/audio/correct.mp3").play();
+            audioCorrect.play();
         } else {
-            new Audio("/static/audio/incorrect.mp3").play();
+            audioIncorrect.play();
         }
     };
 
