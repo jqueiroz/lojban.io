@@ -29,7 +29,8 @@ Right credits = buildDocumentFromMarkdownCode $(embedStringFile "resources/cours
 course :: Course
 course = Course "attitudinals_eng" title shortDescription longDescription (Just credits) style englishDictionary lessons where
     title = "Attitudinals (pre-alpha)"
-    shortDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
+    --shortDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
+    shortDescription = "This course is still under construction. Please check back later."
     longDescription = Nothing
     lessons = [lesson1, lesson2, lesson3]
 
