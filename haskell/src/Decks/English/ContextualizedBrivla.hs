@@ -22,9 +22,13 @@ import qualified Text.Pandoc as P
 longDescription :: P.Pandoc
 Right longDescription = buildDocumentFromMarkdownCode $(embedStringFile "resources/courses/english/vocabulary/brivla/description.md")
 
+-- | Deck credits.
+credits :: P.Pandoc
+Right credits = buildDocumentFromMarkdownCode $(embedStringFile "resources/courses/english/vocabulary/brivla/credits.md")
+
 -- | Deck: Contextualized Brivla.
 deck :: Deck
-deck = Deck id title shortDescription (Just longDescription) dictionary cards where
+deck = Deck id title shortDescription (Just longDescription) (Just credits) dictionary cards where
     id = "eng_contextualized-brivla"
     title = "Contextualized brivla"
     shortDescription = "Learn the most commonly used brivla, while also developing your comprehension skills."
