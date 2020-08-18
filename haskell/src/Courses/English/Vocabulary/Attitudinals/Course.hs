@@ -1,4 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE TemplateHaskell #-}
 
 -- | This modules exposes the overall "Attitudinals" course.
 module Courses.English.Vocabulary.Attitudinals.Course (course) where
@@ -6,6 +7,9 @@ module Courses.English.Vocabulary.Attitudinals.Course (course) where
 import Core
 import Courses.English.Vocabulary.Attitudinals.Lessons
 import Language.Lojban.Dictionaries (englishDictionary)
+import Courses.Framework.DocumentBuilders (buildDocumentFromMarkdownCode)
+import qualified Text.Pandoc as P
+import Data.FileEmbed (embedStringFile)
 
 -- | Course style.
 style :: CourseStyle
@@ -17,13 +21,16 @@ style = CourseStyle color1 iconUrl where
         -- Source: https://www.flaticon.com/free-icon/happy_187134
         "https://image.flaticon.com/icons/svg/187/187134.svg"
 
+-- | Course credits.
+credits :: P.Pandoc
+Right credits = buildDocumentFromMarkdownCode $(embedStringFile "resources/courses/english/vocabulary/attitudinals/credits.md")
+
 -- | Course: Attitudinals.
 course :: Course
-course = Course "attitudinals_eng" title shortDescription longDescription credits style englishDictionary lessons where
+course = Course "attitudinals_eng" title shortDescription longDescription (Just credits) style englishDictionary lessons where
     title = "Attitudinals (pre-alpha)"
     shortDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
     longDescription = Nothing
-    credits = Nothing
     lessons = [lesson1, lesson2, lesson3]
 
 -- Interesting exercise: "Rewrite using attitudinals"
