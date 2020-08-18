@@ -3,6 +3,6 @@ set -e
 
 letsencrypt/letsencrypt-auto certonly \
   --keep-until-expiring --agree-tos --webroot --expand --rsa-key-size 4096 \
-  --email lojban@johnjq.com \
+  --email contact@lojban.io \
   --webroot-path /letsencrypt-challenge \
   -d lojban.johnjq.com -d lojban.io
