@@ -60,6 +60,11 @@ displayCourseContents baseCourseUrl course = do
         H.div B.! A.class_ (H.stringValue "course-lessons") $ do
             H.h2 $ H.toHtml ("Lessons" :: String)
             H.ol $ forM_ (zip [1..] lessons) displayCourseLessonItem
+        when (isJust $ courseCredits course) $ do
+            H.div B.! A.class_ (H.stringValue "course-credits") $ do
+                H.h2 $ H.toHtml ("Credits" :: String)
+                H.div $ do
+                    fromRight . P.runPure . PWH.writeHtml5 P.def $ fromJust (courseCredits course)
 
 displayCourseLessonItem :: (Int, Lesson) -> H.Html
 displayCourseLessonItem (lessonNumber, lesson) = do

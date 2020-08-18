@@ -19,8 +19,9 @@ style = CourseStyle color1 iconUrl where
 
 -- | Course: Brivla.
 course :: Course
-course = Course "brivla_eng" title shortDescription longDescription style englishDictionary lessons where
+course = Course "brivla_eng" title shortDescription longDescription credits style englishDictionary lessons where
     title = "Common brivla"
     shortDescription = "Learn the most commonly used brivla, while also developing your comprehension skills."
     longDescription = Nothing
+    credits = Nothing
     lessons = [lesson01, lesson02, lesson03, lesson04, lesson05]

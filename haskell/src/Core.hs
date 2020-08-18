@@ -27,6 +27,7 @@ data Course = Course
     , courseTitle :: T.Text
     , courseShortDescription :: T.Text
     , courseLongDescription :: Maybe P.Pandoc
+    , courseCredits :: Maybe P.Pandoc
     , courseStyle :: CourseStyle
     , courseDictionary :: Dictionary
     , courseLessons :: [Lesson]

@@ -32,6 +32,9 @@ import Data.FileEmbed (embedStringFile)
 longDescription :: P.Pandoc
 Right longDescription = buildDocumentFromMarkdownCode $(embedStringFile "resources/courses/english/grammar/introduction/description.md")
 
+-- | Course credits.
+credits :: P.Pandoc
+Right credits = buildDocumentFromMarkdownCode $(embedStringFile "resources/courses/english/grammar/introduction/credits.md")
 
 -- | Course style.
 style :: CourseStyle
@@ -52,7 +55,7 @@ style = CourseStyle color1 iconUrl where
 
 -- | Course: Introduction to Grammar.
 course :: Course
-course = Course "grammar-intro_eng" title shortDescription (Just longDescription) style englishDictionary lessons where
+course = Course "grammar-intro_eng" title shortDescription (Just longDescription) (Just credits) style englishDictionary lessons where
     --title = "Introduction to Grammar (alpha)"
     title = "Getting started with Lojban (alpha)"
     shortDescription = "Get started with Lojban, and grasp beginner to intermediate concepts of the grammar."
