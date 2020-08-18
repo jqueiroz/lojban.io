@@ -4,7 +4,7 @@ set -e
 # For CPU usage across all cores: run top, then press "shift-i" to toggle irix mode
 
 if [ "$1" == "remote" ]; then
-    SERVER="http://lojban.johnjq.com"
+    SERVER="http://lojban.io"
 
     ab -n 10000 -c 100 "$SERVER/grammar/introduction/1/exercises/367/get"
 else
