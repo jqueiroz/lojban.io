@@ -64,9 +64,25 @@ includeCourseStylesheet course = includeInlineStylesheet code where
         ]
 
 -- * Scripts
+includeGoogleAnalyticsScript :: H.Html
+includeGoogleAnalyticsScript = do
+    let embeddedCode = T.concat
+            [ "window.dataLayer = window.dataLayer || [];"
+            , "function gtag(){dataLayer.push(arguments);};"
+            , "gtag('js', new Date());"
+            , "gtag('config', 'UA-175660110-1', { 'anonymize_ip': true });"
+            ]
+    H.script ""
+      B.! A.type_ "text/javascript"
+      B.! A.src (H.stringValue "https://www.googletagmanager.com/gtag/js?id=UA-175660110-1")
+      B.! A.async (H.stringValue "true")
+    H.script (H.toHtml embeddedCode)
+      B.! A.type_ "text/javascript"
+
 includeUniversalScripts :: H.Html
 includeUniversalScripts = do
     includeExternalScript "https://kit.fontawesome.com/ae6f2dc037.js"
+    includeGoogleAnalyticsScript
     includeInternalScript "vendors.js"
 
 includeInternalScript :: String -> H.Html
