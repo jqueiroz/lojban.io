@@ -8,7 +8,7 @@ There is somewhat more emphasis on grammar than vocabulary, and the reason is th
 Indeed, it can be frustrating to fail exercises on grammar just because you lack the corresponding vocabulary &ndash; perhaps because you decided to learn vocabulary from a different source.
 So we took the approach of teaching relatively few non-grammar words, and quite common ones at that.
 This results in more flexibility.
-You can take this course to learn the core concepts of the language, and meanwhile pick up vocabulary using [Memrise](https://www.memrise.com/courses/english/lojban/), [Tinycards](https://tinycards.duolingo.com/search?query=lojban), [Anki](https://ankiweb.net/shared/decks/lojban), [our own decks](/decks), or whichever other source you find the most productive.
+You can take this course to learn the core concepts of the language, and meanwhile pick up vocabulary using [Memrise](https://www.memrise.com/courses/english/lojban/), [Tinycards](https://tinycards.duolingo.com/search?query=lojban), [Quizlet](https://quizlet.com/subject/lojban/), [Anki](https://ankiweb.net/shared/decks/lojban), [our own decks](/decks), or whichever other source you find the most productive.
 
 After getting reasonably used to the language, perhaps after going through the first 15 or so lessons here, we suggest that you start practicing with the [Contextualized Brivla](/decks/contextualized-brivla/) deck as well.
 Besides picking up vocabulary, you will also gain exposure to common constructs and patterns used by Lojbanists.
