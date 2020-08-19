@@ -20,7 +20,7 @@ displayCoursesHome :: Maybe UserIdentity -> H.Html
 displayCoursesHome userIdentityMaybe = do
     H.html $ do
         H.head $ do
-            H.title $ H.toHtml ("lojban :: Courses" :: T.Text)
+            H.title $ H.toHtml ("lojban.io :: Courses" :: T.Text)
             includeUniversalStylesheets
             includeUniversalScripts
             includeInternalStylesheet "courses.css"

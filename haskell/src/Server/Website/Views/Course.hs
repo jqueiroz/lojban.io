@@ -24,7 +24,7 @@ displayCourseHome userIdentityMaybe topbarCategory course = do
     let title = courseTitle course
     H.html $ do
         H.head $ do
-            H.title $ H.toHtml ("lojban :: " `T.append` title)
+            H.title $ H.toHtml ("lojban.io :: " `T.append` title)
             includeUniversalStylesheets
             includeUniversalScripts
             includeInternalStylesheet "course.css"

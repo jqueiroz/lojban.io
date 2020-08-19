@@ -15,7 +15,7 @@ displayResourcesHome :: Maybe UserIdentity -> H.Html
 displayResourcesHome userIdentityMaybe =
     H.html $ do
         H.head $ do
-            H.title $ H.toHtml ("lojban :: Additional resources" :: T.Text)
+            H.title $ H.toHtml ("lojban.io :: Additional resources" :: T.Text)
             includeUniversalStylesheets
             includeUniversalScripts
             includeInternalStylesheet "resources.css"

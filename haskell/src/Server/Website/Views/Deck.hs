@@ -25,7 +25,7 @@ displayDeckHome userIdentityMaybe deck = do
     let title = deckTitle deck
     H.html $ do
         H.head $ do
-            H.title $ H.toHtml ("lojban :: " `T.append` title)
+            H.title $ H.toHtml ("lojban.io :: " `T.append` title)
             includeUniversalStylesheets
             includeUniversalScripts
             includeInternalStylesheet "deck.css"
@@ -62,7 +62,7 @@ displayDeckExercise userIdentityMaybe deck = do
     let baseDeckUrl = "./"
     H.html $ do
         H.head $ do
-            H.title (H.toHtml $ "lojban :: " `T.append` (deckTitle deck) `T.append` " :: Practice")
+            H.title (H.toHtml $ "lojban.io :: " `T.append` (deckTitle deck) `T.append` " :: Practice")
             includeUniversalStylesheets
             includeInternalStylesheet "funkyradio.css"
             includeInternalStylesheet "list-group-horizontal.css"

@@ -17,7 +17,7 @@ displayDecksHome :: Maybe UserIdentity -> H.Html
 displayDecksHome userIdentityMaybe = do
     H.html $ do
         H.head $ do
-            H.title $ H.toHtml ("lojban :: Decks" :: T.Text)
+            H.title $ H.toHtml ("lojban.io :: Decks" :: T.Text)
             includeUniversalStylesheets
             includeUniversalScripts
             includeInternalStylesheet "decks.css"
