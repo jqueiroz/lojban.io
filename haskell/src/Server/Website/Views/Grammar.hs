@@ -23,7 +23,7 @@ displayGrammarHome userIdentityMaybe = do
             ]
     H.html $ do
         H.head $ do
-            H.title $ H.toHtml ("lojban.io :: Grammar" :: T.Text)
+            H.title $ H.toHtml ("Grammar :: lojban.io" :: T.Text)
             includeUniversalStylesheets
             includeUniversalScripts
             includeInternalStylesheet "module.css"

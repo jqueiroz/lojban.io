@@ -23,7 +23,7 @@ displayVocabularyHome userIdentityMaybe = do
             ]
     H.html $ do
         H.head $ do
-            H.title $ H.toHtml ("lojban.io :: Vocabulary" :: T.Text)
+            H.title $ H.toHtml ("Vocabulary :: lojban.io" :: T.Text)
             includeUniversalStylesheets
             includeUniversalScripts
             includeInternalStylesheet "module.css"

@@ -28,7 +28,7 @@ displayLessonHome userIdentityMaybe topbarCategory course lessonNumber = do
     let lesson = (courseLessons course) !! (lessonNumber - 1)
     H.html $ do
         H.head $ do
-            H.title $ H.toHtml ("lojban.io :: " ++ (lessonTitle lesson))
+            H.title $ H.toHtml ((lessonTitle lesson) ++ " :: lojban.io")
             includeUniversalStylesheets
             includeUniversalScripts
             includeInternalStylesheet "lesson.css"
@@ -82,7 +82,7 @@ displayLessonExercise userIdentityMaybe topbarCategory course lessonNumber = do
     let baseLessonUrl = "../"
     H.html $ do
         H.head $ do
-            H.title (H.toHtml $ "lojban.io :: " ++ (lessonTitle lesson) ++ " :: Practice")
+            H.title (H.toHtml $ (lessonTitle lesson) ++ " :: Practice :: lojban.io")
             includeUniversalStylesheets
             includeInternalStylesheet "funkyradio.css"
             includeInternalStylesheet "list-group-horizontal.css"
