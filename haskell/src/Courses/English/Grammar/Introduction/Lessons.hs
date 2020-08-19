@@ -1,3 +1,5 @@
+{-# LANGUAGE OverloadedStrings #-}
+
 -- | This module defines the course lessons.
 module Courses.English.Grammar.Introduction.Lessons  where
 

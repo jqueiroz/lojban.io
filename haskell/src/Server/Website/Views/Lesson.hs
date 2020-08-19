@@ -28,7 +28,7 @@ displayLessonHome userIdentityMaybe topbarCategory course lessonNumber = do
     let lesson = (courseLessons course) !! (lessonNumber - 1)
     H.html $ do
         H.head $ do
-            H.title $ H.toHtml ((lessonTitle lesson) ++ " :: lojban.io")
+            H.title $ H.toHtml ((lessonTitle lesson) `T.append` " :: lojban.io")
             includeUniversalStylesheets
             includeUniversalScripts
             includeInternalStylesheet "lesson.css"
@@ -82,7 +82,7 @@ displayLessonExercise userIdentityMaybe topbarCategory course lessonNumber = do
     let baseLessonUrl = "../"
     H.html $ do
         H.head $ do
-            H.title (H.toHtml $ (lessonTitle lesson) ++ " :: Practice :: lojban.io")
+            H.title (H.toHtml $ (lessonTitle lesson) `T.append` " :: Practice :: lojban.io")
             includeUniversalStylesheets
             includeInternalStylesheet "funkyradio.css"
             includeInternalStylesheet "list-group-horizontal.css"
@@ -116,18 +116,18 @@ displayLessonHeader baseLessonUrl lessonSubpage course lessonNumber = do
                 when (lessonNumber >= 2) $
                     let
                         url = ("../" ++) . (baseLessonUrl ++) . show $ lessonNumber - 1
-                        title = ("Previous lesson: " ++) . lessonTitle $ lessons !! (lessonNumber - 2)
+                        title = ("Previous lesson: " `T.append`) . lessonTitle $ lessons !! (lessonNumber - 2)
                     in
-                        H.a B.! A.href (H.stringValue url) B.! A.title (H.stringValue title) $ H.toHtml ("<" :: String)
+                        H.a B.! A.href (H.stringValue url) B.! A.title (H.textValue title) $ H.toHtml ("<" :: String)
                 -- Lesson title
-                H.span $ H.toHtml ((show lessonNumber) ++ ". " ++ lessonTitle lesson)
+                H.span $ H.toHtml ((T.pack $ show lessonNumber) `T.append` ". " `T.append` lessonTitle lesson)
                 -- Next lesson
                 when (lessonNumber < lessonsCount) $
                     let
                         url = ("../"++) . (baseLessonUrl++) . show $ lessonNumber + 1
-                        title = ("Next lesson: " ++) . lessonTitle $ lessons !! lessonNumber
+                        title = ("Next lesson: " `T.append`) . lessonTitle $ lessons !! lessonNumber
                     in
-                        H.a B.! A.href (H.stringValue url) B.! A.title (H.stringValue title) $ H.toHtml (">" :: String)
+                        H.a B.! A.href (H.stringValue url) B.! A.title (H.textValue title) $ H.toHtml (">" :: String)
         H.div B.! A.class_ "lesson-buttons" $ do
             when (lessonSubpage /= LessonHome) $ H.a B.! A.class_ (H.stringValue "button") B.! A.href (H.stringValue "../") $ (H.toHtml ("Review Theory" :: String))
             when (lessonSubpage /= LessonExercises) $ H.a B.! A.class_ (H.stringValue "button") B.! A.href (H.stringValue $ baseLessonUrl ++ "exercises") $ (H.toHtml ("Practice" :: String))

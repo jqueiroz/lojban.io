@@ -1,3 +1,5 @@
+{-# LANGUAGE OverloadedStrings #-}
+
 -- | This module defines the course lessons.
 module Courses.English.Vocabulary.Brivla.Lessons where
 

@@ -39,7 +39,7 @@ data CourseStyle = CourseStyle
     } deriving (Show)
 
 data Lesson = Lesson
-    { lessonTitle :: String
+    { lessonTitle :: T.Text
     , lessonExercises :: ExerciseGenerator
     , lessonLecture :: Maybe P.Pandoc
     , lessonPlan :: Maybe P.Pandoc
