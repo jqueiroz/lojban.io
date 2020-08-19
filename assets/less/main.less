@@ -145,18 +145,72 @@ h6 {
         display: inline-block;
         height: @picture-size;
         margin-top: calc((@topbar-height - @picture-size) / 2);
-
-        a {
-            display: inline-block;
-            margin-right: 5em;
-        }
+        margin-right: 5em;
 
         img {
             width: @picture-size;
             height: @picture-size;
             border: solid 1px #1493d1;
-
             border-radius: 50%;
+            cursor: pointer;
+        }
+
+        input {
+            display: none;
+        }
+
+        label {
+            /* Position */
+            display: inline-block;
+            height: @picture-size;
+            margin-top: calc(-@picture-size / 2);
+        }
+
+        label:after {
+            /* Position */
+            position: relative;
+            display: inline-block;
+            margin-left: 0.5em;
+
+            /* Content */
+            font-family: fontawesome;
+            content: "\f107";
+
+            /* Style */
+            vertical-align: middle;
+            cursor: pointer;
+        }
+
+        ul.user-menu {
+            /* Position */
+            display: none;
+            position: absolute;
+            width: calc(12em - 0.5em);
+            right: 0;
+
+            /* List */
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            font-size: 0.7em;
+
+            li:first-child {
+                position: relative;
+                top: 2em;
+            }
+
+            li {
+                background-color: #fff;
+                width: 12em;
+                box-sizing: border-box;
+                padding: 1em 1em;
+                border: solid 0.2em #999;
+                border-radius: 0.5em;
+            }
+        }
+
+        input:checked ~ .user-menu, label:hover ~ .user-menu, label:focus ~ .user-menu, .user-menu:hover, .user-menu:focus {
+            display: inline-block;
         }
     }
 }

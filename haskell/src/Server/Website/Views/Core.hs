@@ -128,8 +128,18 @@ displayUserProfile userIdentityMaybe =
         Just userIdentity -> do
             let pictureUrl = userPictureUrl userIdentity
             H.div B.! A.class_ "user-profile" $ do
-                H.a B.! A.href (H.stringValue "/oauth2/google/logout") $ do
-                    H.img B.! A.class_ "picture" B.! A.src (H.textValue pictureUrl)
+                H.input
+                    B.! A.id "user-menu-input"
+                    B.! A.type_ "checkbox"
+                H.label
+                    B.! A.for "user-menu-input"
+                    B.! A.tabindex "0"
+                    B.! A.alt "Toggle user menu" $ do
+                        H.img B.! A.class_ "picture" B.! A.src (H.textValue pictureUrl)
+                H.ul B.! A.class_ "user-menu" $ do
+                    H.li $ do
+                        H.a (H.toHtml ("Sign out" :: T.Text))
+                            B.! A.href (H.stringValue "/oauth2/google/logout")
 
 displayTopbarMenu :: TopbarCategory -> H.Html
 displayTopbarMenu topbarCategory = do
