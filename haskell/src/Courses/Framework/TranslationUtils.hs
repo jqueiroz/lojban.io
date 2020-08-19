@@ -74,9 +74,9 @@ expandTranslationGenerator translationGenerator r0 = (expandTranslation translat
 --
 -- This function discards all Lojban sentences except for the first one.
 -- Useful if you have a 'Translation' that you would like to display to the user, but some of its
--- sentences in Lojban use words that have not yet been taught (perhaps you added them to ensure that
--- translations made by more advanced users are still accepted by the validator).
--- By convention, the first translation is expected to be suitable for presentation to the user.
+-- sentences in Lojban use grammatical constructs that have not yet been taught (perhaps you added them
+-- to ensure that translations made by more advanced users are still accepted by the validator).
+-- By convention, the first translation is always expected to be suitable for presentation to the user.
 narrowTranslation :: Translation -> Translation
 narrowTranslation (lojban_sentences, english_sentences) = ([head lojban_sentences], english_sentences)
 
