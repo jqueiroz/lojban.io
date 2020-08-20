@@ -18,6 +18,8 @@ import qualified Courses.English.Vocabulary.Attitudinals.Course
 import qualified Decks.English.ContextualizedBrivla
 
 -- TODO: link to official lojban wiki
+-- TODO: take more info from this brochure: https://mw.lojban.org/images/c/c5/lojbanbrochure.pdf
+-- TODO: also link to https://mw.lojban.org/papri/Presenting_Lojban
 displayHome :: Maybe UserIdentity -> H.Html
 displayHome userIdentityMaybe =
     H.html $ do
