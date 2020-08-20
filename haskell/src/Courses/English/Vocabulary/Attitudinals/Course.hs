@@ -21,17 +21,20 @@ style = CourseStyle color1 iconUrl where
         -- Source: https://www.flaticon.com/free-icon/happy_187134
         "https://image.flaticon.com/icons/svg/187/187134.svg"
 
+-- | Course description.
+longDescription :: P.Pandoc
+Right longDescription = buildDocumentFromMarkdownCode $(embedStringFile "resources/courses/english/vocabulary/attitudinals/description.md")
+
 -- | Course credits.
 credits :: P.Pandoc
 Right credits = buildDocumentFromMarkdownCode $(embedStringFile "resources/courses/english/vocabulary/attitudinals/credits.md")
 
 -- | Course: Attitudinals.
 course :: Course
-course = Course "attitudinals_eng" title shortDescription longDescription (Just credits) style englishDictionary lessons where
+course = Course "attitudinals_eng" title shortDescription (Just longDescription) (Just credits) style englishDictionary lessons where
     title = "Attitudinals (pre-alpha)"
     --shortDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
     shortDescription = "This course is still under construction. Please check back later."
-    longDescription = Nothing
     lessons = [lesson1, lesson2, lesson3]
 
 -- Interesting exercise: "Rewrite using attitudinals"
