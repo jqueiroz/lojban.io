@@ -47,6 +47,7 @@ displayDeckHome userIdentityMaybe deck = do
                         H.div B.! A.class_ (H.stringValue "deck-manage") $ do
                             -- TOOD: Section: "Manage your cards"
                             H.h2 $ H.toHtml ("Manage your cards" :: T.Text)
+                            -- TODO: brief explanation of deck/cards, then three sections: currently learning, pending and mastered
                             -- TOOD: Some hints as well (eg, "generally you do not need to disable cards that you already know. If we think you have mastered a card, we will display it less frequently so that you can focus on...")
                             H.div B.! A.class_ (H.stringValue "deck-cards") $ H.toHtml ("" :: T.Text)
                         when (isJust $ deckCredits deck) $ do
