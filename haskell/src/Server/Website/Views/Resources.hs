@@ -144,6 +144,9 @@ displayResources = do
                 H.a "More learning materials"
                     B.! A.href "https://mw.lojban.org/papri/Learning_materials._Secondary_links"
             H.li $ do
+                H.a "Alternative ortograhy: la zbalermorna"
+                    B.! A.href "https://jackhumbert.github.io/zbalermorna/write-up/"
+            H.li $ do
                 H.a "Alternative ortograhy: la krulermorna"
                     B.! A.href "http://lojban.pw/articles/krulermorna/"
             H.li $ do
