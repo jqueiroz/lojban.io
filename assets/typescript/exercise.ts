@@ -433,6 +433,7 @@ var createExercisesManager = function(holder) {
                             correctAnswer: response.data.canonicalAnswer,
                         });
                     }
+                    textarea.attr("disabled", "disabled");
                 });
             };
             keyMap.enter(send);
