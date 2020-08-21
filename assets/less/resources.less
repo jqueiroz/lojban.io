@@ -27,3 +27,26 @@
         list-style-type: square;
     }
 }
+
+/* Mobile */
+@media @phone {
+    /* Increase font size */
+    .main {
+        font-size: 2em;
+    }
+    h1, h2 {
+        font-size: 1.7em;
+    }
+
+    .body {
+        .resource-category {
+            /* Reset display */
+            display: block;
+        }
+
+        h2 {
+            /* Reset text alignment */
+            text-align: inherit;
+        }
+    }
+}
