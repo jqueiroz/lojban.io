@@ -20,11 +20,11 @@ import qualified Text.Pandoc as P
 
 -- | Deck description.
 longDescription :: P.Pandoc
-Right longDescription = buildDocumentFromMarkdownCode $(embedStringFile "resources/courses/english/vocabulary/brivla/description.md")
+Right longDescription = buildDocumentFromMarkdownCode $(embedStringFile "resources/decks/english/brivla/description.md")
 
 -- | Deck credits.
 credits :: P.Pandoc
-Right credits = buildDocumentFromMarkdownCode $(embedStringFile "resources/courses/english/vocabulary/brivla/credits.md")
+Right credits = buildDocumentFromMarkdownCode $(embedStringFile "resources/decks/english/brivla/credits.md")
 
 -- | Deck: Contextualized Brivla.
 deck :: Deck
