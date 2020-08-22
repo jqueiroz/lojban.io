@@ -7,6 +7,7 @@ import Control.Monad (msum)
 import Data.Maybe (fromMaybe)
 import System.Environment (lookupEnv)
 import Happstack.Server
+import Happstack.Server.Compression (compressedResponseFilter)
 import Network.HTTP.Client (newManager)
 import Network.HTTP.Client.TLS (tlsManagerSettings)
 import qualified Database.Redis as Redis
@@ -22,21 +23,20 @@ runServer portNumber = do
     simpleHTTP nullConf { port = portNumber } (handleRoot serverResources)
 
 handleRoot :: ServerResources -> ServerPart Response
-handleRoot serverResources =
-    let
-        cacheControlForAssets = fmap $ setHeader "Cache-Control" "max-age=600"
-    in
-        msum
-            [ dir "docs" $ movedPermanently ("doc/lojto-0.1.0.0/index.html" :: String) (toResponse ())
-            , dir "doc" $ serveDirectory EnableBrowsing [] "doc"
-            , dir "static" $ cacheControlForAssets $ serveDirectory EnableBrowsing [] "static"
-            , dir "api" $ Api.handleRoot serverResources
-            , dir "oauth2" $ OAuth2.handleRoot serverResources
-            , dir "favicon.ico" $ cacheControlForAssets $ serveFile (asContentType "image/png") "static/images/favicon.png"
-            , dir "manifest.webmanifest" $ cacheControlForAssets $ serveFile (asContentType "text/json") "static/pwa/manifest.webmanifest"
-            , dir "pwabuilder-sw.js" $ cacheControlForAssets $ serveFile (asContentType "text/javascript") "static/pwa/pwabuilder-sw.js"
-            , Website.handleRoot serverResources
-            ]
+handleRoot serverResources = do
+    let cacheControlForAssets = fmap $ setHeader "Cache-Control" "max-age=600"
+    compressedResponseFilter
+    msum
+        [ dir "docs" $ movedPermanently ("doc/lojto-0.1.0.0/index.html" :: String) (toResponse ())
+        , dir "doc" $ serveDirectory EnableBrowsing [] "doc"
+        , dir "static" $ cacheControlForAssets $ serveDirectory EnableBrowsing [] "static"
+        , dir "api" $ Api.handleRoot serverResources
+        , dir "oauth2" $ OAuth2.handleRoot serverResources
+        , dir "favicon.ico" $ cacheControlForAssets $ serveFile (asContentType "image/png") "static/images/favicon.png"
+        , dir "manifest.webmanifest" $ cacheControlForAssets $ serveFile (asContentType "text/json") "static/pwa/manifest.webmanifest"
+        , dir "pwabuilder-sw.js" $ cacheControlForAssets $ serveFile (asContentType "text/javascript") "static/pwa/pwabuilder-sw.js"
+        , Website.handleRoot serverResources
+        ]
 
 acquireServerResources :: IO ServerResources
 acquireServerResources = do
