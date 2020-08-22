@@ -5,6 +5,7 @@ This project is inspired by Duolingo, but it is somewhat more specific in that i
 It is written almost entirely in Haskell.
 
 An experimental version of the platform is available at [https://lojban.io](https://lojban.io).
+<!-- TODO: You may also install the progressive web app from... -->
 
 Documentation for the currently deployed version may be found at [https://lojban.io/docs](https://lojban.io/docs).
 
