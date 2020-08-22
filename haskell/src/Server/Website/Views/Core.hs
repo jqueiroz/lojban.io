@@ -32,6 +32,12 @@ includeViewportTag = do
       B.! A.name (H.stringValue "viewport")
       B.! A.content "width=device-width, initial-scale=1"
 
+includeThemeColorTag :: H.Html
+includeThemeColorTag = do
+    H.meta
+      B.! A.name (H.stringValue "theme-color")
+      B.! A.content "#9054FF"
+
 includeWebManifest :: H.Html
 includeWebManifest = do
     H.link
@@ -41,6 +47,7 @@ includeWebManifest = do
 includeUniversalStylesheets :: H.Html
 includeUniversalStylesheets = do
     --includeViewportTag
+    includeThemeColorTag
     includeWebManifest
     -- TODO: consider removing bootstrap
     includeInternalStylesheet "bootstrap.min.css"
