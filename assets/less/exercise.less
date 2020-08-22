@@ -48,7 +48,7 @@
         position: relative;
         display: inline-block;
         margin-left: calc(@deck-info-height);
-        height: @deck-info-height;
+        min-height: @deck-info-height;
 
         /* Style */
         padding-left: 2em;
@@ -119,7 +119,7 @@
         display: inline-block;
         margin-left: calc(@lesson-info-height);
         padding-left: 2em;
-        height: @lesson-info-height;
+        min-height: @lesson-info-height;
     }
 
     .course-title {
@@ -303,43 +303,45 @@ body {
     color: #dd381d;
 }
 
-.exercise-holder .exercise-footer button {
-    position: absolute;
-    bottom: 1em;
-    border: none;
-    padding: .6em 1em;
-    min-width: 10em;
-    border-radius: 40px;
-    font-weight: bold;
-    font-size: 1.1em;
-}
+.exercise-holder .exercise-footer {
+    button {
+        position: absolute;
+        bottom: 1em;
+        border: none;
+        padding: .6em 1em;
+        min-width: 10em;
+        border-radius: 40px;
+        font-weight: bold;
+        font-size: 1.1em;
+    }
 
-.exercise-holder .exercise-footer button.skip {
-    border: solid #aaa 1.5px;
-    color: #888;
-}
+    button.skip {
+        border: solid #aaa 1.5px;
+        color: #888;
+    }
 
-.exercise-holder .exercise-footer button.skip:hover {
-    background-color: #aaa;
-    color: #333;
-}
+    button.skip:hover {
+        background-color: #aaa;
+        color: #333;
+    }
 
-.exercise-holder .exercise-footer button.success {
-    position: absolute;
-    right: 3em;
-    background-color: #7eb530;
-    color: #fff;
-    border: solid #7eb530 1px;
-}
+    button.success, button.continue {
+        position: absolute;
+        right: 3em;
+        background-color: #7eb530;
+        color: #fff;
+        border: solid #7eb530 1px;
+    }
 
-.exercise-holder .exercise-footer button.success:disabled {
-    background-color: #bbb !important;
-    color: #fff;
-    border: solid #bbb 1px;
-}
+    button.success:disabled, button.continue:disabled {
+        background-color: #bbb !important;
+        color: #fff;
+        border: solid #bbb 1px;
+    }
 
-.exercise-holder .exercise-footer button.success:hover {
-    background-color: #94c500;
+    button.success:hover, button.continue:hover {
+        background-color: #94c500;
+    }
 }
 
 .dictionary-tooltip-holder {
@@ -382,4 +384,57 @@ body {
     /* Style */
     text-align: center;
     padding: 10px;
+}
+
+/* Mobile */
+@media @phone {
+    .body {
+        max-width: inherit;
+        margin-top: 0;
+        padding: 0;
+    }
+
+    .lesson-header .lesson-buttons, .deck-header, .deck-buttons {
+        float: inherit;
+        display: block;
+        margin-top: 1em;
+        margin-left: -3em;
+    }
+
+    .exercise-holder {
+        .exercise-body {
+            /* Reduce height a bit, so that the entire exercise fits the screen even when the phone keyboard is visible */
+            min-height: 21em;
+
+            .table {
+                display: block;
+                margin-top: 1em;
+            }
+
+            .sentence, textarea {
+                display: block;
+                width: 19em;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            textarea {
+                margin-top: 1em;
+            }
+        }
+
+        .exercise-footer {
+            button.continue {
+                position: relative;
+                top: 0.5em;
+                left: 0em;
+            }
+        }
+    }
+}
+
+@media @phone-with-keyboard {
+    .deck-header, .lesson-header {
+        display: none;
+    }
 }

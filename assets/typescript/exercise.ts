@@ -125,7 +125,7 @@ var createExercisesManager = function(holder) {
         }
         // Button
         var btnContinue = $("<button/>")
-            .addClass("success")
+            .addClass("continue")
             .text("Continue");
         footer.append(btnContinue);
         btnContinue.focus();
