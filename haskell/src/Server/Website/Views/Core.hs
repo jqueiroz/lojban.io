@@ -26,8 +26,15 @@ import qualified Text.Blaze.Html5 as H
 import qualified Text.Blaze.Html5.Attributes as A
 
 -- * Stylesheets
+includeWebManifest :: H.Html
+includeWebManifest = do
+    H.link
+      B.! A.href (H.stringValue "/manifest.webmanifest")
+      B.! A.rel "manifest"
+
 includeUniversalStylesheets :: H.Html
 includeUniversalStylesheets = do
+    includeWebManifest
     -- TODO: consider removing
     includeInternalStylesheet "bootstrap.min.css"
     --includeExternalStylesheet "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
@@ -78,6 +85,16 @@ includeGoogleAnalyticsScript = do
       B.! A.async (H.stringValue "true")
     H.script (H.toHtml embeddedCode)
       B.! A.type_ "text/javascript"
+
+includePwaBuilderScript :: H.Html
+includePwaBuilderScript = do
+    let embeddedCode = T.concat
+            [ "import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';"
+            , "const el = document.createElement('pwa-update');"
+            , "document.body.appendChild(el);"
+            ]
+    H.script (H.toHtml embeddedCode)
+      B.! A.type_ "module"
 
 includeUniversalScripts :: H.Html
 includeUniversalScripts = do

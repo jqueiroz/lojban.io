@@ -122,6 +122,7 @@ library
                      , Server.Website.Views.Lesson
                      , Server.Website.Views.Modules
                      , Server.Website.Views.Resources
+                     , Server.Website.Views.Offline
                      , Server.Website.Views.Vocabulary
                      , Util
                      , Playground

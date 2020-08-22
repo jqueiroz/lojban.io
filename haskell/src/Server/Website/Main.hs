@@ -21,6 +21,7 @@ import Server.Website.Views.Deck (displayDeckHome, displayDeckExercise)
 import Server.Website.Views.Grammar (displayGrammarHome)
 import Server.Website.Views.Vocabulary (displayVocabularyHome)
 import Server.Website.Views.Resources (displayResourcesHome)
+import Server.Website.Views.Offline (displayOfflineHome)
 import Server.Website.Views.Course (displayCourseHome)
 import Server.Website.Views.Lesson (displayLessonHome, displayLessonExercise)
 import Control.Monad (msum, guard)
@@ -44,6 +45,7 @@ handleRoot serverResources = do
         , dir "grammar" $ handleGrammar userIdentityMaybe
         , dir "vocabulary" $ handleVocabulary userIdentityMaybe
         , dir "resources" $ handleResources userIdentityMaybe
+        , dir "offline" $ handleOffline userIdentityMaybe
         ]
 
 handleHome :: Maybe UserIdentity -> ServerPart Response
@@ -81,6 +83,11 @@ handleVocabulary userIdentityMaybe = msum
 handleResources :: Maybe UserIdentity -> ServerPart Response
 handleResources userIdentityMaybe = msum
     [ forceSlash . ok . toResponse $ displayResourcesHome userIdentityMaybe
+    ]
+
+handleOffline :: Maybe UserIdentity -> ServerPart Response
+handleOffline userIdentityMaybe = msum
+    [ forceSlash . ok . toResponse $ displayOfflineHome userIdentityMaybe
     ]
 
 handleCourse :: Maybe UserIdentity -> TopbarCategory -> Course -> ServerPart Response

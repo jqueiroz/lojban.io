@@ -1,0 +1,20 @@
+{
+    "dir": "ltr",
+    "lang": "en-us",
+    "name": "lojban.io",
+    "scope": "/",
+    "display": "standalone",
+    "start_url": ".",
+    "short_name": "lojban.io",
+    "theme_color": "transparent",
+    "description": "A robust teaching platform for the artificial language Lojban.",
+    "orientation": "any",
+    "background_color": "transparent",
+    "related_applications": [],
+    "prefer_related_applications": false,
+    "icons": [{
+        "src": "/static/images/favicon.png",
+        "sizes": "512x512",
+        "type": "image/png"
+    }]
+}

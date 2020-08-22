@@ -29,6 +29,7 @@ handleRoot serverResources = msum
     , dir "api" $ Api.handleRoot serverResources
     , dir "oauth2" $ OAuth2.handleRoot serverResources
     , dir "favicon.ico" $ serveFile (asContentType "image/png") "static/images/favicon.png"
+    , dir "manifest.webmanifest" $ serveFile (asContentType "text/json") "static/pwa/manifest.webmanifest"
     , Website.handleRoot serverResources
     ]
 
