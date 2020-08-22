@@ -12,7 +12,8 @@ import qualified Text.Blaze.Html5 as H
 import qualified Text.Blaze.Html5.Attributes as A
 
 displayOfflineHome :: Maybe UserIdentity -> H.Html
-displayOfflineHome userIdentityMaybe =
+displayOfflineHome userIdentityMaybe = do
+    H.docType
     H.html B.! A.lang (H.stringValue "en-us") $ do
         H.head $ do
             H.title $ H.toHtml ("Offline :: lojban.io" :: T.Text)

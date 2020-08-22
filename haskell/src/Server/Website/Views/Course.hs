@@ -23,6 +23,7 @@ displayCourseHome userIdentityMaybe topbarCategory course = do
     let baseCourseUrl = ""
     let title = courseTitle course
     let shortDescription = courseShortDescription course
+    H.docType
     H.html B.! A.lang (H.stringValue "en-us") $ do
         H.head $ do
             H.title $ H.toHtml (title `T.append` " :: lojban.io")

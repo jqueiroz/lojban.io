@@ -24,6 +24,7 @@ displayDeckHome userIdentityMaybe deck = do
     let baseDeckUrl = ""
     let title = deckTitle deck
     let shortDescription = deckShortDescription deck
+    H.docType
     H.html B.! A.lang (H.stringValue "en-us") $ do
         H.head $ do
             H.title $ H.toHtml (title `T.append` " :: lojban.io")
@@ -63,6 +64,7 @@ displayDeckExercise :: Maybe UserIdentity -> Deck -> H.Html
 displayDeckExercise userIdentityMaybe deck = do
     let dictionary = deckDictionary deck
     let baseDeckUrl = "./"
+    H.docType
     H.html $ do
         H.head $ do
             H.title (H.toHtml $ (deckTitle deck) `T.append` " :: Practice :: lojban.io")

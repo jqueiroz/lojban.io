@@ -26,6 +26,7 @@ displayLessonHome userIdentityMaybe topbarCategory course lessonNumber = do
     let dictionary = courseDictionary course
     let baseLessonUrl = ""
     let lesson = (courseLessons course) !! (lessonNumber - 1)
+    H.docType
     H.html B.! A.lang (H.stringValue "en-us") $ do
         H.head $ do
             H.title $ H.toHtml ((lessonTitle lesson) `T.append` " :: lojban.io")
@@ -80,6 +81,7 @@ displayLessonExercise :: Maybe UserIdentity -> TopbarCategory -> Course -> Int -
 displayLessonExercise userIdentityMaybe topbarCategory course lessonNumber = do
     let dictionary = courseDictionary course
     let baseLessonUrl = "../"
+    H.docType
     H.html $ do
         H.head $ do
             H.title (H.toHtml $ (lessonTitle lesson) `T.append` " :: Practice :: lojban.io")

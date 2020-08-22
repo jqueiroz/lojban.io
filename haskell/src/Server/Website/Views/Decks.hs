@@ -18,6 +18,7 @@ displayDecksHome userIdentityMaybe = do
     let descriptionPart1 = ("Learn vocabulary at your own pace, boosted by spaced repetition." :: T.Text)
     let descriptionPart2 = ("Start practicing with a deck that picks your interest, and enable new cards as you progress." :: T.Text)
     let descriptionComplete = descriptionPart1 `T.append` " " `T.append` descriptionPart2
+    H.docType
     H.html B.! A.lang (H.stringValue "en-us") $ do
         H.head $ do
             H.title $ H.toHtml ("Decks :: lojban.io" :: T.Text)

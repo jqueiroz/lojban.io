@@ -14,6 +14,7 @@ import qualified Text.Blaze.Html5.Attributes as A
 displayResourcesHome :: Maybe UserIdentity -> H.Html
 displayResourcesHome userIdentityMaybe = do
     let shortDescription = ("A collection of useful resources for studying Lojban." :: T.Text)
+    H.docType
     H.html B.! A.lang (H.stringValue "en-us") $ do
         H.head $ do
             H.title $ H.toHtml ("Resources :: lojban.io" :: T.Text)

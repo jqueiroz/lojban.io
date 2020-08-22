@@ -23,6 +23,7 @@ import qualified Decks.English.ContextualizedBrivla
 displayHome :: Maybe UserIdentity -> H.Html
 displayHome userIdentityMaybe = do
     let shortDescription = "A free and open-source platform for studying the artificial language Lojban."
+    H.docType
     H.html B.! A.lang (H.stringValue "en-us") $ do
         H.head $ do
             H.title $ H.toHtml ("lojban.io" :: T.Text)

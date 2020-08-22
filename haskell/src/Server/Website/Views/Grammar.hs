@@ -21,6 +21,7 @@ displayGrammarHome userIdentityMaybe = do
             [ ("/grammar/introduction", Courses.English.Grammar.Introduction.Course.course)
             , ("/grammar/crash", Courses.English.Grammar.Crash.Course.course)
             ]
+    H.docType
     H.html B.! A.lang (H.stringValue "en-us") $ do
         H.head $ do
             H.title $ H.toHtml ("Grammar :: lojban.io" :: T.Text)
