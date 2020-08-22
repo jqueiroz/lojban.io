@@ -4,7 +4,7 @@
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
 @phone: ~"only screen and (max-device-width: 480px)";
-@phone-with-keyboard: ~"only screen and (max-device-width: 480px) and (orientation: landscape)";
+@phone-with-keyboard: ~"only screen and (max-device-width: 480px) and (min-aspect-ratio: 4/5)"; /* a low value of 4/5 is needed for standalone PWA */
 
 button:focus,
 textarea:focus {
