@@ -30,7 +30,7 @@ displayHome userIdentityMaybe = do
             includeUniversalStylesheets
             includeUniversalScripts
             includeInternalStylesheet "home.css"
-            includeInternalScript "home.js"
+            includeInternalScript "home-min.js"
         H.body $ do
             displayTopbar userIdentityMaybe TopbarHome
             H.div B.! A.class_ (H.textValue "main") $ do

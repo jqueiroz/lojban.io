@@ -32,7 +32,7 @@ displayDeckHome userIdentityMaybe deck = do
             includeUniversalScripts
             includeInternalStylesheet "deck.css"
             includeDeckScript deck
-            includeInternalScript "deck.js"
+            includeInternalScript "deck-min.js"
         H.body $ do
             displayTopbar userIdentityMaybe TopbarDecks
             H.div B.! A.class_ (H.stringValue "main") $ do
@@ -73,7 +73,7 @@ displayDeckExercise userIdentityMaybe deck = do
             includeUniversalScripts
             includeDictionaryScript dictionary
             includeDeckScript deck
-            includeInternalScript "exercise.js"
+            includeInternalScript "exercise-min.js"
         H.body $ do
             displayTopbar userIdentityMaybe TopbarDecks
             H.div B.! A.class_ (H.stringValue "main") $ do

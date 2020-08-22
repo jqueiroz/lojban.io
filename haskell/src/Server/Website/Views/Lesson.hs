@@ -89,7 +89,7 @@ displayLessonExercise userIdentityMaybe topbarCategory course lessonNumber = do
             includeInternalStylesheet "exercise.css"
             includeUniversalScripts
             includeDictionaryScript dictionary
-            includeInternalScript "exercise.js"
+            includeInternalScript "exercise-min.js"
             includeCourseStylesheet course
         H.body $ do
             displayTopbar userIdentityMaybe topbarCategory

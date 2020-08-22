@@ -28,6 +28,7 @@ var react = require('gulp-react');
 var source = require('vinyl-source-stream');
 var sourcemaps  = require('gulp-sourcemaps');
 var uglify = require("gulp-uglify");
+var minify = require("gulp-minify");
 
 /* TASK'S */
 gulp.task("fonts", function () {
@@ -47,6 +48,7 @@ gulp.task("typescript", function () {
                 .pipe(buffer())
                 .pipe(sourcemaps.init({ loadMaps: true }))
                 .pipe(sourcemaps.write('./'))
+                .pipe(minify())
                 .pipe(gulp.dest('../static/scripts'));
         })
     });
