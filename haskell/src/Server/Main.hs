@@ -30,6 +30,7 @@ handleRoot serverResources = msum
     , dir "oauth2" $ OAuth2.handleRoot serverResources
     , dir "favicon.ico" $ serveFile (asContentType "image/png") "static/images/favicon.png"
     , dir "manifest.webmanifest" $ serveFile (asContentType "text/json") "static/pwa/manifest.webmanifest"
+    , dir "pwabuilder-sw.js" $ serveFile (asContentType "text/javascript") "static/pwa/pwabuilder-sw.js"
     , Website.handleRoot serverResources
     ]
 
