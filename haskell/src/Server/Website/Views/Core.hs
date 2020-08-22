@@ -131,7 +131,7 @@ includeDeckScript :: Deck -> H.Html
 includeDeckScript deck = includeInlineScript $ "deckId = \"" `T.append` (deckId deck) `T.append` "\";"
 
 -- * Topbar
-data TopbarCategory = TopbarHome | TopbarCourses | TopbarDecks | TopbarResources deriving (Enum, Eq)
+data TopbarCategory = TopbarHome | TopbarCourses | TopbarDecks | TopbarResources | TopbarNone deriving (Enum, Eq)
 
 displayTopbar :: Maybe UserIdentity -> TopbarCategory -> H.Html
 displayTopbar userIdentityMaybe topbarCategory = do

@@ -20,7 +20,7 @@ displayOfflineHome userIdentityMaybe =
             includeUniversalScripts
             includeInternalStylesheet "offline.css"
         H.body $ do
-            displayTopbar userIdentityMaybe TopbarResources
+            displayTopbar userIdentityMaybe TopbarNone
             H.div B.! A.class_ (H.stringValue "main") $ do
                 H.div B.! A.class_ (H.textValue "header") $ do
                     H.div B.! A.class_ (H.textValue "header-bg") $ H.toHtml ("" :: T.Text)
