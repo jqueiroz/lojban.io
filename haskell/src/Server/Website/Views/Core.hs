@@ -108,7 +108,7 @@ includeUniversalScripts = do
     includeExternalScript "https://kit.fontawesome.com/ae6f2dc037.js"
     includeGoogleAnalyticsScript
     includePwaBuilderScript
-    includeInternalScript "vendors.js"
+    --includeInternalScript "vendors.js"
 
 includeInternalScript :: String -> H.Html
 includeInternalScript = includeExternalScript . ("/static/scripts/"++)
