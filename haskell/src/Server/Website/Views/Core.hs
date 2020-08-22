@@ -26,6 +26,12 @@ import qualified Text.Blaze.Html5 as H
 import qualified Text.Blaze.Html5.Attributes as A
 
 -- * Stylesheets
+includeViewportTag :: H.Html
+includeViewportTag = do
+    H.meta
+      B.! A.name (H.stringValue "viewport")
+      B.! A.content "width=device-width, initial-scale=1"
+
 includeWebManifest :: H.Html
 includeWebManifest = do
     H.link
@@ -34,6 +40,7 @@ includeWebManifest = do
 
 includeUniversalStylesheets :: H.Html
 includeUniversalStylesheets = do
+    --includeViewportTag
     includeWebManifest
     -- TODO: consider removing
     includeInternalStylesheet "bootstrap.min.css"
