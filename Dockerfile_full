@@ -39,6 +39,9 @@ COPY static/audio /lojto/static/audio
 # Copy image files
 COPY static/images /lojto/static/images
 
+# Copy pwa files
+COPY static/pwa /lojto/static/pwa
+
 # Copy assets
 COPY assets /lojto/assets
 
