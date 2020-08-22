@@ -174,3 +174,61 @@ test-suite courses
                      , Language.Lojban.Presentation
                      , Language.Lojban.Refinement
                      , Util
+
+test-suite exercises
+  import:              deps
+  type:                exitcode-stdio-1.0
+  main-is:             Main.hs
+  ghc-options:         -Wno-missing-home-modules
+  hs-source-dirs:      haskell/tests/exercises haskell/src
+  build-depends:       hspec
+                     , QuickCheck
+  other-modules:       Core
+                     , Util
+                     , Exercises.Tests
+                     , Language.Lojban.Canonicalization
+                     , Language.Lojban.Canonicalization.Internals
+                     , Language.Lojban.Core
+                     , Language.Lojban.Dictionaries
+                     , Language.Lojban.Dictionaries.English
+                     , Language.Lojban.Numbers
+                     , Language.Lojban.Parsing
+                     , Language.Lojban.Presentation
+                     , Language.Lojban.Refinement
+                     , Courses.CourseStore
+                     , Courses.Framework.DocumentBuilders
+                     , Courses.Framework.ExerciseGenerators
+                     , Courses.Framework.ExerciseUtils
+                     , Courses.Framework.Extractors
+                     , Courses.Framework.SentenceGenerators
+                     , Courses.Framework.TranslationLoaders
+                     , Courses.Framework.TranslationUtils
+                     , Courses.Framework.VocabularyLoaders
+                     , Courses.English.Grammar.Introduction.Course
+                     , Courses.English.Grammar.Introduction.Documents
+                     , Courses.English.Grammar.Introduction.Exercises
+                     , Courses.English.Grammar.Introduction.Lessons
+                     , Courses.English.Grammar.Introduction.Strategies
+                     , Courses.English.Grammar.Introduction.Translations
+                     , Courses.English.Grammar.Introduction.Vocabulary
+                     , Courses.English.Grammar.Crash.Course
+                     , Courses.English.Grammar.Crash.Documents
+                     , Courses.English.Grammar.Crash.Exercises
+                     , Courses.English.Grammar.Crash.Lessons
+                     , Courses.English.Grammar.Crash.Translations
+                     , Courses.English.Grammar.Crash.Vocabulary
+                     , Courses.English.Vocabulary.Attitudinals.Course
+                     , Courses.English.Vocabulary.Attitudinals.Documents
+                     , Courses.English.Vocabulary.Attitudinals.Exercises
+                     , Courses.English.Vocabulary.Attitudinals.Glossary
+                     , Courses.English.Vocabulary.Attitudinals.Lessons
+                     , Courses.English.Vocabulary.Attitudinals.Model
+                     , Courses.English.Vocabulary.Attitudinals.Util
+                     , Courses.English.Vocabulary.Attitudinals.Vocabulary
+                     , Courses.English.Vocabulary.Brivla.Course
+                     , Courses.English.Vocabulary.Brivla.Exercises
+                     , Courses.English.Vocabulary.Brivla.Lessons
+                     , Courses.English.Vocabulary.Brivla.Translations
+                     , Courses.English.Vocabulary.Brivla.Vocabulary
+                     , Decks.DeckStore
+                     , Decks.English.ContextualizedBrivla
