@@ -464,7 +464,7 @@ var createExercisesManager = function(holder) {
             if (!dictionary || !dictionary.valsiDefinition) {
                 return;
             }
-            let word = $(this).text();
+            let word = $(this).text().replace(".", "");
             let definitionText = dictionary.valsiDefinition[word];
             if (!definitionText) {
                 return;
