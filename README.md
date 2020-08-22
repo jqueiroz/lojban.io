@@ -9,6 +9,11 @@ An experimental version of the platform is available at [https://lojban.io](http
 
 Documentation for the currently deployed version may be found at [https://lojban.io/docs](https://lojban.io/docs).
 
+<!-- TODO: Contributing (as a nonprogrammer) -->
+
+<!-- TODO: Contributing (as programmer) -->
+<!-- The remainder of this documentation... -->
+
 ## Quickstart (using Docker)
 
 The simplest way to run this project is to execute the webserver inside a [Docker](https://www.docker.com/) container.
