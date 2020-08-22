@@ -113,9 +113,9 @@ includePwaBuilderScript = do
 
 includeUniversalScripts :: H.Html
 includeUniversalScripts = do
+    includePwaBuilderScript
     includeExternalScript "https://kit.fontawesome.com/ae6f2dc037.js"
     includeGoogleAnalyticsScript
-    includePwaBuilderScript
     --includeInternalScript "vendors.js"
 
 includeInternalScript :: String -> H.Html
