@@ -515,3 +515,7 @@ nanca:
 
 pelxu:
     x1: yellow/golden entity
+
+sutra:
+    x1: fast entity
+    x2: event
