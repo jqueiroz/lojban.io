@@ -98,7 +98,8 @@ dictLookupValsiDefinition dictionary key = fromMaybe errorResult ((dictValsiDefi
 
 retrieveBrivlaPlaces :: Dictionary -> T.Text -> [T.Text]
 retrieveBrivlaPlaces dictionary brivla =
-    let places = M.findWithDefault [] brivla $ dictBrivlaPlaces dictionary
+    let lastSelbriInBrivla = last $ T.splitOn " " brivla
+        places = M.findWithDefault [] lastSelbriInBrivla $ dictBrivlaPlaces dictionary
     in if null places
         then error $ "Missing brivla places for '" ++ (T.unpack brivla) ++ "'"
         else places
