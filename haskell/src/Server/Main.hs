@@ -28,6 +28,7 @@ handleRoot serverResources = msum
     , dir "static" $ serveDirectory EnableBrowsing [] "static"
     , dir "api" $ Api.handleRoot serverResources
     , dir "oauth2" $ OAuth2.handleRoot serverResources
+    , dir "favicon.ico" $ serveFile (asContentType "image/png") "static/images/favicon.png"
     , Website.handleRoot serverResources
     ]
 
