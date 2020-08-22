@@ -34,7 +34,7 @@
         position: relative;
         margin-left: calc(@lesson-info-height);
         padding-left: 2em;
-        height: @lesson-info-height;
+        min-height: @lesson-info-height;
     }
 
     .course-title {
@@ -240,4 +240,28 @@
     border-radius: 10px 10px 10px 10px;
     background-color: #fff;
     font-size: 1em;
+}
+
+/* Mobile */
+@media @phone {
+    .lesson-header {
+        .lesson-buttons {
+            float: inherit;
+            display: block;
+            margin-top: 1em;
+            margin-left: -3em;
+        }
+    }
+
+    .lesson {
+        /* Adjust font size */
+        font-size: 0.85em;
+        table {
+            font-size: 0.9em;
+        }
+
+        p {
+            padding-bottom: 0.5em;
+        }
+    }
 }
