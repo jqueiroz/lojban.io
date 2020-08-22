@@ -63,7 +63,7 @@ displayCourse (url, course) = do
     let title = courseTitle course
     let shortDescription = courseShortDescription course
     let linkText = "Learn more" :: T.Text
-    H.li B.! A.class_ (H.textValue "course") $ do
+    H.div B.! A.class_ (H.textValue "course") $ do
         H.div B.! A.class_ (H.textValue "course-title") $ H.toHtml title
         H.div B.! A.class_ (H.textValue "course-description") $ H.toHtml shortDescription
         H.div B.! A.class_ (H.textValue "course-link") $ do

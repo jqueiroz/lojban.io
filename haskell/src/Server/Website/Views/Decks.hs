@@ -52,7 +52,7 @@ displayDeck (url, deck) = do
     let title = deckTitle deck
     let shortDescription = deckShortDescription deck
     let linkText = "Learn more" :: T.Text
-    H.li B.! A.class_ (H.textValue "deck") $ do
+    H.div B.! A.class_ (H.textValue "deck") $ do
         H.div B.! A.class_ (H.textValue "deck-title") $ H.toHtml title
         H.div B.! A.class_ (H.textValue "deck-description") $ H.toHtml shortDescription
         H.div B.! A.class_ (H.textValue "deck-link") $ do
