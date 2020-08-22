@@ -68,6 +68,7 @@ swapTerms2 "ve" = swapTerms 1 4
 swapTerms2 "xe" = swapTerms 1 5
 
 handlePlacePermutations :: StructuredBridi -> Either String StructuredBridi
+handlePlacePermutations (ZG.Tanru brivlaList, terms, extraTerms) = (, terms, extraTerms) <$> ZG.BRIVLA <$> T.unpack <$> retrieveTanruFromBrivlaList brivlaList
 handlePlacePermutations (ZG.BRIVLA brivla, terms, extraTerms) = Right $ (ZG.BRIVLA brivla, terms, extraTerms)
 handlePlacePermutations (ZG.GOhA brivla, terms, extraTerms) = Right $ (ZG.GOhA brivla, terms, extraTerms)
 handlePlacePermutations (ZG.Prefix (ZG.SE x) y, terms, extraTerms) = do
@@ -103,6 +104,8 @@ retrieveStructuredBridi :: ZG.Text -> Either String StructuredBridi
 retrieveStructuredBridi (ZG.Tag x y) = appendExtraTagToStructuredBridi (ZG.TagKU x (ZG.Term "ku")) <$> retrieveStructuredBridi y
 -- pu prami do / pu se prami do / pu ca ba prami do / pu ca ba se prami do (also pu go'i do / pu se go'i do / ...)
 retrieveStructuredBridi (ZG.BridiTail (ZG.Tag x y) z) = appendExtraTagToStructuredBridi (ZG.TagKU x (ZG.Term "ku")) <$> retrieveStructuredBridi (ZG.BridiTail y z)
+-- mutce prami
+retrieveStructuredBridi (ZG.Tanru brivlaList) = (, [], []) <$> ZG.BRIVLA <$> T.unpack <$> retrieveTanruFromBrivlaList brivlaList
 -- prami
 retrieveStructuredBridi (ZG.BRIVLA brivla) = Right $ (ZG.BRIVLA brivla, [], [])
 -- go'i
@@ -113,6 +116,7 @@ retrieveStructuredBridi (ZG.Prefix x y) = Right $ (ZG.Prefix x y, [], [])
 retrieveStructuredBridi (ZG.BridiTail selbri (ZG.Terms terms _)) = Right $ (selbri, zip [2..] terms, [])
 ------- with x1
 -- mi prami / mi pu ku ca ku prami
+retrieveStructuredBridi (ZG.Bridi (ZG.Terms terms _) (ZG.Tanru brivlaList)) = constructStructuredBridiFromTerms <$> (ZG.BRIVLA <$> T.unpack <$> retrieveTanruFromBrivlaList brivlaList) <*> (Right $ terms)
 retrieveStructuredBridi (ZG.Bridi (ZG.Terms terms _) (ZG.BRIVLA brivla)) = Right $ constructStructuredBridiFromTerms (ZG.BRIVLA brivla) terms
 retrieveStructuredBridi (ZG.Bridi (ZG.Terms terms terms_t) (ZG.Tag x y)) = appendExtraTagToStructuredBridi (ZG.TagKU x (ZG.Term "ku")) <$> retrieveStructuredBridi (ZG.Bridi (ZG.Terms terms terms_t) y)
 -- mi go'i / mi pu ku ca ku go'i
@@ -234,6 +238,9 @@ compressedBai = M.fromList
 
 expandBai :: String -> Maybe String
 expandBai = (`M.lookup` compressedBai)
+
+retrieveTanruFromBrivlaList :: [ZG.Text] -> Either String T.Text
+retrieveTanruFromBrivlaList brivlaList = unwordsET $ convertStructuredSelbri <$> brivlaList
 
 ---------- Canonicalization
 --TODO: canonicalize "do xu ciska" -> "xu do ciska"

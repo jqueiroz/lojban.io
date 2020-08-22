@@ -275,11 +275,17 @@ validateCanonicalization = hspec $ do
             "lo to'e prenu ku"
             [ "lo to'e prenu"
             ]
+      it "supports 'lo cmalu zdani'" $ do
+        validateEquivalentTerms
+            "lo cmalu zdani ku"
+            [ "lo cmalu zdani"
+            ]
     describe "Basic sentence canonicalizer" $ do
       it "supports SE" $ do
         validateSentences
             [ ("mi se nelci lo mlatu", "lo mlatu ku nelci mi")
             , ("lo mlatu cu te tavla", "tavla zo'e lo mlatu ku")
+            , ("se tavla", "tavla")
             ]
       it "supports FA" $ do
         validateSentences
@@ -325,6 +331,15 @@ validateCanonicalization = hspec $ do
             [ "lo prenu pu dunda lo mlatu"
             , "pu ku lo prenu cu dunda lo mlatu"
             , "pu ku lo prenu ku dunda lo mlatu"
+            ]
+      it "supports tanru" $ do
+        validateSentences
+            [ ("mutce melbi", "mutce melbi")
+            , ("pu mutce melbi", "pu ku mutce melbi")
+            , ("se mutce melbi", "se mutce melbi")
+            , ("mutce se melbi", "mutce se melbi") -- ideally should return "mutce melbi", but this has not yet been implemented
+            , ("lo mlatu cu mutce melbi", "lo mlatu ku mutce melbi")
+            , ("lo mlatu pu mutce melbi", "pu ku lo mlatu ku mutce melbi")
             ]
       it "supports sumtcita" $ do
         -- not followed by arguments; not containing prefix tag
