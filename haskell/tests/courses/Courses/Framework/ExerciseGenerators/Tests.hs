@@ -5,6 +5,7 @@ module Courses.Framework.ExerciseGenerators.Tests
 ) where
 
 import Courses.Framework.ExerciseGenerators
+import Courses.Framework.TranslationUtils (expandSentence)
 import Test.Hspec
 import Data.List (sort)
 import qualified Data.Text as T

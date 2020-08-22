@@ -162,6 +162,7 @@ test-suite courses
                      , QuickCheck
   other-modules:       Core
                      , Courses.Framework.ExerciseGenerators
+                     , Courses.Framework.TranslationUtils
                      , Courses.Framework.ExerciseGenerators.Tests
                      , Courses.Framework.SentenceGenerators
                      , Language.Lojban.Canonicalization
