@@ -25,7 +25,7 @@ runServer portNumber = do
 handleRoot :: ServerResources -> ServerPart Response
 handleRoot serverResources = do
     let cacheControlForAssets = fmap $ setHeader "Cache-Control" "max-age=600"
-    compressedResponseFilter
+    _ <- compressedResponseFilter
     msum
         [ dir "docs" $ movedPermanently ("doc/lojto-0.1.0.0/index.html" :: String) (toResponse ())
         , dir "doc" $ serveDirectory EnableBrowsing [] "doc"
