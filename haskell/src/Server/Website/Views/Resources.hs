@@ -13,7 +13,7 @@ import qualified Text.Blaze.Html5.Attributes as A
 
 displayResourcesHome :: Maybe UserIdentity -> H.Html
 displayResourcesHome userIdentityMaybe =
-    H.html $ do
+    H.html B.! A.lang (H.stringValue "en-us") $ do
         H.head $ do
             H.title $ H.toHtml ("Resources :: lojban.io" :: T.Text)
             includeUniversalStylesheets

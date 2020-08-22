@@ -26,7 +26,7 @@ displayLessonHome userIdentityMaybe topbarCategory course lessonNumber = do
     let dictionary = courseDictionary course
     let baseLessonUrl = ""
     let lesson = (courseLessons course) !! (lessonNumber - 1)
-    H.html $ do
+    H.html B.! A.lang (H.stringValue "en-us") $ do
         H.head $ do
             H.title $ H.toHtml ((lessonTitle lesson) `T.append` " :: lojban.io")
             includeUniversalStylesheets

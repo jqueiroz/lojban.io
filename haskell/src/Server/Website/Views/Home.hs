@@ -22,7 +22,7 @@ import qualified Decks.English.ContextualizedBrivla
 -- TODO: also link to https://mw.lojban.org/papri/Presenting_Lojban
 displayHome :: Maybe UserIdentity -> H.Html
 displayHome userIdentityMaybe =
-    H.html $ do
+    H.html B.! A.lang (H.stringValue "en-us") $ do
         H.head $ do
             H.title $ H.toHtml ("lojban.io" :: T.Text)
             includeUniversalStylesheets

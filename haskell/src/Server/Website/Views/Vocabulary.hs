@@ -21,7 +21,7 @@ displayVocabularyHome userIdentityMaybe = do
             [ ("/vocabulary/brivla", Courses.English.Vocabulary.Brivla.Course.course)
             , ("/vocabulary/attitudinals", Courses.English.Vocabulary.Attitudinals.Course.course)
             ]
-    H.html $ do
+    H.html B.! A.lang (H.stringValue "en-us") $ do
         H.head $ do
             H.title $ H.toHtml ("Vocabulary :: lojban.io" :: T.Text)
             includeUniversalStylesheets

@@ -22,7 +22,7 @@ displayCourseHome :: Maybe UserIdentity -> TopbarCategory -> Course -> H.Html
 displayCourseHome userIdentityMaybe topbarCategory course = do
     let baseCourseUrl = ""
     let title = courseTitle course
-    H.html $ do
+    H.html B.! A.lang (H.stringValue "en-us") $ do
         H.head $ do
             H.title $ H.toHtml (title `T.append` " :: lojban.io")
             includeUniversalStylesheets
