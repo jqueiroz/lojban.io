@@ -21,10 +21,12 @@ import qualified Decks.English.ContextualizedBrivla
 -- TODO: take more info from this brochure: https://mw.lojban.org/images/c/c5/lojbanbrochure.pdf
 -- TODO: also link to https://mw.lojban.org/papri/Presenting_Lojban
 displayHome :: Maybe UserIdentity -> H.Html
-displayHome userIdentityMaybe =
+displayHome userIdentityMaybe = do
+    let shortDescription = "A free and open-source platform for studying the artificial language Lojban."
     H.html B.! A.lang (H.stringValue "en-us") $ do
         H.head $ do
             H.title $ H.toHtml ("lojban.io" :: T.Text)
+            H.meta B.! A.name (H.textValue "description") B.! A.content (H.textValue shortDescription)
             includeUniversalStylesheets
             includeUniversalScripts
             includeInternalStylesheet "home.css"

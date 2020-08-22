@@ -18,9 +18,13 @@ import qualified Text.Blaze.Html5.Attributes as A
 
 displayCoursesHome :: Maybe UserIdentity -> H.Html
 displayCoursesHome userIdentityMaybe = do
+    let descriptionPart1 = ("Learn lojban with carefully designed courses, and practice with entertaining interactive exercises." :: T.Text)
+    let descriptionPart2 = ("Learn from the beginning if you are a newcomer, or learn by subject if you are already familiar with the core aspects of the language." :: T.Text)
+    let descriptionComplete = descriptionPart1 `T.append` " " `T.append` descriptionPart2
     H.html B.! A.lang (H.stringValue "en-us") $ do
         H.head $ do
             H.title $ H.toHtml ("Courses :: lojban.io" :: T.Text)
+            H.meta B.! A.name (H.textValue "description") B.! A.content (H.textValue descriptionComplete)
             includeUniversalStylesheets
             includeUniversalScripts
             includeInternalStylesheet "courses.css"
@@ -30,8 +34,8 @@ displayCoursesHome userIdentityMaybe = do
                 H.div B.! A.class_ (H.textValue "header") $ do
                     H.div B.! A.class_ (H.textValue "header-bg") $ H.toHtml ("" :: T.Text)
                     H.h1 $ H.toHtml ("Courses" :: T.Text)
-                    H.p $ H.toHtml ("Learn lojban with carefully designed courses, and practice with entertaining interactive exercises." :: T.Text)
-                    H.p $ H.toHtml ("Learn from the beginning if you are a newcomer, or learn by subject if you are already familiar with the core aspects of the language." :: T.Text)
+                    H.p $ H.toHtml descriptionPart1
+                    H.p $ H.toHtml descriptionPart2
                 H.div B.! A.class_ (H.textValue "body") $ do
                     H.div B.! A.class_ (H.textValue "grammar") $ do
                         H.h2 $ H.toHtml ("Learn from the beginning" :: T.Text)

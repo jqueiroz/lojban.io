@@ -12,10 +12,12 @@ import qualified Text.Blaze.Html5 as H
 import qualified Text.Blaze.Html5.Attributes as A
 
 displayResourcesHome :: Maybe UserIdentity -> H.Html
-displayResourcesHome userIdentityMaybe =
+displayResourcesHome userIdentityMaybe = do
+    let shortDescription = ("A collection of useful resources for studying Lojban." :: T.Text)
     H.html B.! A.lang (H.stringValue "en-us") $ do
         H.head $ do
             H.title $ H.toHtml ("Resources :: lojban.io" :: T.Text)
+            H.meta B.! A.name (H.textValue "description") B.! A.content (H.textValue shortDescription)
             includeUniversalStylesheets
             includeUniversalScripts
             includeInternalStylesheet "resources.css"
@@ -25,7 +27,7 @@ displayResourcesHome userIdentityMaybe =
                 H.div B.! A.class_ (H.textValue "header") $ do
                     H.div B.! A.class_ (H.textValue "header-bg") $ H.toHtml ("" :: T.Text)
                     H.h1 $ H.toHtml ("Resources" :: T.Text)
-                    H.p $ H.toHtml ("A collection of useful resources for studying Lojban." :: T.Text)
+                    H.p $ H.toHtml shortDescription
                 H.div B.! A.class_ (H.textValue "body") $ do
                     displayResources
                     displayFooter

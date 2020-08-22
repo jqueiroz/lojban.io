@@ -23,9 +23,11 @@ displayDeckHome :: Maybe UserIdentity -> Deck -> H.Html
 displayDeckHome userIdentityMaybe deck = do
     let baseDeckUrl = ""
     let title = deckTitle deck
+    let shortDescription = deckShortDescription deck
     H.html B.! A.lang (H.stringValue "en-us") $ do
         H.head $ do
             H.title $ H.toHtml (title `T.append` " :: lojban.io")
+            H.meta B.! A.name (H.textValue "description") B.! A.content (H.textValue shortDescription)
             includeUniversalStylesheets
             includeUniversalScripts
             includeInternalStylesheet "deck.css"
