@@ -27,8 +27,8 @@ handleRoot serverResources = do
     let cacheControlForAssets = fmap $ setHeader "Cache-Control" "max-age=600"
     _ <- compressedResponseFilter
     msum
-        [ dir "docs" $ movedPermanently ("doc/lojto-0.1.0.0/index.html" :: String) (toResponse ())
-        , dir "doc" $ serveDirectory EnableBrowsing [] "doc"
+        [ dir "docs" $ movedPermanently ("documentation/lojto-0.1.0.0/index.html" :: String) (toResponse ())
+        , dir "documentation" $ serveDirectory EnableBrowsing [] "documentation"
         , dir "static" $ cacheControlForAssets $ serveDirectory EnableBrowsing [] "static"
         , dir "api" $ Api.handleRoot serverResources
         , dir "oauth2" $ OAuth2.handleRoot serverResources
