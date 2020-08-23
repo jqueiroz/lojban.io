@@ -9,12 +9,15 @@ import qualified Data.Aeson as A
 import qualified Data.Map as M
 import qualified Data.Text as T
 
+data EnvironmentType = EnvironmentTypeDev | EnvironmentTypeProd
+
 data IdentityProvider = IdentityProvider
     { identityProviderName :: T.Text
     }
 
 data ServerConfiguration = ServerConfiguration
-    { serverConfigurationIdentittyProvider :: IdentityProvider
+    { serverConfigurationEnvironmentType :: EnvironmentType
+    , serverConfigurationIdentittyProvider :: IdentityProvider
     }
 
 data ServerResources = ServerResources

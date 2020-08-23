@@ -1,4 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE LambdaCase #-}
 
 module Server.Main (runServer, acquireServerResources) where
 
@@ -22,7 +23,7 @@ runServer :: Int -> IO ()
 runServer portNumber = do
     serverConfiguration <- readServerConfiguration
     serverResources <- acquireServerResources
-    simpleHTTP nullConf { port = portNumber } (handleRoot serverConfiguration serverResources)
+    seq serverConfiguration $ simpleHTTP nullConf { port = portNumber } (handleRoot serverConfiguration serverResources)
 
 handleRoot :: ServerConfiguration -> ServerResources -> ServerPart Response
 handleRoot serverConfiguration serverResources = do
@@ -51,5 +52,9 @@ acquireServerResources = do
 
 readServerConfiguration :: IO ServerConfiguration
 readServerConfiguration = do
+    environmentType <- lookupEnv "LOJBAN_TOOL_ENVIRONMENT" >>= \case
+        Just "prod" -> return EnvironmentTypeProd
+        Just "dev" -> return EnvironmentTypeDev
+        _ -> error "Error: incorrect or unspecified environment type"
     let identityProvider = IdentityProvider ("google" :: T.Text)
-    return $ ServerConfiguration identityProvider
+    return $ ServerConfiguration environmentType identityProvider
