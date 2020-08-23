@@ -721,7 +721,7 @@ translations6_nu = combineGenerators [(2, gleki), (1, tavla), (2, nupre)] where
             , (["mi gleki lo nu lo ctuca ku pendo mi kei ku"], ["I am happy that the instructor is my friend."])
             , (["mi gleki lo nu lo ciska ku pendo mi kei ku"], ["I am happy that the writer is my friend."])
             , (["mi gleki lo nu lo te dunda ku pendo mi kei ku"], ["I am happy that the beneficiary is my friend."])
-            , (["do gleki ma"], ["Why are you happy?", "What are you happy about?"])
+            --, (["do gleki ma"], ["Why are you happy?", "What are you happy about?"])
             ]
     tavla = combineGeneratorsUniformly [owningHouse] where
         owningHouse = generatorFromList
