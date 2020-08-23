@@ -35,13 +35,13 @@ import Happstack.Server
 -- TODO: consider adding breadcrumbs (https://getbootstrap.com/docs/4.0/components/breadcrumb/)
 
 -- * Handlers
-handleRoot :: ServerResources -> ServerPart Response
-handleRoot serverResources = do
-    userIdentityMaybe <- OAuth2.readUserIdentityFromCookies serverResources
+handleRoot :: ServerConfiguration -> ServerResources -> ServerPart Response
+handleRoot serverConfiguration serverResources = do
+    userIdentityMaybe <- OAuth2.readUserIdentityFromCookies serverConfiguration serverResources
     msum
         [ forceSlash $ handleHome userIdentityMaybe
         , dir "courses" $ handleCourses userIdentityMaybe
-        , dir "decks" $ handleDecks serverResources userIdentityMaybe
+        , dir "decks" $ handleDecks serverConfiguration serverResources userIdentityMaybe
         , dir "grammar" $ handleGrammar userIdentityMaybe
         , dir "vocabulary" $ handleVocabulary userIdentityMaybe
         , dir "resources" $ handleResources userIdentityMaybe
@@ -60,10 +60,10 @@ handleCourses userIdentityMaybe = msum
     , dir "brivla" $ handleCourse userIdentityMaybe TopbarCourses Courses.English.Vocabulary.Brivla.Course.course
     ]
 
-handleDecks :: ServerResources -> Maybe UserIdentity -> ServerPart Response
-handleDecks serverResources userIdentityMaybe = msum
+handleDecks :: ServerConfiguration -> ServerResources -> Maybe UserIdentity -> ServerPart Response
+handleDecks serverConfiguration serverResources userIdentityMaybe = msum
     [ forceSlash . ok . toResponse $ displayDecksHome userIdentityMaybe
-    , dir "contextualized-brivla" $ handleDeck serverResources userIdentityMaybe Decks.English.ContextualizedBrivla.deck
+    , dir "contextualized-brivla" $ handleDeck serverConfiguration serverResources userIdentityMaybe Decks.English.ContextualizedBrivla.deck
     ]
 
 handleGrammar :: Maybe UserIdentity -> ServerPart Response
@@ -98,11 +98,11 @@ handleCourse userIdentityMaybe topbarCategory course =
         , path $ \n -> (guard $ 1 <= n && n <= (length lessons)) >> (handleLesson userIdentityMaybe topbarCategory course n)
         ]
 
-handleDeck :: ServerResources -> Maybe UserIdentity -> Deck -> ServerPart Response
-handleDeck serverResources userIdentityMaybe deck = msum
+handleDeck :: ServerConfiguration -> ServerResources -> Maybe UserIdentity -> Deck -> ServerPart Response
+handleDeck serverConfiguration serverResources userIdentityMaybe deck = msum
     [ forceSlash . ok . toResponse $ displayDeckHome userIdentityMaybe deck
     , dir "exercises" $ do
-        identityMaybe <- OAuth2.readUserIdentityFromCookies serverResources
+        identityMaybe <- OAuth2.readUserIdentityFromCookies serverConfiguration serverResources
         case identityMaybe of
             Nothing -> do
                 --tempRedirect ("./" :: T.Text) . toResponse $ ("You must be signed in." :: T.Text)

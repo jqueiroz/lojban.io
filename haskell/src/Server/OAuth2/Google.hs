@@ -67,13 +67,13 @@ encodeUserInfoText = TE.decodeUtf8 . B64.encode . TE.encodeUtf8
 decodeUserInfoText :: T.Text -> Maybe T.Text
 decodeUserInfoText = rightToMaybe . fmap TE.decodeUtf8 . B64.decode . TE.encodeUtf8
 
-readUserIdentityFromCookies :: ServerResources -> ServerPart (Maybe UserIdentity)
-readUserIdentityFromCookies serverResources = runMaybeT $ do
+readUserIdentityFromCookies :: ServerConfiguration -> ServerResources -> ServerPart (Maybe UserIdentity)
+readUserIdentityFromCookies serverConfiguration serverResources = runMaybeT $ do
     -- Fetch cookie values
     identityTokenText <- lift $ T.pack <$> lookCookieValue identityTokenCookieName
     userInfoText <- MaybeT $ decodeUserInfoText . T.pack <$> lookCookieValue userInfoCookieName
     -- Extract claims
-    claims <- MaybeT . liftIO . runMaybeT $ extractClaims serverResources identityTokenText
+    claims <- MaybeT . liftIO . runMaybeT $ extractClaims serverConfiguration serverResources identityTokenText
     -- Decode user info
     userInfo :: UserInfo <- liftMaybe $ A.decodeStrict (TE.encodeUtf8 userInfoText)
     -- Build response
@@ -83,10 +83,10 @@ readUserIdentityFromCookies serverResources = runMaybeT $ do
     let userFamilyName = family_name userInfo
     return $ UserIdentity userIdentifier userPictureUrl userGivenName userFamilyName
 
-extractClaims :: ServerResources -> T.Text -> MaybeT IO Claims
-extractClaims serverResources identityTokenText = do
+extractClaims :: ServerConfiguration -> ServerResources -> T.Text -> MaybeT IO Claims
+extractClaims serverConfiguration serverResources identityTokenText = do
     -- Decode jwt token
-    googlePublicKeys <- liftIO $ getGooglePublicKeys serverResources
+    googlePublicKeys <- liftIO $ getGooglePublicKeys serverConfiguration serverResources
     jwtTokenEither <- liftIO $ JWT.decode googlePublicKeys Nothing (TE.encodeUtf8 identityTokenText)
     jwtToken <- liftMaybe $ rightToMaybe jwtTokenEither
     jwsPayload <- liftMaybe $ do
@@ -100,11 +100,11 @@ extractClaims serverResources identityTokenText = do
         then return claims
         else liftMaybe Nothing
 
-handleRoot :: ServerResources -> ServerPart Response
-handleRoot serverResources = msum
+handleRoot :: ServerConfiguration -> ServerResources -> ServerPart Response
+handleRoot serverConfiguration serverResources = msum
     [ dir "login" $ handleLogin
     , dir "logout" $ handleLogout
-    , dir "callback" $ handleCallback serverResources
+    , dir "callback" $ handleCallback serverConfiguration serverResources
     ]
 
 saveReferer :: ServerPart ()
@@ -143,8 +143,8 @@ handleLogout = do
     expireCookie userInfoCookieName
     redirectToCurrentRefererIfAllowed
 
-handleCallback :: ServerResources -> ServerPart Response
-handleCallback serverResources = do
+handleCallback :: ServerConfiguration -> ServerResources -> ServerPart Response
+handleCallback serverConfiguration serverResources = do
     -- Retrieve exchange token from querystring
     -- TODO: also handle the 'state' parameter
     code <- lookText' "code"
@@ -163,12 +163,12 @@ handleCallback serverResources = do
                 Nothing -> unauthorized $ toResponse ("Acquisition of identity token failed." :: T.Text)
                 Just identityTokenText -> do
                     -- Extract claims
-                    claimsMaybe <- liftIO $ runMaybeT $ extractClaims serverResources identityTokenText
+                    claimsMaybe <- liftIO $ runMaybeT $ extractClaims serverConfiguration serverResources identityTokenText
                     case claimsMaybe of
                         Nothing -> unauthorized $ toResponse ("Decoding of identity token failed." :: T.Text)
                         Just claims -> do
                             -- Fetch user info
-                            userInfoText <- liftIO $ fetchUserInfo serverResources accessToken
+                            userInfoText <- liftIO $ fetchUserInfo serverConfiguration serverResources accessToken
                             -- Validate user info
                             let userInfoMaybe = A.decodeStrict (TE.encodeUtf8 userInfoText) :: Maybe UserInfo
                             case userInfoMaybe of
@@ -183,16 +183,16 @@ handleCallback serverResources = do
                                     -- Redirect user back to referer
                                     redirectToSavedReferer
 
-fetchUserInfo :: ServerResources -> OA2.AccessToken -> IO T.Text
-fetchUserInfo serverResources accessToken = do
+fetchUserInfo :: ServerConfiguration -> ServerResources -> OA2.AccessToken -> IO T.Text
+fetchUserInfo serverConfiguration serverResources accessToken = do
     let tlsManager = serverResourcesTlsManager serverResources
     let accessTokenString = T.unpack $ OA2.atoken accessToken
     request <- HC.parseRequest $ "https://www.googleapis.com/oauth2/v3/userinfo?access_token=" ++ accessTokenString
     response <- HC.httpLbs request tlsManager
     return $ TE.decodeUtf8 . BS8.toStrict $ HC.responseBody response
 
-getGooglePublicKeys :: ServerResources -> IO [JWK.Jwk]
-getGooglePublicKeys serverResources = do
+getGooglePublicKeys :: ServerConfiguration -> ServerResources -> IO [JWK.Jwk]
+getGooglePublicKeys serverConfiguration serverResources = do
     let tlsManager = serverResourcesTlsManager serverResources
     provider <- OIDC.discover "https://accounts.google.com" tlsManager
     return $ OIDC.jwkSet provider

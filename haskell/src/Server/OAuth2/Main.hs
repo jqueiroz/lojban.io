@@ -11,14 +11,14 @@ import Server.Core
 import qualified Server.OAuth2.Google as Google
 import qualified Server.OAuth2.Mock as Mock
 
-handleRoot :: ServerResources -> ServerPart Response
-handleRoot serverResources = msum
-    [ dir "google" $ Google.handleRoot serverResources
-    , dir "mock" $ Mock.handleRoot serverResources
+handleRoot :: ServerConfiguration -> ServerResources -> ServerPart Response
+handleRoot serverConfiguration serverResources = msum
+    [ dir "google" $ Google.handleRoot serverConfiguration serverResources
+    , dir "mock" $ Mock.handleRoot serverConfiguration serverResources
     ]
 
-readUserIdentityFromCookies :: ServerResources -> ServerPart (Maybe UserIdentity)
-readUserIdentityFromCookies serverResources = msum
-    [ Google.readUserIdentityFromCookies serverResources
-    , Mock.readUserIdentityFromCookies serverResources
+readUserIdentityFromCookies :: ServerConfiguration -> ServerResources -> ServerPart (Maybe UserIdentity)
+readUserIdentityFromCookies serverConfiguration serverResources = msum
+    [ Google.readUserIdentityFromCookies serverConfiguration serverResources
+    , Mock.readUserIdentityFromCookies serverConfiguration serverResources
     , return Nothing ]

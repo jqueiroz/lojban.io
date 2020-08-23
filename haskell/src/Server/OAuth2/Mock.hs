@@ -13,8 +13,8 @@ import Control.Monad (msum, mzero)
 import Control.Monad.Trans (lift)
 import Control.Monad.Trans.Maybe (MaybeT(..), runMaybeT)
 
-handleRoot :: ServerResources -> ServerPart Response
-handleRoot serverResources = msum
+handleRoot :: ServerConfiguration -> ServerResources -> ServerPart Response
+handleRoot serverConfiguration serverResources = msum
     [ dir "login" $ handleLogin
     , dir "logout" $ handleLogout
     ]
@@ -32,8 +32,8 @@ handleLogout = do
     expireCookie signedInCookieName
     redirectToCurrentRefererIfAllowed
 
-readUserIdentityFromCookies :: ServerResources -> ServerPart (Maybe UserIdentity)
-readUserIdentityFromCookies serverResources = runMaybeT $ do
+readUserIdentityFromCookies :: ServerConfiguration -> ServerResources -> ServerPart (Maybe UserIdentity)
+readUserIdentityFromCookies serverConfiguration serverResources = runMaybeT $ do
     isSignedIn <- lift $ lookCookieValue signedInCookieName
     if isSignedIn == "true" then do
         let userIdentifier = UserIdentifier "mock" "testuser1"

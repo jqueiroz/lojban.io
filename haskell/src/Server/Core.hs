@@ -9,6 +9,14 @@ import qualified Data.Aeson as A
 import qualified Data.Map as M
 import qualified Data.Text as T
 
+data IdentityProvider = IdentityProvider
+    { identityProviderName :: T.Text
+    }
+
+data ServerConfiguration = ServerConfiguration
+    { serverConfigurationIdentittyProvider :: IdentityProvider
+    }
+
 data ServerResources = ServerResources
     { serverResourcesTlsManager :: Manager
     , serverResourcesRedisConnection :: Redis.Connection

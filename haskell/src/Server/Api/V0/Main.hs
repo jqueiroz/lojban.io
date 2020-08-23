@@ -22,11 +22,11 @@ import qualified Data.Text as T
 import qualified Data.Map as M
 import qualified Data.Aeson as A
 
-handleRoot :: ServerResources -> ServerPart Response
-handleRoot serverResources = msum
+handleRoot :: ServerConfiguration -> ServerResources -> ServerPart Response
+handleRoot serverConfiguration serverResources = msum
     [ forceSlash $ ok . toResponse $ A.encode $ A.object [("success", A.Bool True)]
     , dir "course" $ path handleCourse
-    , dir "deck" $ path (handleDeck serverResources)
+    , dir "deck" $ path (handleDeck serverConfiguration serverResources)
     ]
 
 handleCourse :: T.Text -> ServerPart Response
@@ -36,53 +36,53 @@ handleCourse courseId =
         Nothing -> notFound . toResponse $ ("" :: T.Text)
         Just course -> ok . toResponse . A.encode $ serializeCourse course
 
-handleDeck :: ServerResources -> T.Text -> ServerPart Response
-handleDeck serverResources deckId =
+handleDeck :: ServerConfiguration -> ServerResources -> T.Text -> ServerPart Response
+handleDeck serverConfiguration serverResources deckId =
     let deckLookup = M.lookup deckId (deckStoreDecks deckStore)
     in case deckLookup of
         Nothing -> notFound . toResponse $ ("" :: T.Text)
         Just deck -> msum
-            [ forceSlash $ handleDeckRetrieve serverResources deck
-            , dir "setCardStatus" $ path (handleDeckSetCardStatus serverResources deck)
-            , dir "exercises" $ path $ handleDeckExercises serverResources deck
+            [ forceSlash $ handleDeckRetrieve serverConfiguration serverResources deck
+            , dir "setCardStatus" $ path (handleDeckSetCardStatus serverConfiguration serverResources deck)
+            , dir "exercises" $ path $ handleDeckExercises serverConfiguration serverResources deck
             ]
 
-handleDeckRetrieve :: ServerResources -> Deck -> ServerPart Response
-handleDeckRetrieve serverResources deck = do
-    identityMaybe <- OAuth2.readUserIdentityFromCookies serverResources
+handleDeckRetrieve :: ServerConfiguration -> ServerResources -> Deck -> ServerPart Response
+handleDeckRetrieve serverConfiguration serverResources deck = do
+    identityMaybe <- OAuth2.readUserIdentityFromCookies serverConfiguration serverResources
     let identifierMaybe = userIdentifier <$> identityMaybe
     deckPreferencesMaybe <- case identifierMaybe of
         Nothing -> return Nothing
-        Just identifier -> liftIO $ runRedis serverResources $ Just <$> retrieveDeckPreferences identifier deck
+        Just identifier -> liftIO $ runRedis serverConfiguration serverResources $ Just <$> retrieveDeckPreferences identifier deck
     deckProficiencyMaybe <- case identifierMaybe of
         Nothing -> return Nothing
-        Just identifier -> liftIO $ runRedis serverResources $ Just <$> retrieveDeckProficiency identifier deck
+        Just identifier -> liftIO $ runRedis serverConfiguration serverResources $ Just <$> retrieveDeckProficiency identifier deck
     ok . toResponse . A.encode $ serializeDeck deck deckPreferencesMaybe deckProficiencyMaybe
 
-handleDeckSetCardStatus :: ServerResources -> Deck -> T.Text -> ServerPart Response
-handleDeckSetCardStatus serverResources deck cardTitle = msum
-    [ dir "enabled" $ handleDeckSetCardStatus' serverResources deck cardTitle True
-    , dir "disabled" $ handleDeckSetCardStatus' serverResources deck cardTitle False
+handleDeckSetCardStatus :: ServerConfiguration -> ServerResources -> Deck -> T.Text -> ServerPart Response
+handleDeckSetCardStatus serverConfiguration serverResources deck cardTitle = msum
+    [ dir "enabled" $ handleDeckSetCardStatus' serverConfiguration serverResources deck cardTitle True
+    , dir "disabled" $ handleDeckSetCardStatus' serverConfiguration serverResources deck cardTitle False
     ]
 
-handleDeckSetCardStatus' :: ServerResources -> Deck -> T.Text -> Bool -> ServerPart Response
-handleDeckSetCardStatus' serverResources deck cardTitle cardNewStatus = do
-    identityMaybe <- OAuth2.readUserIdentityFromCookies serverResources
+handleDeckSetCardStatus' :: ServerConfiguration -> ServerResources -> Deck -> T.Text -> Bool -> ServerPart Response
+handleDeckSetCardStatus' serverConfiguration serverResources deck cardTitle cardNewStatus = do
+    identityMaybe <- OAuth2.readUserIdentityFromCookies serverConfiguration serverResources
     case identityMaybe of
         Nothing -> unauthorized . toResponse . A.encode $ ("You must be signed in." :: T.Text)
         Just identity -> do
-            redisResponse <- liftIO $ runRedis serverResources $ updateDeckPreferencesByTogglingCard (userIdentifier identity) deck cardTitle cardNewStatus
+            redisResponse <- liftIO $ runRedis serverConfiguration serverResources $ updateDeckPreferencesByTogglingCard (userIdentifier identity) deck cardTitle cardNewStatus
             case redisResponse of
                 Right Redis.Ok -> ok . toResponse $ ("Successfully updated card status." :: T.Text)
                 _ -> internalServerError . toResponse $ ("Failed to update card status." :: T.Text)
 
-handleDeckExercises :: ServerResources -> Deck -> Int -> ServerPart Response
-handleDeckExercises serverResources deck exerciseId = do
-    identityMaybe <- OAuth2.readUserIdentityFromCookies serverResources
+handleDeckExercises :: ServerConfiguration -> ServerResources -> Deck -> Int -> ServerPart Response
+handleDeckExercises serverConfiguration serverResources deck exerciseId = do
+    identityMaybe <- OAuth2.readUserIdentityFromCookies serverConfiguration serverResources
     case identityMaybe of
         Nothing -> unauthorized . toResponse . A.encode $ ("You must be signed in." :: T.Text)
         Just identity -> do
-            cards <- liftIO $ runRedis serverResources $ retrieveDeckActiveCards (userIdentifier identity) deck
+            cards <- liftIO $ runRedis serverConfiguration serverResources $ retrieveDeckActiveCards (userIdentifier identity) deck
             let r0 = mkStdGen exerciseId
             let (selectedCard, r1) = selectCardWithBiasTowardsLowScoreOnes cards r0
             let selectedExercise = (cardExercises selectedCard) r1
@@ -91,10 +91,10 @@ handleDeckExercises serverResources deck exerciseId = do
                 , dir "submit" $ getBody >>= \body -> do
                     case validateExerciseAnswer selectedExercise body of
                         Nothing -> do
-                            redisStatus <- liftIO $ runRedis serverResources $ updateDeckProficiencyByRegisteringExerciseAttempt (userIdentifier identity) deck (cardTitle selectedCard) False
+                            redisStatus <- liftIO $ runRedis serverConfiguration serverResources $ updateDeckProficiencyByRegisteringExerciseAttempt (userIdentifier identity) deck (cardTitle selectedCard) False
                             ok . toResponse . A.encode . A.object $ [("success", A.Bool False)]
                         Just data' -> do
-                            redisStatus <- liftIO $ runRedis serverResources $ updateDeckProficiencyByRegisteringExerciseAttempt (userIdentifier identity) deck (cardTitle selectedCard) True
+                            redisStatus <- liftIO $ runRedis serverConfiguration serverResources $ updateDeckProficiencyByRegisteringExerciseAttempt (userIdentifier identity) deck (cardTitle selectedCard) True
                             ok . toResponse . A.encode . A.object $ [("success", A.Bool True), ("data", data')]
                 ]
 

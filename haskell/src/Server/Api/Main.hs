@@ -7,7 +7,7 @@ import Control.Monad (msum)
 import Happstack.Server
 import qualified Server.Api.V0.Main as V0
 
-handleRoot :: ServerResources -> ServerPart Response
-handleRoot serverResources = msum
-    [ dir "v0" $ V0.handleRoot serverResources
+handleRoot :: ServerConfiguration -> ServerResources -> ServerPart Response
+handleRoot serverConfiguration serverResources = msum
+    [ dir "v0" $ V0.handleRoot serverConfiguration serverResources
     ]

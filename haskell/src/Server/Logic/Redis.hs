@@ -14,7 +14,7 @@ encodeRedisKey = T.concat . map encodeIdentifier where
     encodeIdentifier :: (T.Text, T.Text) -> T.Text
     encodeIdentifier (key, value) = T.concat [ "[", key, "=\"", T.replace "\"" "\"\"" value, "\"]" ]
 
-runRedis :: ServerResources -> Redis.Redis a -> IO a
-runRedis serverResources redis = do
+runRedis :: ServerConfiguration -> ServerResources -> Redis.Redis a -> IO a
+runRedis serverConfiguration serverResources redis = do
     let conn = serverResourcesRedisConnection serverResources
     Redis.runRedis conn redis
