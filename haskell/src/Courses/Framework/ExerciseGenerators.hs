@@ -136,7 +136,10 @@ generateFillingBlanksExerciseByAlternatives alternatives translationGenerator r0
     (translation, r1) = translationGenerator r0
     (sentenceText, r2) = chooseItemUniformly r1 (fst translation)
     correctAlternatives = filter (`isSubexpressionOf` sentenceText) $ alternatives
-    correctAlternative = assert (length correctAlternatives == 1) $ head correctAlternatives
+    correctAlternative = case correctAlternatives of
+        [] -> error $ "generateFillingBlanksExerciseByAlternatives: no correct alternative. Sentence: " ++ show sentenceText ++ ". Alternatives: " ++ show alternatives
+        [x] -> x
+        _ -> error $ "generateFillingBlanksExerciseByAlternatives: more than one correct alternative. Sentence: " ++ show sentenceText
     incorrectAlternatives = filter (/= correctAlternative) alternatives
     title = "Fill in the blanks"
     redactedSentenceText = replaceFirstSubexpression correctAlternative "____" sentenceText

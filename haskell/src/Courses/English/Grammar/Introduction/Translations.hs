@@ -723,28 +723,29 @@ translations6_nu = combineGenerators [(2, gleki), (1, tavla), (2, nupre)] where
             , (["mi gleki lo nu lo te dunda ku pendo mi kei ku"], ["I am happy that the beneficiary is my friend."])
             , (["do gleki ma"], ["Why are you happy?", "What are you happy about?"])
             ]
-    tavla = combineGeneratorsUniformly [owningHouse, promisorTalked, promiseeTalked] where
+    tavla = combineGeneratorsUniformly [owningHouse] where
         owningHouse = generatorFromList
             [ (["mi tavla fi lo nu do se zdani kei ku"], ["I talked about you having a house.", "We talked about you having a house."])
             ]
-        promisorTalked = generatorFromList
-            [ (["lo nupre ku tavla mi"], ["The promisor talked to me.", "The promisor talked to us."])
-            , (["lo nupre ku tavla fi lo mlatu ku"], ["The promisor talked about the cat.", "The promisor talked about the cats."])
-            , (["lo nupre ku tavla fi lo gerku ku"], ["The promisor talked about the dog.", "The promisor talked about the dogs."])
-            , (["lo nupre ku tavla fi lo zdani ku"], ["The promisor talked about the house.", "The promisor talked about the houses."])
-            , (["lo nupre ku tavla mi lo mlatu ku"], ["The promisor talked to me about the cat.", "The promisor talked to me about the cats."])
-            , (["lo nupre ku tavla mi lo gerku ku"], ["The promisor talked to me about the dog.", "The promisor talked to me about the dogs."])
-            , (["lo nupre ku tavla mi lo zdani ku"], ["The promisor talked to me about the house.", "The promisor talked to me about the houses."])
-            ]
-        promiseeTalked = generatorFromList
-            [ (["lo te nupre ku tavla mi"], ["The promisee talked to me.", "The promisee talked to us."])
-            , (["lo te nupre ku tavla fi lo mlatu ku"], ["The promisee talked about the cat.", "The promisee talked about the cats."])
-            , (["lo te nupre ku tavla fi lo gerku ku"], ["The promisee talked about the dog.", "The promisee talked about the dogs."])
-            , (["lo te nupre ku tavla fi lo zdani ku"], ["The promisee talked about the house.", "The promisee talked about the houses."])
-            , (["lo te nupre ku tavla mi lo mlatu ku"], ["The promisee talked to me about the cat.", "The promisee talked to me about the cats."])
-            , (["lo te nupre ku tavla mi lo gerku ku"], ["The promisee talked to me about the dog.", "The promisee talked to me about the dogs."])
-            , (["lo te nupre ku tavla mi lo zdani ku"], ["The promisee talked to me about the house.", "The promisee talked to me about the houses."])
-            ]
+            -- TODO: find out where the following sentences belong
+        --promisorTalked = generatorFromList
+            --[ (["lo nupre ku tavla mi"], ["The promisor talked to me.", "The promisor talked to us."])
+            --, (["lo nupre ku tavla fi lo mlatu ku"], ["The promisor talked about the cat.", "The promisor talked about the cats."])
+            --, (["lo nupre ku tavla fi lo gerku ku"], ["The promisor talked about the dog.", "The promisor talked about the dogs."])
+            --, (["lo nupre ku tavla fi lo zdani ku"], ["The promisor talked about the house.", "The promisor talked about the houses."])
+            --, (["lo nupre ku tavla mi lo mlatu ku"], ["The promisor talked to me about the cat.", "The promisor talked to me about the cats."])
+            --, (["lo nupre ku tavla mi lo gerku ku"], ["The promisor talked to me about the dog.", "The promisor talked to me about the dogs."])
+            --, (["lo nupre ku tavla mi lo zdani ku"], ["The promisor talked to me about the house.", "The promisor talked to me about the houses."])
+            --]
+        --promiseeTalked = generatorFromList
+            --[ (["lo te nupre ku tavla mi"], ["The promisee talked to me.", "The promisee talked to us."])
+            --, (["lo te nupre ku tavla fi lo mlatu ku"], ["The promisee talked about the cat.", "The promisee talked about the cats."])
+            --, (["lo te nupre ku tavla fi lo gerku ku"], ["The promisee talked about the dog.", "The promisee talked about the dogs."])
+            --, (["lo te nupre ku tavla fi lo zdani ku"], ["The promisee talked about the house.", "The promisee talked about the houses."])
+            --, (["lo te nupre ku tavla mi lo mlatu ku"], ["The promisee talked to me about the cat.", "The promisee talked to me about the cats."])
+            --, (["lo te nupre ku tavla mi lo gerku ku"], ["The promisee talked to me about the dog.", "The promisee talked to me about the dogs."])
+            --, (["lo te nupre ku tavla mi lo zdani ku"], ["The promisee talked to me about the house.", "The promisee talked to me about the houses."])
+            --]
     nupre = combineGeneratorsUniformly [donatingAnimals, donatingHouses, teaching, beingFriendly] where
         donatingAnimals = generatorFromList
             [ (["do nupre lo nu dunda lo mlatu ku kei ku", "do nupre lo nu do dunda lo mlatu ku kei ku"], ["You promised to donate the cat.", "You promised to donate the cats."])
@@ -826,7 +827,7 @@ translations6_du'u = combineGenerators [(2, djuno)] where
 
 translations6_sedu'u :: TranslationGenerator
 translations6_sedu'u = combineGenerators [(2, cusku)] where
-    cusku = combineGeneratorsUniformly [beautiful, likingPeople, likingAnimals, donatingAnimals, beingFriendly, others] where
+    cusku = combineGeneratorsUniformly [beautiful, likingPeople, likingAnimals, donatingAnimals, beingFriendly] where
         beautiful = generatorFromList
             [ (["mi cusku lo se du'u do melbi kei ku"], ["I said that you are beautiful."])
             , (["mi cusku lo se du'u lo prenu ku melbi kei ku"], ["I said that the person is beautiful."])
@@ -881,17 +882,17 @@ translations6_sedu'u = combineGenerators [(2, cusku)] where
             , (["mi cusku lo se du'u do pendo kei ku"], ["I said that you would be friendly."])
             , (["mi cusku lo se du'u lo ciska ku pendo kei ku"], ["I said that the writer would be friendly."])
             ]
-        others = generatorFromList
-            [ (["mi nelci lo nu tavla do kei ku", "mi nelci lo nu mi tavla do kei ku"], ["I like to talk to you."]) -- is nelci really adequate?
-            , (["do nelci lo nu nupre kei ku", "do nelci lo nu do nupre kei ku"], ["You like to make promises."]) -- is nelci really adequate?
-            , (["lo prenu ku nelci lo nu nupre kei ku"], ["People like to make promises."]) -- is nelci really adequate?
-            , (["do cusku ma"], ["What did you say?"])
-            , (["lo prenu ku cusku ma"], ["What did the person say?"])
-            , (["lo prenu ku cusku ma do"], ["What did the person say to you?"])
+        -- TODO: find out where the following sentences belong
+            --[ (["mi nelci lo nu tavla do kei ku", "mi nelci lo nu mi tavla do kei ku"], ["I like to talk to you."]) -- is nelci really adequate?
+            --, (["do nelci lo nu nupre kei ku", "do nelci lo nu do nupre kei ku"], ["You like to make promises."]) -- is nelci really adequate?
+            --, (["lo prenu ku nelci lo nu nupre kei ku"], ["People like to make promises."]) -- is nelci really adequate?
+            --, (["do cusku ma"], ["What did you say?"])
+            --, (["lo prenu ku cusku ma"], ["What did the person say?"])
+            --, (["lo prenu ku cusku ma do"], ["What did the person say to you?"])
             -- Wait until terminator ellision has been explained to use the following sentences
             {-, (["mi cusku lo se du'u mi nelci lo nu tavla do kei ku kei ku", "mi cusku lo se du'u mi nelci lo nu mi tavla do kei ku kei ku"], ["I said that I like to talk to you."])-}
             {-, (["mi cusku lo se du'u do nelci lo nu tavla mi kei ku kei ku", "mi cusku lo se du'u do nelci lo nu do tavla mi kei ku kei ku"], ["I said that you like to talk to me."])-}
-            ]
+            --]
 
 translations6_extra :: TranslationGenerator
 translations6_extra = combineGeneratorsUniformly [gleki, tavla, nupre, cusku, ciska] where
