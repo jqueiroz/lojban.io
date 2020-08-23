@@ -14,6 +14,8 @@ Haskell documentation for the currently deployed version may be found at [https:
 <!-- TODO: Contributing (as programmer) -->
 <!-- The remainder of this documentation... -->
 
+<!-- TODO: we assume a Linux environment -->
+
 ## Quickstart (using Docker)
 
 The simplest way to run this project is to execute the webserver inside a [Docker](https://www.docker.com/) container.
