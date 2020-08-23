@@ -3,3 +3,4 @@
 **/.stack-work
 **/node_modules
 assets/package-lock.json
+stack.yaml.lock
