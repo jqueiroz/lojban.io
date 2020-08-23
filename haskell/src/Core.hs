@@ -122,6 +122,7 @@ data Exercise =
         }
 
 type ExerciseGenerator = StdGen -> Exercise
+type MaybeExerciseGenerator = StdGen -> (Maybe Exercise, StdGen)
 
 instance Show Exercise where
     show (MultipleChoiceExercise title sentences correctAlternatives incorrectAlternatives fixedOrdering) = "MultipleChoiceExercise { mceTitle = " ++ (show title) ++ ", mceSentences = " ++ (show sentences) ++ ", mceCorrectAlternatives = " ++ (show correctAlternatives) ++ ", mceIncorrectAlternatives = " ++ (show incorrectAlternatives) ++ ", fixedOrdering = " ++ (show fixedOrdering) ++ "}"

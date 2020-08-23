@@ -125,6 +125,17 @@ generatorFromList = flip chooseItemUniformly
 generatorFromWeightedList :: [(Int, a)] -> StdGen -> (a, StdGen)
 generatorFromWeightedList = flip chooseItem
 
+generatorWithRetries :: Int -> (StdGen -> (Maybe b, StdGen)) -> (StdGen -> (Maybe b, StdGen))
+generatorWithRetries numberOfRetries originalGenerator =
+    if numberOfRetries <= 0 then
+        \r0 -> (Nothing, r0)
+    else
+        \r0 ->
+            let (generatedValue, r1) = originalGenerator r0
+            in case generatedValue of
+               Just x -> (Just x, r1)
+               Nothing -> generatorWithRetries (numberOfRetries - 1) originalGenerator r1
+
 -- | Lifts a function that transforms a Foo into a Bar into a function that transforms a FooGenerator into a BarGenerator.
 liftGen :: (a -> b) -> (StdGen -> (a, StdGen)) -> (StdGen -> (b, StdGen))
 liftGen f inputGenerator r0 = (f input, r1) where

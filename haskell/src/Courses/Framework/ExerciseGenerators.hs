@@ -23,7 +23,7 @@ module Courses.Framework.ExerciseGenerators
 import Core
 import Language.Lojban.Core
 import Language.Lojban.Numbers
-import Util (isSubexpressionOf, replace, replaceFirstSubexpression, replaceSubexpression, chooseItemUniformly, combineGenerators, combineGeneratorsUniformly, isWordOf)
+import Util (isSubexpressionOf, replace, replaceFirstSubexpression, replaceSubexpression, chooseItemUniformly, combineGenerators, combineGeneratorsUniformly, generatorWithRetries, isWordOf)
 import Text.Read (readMaybe)
 import System.Random (StdGen, random)
 import Control.Applicative (liftA2)
@@ -179,24 +179,38 @@ generateSelbriIdentificationExercise simpleBridiGenerator displayBridi r0 = Sing
 
 -- Exercises: tell gismu places of a sentence (TODO: typing exercises?)
 generateContextualizedGismuPlaceMeaningExercise :: Dictionary -> SimpleBridiGenerator -> SimpleBridiDisplayer -> ExerciseGenerator
-generateContextualizedGismuPlaceMeaningExercise dictionary simpleBridiGenerator displayBridi = combineGenerators [(1, f2)] where
+generateContextualizedGismuPlaceMeaningExercise dictionary simpleBridiGenerator displayBridi = combineGenerators [(1, f2WithRetries)] where
+    f2WithRetries :: ExerciseGenerator
+    f2WithRetries r0 = case (generatorWithRetries 10 f2) r0 of
+        (Nothing, _) -> error "generateContextualizedGismuPlaceMeaningExercise: repeatedly failed to pick a sentence with a valid selbri"
+        (Just x, _) -> x
+    f2 :: MaybeExerciseGenerator
     f2 r0 =
         let
             -- Generate bridi
             (bridi, r1) = simpleBridiGenerator r0
             -- Extract brivla places
             selbri = simpleBridiSelbri bridi
-            placesEnglish = retrieveBrivlaPlaces dictionary selbri
-            placesLojban = simpleBridiSumti bridi
-            places = zip placesEnglish (replace "" "zo'e" placesLojban)
-            -- Construct exercise
-            (place, r2) = chooseItemUniformly r1 places
-            correctAlternative = snd place
-            incorrectAlternatives = (simpleBridiSelbri bridi) : (filter (/= correctAlternative) . map snd $ places)
-            title = "Select the " `T.append` "<b>" `T.append` (fst place) `T.append` "</b>"
-            (sentenceText, _) = displayBridi r2 bridi
-            sentences = [ExerciseSentence True sentenceText]
-        in SingleChoiceExercise title sentences correctAlternative incorrectAlternatives False
+            -- Function for checking whether the selbri is valid
+            isInvalidSelbri :: T.Text -> Bool
+            isInvalidSelbri "mo" = True
+            isInvalidSelbri _ = False
+        in
+            if isInvalidSelbri selbri
+                then (Nothing, r1)
+            else
+                let
+                    placesEnglish = retrieveBrivlaPlaces dictionary selbri
+                    placesLojban = simpleBridiSumti bridi
+                    places = zip placesEnglish (replace "" "zo'e" placesLojban)
+                    -- Construct exercise
+                    (place, r2) = chooseItemUniformly r1 places
+                    correctAlternative = snd place
+                    incorrectAlternatives = (simpleBridiSelbri bridi) : (filter (/= correctAlternative) . map snd $ places)
+                    title = "Select the " `T.append` "<b>" `T.append` (fst place) `T.append` "</b>"
+                    (sentenceText, r3) = displayBridi r2 bridi
+                    sentences = [ExerciseSentence True sentenceText]
+                in (Just $ SingleChoiceExercise title sentences correctAlternative incorrectAlternatives False, r3)
 
 generateContextualizedGismuPlacePositionExercise :: Dictionary -> SimpleBridiGenerator -> SimpleBridiDisplayer -> ExerciseGenerator
 generateContextualizedGismuPlacePositionExercise dictionary simpleBridiGenerator displayBridi = combineGenerators [(1, f2)] where
