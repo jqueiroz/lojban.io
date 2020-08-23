@@ -16,7 +16,7 @@ import qualified Data.Text as T
 
 validateExerciseGenerator :: ExerciseGenerator -> IO ()
 validateExerciseGenerator exerciseGenerator = do
-    let exercises = exerciseGenerator . mkStdGen <$> [1..1000]
+    let exercises = exerciseGenerator . mkStdGen <$> [1..5000]
     seq (length . show $ exercises) $ return ()
 
 exerciseTests :: Spec

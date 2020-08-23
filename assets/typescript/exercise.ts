@@ -105,7 +105,7 @@ var createExercisesManager = function(holder) {
         exercise_attemptedSolution = null;
         exercise_attemptedSolutionWasCorrect = null;
         exercise_validationPayload = null;
-        exercise_id = Math.floor(Math.random() * 1000);
+        exercise_id = Math.floor(Math.random() * 5000);
         //exercise_id = 485;
         show();
     };
