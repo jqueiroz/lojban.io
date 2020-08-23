@@ -88,6 +88,7 @@ var createExercisesManager = function(holder) {
     var exercise_payload = null;
     var exercise_attemptedSolution = null;
     var exercise_attemptedSolutionWasCorrect = null;
+    var exercise_validationPayload = null;
 
     var getUniversalExerciseIdentifier = function() {
         if ('deckId' in window) {
@@ -103,6 +104,7 @@ var createExercisesManager = function(holder) {
         exercise_payload = null;
         exercise_attemptedSolution = null;
         exercise_attemptedSolutionWasCorrect = null;
+        exercise_validationPayload = null;
         exercise_id = Math.floor(Math.random() * 1000);
         //exercise_id = 485;
         show();
@@ -115,10 +117,11 @@ var createExercisesManager = function(holder) {
         body += "\nIf possible, please provide a brief description of what is wrong with this exercise.\n\n";
         body += "# Diagnostics information (do not remove)";
         body += "\n- Exercise identifier: " + universal_exercise_id;
-        body += "\n- Exercise payload (base64 encoded): " + (exercise_payload ? btoa(JSON.stringify(exercise_payload)) : "N/A");
-        body += "\n- Attempted solution (base64 encoded): ";
-        body += (exercise_attemptedSolution ? btoa(JSON.stringify(exercise_attemptedSolution)) : "N/A");
+        body += "\n- Exercise payload: " + (exercise_payload ? JSON.stringify(exercise_payload) : "N/A");
+        body += "\n- Attempted solution: ";
+        body += (exercise_attemptedSolution ? JSON.stringify(exercise_attemptedSolution) : "N/A");
         body += "\n- Attempted solution was classified as correct: " + (exercise_attemptedSolutionWasCorrect === true ? "yes" : exercise_attemptedSolutionWasCorrect === false ? "no" : "N/A");
+        body += "\n- Validation payload: " + (exercise_validationPayload ? JSON.stringify(exercise_validationPayload) : "N/A");
         var url = "https://github.com/jqueiroz/lojban-tool/issues/new?title=" + encodeURIComponent(title) + "&body=" + encodeURIComponent(body) + "&labels=reported-exercise";
         window.open(url, "_blank");
     };
@@ -271,6 +274,7 @@ var createExercisesManager = function(holder) {
                         console.log("Failure to submit answer");
                         return;
                     }
+                    exercise_validationPayload = response.data;
                     displayFeedbackFooter({correct: response.data.correct});
                     radioGroup.children().each(function() {
                         var value = $(this)
@@ -353,6 +357,7 @@ var createExercisesManager = function(holder) {
                 if (orderedAlternatives !== null) {
                     submit({orderedAlternatives: orderedAlternatives}).done(
                         function(response) {
+                            exercise_validationPayload = response.data;
                             displayFeedbackFooter({
                                 correct: response.data.correct,
                             });
@@ -463,6 +468,7 @@ var createExercisesManager = function(holder) {
                         console.log("Failure to submit answer");
                         return;
                     }
+                    exercise_validationPayload = response.data;
                     if (response.data.correct) {
                         if (textarea.val() === response.data.canonicalAnswer)
                             displayFeedbackFooter({correct: true});
