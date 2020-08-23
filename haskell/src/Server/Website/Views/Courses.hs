@@ -16,8 +16,8 @@ import qualified Text.Blaze as B
 import qualified Text.Blaze.Html5 as H
 import qualified Text.Blaze.Html5.Attributes as A
 
-displayCoursesHome :: Maybe UserIdentity -> H.Html
-displayCoursesHome userIdentityMaybe = do
+displayCoursesHome :: ServerConfiguration -> Maybe UserIdentity -> H.Html
+displayCoursesHome serverConfiguration userIdentityMaybe = do
     let descriptionPart1 = ("Learn lojban with carefully designed courses, and practice with entertaining interactive exercises." :: T.Text)
     let descriptionPart2 = ("Learn from the beginning if you are a newcomer, or learn by subject if you are already familiar with the core aspects of the language." :: T.Text)
     let descriptionComplete = descriptionPart1 `T.append` " " `T.append` descriptionPart2
@@ -30,7 +30,7 @@ displayCoursesHome userIdentityMaybe = do
             includeUniversalScripts
             includeInternalStylesheet "courses.css"
         H.body $ do
-            displayTopbar userIdentityMaybe TopbarCourses
+            displayTopbar serverConfiguration userIdentityMaybe TopbarCourses
             H.div B.! A.class_ (H.textValue "main") $ do
                 H.div B.! A.class_ (H.textValue "header") $ do
                     H.div B.! A.class_ (H.textValue "header-bg") $ H.toHtml ("" :: T.Text)

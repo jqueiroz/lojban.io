@@ -11,8 +11,8 @@ import qualified Text.Blaze as B
 import qualified Text.Blaze.Html5 as H
 import qualified Text.Blaze.Html5.Attributes as A
 
-displayResourcesHome :: Maybe UserIdentity -> H.Html
-displayResourcesHome userIdentityMaybe = do
+displayResourcesHome :: ServerConfiguration -> Maybe UserIdentity -> H.Html
+displayResourcesHome serverConfiguration userIdentityMaybe = do
     let shortDescription = ("A collection of useful resources for studying Lojban." :: T.Text)
     H.docType
     H.html B.! A.lang (H.stringValue "en-us") $ do
@@ -23,7 +23,7 @@ displayResourcesHome userIdentityMaybe = do
             includeUniversalScripts
             includeInternalStylesheet "resources.css"
         H.body $ do
-            displayTopbar userIdentityMaybe TopbarResources
+            displayTopbar serverConfiguration userIdentityMaybe TopbarResources
             H.div B.! A.class_ (H.stringValue "main") $ do
                 H.div B.! A.class_ (H.textValue "header") $ do
                     H.div B.! A.class_ (H.textValue "header-bg") $ H.toHtml ("" :: T.Text)

@@ -149,22 +149,23 @@ includeLessonScript lessonNumber = includeInlineScript $ "lessonNumber = \"" `T.
 -- * Topbar
 data TopbarCategory = TopbarHome | TopbarCourses | TopbarDecks | TopbarResources | TopbarNone deriving (Enum, Eq)
 
-displayTopbar :: Maybe UserIdentity -> TopbarCategory -> H.Html
-displayTopbar userIdentityMaybe topbarCategory = do
+displayTopbar :: ServerConfiguration -> Maybe UserIdentity -> TopbarCategory -> H.Html
+displayTopbar serverConfiguration userIdentityMaybe topbarCategory = do
     H.div B.! A.class_ (H.stringValue "topbar") $ do
         H.div B.! A.class_ "logo" $ do
             H.a (H.toHtml ("lojban.io" :: String))
                 B.! A.href (H.stringValue "/")
         displayTopbarMenu topbarCategory
-        displayUserProfile userIdentityMaybe
+        displayUserProfile serverConfiguration userIdentityMaybe
 
-displayUserProfile :: Maybe UserIdentity -> H.Html
-displayUserProfile userIdentityMaybe =
+displayUserProfile :: ServerConfiguration -> Maybe UserIdentity -> H.Html
+displayUserProfile serverConfiguration userIdentityMaybe = do
+    let identityProvider = identityProviderName $ serverConfigurationIdentityProvider serverConfiguration
     case userIdentityMaybe of
         Nothing -> do
             H.div B.! A.class_ "user-signin" $ do
                 H.a (H.toHtml ("sign in" :: String))
-                    B.! A.href (H.stringValue "/oauth2/google/login")
+                    B.! A.href (H.textValue $ "/oauth2/" `T.append` identityProvider `T.append` "/login")
                     B.! A.title (H.stringValue "Sign in with Google")
         Just userIdentity -> do
             let pictureUrl = userPictureUrl userIdentity
@@ -180,7 +181,7 @@ displayUserProfile userIdentityMaybe =
                 H.ul B.! A.class_ "user-menu" $ do
                     H.li $ do
                         H.a (H.toHtml ("Sign out" :: T.Text))
-                            B.! A.href (H.stringValue "/oauth2/google/logout")
+                            B.! A.href (H.textValue $ "/oauth2/" `T.append` identityProvider `T.append` "/logout")
 
 displayTopbarMenu :: TopbarCategory -> H.Html
 displayTopbarMenu topbarCategory = do

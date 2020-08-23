@@ -14,8 +14,8 @@ import qualified Text.Blaze as B
 import qualified Text.Blaze.Html5 as H
 import qualified Text.Blaze.Html5.Attributes as A
 
-displayVocabularyHome :: Maybe UserIdentity -> H.Html
-displayVocabularyHome userIdentityMaybe = do
+displayVocabularyHome :: ServerConfiguration -> Maybe UserIdentity -> H.Html
+displayVocabularyHome serverConfiguration userIdentityMaybe = do
     let moduleTitle = "Vocabulary"
     let moduleCourses =
             [ ("/vocabulary/brivla", Courses.English.Vocabulary.Brivla.Course.course)
@@ -29,6 +29,6 @@ displayVocabularyHome userIdentityMaybe = do
             includeUniversalScripts
             includeInternalStylesheet "module.css"
         H.body $ do
-            displayTopbar userIdentityMaybe TopbarCourses
+            displayTopbar serverConfiguration userIdentityMaybe TopbarCourses
             H.div B.! A.class_ (H.stringValue "main") $ do
                 displayModule moduleTitle moduleCourses

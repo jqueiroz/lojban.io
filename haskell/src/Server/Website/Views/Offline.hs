@@ -11,8 +11,8 @@ import qualified Text.Blaze as B
 import qualified Text.Blaze.Html5 as H
 import qualified Text.Blaze.Html5.Attributes as A
 
-displayOfflineHome :: Maybe UserIdentity -> H.Html
-displayOfflineHome userIdentityMaybe = do
+displayOfflineHome :: ServerConfiguration -> Maybe UserIdentity -> H.Html
+displayOfflineHome serverConfiguration userIdentityMaybe = do
     H.docType
     H.html B.! A.lang (H.stringValue "en-us") $ do
         H.head $ do
@@ -21,7 +21,7 @@ displayOfflineHome userIdentityMaybe = do
             includeUniversalScripts
             includeInternalStylesheet "offline.css"
         H.body $ do
-            displayTopbar userIdentityMaybe TopbarNone
+            displayTopbar serverConfiguration userIdentityMaybe TopbarNone
             H.div B.! A.class_ (H.stringValue "main") $ do
                 H.div B.! A.class_ (H.textValue "header") $ do
                     H.div B.! A.class_ (H.textValue "header-bg") $ H.toHtml ("" :: T.Text)

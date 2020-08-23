@@ -13,8 +13,8 @@ import qualified Text.Blaze as B
 import qualified Text.Blaze.Html5 as H
 import qualified Text.Blaze.Html5.Attributes as A
 
-displayDecksHome :: Maybe UserIdentity -> H.Html
-displayDecksHome userIdentityMaybe = do
+displayDecksHome :: ServerConfiguration -> Maybe UserIdentity -> H.Html
+displayDecksHome serverConfiguration userIdentityMaybe = do
     let descriptionPart1 = ("Learn vocabulary at your own pace, boosted by spaced repetition." :: T.Text)
     let descriptionPart2 = ("Start practicing with a deck that picks your interest, and enable new cards as you progress." :: T.Text)
     let descriptionComplete = descriptionPart1 `T.append` " " `T.append` descriptionPart2
@@ -27,7 +27,7 @@ displayDecksHome userIdentityMaybe = do
             includeUniversalScripts
             includeInternalStylesheet "decks.css"
         H.body $ do
-            displayTopbar userIdentityMaybe TopbarDecks
+            displayTopbar serverConfiguration userIdentityMaybe TopbarDecks
             H.div B.! A.class_ (H.textValue "main") $ do
                 H.div B.! A.class_ (H.textValue "header") $ do
                     H.div B.! A.class_ (H.textValue "header-bg") $ H.toHtml ("" :: T.Text)

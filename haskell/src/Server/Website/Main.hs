@@ -39,82 +39,82 @@ handleRoot :: ServerConfiguration -> ServerResources -> ServerPart Response
 handleRoot serverConfiguration serverResources = do
     userIdentityMaybe <- OAuth2.readUserIdentityFromCookies serverConfiguration serverResources
     msum
-        [ forceSlash $ handleHome userIdentityMaybe
-        , dir "courses" $ handleCourses userIdentityMaybe
+        [ forceSlash $ handleHome serverConfiguration userIdentityMaybe
+        , dir "courses" $ handleCourses serverConfiguration userIdentityMaybe
         , dir "decks" $ handleDecks serverConfiguration serverResources userIdentityMaybe
-        , dir "grammar" $ handleGrammar userIdentityMaybe
-        , dir "vocabulary" $ handleVocabulary userIdentityMaybe
-        , dir "resources" $ handleResources userIdentityMaybe
-        , dir "offline" $ handleOffline userIdentityMaybe
+        , dir "grammar" $ handleGrammar serverConfiguration userIdentityMaybe
+        , dir "vocabulary" $ handleVocabulary serverConfiguration userIdentityMaybe
+        , dir "resources" $ handleResources serverConfiguration userIdentityMaybe
+        , dir "offline" $ handleOffline serverConfiguration userIdentityMaybe
         ]
 
-handleHome :: Maybe UserIdentity -> ServerPart Response
-handleHome userIdentityMaybe = ok . toResponse $ displayHome userIdentityMaybe
+handleHome :: ServerConfiguration -> Maybe UserIdentity -> ServerPart Response
+handleHome serverConfiguration userIdentityMaybe = ok . toResponse $ displayHome serverConfiguration userIdentityMaybe
 
-handleCourses :: Maybe UserIdentity -> ServerPart Response
-handleCourses userIdentityMaybe = msum
-    [ forceSlash . ok . toResponse $ displayCoursesHome userIdentityMaybe
-    , dir "introduction" $ handleCourse userIdentityMaybe TopbarCourses Courses.English.Grammar.Introduction.Course.course
-    , dir "crash" $ handleCourse userIdentityMaybe TopbarCourses Courses.English.Grammar.Crash.Course.course
-    , dir "attitudinals" $ handleCourse userIdentityMaybe TopbarCourses Courses.English.Vocabulary.Attitudinals.Course.course
-    , dir "brivla" $ handleCourse userIdentityMaybe TopbarCourses Courses.English.Vocabulary.Brivla.Course.course
+handleCourses :: ServerConfiguration -> Maybe UserIdentity -> ServerPart Response
+handleCourses serverConfiguration userIdentityMaybe = msum
+    [ forceSlash . ok . toResponse $ displayCoursesHome serverConfiguration userIdentityMaybe
+    , dir "introduction" $ handleCourse serverConfiguration userIdentityMaybe TopbarCourses Courses.English.Grammar.Introduction.Course.course
+    , dir "crash" $ handleCourse serverConfiguration userIdentityMaybe TopbarCourses Courses.English.Grammar.Crash.Course.course
+    , dir "attitudinals" $ handleCourse serverConfiguration userIdentityMaybe TopbarCourses Courses.English.Vocabulary.Attitudinals.Course.course
+    , dir "brivla" $ handleCourse serverConfiguration userIdentityMaybe TopbarCourses Courses.English.Vocabulary.Brivla.Course.course
     ]
 
 handleDecks :: ServerConfiguration -> ServerResources -> Maybe UserIdentity -> ServerPart Response
 handleDecks serverConfiguration serverResources userIdentityMaybe = msum
-    [ forceSlash . ok . toResponse $ displayDecksHome userIdentityMaybe
+    [ forceSlash . ok . toResponse $ displayDecksHome serverConfiguration userIdentityMaybe
     , dir "contextualized-brivla" $ handleDeck serverConfiguration serverResources userIdentityMaybe Decks.English.ContextualizedBrivla.deck
     ]
 
-handleGrammar :: Maybe UserIdentity -> ServerPart Response
-handleGrammar userIdentityMaybe = msum
-    [ forceSlash . ok . toResponse $ displayGrammarHome userIdentityMaybe
-    , dir "introduction" $ handleCourse userIdentityMaybe TopbarCourses Courses.English.Grammar.Introduction.Course.course
-    , dir "crash" $ handleCourse userIdentityMaybe TopbarCourses Courses.English.Grammar.Crash.Course.course
+handleGrammar :: ServerConfiguration -> Maybe UserIdentity -> ServerPart Response
+handleGrammar serverConfiguration userIdentityMaybe = msum
+    [ forceSlash . ok . toResponse $ displayGrammarHome serverConfiguration userIdentityMaybe
+    , dir "introduction" $ handleCourse serverConfiguration userIdentityMaybe TopbarCourses Courses.English.Grammar.Introduction.Course.course
+    , dir "crash" $ handleCourse serverConfiguration userIdentityMaybe TopbarCourses Courses.English.Grammar.Crash.Course.course
     ]
 
-handleVocabulary :: Maybe UserIdentity -> ServerPart Response
-handleVocabulary userIdentityMaybe = msum
-    [ forceSlash . ok . toResponse $ displayVocabularyHome userIdentityMaybe
-    , dir "attitudinals" $ handleCourse userIdentityMaybe TopbarCourses Courses.English.Vocabulary.Attitudinals.Course.course
-    , dir "brivla" $ handleCourse userIdentityMaybe TopbarCourses Courses.English.Vocabulary.Brivla.Course.course
+handleVocabulary :: ServerConfiguration -> Maybe UserIdentity -> ServerPart Response
+handleVocabulary serverConfiguration userIdentityMaybe = msum
+    [ forceSlash . ok . toResponse $ displayVocabularyHome serverConfiguration userIdentityMaybe
+    , dir "attitudinals" $ handleCourse serverConfiguration userIdentityMaybe TopbarCourses Courses.English.Vocabulary.Attitudinals.Course.course
+    , dir "brivla" $ handleCourse serverConfiguration userIdentityMaybe TopbarCourses Courses.English.Vocabulary.Brivla.Course.course
     ]
 
-handleResources :: Maybe UserIdentity -> ServerPart Response
-handleResources userIdentityMaybe = msum
-    [ forceSlash . ok . toResponse $ displayResourcesHome userIdentityMaybe
+handleResources :: ServerConfiguration -> Maybe UserIdentity -> ServerPart Response
+handleResources serverConfiguration userIdentityMaybe = msum
+    [ forceSlash . ok . toResponse $ displayResourcesHome serverConfiguration userIdentityMaybe
     ]
 
-handleOffline :: Maybe UserIdentity -> ServerPart Response
-handleOffline userIdentityMaybe = msum
-    [ forceSlash . ok . toResponse $ displayOfflineHome userIdentityMaybe
+handleOffline :: ServerConfiguration -> Maybe UserIdentity -> ServerPart Response
+handleOffline serverConfiguration userIdentityMaybe = msum
+    [ forceSlash . ok . toResponse $ displayOfflineHome serverConfiguration userIdentityMaybe
     ]
 
-handleCourse :: Maybe UserIdentity -> TopbarCategory -> Course -> ServerPart Response
-handleCourse userIdentityMaybe topbarCategory course =
+handleCourse :: ServerConfiguration -> Maybe UserIdentity -> TopbarCategory -> Course -> ServerPart Response
+handleCourse serverConfiguration userIdentityMaybe topbarCategory course =
     let lessons = courseLessons course
     in msum
-        [ forceSlash . ok . toResponse . displayCourseHome userIdentityMaybe topbarCategory $ course
-        , path $ \n -> (guard $ 1 <= n && n <= (length lessons)) >> (handleLesson userIdentityMaybe topbarCategory course n)
+        [ forceSlash . ok . toResponse . displayCourseHome serverConfiguration userIdentityMaybe topbarCategory $ course
+        , path $ \n -> (guard $ 1 <= n && n <= (length lessons)) >> (handleLesson serverConfiguration userIdentityMaybe topbarCategory course n)
         ]
 
 handleDeck :: ServerConfiguration -> ServerResources -> Maybe UserIdentity -> Deck -> ServerPart Response
 handleDeck serverConfiguration serverResources userIdentityMaybe deck = msum
-    [ forceSlash . ok . toResponse $ displayDeckHome userIdentityMaybe deck
+    [ forceSlash . ok . toResponse $ displayDeckHome serverConfiguration userIdentityMaybe deck
     , dir "exercises" $ do
         identityMaybe <- OAuth2.readUserIdentityFromCookies serverConfiguration serverResources
         case identityMaybe of
             Nothing -> do
                 --tempRedirect ("./" :: T.Text) . toResponse $ ("You must be signed in." :: T.Text)
                 ok . toResponse $ includeInlineScript ("alert('To practice with decks, you need to sign in.'); window.location.href='./';" :: T.Text)
-            Just identity -> ok . toResponse $ displayDeckExercise userIdentityMaybe deck
+            Just identity -> ok . toResponse $ displayDeckExercise serverConfiguration userIdentityMaybe deck
     ]
 
-handleLesson :: Maybe UserIdentity -> TopbarCategory -> Course -> Int -> ServerPart Response
-handleLesson userIdentityMaybe topbarCategory course lessonNumber = msum
-    [ forceSlash . ok . toResponse $ displayLessonHome userIdentityMaybe topbarCategory course lessonNumber
+handleLesson :: ServerConfiguration -> Maybe UserIdentity -> TopbarCategory -> Course -> Int -> ServerPart Response
+handleLesson serverConfiguration userIdentityMaybe topbarCategory course lessonNumber = msum
+    [ forceSlash . ok . toResponse $ displayLessonHome serverConfiguration userIdentityMaybe topbarCategory course lessonNumber
     , dir "exercises" $ msum
-        [ forceSlash . ok . toResponse $ displayLessonExercise userIdentityMaybe topbarCategory course lessonNumber
+        [ forceSlash . ok . toResponse $ displayLessonExercise serverConfiguration userIdentityMaybe topbarCategory course lessonNumber
         , path $ \n ->
             let
                 lesson = (courseLessons course) !! (lessonNumber - 1)

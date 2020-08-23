@@ -17,7 +17,7 @@ data IdentityProvider = IdentityProvider
 
 data ServerConfiguration = ServerConfiguration
     { serverConfigurationEnvironmentType :: EnvironmentType
-    , serverConfigurationIdentittyProvider :: IdentityProvider
+    , serverConfigurationIdentityProvider :: IdentityProvider
     }
 
 data ServerResources = ServerResources

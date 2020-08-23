@@ -20,8 +20,8 @@ import qualified Decks.English.ContextualizedBrivla
 -- TODO: link to official lojban wiki
 -- TODO: take more info from this brochure: https://mw.lojban.org/images/c/c5/lojbanbrochure.pdf
 -- TODO: also link to https://mw.lojban.org/papri/Presenting_Lojban
-displayHome :: Maybe UserIdentity -> H.Html
-displayHome userIdentityMaybe = do
+displayHome :: ServerConfiguration -> Maybe UserIdentity -> H.Html
+displayHome serverConfiguration userIdentityMaybe = do
     let shortDescription = "A free and open-source platform for studying the artificial language Lojban."
     H.docType
     H.html B.! A.lang (H.stringValue "en-us") $ do
@@ -33,7 +33,7 @@ displayHome userIdentityMaybe = do
             includeInternalStylesheet "home.css"
             includeInternalScript "home-min.js"
         H.body $ do
-            displayTopbar userIdentityMaybe TopbarHome
+            displayTopbar serverConfiguration userIdentityMaybe TopbarHome
             H.div B.! A.class_ (H.textValue "main") $ do
                 H.div B.! A.class_ (H.textValue "body") $ do
                     H.div B.! A.class_ (H.textValue "welcome") $ do

@@ -56,5 +56,7 @@ readServerConfiguration = do
         Just "prod" -> return EnvironmentTypeProd
         Just "dev" -> return EnvironmentTypeDev
         _ -> error "Error: incorrect or unspecified environment type"
-    let identityProvider = IdentityProvider ("google" :: T.Text)
+    let identityProvider = case environmentType of
+            EnvironmentTypeProd -> IdentityProvider ("google" :: T.Text)
+            _ -> IdentityProvider ("mock" :: T.Text)
     return $ ServerConfiguration environmentType identityProvider

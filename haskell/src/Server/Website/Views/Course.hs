@@ -18,8 +18,8 @@ import qualified Text.Blaze.Html5 as H
 import qualified Text.Blaze.Html5.Attributes as A
 
 -- TODO: consider using list groups (https://getbootstrap.com/docs/4.0/components/list-group/)
-displayCourseHome :: Maybe UserIdentity -> TopbarCategory -> Course -> H.Html
-displayCourseHome userIdentityMaybe topbarCategory course = do
+displayCourseHome :: ServerConfiguration -> Maybe UserIdentity -> TopbarCategory -> Course -> H.Html
+displayCourseHome serverConfiguration userIdentityMaybe topbarCategory course = do
     let baseCourseUrl = ""
     let title = courseTitle course
     let shortDescription = courseShortDescription course
@@ -34,7 +34,7 @@ displayCourseHome userIdentityMaybe topbarCategory course = do
             includeCourseStylesheet course
             includeCourseScript course
         H.body $ do
-            displayTopbar userIdentityMaybe topbarCategory
+            displayTopbar serverConfiguration userIdentityMaybe topbarCategory
             H.div B.! A.class_ (H.stringValue "main") $ do
                 H.div B.! A.class_ (H.textValue "header") $ do
                     H.div B.! A.class_ (H.textValue "header-bg") $ H.toHtml ("" :: T.Text)

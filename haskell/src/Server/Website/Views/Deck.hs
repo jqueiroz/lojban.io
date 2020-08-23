@@ -19,8 +19,8 @@ import qualified Text.Blaze.Html5 as H
 import qualified Text.Blaze.Html5.Attributes as A
 
 -- TODO: consider using list groups (https://getbootstrap.com/docs/4.0/components/list-group/)
-displayDeckHome :: Maybe UserIdentity -> Deck -> H.Html
-displayDeckHome userIdentityMaybe deck = do
+displayDeckHome :: ServerConfiguration -> Maybe UserIdentity -> Deck -> H.Html
+displayDeckHome serverConfiguration userIdentityMaybe deck = do
     let baseDeckUrl = ""
     let title = deckTitle deck
     let shortDescription = deckShortDescription deck
@@ -35,7 +35,7 @@ displayDeckHome userIdentityMaybe deck = do
             includeDeckScript deck
             includeInternalScript "deck-min.js"
         H.body $ do
-            displayTopbar userIdentityMaybe TopbarDecks
+            displayTopbar serverConfiguration userIdentityMaybe TopbarDecks
             H.div B.! A.class_ (H.stringValue "main") $ do
                 H.div B.! A.class_ (H.textValue "header") $ do
                     H.div B.! A.class_ (H.textValue "header-bg") $ H.toHtml ("" :: T.Text)
@@ -60,8 +60,8 @@ displayDeckHome userIdentityMaybe deck = do
                                     fromRight . P.runPure . PWH.writeHtml5 P.def $ fromJust (deckCredits deck)
                     displayFooter
 
-displayDeckExercise :: Maybe UserIdentity -> Deck -> H.Html
-displayDeckExercise userIdentityMaybe deck = do
+displayDeckExercise :: ServerConfiguration -> Maybe UserIdentity -> Deck -> H.Html
+displayDeckExercise serverConfiguration userIdentityMaybe deck = do
     let dictionary = deckDictionary deck
     let baseDeckUrl = "./"
     H.docType
@@ -77,7 +77,7 @@ displayDeckExercise userIdentityMaybe deck = do
             includeDeckScript deck
             includeInternalScript "exercise-min.js"
         H.body $ do
-            displayTopbar userIdentityMaybe TopbarDecks
+            displayTopbar serverConfiguration userIdentityMaybe TopbarDecks
             H.div B.! A.class_ (H.stringValue "main") $ do
                 H.div B.! A.class_ (H.textValue "body") $ do
                     displayDeckExerciseHeader baseDeckUrl deck

@@ -21,8 +21,8 @@ import qualified Text.Blaze.Html5.Attributes as A
 
 data LessonSubpage = LessonHome | LessonVocabulary | LessonExercises deriving (Enum, Eq)
 
-displayLessonHome :: Maybe UserIdentity -> TopbarCategory -> Course -> Int -> H.Html
-displayLessonHome userIdentityMaybe topbarCategory course lessonNumber = do
+displayLessonHome :: ServerConfiguration -> Maybe UserIdentity -> TopbarCategory -> Course -> Int -> H.Html
+displayLessonHome serverConfiguration userIdentityMaybe topbarCategory course lessonNumber = do
     let dictionary = courseDictionary course
     let baseLessonUrl = ""
     let lesson = (courseLessons course) !! (lessonNumber - 1)
@@ -37,7 +37,7 @@ displayLessonHome userIdentityMaybe topbarCategory course lessonNumber = do
             includeCourseScript course
             includeLessonScript lessonNumber
         H.body $ do
-            displayTopbar userIdentityMaybe topbarCategory
+            displayTopbar serverConfiguration userIdentityMaybe topbarCategory
             H.div B.! A.class_ (H.stringValue "main") $ do
                 H.div B.! A.class_ (H.textValue "header") $ do
                     H.div B.! A.class_ (H.textValue "header-bg") $ H.toHtml ("" :: T.Text)
@@ -79,8 +79,8 @@ displayLessonTab id title checked = do
         H.toHtml title
 
 -- Embedded dictionary: consider using tooltips (https://getbootstrap.com/docs/4.0/components/tooltips/)
-displayLessonExercise :: Maybe UserIdentity -> TopbarCategory -> Course -> Int -> H.Html
-displayLessonExercise userIdentityMaybe topbarCategory course lessonNumber = do
+displayLessonExercise :: ServerConfiguration -> Maybe UserIdentity -> TopbarCategory -> Course -> Int -> H.Html
+displayLessonExercise serverConfiguration userIdentityMaybe topbarCategory course lessonNumber = do
     let dictionary = courseDictionary course
     let baseLessonUrl = "../"
     H.docType
@@ -98,7 +98,7 @@ displayLessonExercise userIdentityMaybe topbarCategory course lessonNumber = do
             includeInternalScript "exercise-min.js"
             includeCourseStylesheet course
         H.body $ do
-            displayTopbar userIdentityMaybe topbarCategory
+            displayTopbar serverConfiguration userIdentityMaybe topbarCategory
             H.div B.! A.class_ (H.stringValue "main") $ do
                 H.div B.! A.class_ (H.textValue "body") $ do
                     displayLessonHeader baseLessonUrl LessonExercises course lessonNumber
