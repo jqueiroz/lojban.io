@@ -239,11 +239,19 @@ generateIsolatedBrivlaPlacesExercise :: Dictionary -> [T.Text] -> ExerciseGenera
 generateIsolatedBrivlaPlacesExercise dictionary brivlaList r0 =
     let
         brivlaWithAtLeastTwoPlaces = filter ((>= 2) . length . retrieveBrivlaPlaces dictionary) brivlaList
-        (brivla, r1) = chooseItemUniformly r0 brivlaWithAtLeastTwoPlaces
+        (brivla, r1) =
+            if brivlaWithAtLeastTwoPlaces == [] then
+                error $ "There are no brivla with at least two places. Brivla list: " ++ show brivlaList
+            else
+                chooseItemUniformly r0 brivlaWithAtLeastTwoPlaces
         placesLojban = map (\x -> x `T.append` " " `T.append` brivla `T.append` " ku") ["lo", "lo se", "lo te", "lo ve", "lo xe"]
         placesEnglish = retrieveBrivlaPlaces dictionary brivla
         places = zip placesLojban placesEnglish
-        (place, _) = chooseItemUniformly r1 places
+        (place, _) =
+            if places == [] then
+                error $ "Brivla has no places: " ++ show brivla
+            else
+                chooseItemUniformly r1 places
         correctAlternative = snd place
         incorrectAlternatives = filter (/= correctAlternative) . map snd $ places
         title = "Identify <b>" `T.append` (fst place) `T.append` "</b>"
