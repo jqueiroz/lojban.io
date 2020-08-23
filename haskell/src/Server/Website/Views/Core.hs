@@ -144,7 +144,7 @@ includeCourseScript :: Course -> H.Html
 includeCourseScript course = includeInlineScript $ "courseId = \"" `T.append` (courseId course) `T.append` "\";"
 
 includeLessonScript :: Int -> H.Html
-includeLessonScript lessonNumber = includeInlineScript $ "lessonIndex = \"" `T.append` (T.pack $ show lessonNumber) `T.append` "\";"
+includeLessonScript lessonNumber = includeInlineScript $ "lessonNumber = \"" `T.append` (T.pack $ show lessonNumber) `T.append` "\";"
 
 -- * Topbar
 data TopbarCategory = TopbarHome | TopbarCourses | TopbarDecks | TopbarResources | TopbarNone deriving (Enum, Eq)

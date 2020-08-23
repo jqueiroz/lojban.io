@@ -292,6 +292,7 @@ body {
 .exercise-holder .exercise-footer .answer {
     margin-top: .3em;
     margin-left: 2em;
+    max-width: calc(100% - 22em); /* to prevent from going over the report/continue buttons */
     font-size: 1.2em;
     font-weight: bold;
 }
@@ -332,6 +333,18 @@ body {
         background-color: #7eb530;
         color: #fff;
         border: solid #7eb530 1px;
+    }
+
+    button.report {
+        position: absolute;
+        right: 14em;
+        color: hsl(0, 60%, 40%);
+    }
+
+    button.report:before {
+        font-family: fontawesome;
+        content: "\f024";
+        padding-right: 0.6em;
     }
 
     button.success:disabled, button.continue:disabled {
@@ -429,6 +442,10 @@ body {
         }
 
         .exercise-footer {
+            .answer {
+                max-width: inherit;
+            }
+
             button.continue {
                 position: relative;
                 top: 0.5em;

@@ -75,6 +75,7 @@ var createExercisesManager = function(holder) {
     };
 
     var submit = function(data) {
+        exercise_attemptedSolution = data;
         return $.ajax({
             url: baseUrl + exercise_id + "/submit",
             method: "POST",
@@ -84,21 +85,42 @@ var createExercisesManager = function(holder) {
     };
     // ...
     var exercise_id = null;
+    var exercise_payload = null;
+    var exercise_attemptedSolution = null;
+    var exercise_attemptedSolutionWasCorrect = null;
 
     var getUniversalExerciseIdentifier = function() {
         if ('deckId' in window) {
             return "[deckId=" + deckId + "]" + "[exerciseId=" + exercise_id + "]";
         } else if ('courseId' in window && 'lessonNumber' in window) {
-            return "[courseId=" + courseId + "]" + "[lessonNumber=" + lessonNumber + "]";
+            return "[courseId=" + courseId + "]" + "[lessonNumber=" + lessonNumber + "]" + "[exerciseId=" + exercise_id + "]";
         } else {
             return "unknown";
         }
     };
 
     var nextExercise = function() {
+        exercise_payload = null;
+        exercise_attemptedSolution = null;
+        exercise_attemptedSolutionWasCorrect = null;
         exercise_id = Math.floor(Math.random() * 1000);
         //exercise_id = 485;
         show();
+    };
+
+    var reportExercise = function() {
+        var universal_exercise_id = getUniversalExerciseIdentifier();
+        var title = "Incorrect exercise: " + universal_exercise_id;
+        var body = "# Description";
+        body += "\nIf possible, please provide a brief description of what is wrong with this exercise.\n\n";
+        body += "# Diagnostics information (do not remove)";
+        body += "\n- Exercise identifier: " + universal_exercise_id;
+        body += "\n- Exercise payload (base64 encoded): " + (exercise_payload ? btoa(JSON.stringify(exercise_payload)) : "N/A");
+        body += "\n- Attempted solution (base64 encoded): ";
+        body += (exercise_attemptedSolution ? btoa(JSON.stringify(exercise_attemptedSolution)) : "N/A");
+        body += "\n- Attempted solution was classified as correct: " + (exercise_attemptedSolutionWasCorrect === true ? "yes" : exercise_attemptedSolutionWasCorrect === false ? "no" : "N/A");
+        var url = "https://github.com/jqueiroz/lojban-tool/issues/new?title=" + encodeURIComponent(title) + "&body=" + encodeURIComponent(body) + "&labels=reported-exercise";
+        window.open(url, "_blank");
     };
 
     var show = function() {
@@ -106,6 +128,7 @@ var createExercisesManager = function(holder) {
         keyMap.clear();
 
         retrieve(exercise_id).done(function(response) {
+            exercise_payload = response;
             resetElements();
             displayExercise(response);
         });
@@ -135,7 +158,14 @@ var createExercisesManager = function(holder) {
                 .text("Correct answer: " + data.correctAnswer);
             contents.append(correct_answer);
         }
-        // Button
+        // Buttons
+        var btnReport = $("<button/>")
+            .addClass("report")
+            .text("Report")
+            .attr("alt", "Report this exercise")
+            .attr("title", "Report this exercise");
+        footer.append(btnReport);
+
         var btnContinue = $("<button/>")
             .addClass("continue")
             .text("Continue");
@@ -143,11 +173,14 @@ var createExercisesManager = function(holder) {
         btnContinue.focus();
         // Events
         btnContinue.click(nextExercise);
+        btnReport.click(reportExercise);
         keyMap.enter(nextExercise);
         // Sound
         if (data.correct) {
+            exercise_attemptedSolutionWasCorrect = true;
             audioCorrect.play();
         } else {
+            exercise_attemptedSolutionWasCorrect = false;
             audioIncorrect.play();
         }
     };
