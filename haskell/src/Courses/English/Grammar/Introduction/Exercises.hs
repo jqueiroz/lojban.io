@@ -230,7 +230,7 @@ translationExercises9 :: ExerciseGenerator
 translationExercises9 = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations9
 
 fillingBlanksExercises9 :: ExerciseGenerator
-fillingBlanksExercises9 = generateContextualizedFillingBlanksExerciseByAlternatives ["poi", "noi"] translations9
+fillingBlanksExercises9 = generateContextualizedFillingBlanksExerciseByAlternatives ["poi", "noi"] (narrowTranslationGenerator translations9)
 
 -- * Lesson 10: Linked sumti
 -- | Exercises for the lesson.
