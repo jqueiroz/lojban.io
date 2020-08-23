@@ -933,7 +933,7 @@ translations7 :: TranslationGenerator
 translations7 = translations7_restricted
 
 translations7_restricted :: TranslationGenerator
-translations7_restricted = combineGenerators [(2, hasHouse), (3, nice), (3, giving), (2, talking), (3, gleki), (3, nupre), (3, djuno), (3, cusku)] where
+translations7_restricted = expandTranslationGenerator $ combineGenerators [(2, hasHouse), (3, nice), (3, giving), (2, talking), (3, gleki), (3, nupre), (3, djuno), (3, cusku)] where
     hasHouse = generatorFromList
         [ (["lo ctuca cu se zdani"], ["The instructor has a house."])
         , (["lo prenu cu se zdani"], ["The person has a house."])
