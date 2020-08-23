@@ -310,6 +310,10 @@ validateCanonicalization = hspec $ do
         validateSentences
             [ ("xu do nelci lo mlatu", "xu do nelci lo mlatu ku")
             ]
+      --it "supports NA" $ do
+        --validateSentences
+            --[ ("mi na cusku", "na ku mi cusku")
+            --]
       it "supports BPFK-2016-03-15" $ do
         validateSentences
             [ ("lo nu broda ba brode", "ba ku lo nu broda kei ku brode")
