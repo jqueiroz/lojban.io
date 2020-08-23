@@ -32,6 +32,7 @@ displayCourseHome userIdentityMaybe topbarCategory course = do
             includeUniversalScripts
             includeInternalStylesheet "course.css"
             includeCourseStylesheet course
+            includeCourseScript course
         H.body $ do
             displayTopbar userIdentityMaybe topbarCategory
             H.div B.! A.class_ (H.stringValue "main") $ do

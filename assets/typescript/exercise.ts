@@ -2,6 +2,8 @@ import * as $ from "jquery";
 
 declare var dictionary;
 declare var deckId: string | any;
+declare var courseId: string | any;
+declare var lessonNumber: string | any;
 
 var createExercisesManager = function(holder) {
     // Elements
@@ -82,6 +84,16 @@ var createExercisesManager = function(holder) {
     };
     // ...
     var exercise_id = null;
+
+    var getUniversalExerciseIdentifier = function() {
+        if ('deckId' in window) {
+            return "[deckId=" + deckId + "]" + "[exerciseId=" + exercise_id + "]";
+        } else if ('courseId' in window && 'lessonNumber' in window) {
+            return "[courseId=" + courseId + "]" + "[lessonNumber=" + lessonNumber + "]";
+        } else {
+            return "unknown";
+        }
+    };
 
     var nextExercise = function() {
         exercise_id = Math.floor(Math.random() * 1000);

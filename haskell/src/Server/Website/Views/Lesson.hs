@@ -34,6 +34,8 @@ displayLessonHome userIdentityMaybe topbarCategory course lessonNumber = do
             includeUniversalScripts
             includeInternalStylesheet "lesson.css"
             includeCourseStylesheet course
+            includeCourseScript course
+            includeLessonScript lessonNumber
         H.body $ do
             displayTopbar userIdentityMaybe topbarCategory
             H.div B.! A.class_ (H.stringValue "main") $ do
@@ -90,6 +92,8 @@ displayLessonExercise userIdentityMaybe topbarCategory course lessonNumber = do
             includeInternalStylesheet "list-group-horizontal.css"
             includeInternalStylesheet "exercise.css"
             includeUniversalScripts
+            includeCourseScript course
+            includeLessonScript lessonNumber
             includeDictionaryScript dictionary
             includeInternalScript "exercise-min.js"
             includeCourseStylesheet course
