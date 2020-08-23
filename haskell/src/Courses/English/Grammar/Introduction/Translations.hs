@@ -1217,11 +1217,11 @@ translations9_poi = expandTranslationGenerator $ combineGeneratorsUniformly [com
         ]
     uses = generatorFromList $ usesComputers ++
         [ (["lo ctuca noi {ke'a} pendo cu cusku lo se du'u lo skami cu se pilno"], ["The instructor, who is friendly, said that computers are useful."])
-        , (["mi gleki lo nu do dunda lo se pilno mi"], ["I am happy that you gave me the tool."])
-        , (["mi gleki lo nu do vecnu lo se pilno mi"], ["I am happy that you sold me the tool."])
-        , (["xu do gleki lo nu do te vecnu lo se pilno"], ["Are you happy that you bought the tool?"])
-        , (["xu do gleki lo nu mi dunda lo se pilno do"], ["Are you happy that I gave you the tool?"])
-        , (["xu do gleki lo nu mi vecnu lo se pilno do"], ["Are you happy that I sold you the tool?"])
+        , (["lo ctuca noi {ke'a} pendo cu gleki lo nu do dunda lo se pilno mi"], ["The instructor, who is friendly, happy that you gave me the tool."])
+        , (["lo ctuca noi {ke'a} pendo cu gleki lo nu do vecnu lo se pilno mi"], ["The instructor, who is friendly, happy that you sold me the tool."])
+        , (["xu lo ctuca noi {ke'a} pendo cu gleki lo nu do te vecnu lo se pilno"], ["Is the instructor, who is friendly, happy that you bought the tool?"])
+        , (["xu lo ctuca noi {ke'a} pendo cu gleki lo nu mi dunda lo se pilno do"], ["Is the instructor, who is friendly, happy that I gave you the tool?"])
+        , (["xu lo ctuca noi {ke'a} pendo cu gleki lo nu mi vecnu lo se pilno do"], ["Is the instructor, who is friendly, happy that I sold you the tool?"])
         ]
     house = generatorFromList
         [ (["lo zdani poi {ke'a} melbi do cu se dunda fi mi"], ["The house that you found beautiful was donated to me."])

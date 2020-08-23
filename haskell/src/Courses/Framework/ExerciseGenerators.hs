@@ -151,7 +151,10 @@ generateContextualizedFillingBlanksExerciseByAlternatives alternatives translati
     (lojbanSentenceText, r2) = chooseItemUniformly r1 (fst translation)
     (englishSentenceText, r3) = chooseItemUniformly r2 (snd translation)
     correctAlternatives = filter (`isSubexpressionOf` lojbanSentenceText) $ alternatives
-    correctAlternative = assert (length correctAlternatives == 1) $ head correctAlternatives
+    correctAlternative = case correctAlternatives of
+        [] -> error $ "generateContextualizedFillingBlanksExerciseByAlternatives: no correct alternative. Lojban sentence text: " ++ show lojbanSentenceText ++ ". Alternatives: " ++ show alternatives
+        [x] -> x
+        _ -> error $ "generateContextualizedFillingBlanksExerciseByAlternatives: more than one correct alternative. Lojban sentence text: " ++ show lojbanSentenceText ++ ". Alternatives: " ++ show alternatives
     incorrectAlternatives = filter (/= correctAlternative) alternatives
     title = "Complete the translation"
     redactedLojbanSentenceText = replaceFirstSubexpression correctAlternative "____" lojbanSentenceText
