@@ -9,6 +9,7 @@ module Server.OAuth2.Google
 , readUserIdentityFromCookies
 ) where
 
+import Server.OAuth2.Utils (isAllowedReferer, redirectToCurrentRefererIfAllowed)
 import GHC.Generics
 import Server.Core
 import Happstack.Server
@@ -18,7 +19,6 @@ import Control.Monad (msum)
 import Control.Monad.Extra (liftMaybe)
 import Control.Monad.Trans (lift, liftIO)
 import Control.Monad.Trans.Maybe (MaybeT(..), runMaybeT)
-import Data.List (isPrefixOf)
 import URI.ByteString (URI, parseURI, strictURIParserOptions, serializeURIRef')
 import URI.ByteString.QQ (uri)
 import qualified Network.HTTP.Client as HC
@@ -32,17 +32,6 @@ import qualified Data.Aeson as A
 import qualified Data.Text as T
 import qualified Data.Text.Encoding as TE
 import qualified Data.ByteString.Base64 as B64
-
-allowedRefererPrefixes :: [String]
-allowedRefererPrefixes =
-    [ "http://localhost:8000/"
-    , "http://localhost:8080/"
-    , "https://lojban.johnjq.com/"
-    , "https://lojban.io/"
-    ]
-
-isAllowedReferer :: String -> Bool
-isAllowedReferer referer = any (`isPrefixOf` referer) allowedRefererPrefixes
 
 data Claims = Claims
     { email :: T.Text
@@ -142,22 +131,6 @@ redirectToSavedReferer = do
         -- Redirect the homepage
         tempRedirect ("/" :: T.Text) $ toResponse ("" :: T.Text)
 
-redirectToCurrentReferer :: ServerPart Response
-redirectToCurrentReferer = do
-    refererMaybe <- getHeader "Referer" <$> askRq
-    case refererMaybe of
-        Nothing -> do
-            -- Redirect the homepage
-            tempRedirect ("/" :: T.Text) $ toResponse ("" :: T.Text)
-        Just referer -> do
-            let referer' = BSS8.unpack referer
-            if isAllowedReferer referer' then
-                -- Redirect to referer
-                tempRedirect referer' $ toResponse ("" :: T.Text)
-            else
-                -- Redirect the homepage
-                tempRedirect ("/" :: T.Text) $ toResponse ("" :: T.Text)
-
 handleLogin :: ServerPart Response
 handleLogin = do
     saveReferer
@@ -168,7 +141,7 @@ handleLogout :: ServerPart Response
 handleLogout = do
     expireCookie identityTokenCookieName
     expireCookie userInfoCookieName
-    redirectToCurrentReferer
+    redirectToCurrentRefererIfAllowed
 
 handleCallback :: ServerResources -> ServerPart Response
 handleCallback serverResources = do
