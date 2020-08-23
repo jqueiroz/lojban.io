@@ -1,7 +1,7 @@
 # Lojban teaching platform
 
 The main goal of this project is to create a robust teaching platform for the artificial language [Lojban](https://mw.lojban.org/papri/Lojban).
-This project is inspired by Duolingo, but it is somewhat more specific in that it attempts to exploit some of Lojban's unique features, such as machine-parsability.
+This project is inspired by Duolingo, but it is somewhat more specific in that it exploits some of Lojban's unique features, such as machine-parsability.
 It is written almost entirely in Haskell.
 
 An experimental version of the platform is available at [https://lojban.io](https://lojban.io).
