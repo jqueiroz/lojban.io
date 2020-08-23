@@ -48,8 +48,14 @@ brivlaList = map fst translationsByExpression
 
 -- * Auxiliar functions
 buildBrivlaExerciseGenerator :: T.Text -> ExerciseGenerator
-buildBrivlaExerciseGenerator brivla = combineGenerators [(12, translationExercises), (2, brivlaPlacesExercises), (3, brivlaProvidingExercises)] where
+buildBrivlaExerciseGenerator brivla = combineGenerators chosenGenerators where
     translationExercises = generateFillingBlanksExerciseByExpression $ filter ((== brivla) . fst) translationGeneratorByExpression
     translationGeneratorByExpression = map (second generatorFromList) translationsByExpression
     brivlaPlacesExercises = generateIsolatedBrivlaPlacesExercise dictionary [brivla]
     brivlaProvidingExercises = generateLexiconProvidingExercise "brivla" dictionary $ generatorFromList [brivla]
+    brivlaHasAtLeastTwoPlaces = (length $ retrieveBrivlaPlaces dictionary brivla) >= 2
+    chosenGenerators =
+        if brivlaHasAtLeastTwoPlaces then
+            [(12, translationExercises), (2, brivlaPlacesExercises), (3, brivlaProvidingExercises)]
+        else
+            [(12, translationExercises), (4, brivlaProvidingExercises)]
