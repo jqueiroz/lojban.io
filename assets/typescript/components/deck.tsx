@@ -32,7 +32,7 @@ export class Deck extends React.Component<IDeckProps, IDeckState> {
                 cardId: cardExternalData.title,
                 title: cardExternalData.title,
                 shortDescription: cardExternalData.shortDescription,
-                enabled: cardPreferences == null ? false : cardPreferences[cardExternalData.title].enabled,
+                status: cardPreferences == null ? "" : cardPreferences[cardExternalData.title].status,
                 score: cardProficiencies == null ? 0 : cardProficiencies[cardExternalData.title].score,
             };
             return (

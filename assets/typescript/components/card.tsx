@@ -13,17 +13,18 @@ interface ICardProps {
     title: string;
     shortDescription: string;
     score: number;
-    enabled: boolean;
+    status: string;
 };
 
-enum CardEnabledState {
-    Enabled = "enabled",
-    Disabled = "disabled",
-    Updating = "updating",
+enum CardStatus {
+    AlreadyMastered = "AlreadyMastered",
+    CurrentlyLearning = "CurrentlyLearning",
+    NotStarted = "NotStarted",
+    Updating = "Updating",
 };
 
 interface ICardState {
-    enabledState: CardEnabledState;
+    status: CardStatus;
 };
 
 export class Card extends React.Component<ICardProps, ICardState> {
@@ -31,7 +32,10 @@ export class Card extends React.Component<ICardProps, ICardState> {
         super(props);
 
         this.state = {
-            enabledState: props.enabled ? CardEnabledState.Enabled : CardEnabledState.Disabled,
+            status:
+                props.status == CardStatus.AlreadyMastered.toString() ? CardStatus.AlreadyMastered : 
+                props.status == CardStatus.CurrentlyLearning.toString() ? CardStatus.CurrentlyLearning :
+                CardStatus.NotStarted,
         };
     }
 
@@ -39,21 +43,19 @@ export class Card extends React.Component<ICardProps, ICardState> {
         return this.props.score * PROFICIENCY_MAXIMUM_STARS;
     }
 
-    setCardState(cardNewState: boolean) {
-        if (cardNewState == true) {
-            this.setState({
-                enabledState: CardEnabledState.Enabled,
-            });
-        } else {
-            this.setState({
-                enabledState: CardEnabledState.Disabled,
-            });
-        }
+    setCardStatus(cardNewStatus: CardStatus) {
+        this.setState({
+            status: cardNewStatus,
+        });
     }
 
-    persistCardState(cardNewState: boolean) {
+    persistNewCardStatus(cardPreviousStatus: CardStatus, cardNewStatus: CardStatus) {
+        if (cardPreviousStatus == CardStatus.Updating || cardNewStatus === CardStatus.Updating) {
+            throw new Error("Invalid card status for persisting.");
+        }
+
         Jquery.ajax({
-            url: "/api/v0/deck/" + this.props.deckId + "/setCardStatus/" + this.props.cardId + "/" + (cardNewState ? "enabled" : "disabled"),
+            url: "/api/v0/deck/" + this.props.deckId + "/setCardStatus/" + this.props.cardId + "/" + cardNewStatus.toString(),
             method: "POST",
             dataType: "text",
             statusCode: {
@@ -62,27 +64,27 @@ export class Card extends React.Component<ICardProps, ICardState> {
                 },
             }
         }).done(response => {
-            this.setCardState(cardNewState);
+            this.setCardStatus(cardNewStatus);
         }).fail(response => {
-            this.setCardState(!cardNewState);
+            this.setCardStatus(cardPreviousStatus);
         });
     }
 
     toggleEnabledState() {
-        if (this.state.enabledState == CardEnabledState.Enabled) {
-            this.persistCardState(false);
-        } else if (this.state.enabledState == CardEnabledState.Disabled) {
-            this.persistCardState(true);
+        if (this.state.status == CardStatus.CurrentlyLearning) {
+            this.persistNewCardStatus(this.state.status, CardStatus.NotStarted);
+        } else if (this.state.status == CardStatus.NotStarted) {
+            this.persistNewCardStatus(this.state.status, CardStatus.CurrentlyLearning);
         }
 
         this.setState({
-            enabledState: CardEnabledState.Updating,
+            status: CardStatus.Updating,
         });
     }
 
     render() {
         return (
-            <div className={"card " + this.state.enabledState} onClick={this.toggleEnabledState.bind(this)}>
+            <div className={"card " + this.state.status} onClick={this.toggleEnabledState.bind(this)}>
                 <div className="card-header">
                     <div className="card-title">{ this.props.title }</div>
                     <div className="card-proficiency">

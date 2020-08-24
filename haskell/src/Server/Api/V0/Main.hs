@@ -61,8 +61,9 @@ handleDeckRetrieve serverConfiguration serverResources deck = do
 
 handleDeckSetCardStatus :: ServerConfiguration -> ServerResources -> Deck -> T.Text -> ServerPart Response
 handleDeckSetCardStatus serverConfiguration serverResources deck cardTitle = msum
-    [ dir "enabled" $ handleDeckSetCardStatus' serverConfiguration serverResources deck cardTitle CardCurrentlyLearning
-    , dir "disabled" $ handleDeckSetCardStatus' serverConfiguration serverResources deck cardTitle CardNotStarted
+    [ dir "AlreadyMastered" $ handleDeckSetCardStatus' serverConfiguration serverResources deck cardTitle CardAlreadyMastered
+    , dir "CurrentlyLearning" $ handleDeckSetCardStatus' serverConfiguration serverResources deck cardTitle CardCurrentlyLearning
+    , dir "NotStarted" $ handleDeckSetCardStatus' serverConfiguration serverResources deck cardTitle CardNotStarted
     ]
 
 handleDeckSetCardStatus' :: ServerConfiguration -> ServerResources -> Deck -> T.Text -> CardStatus -> ServerPart Response

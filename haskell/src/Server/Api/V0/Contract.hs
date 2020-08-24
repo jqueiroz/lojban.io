@@ -4,7 +4,6 @@
 module Server.Api.V0.Contract where
 
 import GHC.Generics
-import qualified Server.Core as Core
 import qualified Data.Aeson as A
 import qualified Data.Map as M
 import qualified Data.Text as T
@@ -37,11 +36,15 @@ data DeckPreferences = DeckPreferences
     { cardPreferences :: M.Map T.Text CardPreferences
     } deriving (Generic, Show)
 
-type CardStatus = Core.CardStatus
+data CardStatus = CurrentlyLearning | AlreadyMastered | NotStarted
+    deriving (Eq, Generic, Show)
 
 data CardPreferences = CardPreferences
     { status :: CardStatus
     } deriving (Generic, Show)
+
+instance A.FromJSON CardStatus where
+    parseJSON = A.genericParseJSON A.defaultOptions
 
 data DeckProficiency = DeckProficiency
     { cardProficiencies :: M.Map T.Text CardProficiency
@@ -67,6 +70,9 @@ instance A.ToJSON DeckPreferences where
     toEncoding = A.genericToEncoding A.defaultOptions
 
 instance A.ToJSON CardPreferences where
+    toEncoding = A.genericToEncoding A.defaultOptions
+
+instance A.ToJSON CardStatus where
     toEncoding = A.genericToEncoding A.defaultOptions
 
 instance A.ToJSON DeckProficiency where
