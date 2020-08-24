@@ -41,8 +41,11 @@ data DeckPreferences = DeckPreferences
     { cardPreferences :: M.Map T.Text CardPreferences
     } deriving (Generic, Show)
 
+data CardStatus = CardCurrentlyLearning | CardAlreadyMastered | CardNotStarted
+    deriving (Eq, Generic, Show)
+
 data CardPreferences = CardPreferences
-    { cardEnabled :: Bool
+    { cardStatus :: CardStatus
     } deriving (Generic, Show)
 
 data DeckProficiency = DeckProficiency
@@ -59,6 +62,9 @@ instance A.FromJSON DeckPreferences where
 instance A.FromJSON CardPreferences where
     parseJSON = A.genericParseJSON A.defaultOptions
 
+instance A.FromJSON CardStatus where
+    parseJSON = A.genericParseJSON A.defaultOptions
+
 instance A.FromJSON DeckProficiency where
     parseJSON = A.genericParseJSON A.defaultOptions
 
@@ -69,6 +75,9 @@ instance A.ToJSON DeckPreferences where
     toEncoding = A.genericToEncoding A.defaultOptions
 
 instance A.ToJSON CardPreferences where
+    toEncoding = A.genericToEncoding A.defaultOptions
+
+instance A.ToJSON CardStatus where
     toEncoding = A.genericToEncoding A.defaultOptions
 
 instance A.ToJSON DeckProficiency where

@@ -71,13 +71,13 @@ retrieveDeckPreferences :: UserIdentifier -> Deck -> Redis.Redis DeckPreferences
 retrieveDeckPreferences userIdentifier deck = do
     let key = deckPreferencesKey userIdentifier deck
     let defaultDeckPreferences = DeckPreferences M.empty
-    let defaultCardPreferences = CardPreferences False
+    let defaultCardPreferences = CardPreferences CardNotStarted
     originalDeckPreferences :: DeckPreferences <- fromMaybe defaultDeckPreferences . A.decode . BS.fromStrict . fromMaybe BSS.empty . fromRight Nothing <$> Redis.get (TE.encodeUtf8 key)
     let originalCardPreferences = cardPreferences originalDeckPreferences
     let adjustedCardPreferences = M.fromList $ (flip map) (map cardTitle $ deckCards deck) $ \title -> (title, M.findWithDefault defaultCardPreferences title originalCardPreferences)
-    let adjustedCardPreferences' = if any cardEnabled (M.elems adjustedCardPreferences)
+    let adjustedCardPreferences' = if any isCardEnabled (M.elems adjustedCardPreferences)
         then adjustedCardPreferences
-        else M.insert (cardTitle $ head $ deckCards deck) (CardPreferences $ True) adjustedCardPreferences
+        else M.insert (cardTitle $ head $ deckCards deck) (CardPreferences CardCurrentlyLearning) adjustedCardPreferences
     let adjustedDeckPreferences = DeckPreferences adjustedCardPreferences'
     return adjustedDeckPreferences
 
@@ -116,11 +116,11 @@ updateDeckProficiencyByRegisteringExerciseAttempt userIdentifier deck cardTitle 
         let newDeckProficiency = DeckProficiency newCardProficiencies
         saveDeckProficiency userIdentifier deck newDeckProficiency
 
-updateDeckPreferencesByTogglingCard :: UserIdentifier -> Deck -> T.Text -> Bool -> Redis.Redis (Either Redis.Reply Redis.Status)
-updateDeckPreferencesByTogglingCard userIdentifier deck cardTitle cardNewState = do
+updateDeckPreferencesByTogglingCard :: UserIdentifier -> Deck -> T.Text -> CardStatus -> Redis.Redis (Either Redis.Reply Redis.Status)
+updateDeckPreferencesByTogglingCard userIdentifier deck cardTitle cardNewStatus = do
         oldDeckPreferences <- retrieveDeckPreferences userIdentifier deck
         let oldCardPreferences = cardPreferences oldDeckPreferences
-        let newCardPreferences = M.insert cardTitle (CardPreferences cardNewState) oldCardPreferences
+        let newCardPreferences = M.insert cardTitle (CardPreferences cardNewStatus) oldCardPreferences
         let newDeckPreferences = DeckPreferences newCardPreferences
         saveDeckPreferences userIdentifier deck newDeckPreferences
 
@@ -134,7 +134,7 @@ retrieveDeckActiveCards userIdentifier deck = do
                 title = cardTitle card
                 preferences = M.lookup title preferencesMap
             in
-                maybe False cardEnabled preferences
+                maybe False isCardEnabled preferences
     -- Retrieve weights for cards
     proficiencyMap <- cardProficiencies <$> retrieveDeckProficiency userIdentifier deck
     return $ (flip map) enabledCards $ \card ->
@@ -145,3 +145,6 @@ retrieveDeckActiveCards userIdentifier deck = do
                 proficiencyScore = maybe 0 computeCardProficiencyScore proficiency
             in
                 (card, proficiencyWeight, proficiencyScore)
+
+isCardEnabled :: CardPreferences -> Bool
+isCardEnabled = (== CardCurrentlyLearning) . cardStatus

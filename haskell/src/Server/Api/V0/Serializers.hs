@@ -39,8 +39,8 @@ serializeDeckPreferences deckPreferences = Contract.DeckPreferences serializedCa
     serializedCardPreferences = M.map serializeCardPreferences $ cardPreferences deckPreferences
 
 serializeCardPreferences :: CardPreferences -> Contract.CardPreferences
-serializeCardPreferences cardPreferences = Contract.CardPreferences enabled where
-    enabled = cardEnabled cardPreferences
+serializeCardPreferences cardPreferences = Contract.CardPreferences status where
+    status = cardStatus cardPreferences
 
 serializeDeckProficiency :: DeckProficiency -> Contract.DeckProficiency
 serializeDeckProficiency deckProficiency = Contract.DeckProficiency serializedCardProficiency where

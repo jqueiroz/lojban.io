@@ -61,11 +61,11 @@ handleDeckRetrieve serverConfiguration serverResources deck = do
 
 handleDeckSetCardStatus :: ServerConfiguration -> ServerResources -> Deck -> T.Text -> ServerPart Response
 handleDeckSetCardStatus serverConfiguration serverResources deck cardTitle = msum
-    [ dir "enabled" $ handleDeckSetCardStatus' serverConfiguration serverResources deck cardTitle True
-    , dir "disabled" $ handleDeckSetCardStatus' serverConfiguration serverResources deck cardTitle False
+    [ dir "enabled" $ handleDeckSetCardStatus' serverConfiguration serverResources deck cardTitle CardCurrentlyLearning
+    , dir "disabled" $ handleDeckSetCardStatus' serverConfiguration serverResources deck cardTitle CardNotStarted
     ]
 
-handleDeckSetCardStatus' :: ServerConfiguration -> ServerResources -> Deck -> T.Text -> Bool -> ServerPart Response
+handleDeckSetCardStatus' :: ServerConfiguration -> ServerResources -> Deck -> T.Text -> CardStatus -> ServerPart Response
 handleDeckSetCardStatus' serverConfiguration serverResources deck cardTitle cardNewStatus = do
     identityMaybe <- OAuth2.readUserIdentityFromCookies serverConfiguration serverResources
     case identityMaybe of

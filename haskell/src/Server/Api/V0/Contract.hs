@@ -4,6 +4,7 @@
 module Server.Api.V0.Contract where
 
 import GHC.Generics
+import qualified Server.Core as Core
 import qualified Data.Aeson as A
 import qualified Data.Map as M
 import qualified Data.Text as T
@@ -36,8 +37,10 @@ data DeckPreferences = DeckPreferences
     { cardPreferences :: M.Map T.Text CardPreferences
     } deriving (Generic, Show)
 
+type CardStatus = Core.CardStatus
+
 data CardPreferences = CardPreferences
-    { enabled :: Bool
+    { status :: CardStatus
     } deriving (Generic, Show)
 
 data DeckProficiency = DeckProficiency
