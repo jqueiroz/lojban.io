@@ -70,12 +70,20 @@ export class Card extends React.Component<ICardProps, ICardState> {
         });
     }
 
-    toggleEnabledState() {
-        if (this.state.status == CardStatus.CurrentlyLearning) {
-            this.persistNewCardStatus(this.state.status, CardStatus.NotStarted);
+    getNextCardStatus(currentStatus) {
+        if (this.state.status == CardStatus.AlreadyMastered) {
+            return CardStatus.NotStarted;
         } else if (this.state.status == CardStatus.NotStarted) {
-            this.persistNewCardStatus(this.state.status, CardStatus.CurrentlyLearning);
+            return CardStatus.CurrentlyLearning;
+        } else if (this.state.status == CardStatus.CurrentlyLearning) {
+            return CardStatus.AlreadyMastered;
+        } else {
+            throw new Error("Invalid card status: " + currentStatus);
         }
+    }
+
+    toggleEnabledState() {
+        this.persistNewCardStatus(this.state.status, this.getNextCardStatus(this.state.status));
 
         this.setState({
             status: CardStatus.Updating,
