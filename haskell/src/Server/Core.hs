@@ -10,6 +10,7 @@ import qualified Data.Map as M
 import qualified Data.Text as T
 
 data EnvironmentType = EnvironmentTypeDev | EnvironmentTypeProd
+    deriving (Eq, Show)
 
 data IdentityProvider = IdentityProvider
     { identityProviderName :: T.Text

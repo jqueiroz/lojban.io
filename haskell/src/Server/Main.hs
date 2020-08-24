@@ -27,7 +27,9 @@ runServer portNumber = do
 
 handleRoot :: ServerConfiguration -> ServerResources -> ServerPart Response
 handleRoot serverConfiguration serverResources = do
-    let cacheControlForAssets = fmap $ setHeader "Cache-Control" "max-age=600"
+    let cacheControlForAssets = case serverConfigurationEnvironmentType serverConfiguration of
+            EnvironmentTypeProd -> fmap $ setHeader "Cache-Control" "max-age=600"
+            _ -> id
     _ <- compressedResponseFilter
     msum
         [ dir "docs" $ movedPermanently ("documentation/lojto-0.1.0.0/index.html" :: String) (toResponse ())
