@@ -138,9 +138,6 @@ displayResources = do
         H.h2 $ H.toHtml ("Others" :: T.Text)
         H.ul $ do
             H.li $ do
-                H.a "za'o album by la selpa'i"
-                    B.! A.href "https://djemynai.bandcamp.com/"
-            H.li $ do
                 H.a "Pronunciation guides"
                     B.! A.href "https://mw.lojban.org/papri/pronunciation"
             H.li $ do
@@ -167,3 +164,12 @@ displayResources = do
             H.li $ do
                 H.a "Multimedia"
                     B.! A.href "https://mw.lojban.org/papri/multimedia"
+    H.div B.! A.class_ (H.textValue "resource-category") $ do
+        H.h2 $ H.toHtml ("Music" :: T.Text)
+        H.ul $ do
+            H.li $ do
+                H.a "Album: za'o (by la selpa'i)"
+                    B.! A.href "https://djemynai.bandcamp.com/album/zao"
+            H.li $ do
+                H.a "Song: tensaia (by la selpa'i)"
+                    B.! A.href "https://djemynai.bandcamp.com/album/tensaia"
