@@ -48,10 +48,12 @@ displayDeckHome serverConfiguration userIdentityMaybe deck = do
                                 H.div $ do
                                     fromRight . P.runPure . PWH.writeHtml5 P.def $ fromJust (deckLongDescription deck)
                         H.div B.! A.class_ (H.stringValue "deck-manage") $ do
-                            -- TOOD: Section: "Manage your cards"
                             H.h2 $ H.toHtml ("Manage your cards" :: T.Text)
-                            -- TODO: brief explanation of deck/cards, then three sections: currently learning, pending and mastered
-                            -- TOOD: Some hints as well (eg, "generally you do not need to disable cards that you already know. If we think you have mastered a card, we will display it less frequently so that you can focus on...")
+                            H.p $ H.toHtml ("Tap on cards to alternate between \"not started\", \"currently learning\" and \"already mastered\"." `T.append`
+                                            " Only cards tagged as \"currently learning\" will appear in exercises. " `T.append`
+                                            " Consequently, once you have mastered a card, you may optionally tag it as \"already mastered\" to ignore it." :: T.Text)
+                            H.p $ H.toHtml ("For the optimal learning experience, we suggest having between 10 and 200 active cards at any given moment." `T.append`
+                                            " Cards for exercises are selected algorithmically, in such a way that lesser-known cards are featured more frequently." :: T.Text)
                             H.div B.! A.class_ (H.stringValue "deck-cards") $ H.toHtml ("" :: T.Text)
                         when (isJust $ deckCredits deck) $ do
                             H.div B.! A.class_ (H.stringValue "deck-credits") $ do
