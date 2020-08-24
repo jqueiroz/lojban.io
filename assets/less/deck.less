@@ -123,6 +123,7 @@
     ul {
         list-style-type: none;
         padding-left: 0;
+        margin-left: -5em;
     }
 
     li {
@@ -132,6 +133,7 @@
 
     .card {
         /* Position */
+        position: relative;
         width: 20em;
         margin-top: 2em;
         margin-left: 5em;
@@ -139,26 +141,79 @@
         /* Style */
         padding: 2em;
         cursor: pointer;
+        color: #fff;
+        font-size: 1.1em;
 
         /* Border */
         border: solid 1px hsl(0, 0, 70%);
         border-radius: 0.2em;
     }
 
+    .card .card-bg {
+        /* Position */
+        z-index: 0;
+        position: absolute;
+        display: block;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+
+        /* Source: https://publicdomainpictures.net/en/view-image.php?image=1306&picture=brick-wall */
+        background: url(https://publicdomainpictures.net/pictures/10000/velka/1-12235776346tUr.jpg);
+        opacity: 0.08;
+        background-size: 15em;
+    }
+
     .card.CurrentlyLearning {
-        background-color: hsl(120, 15%, 90%);
+        /*background-color: hsl(45, 80%, 45%);*/
+        /*background-color: hsl(90, 30%, 20%);*/
+        background-color: hsl(261, 100%, 60%);
     }
 
     .card.AlreadyMastered {
-        background-color: hsl(270, 15%, 90%);
+        background-color: hsl(90, 30%, 30%);
+        /*background-color: hsl(261, 100%, 60%);*/
     }
 
     .card.NotStarted {
-        background-color: hsl(0, 0%, 90%);
+        background-color: hsl(90, 0%, 20%);
     }
 
     .card.Updating {
-        background-color: #fff;
+        /*background-color: hsl(90, 0%, 0%);*/
+        background-color: hsl(45, 80%, 45%);
+    }
+
+    .card .card-state:after {
+        /* Position */
+        position: relative;
+        text-align: right;
+        display: block;
+        margin-top: 0.8em;
+        margin-bottom: -1em;
+        margin-right: -1em;
+
+        /* Style */
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 0.8em;
+    }
+
+    .card.CurrentlyLearning .card-state:after {
+        content: "Learning";
+    }
+
+    .card.AlreadyMastered .card-state:after {
+        content: "Mastered";
+    }
+
+    .card.NotStarted .card-state:after {
+        content: "Not started";
+    }
+
+    .card.Updating .card-state:after {
+        content: "Processing...";
     }
 
     .card-header {
@@ -191,7 +246,7 @@
 
     .card-description {
         /* Position */
-        min-height: 5em;
+        min-height: 4em;
 
         /* Style */
         font-family: Roboto;

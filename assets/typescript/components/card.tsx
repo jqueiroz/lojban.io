@@ -93,6 +93,7 @@ export class Card extends React.Component<ICardProps, ICardState> {
     render() {
         return (
             <div className={"card " + this.state.status} onClick={this.toggleEnabledState.bind(this)}>
+                <div className="card-bg" />
                 <div className="card-header">
                     <div className="card-title">{ this.props.title }</div>
                     <div className="card-proficiency">
@@ -105,6 +106,7 @@ export class Card extends React.Component<ICardProps, ICardState> {
                     </div>
                 </div>
                 <div className="card-description">{ this.props.shortDescription }</div>
+                <div className="card-state" />
             </div>
         );
     }
