@@ -4,3 +4,4 @@
 **/node_modules
 assets/package-lock.json
 stack.yaml.lock
+.redis-dev.database

@@ -19,6 +19,7 @@ data IdentityProvider = IdentityProvider
 data ServerConfiguration = ServerConfiguration
     { serverConfigurationEnvironmentType :: EnvironmentType
     , serverConfigurationIdentityProvider :: IdentityProvider
+    , serverConfigurationRedisHostname :: Maybe String
     }
 
 data ServerResources = ServerResources

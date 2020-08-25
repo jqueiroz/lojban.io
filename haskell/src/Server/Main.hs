@@ -22,7 +22,7 @@ import qualified Server.OAuth2.Main as OAuth2
 runServer :: Int -> IO ()
 runServer portNumber = do
     serverConfiguration <- readServerConfiguration
-    serverResources <- acquireServerResources
+    serverResources <- acquireServerResources serverConfiguration
     seq serverConfiguration $ simpleHTTP nullConf { port = portNumber } (handleRoot serverConfiguration serverResources)
 
 handleRoot :: ServerConfiguration -> ServerResources -> ServerPart Response
@@ -43,13 +43,27 @@ handleRoot serverConfiguration serverResources = do
         , Website.handleRoot serverConfiguration serverResources
         ]
 
-acquireServerResources :: IO ServerResources
-acquireServerResources = do
+acquireServerResources :: ServerConfiguration -> IO ServerResources
+acquireServerResources serverConfiguration = do
     tlsManager <- newManager tlsManagerSettings
-    redisHostname <- fromMaybe "127.0.0.1" <$> lookupEnv "LOJBAN_TOOL_REDIS_HOSTNAME"
-    redisConnection <- Redis.checkedConnect Redis.defaultConnectInfo
-        { Redis.connectHost = redisHostname
-        }
+    let connectInfo = case serverConfigurationEnvironmentType serverConfiguration of
+            EnvironmentTypeProd ->
+                -- For prod, we must always connect over TCP to $LOJBAN_TOOL_REDIS_HOSTNAME
+                case serverConfigurationRedisHostname serverConfiguration of
+                        Nothing -> error "Running in production. The environment variable LOJBAN_TOOL_REDIS_HOSTNAME must be specified."
+                        Just redisHostname -> Redis.defaultConnectInfo
+                            { Redis.connectHost = redisHostname
+                            }
+            EnvironmentTypeDev ->
+                -- For dev, if $LOJBAN_TOOL_REDIS_HOSTNAME is unspecified, we fall back to unix sockets
+                case serverConfigurationRedisHostname serverConfiguration of
+                        Nothing -> Redis.defaultConnectInfo
+                            { Redis.connectPort = Redis.UnixSocket "/tmp/lojbanios-redis-dev.sock"
+                            }
+                        Just redisHostname -> Redis.defaultConnectInfo
+                            { Redis.connectHost = redisHostname
+                            }
+    redisConnection <- Redis.checkedConnect connectInfo
     return $ ServerResources tlsManager redisConnection
 
 readServerConfiguration :: IO ServerConfiguration
@@ -58,7 +72,11 @@ readServerConfiguration = do
         Just "prod" -> return EnvironmentTypeProd
         Just "dev" -> return EnvironmentTypeDev
         _ -> error "Error: incorrect or unspecified environment type"
+    redisHostname <- lookupEnv "LOJBAN_TOOL_REDIS_HOSTNAME" >>= \case
+        Nothing -> return Nothing
+        Just "" -> return Nothing
+        Just x -> return $ Just x
     let identityProvider = case environmentType of
             EnvironmentTypeProd -> IdentityProvider ("google" :: T.Text)
             _ -> IdentityProvider ("mock" :: T.Text)
-    return $ ServerConfiguration environmentType identityProvider
+    return $ ServerConfiguration environmentType identityProvider redisHostname

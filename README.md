@@ -37,7 +37,10 @@ Second, you will be able to use helper scripts to run development tools such as 
 All you need is to install the [Nix package manager](https://nixos.org/nix/).
 On most Linux distributions, this can be achieved by running `curl https://nixos.org/nix/install | sh` and following the instructions, if any (see also [Getting Nix](https://nixos.org/nix/download.html)).
 
-Once you have installed Nix, you should be able to start the webserver by running `./run-server.sh` (for the first run, this may take between 10 minutes and one hour as all of the dependencies will need to be compiled).
+Once you have installed Nix, you should be able to start the project by running the following two commands:
+1. `./run-redis.sh`: start a redis server listening to a unix socket at _/tmp/lojbanios-redis-dev.sock_.
+2. `./run-server.sh`: build the project and then start the webserver.
+For the first run, this may take between 10 minutes and one hour as all of the dependencies will need to be compiled.
 The webserver may then be accessed at [http://localhost:8000](http://localhost:8000).
 
 Other useful commands:
