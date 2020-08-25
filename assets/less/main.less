@@ -187,11 +187,19 @@ h6 {
 
         ul.user-menu {
             /* Position */
-            display: none;
+            display: inline-block;
             position: absolute;
             width: calc(12em - 0.5em);
             right: 0;
             top: 3em;
+
+            a {
+                /* We need to ensure that the "sign out" link remains visible for a while leaving the user menu label, so that it can get focused 
+                   Otherwise focus will go directly to the next element, making the link inaccessible by tab navigation.
+                 */
+                visibility: hidden;
+                transition: visibility 50ms;
+            }
 
             /* List */
             list-style: none;
@@ -201,21 +209,26 @@ h6 {
 
             li:first-child {
                 position: relative;
-                top: -1em;
+                top: 1em;
             }
 
             li {
+                position: relative;
+                width: 15em;
+            }
+
+            a {
                 background-color: #fff;
                 width: 12em;
                 box-sizing: border-box;
-                padding: 1em 1em;
-                border: solid 0.2em #999;
+                padding: 0.7em 2em;
+                border: solid 0.15em #999;
                 border-radius: 0.5em;
             }
         }
 
-        input:checked ~ .user-menu, label:hover ~ .user-menu, label:focus ~ .user-menu, .user-menu:hover, .user-menu:focus {
-            display: inline-block;
+        input:checked ~ .user-menu a, label:hover ~ .user-menu a, label:focus ~ .user-menu a, .user-menu:hover a, ul.user-menu:focus a, ul.user-menu a:hover, ul.user-menu a:focus {
+            visibility: visible;
         }
     }
 }
