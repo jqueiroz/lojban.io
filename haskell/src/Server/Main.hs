@@ -32,7 +32,7 @@ handleRoot serverConfiguration serverResources = do
             _ -> id
     _ <- compressedResponseFilter
     msum
-        [ dir "docs" $ movedPermanently ("documentation/lojto-0.1.0.0/index.html" :: String) (toResponse ())
+        [ dir "docs" $ movedPermanently ("documentation/lojbanios-0.1.0.0/index.html" :: String) (toResponse ())
         , dir "documentation" $ serveDirectory EnableBrowsing [] "documentation"
         , dir "static" $ cacheControlForAssets $ serveDirectory EnableBrowsing [] "static"
         , dir "api" $ Api.handleRoot serverConfiguration serverResources

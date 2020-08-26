@@ -3,45 +3,45 @@ FROM johnjq/lojbanios-dependencies:latest
 ####################### Configure the project #######################
 
 # Copy project configuration files
-COPY stack.yaml /lojto/stack.yaml
-COPY lojto.cabal /lojto/lojto.cabal
+COPY stack.yaml /lojbanios/stack.yaml
+COPY lojbanios.cabal /lojbanios/lojbanios.cabal
 
 # Copy source code
-COPY haskell /lojto/haskell
-COPY LICENSE /lojto/LICENSE
+COPY haskell /lojbanios/haskell
+COPY LICENSE /lojbanios/LICENSE
 
 # Copy resources
-COPY resources /lojto/resources
+COPY resources /lojbanios/resources
 
 # Compile source code and documentation
-RUN cd /lojto && stack haddock --no-haddock-deps --haddock-internal
+RUN cd /lojbanios && stack haddock --no-haddock-deps --haddock-internal
 
 # Move documentation
-RUN mv /lojto/.stack-work/install/x86_64-linux-nix/*/*/doc /lojto/documentation
+RUN mv /lojbanios/.stack-work/install/x86_64-linux-nix/*/*/doc /lojbanios/documentation
 
 # Copy audio files
-COPY static/audio /lojto/static/audio
+COPY static/audio /lojbanios/static/audio
 
 # Copy image files
-COPY static/images /lojto/static/images
+COPY static/images /lojbanios/static/images
 
 # Copy pwa files
-COPY static/pwa /lojto/static/pwa
+COPY static/pwa /lojbanios/static/pwa
 
 # Copy assets
-COPY assets /lojto/assets
+COPY assets /lojbanios/assets
 
 # Copy buildscripts
-COPY buildscripts /lojto/buildscripts
+COPY buildscripts /lojbanios/buildscripts
 
 # Generate stylesheet files
-RUN cd /lojto && LOJBAN_TOOL_BYPASS_NIX=true ./buildscripts/make-css.sh
+RUN cd /lojbanios && LOJBAN_TOOL_BYPASS_NIX=true ./buildscripts/make-css.sh
 
 # Generate javascript files
-RUN cd /lojto && LOJBAN_TOOL_BYPASS_NIX=true ./buildscripts/make-javascript.sh
+RUN cd /lojbanios && LOJBAN_TOOL_BYPASS_NIX=true ./buildscripts/make-javascript.sh
 
 ####################### Expose ports #######################
 EXPOSE 8000/tcp
 
 ####################### Default command #######################
-CMD echo "hosts: files dns" > /etc/nsswitch.conf && (redis-server >/dev/null 2>/dev/null &) && cd /lojto && .stack-work/install/x86_64-linux-nix/*/*/bin/server
+CMD echo "hosts: files dns" > /etc/nsswitch.conf && (redis-server >/dev/null 2>/dev/null &) && cd /lojbanios && .stack-work/install/x86_64-linux-nix/*/*/bin/server

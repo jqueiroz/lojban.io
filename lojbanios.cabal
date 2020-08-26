@@ -1,5 +1,5 @@
 cabal-version:       2.2
-name:                lojto
+name:                lojbanios
 version:             0.1.0.0
 synopsis:            Lojban teaching platform
 description:         Robust teaching platform for the artificial language Lojban.
@@ -136,7 +136,7 @@ executable server
   ghc-options:         -j8 -threaded
   build-depends:       base
                      , optparse-applicative
-                     , lojto
+                     , lojbanios
 
 test-suite language
   import:              deps

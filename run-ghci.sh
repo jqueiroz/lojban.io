@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 set -e
 
-./buildscripts/stack.sh ghci lojto:lib --ghci-options "-XOverloadedStrings"
+./buildscripts/stack.sh ghci lojbanios:lib --ghci-options "-XOverloadedStrings"

@@ -10,12 +10,12 @@ RUN nix-env -iA nixpkgs.stack nixpkgs.coreutils nixpkgs.lessc nixpkgs.findutils 
 ####################### Configure the project #######################
 
 # Copy project configuration files
-COPY stack.yaml /lojto/stack.yaml
-COPY lojto.cabal /lojto/lojto.cabal
+COPY stack.yaml /lojbanios/stack.yaml
+COPY lojbanios.cabal /lojbanios/lojbanios.cabal
 
 # Setup GHC
-RUN cd /lojto && stack setup
+RUN cd /lojbanios && stack setup
 
 # Install dependencies
-COPY haskell/libs /lojto/haskell/libs
-RUN cd /lojto && stack install --only-dependencies
+COPY haskell/libs /lojbanios/haskell/libs
+RUN cd /lojbanios && stack install --only-dependencies
