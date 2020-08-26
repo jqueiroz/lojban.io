@@ -54,4 +54,4 @@ if ! docker image ls -a | grep -q "lojban-dev-server"; then
 fi
 
 # Start new containers
-./virtualization/docker.sh run -p "$EXTERNAL_PORT":8000/tcp --env LOJBAN_TOOL_ENVIRONMENT="dev" --env LOJBAN_TOOL_REDIS_HOSTNAME="127.0.0.1" -it --rm --name lojban-dev-server lojban-dev-server
+./virtualization/docker.sh run -p "$EXTERNAL_PORT":8000/tcp --env LOJBANIOS_ENVIRONMENT="dev" --env LOJBANIOS_REDIS_HOSTNAME="127.0.0.1" -it --rm --name lojban-dev-server lojban-dev-server

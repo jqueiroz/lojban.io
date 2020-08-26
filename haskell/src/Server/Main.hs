@@ -48,14 +48,14 @@ acquireServerResources serverConfiguration = do
     tlsManager <- newManager tlsManagerSettings
     let connectInfo = case serverConfigurationEnvironmentType serverConfiguration of
             EnvironmentTypeProd ->
-                -- For prod, we must always connect over TCP to $LOJBAN_TOOL_REDIS_HOSTNAME
+                -- For prod, we must always connect over TCP to $LOJBANIOS_REDIS_HOSTNAME
                 case serverConfigurationRedisHostname serverConfiguration of
-                        Nothing -> error "Running in production. The environment variable LOJBAN_TOOL_REDIS_HOSTNAME must be specified."
+                        Nothing -> error "Running in production. The environment variable LOJBANIOS_REDIS_HOSTNAME must be specified."
                         Just redisHostname -> Redis.defaultConnectInfo
                             { Redis.connectHost = redisHostname
                             }
             EnvironmentTypeDev ->
-                -- For dev, if $LOJBAN_TOOL_REDIS_HOSTNAME is unspecified, we fall back to unix sockets
+                -- For dev, if $LOJBANIOS_REDIS_HOSTNAME is unspecified, we fall back to unix sockets
                 case serverConfigurationRedisHostname serverConfiguration of
                         Nothing -> Redis.defaultConnectInfo
                             { Redis.connectPort = Redis.UnixSocket "/tmp/lojbanios-redis-dev.sock"
@@ -68,11 +68,11 @@ acquireServerResources serverConfiguration = do
 
 readServerConfiguration :: IO ServerConfiguration
 readServerConfiguration = do
-    environmentType <- lookupEnv "LOJBAN_TOOL_ENVIRONMENT" >>= \case
+    environmentType <- lookupEnv "LOJBANIOS_ENVIRONMENT" >>= \case
         Just "prod" -> return EnvironmentTypeProd
         Just "dev" -> return EnvironmentTypeDev
         _ -> error "Error: incorrect or unspecified environment type"
-    redisHostname <- lookupEnv "LOJBAN_TOOL_REDIS_HOSTNAME" >>= \case
+    redisHostname <- lookupEnv "LOJBANIOS_REDIS_HOSTNAME" >>= \case
         Nothing -> return Nothing
         Just "" -> return Nothing
         Just x -> return $ Just x

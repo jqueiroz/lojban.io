@@ -12,7 +12,7 @@ run_command(){
 
 COMMAND="redis-server $*"
 
-if [[ -n "$LOJBAN_TOOL_BYPASS_NIX" ]]; then
+if [[ -n "$LOJBANIOS_BYPASS_NIX" ]]; then
     echo "--> Runing: $COMMAND"
     $COMMAND
 else

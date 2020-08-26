@@ -49,10 +49,10 @@ COPY assets /lojbanios/assets
 COPY buildscripts /lojbanios/buildscripts
 
 # Generate stylesheet files
-RUN cd /lojbanios && LOJBAN_TOOL_BYPASS_NIX=true ./buildscripts/make-css.sh
+RUN cd /lojbanios && LOJBANIOS_BYPASS_NIX=true ./buildscripts/make-css.sh
 
 # Generate javascript files
-RUN cd /lojbanios && LOJBAN_TOOL_BYPASS_NIX=true ./buildscripts/make-javascript.sh
+RUN cd /lojbanios && LOJBANIOS_BYPASS_NIX=true ./buildscripts/make-javascript.sh
 
 ####################### Expose ports #######################
 EXPOSE 8000/tcp

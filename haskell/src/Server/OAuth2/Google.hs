@@ -199,8 +199,8 @@ getGooglePublicKeys serverConfiguration serverResources = do
 
 getOAuth2Config :: ServerPart OA2.OAuth2
 getOAuth2Config = do
-    clientId <- liftIO $ getEnv "LOJBAN_TOOL_OAUTH2_GOOGLE_CLIENT_ID"
-    clientSecret <- liftIO $ getEnv "LOJBAN_TOOL_OAUTH2_GOOGLE_CLIENT_SECRET"
+    clientId <- liftIO $ getEnv "LOJBANIOS_OAUTH2_GOOGLE_CLIENT_ID"
+    clientSecret <- liftIO $ getEnv "LOJBANIOS_OAUTH2_GOOGLE_CLIENT_SECRET"
     let defaultCallbackUri = [uri|https://lojban.io/oauth2/google/callback|]
     callbackUri <- msum [ getCallbackUri, return defaultCallbackUri ]
     return $ OA2.OAuth2

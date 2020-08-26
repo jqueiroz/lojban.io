@@ -7,12 +7,12 @@ cd "$DIR/.."
 
 # Function to run commands inside a Nix shell
 run_command(){
-    nix-shell -I nixpkgs=https://github.com/NixOS/nixpkgs-channels/archive/nixos-19.03.tar.gz "./buildscripts/environments/haskell.nix" --run "$1" --keep LOJBAN_TOOL_ENVIRONMENT --keep LOJBAN_TOOL_OAUTH2_GOOGLE_CLIENT_ID --keep LOJBAN_TOOL_OAUTH2_GOOGLE_CLIENT_SECRET --keep LOJBAN_TOOL_REDIS_HOSTNAME
+    nix-shell -I nixpkgs=https://github.com/NixOS/nixpkgs-channels/archive/nixos-19.03.tar.gz "./buildscripts/environments/haskell.nix" --run "$1" --keep LOJBANIOS_ENVIRONMENT --keep LOJBANIOS_OAUTH2_GOOGLE_CLIENT_ID --keep LOJBANIOS_OAUTH2_GOOGLE_CLIENT_SECRET --keep LOJBANIOS_REDIS_HOSTNAME
 }
 
 COMMAND="stack --no-nix-pure $*"
 
-if [[ -n "$LOJBAN_TOOL_BYPASS_NIX" ]]; then
+if [[ -n "$LOJBANIOS_BYPASS_NIX" ]]; then
     echo "--> Runing: $COMMAND"
     $COMMAND
 else

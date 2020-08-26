@@ -10,7 +10,7 @@ run_command(){
     nix-shell -I nixpkgs=https://github.com/NixOS/nixpkgs-channels/archive/nixos-19.03.tar.gz --pure "./buildscripts/environments/javascript.nix" --run "$1"
 }
 
-if [[ -n "$LOJBAN_TOOL_BYPASS_NIX" ]]; then
+if [[ -n "$LOJBANIOS_BYPASS_NIX" ]]; then
     echo "--> Generating javascript files..."
     ./buildscripts/helpers/make-javascript.sh
 else
