@@ -73,6 +73,7 @@ displayCourseContents baseCourseUrl course = do
 displayCourseLessonItem :: (Int, Lesson) -> H.Html
 displayCourseLessonItem (lessonNumber, lesson) = do
     H.li $ do
+        H.div B.! A.class_ (H.textValue "lesson-bg") $ H.toHtml ("" :: T.Text)
         H.a (H.toHtml $ lessonTitle lesson)
             B.! A.href (H.stringValue . (++"/") . show $ lessonNumber)
 
