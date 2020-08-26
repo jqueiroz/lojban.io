@@ -1,5 +1,5 @@
 {
-  "name": "lojban-tool",
+  "name": "lojban.io",
   "version": "1.0.0",
   "description": "The main goal of this project is to create a robust teaching platform for the artificial language [Lojban](https://mw.lojban.org/papri/Lojban).\r This project is heavily inspired by Duolingo, but it is somewhat more specific in that it attempts to exploit some of Lojban's unique features, such as machine-parsability.",
   "main": "gulpfile.js",
