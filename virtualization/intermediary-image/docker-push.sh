@@ -6,7 +6,7 @@ set -e
 # sudo dockerd -s overlay
 
 # Tag image
-docker tag lojban-dependencies johnjq/lojban-tool-dependencies:latest
+docker tag lojbanios-dependencies johnjq/lojbanios-dependencies:latest
 
 # Push image
-docker push johnjq/lojban-tool-dependencies:latest
+docker push johnjq/lojbanios-dependencies:latest

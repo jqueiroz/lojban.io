@@ -1,4 +1,4 @@
-FROM johnjq/lojban-tool-dependencies:latest
+FROM johnjq/lojbanios-dependencies:latest
 
 ####################### Configure the project #######################
 
