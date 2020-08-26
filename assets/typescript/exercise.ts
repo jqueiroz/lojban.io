@@ -122,7 +122,7 @@ var createExercisesManager = function(holder) {
         body += (exercise_attemptedSolution ? JSON.stringify(exercise_attemptedSolution) : "N/A");
         body += "\n- Attempted solution was classified as correct: " + (exercise_attemptedSolutionWasCorrect === true ? "yes" : exercise_attemptedSolutionWasCorrect === false ? "no" : "N/A");
         body += "\n- Validation payload: " + (exercise_validationPayload ? JSON.stringify(exercise_validationPayload) : "N/A");
-        var url = "https://github.com/jqueiroz/lojban-tool/issues/new?title=" + encodeURIComponent(title) + "&body=" + encodeURIComponent(body) + "&labels=reported-exercise";
+        var url = "https://github.com/jqueiroz/lojban.io/issues/new?title=" + encodeURIComponent(title) + "&body=" + encodeURIComponent(body) + "&labels=reported-exercise";
         window.open(url, "_blank");
     };
 

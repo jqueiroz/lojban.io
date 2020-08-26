@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jqueiroz/lojban-tool.git"
+    "url": "git+https://github.com/jqueiroz/lojban.io.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jqueiroz/lojban-tool/issues"
+    "url": "https://github.com/jqueiroz/lojban.io/issues"
   },
-  "homepage": "https://github.com/jqueiroz/lojban-tool#readme",
+  "homepage": "https://github.com/jqueiroz/lojban.io#readme",
   "dependencies": {
     "@babel/core": "^7.6.0",
     "@types/jquery": "^3.3.31",
