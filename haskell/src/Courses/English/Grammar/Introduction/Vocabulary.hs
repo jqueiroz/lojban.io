@@ -221,6 +221,8 @@ vocabulary11 :: Vocabulary
 vocabulary11 = Vocabulary
     -- Brivla
     [
+       "fanva", -- actually used in sentences
+       "mukti", "gasnu" -- used just in isolated exercises, to help the user remember the meaning and places of mu'i and gau
     ]
     -- Cmavo
     [

@@ -523,3 +523,12 @@ sutra:
 lojbo:
     x1: Lojbanic entity
     x2: aspect
+
+mukti:
+    x1: motivating action/event/state
+    x2: motivated action/event
+    x3: volitional entity
+
+gasnu:
+    x1: agent/agentive cause
+    x2: event
