@@ -1,3 +1,7 @@
 .git
+assets/package-lock.json
+stack.yaml.lock
+.redis-dev.database
+**/*.prof
 **/.stack-work
 **/node_modules
