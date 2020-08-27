@@ -144,12 +144,6 @@ displayResources = do
                 H.a "More learning materials"
                     B.! A.href "https://mw.lojban.org/papri/Learning_materials._Secondary_links"
             H.li $ do
-                H.a "Alternative ortograhy: la zbalermorna"
-                    B.! A.href "https://jackhumbert.github.io/zbalermorna/write-up/"
-            H.li $ do
-                H.a "Alternative ortograhy: la krulermorna"
-                    B.! A.href "http://lojban.pw/articles/krulermorna/"
-            H.li $ do
                 H.a "Lojban gotchas"
                     B.! A.href "https://mw.lojban.org/papri/gotchas"
             H.li $ do
@@ -173,3 +167,12 @@ displayResources = do
             H.li $ do
                 H.a "Song: tensaia (by la selpa'i)"
                     B.! A.href "https://djemynai.bandcamp.com/album/tensaia"
+    H.div B.! A.class_ (H.textValue "resource-category") $ do
+        H.h2 $ H.toHtml ("Alternative ortographies" :: T.Text)
+        H.ul $ do
+            H.li $ do
+                H.a "la zbalermorna"
+                    B.! A.href "https://jackhumbert.github.io/zbalermorna/write-up/"
+            H.li $ do
+                H.a "la krulermorna"
+                    B.! A.href "http://lojban.pw/articles/krulermorna/"
