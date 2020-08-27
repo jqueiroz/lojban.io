@@ -2,7 +2,7 @@ cabal-version:       2.2
 name:                lojbanios
 version:             0.1.0.0
 synopsis:            Lojban teaching platform
-description:         Robust teaching platform for the artificial language Lojban.
+description:         A free and opensource platform for studying the artificial language Lojban.
 homepage:            None
 license:             NONE
 license-file:        LICENSE
