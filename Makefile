@@ -1,7 +1,10 @@
 all: server docs
 
 clean:
+	rm -f ./*.prof
+	rm -f ./assets/package-lock.json
 	rm -rf ./assets/node_modules
+	rm -f ./stack.yaml.lock
 	rm -rf ./.stack-work/dist
 	rm -f ./static/scripts/*.js
 	rm -f ./static/scripts/dictionaries/*.js
