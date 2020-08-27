@@ -1474,7 +1474,15 @@ translations11 = expandTranslationGenerator $ combineGeneratorsUniformly [pi'o, 
 
 -- * Lesson 12: Tenses 1
 translations12_pu :: TranslationGenerator
-translations12_pu = expandTranslationGenerator $ combineGeneratorsUniformly [dunda, vecnu, gleki, ciska] where
+translations12_pu = expandTranslationGenerator $ combineGeneratorsUniformly [fanva, dunda, vecnu, gleki, ciska] where
+    fanva = generatorFromList
+        [ (["mi pu fanva fi lo lojbo"], ["I translated to Lojban."])
+        , (["mi pu fanva fo lo lojbo"], ["I translated from Lojban."])
+        , (["mi pu fanva ti"], ["I translated this."])
+        , (["mi pu fanva ti lo lojbo"], ["I translated this to Lojban."])
+        , (["xu do fanva fi ma"], ["To what language did you translate?"])
+        , (["xu do fanva fo ma"], ["From what language did you translate?"])
+        ]
     dunda = generatorFromList
         [ (["mi pu dunda lo mlatu"], ["I donated the cat."])
         , (["mi pu dunda lo gerku"], ["I donated the dog."])
@@ -1509,7 +1517,15 @@ translations12_pu = expandTranslationGenerator $ combineGeneratorsUniformly [dun
         ]
 
 translations12_ca :: TranslationGenerator
-translations12_ca = expandTranslationGenerator $ combineGeneratorsUniformly [dunda, vecnu, gleki, ciska] where
+translations12_ca = expandTranslationGenerator $ combineGeneratorsUniformly [fanva, dunda, vecnu, gleki, ciska] where
+    fanva = generatorFromList
+        [ (["mi ca fanva fi lo lojbo"], ["I am translating to Lojban."])
+        , (["mi ca fanva fo lo lojbo"], ["I am translating from Lojban."])
+        , (["mi ca fanva ti"], ["I am translating this."])
+        , (["mi ca fanva ti lo lojbo"], ["I am translating this to Lojban."])
+        , (["xu do fanva fi ma"], ["To what language are you translating?"])
+        , (["xu do fanva fo ma"], ["From what language are you translating?"])
+        ]
     dunda = generatorFromList
         [ (["mi ca dunda lo mlatu"], ["I am donating the cat."])
         , (["mi ca dunda lo gerku"], ["I am donating the dog."])
@@ -1546,7 +1562,15 @@ translations12_ca = expandTranslationGenerator $ combineGeneratorsUniformly [dun
         ]
 
 translations12_ba :: TranslationGenerator
-translations12_ba = expandTranslationGenerator $ combineGeneratorsUniformly [dunda, vecnu, gleki, ciska] where
+translations12_ba = expandTranslationGenerator $ combineGeneratorsUniformly [fanva, dunda, vecnu, gleki, ciska] where
+    fanva = generatorFromList
+        [ (["mi ba fanva fi lo lojbo"], ["I will translate to Lojban."])
+        , (["mi ba fanva fo lo lojbo"], ["I will translate from Lojban."])
+        , (["mi ba fanva ti"], ["I will translate this."])
+        , (["mi ba fanva ti lo lojbo"], ["I will translate this to Lojban."])
+        , (["xu do fanva fi ma"], ["To what language will you translate?"])
+        , (["xu do fanva fo ma"], ["From what language will you translate?"])
+        ]
     dunda = generatorFromList
         [ (["mi ba dunda lo mlatu"], ["I will donate the cat."])
         , (["mi ba dunda lo gerku"], ["I will donate the dog."])
