@@ -2,7 +2,7 @@ This course covers beginner to intermediate concepts of Lojban, and is intended 
 With plenty of interactive exercises, practice is made both easier and fun.
 
 Heavily inspired by [The Wave Lessons](https://mw.lojban.org/papri/Lojban_Wave_Lessons), this course teaches concepts in approximate order of importance for regular Lojban conversations.
-A few lessons in, and you'll be able to express quite complex thoughts &ndash; at least compared to most natural languages.
+A few lessons in, and you'll be able to confidently express quite complex thoughts &ndash; at least compared to most natural languages.
 
 There is somewhat more emphasis on grammar than vocabulary, and the reason is that the two are largely orthogonal for students of Lojban.
 Indeed, it can be frustrating to fail exercises on grammar just because you lack the corresponding vocabulary &ndash; perhaps because you decided to learn vocabulary from a different source.
