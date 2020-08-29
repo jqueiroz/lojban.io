@@ -1480,8 +1480,8 @@ translations12_pu = expandTranslationGenerator $ combineGeneratorsUniformly [fan
         , (["mi pu fanva fo lo lojbo"], ["I translated from Lojban."])
         , (["mi pu fanva ti"], ["I translated this."])
         , (["mi pu fanva ti lo lojbo"], ["I translated this to Lojban."])
-        , (["xu do fanva fi ma"], ["To what language did you translate?"])
-        , (["xu do fanva fo ma"], ["From what language did you translate?"])
+        , (["xu do pu fanva fi ma"], ["To what language did you translate?"])
+        , (["xu do pu fanva fo ma"], ["From what language did you translate?"])
         ]
     dunda = generatorFromList
         [ (["mi pu dunda lo mlatu"], ["I donated the cat."])
@@ -1523,8 +1523,8 @@ translations12_ca = expandTranslationGenerator $ combineGeneratorsUniformly [fan
         , (["mi ca fanva fo lo lojbo"], ["I am translating from Lojban."])
         , (["mi ca fanva ti"], ["I am translating this."])
         , (["mi ca fanva ti lo lojbo"], ["I am translating this to Lojban."])
-        , (["xu do fanva fi ma"], ["To what language are you translating?"])
-        , (["xu do fanva fo ma"], ["From what language are you translating?"])
+        , (["xu do ca fanva fi ma"], ["To what language are you translating?"])
+        , (["xu do ca fanva fo ma"], ["From what language are you translating?"])
         ]
     dunda = generatorFromList
         [ (["mi ca dunda lo mlatu"], ["I am donating the cat."])
@@ -1568,8 +1568,8 @@ translations12_ba = expandTranslationGenerator $ combineGeneratorsUniformly [fan
         , (["mi ba fanva fo lo lojbo"], ["I will translate from Lojban."])
         , (["mi ba fanva ti"], ["I will translate this."])
         , (["mi ba fanva ti lo lojbo"], ["I will translate this to Lojban."])
-        , (["xu do fanva fi ma"], ["To what language will you translate?"])
-        , (["xu do fanva fo ma"], ["From what language will you translate?"])
+        , (["xu do ba fanva fi ma"], ["To what language will you translate?"])
+        , (["xu do ba fanva fo ma"], ["From what language will you translate?"])
         ]
     dunda = generatorFromList
         [ (["mi ba dunda lo mlatu"], ["I will donate the cat."])
