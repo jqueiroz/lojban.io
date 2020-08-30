@@ -88,9 +88,11 @@ appendExtraTagToStructuredBridi tag (x, y, z) = (x, y, tag : z)
 constructStructuredBridiFromTerms :: StructuredSelbri -> [StructuredTerm] -> StructuredBridi
 constructStructuredBridiFromTerms selbri terms = (selbri, (zip [1..] mainTerms), extraTerms) where
     isExtraTerm :: ZG.Text -> Bool
+    isExtraTerm (ZG.TagKU (ZG.NA x) _) = True
     isExtraTerm (ZG.TagKU (ZG.BAI x) _) = True
     isExtraTerm (ZG.TagKU (ZG.FIhO x y z) _) = True
     isExtraTerm (ZG.TagKU (ZG.PrefixTag x y) a) = isExtraTerm (ZG.TagKU y a)
+    isExtraTerm (ZG.Tag (ZG.NA x) _) = True
     isExtraTerm (ZG.Tag (ZG.BAI x) _) = True
     isExtraTerm (ZG.Tag (ZG.FIhO x y z) _) = True
     isExtraTerm (ZG.Tag (ZG.PrefixTag x y) a) = isExtraTerm (ZG.Tag y a)
@@ -177,6 +179,7 @@ convertStructuredTerm :: StructuredTerm -> Either String T.Text
 convertStructuredTerm (ZG.KOhA x) = Right $ T.pack x
 convertStructuredTerm (ZG.Link x y) = concatET [convertStructuredTerm x, Right $ T.pack " ", convertLinkargs y]
 convertStructuredTerm (ZG.BRIVLA x) = Right $ T.pack x
+convertStructuredTerm (ZG.Tag (ZG.NA x) y) = concatET [Right $ T.pack x, Right $ T.pack " ",  convertStructuredTerm y]
 convertStructuredTerm (ZG.Tag (ZG.BAI x) y) = concatET [Right $ T.pack x, Right $ T.pack " ",  convertStructuredTerm y]
 convertStructuredTerm (ZG.Rel x y) = concatET [convertStructuredTerm x, Right $ T.pack " ", convertRelative y]
 convertStructuredTerm (ZG.GOhA x) = Right $ T.pack x
@@ -211,7 +214,9 @@ expandExtraTerms = concatMap expandTerm where
     expandTerm x = [x]
 
 convertExtraTerm :: ExtraTerm -> Either String T.Text
+convertExtraTerm (ZG.TagKU (ZG.NA x) _) = concatET [Right $ T.pack x, Right $ T.pack " ku"]
 convertExtraTerm (ZG.TagKU (ZG.FIhO (ZG.Init _) y _) _) = concatET [Right $ T.pack "fi'o ", convertStructuredSelbri y, Right $ T.pack " fe'u ku"]
+convertExtraTerm (ZG.Tag (ZG.NA x) text) = concatET [Right $ T.pack x, Right $ T.pack " ", convertStructuredTerm text, Right $ T.pack " ku"]
 convertExtraTerm (ZG.Tag (ZG.FIhO (ZG.Init _) y _) text) = concatET [Right $ T.pack "fi'o ", convertStructuredSelbri y, Right $ T.pack " fe'u ", convertStructuredTerm text]
 convertExtraTerm (ZG.TagKU (ZG.PrefixTag (ZG.SE x) (ZG.BAI y)) z) = case expandBai y of
     Just y' -> convertExtraTerm $ ZG.TagKU (ZG.FIhO (ZG.Init "fi'o") (ZG.Prefix (ZG.SE x) (ZG.BRIVLA y')) (ZG.Term "fe'u")) z
