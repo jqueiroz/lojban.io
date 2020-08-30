@@ -323,7 +323,7 @@ vocabulary16_cumulative = vocabulary15_cumulative <> vocabulary16
 -- | Vocabulary for the appropriate lesson.
 --
 -- * New brivla: NONE.
--- * New cmavo: na, na'e, to'e
+-- * New cmavo: na, na'e, to'e, no'e
 vocabulary17 :: Vocabulary
 vocabulary17 = Vocabulary
     -- Brivla
