@@ -57,6 +57,8 @@ Other useful commands:
 
 For more details on building and running, see [Building and running (using Nix)](#building-and-running-using-nix).
 
+<!-- TODO: Section: Technical aspects (parsing, canonicalization, exercise generation, etc) -->
+
 ## Building and running (using Nix)
 
 In order to build and run this project, all you need is a Linux machine with the [Nix package manager](https://nixos.org/nix/) installed somewhere in the path.
