@@ -344,9 +344,12 @@ exercises17 :: ExerciseGenerator
 exercises17 =
     combineGenerators
         [ (70, translationExercises17)
+        , (50, fillingBlanksExercises17)
         ]
 
 -- TODO: fix canonicalization of "mi na prenu"
 translationExercises17 :: ExerciseGenerator
-translationExercises17 = generateTranslationExercise sentenceCanonicalizer sentenceComparer $ combineGeneratorsUniformly [translations17_na, translations17_na'e, translations17_no'e, translations17_to'e]
+translationExercises17 = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations17
 
+fillingBlanksExercises17 :: ExerciseGenerator
+fillingBlanksExercises17 = generateContextualizedFillingBlanksExerciseByAlternatives ["na", "na'e", "no'e", "to'e"] translations17

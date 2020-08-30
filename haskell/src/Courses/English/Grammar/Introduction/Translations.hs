@@ -1934,3 +1934,6 @@ translations17_to'e = expandTranslationGenerator $ combineGeneratorsUniformly [n
         , (["lo mlatu to'e melbi"], ["Cats are ugly.", "The cat is ugly."])
         , (["lo bangu to'e melbi"], ["Languages are ugly.", "The language is ugly."])
         ]
+
+translations17 :: TranslationGenerator
+translations17 = expandTranslationGenerator $ combineGeneratorsUniformly [translations17_na, translations17_na'e, translations17_no'e, translations17_to'e]
