@@ -1936,4 +1936,4 @@ translations17_to'e = expandTranslationGenerator $ combineGeneratorsUniformly [n
         ]
 
 translations17 :: TranslationGenerator
-translations17 = expandTranslationGenerator $ combineGeneratorsUniformly [translations17_na, translations17_na'e, translations17_no'e, translations17_to'e]
+translations17 = combineGeneratorsUniformly [translations17_na, translations17_na'e, translations17_no'e, translations17_to'e]
