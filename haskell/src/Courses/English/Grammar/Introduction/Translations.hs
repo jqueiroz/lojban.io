@@ -1834,7 +1834,7 @@ translations16_u = expandTranslationGenerator $ combineGeneratorsUniformly [zdan
 
 -- * Lesson 17: Negation 1
 translations17_na :: TranslationGenerator
-translations17_na = expandTranslationGenerator $ combineGeneratorsUniformly [nelci] where
+translations17_na = expandTranslationGenerator $ combineGeneratorsUniformly [nelci, dunda, vecnu, tavla, pendo, melbi] where
     nelci = generatorFromList
         [ (["mi na nelci do"], ["Not true: I like you."])
         , (["do na nelci mi"], ["Not true: you like me."])
@@ -1845,18 +1845,80 @@ translations17_na = expandTranslationGenerator $ combineGeneratorsUniformly [nel
         , (["mi na nelci lo mi zdani"], ["Not true: I like my house."])
         , (["mi na nelci lo se dunda be do"], ["Not true: I like the gift that you gave."])
         ]
+    dunda = generatorFromList
+        [ (["mi na dunda lo mlatu"], ["Not true: I will donate the cat."])
+        , (["mi na dunda lo gerku"], ["Not true: I will donate the dog."])
+        , (["mi na dunda lo zdani"], ["Not true: I will donate the house."])
+        , (["na ku gau do mi dunda lo gerku"], ["Not true: you made me donate the dog."])
+        , (["na ku gau do mi dunda lo mlatu"], ["Not true: you made me donate the cat."])
+        , (["na ku gau do mi dunda lo zdani"], ["Not true: you made me donate the house."])
+        ]
+    vecnu = generatorFromList
+        [ (["lo pu vecnu na gleki"], ["Not true: the former seller is happy."])
+        , (["lo ba te vecnu na gleki"], ["Not true: the future buyer is happy."])
+        ]
+    tavla = generatorFromList
+        [ (["na ku gau do mi tavla do"], ["Not true: you made me talk to you."])
+        , (["na ku gau do mi tavla fi lo gerku"], ["Not true: you made me talk about the dog."])
+        , (["na ku gau do mi tavla fi lo mlatu"], ["Not true: you made me talk about the cat."])
+        ]
+    pendo = generatorFromList
+        [ (["do na pendo"], ["Not true: you are friendly."])
+        , (["do na pendo mi"], ["Not true: you are my friend."])
+        ]
+    melbi = generatorFromList
+        [ (["do na melbi"], ["Not true: you are beautiful."])
+        , (["mi na melbi"], ["Not true: I am beautiful."])
+        , (["lo mlatu na melbi"], ["Not true: cats are beautiful.", "Not true: the cat is beautiful"])
+        , (["lo bangu na melbi"], ["Not true: languages are beautiful.", "Not true: the language "])
+        ]
 
 translations17_na'e :: TranslationGenerator
-translations17_na'e = expandTranslationGenerator $ combineGeneratorsUniformly [nelci] where
+translations17_na'e = expandTranslationGenerator $ combineGeneratorsUniformly [nelci, dunda, melbi] where
     nelci = generatorFromList
-        [ (["mi (na'e|na) nelci do"], ["I don't like you."])
-        , (["do (na'e|na) nelci mi"], ["You don't like me."])
-        , (["mi (na'e|na) nelci lo mlatu"], ["I don't like the cat.", "I don't like cats."])
-        , (["mi (na'e|na) nelci lo gerku"], ["I don't like the dog.", "I don't like dogs."])
-        , (["mi na'e nelci lo mi mlatu"], ["I don't like my cat."])
-        , (["mi na'e nelci lo mi gerku"], ["I don't like my dog."])
-        , (["mi na'e nelci lo mi zdani"], ["I don't like my house."])
-        , (["mi na'e nelci lo se dunda be do"], ["I don't like the gift that you gave."])
+        [ (["mi na'e nelci do"], ["I other-than-like you."])
+        , (["do na'e nelci mi"], ["You other-than-like me."])
+        , (["mi na'e nelci lo mlatu"], ["I other-than-like the cat.", "I other-than-like cats."])
+        , (["mi na'e nelci lo gerku"], ["I other-than-like the dog.", "I other-than-like dogs."])
+        , (["mi na'e nelci lo mi mlatu"], ["I other-than-like my cat."])
+        , (["mi na'e nelci lo mi gerku"], ["I other-than-like my dog."])
+        , (["mi na'e nelci lo mi zdani"], ["I other-than-like my house."])
+        , (["mi na'e nelci lo se dunda be do"], ["I other-than-like the gift that you gave."])
+        ]
+    dunda = generatorFromList
+        [ (["mi na'e dunda lo mlatu"], ["I other-than-donated the computer."])
+        , (["xu do na'e dunda lo mlatu"], ["Did you other-than-donate the computer?"])
+        , (["lo na'e dunda mlatu cu melbi"], ["The other-than-donated cat is beautiful."])
+        ]
+    melbi = generatorFromList
+        [ (["mi na'e dunda lo mlatu"], ["I other-than-donated the computer."])
+        , (["xu do na'e dunda lo mlatu"], ["Did you other-than-donate the computer?"])
+        , (["lo na'e dunda mlatu cu melbi"], ["The other-than-donated cat is beautiful."])
+        ]
+    melbi = generatorFromList
+        [ (["do na'e melbi"], ["You are other-than-beautiful."])
+        , (["mi na'e melbi"], ["I am other-than-beautiful."])
+        , (["lo mlatu na'e melbi"], ["Cats are other-than-beautiful.", "The cat is other-than-beautiful."])
+        , (["lo bangu na'e melbi"], ["Languages are other-than-beautiful.", "The language is other-than-beautiful."])
+        ]
+
+translations17_no'e :: TranslationGenerator
+translations17_no'e = expandTranslationGenerator $ combineGeneratorsUniformly [nelci] where
+    nelci = generatorFromList
+        [ (["mi no'e nelci do"], ["I don't really like you."])
+        , (["do no'e nelci mi"], ["You don't really like me."])
+        , (["mi no'e nelci lo mlatu"], ["I don't really like the cat.", "I don't really like cats."])
+        , (["mi no'e nelci lo gerku"], ["I don't really like the dog.", "I don't really like dogs."])
+        , (["mi no'e nelci lo mi mlatu"], ["I don't really like my cat."])
+        , (["mi no'e nelci lo mi gerku"], ["I don't really like my dog."])
+        , (["mi no'e nelci lo mi zdani"], ["I don't really like my house."])
+        , (["mi no'e nelci lo se dunda be do"], ["I don't really like the gift that you gave."])
+        ]
+    melbi = generatorFromList
+        [ (["do no'e melbi"], ["You are not really beautiful."])
+        , (["mi no'e melbi"], ["I am not really beautiful."])
+        , (["lo mlatu no'e melbi"], ["Cats are not really beautiful.", "The cat is not really beautiful."])
+        , (["lo bangu no'e melbi"], ["Languages are not really beautiful.", "The language is not really beautiful."])
         ]
 
 translations17_to'e :: TranslationGenerator
@@ -1870,4 +1932,10 @@ translations17_to'e = expandTranslationGenerator $ combineGeneratorsUniformly [n
         , (["mi to'e nelci lo mi gerku"], ["I dislike my dog."])
         , (["mi to'e nelci lo mi zdani"], ["I dislike my house."])
         , (["mi to'e nelci lo se dunda be do"], ["I dislike the gift that you gave."])
+        ]
+    melbi = generatorFromList
+        [ (["do to'e melbi"], ["You are ugly."])
+        , (["mi to'e melbi"], ["I am ugly."])
+        , (["lo mlatu to'e melbi"], ["Cats are ugly.", "The cat is ugly."])
+        , (["lo bangu to'e melbi"], ["Languages are ugly.", "The language is ugly."])
         ]
