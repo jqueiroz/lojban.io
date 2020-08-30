@@ -347,7 +347,6 @@ exercises17 =
         , (50, fillingBlanksExercises17)
         ]
 
--- TODO: fix canonicalization of "mi na prenu"
 translationExercises17 :: ExerciseGenerator
 translationExercises17 = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations17
 
