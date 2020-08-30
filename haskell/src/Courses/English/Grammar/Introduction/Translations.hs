@@ -1940,10 +1940,31 @@ translations17 = expandTranslationGenerator $ combineGeneratorsUniformly [transl
 
 -- * Lesson 18: Misc 1
 translations18 :: TranslationGenerator
-translations18 = combineGeneratorsUniformly [translations18_tu'a, translations18_jai] where
-
-translations18_tu'a :: TranslationGenerator
-translations18_tu'a = expandTranslationGenerator $ combineGeneratorsUniformly []
-
-translations18_jai :: TranslationGenerator
-translations18_jai = expandTranslationGenerator $ combineGeneratorsUniformly []
+translations18 = expandTranslationGenerator $ combineGeneratorsUniformly [djica, cusku, lerci, mukti] where
+    djica = generatorFromList
+        [ (["mi jai se djica", "tu'a mi se djica"], ["I am desired."])
+        , (["do jai se djica", "tu'a do se djica"], ["You are desired."])
+        , (["xu do jai se djica", "xu tu'a do se djica"], ["Are you desired?"])
+        , (["mi djica tu'a do", "do jai se djica mi"], ["I desire (something about) you.", "(Something about) you is desired by me."])
+        , (["xu do djica tu'a mi", "xu mi jai se djica do"], ["Do you desire (something about) me?", "Is (something about) me desired by you?"])
+        , (["do djica tu'a ma poi prenu", "tu'a ma poi prenu ku'o se jai djica do"], ["What person do you desire (something about)?"])
+        , (["mi djica tu'a lo plise", "lo plise cu jai se djica mi"], ["I want (something about) an apple.", "(Something about) an apple is desired by me."])
+        , (["xu do djica tu'a lo plise", "xu lo plise cu jai se djica"], ["Do you want (something about) an apple?", "Is (something about) an apple wanted by you?"])
+        ]
+    lerci = generatorFromList
+        [ (["mi jai lerci", "tu'a mi lerci"], ["I am late."])
+        , (["do jai lerci", "tu'a do lerci"], ["You are late."])
+        , (["xu do jai lerci", "xu tu'a do lerci"], ["Are you late?"])
+        , (["mi tavla do noi jai lerci"], ["I am talking to you, who are late."])
+        , (["ma (poi|noi) prenu cu jai lerci"], ["Which person is late?"])
+        ]
+    cusku = generatorFromList
+        [ (["do cusku tu'a lo plise"], ["You said (something about) apples."])
+        , (["mi cusku tu'a lo mlatu"], ["I said (something about) cats."])
+        , (["ma cusku tu'a lo skami"], ["Who said (something about) computers?"])
+        ]
+    mukti = generatorFromList
+        [ (["tu'a do mukti lo nu ctuca kei mi", "do jai mukti lo nu ctuca kei mi", "tu'a do mukti lo nu mi ctuca", "do jai mukti lo nu mi ctuca"], ["(Something about) you motivates me to teach."])
+        , (["tu'a do mukti fi mi"], ["(Something about) you motivates me."])
+        , (["tu'a mi mukti fi do"], ["(Something about) me motivates you."])
+        ]
