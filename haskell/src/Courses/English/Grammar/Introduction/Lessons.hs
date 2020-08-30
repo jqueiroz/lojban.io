@@ -75,3 +75,7 @@ lesson16 = Lesson "Logical connectives 1" exercises16 (Just lecture16) (Just pla
 -- | Lesson: Negation 1
 lesson17 :: Lesson
 lesson17 = Lesson "Negation 1" exercises17 (Just lecture17) (Just plan17) (Just vocabulary17_cumulative)
+
+-- | Lesson: Misc 1
+lesson18 :: Lesson
+lesson18 = Lesson "Misc. 1" exercises18 (Just lecture18) (Just plan18) (Just vocabulary18_cumulative)

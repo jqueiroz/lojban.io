@@ -60,4 +60,4 @@ course = Course "grammar-intro_eng" title shortDescription (Just longDescription
     title = "Getting started with Lojban (alpha)"
     --shortDescription = "Get started with Lojban, and grasp beginner to intermediate concepts of the language."
     shortDescription = "Get started with Lojban, and assimilate beginner to intermediate concepts of the language."
-    lessons = [lesson1, lesson2, lesson3, lesson4, lesson5, lesson6, lesson7, checkpoint1to7, lesson9, lesson10, lesson11, lesson12, checkpoint9to12, lesson14, lesson15, lesson16, lesson17]
+    lessons = [lesson1, lesson2, lesson3, lesson4, lesson5, lesson6, lesson7, checkpoint1to7, lesson9, lesson10, lesson11, lesson12, checkpoint9to12, lesson14, lesson15, lesson16, lesson17, lesson18]

@@ -340,3 +340,25 @@ vocabulary17 = Vocabulary
 -- | Cumulative vocabulary up to the appropriate lesson.
 vocabulary17_cumulative :: Vocabulary
 vocabulary17_cumulative = vocabulary16_cumulative <> vocabulary17
+
+-- | Vocabulary for the appropriate lesson.
+--
+-- * New brivla: NONE.
+-- * New cmavo: tu'a, jai
+vocabulary18 :: Vocabulary
+vocabulary18 = Vocabulary
+    -- Brivla
+    [
+        "lerci"
+    ]
+    -- Cmavo
+    [
+        "tu'a", "jai"
+    ]
+    -- Cmene
+    [
+    ]
+
+-- | Cumulative vocabulary up to the appropriate lesson.
+vocabulary18_cumulative :: Vocabulary
+vocabulary18_cumulative = vocabulary17_cumulative <> vocabulary18

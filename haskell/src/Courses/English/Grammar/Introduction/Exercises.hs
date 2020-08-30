@@ -352,3 +352,14 @@ translationExercises17 = generateTranslationExercise sentenceCanonicalizer sente
 
 fillingBlanksExercises17 :: ExerciseGenerator
 fillingBlanksExercises17 = generateContextualizedFillingBlanksExerciseByAlternatives ["na", "na'e", "no'e", "to'e"] translations17
+
+-- * Lesson 18: Misc 1
+-- | Exercises for the lesson.
+exercises18 :: ExerciseGenerator
+exercises18 =
+    combineGenerators
+        [ (70, translationExercises18)
+        ]
+
+translationExercises18 :: ExerciseGenerator
+translationExercises18 = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations18
