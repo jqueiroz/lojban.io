@@ -350,6 +350,24 @@ validateCanonicalization = hspec $ do
             , ("lo mlatu cu mutce melbi", "lo mlatu ku mutce melbi")
             , ("lo mlatu pu mutce melbi", "pu ku lo mlatu ku mutce melbi")
             ]
+      it "supports jai" $ do
+        validateSentences
+            [ ("do jai lerci", "do jai lerci")
+            , ("mi tavla do noi jai lerci", "mi tavla do noi jai lerci ku'o")
+            , ("do jai mukti lo nu ctuca kei mi", "do jai mukti lo nu ctuca kei ku mi")
+            , ("lo prenu cu jai lerci", "lo prenu ku jai lerci")
+            , ("jai se lerci do", "do jai lerci")
+            , ("do jai se djica mi", "mi jai djica do") -- TODO: incorrect! should actually be "mi djica tu'a do" (or at least "do jai se djica mi"), but that's acceptable for now
+            , ("do se jai djica mi", "mi jai djica do")
+            ]
+      it "supports tu'a" $ do
+        validateSentences
+            [ ("tu'a do lerci", "tu'a do lerci")
+            , ("se lerci tu'a do", "tu'a do lerci")
+            , ("mi djica tu'a do", "mi djica tu'a do")
+            , ("xu do cusku tu'a lo plise", "xu do cusku tu'a lo plise ku")
+            , ("do gasnu tu'a lo skami", "do gasnu tu'a lo skami ku")
+            ]
       it "supports sumtcita" $ do
         -- not followed by arguments; not containing prefix tag
         validateEquivalentSentences

@@ -74,6 +74,9 @@ handlePlacePermutations (ZG.GOhA brivla, terms, extraTerms) = Right $ (ZG.GOhA b
 handlePlacePermutations (ZG.Prefix (ZG.SE x) y, terms, extraTerms) = do
     (selbri, terms2, extraTerms) <- handlePlacePermutations (y, terms, extraTerms)
     return $ (selbri, swapTerms2 x terms2, extraTerms)
+handlePlacePermutations (ZG.Prefix (ZG.JAI x) y, terms, extraTerms) = do
+    (selbri, terms2, extraTerms) <- handlePlacePermutations (y, terms, extraTerms)
+    return $ (insertPrefixIntoStructuredSelbri (x ++ " ") selbri, terms2, extraTerms)
 handlePlacePermutations x = Left $ "unrecognized pattern in function handlePlacePermutations: " ++ show x
 
 handleScalarNegation :: StructuredBridi -> Either String StructuredBridi
@@ -83,6 +86,10 @@ handleScalarNegation x = Right $ x
 ---------- Append extra tag to structured bridi
 appendExtraTagToStructuredBridi :: ZG.Text -> StructuredBridi -> StructuredBridi
 appendExtraTagToStructuredBridi tag (x, y, z) = (x, y, tag : z)
+
+insertPrefixIntoStructuredSelbri :: String -> ZG.Text -> ZG.Text
+insertPrefixIntoStructuredSelbri prefix (ZG.BRIVLA brivla) = ZG.BRIVLA $ prefix ++ brivla
+-- TODO: also handle TANRU, GOhA, etc.
 
 ---------- Construct structured bridi from terms
 constructStructuredBridiFromTerms :: StructuredSelbri -> [StructuredTerm] -> StructuredBridi
@@ -202,6 +209,7 @@ convertStructuredTerm (ZG.LU (ZG.Init x) y term) = unwordsET [Right $ T.pack x, 
 convertStructuredTerm (ZG.Con x connectives) = unwordsET $ convertStructuredTerm x : (map convertConnective connectives) where
     convertConnective :: (ZG.Connective, ZG.Text) -> Either String T.Text
     convertConnective (ZG.JOI x, y) = concatET [Right ".", Right $ T.pack x, Right " ", convertTerm y]
+convertStructuredTerm (ZG.LAhE (ZG.Init x) ZG.NR y ZG.NT) = unwordsET $ [Right $ T.pack x, convertStructuredTerm y]
 convertStructuredTerm x = Left $ "Unrecognized pattern for structured term: " ++ show x
 
 convertExtraTerms :: [ExtraTerm] -> Either String [T.Text]
