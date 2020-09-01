@@ -82,7 +82,7 @@ vocabulary4 :: Vocabulary
 vocabulary4 = Vocabulary
     -- Brivla
     [
-        "sutra", "lojbo"
+        "sutra", "lojbo", "ciska"
     ]
     -- Cmavo
     [
@@ -104,7 +104,7 @@ vocabulary5 :: Vocabulary
 vocabulary5 = Vocabulary
     -- Brivla
     [
-        "ciska", "djuno"
+        "djuno"
     ]
     -- Cmavo
     [
