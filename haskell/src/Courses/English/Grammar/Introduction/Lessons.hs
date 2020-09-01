@@ -79,3 +79,7 @@ lesson17 = Lesson "Negation 1" exercises17 (Just lecture17) (Just plan17) (Just 
 -- | Lesson: Misc 1
 lesson18 :: Lesson
 lesson18 = Lesson "Misc. 1" exercises18 (Just lecture18) (Just plan18) (Just vocabulary18_cumulative)
+
+-- | Lesson: Checkpoint (Lessons 14--18)
+checkpoint14to18 :: Lesson
+checkpoint14to18 = Lesson "Checkpoint: Lessons 14-18" exercises14to18 (Just lecture14to18) (Just plan14to18) (Just vocabulary18_cumulative)

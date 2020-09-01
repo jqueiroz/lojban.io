@@ -363,3 +363,15 @@ exercises18 =
 
 translationExercises18 :: ExerciseGenerator
 translationExercises18 = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations18
+
+-- * Lesson 19: Checkpoint -- Lessons 14-18
+-- | Exercises for the lesson.
+exercises14to18 :: ExerciseGenerator
+exercises14to18 =
+    combineGenerators
+        [ (10, exercises14)
+        , (10, exercises15)
+        , (10, exercises16)
+        , (10, exercises17)
+        , (10, exercises18)
+        ]
