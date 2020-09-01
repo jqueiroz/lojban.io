@@ -1947,7 +1947,7 @@ translations18 = expandTranslationGenerator $ combineGeneratorsUniformly [djica,
         , (["xu do jai se djica", "xu tu'a do se djica"], ["Are you desired?"])
         , (["mi djica tu'a do", "do jai se djica mi"], ["I desire (something about) you.", "(Something about) you is desired by me."])
         , (["xu do djica tu'a mi", "xu mi jai se djica do"], ["Do you desire (something about) me?", "Is (something about) me desired by you?"])
-        , (["do djica tu'a ma poi prenu", "ma poi prenu ku'o jai se djica do"], ["What person do you desire (something about)?"])
+        , (["do djica tu'a ma (poi|noi) prenu", "ma (poi|noi) prenu ku'o jai se djica do"], ["What person do you desire (something about)?"])
         , (["mi djica tu'a lo plise", "lo plise cu jai se djica mi"], ["I want (something about) an apple.", "(Something about) an apple is desired by me."])
         , (["xu do djica tu'a lo plise", "xu lo plise cu jai se djica"], ["Do you want (something about) an apple?", "Is (something about) an apple wanted by you?"])
         ]
