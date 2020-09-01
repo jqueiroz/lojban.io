@@ -362,3 +362,24 @@ vocabulary18 = Vocabulary
 -- | Cumulative vocabulary up to the appropriate lesson.
 vocabulary18_cumulative :: Vocabulary
 vocabulary18_cumulative = vocabulary17_cumulative <> vocabulary18
+
+-- | Vocabulary for the appropriate lesson.
+--
+-- * New brivla: NONE.
+-- * New cmavo: NONE.
+vocabulary20 :: Vocabulary
+vocabulary20 = Vocabulary
+    -- Brivla
+    [
+    ]
+    -- Cmavo
+    [
+    ]
+    -- Cmene (TODO: not cmene but rather cmevla -- here and everywhere)
+    [
+        ".io'AN.", ".mat", ".anas.", ".djan"
+    ]
+
+-- | Cumulative vocabulary up to the appropriate lesson.
+vocabulary20_cumulative :: Vocabulary
+vocabulary20_cumulative = vocabulary18_cumulative <> vocabulary20

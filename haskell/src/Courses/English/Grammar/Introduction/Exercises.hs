@@ -375,3 +375,11 @@ exercises14to18 =
         , (10, exercises17)
         , (10, exercises18)
         ]
+
+-- * Lesson 20: Morphology
+-- | Exercises for the lesson.
+exercises20 :: ExerciseGenerator
+exercises20 =
+    combineGenerators
+        [
+        ]
