@@ -391,3 +391,11 @@ exercises21 =
     combineGenerators
         [
         ]
+
+-- * Lesson 22: Numbers 1
+-- | Exercises for the lesson.
+exercises22 :: ExerciseGenerator
+exercises22 =
+    combineGenerators
+        [
+        ]

@@ -404,3 +404,25 @@ vocabulary21 = Vocabulary
 -- | Cumulative vocabulary up to the appropriate lesson.
 vocabulary21_cumulative :: Vocabulary
 vocabulary21_cumulative = vocabulary20_cumulative <> vocabulary21
+
+-- | Vocabulary for the appropriate lesson.
+--
+-- * New brivla: NONE.
+-- * New cmavo: no, pa, re, ci, vo, mu, xa, ze, bi, so; pi, ro, so'a, so'e, so'i, so'o, so'u
+vocabulary22 :: Vocabulary
+vocabulary22 = Vocabulary
+    -- Brivla
+    [
+    ]
+    -- Cmavo
+    [
+        "no", "pa", "re", "ci", "vo", "mu", "xa", "ze", "bi", "so",
+        "pi", "ro", "so'a", "so'e", "so'i", "so'o", "so'u"
+    ]
+    -- Cmene
+    [
+    ]
+
+-- | Cumulative vocabulary up to the appropriate lesson.
+vocabulary22_cumulative :: Vocabulary
+vocabulary22_cumulative = vocabulary21_cumulative <> vocabulary22
