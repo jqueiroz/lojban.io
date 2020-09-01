@@ -383,3 +383,11 @@ exercises20 =
     combineGenerators
         [
         ]
+
+-- * Lesson 21: Gadri 1
+-- | Exercises for the lesson.
+exercises21 :: ExerciseGenerator
+exercises21 =
+    combineGenerators
+        [
+        ]

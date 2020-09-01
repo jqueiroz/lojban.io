@@ -89,6 +89,10 @@ Right lecture14to18 = buildDocumentFromMarkdownCode $(embedStringFile "resources
 lecture20 :: P.Pandoc
 Right lecture20 = buildDocumentFromMarkdownCode $(embedStringFile "resources/courses/english/grammar/introduction/lectures/20.md")
 
+-- | Lecture for the lesson.
+lecture21 :: P.Pandoc
+Right lecture21 = buildDocumentFromMarkdownCode $(embedStringFile "resources/courses/english/grammar/introduction/lectures/21.md")
+
 -- * Lesson plans
 
 -- | Plan for the lesson.
@@ -170,3 +174,7 @@ Right plan14to18 = buildDocumentFromMarkdownCode ""
 -- | Plan for the lesson.
 plan20 :: P.Pandoc
 Right plan20 = buildDocumentFromMarkdownCode $(embedStringFile "resources/courses/english/grammar/introduction/planning/20.md")
+
+-- | Plan for the lesson.
+plan21 :: P.Pandoc
+Right plan21 = buildDocumentFromMarkdownCode $(embedStringFile "resources/courses/english/grammar/introduction/planning/21.md")

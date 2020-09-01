@@ -87,3 +87,7 @@ checkpoint14to18 = Lesson "Checkpoint: Lessons 14-18" exercises14to18 (Just lect
 -- | Lesson 20: Morphology
 lesson20 :: Lesson
 lesson20 = Lesson "Morphology" exercises20 (Just lecture20) (Just plan20) (Just vocabulary20_cumulative)
+
+-- | Lesson 21: Morphology
+lesson21 :: Lesson
+lesson21 = Lesson "Gadri 1" exercises21 (Just lecture21) (Just plan21) (Just vocabulary21_cumulative)

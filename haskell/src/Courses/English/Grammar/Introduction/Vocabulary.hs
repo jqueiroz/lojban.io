@@ -383,3 +383,24 @@ vocabulary20 = Vocabulary
 -- | Cumulative vocabulary up to the appropriate lesson.
 vocabulary20_cumulative :: Vocabulary
 vocabulary20_cumulative = vocabulary18_cumulative <> vocabulary20
+
+-- | Vocabulary for the appropriate lesson.
+--
+-- * New brivla: NONE.
+-- * New cmavo: la, le
+vocabulary21 :: Vocabulary
+vocabulary21 = Vocabulary
+    -- Brivla
+    [
+    ]
+    -- Cmavo
+    [
+        "la", "le"
+    ]
+    -- Cmene
+    [
+    ]
+
+-- | Cumulative vocabulary up to the appropriate lesson.
+vocabulary21_cumulative :: Vocabulary
+vocabulary21_cumulative = vocabulary20_cumulative <> vocabulary21
