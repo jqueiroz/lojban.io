@@ -1965,6 +1965,6 @@ translations18 = expandTranslationGenerator $ combineGeneratorsUniformly [djica,
         ]
     mukti = generatorFromList
         [ (["tu'a do mukti lo nu ctuca kei mi", "do jai mukti lo nu ctuca kei mi", "tu'a do mukti lo nu mi ctuca", "do jai mukti lo nu mi ctuca"], ["(Something about) you motivates me to teach."])
-        , (["tu'a do mukti fi mi"], ["(Something about) you motivates me."])
-        , (["tu'a mi mukti fi do"], ["(Something about) me motivates you."])
+        , (["tu'a do mukti fi mi", "do jai mukti fi mi"], ["(Something about) you motivates me."])
+        , (["tu'a mi mukti fi do", "mi jai mukti fi do"], ["(Something about) me motivates you."])
         ]
