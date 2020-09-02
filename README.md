@@ -1,4 +1,4 @@
-# Lojban teaching platform
+# lojban.io
 
 The main goal of this project is to create a robust teaching platform for the artificial language [Lojban](https://mw.lojban.org/papri/Lojban).
 This project is inspired by Duolingo, but it is somewhat more specific in that it exploits some of Lojban's unique features, such as machine-parsability.
@@ -9,14 +9,119 @@ An experimental version of the platform is available at [https://lojban.io](http
 
 Haskell documentation for the currently deployed version may be found at [https://lojban.io/docs](https://lojban.io/docs).
 
-<!-- TODO: Contributing (as a nonprogrammer) -->
+## Contributing (as a nonprogrammer)
 
-<!-- TODO: Contributing (as programmer) -->
-<!-- The remainder of this documentation... -->
+There are many ways to contribute to this project, even if you are not familiar with computer programming.
+Some of them involve editing (human-readable) text files.
+In these cases, you may either send me the new file via [email](mailto:jonathan@lojban.io) or learn [how to create a pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
+A pull request allows you to make changes in a project and then propose these changes to others (in this case, me).
 
-<!-- TODO: we assume a Linux environment -->
+If you have any ideas or suggestions, whether or not you are willing or able to work on them, please feel free to [open an issue](https://github.com/jqueiroz/lojban.io/issues/new) explaining them.
+You may also open an issue if you have a proposal which you would like to discuss before making a contribution.
+Don't worry about the name, issues are not necessarily bad things :)
+
+Also feel free to email me directly: [jonathan@lojban.io](mailto:jonathan@lojban.io).
+
+To help you get started, we prepared a list of suggested ways to contribute, ranging from highly localised, and hence low commitment, to very broad.
+Of course, contributions outside of this list would be equally appreciated!
+
+### Providing glosses for brivla places
+
+For each brivla covered in courses or decks, we need curated glosses (short definitions) for each of the places in that brivla.
+<!-- TODO: This allows us to generate exercises such as [img] -->
+For example, we came up with the following glosses for the word _tavla_ &ndash; "x<sub>1</sub> talks/speaks to x<sub>2</sub> about subject x<sub>3</sub> in language x<sub>4</sub>":
+* x<sub>1</sub>: speaker;
+* x<sub>2</sub>: listener;
+* x<sub>3</sub>: subject;
+* x<sub>4</sub>: language.
+
+To contribute place-specific glosses for new brivla, all you need is to add them to the file [resources/language/dictionary-generation/english/brivla-places.yaml](https://github.com/jqueiroz/lojban.io/blob/master/resources/language/dictionary-generation/english/brivla-places.yaml), following the established pattern.
+You may also edit this file to improve the glosses for existing words.
+
+<!-- TODO: As soon as you contribute a new word, it will be available as a new card in the "Isolated brivla" deck, and you will be helping other people study that word. How cool is that? -->
+
+### Curating translations
+
+Personally, I really like the [Contextualized brivla](https://lojban.io/decks/contextualized-brivla/) deck.
+It helps me learn new words while also getting exposed to common patterns used by Lojbanists.
+But it relies very heavily on (good) translations, which are difficult to find.
+
+I have a script which takes translations from [Tatoeba](https://tatoeba.org/eng/sentences/search?query=&from=eng&to=jbo&user=&orphans=no&unapproved=no&has_audio=&tags=&list=&native=&trans_filter=limit&trans_to=und&trans_link=&trans_user=&trans_orphan=&trans_unapproved=&trans_has_audio=&sort=relevance&sort_reverse=) and generates an initial version of a "translation catalogue" file for a chosen set of brivla.
+Each file contains translations for around 15 brivla.
+But translations from Tatoeba are often incorrect, so these files require manual curation, consisting of removing and/or fixing bad translations, as well as adding new ones.
+
+If you are interested, you may work on any of the draft translation catalogue files at [resources/decks/english/brivla/sentences/drafts](https://github.com/jqueiroz/lojban.io/tree/master/resources/decks/english/brivla/sentences/drafts), for example [drafts/06.yaml](https://github.com/jqueiroz/lojban.io/tree/master/resources/decks/english/brivla/sentences/drafts/06.yaml).
+When you believe one of these files is ready, please let me know.
+I will briefly review it and then move it out of the "drafts" folder.
+The 15 or so brivla covered in that file will then be available as new cards in the Contextualized brivla deck.
+
+Finally, even files [outside of the "drafts" folder](https://github.com/jqueiroz/lojban.io/tree/master/resources/decks/english/brivla/sentences) may contain mistakes, so feel free to review them as well if you're interested.
+Likewise, additional translations will never hurt, so feel free to add new ones.
+Not being a draft just means that a file meets the quality bar for consumption, not that it is perfect.
+
+#### Guidelines for translations
+
+Ideally, Lojban sentences for the Contextualized brivla deck should be intuitively parsable by someone who has gone through the entirety of the [Getting started with Lojban](https://lojban.io/courses/introduction/) course, and understandable by someone equipped with hover hints and/or a dictionary.
+
+<!-- TODO: image of hover hints -->
+
+To make exercises less repetitive, we aspire to have at least five translations per brivla.
+But the more the merrier.
+
+#### Reviewers welcome
+
+If you have an intermediate or higher knowledge of Lojban and would like to help, please let me know, and I will designate you as the primary approver for the translation catalogue files.
+
+### Preparing video lectures
+
+If you are interested, you may prepare video lectures for one or more lessons in the [Getting started with Lojban](https://lojban.io/courses/introduction/) course, as an alternative to the written text, and I will gladly link to your video in the corresponding lesson.
+
+### Improving existing lessons
+
+Lessons for the [Getting started with Lojban](https://lojban.io/courses/introduction/) course are Markdown files located in [resources/courses/english/grammar/introduction/lectures](https://github.com/jqueiroz/lojban.io/tree/master/resources/courses/english/grammar/introduction/lectures) (with some lightweight embedded HTML, mostly for styling word definitions).
+Feel free to edit those files to make improvements.
+
+## Contributing (as a programmer)
+
+If you are a programmer in any language ([Brainfuck](https://en.wikipedia.org/wiki/Brainfuck) and [Whitespace](https://en.wikipedia.org/wiki/Whitespace_(programming_language)) excluded), then there are a few more ways in which you could contribute to this project.
+
+### Contributing new exercise types
+
+The client-side code for the elementary exercise types (e.g. single-choice exercises, typing exercises, and so on) is powered by some ancient, good ol' JavaScript and jQuery code which I wrote back in 2016.
+Well, I have since converted that code to TypeScript, but that was the extent of my refactoring.
+I intend to port exercises to React, to allow others to contribute new exercise types as React components.
+
+That work hasn't started yet.
+But if you are interested in implementing new exercise types, let me know, and I will prioritize it.
+
+<!--
+### Contribute a new course or deck (including exercises) 
+Currently, there are three ways to create a new course 
+
+not just creating a new course; you may also take an existing course outside and port/create exercises 
+
+The reason this requires programming knowledge right now is that... see next item 
+
+### Develop a separate platform for course and deck creation
+
+### Use one of our APIs to build something 
+
+## Contributing (as a Haskell programmer) 
+
+Hello, fellow Haskeller!
+I hope that you are having fun writing <s>pointless</s> point-free functions (within reason).
+
+If you know Haskell (or are learning Haskell), feel free to... 
+
+If you are interested in parsing ... generalize sentence canonicalizer ... tests located in...
+-->
 
 ## Quickstart (using Docker)
+
+<!--
+TODO: we assume a Linux environment 
+Windows with WSL should also work, though we haven't tested it. (TODO: test it)
+-->
 
 The simplest way to run this project is to execute the webserver inside a [Docker](https://www.docker.com/) container.
 First, run `./virtualization/docker-build.sh` to build the image.
