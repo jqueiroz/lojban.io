@@ -9,6 +9,27 @@ An experimental version of the platform is available at [https://lojban.io](http
 
 Haskell documentation for the currently deployed version may be found at [https://lojban.io/docs](https://lojban.io/docs).
 
+## Table of contents
+* [Contributing (as a nonprogrammer)](#contributing-as-a-nonprogrammer)
+  + [Providing glosses for brivla places](#providing-glosses-for-brivla-places)
+  + [Curating translations](#curating-translations)
+    - [Guidelines for translations](#guidelines-for-translations)
+    - [Reviewers welcome](#reviewers-welcome)
+  + [Preparing video lectures](#preparing-video-lectures)
+  + [Improving existing lessons](#improving-existing-lessons)
+* [Contributing (as a programmer)](#contributing-as-a-programmer)
+  + [Contributing new exercise types](#contributing-new-exercise-types)
+  + [Contributing a new course or deck (or porting an existing one)](#contributing-a-new-course-or-deck-or-porting-an-existing-one)
+    - [1. You may define the course entirely in Haskell](#1-you-may-define-the-course-entirely-in-haskell)
+    - [2. You may define the course in Haskell, but load translations from a separate YAML file](#2-you-may-define-the-course-in-haskell-but-load-translations-from-a-separate-yaml-file)
+  * [Building a separate platform for course creation](#building-a-separate-platform-for-course-creation)
+* [Contributing (as a Haskell programmer)](#contributing-as-a-haskell-programmer)
+  + [Code improvements](#code-improvements)
+  + [Deeper technical aspects](#deeper-technical-aspects)
+* [Quickstart (using Docker)](#quickstart-using-docker)
+* [Quickstart (using Nix)](#quickstart-using-nix)
+* [Building and running (using Nix)](#building-and-running-using-nix)
+
 ## Contributing (as a nonprogrammer)
 
 There are many ways to contribute to this project, even if you are not familiar with computer programming.
@@ -18,7 +39,7 @@ A pull request allows you to make changes in a project and then propose these ch
 
 If you have any ideas or suggestions, whether or not you are willing or able to work on them, please feel free to [open an issue](https://github.com/jqueiroz/lojban.io/issues/new) explaining them.
 You may also open an issue if you have a proposal which you would like to discuss before making a contribution.
-Don't worry about the name, issues are not necessarily bad things :)
+Don't worry about the name, issues are not necessarily bad things :-)
 
 Also feel free to email me directly: [jonathan@lojban.io](mailto:jonathan@lojban.io).
 
@@ -28,7 +49,7 @@ Of course, contributions outside of this list would be equally appreciated!
 ### Providing glosses for brivla places
 
 For each brivla covered in courses or decks, we need curated glosses (short definitions) for each of the places in that brivla.
-<!-- TODO: This allows us to generate exercises such as [img] -->
+<!-- TODO: This allows us to automatically generate exercises such as the ones below. [img] -->
 For example, we came up with the following glosses for the word _tavla_ &ndash; "x<sub>1</sub> talks/speaks to x<sub>2</sub> about subject x<sub>3</sub> in language x<sub>4</sub>":
 * x<sub>1</sub>: speaker;
 * x<sub>2</sub>: listener;
@@ -61,7 +82,7 @@ Not being a draft just means that a file meets the quality bar for consumption, 
 
 #### Guidelines for translations
 
-Ideally, Lojban sentences for the Contextualized brivla deck should be intuitively parsable by someone who has gone through the entirety of the [Getting started with Lojban](https://lojban.io/courses/introduction/) course, and understandable by someone equipped with hover hints and/or a dictionary.
+Ideally, Lojban sentences for the Contextualized brivla deck should be intuitively parsable by someone who has gone through the entirety of the [Getting started with Lojban](https://lojban.io/courses/introduction/) course, and understandable as long as that person is equipped with hover hints and/or a dictionary.
 
 <!-- TODO: image of hover hints -->
 
@@ -83,7 +104,7 @@ Feel free to edit those files to make improvements.
 
 ## Contributing (as a programmer)
 
-If you are a programmer in any language ([Brainfuck](https://en.wikipedia.org/wiki/Brainfuck) and [Whitespace](https://en.wikipedia.org/wiki/Whitespace_(programming_language)) excluded), then there are a few more ways in which you could contribute to this project.
+If you are a programmer in any language ([Brainfuck](https://en.wikipedia.org/wiki/Brainfuck), [Whitespace](https://en.wikipedia.org/wiki/Whitespace_(programming_language)), [Turing machines](https://en.wikipedia.org/wiki/Turing_machine), [Lambda calculus](https://en.wikipedia.org/wiki/Lambda_calculus), [μ-recursive functions](https://en.wikipedia.org/wiki/General_recursive_function) and [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) sadly excluded), then there are a few more ways in which you could contribute to this project.
 
 ### Contributing new exercise types
 
@@ -94,34 +115,120 @@ I intend to port exercises to React, to allow others to contribute new exercise 
 That work hasn't started yet.
 But if you are interested in implementing new exercise types, let me know, and I will prioritize it.
 
+We will need to converge on the object model for the new exercise type, and then you can work on the client side while I work on the server side. (Or, if you know Haskell, you can do both.)
+
+### Contributing a new course or deck (or porting an existing one) 
+
+There are two major aspects in creating a new course:
+1. Writing the lesson texts.
+This can be done by pretty much anyone, and only (a small amount of) Markdown knowledge is required.
+2. Preparing suitable exercises for each lesson.
+This currently requires programming knowledge (but see the next section, [Building a separate platform for course creation](#building-a-separate-platform-for-course-creation)).
+
+In addition to creating an entirely new course, you may alternatively work on top of an existing one and just add exercises.
+It would be great to see [la karda](https://mw.lojban.org/papri/la_karda) or [The Crash Course](https://mw.lojban.org/papri/The_Crash_Course_(a_draft)), for example.
+Interactive exercises for each section of [The Complete Lojban Language](https://lojban.github.io/cll/) would be highly desired as well, though that would likely require substantially more effort.
+
+Below, we describe the three main approaches for creating a new course.
+Decks are similar to courses, except they have cards instead of lessons.
+Cards are generally associated with a single Lojban word or construct, and require accompanying exercises for students to practice that word.
+
+#### 1. You may define the course entirely in Haskell
+
+  This allows for the utmost flexibility, and is the approach taken by [Getting started with Lojban](https://lojban.io/courses/introduction/).
+  We rely on concepts such as [TranslationGenerator](https://lojban.io/documentation/lojbanios-0.1.0.0/src/Core.html#TranslationGenerator) and [ExerciseGenerator](https://lojban.io/documentation/lojbanios-0.1.0.0/src/Core.html#ExerciseGenerator).
+  Fundamentally, an ExerciseGenerator is a pure function which takes a random seed as input and produces an exercise as output.
+  Likewise for TranslationGenerator.
+
+  Generators may be combined using functions such as [combineGeneratorsUniformly](https://lojban.io/documentation/lojbanios-0.1.0.0/src/Util.html#combineGeneratorsUniformly) and its weighted counterpart, [combineGenerators](https://lojban.io/documentation/lojbanios-0.1.0.0/src/Util.html#combineGenerators).
+  The resulting algebra enables very precise control over exercise frequencies, and makes it easy to assemble a diverse and entertaining set of exercises by recursively combining (and reusing) smaller generators.
+
+  There are also many useful utility functions in [Courses.Framework.ExerciseGenerators](https://lojban.io/documentation/lojbanios-0.1.0.0/Courses-Framework-ExerciseGenerators.html) for building high-level exercise generators from relatively low-level primitives, such as individual translations and words.
+  These functions are generally customizable using strategies, and often accept parameters such as [SentenceCanonicalizer](https://lojban.io/documentation/lojbanios-0.1.0.0/Language-Lojban-Core.html#t:SentenceCanonicalizer), [SentenceComparer](https://lojban.io/documentation/lojbanios-0.1.0.0/Core.html#t:SentenceComparer) and [SimpleBridiDisplayer](https://lojban.io/documentation/lojbanios-0.1.0.0/Language-Lojban-Core.html#t:SimpleBridiDisplayer).
+  Examples are [generateTranslationExercise](https://lojban.io/documentation/lojbanios-0.1.0.0/src/Courses.Framework.ExerciseGenerators.html#generateTranslationExercise), [generateBlacklistedWordTranslationExercise](https://lojban.io/documentation/lojbanios-0.1.0.0/Courses-Framework-ExerciseGenerators.html#v:generateBlacklistedWordTranslationExercise), [generateGrammaticalClassExercise](https://lojban.io/documentation/lojbanios-0.1.0.0/src/Courses.Framework.ExerciseGenerators.html#generateFillingBlanksExerciseByAlternatives), [generateFillingBlanksExerciseByAlternatives](https://lojban.io/documentation/lojbanios-0.1.0.0/src/Courses.Framework.ExerciseGenerators.html#generateFillingBlanksExerciseByAlternatives), [generateFillingBlanksExerciseByExpression](https://lojban.io/documentation/lojbanios-0.1.0.0/src/Courses.Framework.ExerciseGenerators.html#generateFillingBlanksExerciseByExpression), and several others.
+
+  These concepts, combined with Haskell's high level abstractions such as applicative functors, give rise to a very powerful way of defining exercises.
+
+  For an example of a course defined entirely in Haskell, see all files under [haskell/src/Courses/English/Grammar/Introduction](https://github.com/jqueiroz/lojban.io/tree/master/haskell/src/Courses/English/Grammar/Introduction), where we define the course "Getting started with Lojban".
+  We also recommend reading the documentation of
+
+  * the exercise generator utilities in [Courses.Framework.ExerciseGenerators](https://lojban.io/documentation/lojbanios-0.1.0.0/Courses-Framework-ExerciseGenerators.html);
+  * the translation manipulation utilities in [Courses.Framework.TranslationUtils](https://lojban.io/documentation/lojbanios-0.1.0.0/Courses-Framework-TranslationUtils.html);
+  * and maybe the extractor utilities in [Courses.Framework.Extractors](https://lojban.io/documentation/lojbanios-0.1.0.0/Courses-Framework-Extractors.html).
+
+  The module [Language.Lojban.Canonicalization](https://lojban.io/documentation/lojbanios-0.1.0.0/Language-Lojban-Canonicalization.html) contains sensible general-purpose sentence canonicalizers, and [Language.Lojban.Presentation](https://lojban.io/documentation/lojbanios-0.1.0.0/Language-Lojban-Presentation.html) encloses multiple strategies for displaying bridi.
+  See also [haskell/src/Courses/English/Grammar/Introduction/Strategies.hs](https://github.com/jqueiroz/lojban.io/blob/master/haskell/src/Courses/English/Grammar/Introduction/Strategies.hs) for the definition of strategies used in the "Getting started with Lojban" course, including the custom sentence comparer.
+
+#### 2. You may define the course in Haskell, but load translations from a separate YAML file
+
+  This is a bit less flexible, in that translations may not be combined anymore using the generator algebra.
+  But the advantage is that anyone will be able to contribute to your course by editing the (human-readable) translation files.
+
+  For an example of a course following this approach, see all files under [haskell/src/Courses/English/Grammar/Crash](https://github.com/jqueiroz/lojban.io/tree/master/haskell/src/Courses/English/Grammar/Crash), where we define a course based on a tiny subset of [The Crash Course](https://mw.lojban.org/papri/The_Crash_Course_(a_draft)) by [la gleki](https://github.com/lagleki).
+  Our version of this course is highly incomplete, and hence not listed on our website, but it is nevertheless available at [https://lojban.io/courses/crash/](https://lojban.io/courses/crash/).
+  The corresponding translation files, which power the interactive exercises, are located in [resources/courses/english/grammar/crash/translations](https://github.com/jqueiroz/lojban.io/tree/master/resources/courses/english/grammar/crash/translations).
+  Similarly, the vocabulary files are located in [resources/courses/english/grammar/crash/vocabulary](https://github.com/jqueiroz/lojban.io/tree/master/resources/courses/english/grammar/crash/vocabulary).
+
+<!-- TODO: provide the entire course as a JSON file -->
+
+### Building a separate platform for course creation
+
+Coming soon...
+
 <!--
-### Contribute a new course or deck (including exercises) 
-Currently, there are three ways to create a new course 
 
-not just creating a new course; you may also take an existing course outside and port/create exercises 
-
-The reason this requires programming knowledge right now is that... see next item 
+2. This is a bit less flexible, but has the advantage...
 
 ### Develop a separate platform for course and deck creation
 
 ### Use one of our APIs to build something 
 
-## Contributing (as a Haskell programmer) 
+pandoc - more generic syntax, instead of embedded html
+
+-->
+
+## Contributing (as a Haskell programmer)
 
 Hello, fellow Haskeller!
-I hope that you are having fun writing <s>pointless</s> point-free functions (within reason).
+I hope that you are having loads of fun writing <s>pointless</s> point-free functions (within reason).
+I know I am.
 
-If you know Haskell (or are learning Haskell), feel free to... 
+If you know Haskell (or are learning Haskell), feel free to look at the code and submit a PR enhancing or implementing whatever you would like.
+The documentation at [https://lojban.io/docs](https://lojban.io/docs) should be useful.
 
-If you are interested in parsing ... generalize sentence canonicalizer ... tests located in...
--->
+### Code improvements
+
+I started this project back in 2016, mostly because I wanted to learn and practice Haskell, and partly to learn Lojban as well.
+As a result, some parts of the code, particularly the ones written earliest, do not follow best practices.
+For example, there are several instances of partial functions.
+Less importantly, monad transformers are used directly instead of [mtl](https://hackage.haskell.org/package/mtl) or [freer monads](https://hackage.haskell.org/package/freer).
+
+Feel free to make any code improvements you deem necessary or useful.
+They will be deeply appreciated.
+Also feel free to point out bad patterns, even if you are unable to address them directly, and I will eventually get those fixed.
+I am still learning, and this project remains an excellent excuse for me to exercise my Haskell.
+
+### Deeper technical aspects
+
+If you are interested in the deeper technical aspects of this project, most notably parsing and sentence canonicalization, you should check out the [zasni-gerna](https://github.com/YoshikuniJujo/zasni-gerna) Lojban parser from [Yoshikuni Jujo](https://github.com/YoshikuniJujo) as well as our own sentence canonicalization logic in [haskell/src/Language/Lojban/Canonicalization/Internals.hs](https://github.com/jqueiroz/lojban.io/blob/master/haskell/src/Language/Lojban/Canonicalization/Internals.hs).
+Our sentence canonicalization logic takes as input the parse tree produced by zasni-gerna.
+
+Beware that I do not make any assurances regarding the quality, understandability, maintainability, or overall fitness and suitability of that particular piece of s... I mean, code.
+It works though (for the modest subset of the language which it was intended to cover)
+To see what is currently supported, you may check our unit tests in [haskell/tests/language/Language/Lojban/Canonicalization/Tests.hs](https://github.com/jqueiroz/lojban.io/blob/master/haskell/tests/language/Language/Lojban/Canonicalization/Tests.hs).
+
+Whatever does not work is not the fault of zasni-gerna, but rather of our own incomplete handling of the resulting parse tree.
+I generally extend the sentence canonicalizer on demand, whenever new Lojban constructs need to be supported to address exercises in new lessons.
+
+You may also be interested in reading about [parsing expression grammars](https://en.wikipedia.org/wiki/Parsing_expression_grammar) (PEGs), which were the approach used by Yoshikuni Jujo to make the zasni-gerna parser.
+He also created a Haskell library called [papillon](https://github.com/YoshikuniJujo/papillon), a PEG parser generator which was used to make the zasni-gerna library.
 
 ## Quickstart (using Docker)
 
-<!--
-TODO: we assume a Linux environment 
-Windows with WSL should also work, though we haven't tested it. (TODO: test it)
--->
+The remainder of this document focuses on building and running the project locally.
+We assume a Linux environment, but the [Windows subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) also works.
+If you are running WSL 1, you may build and run the project [using Nix](https://github.com/jqueiroz/lojban.io#quickstart-using-nix).
+If you are running WSL 2, you may build and run the project using either Nix or Docker.
 
 The simplest way to run this project is to execute the webserver inside a [Docker](https://www.docker.com/) container.
 First, run `./virtualization/docker-build.sh` to build the image.
@@ -192,5 +299,5 @@ When you run `make docs`, the project's documentation will be placed into _".sta
 Similarly, when you run `make server`, the webserver executable will be placed into _".stack-work/install/x86\_64-linux-nix/lts-13.27/8.6.5/bin/lojbanios"_, and you may execute it directly if you want as long as you set the appropriate environment variable: `LOJBANIOS_ENVIRONMENT=dev`.
 
 However, the preferred method for running the webserver is to use the helper script `./run-server.sh`.
-This script automatically builds the server by running `make server` and then executes it by running `stack exec server` in an isolated nix-shell environment.
+This script automatically builds the server by running `make server` and then executes it by running `stack exec server` in an isolated nix-shell environment, with the appropriate environment variables.
 Upon running `./run-server.sh`, you should be able to access the webserver at [http://localhost:8000](http://localhost:8000).
