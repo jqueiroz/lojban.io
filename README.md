@@ -22,9 +22,11 @@ Haskell documentation for the currently deployed version may be found at [https:
   + [Contributing a new course or deck (or porting an existing one)](#contributing-a-new-course-or-deck-or-porting-an-existing-one)
     - [1. You may define the course entirely in Haskell](#1-you-may-define-the-course-entirely-in-haskell)
     - [2. You may define the course in Haskell, but load translations from a separate YAML file](#2-you-may-define-the-course-in-haskell-but-load-translations-from-a-separate-yaml-file)
+    - [3. You may define the course entirely in a JSON file](#3-you-may-define-the-course-entirely-in-a-json-file)
   * [Building a separate platform for course creation](#building-a-separate-platform-for-course-creation)
+  * [Building something on top of our APIs](#building-something-on-top-of-our-apis)
 * [Contributing (as a Haskell programmer)](#contributing-as-a-haskell-programmer)
-  + [Code improvements](#code-improvements)
+  + [Making code improvements](#making-code-improvements)
   + [Deeper technical aspects](#deeper-technical-aspects)
 * [Quickstart (using Docker)](#quickstart-using-docker)
 * [Quickstart (using Nix)](#quickstart-using-nix)
@@ -75,6 +77,7 @@ If you are interested, you may work on any of the draft translation catalogue fi
 When you believe one of these files is ready, please let me know.
 I will briefly review it and then move it out of the "drafts" folder.
 The 15 or so brivla covered in that file will then be available as new cards in the Contextualized brivla deck.
+<!-- TODO: prepare these files -->
 
 Finally, even files [outside of the "drafts" folder](https://github.com/jqueiroz/lojban.io/tree/master/resources/decks/english/brivla/sentences) may contain mistakes, so feel free to review them as well if you're interested.
 Likewise, additional translations will never hurt, so feel free to add new ones.
@@ -145,7 +148,7 @@ Cards are generally associated with a single Lojban word or construct, and requi
 
   There are also many useful utility functions in [Courses.Framework.ExerciseGenerators](https://lojban.io/documentation/lojbanios-0.1.0.0/Courses-Framework-ExerciseGenerators.html) for building high-level exercise generators from relatively low-level primitives, such as individual translations and words.
   These functions are generally customizable using strategies, and often accept parameters such as [SentenceCanonicalizer](https://lojban.io/documentation/lojbanios-0.1.0.0/Language-Lojban-Core.html#t:SentenceCanonicalizer), [SentenceComparer](https://lojban.io/documentation/lojbanios-0.1.0.0/Core.html#t:SentenceComparer) and [SimpleBridiDisplayer](https://lojban.io/documentation/lojbanios-0.1.0.0/Language-Lojban-Core.html#t:SimpleBridiDisplayer).
-  Examples are [generateTranslationExercise](https://lojban.io/documentation/lojbanios-0.1.0.0/src/Courses.Framework.ExerciseGenerators.html#generateTranslationExercise), [generateBlacklistedWordTranslationExercise](https://lojban.io/documentation/lojbanios-0.1.0.0/Courses-Framework-ExerciseGenerators.html#v:generateBlacklistedWordTranslationExercise), [generateGrammaticalClassExercise](https://lojban.io/documentation/lojbanios-0.1.0.0/src/Courses.Framework.ExerciseGenerators.html#generateFillingBlanksExerciseByAlternatives), [generateFillingBlanksExerciseByAlternatives](https://lojban.io/documentation/lojbanios-0.1.0.0/src/Courses.Framework.ExerciseGenerators.html#generateFillingBlanksExerciseByAlternatives), [generateFillingBlanksExerciseByExpression](https://lojban.io/documentation/lojbanios-0.1.0.0/src/Courses.Framework.ExerciseGenerators.html#generateFillingBlanksExerciseByExpression), and several others.
+  Examples are [generateTranslationExercise](https://lojban.io/documentation/lojbanios-0.1.0.0/src/Courses.Framework.ExerciseGenerators.html#generateTranslationExercise), [generateBlacklistedWordTranslationExercise](https://lojban.io/documentation/lojbanios-0.1.0.0/src/Courses.Framework.ExerciseGenerators.html#generateBlacklistedWordTranslationExercise), [generateGrammaticalClassExercise](https://lojban.io/documentation/lojbanios-0.1.0.0/src/Courses.Framework.ExerciseGenerators.html#generateGrammaticalClassExercise), [generateFillingBlanksExerciseByAlternatives](https://lojban.io/documentation/lojbanios-0.1.0.0/src/Courses.Framework.ExerciseGenerators.html#generateFillingBlanksExerciseByAlternatives), [generateFillingBlanksExerciseByExpression](https://lojban.io/documentation/lojbanios-0.1.0.0/src/Courses.Framework.ExerciseGenerators.html#generateFillingBlanksExerciseByExpression), and several others.
 
   These concepts, combined with Haskell's high level abstractions such as applicative functors, give rise to a very powerful way of defining exercises.
 
@@ -169,23 +172,37 @@ Cards are generally associated with a single Lojban word or construct, and requi
   The corresponding translation files, which power the interactive exercises, are located in [resources/courses/english/grammar/crash/translations](https://github.com/jqueiroz/lojban.io/tree/master/resources/courses/english/grammar/crash/translations).
   Similarly, the vocabulary files are located in [resources/courses/english/grammar/crash/vocabulary](https://github.com/jqueiroz/lojban.io/tree/master/resources/courses/english/grammar/crash/vocabulary).
 
-<!-- TODO: provide the entire course as a JSON file -->
+#### 3. You may define the course entirely in a JSON file
+
+As long as you are able to provide a JSON file with information about your course, such as title, lessons, exercises for each lesson, and so on, we will be able to host the course on our website.
+I actually prepared a [draft schema](https://github.com/jqueiroz/lojban.io/tree/master/contracts/lojbanios.graphql) in [GraphQL](https://graphql.org/) with the necessary definitions for both courses and decks.
+It is not yet final, but it is pretty close.
+If you are interested in creating a new course or deck, please let me know, and I will (1) finalize the schema; and (2) start working on the server side implementation for consuming these files.
+<!-- TODO: add draft schema (and rename to lojbanios) -->
+
+Technically, you could write this JSON file defining your course or deck by hand.
+But you will likely want to use a programming language for greater readability and flexibility.
+For example, you could have separate Markdown files for each lesson, and additionally a Python script which reads these files, combines them with other data (e.g. a list of exercises and/or translations), and then produces the final JSON output.
+
+The upside of this approach is that it is accessible to anyone with programming knowledge, and not only to Haskell programmers.
+If you choose a popular programming such as Python, then in principle many others will be able to contribute.
+It is also very flexible, and gives you full control over how to structure your course.
+
+The downside, of course, is that it still requires programming knowledge.
 
 ### Building a separate platform for course creation
 
-Coming soon...
+This related to [3. You may define the course entirely in a JSON file](#3-you-may-define-the-course-entirely-in-a-json-file).
+As mentioned there, the existence of a well-defined schema allows programmers to define their own courses and decks.
+But more than that, it also enables the development of a separate, user-friendly platform for programmers and nonprogrammers alike to colaboratively produce new courses and decks.
 
-<!--
+I have a few ideas on this subject already, so if you are interested, please let me know and we can work closely on the design.
+I can also help integrate with our exercise scripts, to allow real-time preview of exercises being created, and expose APIs for validating solutions if needed.
 
-2. This is a bit less flexible, but has the advantage...
+### Building something on top of our APIs
 
-### Develop a separate platform for course and deck creation
-
-### Use one of our APIs to build something 
-
-pandoc - more generic syntax, instead of embedded html
-
--->
+We have not done so yet, but it would be pretty simple to expose a REST endpoint which runs our sentence canonicalization logic against an arbitrary input, optionally with some customizable settings, and returns the results.
+If you are interested, please let me know, and I will do that right away.
 
 ## Contributing (as a Haskell programmer)
 
@@ -193,10 +210,10 @@ Hello, fellow Haskeller!
 I hope that you are having loads of fun writing <s>pointless</s> point-free functions (within reason).
 I know I am.
 
-If you know Haskell (or are learning Haskell), feel free to look at the code and submit a PR enhancing or implementing whatever you would like.
+If you know Haskell (or are learning Haskell), feel free to explore the code and submit a PR enhancing or implementing whatever you would like.
 The documentation at [https://lojban.io/docs](https://lojban.io/docs) should be useful.
 
-### Code improvements
+### Making code improvements
 
 I started this project back in 2016, mostly because I wanted to learn and practice Haskell, and partly to learn Lojban as well.
 As a result, some parts of the code, particularly the ones written earliest, do not follow best practices.
@@ -208,6 +225,8 @@ They will be deeply appreciated.
 Also feel free to point out bad patterns, even if you are unable to address them directly, and I will eventually get those fixed.
 I am still learning, and this project remains an excellent excuse for me to exercise my Haskell.
 
+<!-- TODO: pandoc - more generic syntax, instead of random snippets of embedded html -->
+
 ### Deeper technical aspects
 
 If you are interested in the deeper technical aspects of this project, most notably parsing and sentence canonicalization, you should check out the [zasni-gerna](https://github.com/YoshikuniJujo/zasni-gerna) Lojban parser from [Yoshikuni Jujo](https://github.com/YoshikuniJujo) as well as our own sentence canonicalization logic in [haskell/src/Language/Lojban/Canonicalization/Internals.hs](https://github.com/jqueiroz/lojban.io/blob/master/haskell/src/Language/Lojban/Canonicalization/Internals.hs).
@@ -218,7 +237,7 @@ It works though (for the modest subset of the language which it was intended to 
 To see what is currently supported, you may check our unit tests in [haskell/tests/language/Language/Lojban/Canonicalization/Tests.hs](https://github.com/jqueiroz/lojban.io/blob/master/haskell/tests/language/Language/Lojban/Canonicalization/Tests.hs).
 
 Whatever does not work is not the fault of zasni-gerna, but rather of our own incomplete handling of the resulting parse tree.
-I generally extend the sentence canonicalizer on demand, whenever new Lojban constructs need to be supported to address exercises in new lessons.
+I generally extend the sentence canonicalizer on demand, whenever new Lojban constructs need to be supported to address the needs of exercises in new lessons.
 
 You may also be interested in reading about [parsing expression grammars](https://en.wikipedia.org/wiki/Parsing_expression_grammar) (PEGs), which were the approach used by Yoshikuni Jujo to make the zasni-gerna parser.
 He also created a Haskell library called [papillon](https://github.com/YoshikuniJujo/papillon), a PEG parser generator which was used to make the zasni-gerna library.
@@ -229,6 +248,7 @@ The remainder of this document focuses on building and running the project local
 We assume a Linux environment, but the [Windows subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) also works.
 If you are running WSL 1, you may build and run the project [using Nix](https://github.com/jqueiroz/lojban.io#quickstart-using-nix).
 If you are running WSL 2, you may build and run the project using either Nix or Docker.
+<!-- TODO: switch off of Unix sockets; they do not work on WSL1 -->
 
 The simplest way to run this project is to execute the webserver inside a [Docker](https://www.docker.com/) container.
 First, run `./virtualization/docker-build.sh` to build the image.
