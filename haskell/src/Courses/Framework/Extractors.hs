@@ -1,6 +1,7 @@
 -- | This module provides utilities for extracting a desired entity from a broader one.
 module Courses.Framework.Extractors
-( extractSimpleBridiGeneratorFromTranslationGenerator
+( extractTrivialBridiGeneratorFromVocabulary
+, extractSimpleBridiGeneratorFromTranslationGenerator
 , extractLojbanSentencesFromTranslationGenerator
 , extractLojbanSentencesFromTranslation
 ) where
@@ -11,6 +12,12 @@ import Util (chooseItemUniformly)
 import Language.Lojban.Canonicalization (extractSimpleBridi)
 import Courses.Framework.TranslationUtils (narrowTranslationGenerator)
 import qualified Data.Text as T
+
+-- | Produces trivial bridi (i.e. bridi with no sumti) from the vocabulary.
+extractTrivialBridiGeneratorFromVocabulary :: Vocabulary -> SimpleBridiGenerator
+extractTrivialBridiGeneratorFromVocabulary vocabulary r0 = (simpleBridi, r1) where
+    (brivla, r1) = chooseItemUniformly r0 $ vocabularyBrivlaList vocabulary
+    simpleBridi = SimpleBridi False brivla [] []
 
 -- | Extracts a SimpleBridi among the sentences included in the translation generator.
 --

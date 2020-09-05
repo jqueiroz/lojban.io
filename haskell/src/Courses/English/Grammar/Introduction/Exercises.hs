@@ -5,7 +5,7 @@ module Courses.English.Grammar.Introduction.Exercises where
 
 import Core
 import Courses.Framework.SentenceGenerators (generateNonbridi)
-import Courses.Framework.Extractors (extractSimpleBridiGeneratorFromTranslationGenerator)
+import Courses.Framework.Extractors (extractSimpleBridiGeneratorFromTranslationGenerator, extractTrivialBridiGeneratorFromVocabulary)
 import Courses.Framework.ExerciseGenerators
 import Courses.Framework.ExerciseUtils (simplifyTerminatorsInCanonicalAnswer)
 import Courses.Framework.TranslationUtils (simplifyTerminatorsInTranslationGenerator, narrowTranslationGenerator)
@@ -28,7 +28,7 @@ dictionary = englishDictionary
 exercises1 :: ExerciseGenerator
 exercises1 =
     combineGenerators
-        [ (25, generateEnglishOrLojbanBridiJufraExercise bridiGenerator nonbridiGenerator bridiDisplayer)
+        [ (25, generateEnglishOrLojbanBridiJufraExercise (combineGenerators [(6, bridiGenerator), (3, trivialBridiGenerator)]) nonbridiGenerator bridiDisplayer)
         , (20, generateSelbriIdentificationExercise bridiGenerator bridiDisplayer)
         , (10, generateContextualizedGismuPlacePositionExercise dictionary bridiGenerator bridiDisplayer)
         , (20, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator bridiDisplayer)
@@ -38,6 +38,7 @@ exercises1 =
         vocabulary = vocabulary1_cumulative
         nonbridiGenerator = generateNonbridi vocabulary
         bridiGenerator = extractSimpleBridiGeneratorFromTranslationGenerator translations1
+        trivialBridiGenerator = extractTrivialBridiGeneratorFromVocabulary vocabulary
         bridiDisplayer = displayStandardSimpleBridi
 
 -- | Translation exercises for the first lesson.
@@ -49,7 +50,7 @@ translationExercises1 = generateTranslationExercise sentenceCanonicalizer senten
 exercises2 :: ExerciseGenerator
 exercises2 =
     combineGenerators
-        [ (15, generateEnglishOrLojbanBridiJufraExercise bridiGenerator nonbridiGenerator bridiDisplayer)
+        [ (15, generateEnglishOrLojbanBridiJufraExercise (combineGenerators [(5, bridiGenerator), (3, trivialBridiGenerator)]) nonbridiGenerator bridiDisplayer)
         , (20, generateSelbriIdentificationExercise bridiGenerator bridiDisplayer)
         , (10, generateContextualizedGismuPlacePositionExercise dictionary bridiGenerator bridiDisplayer)
         , (20, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator bridiDisplayer)
@@ -59,6 +60,7 @@ exercises2 =
         vocabulary = vocabulary2_cumulative
         nonbridiGenerator = generateNonbridi vocabulary
         bridiGenerator = extractSimpleBridiGeneratorFromTranslationGenerator translations2
+        trivialBridiGenerator = extractTrivialBridiGeneratorFromVocabulary vocabulary
         bridiDisplayer = combineGenerators [(7, displayStandardSimpleBridi), (3, displayVariantSimpleBridi)]
 
 -- | Translation exercises for the second lesson.
@@ -70,7 +72,7 @@ translationExercises2 = generateTranslationExercise sentenceCanonicalizer senten
 exercises3 :: ExerciseGenerator
 exercises3 =
     combineGenerators
-        [ (10, generateEnglishOrLojbanBridiJufraExercise bridiGenerator nonbridiGenerator bridiDisplayer)
+        [ (10, generateEnglishOrLojbanBridiJufraExercise (combineGenerators [(4, bridiGenerator), (3, trivialBridiGenerator)]) nonbridiGenerator bridiDisplayer)
         , (10, generateSelbriIdentificationExercise bridiGenerator bridiDisplayer)
         , (20, generateContextualizedGismuPlacePositionExercise dictionary bridiGenerator bridiDisplayer)
         , (20, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator bridiDisplayer)
@@ -81,6 +83,7 @@ exercises3 =
         vocabulary = vocabulary3_cumulative
         nonbridiGenerator = generateNonbridi vocabulary
         bridiGenerator = extractSimpleBridiGeneratorFromTranslationGenerator translations3
+        trivialBridiGenerator = extractTrivialBridiGeneratorFromVocabulary vocabulary
         bridiDisplayer = combineGenerators [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
 
 -- | Interesting translation exercises for the third lesson: comprises regular exercises involving interesting translations, as well as "Translate without using zo'e" exercises involving restricted translations.
@@ -196,7 +199,7 @@ translationExercises7_restricted = generateBlacklistedWordTranslationExercise "k
 exercises1to7 :: ExerciseGenerator
 exercises1to7 =
     combineGenerators
-        [ (5, generateEnglishOrLojbanBridiJufraExercise bridiGenerator nonbridiGenerator bridiDisplayer)
+        [ (5, generateEnglishOrLojbanBridiJufraExercise (combineGenerators [(3, bridiGenerator), (3, trivialBridiGenerator)]) nonbridiGenerator bridiDisplayer)
         , (5, generateSelbriIdentificationExercise bridiGenerator bridiDisplayer)
         , (5, generateContextualizedGismuPlacePositionExercise dictionary bridiGenerator bridiDisplayer)
         , (15, generateContextualizedGismuPlaceMeaningExercise dictionary bridiGenerator bridiDisplayer)
@@ -208,6 +211,7 @@ exercises1to7 =
     where
         vocabulary = vocabulary7_cumulative
         bridiGenerator = extractSimpleBridiGeneratorFromTranslationGenerator translations1to7
+        trivialBridiGenerator = extractTrivialBridiGeneratorFromVocabulary vocabulary
         nonbridiGenerator = generateNonbridi vocabulary
         bridiDisplayer = simplifyTerminatorsInBridiDisplayer $ (combineGenerators [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)])
 
