@@ -147,6 +147,8 @@ yaml_brivla_files = \
     , "../../resources/decks/english/brivla/sentences/03.yaml"
     , "../../resources/decks/english/brivla/sentences/04.yaml"
     , "../../resources/decks/english/brivla/sentences/05.yaml"
+    , "../../resources/decks/english/brivla/sentences/drafts/06.yaml"
+    , "../../resources/decks/english/brivla/sentences/drafts/07.yaml"
     ]
 
 def load_taught_brivla():
@@ -218,7 +220,7 @@ def run(cmd):
         print(frequent_words)
         print("Frequent words: %d" % len(frequent_words))
     def retrieve_top_brivla():
-        blacklist = set(["selpa'i", "broda", "gerna", "lojbo", "tsani", "zmadu", "gerna", "binxo", "terdatni", "srana", "binxo", "casnu", "jbopre", "cmavo", "lujvo", "gismu", "nuzba", "dukse", "ninmu"])
+        blacklist = set(["selpa'i", "broda", "gerna", "lojbo", "tsani", "zmadu", "gerna", "binxo", "terdatni", "srana", "binxo", "casnu", "jbopre", "cmavo", "lujvo", "gismu", "nuzba", "dukse", "ninmu", "nanmu", "kampu", "broda", "brode", "brodi", "brodo", "brodu"])
         taught = set(load_taught_brivla())
         words = frequency_table.items()
         brivla = filter(lambda x: x[0] in gismu or x[0] in lujvo, words)
