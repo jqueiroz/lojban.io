@@ -1516,6 +1516,7 @@ translations12_pu = expandTranslationGenerator $ combineGeneratorsUniformly [fan
         , (["xu do pu ciska fo ta"], ["Did you write something using that?"])
         ]
 
+-- TODO: translations with "ca ma" (when) and "pu/ca/ba SUMTI"
 translations12_ca :: TranslationGenerator
 translations12_ca = expandTranslationGenerator $ combineGeneratorsUniformly [fanva, dunda, vecnu, gleki, ciska] where
     fanva = generatorFromList
