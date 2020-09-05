@@ -142,11 +142,11 @@ def load_brivla_from_yaml_file(filename):
     return ret
 
 yaml_brivla_files = \
-    [ "../../resources/decks/english/brivla/sentences/01_easy.yaml"
-    , "../../resources/decks/english/brivla/sentences/02_easy.yaml"
-    , "../../resources/decks/english/brivla/sentences/03_easy.yaml"
-    , "../../resources/decks/english/brivla/sentences/04_easy.yaml"
-    , "../../resources/decks/english/brivla/sentences/05_easy.yaml"
+    [ "../../resources/decks/english/brivla/sentences/01.yaml"
+    , "../../resources/decks/english/brivla/sentences/02.yaml"
+    , "../../resources/decks/english/brivla/sentences/03.yaml"
+    , "../../resources/decks/english/brivla/sentences/04.yaml"
+    , "../../resources/decks/english/brivla/sentences/05.yaml"
     ]
 
 def load_taught_brivla():
