@@ -196,18 +196,6 @@ gasnu:
       translated_sentences:
         - You make me dream.
 
-    # Sentence complexity: 6.044
-    - lojban_sentences:
-        - mi pu gasnu lo drata cipra
-      translated_sentences:
-        - I did another test.
-
-    # Sentence complexity: 10.596
-    - lojban_sentences:
-        - do ma gasnu ca lo bavlamdei
-      translated_sentences:
-        - What are you doing tomorrow?
-
 
 
 # Total sentences: 40
