@@ -77,7 +77,6 @@ If you are interested, you may work on any of the draft translation catalogue fi
 When you believe one of these files is ready, please let me know.
 I will briefly review it and then move it out of the "drafts" folder.
 The 15 or so brivla covered in that file will then be available as new cards in the Contextualized brivla deck.
-<!-- TODO: prepare these files -->
 
 Finally, even files [outside of the "drafts" folder](https://github.com/jqueiroz/lojban.io/tree/master/resources/decks/english/brivla/sentences) may contain mistakes, so feel free to review them as well if you're interested.
 Likewise, additional translations will never hurt, so feel free to add new ones.
@@ -178,7 +177,6 @@ As long as you are able to provide a JSON file with information about your cours
 I actually prepared a [draft schema](https://github.com/jqueiroz/lojban.io/tree/master/schemas/lojbanios.graphql) in [GraphQL](https://graphql.org/) syntax with the necessary definitions for both courses and decks.
 It is not yet final, but it is pretty close.
 If you are interested in creating a new course or deck, please let me know, and I will (1) finalize the schema; and (2) start working on the server side implementation for consuming these files.
-<!-- TODO: add draft schema (and rename to lojbanios) -->
 
 Technically, you could write this JSON file defining your course or deck by hand.
 But you will likely want to use a programming language for greater readability and flexibility.
@@ -288,8 +286,6 @@ Other useful commands:
 * `./buildscripts/stack.sh`: runs [stack](https://docs.haskellstack.org/en/stable/README/) inside an isolated nix-shell environment, eg. `./buildscripts/stack.sh build` will build the webserver executable and `./buildscripts/stack.sh haddock --no-haddock-deps` will build the Haskell documentation.
 
 For more details on building and running, see [Building and running (using Nix)](#building-and-running-using-nix).
-
-<!-- TODO: Section: Technical aspects (parsing, canonicalization, exercise generation, etc) -->
 
 ## Building and running (using Nix)
 
