@@ -332,8 +332,8 @@ preti:
     x4: audience
 
 prami:
-    x1: "entity #1"
-    x2: "entity #2"
+    x1: loving entity
+    x2: loved entity
 
 tatpi:
     x1: tired entity
