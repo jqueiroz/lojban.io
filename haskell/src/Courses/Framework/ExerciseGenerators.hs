@@ -34,6 +34,8 @@ import qualified Data.Text as T
 import qualified Data.Map as M
 
 -- | Exercise: translate a given sentence into Lojban.
+--
+-- Example: https://github.com/jqueiroz/lojban.io/blob/master/docs/exercises/examples/translation.jpg
 generateTranslationExercise :: SentenceCanonicalizer -> SentenceComparer -> TranslationGenerator -> ExerciseGenerator
 generateTranslationExercise = generateRestrictedTranslationExercise "Translate this sentence" (const True)
 
