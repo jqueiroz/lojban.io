@@ -426,3 +426,24 @@ vocabulary22 = Vocabulary
 -- | Cumulative vocabulary up to the appropriate lesson.
 vocabulary22_cumulative :: Vocabulary
 vocabulary22_cumulative = vocabulary21_cumulative <> vocabulary22
+
+-- | Vocabulary for the appropriate lesson.
+--
+-- * New brivla: NONE.
+-- * New cmavo: za, zi, zu
+vocabulary23 :: Vocabulary
+vocabulary23 = Vocabulary
+    -- Brivla
+    [
+    ]
+    -- Cmavo
+    [
+        "za", "zi", "zu"
+    ]
+    -- Cmene
+    [
+    ]
+
+-- | Cumulative vocabulary up to the appropriate lesson.
+vocabulary23_cumulative :: Vocabulary
+vocabulary23_cumulative = vocabulary21_cumulative <> vocabulary23

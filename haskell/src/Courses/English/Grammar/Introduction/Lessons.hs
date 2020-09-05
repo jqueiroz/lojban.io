@@ -95,3 +95,7 @@ lesson21 = Lesson "Gadri 1" exercises21 (Just lecture21) (Just plan21) (Just voc
 -- | Lesson 22: Numbers 1
 lesson22 :: Lesson
 lesson22 = Lesson "Numbers 1" exercises22 (Just lecture22) (Just plan22) (Just vocabulary22_cumulative)
+
+-- | Lesson 23: Tenses 2
+lesson23 :: Lesson
+lesson23 = Lesson "Tenses 2" exercises23 (Just lecture23) (Just plan23) (Just vocabulary23_cumulative)

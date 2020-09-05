@@ -399,3 +399,11 @@ exercises22 =
     combineGenerators
         [
         ]
+
+-- * Lesson 23: Tenses 2
+-- | Exercises for the lesson.
+exercises23 :: ExerciseGenerator
+exercises23 =
+    combineGenerators
+        [
+        ]
