@@ -136,15 +136,17 @@ Decks are similar to courses, except they have cards instead of lessons.
 Cards are generally associated with a single Lojban word or construct, and require accompanying exercises for students to practice that word.
 
 If you are interested in preparing a deck, we have a few suggestions as well:
-* A deck covering useful vocabulary for chatting, such as _coi_, _doi_, a few discursives (e.g. _ku'i_), a few attitudinals, and common phrases (see the [IRC cheat sheet](https://mw.lojban.org/papri/IRC_cheat_sheet)).
+* A deck covering useful vocabulary for chatting, such as _coi_, _doi_, _ki'e_, _mi'e_, a few discursives (e.g. _ku'i_), a few attitudinals, and common phrases (see also the [IRC cheat sheet](https://mw.lojban.org/papri/IRC_cheat_sheet) and [Useful phrases in Lojban](https://www.omniglot.com/language/phrases/lojban.htm)).
 * A deck covering abstractors (e.g. _du'u_, _nu_, _ka_, _si'o_) in a contextualized setting.
 * A deck covering different question words (e.g. _xu_, _mo_, _xo_, _pei_) in a contextualized setting.
 * A deck covering [BAI](https://lojban.org/publications/cll/cll_v1.1_xhtml-section-chunks/section-all-BAI.html).
 * A deck covering tenses.
+* A deck covering discursives and/or evidentials.
+* A deck covering numbers.
 * More generally, a deck covering anything which is suitable for flashcard-based software, such as [Memrise](https://www.memrise.com/courses/english/lojban/), [Tinycards](https://tinycards.duolingo.com/search?query=lojban), [Quizlet](https://quizlet.com/subject/lojban/) and [Anki](https://ankiweb.net/shared/decks/lojban).
 That said, ideally decks should be more interesting than just mapping words to definitions, though we understand that may not always be possible.
 
-Of course, feel free to work on something else entirely!
+Of course, also feel free to work on something else entirely!
 
 #### 1. You may define the course entirely in Haskell
 
