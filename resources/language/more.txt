@@ -1,0 +1,4 @@
+More resources:
+- https://github.com/lagleki/livla/tree/master/dumps
+- https://github.com/lagleki/livla/blob/master/dumps/en-keywords.json
+- https://raw.githubusercontent.com/lagleki/livla/master/dumps/zamenhofo.json
