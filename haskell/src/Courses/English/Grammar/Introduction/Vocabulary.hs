@@ -430,7 +430,7 @@ vocabulary22_cumulative = vocabulary21_cumulative <> vocabulary22
 -- | Vocabulary for the appropriate lesson.
 --
 -- * New brivla: NONE.
--- * New cmavo: za, zi, zu
+-- * New cmavo: pu'o, ca'o, ba'o; co'a, co'u
 vocabulary23 :: Vocabulary
 vocabulary23 = Vocabulary
     -- Brivla
