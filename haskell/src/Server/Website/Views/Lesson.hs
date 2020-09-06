@@ -34,6 +34,7 @@ displayLessonHome serverConfiguration userIdentityMaybe topbarCategory course le
             includeUniversalScripts
             includeInternalStylesheet "lesson.css"
             includeCourseStylesheet course
+            includeInternalScript "lesson-min.js"
             includeCourseScript course
             includeLessonScript lessonNumber
         H.body $ do
