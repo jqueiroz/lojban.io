@@ -331,7 +331,7 @@ vocabulary17 = Vocabulary
     ]
     -- Cmavo
     [
-        "na", "na'e", "to'e", "no'e"
+        "na'e", "to'e", "no'e"
     ]
     -- Cmene
     [
