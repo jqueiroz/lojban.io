@@ -435,6 +435,7 @@ vocabulary23 :: Vocabulary
 vocabulary23 = Vocabulary
     -- Brivla
     [
+        "kakne"
     ]
     -- Cmavo
     [
