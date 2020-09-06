@@ -447,4 +447,4 @@ vocabulary23 = Vocabulary
 
 -- | Cumulative vocabulary up to the appropriate lesson.
 vocabulary23_cumulative :: Vocabulary
-vocabulary23_cumulative = vocabulary21_cumulative <> vocabulary23
+vocabulary23_cumulative = vocabulary22_cumulative <> vocabulary23
