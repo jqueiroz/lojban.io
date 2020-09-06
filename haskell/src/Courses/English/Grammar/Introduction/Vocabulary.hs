@@ -448,3 +448,25 @@ vocabulary23 = Vocabulary
 -- | Cumulative vocabulary up to the appropriate lesson.
 vocabulary23_cumulative :: Vocabulary
 vocabulary23_cumulative = vocabulary22_cumulative <> vocabulary23
+
+-- | Vocabulary for the appropriate lesson.
+--
+-- * New brivla: NONE.
+-- * New cmavo: loi, lei, lai; lo'e, le'e
+vocabulary24 :: Vocabulary
+vocabulary24 = Vocabulary
+    -- Brivla
+    [
+    ]
+    -- Cmavo
+    [
+        "loi", "lei", "lai",
+        "lo'e", "le'e"
+    ]
+    -- Cmene
+    [
+    ]
+
+-- | Cumulative vocabulary up to the appropriate lesson.
+vocabulary24_cumulative :: Vocabulary
+vocabulary24_cumulative = vocabulary23_cumulative <> vocabulary24
