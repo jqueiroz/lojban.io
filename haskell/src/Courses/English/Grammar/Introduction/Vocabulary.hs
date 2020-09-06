@@ -438,7 +438,8 @@ vocabulary23 = Vocabulary
     ]
     -- Cmavo
     [
-        "za", "zi", "zu"
+        "pu'o", "ca'o", "ba'o",
+        "co'a", "co'u"
     ]
     -- Cmene
     [
