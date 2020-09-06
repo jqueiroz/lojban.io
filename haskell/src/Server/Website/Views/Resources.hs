@@ -167,6 +167,12 @@ displayResources = do
             H.li $ do
                 H.a "Song: tensaia (by la selpa'i)"
                     B.! A.href "https://djemynai.bandcamp.com/album/tensaia"
+            H.li $ do
+                H.a "Song: sruri fa lo tarci (by Rachel Gardener)"
+                    B.! A.href "https://www.youtube.com/watch?v=xZlTA4hbY2o"
+            H.li $ do
+                H.a "Song: bai do (by Rachel Gardener)"
+                    B.! A.href "https://www.youtube.com/watch?v=fR-Z3h1Jsms"
     H.div B.! A.class_ (H.textValue "resource-category") $ do
         H.h2 $ H.toHtml ("Alternative ortographies" :: T.Text)
         H.ul $ do
