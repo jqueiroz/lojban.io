@@ -103,3 +103,7 @@ lesson23 = Lesson "Tenses 2" exercises23 (Just lecture23) (Just plan23) (Just vo
 -- | Lesson 24: Gadri 2
 lesson24 :: Lesson
 lesson24 = Lesson "Gadri 2" exercises24 (Just lecture24) (Just plan24) (Just vocabulary24_cumulative)
+
+-- | Lesson: Checkpoint (Lessons 20--24)
+checkpoint20to24 :: Lesson
+checkpoint20to24 = Lesson "Checkpoint: Lessons 20-24" exercises20to24 (Just lecture20to24) (Just plan20to24) (Just vocabulary24_cumulative)

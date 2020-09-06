@@ -419,3 +419,15 @@ exercises24 =
     combineGenerators
         [
         ]
+
+-- * Lesson 25: Checkpoint -- Lessons 20-24
+-- | Exercises for the lesson.
+exercises20to24 :: ExerciseGenerator
+exercises20to24 =
+    combineGenerators
+        [ (10, exercises20)
+        , (10, exercises21)
+        , (10, exercises22)
+        , (10, exercises23)
+        , (10, exercises24)
+        ]
