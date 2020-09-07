@@ -107,3 +107,7 @@ lesson24 = Lesson "Gadri 2" exercises24 (Just lecture24) (Just plan24) (Just voc
 -- | Lesson: Checkpoint (Lessons 20--24)
 checkpoint20to24 :: Lesson
 checkpoint20to24 = Lesson "Checkpoint: Lessons 20-24" exercises20to24 (Just lecture20to24) (Just plan20to24) (Just vocabulary24_cumulative)
+
+-- | Lesson 26: Quantifying sumti 1
+lesson26 :: Lesson
+lesson26 = Lesson "Quantifying sumti 1" exercises26 (Just lecture26) (Just plan26) (Just vocabulary26_cumulative)

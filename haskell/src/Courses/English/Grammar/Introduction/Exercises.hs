@@ -431,3 +431,11 @@ exercises20to24 =
         , (10, exercises23)
         , (10, exercises24)
         ]
+
+-- * Lesson 26: Quantifying sumti 1
+-- | Exercises for the lesson.
+exercises26 :: ExerciseGenerator
+exercises26 =
+    combineGenerators
+        [
+        ]

@@ -471,3 +471,23 @@ vocabulary24 = Vocabulary
 -- | Cumulative vocabulary up to the appropriate lesson.
 vocabulary24_cumulative :: Vocabulary
 vocabulary24_cumulative = vocabulary23_cumulative <> vocabulary24
+
+-- | Vocabulary for the appropriate lesson.
+--
+-- * New brivla: NONE.
+-- * New cmavo: NONE.
+vocabulary26 :: Vocabulary
+vocabulary26 = Vocabulary
+    -- Brivla
+    [
+    ]
+    -- Cmavo
+    [
+    ]
+    -- Cmene
+    [
+    ]
+
+-- | Cumulative vocabulary up to the appropriate lesson.
+vocabulary26_cumulative :: Vocabulary
+vocabulary26_cumulative = vocabulary24_cumulative <> vocabulary26
