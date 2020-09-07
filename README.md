@@ -24,6 +24,7 @@ Haskell documentation for the currently deployed version may be found at [https:
     - [2. You may define the course in Haskell, but load translations from a separate YAML file](#2-you-may-define-the-course-in-haskell-but-load-translations-from-a-separate-yaml-file)
     - [3. You may define the course entirely in a JSON file](#3-you-may-define-the-course-entirely-in-a-json-file)
   * [Building a separate platform for course creation](#building-a-separate-platform-for-course-creation)
+  * [Adding support for alternative ortographies](#adding-support-for-alternative-ortographies)
   * [Building something on top of our APIs](#building-something-on-top-of-our-apis)
 * [Contributing (as a Haskell programmer)](#contributing-as-a-haskell-programmer)
   + [Making code improvements](#making-code-improvements)
@@ -209,6 +210,10 @@ But more than that, it also enables the development of a separate, user-friendly
 
 I have a few ideas on this subject already, so if you are interested, please let me know and we can work closely on the design.
 I can also help integrate with our exercise scripts, to allow real-time preview of exercises being created, and expose APIs for validating solutions if needed.
+
+### Adding support for alternative ortographies
+
+It would be nice to have a user-specific setting for switching all Lojban content to an alternative ortography, such as [la zbalermorna](https://jackhumbert.github.io/zbalermorna/write-up/) or [la krulermorna](http://lojban.pw/articles/krulermorna/).
 
 ### Building something on top of our APIs
 
