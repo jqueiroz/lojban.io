@@ -80,9 +80,18 @@ displayResources = do
             H.li $ do
                 H.a "la stika"
                     B.! A.href "https://mw.lojban.org/papri/Learning_with_context"
+    H.div B.! A.class_ (H.textValue "resource-category") $ do
+        H.h2 $ H.toHtml ("Video lectures" :: T.Text)
+        H.ul $ do
             H.li $ do
                 H.a "Video lectures by Robert Baruch"
                     B.! A.href "https://www.youtube.com/watch?v=KgxOrTvpWJ4&list=PLEeZWGE3PwbZ7yS5GfDTTT7uR9ESfSKAK"
+            H.li $ do
+                H.a "Video lectures by la kribacr"
+                    B.! A.href "https://www.youtube.com/watch?v=RfdcG5iPJpA"
+            H.li $ do
+                H.a "Video lectures by the LLG"
+                    B.! A.href "https://www.youtube.com/user/LogicalLanguageGroup/videos"
     H.div B.! A.class_ (H.textValue "resource-category") $ do
         H.h2 $ H.toHtml ("Memorization" :: T.Text)
         H.ul $ do
