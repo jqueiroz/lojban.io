@@ -164,16 +164,23 @@
     .lesson-lecture,
     .lesson-plan,
     .lesson-vocabulary {
+        /* Position */
         display: none;
         margin-top: -3em;
-    }
 
-    .lesson-lecture,
-    .lesson-plan,
-    .lesson-vocabulary {
+        /* Style */
         font-family: "Open Sans";
         font-size: 1.2em;
         line-height: 1.4em;
+
+        /* Lists */
+        ol {
+            list-style-type: decimal;
+        }
+
+        ol ol {
+            list-style-type: lower-alpha;
+        }
     }
 
     #lesson-tab-lecture:checked ~ .lesson-lecture,
