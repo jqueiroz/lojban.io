@@ -147,6 +147,9 @@ displayResources = do
         H.h2 $ H.toHtml ("Others" :: T.Text)
         H.ul $ do
             H.li $ do
+                H.a "Lojban wiki"
+                    B.! A.href "https://mw.lojban.org/papri/Lojban"
+            H.li $ do
                 H.a "Pronunciation guides"
                     B.! A.href "https://mw.lojban.org/papri/pronunciation"
             H.li $ do
