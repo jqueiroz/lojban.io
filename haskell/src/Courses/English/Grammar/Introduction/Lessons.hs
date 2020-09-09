@@ -111,3 +111,7 @@ checkpoint20to24 = Lesson "Checkpoint: Lessons 20-24" exercises20to24 (Just lect
 -- | Lesson 26: Quantifying sumti 1
 lesson26 :: Lesson
 lesson26 = Lesson "Quantifying sumti 1" exercises26 (Just lecture26) (Just plan26) (Just vocabulary26_cumulative)
+
+-- | Lesson 27: Tenses 3
+lesson27 :: Lesson
+lesson27 = Lesson "Tenses 3" exercises27 (Just lecture27) (Just plan27) (Just vocabulary27_cumulative)
