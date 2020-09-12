@@ -99,9 +99,6 @@ displayResources = do
                 H.a "Memrise"
                     B.! A.href "https://www.memrise.com/courses/english/lojban/"
             H.li $ do
-                H.a "Tinycards"
-                    B.! A.href "https://tinycards.duolingo.com/search?query=lojban"
-            H.li $ do
                 H.a "Quizlet"
                     B.! A.href "https://quizlet.com/subject/lojban/"
             H.li $ do

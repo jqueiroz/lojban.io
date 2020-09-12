@@ -144,7 +144,7 @@ If you are interested in preparing a deck, we have a few suggestions as well:
 * A deck covering tenses.
 * A deck covering discursives and/or evidentials.
 * A deck covering numbers.
-* More generally, a deck covering anything which is suitable for flashcard-based software, such as [Memrise](https://www.memrise.com/courses/english/lojban/), [Tinycards](https://tinycards.duolingo.com/search?query=lojban), [Quizlet](https://quizlet.com/subject/lojban/) and [Anki](https://ankiweb.net/shared/decks/lojban).
+* More generally, a deck covering anything which is suitable for flashcard-based software, such as [Memrise](https://www.memrise.com/courses/english/lojban/), [Quizlet](https://quizlet.com/subject/lojban/) and [Anki](https://ankiweb.net/shared/decks/lojban).
 That said, ideally decks should be more interesting than just mapping words to definitions, though we understand that may not always be possible.
 
 Of course, also feel free to work on something else entirely!
