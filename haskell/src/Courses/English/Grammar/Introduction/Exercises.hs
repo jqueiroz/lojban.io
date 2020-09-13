@@ -16,7 +16,7 @@ import Language.Lojban.Refinement (simplifyTerminatorsInBridiDisplayer)
 import Courses.English.Grammar.Introduction.Translations
 import Courses.English.Grammar.Introduction.Vocabulary
 import Courses.English.Grammar.Introduction.Strategies
-import Util (combineGenerators, combineGeneratorsUniformly)
+import Util (combineGenerators, combineGeneratorsUniformly, generatorFromList)
 
 -- * Resources
 -- | Dictionary for the exercises.
@@ -389,10 +389,11 @@ exercises20 = generateMorphologicalClassExercise vocabulary where
 -- * Lesson 21: Gadri 1
 -- | Exercises for the lesson.
 exercises21 :: ExerciseGenerator
-exercises21 =
-    combineGenerators
-        [
-        ]
+exercises21 = combineGenerators [(1, gadriProvidingExercise), (3, gadriChoosingExercise)] where
+    gadriProvidingExercise = generateLexiconProvidingExercise "gadri" dictionary gadriGenerator where
+    gadriChoosingExercise = generateLexiconChoosingExercise "gadri" dictionary gadriList
+    gadriList = ["lo", "le", "la"]
+    gadriGenerator = generatorFromList gadriList
 
 -- * Lesson 22: Numbers 1
 -- | Exercises for the lesson.

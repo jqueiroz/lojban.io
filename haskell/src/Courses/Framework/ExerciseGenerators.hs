@@ -17,6 +17,7 @@ module Courses.Framework.ExerciseGenerators
 , generateContextualizedGismuPlaceMeaningExercise
 , generateIsolatedBrivlaPlacesExercise
 , generateLexiconProvidingExercise
+, generateLexiconChoosingExercise
 , generateBasicNumberExercise
 ) where
 
@@ -269,6 +270,15 @@ generateLexiconProvidingExercise lexiconCategory dictionary wordGenerator r0 = T
     sentences = [ExerciseSentence True wordDefinition]
     validator = (== word)
     canonicalAnswer = word
+
+-- Exercise: choose the lexicon
+generateLexiconChoosingExercise :: T.Text -> Dictionary -> [T.Text] -> ExerciseGenerator
+generateLexiconChoosingExercise lexiconCategory dictionary words r0 = SingleChoiceExercise title sentences correctAlternative incorrectAlternatives True where
+    (correctAlternative, r1) = chooseItemUniformly r0 words
+    incorrectAlternatives = filter (/= correctAlternative) words
+    wordDefinition = fromMaybe (error $ "Definition not found in dictionary: " ++ (T.unpack correctAlternative)) (dictValsiDefinition dictionary M.!? correctAlternative)
+    title = "Provide the " `T.append` lexiconCategory
+    sentences = [ExerciseSentence True wordDefinition]
 
 -- Exercise: convert numbers to and from lojban
 generateBasicNumberExercise :: ExerciseGenerator
