@@ -1476,10 +1476,10 @@ translations11 = expandTranslationGenerator $ combineGeneratorsUniformly [pi'o, 
 translations12_pu :: TranslationGenerator
 translations12_pu = expandTranslationGenerator $ combineGeneratorsUniformly [fanva, dunda, vecnu, gleki, ciska] where
     fanva = generatorFromList
-        [ (["mi pu fanva fi lo lojbo"], ["I translated to Lojban."])
-        , (["mi pu fanva fo lo lojbo"], ["I translated from Lojban."])
+        [ (["mi pu fanva fi lo (lojbo|jbobau)"], ["I translated to Lojban."])
+        , (["mi pu fanva fo lo (lojbo|jbobau)"], ["I translated from Lojban."])
         , (["mi pu fanva ti"], ["I translated this."])
-        , (["mi pu fanva ti lo lojbo"], ["I translated this to Lojban."])
+        , (["mi pu fanva ti lo (lojbo|jbobau)"], ["I translated this to Lojban."])
         , (["xu do pu fanva fi ma"], ["To what language did you translate?"])
         , (["xu do pu fanva fo ma"], ["From what language did you translate?"])
         ]
