@@ -377,7 +377,7 @@ vocabulary20 = Vocabulary
     ]
     -- Cmene (TODO: not cmene but rather cmevla -- here and everywhere)
     [
-        ".io'AN.", ".mat", ".anas.", ".djan"
+        ".io'AN.", ".mat.", ".anas.", ".djan."
     ]
 
 -- | Cumulative vocabulary up to the appropriate lesson.
