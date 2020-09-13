@@ -170,7 +170,7 @@ vocabulary9 :: Vocabulary
 vocabulary9 = Vocabulary
     -- Brivla
     [
-        "plise", "vecnu", "skami", "pilno"
+        "citka", "plise", "vecnu", "skami", "pilno"
     ]
     -- Cmavo
     [
