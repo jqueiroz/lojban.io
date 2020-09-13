@@ -3,6 +3,7 @@
 -- | This module provides utilities for constructing exercise generators.
 module Courses.Framework.ExerciseGenerators
 ( generateTranslationExercise
+, generateTranslationExerciseWithCustomTitle
 , generateBlacklistedWordTranslationExercise
 , generateRestrictedTranslationExercise
 , generateMorphologicalClassExercise
@@ -39,6 +40,12 @@ import qualified Data.Map as M
 -- Example: https://github.com/jqueiroz/lojban.io/blob/master/docs/exercises/examples/translation.jpg
 generateTranslationExercise :: SentenceCanonicalizer -> SentenceComparer -> TranslationGenerator -> ExerciseGenerator
 generateTranslationExercise = generateRestrictedTranslationExercise "Translate this sentence" (const True)
+
+-- | Exercise: translate a given sentence into Lojban (with a custom title).
+--
+-- Example: https://github.com/jqueiroz/lojban.io/blob/master/docs/exercises/examples/translation.jpg
+generateTranslationExerciseWithCustomTitle :: T.Text -> SentenceCanonicalizer -> SentenceComparer -> TranslationGenerator -> ExerciseGenerator
+generateTranslationExerciseWithCustomTitle title = generateRestrictedTranslationExercise title (const True)
 
 -- | Exercise: translate a given sentence into Lojban, with the restriction that a particular Lojban word cannot be used.
 generateBlacklistedWordTranslationExercise :: T.Text -> SentenceCanonicalizer -> SentenceComparer -> TranslationGenerator -> ExerciseGenerator

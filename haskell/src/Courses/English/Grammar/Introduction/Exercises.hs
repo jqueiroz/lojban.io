@@ -122,7 +122,7 @@ exercises4 =
 
 translationExercises4 :: ExerciseGenerator
 translationExercises4 = combineGenerators [(1, translationExercises4_expressions), (1, translationExercises4_sentences)] where
-    translationExercises4_expressions = generateRestrictedTranslationExercise "Translate this expression as a tanru" (const True) sentenceCanonicalizer sentenceComparer translations4_expressions
+    translationExercises4_expressions = generateTranslationExerciseWithCustomTitle "Translate this expression as a tanru" sentenceCanonicalizer sentenceComparer translations4_expressions
     translationExercises4_sentences = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations4_sentences
 
 -- * Lesson 5: Questions 1
@@ -278,7 +278,7 @@ exercises12 =
         vocabulary = vocabulary12_cumulative
 
 translationExercises12_restricted :: ExerciseGenerator
-translationExercises12_restricted = generateRestrictedTranslationExercise "Translate <b>specifying temporal tenses</b>" (const True) sentenceCanonicalizer sentenceComparer translations12_restricted
+translationExercises12_restricted = generateTranslationExerciseWithCustomTitle "Translate <b>specifying temporal tenses</b>" sentenceCanonicalizer sentenceComparer translations12_restricted
 
 translationExercises12_unrestricted :: ExerciseGenerator
 translationExercises12_unrestricted = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations12_unrestricted
@@ -340,7 +340,7 @@ exercises16 =
         ]
 
 translationExercises16 :: ExerciseGenerator
-translationExercises16 = generateRestrictedTranslationExercise "Translate using <b>sumti connectives</b>" (const True) sentenceCanonicalizer sentenceComparer $ combineGeneratorsUniformly [translations16_a, translations16_e, translations16_o, translations16_u]
+translationExercises16 = generateTranslationExerciseWithCustomTitle "Translate using <b>sumti connectives</b>" sentenceCanonicalizer sentenceComparer $ combineGeneratorsUniformly [translations16_a, translations16_e, translations16_o, translations16_u]
 
 -- * Lesson 17: Negation 1
 -- | Exercises for the lesson.
@@ -418,7 +418,7 @@ exercises23 = combineGenerators [(1, isolatedEventContourExercises), (3, transla
         eventContourGenerator = generatorFromList eventContourList
 
 translationExercises23 :: ExerciseGenerator
-translationExercises23 = generateRestrictedTranslationExercise "Translate <b>specifying event contours</b>" (const True) sentenceCanonicalizer sentenceComparer translations23
+translationExercises23 = generateTranslationExerciseWithCustomTitle "Translate <b>specifying event contours</b>" sentenceCanonicalizer sentenceComparer translations23
 
 -- * Lesson 24: Gadri 2
 -- | Exercises for the lesson.
