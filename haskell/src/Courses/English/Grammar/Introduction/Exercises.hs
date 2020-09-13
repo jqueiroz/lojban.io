@@ -382,6 +382,7 @@ exercises14to18 =
 
 -- * Lesson 20: Morphology
 -- | Exercises for the lesson.
+-- TODO: exercises matching other morphological classes to their glosses (e.g. gismu = root word, lujvo = compound word, zi'evla = free word, brivla = bridi word, cmevla = name word, cmavo = grammar word)
 exercises20 :: ExerciseGenerator
 exercises20 = generateMorphologicalClassExercise vocabulary where
     vocabulary = vocabulary20_cumulative
