@@ -1969,3 +1969,22 @@ translations18 = expandTranslationGenerator $ combineGeneratorsUniformly [djica,
         , (["tu'a do mukti fi mi", "do jai mukti fi mi"], ["(Something about) you motivates me."])
         , (["tu'a mi mukti fi do", "mi jai mukti fi do"], ["(Something about) me motivates you."])
         ]
+
+-- * Lesson 23: Tenses 2
+translations23 :: TranslationGenerator
+translations23 = expandTranslationGenerator $ combineGeneratorsUniformly [pu'o, ca'o, ba'o, co'a, co'u] where
+    pu'o = generatorFromList
+        [ (["do pu'o citka lo plise"], ["You are in the past of the process of eating an apple."])
+        ]
+    ca'o = generatorFromList
+        [ (["do ca'o citka lo plise"], ["You are in the present of the process of eating an apple."])
+        ]
+    ba'o = generatorFromList
+        [ (["do ba'o citka lo plise"], ["You are in the future of the process of eating an apple."])
+        ]
+    co'a = generatorFromList
+        [ (["do co'a citka lo plise"], ["You are right at the beginning of the process of eating an apple."])
+        ]
+    co'u = generatorFromList
+        [ (["do co'u citka lo plise"], ["You are right at the end of the process of eating an apple."])
+        ]

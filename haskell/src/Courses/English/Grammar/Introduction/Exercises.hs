@@ -409,10 +409,15 @@ exercises22 = combineGenerators [(1, basicNumberExercise), (1, specialNumberExer
 -- * Lesson 23: Tenses 2
 -- | Exercises for the lesson.
 exercises23 :: ExerciseGenerator
-exercises23 =
-    combineGenerators
-        [
-        ]
+exercises23 = combineGenerators [(1, isolatedEventContourExercises), (3, translationExercises23)] where
+    isolatedEventContourExercises = combineGeneratorsUniformly [eventContourProvidingExercises, eventContourChoosingExercises] where
+        eventContourProvidingExercises = generateLexiconProvidingExercise "event contour" dictionary eventContourGenerator
+        eventContourChoosingExercises = generateLexiconChoosingExercise "event contour" dictionary eventContourList
+        eventContourList = ["pu'o", "ca'o", "ba'o", "co'a", "co'u"]
+        eventContourGenerator = generatorFromList eventContourList
+
+translationExercises23 :: ExerciseGenerator
+translationExercises23 = generateRestrictedTranslationExercise "Translate <b>specifying event contours</b>" (const True) sentenceCanonicalizer sentenceComparer translations23
 
 -- * Lesson 24: Gadri 2
 -- | Exercises for the lesson.
