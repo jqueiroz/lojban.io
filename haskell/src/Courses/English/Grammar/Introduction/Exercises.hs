@@ -398,10 +398,13 @@ exercises21 = combineGenerators [(1, gadriProvidingExercise), (3, gadriChoosingE
 -- * Lesson 22: Numbers 1
 -- | Exercises for the lesson.
 exercises22 :: ExerciseGenerator
-exercises22 =
-    combineGenerators
-        [
-        ]
+exercises22 = combineGenerators [(1, basicNumberExercise), (1, specialNumberExercise)] where
+    basicNumberExercise = generateBasicNumberExercise 500
+    specialNumberExercise = combineGenerators [(1, specialNumberProvidingExercise), (1, specialNumberChoosingExercise)] where
+        specialNumberProvidingExercise = generateLexiconProvidingExercise "number" dictionary specialNumberGenerator
+        specialNumberChoosingExercise = generateLexiconChoosingExercise "number" dictionary specialNumberList
+        specialNumberList = ["ro", "so'a", "so'e", "so'i", "so'o", "so'u"]
+        specialNumberGenerator = generatorFromList specialNumberList
 
 -- * Lesson 23: Tenses 2
 -- | Exercises for the lesson.

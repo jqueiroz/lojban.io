@@ -38,7 +38,7 @@ exercises03 :: ExerciseGenerator
 exercises03 =
     combineGenerators
         [ (10, translationExercises)
-        , (10, generateBasicNumberExercise)
+        , (10, generateBasicNumberExercise 999)
         ]
     where
         vocabulary = vocabulary03_cumulative

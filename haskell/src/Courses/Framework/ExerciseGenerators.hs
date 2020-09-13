@@ -281,20 +281,20 @@ generateLexiconChoosingExercise lexiconCategory dictionary words r0 = SingleChoi
     sentences = [ExerciseSentence True wordDefinition]
 
 -- Exercise: convert numbers to and from lojban
-generateBasicNumberExercise :: ExerciseGenerator
-generateBasicNumberExercise = combineGeneratorsUniformly [generateNumberToTextExercise, generateTextToNumberExercise]
+generateBasicNumberExercise :: Integer -> ExerciseGenerator
+generateBasicNumberExercise maximumNumber = combineGeneratorsUniformly [generateNumberToTextExercise maximumNumber, generateTextToNumberExercise maximumNumber]
 
-generateNumberToTextExercise :: ExerciseGenerator
-generateNumberToTextExercise r0 =
-    let (x, _) = first (`mod` 1000) $ random r0 :: (Integer, StdGen)
+generateNumberToTextExercise :: Integer -> ExerciseGenerator
+generateNumberToTextExercise maximumNumber r0 =
+    let (x, _) = first (`mod` (maximumNumber+1)) $ random r0 :: (Integer, StdGen)
         v = \text -> case lojbanToNumber text of
             Nothing -> False
             Just x' -> x' == x
     in TypingExercise ("Number to text: <b>" `T.append` (T.pack $ show x) `T.append` "</b>") [] v (numberToLojban x)
 
-generateTextToNumberExercise :: ExerciseGenerator
-generateTextToNumberExercise r0 =
-    let (x, _) = first (`mod` 1000) $ random r0 :: (Integer, StdGen)
+generateTextToNumberExercise :: Integer -> ExerciseGenerator
+generateTextToNumberExercise maximumNumber r0 =
+    let (x, _) = first (`mod` (maximumNumber+1)) $ random r0 :: (Integer, StdGen)
         v = \text -> case readMaybe (T.unpack text) of
             Nothing -> False
             Just x' -> x' == x
