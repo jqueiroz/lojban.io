@@ -20,7 +20,7 @@ vocabulary1 = Vocabulary
         "mi", "do",
         "ti", "ta"
     ]
-    -- Cmene
+    -- Cmevla
     [
     ]
 
@@ -42,7 +42,7 @@ vocabulary2 = Vocabulary
     [
         "zo'e"
     ]
-    -- Cmene
+    -- Cmevla
     [
     ]
 
@@ -66,7 +66,7 @@ vocabulary3 = Vocabulary
         "fa", "fe", "fi", "fo", "fu",
         "se", "te", "ve", "xe"
     ]
-    -- Cmene
+    -- Cmevla
     [
     ]
 
@@ -87,7 +87,7 @@ vocabulary4 = Vocabulary
     -- Cmavo
     [
     ]
-    -- Cmene
+    -- Cmevla
     [
     ]
 
@@ -111,7 +111,7 @@ vocabulary5 = Vocabulary
         "xu", "ma", "mo",
         "na", "go'i"
     ]
-    -- Cmene
+    -- Cmevla
     [
     ]
 
@@ -133,7 +133,7 @@ vocabulary6 = Vocabulary
     [
         "su'u", "nu", "du'u", "sedu'u", "kei"
     ]
-    -- Cmene
+    -- Cmevla
     [
     ]
 
@@ -154,7 +154,7 @@ vocabulary7 = Vocabulary
     [
         "vau", "cu"
     ]
-    -- Cmene
+    -- Cmevla
     [
     ]
 
@@ -176,7 +176,7 @@ vocabulary9 = Vocabulary
     [
         "poi", "noi", "ke'a", "ku'o"
     ]
-    -- Cmene
+    -- Cmevla
     [
     ]
 
@@ -198,7 +198,7 @@ vocabulary10 = Vocabulary
     [
         "be", "bei", "be'o"
     ]
-    -- Cmene
+    -- Cmevla
     [
     ]
 
@@ -228,7 +228,7 @@ vocabulary11 = Vocabulary
     [
         "pi'o", "mu'i", "gau"
     ]
-    -- Cmene
+    -- Cmevla
     [
     ]
 
@@ -249,7 +249,7 @@ vocabulary12 = Vocabulary
     [
         "pu", "ca", "ba"
     ]
-    -- Cmene
+    -- Cmevla
     [
     ]
 
@@ -270,7 +270,7 @@ vocabulary14 = Vocabulary
     [
         "zo", "lu", "li'u"
     ]
-    -- Cmene
+    -- Cmevla
     [
     ]
 
@@ -291,7 +291,7 @@ vocabulary15 = Vocabulary
     [
         "ne", "pe", "po", "po'e"
     ]
-    -- Cmene
+    -- Cmevla
     [
     ]
 
@@ -312,7 +312,7 @@ vocabulary16 = Vocabulary
     [
         ".a", ".e", ".o", ".u"
     ]
-    -- Cmene
+    -- Cmevla
     [
     ]
 
@@ -333,7 +333,7 @@ vocabulary17 = Vocabulary
     [
         "na'e", "to'e", "no'e"
     ]
-    -- Cmene
+    -- Cmevla
     [
     ]
 
@@ -355,7 +355,7 @@ vocabulary18 = Vocabulary
     [
         "tu'a", "jai"
     ]
-    -- Cmene
+    -- Cmevla
     [
     ]
 
@@ -375,7 +375,7 @@ vocabulary20 = Vocabulary
     -- Cmavo
     [
     ]
-    -- Cmene (TODO: not cmene but rather cmevla -- here and everywhere)
+    -- Cmevla
     [
         ".io'AN.", ".mat.", ".anas.", ".djan."
     ]
@@ -397,7 +397,7 @@ vocabulary21 = Vocabulary
     [
         "la", "le"
     ]
-    -- Cmene
+    -- Cmevla
     [
     ]
 
@@ -419,7 +419,7 @@ vocabulary22 = Vocabulary
         "no", "pa", "re", "ci", "vo", "mu", "xa", "ze", "bi", "so",
         "pi", "ro", "so'a", "so'e", "so'i", "so'o", "so'u"
     ]
-    -- Cmene
+    -- Cmevla
     [
     ]
 
@@ -442,7 +442,7 @@ vocabulary23 = Vocabulary
         "pu'o", "ca'o", "ba'o",
         "co'a", "co'u"
     ]
-    -- Cmene
+    -- Cmevla
     [
     ]
 
@@ -464,7 +464,7 @@ vocabulary24 = Vocabulary
         "loi", "lei", "lai",
         "lo'e", "le'e"
     ]
-    -- Cmene
+    -- Cmevla
     [
     ]
 
@@ -484,7 +484,7 @@ vocabulary26 = Vocabulary
     -- Cmavo
     [
     ]
-    -- Cmene
+    -- Cmevla
     [
     ]
 
@@ -507,7 +507,7 @@ vocabulary27 = Vocabulary
         "vi", "va", "vu",
         "zi", "za", "zu"
     ]
-    -- Cmene
+    -- Cmevla
     [
     ]
 
