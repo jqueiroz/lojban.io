@@ -417,10 +417,12 @@ exercises23 =
 -- * Lesson 24: Gadri 2
 -- | Exercises for the lesson.
 exercises24 :: ExerciseGenerator
-exercises24 =
-    combineGenerators
-        [
-        ]
+exercises24 = combineGenerators [(1, gadriProvidingExercise), (1, gadriChoosingExercise)] where
+    gadriProvidingExercise = generateLexiconProvidingExercise "gadri" dictionary completeGadriGenerator where
+    gadriChoosingExercise = generateLexiconChoosingExercise "gadri" dictionary newGadriList
+    completeGadriList = ["lo", "le", "la"] ++ newGadriList
+    newGadriList = ["loi", "lei", "lai", "lo'e", "le'e"]
+    completeGadriGenerator = generatorFromList completeGadriList
 
 -- * Lesson 25: Checkpoint -- Lessons 20-24
 -- | Exercises for the lesson.
