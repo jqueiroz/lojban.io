@@ -5,7 +5,7 @@ module Courses.Framework.ExerciseGenerators
 ( generateTranslationExercise
 , generateBlacklistedWordTranslationExercise
 , generateRestrictedTranslationExercise
-, generateGrammaticalClassExercise
+, generateMorphologicalClassExercise
 , generateEnglishOrLojbanBridiJufraExercise
 , generateLojbanBridiJufraExercise
 , generateEnglishBridiJufraExercise
@@ -60,9 +60,9 @@ generateRestrictedTranslationExercise title validator canonicalizer sentenceComp
                     Left _ -> False
                     Right canonicalized_lojban_sentence -> canonicalized_lojban_sentence `sentenceComparer` canonicalized_typed_sentence
 
--- | Exercise: tell grammatical class of a word (brivla, cmavo, or cmevla).
-generateGrammaticalClassExercise :: Vocabulary -> ExerciseGenerator
-generateGrammaticalClassExercise vocabulary r0 = SingleChoiceExercise title sentences correctAlternative incorrectAlternatives True where
+-- | Exercise: tell morphological class of a word (brivla, cmavo, or cmevla).
+generateMorphologicalClassExercise :: Vocabulary -> ExerciseGenerator
+generateMorphologicalClassExercise vocabulary r0 = SingleChoiceExercise title sentences correctAlternative incorrectAlternatives True where
     words "brivla" = vocabularyBrivlaList vocabulary
     words "cmavo" = vocabularyCmavoList vocabulary
     words "cmevla" = vocabularyCmevlaList vocabulary

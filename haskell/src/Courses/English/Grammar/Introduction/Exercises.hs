@@ -383,10 +383,8 @@ exercises14to18 =
 -- * Lesson 20: Morphology
 -- | Exercises for the lesson.
 exercises20 :: ExerciseGenerator
-exercises20 =
-    combineGenerators
-        [
-        ]
+exercises20 = generateMorphologicalClassExercise vocabulary where
+    vocabulary = vocabulary20_cumulative
 
 -- * Lesson 21: Gadri 1
 -- | Exercises for the lesson.
