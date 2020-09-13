@@ -278,7 +278,7 @@ exercises12 =
         vocabulary = vocabulary12_cumulative
 
 translationExercises12_restricted :: ExerciseGenerator
-translationExercises12_restricted = generateRestrictedTranslationExercise "Translate <b>specifying tenses</b>" (const True) sentenceCanonicalizer sentenceComparer translations12_restricted
+translationExercises12_restricted = generateRestrictedTranslationExercise "Translate <b>specifying temporal tenses</b>" (const True) sentenceCanonicalizer sentenceComparer translations12_restricted
 
 translationExercises12_unrestricted :: ExerciseGenerator
 translationExercises12_unrestricted = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations12_unrestricted
