@@ -294,7 +294,7 @@ generateNumberToTextExercise r0 =
 
 generateTextToNumberExercise :: ExerciseGenerator
 generateTextToNumberExercise r0 =
-    let (x, _) = first (`mod` 999) $ random r0 :: (Integer, StdGen)
+    let (x, _) = first (`mod` 1000) $ random r0 :: (Integer, StdGen)
         v = \text -> case readMaybe (T.unpack text) of
             Nothing -> False
             Just x' -> x' == x
