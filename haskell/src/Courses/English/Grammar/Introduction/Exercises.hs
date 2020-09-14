@@ -16,7 +16,8 @@ import Language.Lojban.Refinement (simplifyTerminatorsInBridiDisplayer)
 import Courses.English.Grammar.Introduction.Translations
 import Courses.English.Grammar.Introduction.Vocabulary
 import Courses.English.Grammar.Introduction.Strategies
-import Util (combineGenerators, combineGeneratorsUniformly, generatorFromList)
+import Util (combineGenerators, combineGeneratorsUniformly, generatorFromList, chooseItemUniformly)
+import qualified Data.Text as T
 
 -- * Resources
 -- | Dictionary for the exercises.
@@ -382,10 +383,25 @@ exercises14to18 =
 
 -- * Lesson 20: Morphology
 -- | Exercises for the lesson.
--- TODO: exercises matching other morphological classes to their glosses (e.g. gismu = root word, lujvo = compound word, zi'evla = free word, brivla = bridi word, cmevla = name word, cmavo = grammar word)
 exercises20 :: ExerciseGenerator
-exercises20 = generateMorphologicalClassExercise vocabulary where
+exercises20 = combineGenerators [(1, generateMorphologicalClassExercise vocabulary), (1, morphologicalClassDefinitionExercises)] where
     vocabulary = vocabulary20_cumulative
+    morphologicalClassDefinitionExercises :: ExerciseGenerator
+    morphologicalClassDefinitionExercises r0 = SingleChoiceExercise title sentences correctAlternative incorrectAlternatives True where
+        morphologicalClassesWithDefinitions :: [(T.Text, T.Text)]
+        morphologicalClassesWithDefinitions =
+            [ ("brivla", "Bridi word")
+            , ("gismu", "Root word")
+            , ("lujvo", "Compound word")
+            , ("zi'evla", "Free word")
+            , ("cmevla", "Name word")
+            , ("cmavo", "Grammar word")
+            ]
+        ((selectedClass, selectedDefinition), _) = chooseItemUniformly r0 morphologicalClassesWithDefinitions
+        correctAlternative = selectedDefinition
+        incorrectAlternatives = map snd . filter ((/= selectedClass) . fst) $ morphologicalClassesWithDefinitions
+        title = "Define <b>" `T.append` selectedClass `T.append` "</b>"
+        sentences = []
 
 -- * Lesson 21: Gadri 1
 -- | Exercises for the lesson.
