@@ -264,7 +264,6 @@ The remainder of this document focuses on building and running the project local
 We assume a Linux environment, but the [Windows subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) also works.
 If you are running WSL 1, you may build and run the project [using Nix](https://github.com/jqueiroz/lojban.io#quickstart-using-nix).
 If you are running WSL 2, you may build and run the project using either Nix or Docker.
-<!-- TODO: switch off of Unix sockets; they do not work on WSL1 -->
 
 The simplest way to run this project is to execute the webserver inside a [Docker](https://www.docker.com/) container.
 First, run `./virtualization/docker-build.sh` to build the image.
