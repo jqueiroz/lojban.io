@@ -300,7 +300,7 @@ Other useful commands:
 * `./run-ghci.sh`: starts a [GHCi](https://wiki.haskell.org/GHC/GHCi) prompt.
 * `./verify-lint.sh`: runs source code linters ([hlint](https://hackage.haskell.org/package/hlint) for Haskell code and [prettier](https://prettier.io/) for Typescript/Javascript/Less/CSS code)
 * `./verify-tests.sh`: runs tests for the project.
-* `./buildscripts/stack.sh`: runs [stack](https://docs.haskellstack.org/en/stable/README/) inside an isolated nix-shell environment, eg. `./buildscripts/stack.sh build` will build the webserver executable and `./buildscripts/stack.sh haddock --no-haddock-deps` will build the Haskell documentation.
+* `./buildscripts/stack.sh`: runs [stack](https://docs.haskellstack.org/en/stable/README/) inside an isolated nix-shell environment, eg. `./buildscripts/stack.sh build` will build the webserver executable (excluding assets) and `./buildscripts/stack.sh haddock --no-haddock-deps` will build the Haskell documentation.
 
 For more details on building and running, see [Building and running (using Nix)](#building-and-running-using-nix).
 
@@ -322,8 +322,8 @@ Next, Nix will use the downloaded packages to spawn an isolated shell environmen
 For the first build, all of the Haskell dependencies will be compiled, so this step is expected to take a substancial amount of time (between 10 minutes and one hour, depending heavily on computer specs),
 Subsequent builds will be much faster (roughly a minute for a clean build of the project).
 
-By default, `make` will build both the webserver executable and the associated documentation, powered by [Haddock](https://haskell-haddock.readthedocs.io/en/latest/).
-If you only want to build the webserver, run `make server`.
+By default, `make` will build both the webserver executable (including assets) and the associated documentation, powered by [Haddock](https://haskell-haddock.readthedocs.io/en/latest/).
+If you only want to build the webserver (including assets), run `make server`.
 If you only want to build the documentation, run `make docs`.
 If you only want to compile the _\*.less_ files (located in `./assets/less`), perhaps because you are editing them and want to see the style changes on the fly, run `make css`.
 Similarly, if you only want to compile the _\*.ts_ files (located in `./assets/typescript`), run `make js`.
