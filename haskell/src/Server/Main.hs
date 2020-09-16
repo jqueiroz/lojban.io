@@ -5,6 +5,7 @@ module Server.Main (runServer, acquireServerResources) where
 
 import Server.Core
 import Control.Monad (msum)
+import Control.Exception (SomeException, catch)
 import Data.Maybe (fromMaybe)
 import System.Environment (lookupEnv)
 import Happstack.Server
@@ -63,8 +64,11 @@ acquireServerResources serverConfiguration = do
                         Just redisHostname -> Redis.defaultConnectInfo
                             { Redis.connectHost = redisHostname
                             }
-    redisConnection <- Redis.checkedConnect connectInfo
+    redisConnection <- catch (Redis.checkedConnect connectInfo) redisExceptionHandler
     return $ ServerResources tlsManager redisConnection
+    where
+        redisExceptionHandler :: SomeException -> IO Redis.Connection
+        redisExceptionHandler ex = error $ "Connection to redis could not be established. If running locally, outside of Docker, please make sure to run './run-redis.sh'.\nException details: " ++ show ex
 
 readServerConfiguration :: IO ServerConfiguration
 readServerConfiguration = do
