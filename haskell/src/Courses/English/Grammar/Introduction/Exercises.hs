@@ -461,10 +461,10 @@ exercises20to24 =
 -- * Lesson 26: Quantifying sumti 1
 -- | Exercises for the lesson.
 exercises26 :: ExerciseGenerator
-exercises26 =
-    combineGenerators
-        [
-        ]
+exercises26 = translationExercises26
+
+translationExercises26 :: ExerciseGenerator
+translationExercises26 = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations26
 
 -- * Lesson 27: Tenses 3
 -- | Exercises for the lesson.

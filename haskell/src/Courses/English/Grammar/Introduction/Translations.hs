@@ -2068,3 +2068,26 @@ translations23 = expandTranslationGenerator $ combineGeneratorsUniformly [pu'o, 
         , (["xu do co'u tavla"], ["Did you just finish talking?"])
         , (["xu do co'u fanva"], ["Did you just finish translating?"])
         ]
+
+-- * Lesson 26: Quantifying sumti 1
+translations26 :: TranslationGenerator
+translations26 = expandTranslationGenerator $ combineGeneratorsUniformly [tavla] where
+    tavla = generatorFromList
+        [ (["lo re pendo cu tavla lo ci dunda"], ["The two friends are talking to the three donors."])
+        , (["lo re pendo cu tavla lo ci vecnu"], ["The two friends are talking to the three sellers."])
+        , (["lo re pendo cu tavla lo ci te vecnu"], ["The two friends are talking to the three buyers."])
+        , (["lo re dunda cu tavla lo ci pendo"], ["The two donors are talking to the three friends."])
+        , (["lo re dunda cu tavla lo ci vecnu"], ["The two donors are talking to the three sellers."])
+        , (["lo re dunda cu tavla lo ci te vecnu"], ["The two donors are talking to the three buyers."])
+        , (["lo re vecnu cu tavla lo ci pendo"], ["The two sellers are talking to the three friends."])
+        , (["lo re vecnu cu tavla lo ci te vecnu"], ["The two sellers are talking to the three buyers."])
+        , (["lo pano prenu cu tavla"], ["Ten persons are talking."])
+        , (["lo pano pendo cu tavla"], ["Ten friends are talking."])
+        , (["lo pano dunda cu tavla"], ["Ten donors are talking."])
+        , (["lo pano vecnu cu tavla"], ["Ten sellers are talking."])
+        ]
+    citka = generatorFromList
+        [ (["lo re prenu cu citka lo ci plise"], ["The two persons ate three apples."])
+        , (["lo re gerku cu citka lo ci plise"], ["The two dogs ate three apples."])
+        , (["lo re mlatu cu citka lo ci plise"], ["The two cats ate three apples."])
+        ]
