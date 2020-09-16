@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE TupleSections #-}
+{-# LANGUAGE LambdaCase #-}
 
 module Language.Lojban.Canonicalization.Internals
 ( StructuredSelbri
@@ -197,8 +198,11 @@ convertStructuredTerm (ZG.NU (ZG.Init x) y w) = convertStructuredTerm (ZG.NU (ZG
 convertStructuredTerm (ZG.NU (ZG.InitF x y) w z) = insertPrefix . insertSuffix <$> canonicalizeParsedBridi (y, w, z) where
     insertPrefix = ((T.pack $ x ++ " ") `T.append`)
     insertSuffix = (`T.append` " kei")
-convertStructuredTerm (ZG.LE (ZG.Init x) ZG.NR ZG.NQ (ZG.Rel y z) t) = convertStructuredTerm $ ZG.Rel (ZG.LE (ZG.Init x) ZG.NR ZG.NQ y t) z
-convertStructuredTerm (ZG.LE (ZG.Init x) ZG.NR ZG.NQ y _) = insertPrefix . insertSuffix <$> convertStructuredTerm y where
+convertStructuredTerm (ZG.LE (ZG.Init x) ZG.NR number (ZG.Rel y z) t) = convertStructuredTerm $ ZG.Rel (ZG.LE (ZG.Init x) ZG.NR number y t) z
+convertStructuredTerm (ZG.LE (ZG.Init x) ZG.NR number y _) = insertPrefix . insertSuffix <$> (insertNumber <*> convertStructuredTerm y) where
+    insertNumber = canonicalizeNumber number >>= \case
+        "" -> return id
+        x -> return ((x `T.append` " ") `T.append`)
     insertPrefix = ((T.pack $ x ++ " ") `T.append`)
     insertSuffix = (`T.append` " ku")
 convertStructuredTerm (ZG.LE (ZG.Init x) (ZG.RelSumti y) ZG.NQ z _) = unwordsET [Right $ T.pack x, convertBridi z, Right "ku pe", convertTerm y, Right "ge'u"]
@@ -239,6 +243,14 @@ convertExtraTerm (ZG.Tag (ZG.BAI x) text) = case expandBai x of
     Just x' -> convertExtraTerm $ ZG.Tag (ZG.FIhO (ZG.Init "fi'o") (ZG.BRIVLA x') (ZG.Term "fe'u")) text
     Nothing -> concatET [Right $ T.pack x, Right $ T.pack " ", convertStructuredTerm text]
 convertExtraTerm x = Left $ "Unrecognized pattern for convertExtraTerm: " ++ show x
+
+canonicalizeNumber :: ZG.Mex -> Either String T.Text
+canonicalizeNumber ZG.NQ = Right ""
+canonicalizeNumber (ZG.Ms digits ZG.NT) = concatET $ map convertDigit digits where
+    convertDigit :: ZG.Mex -> Either String T.Text
+    convertDigit (ZG.P1 x) = Right $ T.pack x
+    convertDigit x = Left $ "Unrecognized pattern for convertDigit: " ++ show x
+canonicalizeNumber x = Left $ "Unrecognized pattern for canonicalizeNumber: " ++ show x
 
 -- TODO: add all BAI
 compressedBai :: M.Map String String

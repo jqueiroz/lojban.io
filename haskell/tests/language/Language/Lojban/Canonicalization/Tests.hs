@@ -280,6 +280,14 @@ validateCanonicalization = hspec $ do
             "lo cmalu zdani ku"
             [ "lo cmalu zdani"
             ]
+      it "supports 'lo pareci mlatu'" $ do
+        validateEquivalentTerms
+            "lo pareci mlatu ku"
+            [ "lo pa re ci mlatu"
+            , "lo pare ci mlatu"
+            , "lo pa reci mlatu"
+            , "lo pareci mlatu"
+            ]
     describe "Basic sentence canonicalizer" $ do
       it "supports SE" $ do
         validateSentences
