@@ -2071,7 +2071,7 @@ translations23 = expandTranslationGenerator $ combineGeneratorsUniformly [pu'o, 
 
 -- * Lesson 26: Quantifying sumti 1
 translations26 :: TranslationGenerator
-translations26 = expandTranslationGenerator $ combineGeneratorsUniformly [tavla] where
+translations26 = expandTranslationGenerator $ combineGenerators [(2, tavla), (1, vecnu), (1, dunda), (1, citka), (1, ctuca)] where
     tavla = generatorFromList
         [ (["lo re pendo cu tavla lo ci dunda"], ["The two friends are talking to the three donors."])
         , (["lo re pendo cu tavla lo ci vecnu"], ["The two friends are talking to the three sellers."])
@@ -2085,9 +2085,41 @@ translations26 = expandTranslationGenerator $ combineGeneratorsUniformly [tavla]
         , (["lo pano pendo cu tavla"], ["Ten friends are talking."])
         , (["lo pano dunda cu tavla"], ["Ten donors are talking."])
         , (["lo pano vecnu cu tavla"], ["Ten sellers are talking."])
+        , (["lo pano ctuca cu tavla"], ["Ten instructors are talking."])
+        , (["lo re prenu cu kakne lo nu tavla", "lo re prenu ka'e tavla"], ["Two persons are capable of talking."])
+        , (["lo re pendo cu kakne lo nu tavla", "lo re pendo ka'e tavla"], ["Two friends are capable of talking."])
+        ]
+    vecnu = generatorFromList
+        [ (["lo re pendo cu vecnu lo ci plise"], ["The two friends sold three apples."])
+        , (["lo re pendo cu vecnu lo ci skami"], ["The two friends sold the three computers."])
+        , (["lo mu pendo cu vecnu lo plise"], ["Five friends are selling apples."])
+        , (["lo mu pendo cu vecnu lo skami"], ["Five friends are selling the computer."])
+        , (["lo re prenu cu vecnu lo ci plise"], ["The two persons sold three apples."])
+        , (["lo re prenu cu vecnu lo ci skami"], ["The two persons sold the three computers."])
+        , (["lo mu prenu cu vecnu lo plise"], ["Five persons are selling apples."])
+        , (["lo mu prenu cu vecnu lo skami"], ["Five persons are selling computers."])
+        ]
+    dunda = generatorFromList
+        [ (["lo re pendo cu dunda lo ci plise"], ["The two friends donated three apples."])
+        , (["lo re pendo cu dunda lo ci skami"], ["The two friends donated the three computers."])
+        , (["lo mu pendo cu dunda lo plise"], ["Five friends are donating apples."])
+        , (["lo mu pendo cu dunda lo skami"], ["Five friends donated the computer."])
+        , (["lo re prenu cu dunda lo ci plise"], ["The two persons donated three apples."])
+        , (["lo re prenu cu dunda lo ci skami"], ["The two persons donated the three computers."])
+        , (["lo mu prenu cu dunda lo plise"], ["Five persons are donating apples."])
+        , (["lo mu prenu cu dunda lo skami"], ["Five persons donated computers."])
         ]
     citka = generatorFromList
         [ (["lo re prenu cu citka lo ci plise"], ["The two persons ate three apples."])
         , (["lo re gerku cu citka lo ci plise"], ["The two dogs ate three apples."])
         , (["lo re mlatu cu citka lo ci plise"], ["The two cats ate three apples."])
+        , (["lo mu gerku cu citka lo plise"], ["Five dogs are eating apples."])
+        , (["lo mu mlatu cu citka lo plise"], ["Five cats are eating apples."])
+        ]
+    ctuca = generatorFromList
+        [ (["mi ctuca lo mu prenu"], ["I am teaching five persons."])
+        , (["mi ctuca lo mu gerku"], ["I am teaching five dogs."])
+        , (["lo mu pendo cu ctuca"], ["The five friends are teaching."])
+        , (["lo re prenu kakne lo nu ctuca", "lo re prenu ka'e ctuca"], ["Two persons are capable of teaching."])
+        , (["lo re pendo kakne lo nu ctuca", "lo re pendo ka'e ctuca"], ["Two friends are capable of teaching."])
         ]
