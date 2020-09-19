@@ -2120,6 +2120,6 @@ translations26 = expandTranslationGenerator $ combineGenerators [(2, tavla), (1,
         [ (["mi ctuca lo mu prenu"], ["I am teaching five persons."])
         , (["mi ctuca lo mu gerku"], ["I am teaching five dogs."])
         , (["lo mu pendo cu ctuca"], ["The five friends are teaching."])
-        , (["lo re prenu kakne lo nu ctuca", "lo re prenu ka'e ctuca"], ["Two persons are capable of teaching."])
-        , (["lo re pendo kakne lo nu ctuca", "lo re pendo ka'e ctuca"], ["Two friends are capable of teaching."])
+        , (["lo re prenu cu kakne lo nu ctuca", "lo re prenu ka'e ctuca"], ["Two persons are capable of teaching."])
+        , (["lo re pendo cu kakne lo nu ctuca", "lo re pendo ka'e ctuca"], ["Two friends are capable of teaching."])
         ]
