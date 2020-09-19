@@ -280,6 +280,11 @@ validateCanonicalization = hspec $ do
             "lo cmalu zdani ku"
             [ "lo cmalu zdani"
             ]
+      it "supports 'lo re mlatu'" $ do
+        validateEquivalentTerms
+            "lo re mlatu ku"
+            [ "lo re mlatu"
+            ]
       it "supports 'lo pareci mlatu'" $ do
         validateEquivalentTerms
             "lo pareci mlatu ku"

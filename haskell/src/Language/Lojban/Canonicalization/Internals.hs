@@ -246,6 +246,7 @@ convertExtraTerm x = Left $ "Unrecognized pattern for convertExtraTerm: " ++ sho
 
 canonicalizeNumber :: ZG.Mex -> Either String T.Text
 canonicalizeNumber ZG.NQ = Right ""
+canonicalizeNumber (ZG.P1 digit) = canonicalizeNumber (ZG.Ms [(ZG.P1 digit)] ZG.NT)
 canonicalizeNumber (ZG.Ms digits ZG.NT) = concatET $ map convertDigit digits where
     convertDigit :: ZG.Mex -> Either String T.Text
     convertDigit (ZG.P1 x) = Right $ T.pack x
