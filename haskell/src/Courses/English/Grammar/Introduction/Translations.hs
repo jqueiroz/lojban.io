@@ -2127,7 +2127,7 @@ translations26 = expandTranslationGenerator $ combineGenerators [(2, tavla), (1,
 -- * Lesson 27: Tenses 3
 translations27_sentences :: TranslationGenerator
 translations27_sentences = expandTranslationGenerator $ combineGenerators [(1, inside_sumti), (3, outside_sumti)] where
-    inside_sumti = combineGeneratorsUniformly [vi] where
+    inside_sumti = combineGeneratorsUniformly [vi, va, vu] where
         vi = generatorFromList
             [ (["lo vi gerku cu pendo"], ["The nearby dog is friendly."])
             , (["lo vi mlatu cu melbi"], ["The nearby cat is beautiful."])
@@ -2149,6 +2149,50 @@ translations27_sentences = expandTranslationGenerator $ combineGenerators [(1, i
             , (["mi ctuca lo vi gerku"], ["I am teaching the nearby dogs."])
             , (["mi nelci lo vi mlatu"], ["I like the nearby cats."])
             , (["mi nelci lo vi gerku"], ["I like the nearby dogs."])
+            ]
+        va = generatorFromList
+            [ (["lo va gerku cu pendo"], ["The moderately distant dog is friendly."])
+            , (["lo va mlatu cu melbi"], ["The moderately distant cat is beautiful."])
+            , (["mi tavla lo va prenu"], ["I am talking to the moderately distant person."])
+            , (["mi ctuca lo va prenu"], ["I am teaching the moderately distant person."])
+            , (["lo va prenu cu tavla"], ["The moderately distant person is talking."])
+            , (["lo va prenu cu ciska"], ["The moderately distant person is writing."])
+            , (["lo va prenu cu gleki"], ["The moderately distant person is happy."])
+            , (["lo va prenu cu lerci"], ["The moderately distant person is late."])
+            , (["lo va prenu cu fanva fi lo (lojbo|jbobau)"], ["The moderately distant person is translating to Lojban."])
+            , (["lo va prenu cu fanva fo lo (lojbo|jbobau)"], ["The moderately distant person is translating from Lojban."])
+            , (["lo va prenu cu dunda lo plise"], ["The moderately distant person is donating an apple."])
+            , (["lo va pendo cu dunda lo plise"], ["The moderately distant friend is donating an apple."])
+            , (["lo va prenu cu vecnu lo skami"], ["The moderately distant person is selling a computer."])
+            , (["lo va pendo cu vecnu lo skami"], ["The moderately distant friend is selling a computer."])
+            , (["lo va prenu cu citka lo plise"], ["The moderately distant person is eating an apple."])
+            , (["lo va pendo cu citka lo plise"], ["The moderately distant friend is eating an apple."])
+            , (["mi ctuca lo va prenu"], ["I am teaching the moderately distant persons."])
+            , (["mi ctuca lo va gerku"], ["I am teaching the moderately distant dogs."])
+            , (["mi nelci lo va mlatu"], ["I like the moderately distant cats."])
+            , (["mi nelci lo va gerku"], ["I like the moderately distant dogs."])
+            ]
+        vu = generatorFromList
+            [ (["lo vu gerku cu pendo"], ["The far away dog is friendly."])
+            , (["lo vu mlatu cu melbi"], ["The far away cat is beautiful."])
+            , (["mi tavla lo vu prenu"], ["I am talking to the far away person."])
+            , (["mi ctuca lo vu prenu"], ["I am teaching the far away person."])
+            , (["lo vu prenu cu tavla"], ["The far away person is talking."])
+            , (["lo vu prenu cu ciska"], ["The far away person is writing."])
+            , (["lo vu prenu cu gleki"], ["The far away person is happy."])
+            , (["lo vu prenu cu lerci"], ["The far away person is late."])
+            , (["lo vu prenu cu fanva fi lo (lojbo|jbobau)"], ["The far away person is translating to Lojban."])
+            , (["lo vu prenu cu fanva fo lo (lojbo|jbobau)"], ["The far away person is translating from Lojban."])
+            , (["lo vu prenu cu dunda lo plise"], ["The far away person is donating an apple."])
+            , (["lo vu pendo cu dunda lo plise"], ["The far away friend is donating an apple."])
+            , (["lo vu prenu cu vecnu lo skami"], ["The far away person is selling a computer."])
+            , (["lo vu pendo cu vecnu lo skami"], ["The far away friend is selling a computer."])
+            , (["lo vu prenu cu citka lo plise"], ["The far away person is eating an apple."])
+            , (["lo vu pendo cu citka lo plise"], ["The far away friend is eating an apple."])
+            , (["mi ctuca lo vu prenu"], ["I am teaching the far away persons."])
+            , (["mi ctuca lo vu gerku"], ["I am teaching the far away dogs."])
+            , (["mi nelci lo vu mlatu"], ["I like the far away cats."])
+            , (["mi nelci lo vu gerku"], ["I like the far away dogs."])
             ]
     outside_sumti = generatorFromList
         -- vi
