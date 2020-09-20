@@ -2123,3 +2123,132 @@ translations26 = expandTranslationGenerator $ combineGenerators [(2, tavla), (1,
         , (["lo re prenu cu kakne lo nu ctuca", "lo re prenu ka'e ctuca"], ["Two persons are capable of teaching."])
         , (["lo re pendo cu kakne lo nu ctuca", "lo re pendo ka'e ctuca"], ["Two friends are capable of teaching."])
         ]
+
+-- * Lesson 27: Tenses 3
+translations27_sentences :: TranslationGenerator
+translations27_sentences = expandTranslationGenerator $ combineGenerators [(1, inside_sumti), (3, outside_sumti)] where
+    inside_sumti = generatorFromList
+        [ (["lo vi gerku cu pendo"], ["The nearby dog is friendly."])
+        ]
+    outside_sumti = generatorFromList
+        -- vi
+        [ (["vi ku do gleki"], ["Here, you are happy."])
+        -- va
+        , (["va ku do gleki"], ["Moderately nearby, you are happy."])
+        -- vu
+        , (["vu ku do gleki"], ["Far away, you will be happy."])
+        ]
+
+translations27_expressions :: TranslationGenerator
+translations27_expressions = expandTranslationGenerator $ combineGenerators [(1, vi), (1, va), (1, vu), (1, zu'a), (1, ri'u), (1, ca'u)] where
+    vi = generatorFromList
+        [ (["lo vi gerku"], ["The nearby dog."])
+        , (["lo vi mlatu"], ["The nearby cat."])
+        , (["lo vi prenu"], ["The nearby person."])
+        , (["lo vi dunda"], ["The nearby donor."])
+        , (["lo vi zdani"], ["The nearby house."])
+        , (["lo vi ctuca"], ["The nearby instructor."])
+        ]
+    va = generatorFromList
+        [ (["lo va gerku"], ["The moderately distant dog."])
+        , (["lo va mlatu"], ["The moderately distant cat."])
+        , (["lo va prenu"], ["The moderately distant person."])
+        , (["lo va dunda"], ["The moderately distant donor."])
+        , (["lo va zdani"], ["The moderately distant house."])
+        , (["lo va ctuca"], ["The moderately distant instructor."])
+        ]
+    vu = generatorFromList
+        [ (["lo vu gerku"], ["The far away dog."])
+        , (["lo vu mlatu"], ["The far away cat."])
+        , (["lo vu prenu"], ["The far away person."])
+        , (["lo vu dunda"], ["The far away donor."])
+        , (["lo vu zdani"], ["The far away house."])
+        , (["lo vu ctuca"], ["The far away instructor."])
+        ]
+    zu'a = generatorFromList
+        [ (["lo zu'a gerku"], ["The dog to the left."])
+        , (["lo zu'a mlatu"], ["The cat to the left."])
+        , (["lo zu'a prenu"], ["The person to the left."])
+        , (["lo zu'a dunda"], ["The donor to the left."])
+        , (["lo zu'a zdani"], ["The house to the left."])
+        , (["lo zu'a ctuca"], ["The instructor to the left."])
+        -- vi
+        , (["lo zu'avi gerku"], ["The dog shortly to the left."])
+        , (["lo zu'avi mlatu"], ["The cat shortly to the left."])
+        , (["lo zu'avi prenu"], ["The person shortly to the left."])
+        , (["lo zu'avi dunda"], ["The donor shortly to the left."])
+        , (["lo zu'avi zdani"], ["The house shortly to the left."])
+        , (["lo zu'avi ctuca"], ["The instructor shortly to the left."])
+        -- va
+        , (["lo zu'ava gerku"], ["The dog moderately to the left."])
+        , (["lo zu'ava mlatu"], ["The cat moderately to the left."])
+        , (["lo zu'ava prenu"], ["The person moderately to the left."])
+        , (["lo zu'ava dunda"], ["The donor moderately to the left."])
+        , (["lo zu'ava zdani"], ["The house moderately to the left."])
+        , (["lo zu'ava ctuca"], ["The instructor moderately to the left."])
+        -- vu
+        , (["lo zu'avu gerku"], ["The dog far to the left."])
+        , (["lo zu'avu mlatu"], ["The cat far to the left."])
+        , (["lo zu'avu prenu"], ["The person far to the left."])
+        , (["lo zu'avu dunda"], ["The donor far to the left."])
+        , (["lo zu'avu zdani"], ["The house far to the left."])
+        , (["lo zu'avu ctuca"], ["The instructor far to the left."])
+        ]
+    ri'u = generatorFromList
+        [ (["lo ri'u gerku"], ["The dog to the right."])
+        , (["lo ri'u mlatu"], ["The cat to the right."])
+        , (["lo ri'u prenu"], ["The person to the right."])
+        , (["lo ri'u dunda"], ["The donor to the right."])
+        , (["lo ri'u zdani"], ["The house to the right."])
+        , (["lo ri'u ctuca"], ["The instructor to the right."])
+        -- vi
+        , (["lo ri'uvi gerku"], ["The dog shortly to the right."])
+        , (["lo ri'uvi mlatu"], ["The cat shortly to the right."])
+        , (["lo ri'uvi prenu"], ["The person shortly to the right."])
+        , (["lo ri'uvi dunda"], ["The donor shortly to the right."])
+        , (["lo ri'uvi zdani"], ["The house shortly to the right."])
+        , (["lo ri'uvi ctuca"], ["The instructor shortly to the right."])
+        -- va
+        , (["lo ri'uva gerku"], ["The dog moderately to the right."])
+        , (["lo ri'uva mlatu"], ["The cat moderately to the right."])
+        , (["lo ri'uva prenu"], ["The person moderately to the right."])
+        , (["lo ri'uva dunda"], ["The donor moderately to the right."])
+        , (["lo ri'uva zdani"], ["The house moderately to the right."])
+        , (["lo ri'uva ctuca"], ["The instructor moderately to the right."])
+        -- vu
+        , (["lo ri'uvu gerku"], ["The dog far to the right."])
+        , (["lo ri'uvu mlatu"], ["The cat far to the right."])
+        , (["lo ri'uvu prenu"], ["The person far to the right."])
+        , (["lo ri'uvu dunda"], ["The donor far to the right."])
+        , (["lo ri'uvu zdani"], ["The house far to the right."])
+        , (["lo ri'uvu ctuca"], ["The instructor far to the right."])
+        ]
+    ca'u = generatorFromList
+        [ (["lo ca'u gerku"], ["The dog to the front."])
+        , (["lo ca'u mlatu"], ["The cat to the front."])
+        , (["lo ca'u prenu"], ["The person to the front."])
+        , (["lo ca'u dunda"], ["The donor to the front."])
+        , (["lo ca'u zdani"], ["The house to the front."])
+        , (["lo ca'u ctuca"], ["The instructor to the front."])
+        -- vi
+        , (["lo ca'uvi gerku"], ["The dog shortly to the front."])
+        , (["lo ca'uvi mlatu"], ["The cat shortly to the front."])
+        , (["lo ca'uvi prenu"], ["The person shortly to the front."])
+        , (["lo ca'uvi dunda"], ["The donor shortly to the front."])
+        , (["lo ca'uvi zdani"], ["The house shortly to the front."])
+        , (["lo ca'uvi ctuca"], ["The instructor shortly to the front."])
+        -- va
+        , (["lo ca'uva gerku"], ["The dog moderately to the front."])
+        , (["lo ca'uva mlatu"], ["The cat moderately to the front."])
+        , (["lo ca'uva prenu"], ["The person moderately to the front."])
+        , (["lo ca'uva dunda"], ["The donor moderately to the front."])
+        , (["lo ca'uva zdani"], ["The house moderately to the front."])
+        , (["lo ca'uva ctuca"], ["The instructor moderately to the front."])
+        -- vu
+        , (["lo ca'uvu gerku"], ["The dog far to the front."])
+        , (["lo ca'uvu mlatu"], ["The cat far to the front."])
+        , (["lo ca'uvu prenu"], ["The person far to the front."])
+        , (["lo ca'uvu dunda"], ["The donor far to the front."])
+        , (["lo ca'uvu zdani"], ["The house far to the front."])
+        , (["lo ca'uvu ctuca"], ["The instructor far to the front."])
+        ]

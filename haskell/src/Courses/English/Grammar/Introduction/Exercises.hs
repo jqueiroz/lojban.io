@@ -469,7 +469,14 @@ translationExercises26 = generateTranslationExercise sentenceCanonicalizer sente
 -- * Lesson 27: Tenses 3
 -- | Exercises for the lesson.
 exercises27 :: ExerciseGenerator
-exercises27 =
-    combineGenerators
-        [
-        ]
+exercises27 = combineGenerators [(3, translationExercises27), (1, directionalTenseExercise)] where
+    directionalTenseList = ["zu'a", "ri'u", "ca'u", "bu'u"]
+    directionalTenseGenerator = generatorFromList directionalTenseList
+    directionalTenseProvidingExercise = generateLexiconProvidingExercise "directional tense" dictionary directionalTenseGenerator where
+    directionalTenseChoosingExercise = generateLexiconChoosingExercise "directional tense" dictionary directionalTenseList
+    directionalTenseExercise = combineGeneratorsUniformly [directionalTenseProvidingExercise, directionalTenseChoosingExercise]
+
+translationExercises27 :: ExerciseGenerator
+translationExercises27 = combineGenerators [(1, translationExercises27_expressions), (1, translationExercises27_sentences)] where
+    translationExercises27_expressions = generateTranslationExerciseWithCustomTitle "Translate this expression" sentenceCanonicalizer sentenceComparer translations27_expressions
+    translationExercises27_sentences = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations27_sentences
