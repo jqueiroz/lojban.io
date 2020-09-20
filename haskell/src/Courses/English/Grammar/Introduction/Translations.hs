@@ -2168,60 +2168,44 @@ translations27_expressions = expandTranslationGenerator $ combineGenerators [(1,
     zu'a = generatorFromList
         [ (["lo zu'a gerku"], ["The dog to the left."])
         , (["lo zu'a mlatu"], ["The cat to the left."])
-        , (["lo zu'a prenu"], ["The person to the left."])
         , (["lo zu'a dunda"], ["The donor to the left."])
         , (["lo zu'a zdani"], ["The house to the left."])
-        , (["lo zu'a ctuca"], ["The instructor to the left."])
         -- vi
         , (["lo zu'avi gerku"], ["The dog shortly to the left."])
         , (["lo zu'avi mlatu"], ["The cat shortly to the left."])
-        , (["lo zu'avi prenu"], ["The person shortly to the left."])
         , (["lo zu'avi dunda"], ["The donor shortly to the left."])
         , (["lo zu'avi zdani"], ["The house shortly to the left."])
-        , (["lo zu'avi ctuca"], ["The instructor shortly to the left."])
         -- va
         , (["lo zu'ava gerku"], ["The dog moderately to the left."])
         , (["lo zu'ava mlatu"], ["The cat moderately to the left."])
-        , (["lo zu'ava prenu"], ["The person moderately to the left."])
         , (["lo zu'ava dunda"], ["The donor moderately to the left."])
         , (["lo zu'ava zdani"], ["The house moderately to the left."])
-        , (["lo zu'ava ctuca"], ["The instructor moderately to the left."])
         -- vu
         , (["lo zu'avu gerku"], ["The dog far to the left."])
         , (["lo zu'avu mlatu"], ["The cat far to the left."])
-        , (["lo zu'avu prenu"], ["The person far to the left."])
         , (["lo zu'avu dunda"], ["The donor far to the left."])
         , (["lo zu'avu zdani"], ["The house far to the left."])
-        , (["lo zu'avu ctuca"], ["The instructor far to the left."])
         ]
     ri'u = generatorFromList
         [ (["lo ri'u gerku"], ["The dog to the right."])
         , (["lo ri'u mlatu"], ["The cat to the right."])
-        , (["lo ri'u prenu"], ["The person to the right."])
         , (["lo ri'u dunda"], ["The donor to the right."])
         , (["lo ri'u zdani"], ["The house to the right."])
-        , (["lo ri'u ctuca"], ["The instructor to the right."])
         -- vi
         , (["lo ri'uvi gerku"], ["The dog shortly to the right."])
         , (["lo ri'uvi mlatu"], ["The cat shortly to the right."])
-        , (["lo ri'uvi prenu"], ["The person shortly to the right."])
         , (["lo ri'uvi dunda"], ["The donor shortly to the right."])
         , (["lo ri'uvi zdani"], ["The house shortly to the right."])
-        , (["lo ri'uvi ctuca"], ["The instructor shortly to the right."])
         -- va
         , (["lo ri'uva gerku"], ["The dog moderately to the right."])
         , (["lo ri'uva mlatu"], ["The cat moderately to the right."])
-        , (["lo ri'uva prenu"], ["The person moderately to the right."])
         , (["lo ri'uva dunda"], ["The donor moderately to the right."])
         , (["lo ri'uva zdani"], ["The house moderately to the right."])
-        , (["lo ri'uva ctuca"], ["The instructor moderately to the right."])
         -- vu
         , (["lo ri'uvu gerku"], ["The dog far to the right."])
         , (["lo ri'uvu mlatu"], ["The cat far to the right."])
-        , (["lo ri'uvu prenu"], ["The person far to the right."])
         , (["lo ri'uvu dunda"], ["The donor far to the right."])
         , (["lo ri'uvu zdani"], ["The house far to the right."])
-        , (["lo ri'uvu ctuca"], ["The instructor far to the right."])
         ]
     ca'u = generatorFromList
         [ (["lo ca'u gerku"], ["The dog to the front."])
