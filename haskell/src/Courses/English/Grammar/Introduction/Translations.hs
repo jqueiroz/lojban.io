@@ -2260,14 +2260,16 @@ translations27_sentences = expandTranslationGenerator $ combineGenerators [(1, i
             , (["mi nelci lo ca'u mlatu"], ["I like the cats to the front."])
             , (["mi nelci lo ca'u gerku"], ["I like the dogs to the front."])
             ]
-    outside_sumti = generatorFromList
-        -- vi
-        [ (["vi ku do gleki"], ["Here, you are happy."])
-        -- va
-        , (["va ku do gleki"], ["Moderately nearby, you are happy."])
-        -- vu
-        , (["vu ku do gleki"], ["Far away, you will be happy."])
-        ]
+    outside_sumti = combineGeneratorsUniformly [vi, va, vu] where
+        vi = generatorFromList
+            [ (["(vi|bu'u) ku do gleki"], ["Here, you are happy."])
+            ]
+        va = generatorFromList
+            [ (["va ku do gleki"], ["Moderately nearby, you were happy."])
+            ]
+        vu = generatorFromList
+            [ (["vu ku do gleki"], ["Far away, you will be happy."])
+            ]
 
 translations27_expressions :: TranslationGenerator
 translations27_expressions = expandTranslationGenerator $ combineGenerators [(1, vi), (1, va), (1, vu), (1, zu'a), (1, ri'u), (1, ca'u)] where
