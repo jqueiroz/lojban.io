@@ -2127,9 +2127,29 @@ translations26 = expandTranslationGenerator $ combineGenerators [(2, tavla), (1,
 -- * Lesson 27: Tenses 3
 translations27_sentences :: TranslationGenerator
 translations27_sentences = expandTranslationGenerator $ combineGenerators [(1, inside_sumti), (3, outside_sumti)] where
-    inside_sumti = generatorFromList
-        [ (["lo vi gerku cu pendo"], ["The nearby dog is friendly."])
-        ]
+    inside_sumti = combineGeneratorsUniformly [vi] where
+        vi = generatorFromList
+            [ (["lo vi gerku cu pendo"], ["The nearby dog is friendly."])
+            , (["lo vi mlatu cu melbi"], ["The nearby cat is beautiful."])
+            , (["mi tavla lo vi prenu"], ["I am talking to the nearby person."])
+            , (["mi ctuca lo vi prenu"], ["I am teaching the nearby person."])
+            , (["lo vi prenu cu tavla"], ["The nearby person is talking."])
+            , (["lo vi prenu cu ciska"], ["The nearby person is writing."])
+            , (["lo vi prenu cu gleki"], ["The nearby person is happy."])
+            , (["lo vi prenu cu lerci"], ["The nearby person is late."])
+            , (["lo vi prenu cu fanva fi lo (lojbo|jbobau)"], ["The nearby person is translating to Lojban."])
+            , (["lo vi prenu cu fanva fo lo (lojbo|jbobau)"], ["The nearby person is translating from Lojban."])
+            , (["lo vi prenu cu dunda lo plise"], ["The nearby person is donating an apple."])
+            , (["lo vi pendo cu dunda lo plise"], ["The nearby friend is donating an apple."])
+            , (["lo vi prenu cu vecnu lo skami"], ["The nearby person is selling a computer."])
+            , (["lo vi pendo cu vecnu lo skami"], ["The nearby friend is selling a computer."])
+            , (["lo vi prenu cu citka lo plise"], ["The nearby person is eating an apple."])
+            , (["lo vi pendo cu citka lo plise"], ["The nearby friend is eating an apple."])
+            , (["mi ctuca lo vi prenu"], ["I am teaching the nearby persons."])
+            , (["mi ctuca lo vi gerku"], ["I am teaching the nearby dogs."])
+            , (["mi nelci lo vi mlatu"], ["I like the nearby cats."])
+            , (["mi nelci lo vi gerku"], ["I like the nearby dogs."])
+            ]
     outside_sumti = generatorFromList
         -- vi
         [ (["vi ku do gleki"], ["Here, you are happy."])
