@@ -52,7 +52,7 @@ displayCanonicalBridi = fst . displayStandardSimpleBridi (mkStdGen 42)
 displayStandardSimpleBridi :: StdGen -> SimpleBridi -> (T.Text, StdGen)
 displayStandardSimpleBridi = buildSentenceDisplayer $ \r0 (SimpleBridi xu selbri sumti extraSumti) ->
     let
-        (sumtiHead, sumtiTail) = splitAt 1 sumti
+        (sumtiHead, sumtiTail) = splitAt 1 (if null sumti then [""] else sumti)
         sentence = (if sumtiHead == [""] then [] else sumtiHead) ++ [selbri] ++ (stripRight "" sumtiTail)
     in
         prependXu xu $
@@ -72,7 +72,7 @@ displayStandardSimpleBridi = buildSentenceDisplayer $ \r0 (SimpleBridi xu selbri
 displayVariantSimpleBridi :: StdGen -> SimpleBridi -> (T.Text, StdGen)
 displayVariantSimpleBridi = buildSentenceDisplayer $ \r0 (SimpleBridi xu selbri sumti extraSumti) ->
     let
-        (sumtiHead, sumtiTail) = splitAt 1 sumti
+        (sumtiHead, sumtiTail) = splitAt 1 (if null sumti then [""] else sumti)
     in
         prependXu xu $
         if sumtiHead == [""] then
