@@ -2127,7 +2127,7 @@ translations26 = expandTranslationGenerator $ combineGenerators [(2, tavla), (1,
 -- * Lesson 27: Tenses 3
 translations27_sentences :: TranslationGenerator
 translations27_sentences = expandTranslationGenerator $ combineGenerators [(1, inside_sumti), (3, outside_sumti)] where
-    inside_sumti = combineGeneratorsUniformly [vi, va, vu] where
+    inside_sumti = combineGeneratorsUniformly [vi, va, vu, zu'a, ri'u, ca'u] where
         vi = generatorFromList
             [ (["lo vi gerku cu pendo"], ["The nearby dog is friendly."])
             , (["lo vi mlatu cu melbi"], ["The nearby cat is beautiful."])
@@ -2193,6 +2193,72 @@ translations27_sentences = expandTranslationGenerator $ combineGenerators [(1, i
             , (["mi ctuca lo vu gerku"], ["I am teaching the far away dogs."])
             , (["mi nelci lo vu mlatu"], ["I like the far away cats."])
             , (["mi nelci lo vu gerku"], ["I like the far away dogs."])
+            ]
+        zu'a = generatorFromList
+            [ (["lo zu'a gerku cu pendo"], ["The dog to the left is friendly."])
+            , (["lo zu'a mlatu cu melbi"], ["The cat to the left is beautiful."])
+            , (["mi tavla lo zu'a prenu"], ["I am talking to the person to the left."])
+            , (["mi ctuca lo zu'a prenu"], ["I am teaching the person to the left."])
+            , (["lo zu'a prenu cu tavla"], ["The person to the left is talking."])
+            , (["lo zu'a prenu cu ciska"], ["The person to the left is writing."])
+            , (["lo zu'a prenu cu gleki"], ["The person to the left is happy."])
+            , (["lo zu'a prenu cu lerci"], ["The person to the left is late."])
+            , (["lo zu'a prenu cu fanva fi lo (lojbo|jbobau)"], ["The person to the left is translating to Lojban."])
+            , (["lo zu'a prenu cu fanva fo lo (lojbo|jbobau)"], ["The person to the left is translating from Lojban."])
+            , (["lo zu'a prenu cu dunda lo plise"], ["The person to the left is donating an apple."])
+            , (["lo zu'a pendo cu dunda lo plise"], ["The friend to the left is donating an apple."])
+            , (["lo zu'a prenu cu vecnu lo skami"], ["The person to the left is selling a computer."])
+            , (["lo zu'a pendo cu vecnu lo skami"], ["The friend to the left is selling a computer."])
+            , (["lo zu'a prenu cu citka lo plise"], ["The person to the left is eating an apple."])
+            , (["lo zu'a pendo cu citka lo plise"], ["The friend to the left is eating an apple."])
+            , (["mi ctuca lo zu'a prenu"], ["I am teaching the persons to the left."])
+            , (["mi ctuca lo zu'a gerku"], ["I am teaching the dogs to the left."])
+            , (["mi nelci lo zu'a mlatu"], ["I like the cats to the left."])
+            , (["mi nelci lo zu'a gerku"], ["I like the dogs to the left."])
+            ]
+        ri'u = generatorFromList
+            [ (["lo ri'u gerku cu pendo"], ["The dog to the right is friendly."])
+            , (["lo ri'u mlatu cu melbi"], ["The cat to the right is beautiful."])
+            , (["mi tavla lo ri'u prenu"], ["I am talking to the person to the right."])
+            , (["mi ctuca lo ri'u prenu"], ["I am teaching the person to the right."])
+            , (["lo ri'u prenu cu tavla"], ["The person to the right is talking."])
+            , (["lo ri'u prenu cu ciska"], ["The person to the right is writing."])
+            , (["lo ri'u prenu cu gleki"], ["The person to the right is happy."])
+            , (["lo ri'u prenu cu lerci"], ["The person to the right is late."])
+            , (["lo ri'u prenu cu fanva fi lo (lojbo|jbobau)"], ["The person to the right is translating to Lojban."])
+            , (["lo ri'u prenu cu fanva fo lo (lojbo|jbobau)"], ["The person to the right is translating from Lojban."])
+            , (["lo ri'u prenu cu dunda lo plise"], ["The person to the right is donating an apple."])
+            , (["lo ri'u pendo cu dunda lo plise"], ["The friend to the right is donating an apple."])
+            , (["lo ri'u prenu cu vecnu lo skami"], ["The person to the right is selling a computer."])
+            , (["lo ri'u pendo cu vecnu lo skami"], ["The friend to the right is selling a computer."])
+            , (["lo ri'u prenu cu citka lo plise"], ["The person to the right is eating an apple."])
+            , (["lo ri'u pendo cu citka lo plise"], ["The friend to the right is eating an apple."])
+            , (["mi ctuca lo ri'u prenu"], ["I am teaching the persons to the right."])
+            , (["mi ctuca lo ri'u gerku"], ["I am teaching the dogs to the right."])
+            , (["mi nelci lo ri'u mlatu"], ["I like the cats to the right."])
+            , (["mi nelci lo ri'u gerku"], ["I like the dogs to the right."])
+            ]
+        ca'u = generatorFromList
+            [ (["lo ca'u gerku cu pendo"], ["The dog to the front is friendly."])
+            , (["lo ca'u mlatu cu melbi"], ["The cat to the front is beautiful."])
+            , (["mi tavla lo ca'u prenu"], ["I am talking to the person to the front."])
+            , (["mi ctuca lo ca'u prenu"], ["I am teaching the person to the front."])
+            , (["lo ca'u prenu cu tavla"], ["The person to the front is talking."])
+            , (["lo ca'u prenu cu ciska"], ["The person to the front is writing."])
+            , (["lo ca'u prenu cu gleki"], ["The person to the front is happy."])
+            , (["lo ca'u prenu cu lerci"], ["The person to the front is late."])
+            , (["lo ca'u prenu cu fanva fi lo (lojbo|jbobau)"], ["The person to the front is translating to Lojban."])
+            , (["lo ca'u prenu cu fanva fo lo (lojbo|jbobau)"], ["The person to the front is translating from Lojban."])
+            , (["lo ca'u prenu cu dunda lo plise"], ["The person to the front is donating an apple."])
+            , (["lo ca'u pendo cu dunda lo plise"], ["The friend to the front is donating an apple."])
+            , (["lo ca'u prenu cu vecnu lo skami"], ["The person to the front is selling a computer."])
+            , (["lo ca'u pendo cu vecnu lo skami"], ["The friend to the front is selling a computer."])
+            , (["lo ca'u prenu cu citka lo plise"], ["The person to the front is eating an apple."])
+            , (["lo ca'u pendo cu citka lo plise"], ["The friend to the front is eating an apple."])
+            , (["mi ctuca lo ca'u prenu"], ["I am teaching the persons to the front."])
+            , (["mi ctuca lo ca'u gerku"], ["I am teaching the dogs to the front."])
+            , (["mi nelci lo ca'u mlatu"], ["I like the cats to the front."])
+            , (["mi nelci lo ca'u gerku"], ["I like the dogs to the front."])
             ]
     outside_sumti = generatorFromList
         -- vi
