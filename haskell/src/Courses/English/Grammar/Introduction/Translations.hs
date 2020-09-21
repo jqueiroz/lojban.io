@@ -2260,15 +2260,50 @@ translations27_sentences = expandTranslationGenerator $ combineGenerators [(1, i
             , (["mi nelci lo ca'u mlatu"], ["I like the cats to the front."])
             , (["mi nelci lo ca'u gerku"], ["I like the dogs to the front."])
             ]
-    outside_sumti = combineGeneratorsUniformly [vi, va, vu] where
+    outside_sumti = combineGenerators [(3, bu'uma), (1, bu'u), (1, vi), (1, va), (1, vu)] where
+        bu'uma = generatorFromList
+            [ (["bu'u ma do gleki"], ["Where are you happy?"])
+            , (["bu'u ma lo gerku cu citka"], ["Where is the dog eating?"])
+            , (["bu'u ma lo mlatu cu citka"], ["Where is the cat eating?"])
+            , (["bu'u ma lo skami cu se vecnu"], ["Where is the computer being sold?"])
+            , (["bu'u ma lo plise cu se dunda"], ["Where is the apple being donated?"])
+            , (["bu'u ma do ctuca"], ["Where are you teaching?"])
+            ]
+        bu'u = generatorFromList
+            [ (["(bu'u|vi) lo zdani ku do gleki"], ["At home, you are happy."])
+            , (["(bu'u|vi) lo zdani ku lo prenu cu gleki"], ["At home, people are happy."])
+            , (["(bu'u|vi) lo zdani ku lo mlatu cu gleki"], ["At home, cats are happy."])
+            , (["lo mi pendo cu citka (bu'u|vi) lo zdani"], ["My friend eats at home."])
+            ]
         vi = generatorFromList
             [ (["(vi|bu'u) ku do gleki"], ["Here, you are happy."])
+            , (["(vi|bu'u) ku lo mi pendo cu gleki"], ["Here, my friend is happy.", "Here, my friends are happy."])
+            , (["(vi|bu'u) ku lo gerku cu citka"], ["Here, the dog is eating.", "Here, the dogs are eating."])
+            , (["(vi|bu'u) ku lo mlatu cu citka"], ["Here, the cat is eating.", "Here, the cats are eating."])
+            , (["(vi|bu'u) ku lo mi pendo cu citka"], ["Here, my friend is eating.", "Here, my friends are eating."])
+            , (["mi (vi|bu'u) vecnu lo skami"], ["I am selling the computer here."])
+            , (["mi (vi|bu'u) vecnu lo plise"], ["I am selling the apple here."])
+            , (["mi (vi|bu'u) dunda lo plise"], ["I am donating the apple here."])
             ]
         va = generatorFromList
             [ (["va ku do gleki"], ["Moderately nearby, you were happy."])
+            , (["va ku lo mi pendo cu gleki"], ["Moderately nearby, my friend is happy.", "Moderately nearby, my friends are happy."])
+            , (["va ku lo gerku cu citka"], ["Moderately nearby, the dog is eating.", "Moderately nearby, the dogs are eating."])
+            , (["va ku lo mlatu cu citka"], ["Moderately nearby, the cat is eating.", "Moderately nearby, the cats are eating."])
+            , (["va ku lo mi pendo cu citka"], ["Moderately nearby, my friend is eating.", "Moderately nearby, my friends are eating."])
+            , (["mi va vecnu lo skami"], ["I am selling the computer moderately nearby."])
+            , (["mi va vecnu lo plise"], ["I am selling the apple moderately nearby."])
+            , (["mi va dunda lo plise"], ["I am donating the apple moderately nearby."])
             ]
         vu = generatorFromList
             [ (["vu ku do gleki"], ["Far away, you will be happy."])
+            , (["vu ku lo mi pendo cu gleki"], ["Far away, my friend is happy.", "Far away, my friends are happy."])
+            , (["vu ku lo gerku cu citka"], ["Far away, the dog is eating.", "Far away, the dogs are eating."])
+            , (["vu ku lo mlatu cu citka"], ["Far away, the cat is eating.", "Far away, the cats are eating."])
+            , (["vu ku lo mi pendo cu citka"], ["Far away, my friend is eating.", "Far away, my friends are eating."])
+            , (["mi vu vecnu lo skami"], ["I am selling the computer far away."])
+            , (["mi vu vecnu lo plise"], ["I am selling the apple far away."])
+            , (["mi vu dunda lo plise"], ["I am donating the apple far away."])
             ]
 
 translations27_expressions :: TranslationGenerator
