@@ -2267,7 +2267,7 @@ translations27_sentences = expandTranslationGenerator $ combineGenerators [(1, i
             , (["lo mi pendo be bu'u lo zdani"], ["My friend at home.", "My friends at home."])
             , (["lo plise be bu'u lo zdani"], ["The apple at home"])
             ]
-    outside_sumti = combineGenerators [(3, bu'uma), (1, bu'u), (1, vi), (1, va), (1, vu)] where
+    outside_sumti = combineGenerators [(3, bu'uma), (1, bu'u), (1, vi), (1, va), (1, vu), (1, zu'a), (1, ri'u), (1, ca'u)] where
         bu'uma = generatorFromList
             [ (["bu'u ma do gleki"], ["Where are you happy?"])
             , (["bu'u ma lo gerku cu citka"], ["Where is the dog eating?"])
@@ -2311,6 +2311,45 @@ translations27_sentences = expandTranslationGenerator $ combineGenerators [(1, i
             , (["mi vu vecnu lo skami"], ["I am selling the computer far away."])
             , (["mi vu vecnu lo plise"], ["I am selling the apple far away."])
             , (["mi vu dunda lo plise"], ["I am donating the apple far away."])
+            ]
+        zu'a = generatorFromList
+            [ (["zu'a ku lo gerku cu citka"], ["To the left, the dog is eating.", "To the left, the dogs are eating."])
+            , (["zu'a ku lo mlatu cu citka"], ["To the left, the cat is eating.", "To the left, the cats are eating."])
+            , (["zu'a ku lo mi pendo cu tavla"], ["To the left, my friend is talking.", "To the left, my friends are talking."])
+            , (["zu'a ku lo mi pendo cu vecnu lo skami"], ["To the left, my friend is selling the computer."])
+            , (["zu'a ku lo mi pendo cu dunda lo plise"], ["To the left, my friend is donating the apple."])
+            -- zdani
+            , (["zu'a lo mi zdani ku lo gerku cu citka"], ["To the left of my house, the dog is eating.", "To the left of my house, the dogs are eating."])
+            , (["zu'a lo mi zdani ku lo mlatu cu citka"], ["To the left of my house, the cat is eating.", "To the left of my house, the cats are eating."])
+            , (["zu'a lo zdani ku lo mi pendo cu tavla"], ["To the left of the house, my friend is talking.", "To the left of the house, my friends are talking."])
+            , (["zu'a lo zdani ku lo mi pendo cu vecnu lo skami"], ["To the left of the house, my friend is selling the computer."])
+            , (["zu'a lo zdani ku lo mi pendo cu dunda lo plise"], ["To the left of the house, my friend is donating the apple."])
+            ]
+        ri'u = generatorFromList
+            [ (["ri'u ku lo gerku cu citka"], ["To the right, the dog is eating.", "To the right, the dogs are eating."])
+            , (["ri'u ku lo mlatu cu citka"], ["To the right, the cat is eating.", "To the right, the cats are eating."])
+            , (["ri'u ku lo mi pendo cu tavla"], ["To the right, my friend is talking.", "To the right, my friends are talking."])
+            , (["ri'u ku lo mi pendo cu vecnu lo skami"], ["To the right, my friend is selling the computer."])
+            , (["ri'u ku lo mi pendo cu dunda lo plise"], ["To the right, my friend is donating the apple."])
+            -- zdani
+            , (["ri'u lo mi zdani ku lo gerku cu citka"], ["To the right of my house, the dog is eating.", "To the right of my house, the dogs are eating."])
+            , (["ri'u lo mi zdani ku lo mlatu cu citka"], ["To the right of my house, the cat is eating.", "To the right of my house, the cats are eating."])
+            , (["ri'u lo zdani ku lo mi pendo cu tavla"], ["To the right of the house, my friend is talking.", "To the right of the house, my friends are talking."])
+            , (["ri'u lo zdani ku lo mi pendo cu vecnu lo skami"], ["To the right of the house, my friend is selling the computer."])
+            , (["ri'u lo zdani ku lo mi pendo cu dunda lo plise"], ["To the right of the house, my friend is donating the apple."])
+            ]
+        ca'u = generatorFromList
+            [ (["ca'u ku lo gerku cu citka"], ["To the front, the dog is eating.", "To the front, the dogs are eating."])
+            , (["ca'u ku lo mlatu cu citka"], ["To the front, the cat is eating.", "To the front, the cats are eating."])
+            , (["ca'u ku lo mi pendo cu tavla"], ["To the front, my friend is talking.", "To the front, my friends are talking."])
+            , (["ca'u ku lo mi pendo cu vecnu lo skami"], ["To the front, my friend is selling the computer."])
+            , (["ca'u ku lo mi pendo cu dunda lo plise"], ["To the front, my friend is donating the apple."])
+            -- zdani
+            , (["ca'u lo mi zdani ku lo gerku cu citka"], ["To the front of my house, the dog is eating.", "To the front of my house, the dogs are eating."])
+            , (["ca'u lo mi zdani ku lo mlatu cu citka"], ["To the front of my house, the cat is eating.", "To the front of my house, the cats are eating."])
+            , (["ca'u lo zdani ku lo mi pendo cu tavla"], ["To the front of the house, my friend is talking.", "To the front of the house, my friends are talking."])
+            , (["ca'u lo zdani ku lo mi pendo cu vecnu lo skami"], ["To the front of the house, my friend is selling the computer."])
+            , (["ca'u lo zdani ku lo mi pendo cu dunda lo plise"], ["To the front of the house, my friend is donating the apple."])
             ]
 
 translations27_expressions :: TranslationGenerator
