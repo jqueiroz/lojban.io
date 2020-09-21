@@ -2261,11 +2261,11 @@ translations27_sentences = expandTranslationGenerator $ combineGenerators [(1, i
             , (["mi nelci lo ca'u gerku"], ["I like the dogs to the front."])
             ]
         bu'u = generatorFromList
-            [ (["lo prenu be bu'u lo zdani"], ["The person at home."])
-            , (["lo gerku be bu'u lo zdani"], ["The dog at home.", "The dogs at home."])
-            , (["lo mlatu be bu'u lo zdani"], ["The cat at home.", "The cats at home."])
-            , (["lo mi pendo be bu'u lo zdani"], ["My friend at home.", "My friends at home."])
-            , (["lo plise be bu'u lo zdani"], ["The apple at home"])
+            [ (["lo prenu be bu'u lo zdani cu ctuca mi"], ["The person at home is teaching to me."])
+            , (["lo gerku be bu'u lo zdani cu citka"], ["The dog at home is eating.", "The dogs at home are eating."])
+            , (["lo mlatu be bu'u lo zdani cu citka"], ["The cat at home is eating.", "The cats at home are eating."])
+            , (["lo mi pendo be bu'u lo zdani cu tavla mi"], ["My friend at home is talking to me.", "My friends at home are talking to me."])
+            , (["lo plise be bu'u lo zdani cu melbi"], ["The apple at home is beautiful."])
             ]
     outside_sumti = combineGenerators [(3, bu'uma), (1, bu'u), (1, vi), (1, va), (1, vu), (1, zu'a), (1, ri'u), (1, ca'u)] where
         bu'uma = generatorFromList
@@ -2353,7 +2353,7 @@ translations27_sentences = expandTranslationGenerator $ combineGenerators [(1, i
             ]
 
 translations27_expressions :: TranslationGenerator
-translations27_expressions = expandTranslationGenerator $ combineGenerators [(1, vi), (1, va), (1, vu), (1, zu'a), (1, ri'u), (1, ca'u)] where
+translations27_expressions = expandTranslationGenerator $ combineGenerators [(1, vi), (1, va), (1, vu), (1, zu'a), (1, ri'u), (1, ca'u), (1, bu'u)] where
     vi = generatorFromList
         [ (["lo vi gerku"], ["The nearby dog."])
         , (["lo vi mlatu"], ["The nearby cat."])
@@ -2448,4 +2448,11 @@ translations27_expressions = expandTranslationGenerator $ combineGenerators [(1,
         , (["lo ca'uvu dunda"], ["The donor far to the front."])
         , (["lo ca'uvu zdani"], ["The house far to the front."])
         , (["lo ca'uvu ctuca"], ["The instructor far to the front."])
+        ]
+    bu'u = generatorFromList
+        [ (["lo prenu be bu'u lo zdani"], ["The person at home."])
+        , (["lo gerku be bu'u lo zdani"], ["The dog at home.", "The dogs at home."])
+        , (["lo mlatu be bu'u lo zdani"], ["The cat at home.", "The cats at home."])
+        , (["lo mi pendo be bu'u lo zdani"], ["My friend at home.", "My friends at home."])
+        , (["lo plise be bu'u lo zdani"], ["The apple at home"])
         ]
