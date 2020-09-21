@@ -2127,7 +2127,7 @@ translations26 = expandTranslationGenerator $ combineGenerators [(2, tavla), (1,
 -- * Lesson 27: Tenses 3
 translations27_sentences :: TranslationGenerator
 translations27_sentences = expandTranslationGenerator $ combineGenerators [(1, inside_sumti), (3, outside_sumti)] where
-    inside_sumti = combineGeneratorsUniformly [vi, va, vu, zu'a, ri'u, ca'u] where
+    inside_sumti = combineGeneratorsUniformly [vi, va, vu, zu'a, ri'u, ca'u, bu'u] where
         vi = generatorFromList
             [ (["lo vi gerku cu pendo"], ["The nearby dog is friendly."])
             , (["lo vi mlatu cu melbi"], ["The nearby cat is beautiful."])
@@ -2259,6 +2259,13 @@ translations27_sentences = expandTranslationGenerator $ combineGenerators [(1, i
             , (["mi ctuca lo ca'u gerku"], ["I am teaching the dogs to the front."])
             , (["mi nelci lo ca'u mlatu"], ["I like the cats to the front."])
             , (["mi nelci lo ca'u gerku"], ["I like the dogs to the front."])
+            ]
+        bu'u = generatorFromList
+            [ (["lo prenu be bu'u lo zdani"], ["The person at home."])
+            , (["lo gerku be bu'u lo zdani"], ["The dog at home.", "The dogs at home."])
+            , (["lo mlatu be bu'u lo zdani"], ["The cat at home.", "The cats at home."])
+            , (["lo mi pendo be bu'u lo zdani"], ["My friend at home.", "My friends at home."])
+            , (["lo plise be bu'u lo zdani"], ["The apple at home"])
             ]
     outside_sumti = combineGenerators [(3, bu'uma), (1, bu'u), (1, vi), (1, va), (1, vu)] where
         bu'uma = generatorFromList
