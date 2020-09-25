@@ -1,0 +1,2 @@
+0 0 * * * root /bin/bash /backup-redis.sh
+

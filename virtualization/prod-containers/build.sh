@@ -4,6 +4,12 @@ set -e
 # Change directory to the script's location
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
+# Build: backup
+echo ">>>>>>>>>>>>>> backup"
+./docker.sh $DOCKER_OPTS build -t lojban-backup-server -f backup/Dockerfile backup
+echo ""
+echo ""
+
 # Build: letsencrypt
 echo ">>>>>>>>>>>>>> letsencrypt"
 ./docker.sh $DOCKER_OPTS build -t lojban-letsencrypt-server -f letsencrypt/Dockerfile letsencrypt

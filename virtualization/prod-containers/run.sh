@@ -72,3 +72,31 @@ echo -ne "\t"
     -v /lojban-letsencrypt-certificates:/letsencrypt-certificates:ro \
     --link lojban-server \
     lojban-master-https-server
+
+# Read credentials for the lojbanios-backups bucket in B2
+echo "Reading credentials for the lojbanios-backups bucket in B2..."
+LOJBANIOS_BACKUPS_ACCESS_KEY="$(sed -n 1p ~/.lojbanios_b2_app_key)"
+LOJBANIOS_BACKUPS_SECRET_KEY="$(sed -n 2p ~/.lojbanios_b2_app_key)"
+
+# Stop: backup
+echo "Stopping: lojban-backup-server..."
+if [ -n "`./docker.sh ps -a | grep lojban-backup-server$`" ]; then
+    previously_running=true
+    echo -ne "\t"
+    ./docker.sh stop lojban-backup-server
+fi
+
+if [ -n "`./docker.sh ps -a | grep lojban-backup-server$`" ]; then
+    echo -ne "\t"
+    ./docker.sh rm lojban-backup-server
+fi
+
+# Run: backup
+echo "Starting: lojban-backup-server..."
+echo -ne "\t"
+./docker.sh run -d --name lojban-backup-server \
+    --env LOJBANIOS_BACKUPS_ACCESS_KEY="$LOJBANIOS_BACKUPS_ACCESS_KEY" \
+    --env LOJBANIOS_BACKUPS_SECRET_KEY="$LOJBANIOS_BACKUPS_SECRET_KEY" \
+    -v /lojban-backup/:/backup \
+    -v /lojban-redis-database/:/redis-database:ro \
+    lojban-backup-server
