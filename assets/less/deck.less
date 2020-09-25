@@ -176,7 +176,7 @@
         /*background-color: hsl(261, 100%, 60%);*/
     }
 
-    .card.NotStarted {
+    .card.NotStarted, .card.Inactive {
         background-color: hsl(90, 0%, 20%);
     }
 
@@ -210,6 +210,10 @@
 
     .card.NotStarted .card-state:after {
         content: "Not started";
+    }
+
+    .card.Inactive .card-state:after {
+        content: "Inactive";
     }
 
     .card.Updating .card-state:after {

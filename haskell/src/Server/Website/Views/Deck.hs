@@ -49,7 +49,7 @@ displayDeckHome serverConfiguration userIdentityMaybe deck = do
                                     fromRight . P.runPure . PWH.writeHtml5 P.def $ fromJust (deckLongDescription deck)
                         H.div B.! A.class_ (H.stringValue "deck-manage") $ do
                             H.h2 $ H.toHtml ("Manage your cards" :: T.Text)
-                            H.p $ H.toHtml ("Tap on cards to alternate between \"not started\", \"currently learning\" and \"already mastered\"." `T.append`
+                            H.p $ H.toHtml ("Tap on cards to alternate between \"not started\" (or \"inactive\"), \"currently learning\" and \"already mastered\"." `T.append`
                                             " Stars represent how familiar you are with each card, based on past performance." `T.append`
                                             " Only cards tagged as \"currently learning\" will appear in exercises." `T.append`
                                             " Consequently, once you have mastered a card, you may optionally tag it as \"already mastered\" to ignore it." :: T.Text)

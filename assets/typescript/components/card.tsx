@@ -90,9 +90,17 @@ export class Card extends React.Component<ICardProps, ICardState> {
         });
     }
 
+    getStatusClass() {
+        if (this.state.status == CardStatus.NotStarted && this.props.score) {
+            return "Inactive";
+        }
+
+        return this.state.status.toString();
+    }
+
     render() {
         return (
-            <div className={"card " + this.state.status} onClick={this.toggleEnabledState.bind(this)}>
+            <div className={"card " + this.getStatusClass()} onClick={this.toggleEnabledState.bind(this)}>
                 <div className="card-bg" />
                 <div className="card-header">
                     <div className="card-title">{ this.props.title }</div>
