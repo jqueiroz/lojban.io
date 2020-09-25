@@ -1,2 +1,2 @@
-0 0 * * * root /bin/bash /backup-redis.sh
+0 0 * * * root /bin/bash /backup-redis.sh > /proc/$(cat /var/run/crond.pid)/fd/1 2>&1
 
