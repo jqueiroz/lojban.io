@@ -278,7 +278,14 @@ retrieveTanruFromBrivlaList brivlaList = unwordsET $ convertStructuredSelbri <$>
 ---------- Canonicalization
 --TODO: canonicalize "do xu ciska" -> "xu do ciska"
 canonicalizeText :: SentenceCanonicalizer
-canonicalizeText sentence = parseText sentence >>= canonicalizeParsedText
+canonicalizeText sentence = parseText (normalizeText sentence) >>= canonicalizeParsedText
+
+-- | Normalizes the text prior to parsing.
+--
+-- Useful for performing dirty hacks, such as blindly replacing "be zo'e bei" with "be fi", until
+-- canonicalization of the corresponding construct is properly implement using the parse tree.
+normalizeText :: T.Text -> T.Text
+normalizeText = T.replace "be fi" "be zo'e bei" . T.replace "befi" "be zo'e bei"
 
 canonicalizeParsedText :: (ZG.Free, ZG.Text, ZG.Terminator) -> Either String T.Text
 canonicalizeParsedText parsedText = (canonicalizeParsedTerm parsedText) `mplus` (canonicalizeParsedBridi parsedText)

@@ -343,6 +343,13 @@ validateCanonicalization = hspec $ do
             , ("lo tavla be zo'e bei do cu melbi", "lo tavla be zo'e bei do be'o ku melbi")
             , ("lo tavla be zo'e bei do ku melbi", "lo tavla be zo'e bei do be'o ku melbi")
             ]
+        validateEquivalentSentences
+            "lo dunda be zo'e bei lo prenu ku be'o ku"
+            [ "lo dunda be zo'e bei lo prenu"
+            , "lo dunda bezo'ebei lo prenu"
+            , "lo dunda be fi lo prenu"
+            , "lo dunda befi lo prenu"
+            ]
       it "supports NOI" $ do
         validateSentences
             [ ("mi citka lo se dunda ku poi plise", "mi citka lo se dunda ku poi plise ku'o")
