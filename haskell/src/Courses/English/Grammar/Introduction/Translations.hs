@@ -1308,14 +1308,14 @@ translations10 = expandTranslationGenerator $ combineGeneratorsUniformly [requir
 
         , (["ma se cmene lo tavla be do"], ["What is the name of the one who talked to you?"])
         , (["ma se cmene lo tavla be do bei lo zdani"], ["What is the name of the one who talked to you about the house?"])
-        , (["ma se cmene lo tavla be zo'e bei lo zdani"], ["What is the name of the one who talked about the house?"])
+        , (["ma se cmene lo tavla be fi lo zdani"], ["What is the name of the one who talked about the house?"])
         ]
     general = generatorFromList
         [ (["mi nelci lo se nupre be do"], ["I like the promise that you made."])
         , (["mi nelci lo se dunda be do"], ["I liked the gift that you gave."])
         , (["mi nelci lo se dunda be do bei mi"], ["I liked the gift that you gave me."])
-        , (["mi nelci lo se dunda be zo'e bei do"], ["I liked the gift that you received."])
-        , (["mi nelci lo se dunda be zo'e bei mi"], ["I liked the gift that I received."])
+        , (["mi nelci lo se dunda be fi do"], ["I liked the gift that you received."])
+        , (["mi nelci lo se dunda be fi mi"], ["I liked the gift that I received."])
         ]
     vecnu_zdani = generatorFromList
         [ (["mi tavla lo vecnu be lo zdani"], ["I talked to the one who sold the house."])
@@ -1341,17 +1341,17 @@ translations10 = expandTranslationGenerator $ combineGeneratorsUniformly [requir
         ]
     tavla = generatorFromList
         [ (["mi dunda lo mlatu lo tavla be do"], ["I donated the cat to the one who was talking to you."])
-        , (["mi dunda lo mlatu lo tavla be zo'e bei do"], ["I donated the cat to the one who was talking about you."])
+        , (["mi dunda lo mlatu lo tavla be fi do"], ["I donated the cat to the one who was talking about you."])
         , (["mi dunda lo gerku lo tavla be do"], ["I donated the dog to the one who was talking to you."])
-        , (["mi dunda lo gerku lo tavla be zo'e bei do"], ["I donated the dog to the one who was talking about you."])
+        , (["mi dunda lo gerku lo tavla be fi do"], ["I donated the dog to the one who was talking about you."])
 
         , (["lo tavla be do cu melbi"], ["The one who was talking to you is beautiful."])
-        , (["lo tavla be zo'e bei do cu melbi"], ["The one who was talking about you is beautiful."])
-        , (["lo tavla be zo'e bei mi cu melbi"], ["The one who was talking about me is beautiful."])
+        , (["lo tavla be fi do cu melbi"], ["The one who was talking about you is beautiful."])
+        , (["lo tavla be fi mi cu melbi"], ["The one who was talking about me is beautiful."])
 
         , (["lo tavla be do cu melbi mi"], ["The one who was talking to you is beautiful to me."])
-        , (["mi se melbi lo tavla be zo'e bei do"], ["The one who was talking about you is beautiful to me."])
-        , (["mi se melbi lo tavla be zo'e bei mi"], ["The one who was talking about me is beautiful to me."])
+        , (["mi se melbi lo tavla be fi do"], ["The one who was talking about you is beautiful to me."])
+        , (["mi se melbi lo tavla be fi mi"], ["The one who was talking about me is beautiful to me."])
         ]
     bangu = generatorFromList
         [ (["mi nelci lo bangu (be|pe) mi"], ["I like my language."])
