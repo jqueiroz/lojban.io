@@ -290,6 +290,25 @@ validateCanonicalization = hspec $ do
             "lo ci te vecnu ku"
             [ "lo ci te vecnu"
             ]
+      it "supports 'lo zu'a gerku'" $ do
+        validateEquivalentTerms
+            "lo zu'a gerku ku"
+            [ "lo zu'a gerku"
+            , "lozu'a gerku"
+            ]
+      it "supports 'lo vi gerku'" $ do
+        validateEquivalentTerms
+            "lo vi gerku ku"
+            [ "lo vi gerku"
+            , "lovi gerku"
+            ]
+      it "supports 'lo zu'a vi gerku'" $ do
+        validateEquivalentTerms
+            "lo zu'a vi gerku ku"
+            [ "lo zu'a vi gerku"
+            , "lo zu'avi gerku"
+            , "lozu'avi gerku"
+            ]
       it "supports 'lo pareci mlatu'" $ do
         validateEquivalentTerms
             "lo pareci mlatu ku"
@@ -298,6 +317,13 @@ validateCanonicalization = hspec $ do
             , "lo pa reci mlatu"
             , "lo pareci mlatu"
             ]
+      -- TODO: support the following construct
+      --it "supports 'lo prenu be bu'u lo zdani'" $ do
+        --validateEquivalentTerms
+            --"lo prenu be bu'u lo zdani ku"
+            --[ "lo prenu be bu'u lo zdani ku"
+            --, "lo bu'u lo zdani ku prenu ku"
+            --]
     describe "Basic sentence canonicalizer" $ do
       it "supports SE" $ do
         validateSentences

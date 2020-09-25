@@ -22,7 +22,7 @@ import Util (headOrDefault, isContiguousSequence, concatET, unwordsET)
 import Control.Applicative (liftA2)
 import Control.Exception (assert)
 import Control.Monad (mplus)
-import Data.List (partition)
+import Data.List (partition, intersperse)
 import qualified Data.Text as T
 import qualified Data.Map as M
 import qualified Language.Lojban.Parser.ZasniGerna as ZG
@@ -187,8 +187,15 @@ convertStructuredTerm :: StructuredTerm -> Either String T.Text
 convertStructuredTerm (ZG.KOhA x) = Right $ T.pack x
 convertStructuredTerm (ZG.Link x y) = concatET [convertStructuredTerm x, Right $ T.pack " ", convertLinkargs y]
 convertStructuredTerm (ZG.BRIVLA x) = Right $ T.pack x
-convertStructuredTerm (ZG.Tag (ZG.NA x) y) = concatET [Right $ T.pack x, Right $ T.pack " ",  convertStructuredTerm y]
-convertStructuredTerm (ZG.Tag (ZG.BAI x) y) = concatET [Right $ T.pack x, Right $ T.pack " ",  convertStructuredTerm y]
+convertStructuredTerm (ZG.Tag (ZG.NA x) y) = convertStructuredTerm (ZG.Tag (ZG.TTags [ZG.NA x]) y)
+convertStructuredTerm (ZG.Tag (ZG.BAI x) y) = convertStructuredTerm (ZG.Tag (ZG.TTags [ZG.BAI x]) y)
+convertStructuredTerm (ZG.Tag (ZG.TTags tagsList) y) = concatET $ extractedTags ++ [Right $ T.pack " ", convertStructuredTerm y] where
+    extractedTags :: [Either String T.Text]
+    extractedTags = intersperse (Right $ T.pack " ") $ map extractTag tagsList
+    extractTag :: ZG.Tag -> Either String T.Text
+    extractTag (ZG.NA x) = Right $ T.pack x
+    extractTag (ZG.BAI x) = Right $ T.pack x
+    extractTag x = Left $ "Unrecognized pattern for extractTag: " ++ show x
 convertStructuredTerm (ZG.Rel x y) = concatET [convertStructuredTerm x, Right $ T.pack " ", convertRelative y]
 convertStructuredTerm (ZG.GOhA x) = Right $ T.pack x
 convertStructuredTerm (ZG.Prefix (ZG.NAhE x) (ZG.BRIVLA y)) = Right $ T.pack (x ++ " " ++ y)
