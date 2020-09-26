@@ -12,6 +12,6 @@ cp -R /redis-database /tmp/backup/redis/$TIME/
 (mkdir -p /backup/redis/ && cd /tmp/backup/redis/ && tar cfzp "/backup/redis/$TIME.tgz" "$TIME")
 echo "[$TIME] Successfully generated local backup..."
 
-# Upload backup to s2
+# Upload backup to b2
 echo "[$TIME] Uploading backup to b2..."
 s3cmd -c /s3cfg put "/backup/redis/$TIME.tgz" "s3://lojbanios-backups/redis/$TIME.tgz"
