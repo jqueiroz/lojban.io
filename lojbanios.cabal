@@ -40,6 +40,7 @@ common deps
                      , base64-bytestring
                      , http-client
                      , http-client-tls
+                     , http-types
                      , jose-jwt
                      , oidc-client
                      , papillon

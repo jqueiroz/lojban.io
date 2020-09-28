@@ -27,9 +27,13 @@ import Server.Website.Views.Lesson (displayLessonHome, displayLessonExercise)
 import Control.Monad (msum, guard)
 import Control.Monad.IO.Class (liftIO)
 import System.Random (newStdGen, mkStdGen)
+import Data.ByteString.Builder (toLazyByteString)
 import qualified Server.OAuth2.Main as OAuth2
 import qualified Data.Aeson as A
 import qualified Data.Text as T
+import qualified Data.Text.Encoding as TE
+import qualified Data.ByteString.Lazy as BS
+import qualified Network.HTTP.Types.URI as URI
 import Happstack.Server
 
 -- TODO: consider adding breadcrumbs (https://getbootstrap.com/docs/4.0/components/breadcrumb/)
@@ -133,5 +137,14 @@ handleLesson serverConfiguration userIdentityMaybe topbarCategory course lessonN
 handleLessonReport :: Course -> Int -> ServerPart Response
 handleLessonReport course lessonNumber =
     -- The only reason for using `tempRedirect` is that we may want to change the target url in the future
-    -- TODO: add a "Context" section to the initial description, including information such as course title and lesson title
-    tempRedirect ("https://github.com/jqueiroz/lojban.io/issues/new?labels=reported-lesson" :: T.Text) . toResponse $ ("To report an issue, please visit our GitHub repository." :: T.Text)
+    tempRedirect url . toResponse $ ("To report an issue, please visit our GitHub repository." :: T.Text) where
+        lesson :: Lesson
+        lesson = (courseLessons course) !! (lessonNumber - 1)
+        url :: T.Text
+        url = "https://github.com/jqueiroz/lojban.io/issues/new" `T.append` queryString
+        queryString :: T.Text
+        queryString = TE.decodeUtf8 . BS.toStrict . toLazyByteString $ URI.renderQueryText True
+            [ ("labels", Just "reported-lesson")
+            , ("title", Just $ "Feedback regarding lesson: " `T.append` (lessonTitle lesson))
+            , ("body", Just $ "Please provide your feedback here...\n\n### Context\nFor context, this feedback refers to the lesson \"" `T.append` (lessonTitle lesson) `T.append` "\" in the course \"" `T.append` (courseTitle course) `T.append` "\".")
+            ]
