@@ -286,7 +286,7 @@ canonicalizeText sentence = parseText (normalizeText sentence) >>= canonicalizeP
 -- Useful for performing dirty hacks, such as blindly replacing "be zo'e bei" with "be fi", until
 -- canonicalization of the corresponding construct is properly implement using the parse tree.
 normalizeText :: T.Text -> T.Text
-normalizeText = normalizeWords . T.replace "be fi" "be zo'e bei" . T.replace "befi" "be zo'e bei"
+normalizeText = normalizeWords . T.replace " be fi " " be zo'e bei " . T.replace " befi " " be zo'e bei " . T.replace " befilo " " be zo'e bei lo "
 
 -- | Normalizes individual words in the sentence.
 --
