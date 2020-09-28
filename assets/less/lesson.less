@@ -150,6 +150,10 @@
         content: "\f1cb";
     }
 
+    .lesson-tab-label[for="lesson-tab-feedback"]:before {
+        content: "\f024";
+    }
+
     .lesson-tab-label:hover {
         color: #fff;
         cursor: pointer;
@@ -163,7 +167,8 @@
 
     .lesson-lecture,
     .lesson-plan,
-    .lesson-vocabulary {
+    .lesson-vocabulary,
+    .lesson-feedback {
         /* Position */
         display: none;
         margin-top: -3em;
@@ -185,7 +190,8 @@
 
     #lesson-tab-lecture:checked ~ .lesson-lecture,
     #lesson-tab-plan:checked ~ .lesson-plan,
-    #lesson-tab-vocabulary:checked ~ .lesson-vocabulary {
+    #lesson-tab-vocabulary:checked ~ .lesson-vocabulary,
+    #lesson-tab-feedback:checked ~ .lesson-feedback {
         display: block;
     }
 

@@ -113,6 +113,7 @@ handleDeck serverConfiguration serverResources userIdentityMaybe deck = msum
 handleLesson :: ServerConfiguration -> Maybe UserIdentity -> TopbarCategory -> Course -> Int -> ServerPart Response
 handleLesson serverConfiguration userIdentityMaybe topbarCategory course lessonNumber = msum
     [ forceSlash . ok . toResponse $ displayLessonHome serverConfiguration userIdentityMaybe topbarCategory course lessonNumber
+    , dir "report" $ handleLessonReport course lessonNumber
     , dir "exercises" $ msum
         [ forceSlash . ok . toResponse $ displayLessonExercise serverConfiguration userIdentityMaybe topbarCategory course lessonNumber
         , path $ \n ->
@@ -128,3 +129,9 @@ handleLesson serverConfiguration userIdentityMaybe topbarCategory course lessonN
                 ]
         ]
     ]
+
+handleLessonReport :: Course -> Int -> ServerPart Response
+handleLessonReport course lessonNumber =
+    -- The only reason for using `tempRedirect` is that we may want to change the target url in the future
+    -- TODO: add a "Context" section to the initial description, including information such as course title and lesson title
+    tempRedirect ("https://github.com/jqueiroz/lojban.io/issues/new?labels=reported-lesson" :: T.Text) . toResponse $ ("To report an issue, please visit our GitHub repository." :: T.Text)

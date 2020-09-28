@@ -59,6 +59,15 @@ displayLessonHome serverConfiguration userIdentityMaybe topbarCategory course le
                                 H.div B.! A.class_ (H.stringValue "lesson-vocabulary") $ do
                                     H.div $ do
                                         fromRight . P.runPure . PWH.writeHtml5 P.def . buildGlossaryDocument dictionary $ fromJust (lessonVocabulary lesson)
+                            when (isJust $ lessonLecture lesson) $ do
+                                H.div B.! A.class_ (H.stringValue "lesson-feedback") $ do
+                                    H.div $ do
+                                        H.h3 $ H.toHtml ("Feedback" :: T.Text)
+                                        H.p $ do
+                                            H.span "Any feedback about this lesson would be deeply appreciated. "
+                                            H.span "If you believe you discovered an error, or if you have any criticism or suggestions, please consider "
+                                            H.a B.! A.href (H.stringValue $ baseLessonUrl ++ "report") $ H.toHtml ("opening an issue" :: T.Text)
+                                            H.span " in our GitHub repository."
                     displayFooter
 
 displayLessonTabs :: Lesson -> H.Html
@@ -72,6 +81,8 @@ displayLessonTabs lesson = do
         displayLessonTab "lesson-tab-vocabulary" "Vocabulary" $ (not hasLecture)
     when hasPlan $ do
         displayLessonTab "lesson-tab-plan" "Plan" $ (not hasLecture) && (not hasVocabulary)
+    when hasLecture $ do
+        displayLessonTab "lesson-tab-feedback" "Feedback" False
 
 displayLessonTab :: String -> String -> Bool -> H.Html
 displayLessonTab id title checked = do
