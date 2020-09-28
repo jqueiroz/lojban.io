@@ -22,6 +22,7 @@ import Server.Website.Views.Grammar (displayGrammarHome)
 import Server.Website.Views.Vocabulary (displayVocabularyHome)
 import Server.Website.Views.Resources (displayResourcesHome)
 import Server.Website.Views.Offline (displayOfflineHome)
+import Server.Website.Views.NotFound (displayNotFoundHome)
 import Server.Website.Views.Course (displayCourseHome)
 import Server.Website.Views.Lesson (displayLessonHome, displayLessonExercise)
 import Control.Monad (msum, guard)
@@ -50,6 +51,7 @@ handleRoot serverConfiguration serverResources = do
         , dir "vocabulary" $ handleVocabulary serverConfiguration userIdentityMaybe
         , dir "resources" $ handleResources serverConfiguration userIdentityMaybe
         , dir "offline" $ handleOffline serverConfiguration userIdentityMaybe
+        , anyPath $ handleNotFound serverConfiguration userIdentityMaybe
         ]
 
 handleHome :: ServerConfiguration -> Maybe UserIdentity -> ServerPart Response
@@ -62,12 +64,14 @@ handleCourses serverConfiguration userIdentityMaybe = msum
     , dir "crash" $ handleCourse serverConfiguration userIdentityMaybe TopbarCourses Courses.English.Grammar.Crash.Course.course
     , dir "attitudinals" $ handleCourse serverConfiguration userIdentityMaybe TopbarCourses Courses.English.Vocabulary.Attitudinals.Course.course
     , dir "brivla" $ handleCourse serverConfiguration userIdentityMaybe TopbarCourses Courses.English.Vocabulary.Brivla.Course.course
+    , anyPath $ handleNotFound serverConfiguration userIdentityMaybe
     ]
 
 handleDecks :: ServerConfiguration -> ServerResources -> Maybe UserIdentity -> ServerPart Response
 handleDecks serverConfiguration serverResources userIdentityMaybe = msum
     [ forceSlash . ok . toResponse $ displayDecksHome serverConfiguration userIdentityMaybe
     , dir "contextualized-brivla" $ handleDeck serverConfiguration serverResources userIdentityMaybe Decks.English.ContextualizedBrivla.deck
+    , anyPath $ handleNotFound serverConfiguration userIdentityMaybe
     ]
 
 handleGrammar :: ServerConfiguration -> Maybe UserIdentity -> ServerPart Response
@@ -75,6 +79,7 @@ handleGrammar serverConfiguration userIdentityMaybe = msum
     [ forceSlash . ok . toResponse $ displayGrammarHome serverConfiguration userIdentityMaybe
     , dir "introduction" $ handleCourse serverConfiguration userIdentityMaybe TopbarCourses Courses.English.Grammar.Introduction.Course.course
     , dir "crash" $ handleCourse serverConfiguration userIdentityMaybe TopbarCourses Courses.English.Grammar.Crash.Course.course
+    , anyPath $ handleNotFound serverConfiguration userIdentityMaybe
     ]
 
 handleVocabulary :: ServerConfiguration -> Maybe UserIdentity -> ServerPart Response
@@ -82,16 +87,24 @@ handleVocabulary serverConfiguration userIdentityMaybe = msum
     [ forceSlash . ok . toResponse $ displayVocabularyHome serverConfiguration userIdentityMaybe
     , dir "attitudinals" $ handleCourse serverConfiguration userIdentityMaybe TopbarCourses Courses.English.Vocabulary.Attitudinals.Course.course
     , dir "brivla" $ handleCourse serverConfiguration userIdentityMaybe TopbarCourses Courses.English.Vocabulary.Brivla.Course.course
+    , anyPath $ handleNotFound serverConfiguration userIdentityMaybe
     ]
 
 handleResources :: ServerConfiguration -> Maybe UserIdentity -> ServerPart Response
 handleResources serverConfiguration userIdentityMaybe = msum
     [ forceSlash . ok . toResponse $ displayResourcesHome serverConfiguration userIdentityMaybe
+    , anyPath $ handleNotFound serverConfiguration userIdentityMaybe
     ]
 
 handleOffline :: ServerConfiguration -> Maybe UserIdentity -> ServerPart Response
 handleOffline serverConfiguration userIdentityMaybe = msum
     [ forceSlash . ok . toResponse $ displayOfflineHome serverConfiguration userIdentityMaybe
+    , anyPath $ handleNotFound serverConfiguration userIdentityMaybe
+    ]
+
+handleNotFound :: ServerConfiguration -> Maybe UserIdentity -> ServerPart Response
+handleNotFound serverConfiguration userIdentityMaybe = msum
+    [ forceSlash . notFound . toResponse $ displayNotFoundHome serverConfiguration userIdentityMaybe
     ]
 
 handleCourse :: ServerConfiguration -> Maybe UserIdentity -> TopbarCategory -> Course -> ServerPart Response
@@ -100,6 +113,7 @@ handleCourse serverConfiguration userIdentityMaybe topbarCategory course =
     in msum
         [ forceSlash . ok . toResponse . displayCourseHome serverConfiguration userIdentityMaybe topbarCategory $ course
         , path $ \n -> (guard $ 1 <= n && n <= (length lessons)) >> (handleLesson serverConfiguration userIdentityMaybe topbarCategory course n)
+        , anyPath $ handleNotFound serverConfiguration userIdentityMaybe
         ]
 
 handleDeck :: ServerConfiguration -> ServerResources -> Maybe UserIdentity -> Deck -> ServerPart Response
@@ -112,6 +126,7 @@ handleDeck serverConfiguration serverResources userIdentityMaybe deck = msum
                 --tempRedirect ("./" :: T.Text) . toResponse $ ("You must be signed in." :: T.Text)
                 ok . toResponse $ includeInlineScript ("alert('To practice with decks, you need to sign in.'); window.location.href='./';" :: T.Text)
             Just identity -> ok . toResponse $ displayDeckExercise serverConfiguration userIdentityMaybe deck
+    , anyPath $ handleNotFound serverConfiguration userIdentityMaybe
     ]
 
 handleLesson :: ServerConfiguration -> Maybe UserIdentity -> TopbarCategory -> Course -> Int -> ServerPart Response
@@ -132,6 +147,7 @@ handleLesson serverConfiguration userIdentityMaybe topbarCategory course lessonN
                         Just data' -> [("success", A.Bool True), ("data", data')]
                 ]
         ]
+    , anyPath $ handleNotFound serverConfiguration userIdentityMaybe
     ]
 
 handleLessonReport :: Course -> Int -> ServerPart Response
