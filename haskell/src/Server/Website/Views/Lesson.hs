@@ -65,6 +65,7 @@ displayLessonHome serverConfiguration userIdentityMaybe topbarCategory course le
                                         H.h3 $ H.toHtml ("Feedback" :: T.Text)
                                         H.p $ do
                                             H.span "Any feedback about this lesson would be deeply appreciated. "
+                                        H.p $ do
                                             H.span "If you believe you discovered an error, or if you have any criticism or suggestions, please consider "
                                             H.a B.! A.href (H.stringValue $ baseLessonUrl ++ "report") $ H.toHtml ("opening an issue" :: T.Text)
                                             H.span " in our GitHub repository."
