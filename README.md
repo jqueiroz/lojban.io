@@ -52,7 +52,7 @@ Of course, contributions outside of this list would be equally appreciated!
 ### Providing glosses for brivla places
 
 For each brivla covered in courses or decks, we need curated glosses (short definitions) for each of the places in that brivla.
-<!-- TODO: This allows us to automatically generate exercises such as the ones below. [img] -->
+This allows us to automatically generate certain exercises (e.g. [1](docs/exercises/powered_by_glosses/1.png), [2](docs/exercises/powered_by_glosses/2.png), [3](docs/exercises/powered_by_glosses/3.png)).
 For example, we came up with the following glosses for the word _tavla_ &ndash; "x<sub>1</sub> talks/speaks to x<sub>2</sub> about subject x<sub>3</sub> in language x<sub>4</sub>":
 * x<sub>1</sub>: speaker;
 * x<sub>2</sub>: listener;
