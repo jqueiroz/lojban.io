@@ -85,9 +85,7 @@ Not being a draft just means that a file meets the quality bar for consumption, 
 
 #### Guidelines for translations
 
-Ideally, Lojban sentences for the Contextualized brivla deck should be intuitively parsable by someone who has gone through the entirety of the [Getting started with Lojban](https://lojban.io/courses/introduction/) course, and understandable as long as that person is equipped with hover hints and/or a dictionary.
-
-<!-- TODO: image of hover hints -->
+Ideally, Lojban sentences for the Contextualized brivla deck should be intuitively parsable by someone who has gone through the entirety of the [Getting started with Lojban](https://lojban.io/courses/introduction/) course, and understandable as long as that person is equipped with [hover hints](docs/hover.png) and/or a dictionary.
 
 To make exercises less repetitive, we aspire to have at least five translations per brivla.
 But the more the merrier.
