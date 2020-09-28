@@ -153,7 +153,7 @@ handleLesson serverConfiguration userIdentityMaybe topbarCategory course lessonN
 handleLessonReport :: Course -> Int -> ServerPart Response
 handleLessonReport course lessonNumber =
     -- The only reason for using `tempRedirect` is that we may want to change the target url in the future
-    tempRedirect url . toResponse $ ("To report an issue, please visit our GitHub repository." :: T.Text) where
+    forceSlash . tempRedirect url . toResponse $ ("To report an issue, please visit our GitHub repository." :: T.Text) where
         lesson :: Lesson
         lesson = (courseLessons course) !! (lessonNumber - 1)
         url :: T.Text
