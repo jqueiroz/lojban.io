@@ -218,6 +218,27 @@ validateCanonicalization = hspec $ do
             "lo gleki te dunda ku"
             [ "lo gleki te dunda"
             ]
+      it "supports 'lo selprami' and 'lo selpa'i'" $ do
+        validateEquivalentTerms
+            "lo se prami ku"
+            [ "lo se prami"
+            , "lo selprami"
+            , "lo selpa'i"
+            ]
+      it "supports 'lo tertavla' and 'lo terta'a'" $ do
+        validateEquivalentTerms
+            "lo te tavla ku"
+            [ "lo te tavla"
+            , "lo tertavla"
+            , "lo terta'a"
+            ]
+      -- TODO: fix the following canonicalization
+      --it "supports 'lo tertavydu'a'" $ do
+        --validateEquivalentTerms
+            --"lo tertavydu'a ku"
+            --[ "lo tertavydu'a ku"
+            --, "lo tertavydu'a"
+            --]
       it "supports 'lo zdani pe mi'" $ do
         validateEquivalentTerms
             "lo zdani ku pe mi ge'u"

@@ -18,6 +18,7 @@ module Language.Lojban.Canonicalization.Internals
 import Language.Lojban.Core
 import Language.Lojban.Parsing (parseText)
 import Language.Lojban.Presentation (displayCanonicalBridi)
+import Language.Lojban.Dictionaries (englishDictionary)
 import Util (headOrDefault, isContiguousSequence, concatET, unwordsET)
 import Control.Applicative (liftA2)
 import Control.Exception (assert)
@@ -285,7 +286,30 @@ canonicalizeText sentence = parseText (normalizeText sentence) >>= canonicalizeP
 -- Useful for performing dirty hacks, such as blindly replacing "be zo'e bei" with "be fi", until
 -- canonicalization of the corresponding construct is properly implement using the parse tree.
 normalizeText :: T.Text -> T.Text
-normalizeText = T.replace "be fi" "be zo'e bei" . T.replace "befi" "be zo'e bei"
+normalizeText = normalizeWords . T.replace "be fi" "be zo'e bei" . T.replace "befi" "be zo'e bei"
+
+-- | Normalizes individual words in the sentence.
+--
+-- For example, normalizes words starting with well-known rafsi: "seldunda" and "seldu'a" become "se dunda".
+normalizeWords :: T.Text -> T.Text
+normalizeWords = T.unwords . map normalizeWord . T.words where
+    normalizeWord :: T.Text -> T.Text
+    normalizeWord = normalizeSimpleRafsi
+    normalizeSimpleRafsi :: T.Text -> T.Text
+    normalizeSimpleRafsi = normalizePositionalRafsi "sel" "se" . normalizePositionalRafsi "ter" "te" . normalizePositionalRafsi "vel" "ve" . normalizePositionalRafsi "xel" "xe"
+    -- | Normalizes single words starting with the given positional rafsi (sel, ter, vel or xel).
+    normalizePositionalRafsi :: T.Text -> T.Text -> T.Text -> T.Text
+    normalizePositionalRafsi positionalRafsiText positionalCmavoText word =
+        case T.stripPrefix positionalRafsiText word of
+            Nothing -> word
+            Just wordWithStrippedRafsi -> positionalCmavoText `T.append` " " `T.append` (normalizeSingleRafsiWord wordWithStrippedRafsi)
+    -- | If the word is a single rafsi mapping to a gismu, then converts it into the full gismu. Otherwise does nothing.
+    --
+    -- For example, "du'a" becomes "dunda", but "predu'a" remains the same.
+    normalizeSingleRafsiWord :: T.Text -> T.Text
+    normalizeSingleRafsiWord word = case M.lookup word (dictRafsi englishDictionary) of
+        Nothing -> word
+        Just gismu -> gismuText gismu
 
 canonicalizeParsedText :: (ZG.Free, ZG.Text, ZG.Terminator) -> Either String T.Text
 canonicalizeParsedText parsedText = (canonicalizeParsedTerm parsedText) `mplus` (canonicalizeParsedBridi parsedText)

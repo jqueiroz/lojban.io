@@ -44,6 +44,7 @@ data Dictionary = Dictionary
     , dictGismu :: M.Map T.Text Gismu
     , dictCmavo :: M.Map T.Text Cmavo
     , dictBrivla :: M.Map T.Text Brivla
+    , dictRafsi :: M.Map T.Text Gismu
     , dictValsiDefinition :: M.Map T.Text T.Text
     , dictBrivlaPlaces :: M.Map T.Text [T.Text]
     } deriving (Show)

@@ -1,4 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE TupleSections #-}
 {-# LANGUAGE TemplateHaskell #-}
 
 module Language.Lojban.Dictionaries.English
@@ -18,7 +19,7 @@ import Data.FileEmbed (embedStringFile)
 
 -- | Dictionary in English.
 englishDictionary :: Dictionary
-englishDictionary = Dictionary "english" gismuMap cmavoMap brivlaMap definitionsMap englishBrivlaPlacesMap where
+englishDictionary = Dictionary "english" gismuMap cmavoMap brivlaMap rafsiMap definitionsMap englishBrivlaPlacesMap where
     -- Frequency map
     frequencyMap = loadFrequencyMapFromText $ T.pack $(embedStringFile "resources/language/frequency-lists/MyFreq-COMB_without_dots.txt")
     -- Cmavo
@@ -36,6 +37,10 @@ englishDictionary = Dictionary "english" gismuMap cmavoMap brivlaMap definitions
     brivla = brivlaFromGismu ++ brivlaFromFile
     brivlaList = map (\b -> (brivlaText b, b)) brivla
     brivlaMap = M.fromList brivlaList
+    -- Rafsi
+    rafsiMap = M.fromList . concat $ map extractRafsiPairsFromGismu gismu
+    extractRafsiPairsFromGismu :: Gismu -> [(T.Text, Gismu)]
+    extractRafsiPairsFromGismu g = map (, g) (gismuRafsi g)
     -- Definitions
     brivlaDefinitions = (second brivlaDefinition) <$> brivlaList
     cmavoDefinitions = (second cmavoEnglishDefinition) <$> cmavoList
