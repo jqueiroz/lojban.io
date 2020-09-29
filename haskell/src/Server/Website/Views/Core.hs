@@ -40,6 +40,25 @@ includeThemeColorTag = do
       B.! A.name (H.stringValue "theme-color")
       B.! A.content "#9054FF"
 
+includeOpenGraphImageTag :: H.Html
+includeOpenGraphImageTag = do
+    let imageUrl = "https://live.staticflickr.com/65535/50395936413_e56cf07308_o.png"
+    H.meta
+      B.! H.customAttribute "property" (H.textValue "og:image")
+      B.! A.content (H.textValue imageUrl)
+    H.meta
+      B.! H.customAttribute "property" (H.textValue "og:image:secure_url")
+      B.! A.content (H.textValue imageUrl)
+    H.meta
+      B.! H.customAttribute "property" (H.textValue "og:image:type")
+      B.! A.content "image/png"
+    H.meta
+      B.! H.customAttribute "property" (H.textValue "og:image:width")
+      B.! A.content "1200"
+    H.meta
+      B.! H.customAttribute "property" (H.textValue "og:image:height")
+      B.! A.content "627"
+
 includeWebManifest :: H.Html
 includeWebManifest = do
     H.link
@@ -50,6 +69,7 @@ includeUniversalStylesheets :: H.Html
 includeUniversalStylesheets = do
     --includeViewportTag
     includeThemeColorTag
+    includeOpenGraphImageTag
     includeWebManifest
     -- TODO: consider removing bootstrap
     includeInternalStylesheet "bootstrap.min.css"
