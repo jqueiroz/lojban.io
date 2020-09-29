@@ -8,7 +8,9 @@ RUN apt-get update && apt-get install -y nginx
 
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 RUN rm /etc/nginx/sites-enabled/default
+COPY static/assetlinks.json /static/assetlinks.json
 COPY config/nginx.conf /etc/nginx/sites-enabled/master-https.conf
+RUN chown www-data -R /static
 
 ####################### Expose ports #######################
 

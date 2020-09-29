@@ -1,0 +1,5 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target" : { "namespace": "android_app", "package_name": "io.lojban.twa",
+                   "sha256_cert_fingerprints": ["1D:EB:C8:2E:AF:16:6C:CA:F5:BA:64:AC:A6:87:71:4E:30:CE:50:8B:58:7D:FA:94:F6:AF:1F:F3:3D:6D:F1:05"] }
+    }]
