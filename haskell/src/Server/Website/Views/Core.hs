@@ -32,7 +32,8 @@ includeViewportTag :: H.Html
 includeViewportTag = do
     H.meta
       B.! A.name (H.stringValue "viewport")
-      B.! A.content "width=device-width, initial-scale=1"
+      --TODO: B.! A.content "width=device-width, initial-scale=1"
+      B.! A.content ""
 
 includeThemeColorTag :: H.Html
 includeThemeColorTag = do
@@ -67,7 +68,7 @@ includeWebManifest = do
 
 includeUniversalStylesheets :: H.Html
 includeUniversalStylesheets = do
-    --includeViewportTag
+    includeViewportTag
     includeThemeColorTag
     includeOpenGraphImageTag
     includeWebManifest
