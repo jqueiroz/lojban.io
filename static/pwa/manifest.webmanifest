@@ -17,5 +17,47 @@
         "src": "/static/images/favicon.png",
         "sizes": "512x512",
         "type": "image/png"
-    }]
+    }],
+    "screenshots" : [
+        {
+            "src": "https://live.staticflickr.com/65535/50397123652_eec0134a37_o.jpg",
+            "sizes": "1280x623",
+            "type": "image/jpg"
+        },
+        {
+            "src": "https://live.staticflickr.com/65535/50397124592_55c923d66c_o.jpg",
+            "sizes": "1280x623",
+            "type": "image/jpg"
+        },
+        {
+            "src": "https://live.staticflickr.com/65535/50396962881_0760a4e416_o.jpg",
+            "sizes": "1280x623",
+            "type": "image/jpg"
+        },
+        {
+            "src": "https://live.staticflickr.com/65535/50396963251_25d8cd1b92_o.jpg",
+            "sizes": "1280x623",
+            "type": "image/jpg"
+        },
+        {
+            "src": "https://live.staticflickr.com/65535/50397126402_3f49c108e5_o.jpg",
+            "sizes": "1280x623",
+            "type": "image/jpg"
+        },
+        {
+            "src": "https://live.staticflickr.com/65535/50396278398_0e97b7f79c_o.jpg",
+            "sizes": "1280x623",
+            "type": "image/jpg"
+        },
+        {
+            "src": "https://live.staticflickr.com/65535/50396967136_207dab94f8_o.jpg",
+            "sizes": "1280x623",
+            "type": "image/jpg"
+        },
+        {
+            "src": "https://live.staticflickr.com/65535/50397129782_b7d5fa7fb9_o.jpg",
+            "sizes": "1280x623",
+            "type": "image/jpg"
+        }
+    ]
 }
