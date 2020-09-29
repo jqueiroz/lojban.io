@@ -30,6 +30,7 @@ common deps
                      , aeson
                      , random
                      , random-shuffle
+                     , unordered-containers
                      , split
                      , hedis
                      , blaze-html

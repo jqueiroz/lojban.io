@@ -1,4 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE LambdaCase #-}
+{-# LANGUAGE ScopedTypeVariables #-}
 
 module Server.Api.V0.Main (handleRoot) where
 
@@ -20,6 +22,7 @@ import qualified Server.OAuth2.Main as OAuth2
 import qualified Database.Redis as Redis
 import qualified Data.Text as T
 import qualified Data.Map as M
+import qualified Data.HashMap.Strict as HM
 import qualified Data.Aeson as A
 
 handleRoot :: ServerConfiguration -> ServerResources -> ServerPart Response
@@ -90,13 +93,21 @@ handleDeckExercises serverConfiguration serverResources deck exerciseId = do
             msum
                 [ dir "get" $ (liftIO $ newStdGen) >>= ok . toResponse . A.encode . exerciseToJSON selectedExercise
                 , dir "submit" $ getBody >>= \body -> do
+                    let errorResponse = ok . toResponse . A.encode . A.object $ [("success", A.Bool False)]
                     case validateExerciseAnswer selectedExercise body of
-                        Nothing -> do
-                            redisStatus <- liftIO $ runRedis serverConfiguration serverResources $ updateDeckProficiencyByRegisteringExerciseAttempt (userIdentifier identity) deck (cardTitle selectedCard) False
-                            ok . toResponse . A.encode . A.object $ [("success", A.Bool False)]
-                        Just data' -> do
-                            redisStatus <- liftIO $ runRedis serverConfiguration serverResources $ updateDeckProficiencyByRegisteringExerciseAttempt (userIdentifier identity) deck (cardTitle selectedCard) True
-                            ok . toResponse . A.encode . A.object $ [("success", A.Bool True), ("data", data')]
+                        Nothing -> errorResponse
+                        Just responseData -> do
+                            let extractCorrect :: A.Value -> Maybe Bool = \case
+                                    A.Object responseObject ->
+                                        case HM.lookup "correct" responseObject of
+                                            Just (A.Bool correct) -> Just correct
+                                            _ -> Nothing
+                                    _ -> Nothing
+                            case extractCorrect responseData of
+                                Nothing -> errorResponse
+                                Just isCorrect -> do
+                                    redisStatus <- liftIO $ runRedis serverConfiguration serverResources $ updateDeckProficiencyByRegisteringExerciseAttempt (userIdentifier identity) deck (cardTitle selectedCard) isCorrect
+                                    ok . toResponse . A.encode . A.object $ [("success", A.Bool True), ("data", responseData)]
                 ]
 
 selectCardWithBiasTowardsLowScoreOnes :: [(Card, Int, Double)] -> StdGen -> (Card, StdGen)
