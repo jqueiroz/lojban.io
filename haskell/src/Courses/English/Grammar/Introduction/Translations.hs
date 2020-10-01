@@ -1375,8 +1375,6 @@ translations10 = expandTranslationGenerator $ combineGeneratorsUniformly [requir
         ]
 
 -- * Lesson 11: Sumtcita
--- TODO: include sentences like "lo jinga be gau do"
--- TODO: include sentences like "lo dunda be fi do" (will require significant improvements in text canonicalizer)
 translations11 :: TranslationGenerator
 translations11 = expandTranslationGenerator $ combineGenerators [(3, pi'o), (3, mu'i), (3, gau), (3, interesting)] where
     pi'o = generatorFromList
