@@ -1680,6 +1680,17 @@ translations14_zo = expandTranslationGenerator $ combineGeneratorsUniformly [cus
         , (["ma cusku zo djuno"], ["Who said \"djuno\"?", "Who said \"know\"?"])
         , (["ma cusku zo pilno"], ["Who said \"pilno\"?", "Who said \"use\"?"])
         , (["ma cusku zo bangu"], ["Who said \"bangu\"?", "Who said \"language\"?"])
+        -- llo fanva cu cusku
+        , (["lo fanva cu cusku zo do"], ["The translator said \"do\".", "The translator said \"you\"."])
+        , (["lo fanva cu cusku zo prenu"], ["The translator said \"prenu\".", "The translator said \"person\"."])
+        , (["lo fanva cu cusku zo pendo"], ["The translator said \"pendo\".", "The translator said \"friend\"."])
+        , (["lo fanva cu cusku zo zdani"], ["The translator said \"zdani\".", "The translator said \"house\"."])
+        , (["lo fanva cu cusku zo skami"], ["The translator said \"skami\".", "The translator said \"computer\"."])
+        , (["lo fanva cu cusku zo gleki"], ["The translator said \"gleki\".", "The translator said \"happy\"."])
+        , (["lo fanva cu cusku zo tavla"], ["The translator said \"tavla\".", "The translator said \"talk\"."])
+        , (["lo fanva cu cusku zo djuno"], ["The translator said \"djuno\".", "The translator said \"know\"."])
+        , (["lo fanva cu cusku zo pilno"], ["The translator said \"pilno\".", "The translator said \"use\"."])
+        , (["lo fanva cu cusku zo bangu"], ["The translator said \"bangu\".", "The translator said \"language\"."])
         ]
 
 translations14_lu :: TranslationGenerator
