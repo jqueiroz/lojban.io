@@ -1437,6 +1437,11 @@ translations11 = expandTranslationGenerator $ combineGenerators [(3, pi'o), (3, 
         -- others
         , (["mu'i ma lo prenu cu se zdani"], ["Why do people have houses?"])
         , (["mu'i ma do pendo"], ["Why are you friendly?"])
+        -- fanva
+        , (["mu'i ma do fanva"], ["Why do you translate?"])
+        , (["mu'i ma lo prenu cu fanva"], ["Why do people translate?"])
+        , (["mu'i ma do fanva fi lo (lojbo|jbobau)"], ["Why do you translate to Lojban?"])
+        , (["mu'i ma do fanva fo lo (lojbo|jbobau)"], ["Why do you translate from Lojban?"])
         ]
     gau = generatorFromList
         -- tavla
@@ -1473,6 +1478,13 @@ translations11 = expandTranslationGenerator $ combineGenerators [(3, pi'o), (3, 
         -- cmene
         , (["gau mi cmene lo gerku"], ["I named the dog."])
         , (["gau mi cmene lo mlatu"], ["I named the cat."])
+        -- fanva
+        , (["gau ma do fanva"], ["Who makes you translate?", "Who is making you translate?", "Who made you translate?"])
+        , (["gau ma do fanva fi lo (lojbo|jbobau)"], ["Who made you you translate to Lojban?"])
+        , (["gau ma do fanva fo lo (lojbo|jbobau)"], ["Who made you you translate from Lojban?"])
+        , (["gau lo ctuca do fanva"], ["The instructor is making you translate.", "The instructor made you translate."])
+        , (["gau lo ctuca do fanva fi lo (lojbo|jbobau)"], ["The instructor is making you translate to Lojban.", "The instructor made you translate to Lojban."])
+        , (["gau lo ctuca do fanva fo lo (lojbo|jbobau)"], ["The instructor is making you translate from Lojban.", "The instructor made you translate from Lojban."])
         ]
     interesting = generatorFromList
         [ (["mi dunda lo skami be sepi'o do", "mi dunda lo skami ku poi do pilno {ke'a}"], ["I will donate the computer used by you."])
