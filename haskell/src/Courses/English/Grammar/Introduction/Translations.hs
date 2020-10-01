@@ -1773,13 +1773,13 @@ translations15_sentences = expandTranslationGenerator $ combineGeneratorsUniform
         [ (["mi dunda lo mi gerku"], ["I donated my dog."])
         , (["lo mi gerku cu pendo"], ["My dog is friendly."])
         , (["xu do dunda lo do gerku"], ["Did you donate your dog?"])
-        , (["xu lo do gerku cu pendo"], ["Is your dog is friendly?"])
+        , (["xu lo do gerku cu pendo"], ["Is your dog friendly?"])
         ]
     mlatu = generatorFromList
         [ (["mi dunda lo mi mlatu"], ["I donated my cat."])
         , (["lo mi mlatu cu pendo"], ["My cat is friendly."])
         , (["xu do dunda lo do mlatu"], ["Did you donate your cat?"])
-        , (["xu lo do mlatu cu pendo"], ["Is your cat is friendly?"])
+        , (["xu lo do mlatu cu pendo"], ["Is your cat friendly?"])
         ]
     pendo = generatorFromList
         -- mi
