@@ -1633,6 +1633,7 @@ translations12_restricted = combineGeneratorsUniformly [translations12_pu, trans
 -- * Lesson 14: Quotations 1
 translations14_zo :: TranslationGenerator
 translations14_zo = expandTranslationGenerator $ combineGeneratorsUniformly [cusku] where
+    -- TODO: sentences with "fanva" as the selbri
     cusku = generatorFromList
         -- mi cusku
         [ (["mi cusku zo do"], ["I said \"do\".", "I said \"you\"."])
