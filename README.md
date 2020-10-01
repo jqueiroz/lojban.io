@@ -231,6 +231,7 @@ I know I am.
 
 If you know Haskell (or are learning Haskell), feel free to explore the code and submit a PR enhancing or implementing whatever you would like.
 The documentation at [https://lojban.io/docs](https://lojban.io/docs) should be useful.
+Also, I have many ideas about features I would like to see implemented, so please reach out to me at [jonathan@lojban.io](mailto:jonathan@lojban.io) if you'd like some suggestions.
 
 ### Making code improvements
 
