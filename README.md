@@ -9,8 +9,8 @@ You may also install the progressive web app from the [Play Store](https://play.
 
 Haskell documentation for the currently deployed version may be found at [https://lojban.io/docs](https://lojban.io/docs).
 
-You may run this project on any Linux environment (including the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10)) without installing any package into your system.
-Well, you do need to install either [Nix](#quickstart-using-nix) or [docker](#quickstart-using-docker), depending on how you intend to run it, but that's all; the project runs with libraries and binaries independent of those installed on your system.
+You may run this project on any Linux environment (including the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10)) without installing any packages into your system.
+Well, you do need to install either [Nix](#quickstart-using-nix) or [docker](#quickstart-using-docker), depending on how you intend to run the project, but that's all; it runs with libraries and binaries independent of those installed on your system.
 
 <!-- maybe: "An interesting feature of this project is sentence canonicalization..." (from announcement) -->
 
