@@ -1693,26 +1693,45 @@ translations14_zo = expandTranslationGenerator $ combineGeneratorsUniformly [cus
 
 translations14_lu :: TranslationGenerator
 translations14_lu = expandTranslationGenerator $ combineGeneratorsUniformly [cusku] where
-    cusku = generatorFromList
-        -- Propositions
-        [ (["mi cusku lu mi nelci do li'u"], ["I said \"mi nelci do\".", "I said \"I like you\"."])
-        , (["mi cusku lu mi dunda lo mlatu li'u"], ["I said \"mi dunda lo mlatu\".", "I said \"I donated the cat\"."])
-        , (["mi cusku lu do dunda lo mlatu li'u"], ["I said \"do dunda lo mlatu\".", "I said \"You donated the cat\"."])
-        , (["mi cusku lu mi se zdani li'u"], ["I said \"mi se zdani\".", "I said \"I have a house\"."])
-        , (["mi cusku lu do se zdani li'u"], ["I said \"do se zdani\".", "I said \"You have a house\"."])
+    cusku = combineGeneratorsUniformly [mi, lo_fanva] where
+        mi = generatorFromList
+            -- Propositions
+            [ (["mi cusku lu mi nelci do li'u"], ["I said \"mi nelci do\".", "I said \"I like you\"."])
+            , (["mi cusku lu mi dunda lo mlatu li'u"], ["I said \"mi dunda lo mlatu\".", "I said \"I donated the cat\"."])
+            , (["mi cusku lu do dunda lo mlatu li'u"], ["I said \"do dunda lo mlatu\".", "I said \"You donated the cat\"."])
+            , (["mi cusku lu mi se zdani li'u"], ["I said \"mi se zdani\".", "I said \"I have a house\"."])
+            , (["mi cusku lu do se zdani li'u"], ["I said \"do se zdani\".", "I said \"You have a house\"."])
 
-        , (["mi cusku lu ma cusku zo do li'u"], ["I said \"ma cusku zo do\"", "I said \"Who said 'you'?\"."])
-        , (["mi cusku lu ma cusku zo zdani li'u"], ["I said \"ma cusku zo zdani\"", "I said \"Who said 'house'?\"."])
-        , (["mi cusku lu ma cusku zo mlatu li'u"], ["I said \"ma cusku zo mlatu\"", "I said \"Who said 'cat'?\"."])
-        -- Questions
-        , (["xu do cusku lu mi nelci do li'u"], ["Did you say \"mi nelci do\"?", "Did you say \"I like you\"?"])
-        , (["xu do cusku lu mi dunda lo mlatu li'u"], ["Did you say \"mi dunda lo mlatu\"?", "Did you say \"I donated the cat\"?"])
-        , (["xu do cusku lu do dunda lo mlatu li'u"], ["Did you say \"do dunda lo mlatu\"?", "Did you say \"You donated the cat\"?"])
-        , (["xu do cusku lu mi se zdani li'u"], ["Did you say \"mi se zdani\"?", "Did you say \"I have a house\"?"])
-        , (["xu do cusku lu do se zdani li'u"], ["Did you say \"do se zdani\"?", "Did you say \"You have a house\"?"])
+            , (["mi cusku lu ma cusku zo do li'u"], ["I said \"ma cusku zo do\"", "I said \"Who said 'you'?\"."])
+            , (["mi cusku lu ma cusku zo zdani li'u"], ["I said \"ma cusku zo zdani\"", "I said \"Who said 'house'?\"."])
+            , (["mi cusku lu ma cusku zo mlatu li'u"], ["I said \"ma cusku zo mlatu\"", "I said \"Who said 'cat'?\"."])
+            -- Questions
+            , (["xu do cusku lu mi nelci do li'u"], ["Did you say \"mi nelci do\"?", "Did you say \"I like you\"?"])
+            , (["xu do cusku lu mi dunda lo mlatu li'u"], ["Did you say \"mi dunda lo mlatu\"?", "Did you say \"I donated the cat\"?"])
+            , (["xu do cusku lu do dunda lo mlatu li'u"], ["Did you say \"do dunda lo mlatu\"?", "Did you say \"You donated the cat\"?"])
+            , (["xu do cusku lu mi se zdani li'u"], ["Did you say \"mi se zdani\"?", "Did you say \"I have a house\"?"])
+            , (["xu do cusku lu do se zdani li'u"], ["Did you say \"do se zdani\"?", "Did you say \"You have a house\"?"])
 
-        , (["ma cusku lu mi se zdani li'u"], ["Who said \"mi se zdani\"?", "Who said \"I have a house\"?"])
-        ]
+            , (["ma cusku lu mi se zdani li'u"], ["Who said \"mi se zdani\"?", "Who said \"I have a house\"?"])
+            ]
+        lo_fanva = generatorFromList
+            -- Propositions
+            [ (["lo fanva cu cusku lu mi nelci do li'u"], ["The translator said \"mi nelci do\".", "The translator said \"I like you\"."])
+            , (["lo fanva cu cusku lu mi dunda lo mlatu li'u"], ["The translator said \"mi dunda lo mlatu\".", "The translator said \"I donated the cat\"."])
+            , (["lo fanva cu cusku lu do dunda lo mlatu li'u"], ["The translator said \"do dunda lo mlatu\".", "The translator said \"You donated the cat\"."])
+            , (["lo fanva cu cusku lu mi se zdani li'u"], ["The translator said \"mi se zdani\".", "The translator said \"I have a house\"."])
+            , (["lo fanva cu cusku lu do se zdani li'u"], ["The translator said \"do se zdani\".", "The translator said \"You have a house\"."])
+
+            , (["lo fanva cu cusku lu ma cusku zo do li'u"], ["The translator said \"ma cusku zo do\"", "The translator said \"Who said 'you'?\"."])
+            , (["lo fanva cu cusku lu ma cusku zo zdani li'u"], ["The translator said \"ma cusku zo zdani\"", "The translator said \"Who said 'house'?\"."])
+            , (["lo fanva cu cusku lu ma cusku zo mlatu li'u"], ["The translator said \"ma cusku zo mlatu\"", "The translator said \"Who said 'cat'?\"."])
+            -- Questions
+            , (["xu lo fanva cu cusku lu mi nelci do li'u"], ["Did the translator say \"mi nelci do\"?", "Did the translator say \"I like you\"?"])
+            , (["xu lo fanva cu cusku lu mi dunda lo mlatu li'u"], ["Did the translator say \"mi dunda lo mlatu\"?", "Did the translator say \"I donated the cat\"?"])
+            , (["xu lo fanva cu cusku lu do dunda lo mlatu li'u"], ["Did the translator say \"do dunda lo mlatu\"?", "Did the translator say \"You donated the cat\"?"])
+            , (["xu lo fanva cu cusku lu mi se zdani li'u"], ["Did the translator say \"mi se zdani\"?", "Did the translator say \"I have a house\"?"])
+            , (["xu lo fanva cu cusku lu do se zdani li'u"], ["Did the translator say \"do se zdani\"?", "Did the translator say \"You have a house\"?"])
+            ]
 
 -- * Lesson 15: Relative phrases
 translations15_expressions :: TranslationGenerator
