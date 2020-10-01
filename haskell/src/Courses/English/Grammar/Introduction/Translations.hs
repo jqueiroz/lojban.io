@@ -1378,7 +1378,7 @@ translations10 = expandTranslationGenerator $ combineGeneratorsUniformly [requir
 -- TODO: include sentences like "lo jinga be gau do"
 -- TODO: include sentences like "lo dunda be fi do" (will require significant improvements in text canonicalizer)
 translations11 :: TranslationGenerator
-translations11 = expandTranslationGenerator $ combineGeneratorsUniformly [pi'o, mu'i, gau] where
+translations11 = expandTranslationGenerator $ combineGenerators [(3, pi'o), (3, mu'i), (3, gau), (3, interesting)] where
     pi'o = generatorFromList
         -- fanva
         [ (["mi fanva sepi'o lo skami"], ["I translated using the computer."])
@@ -1395,6 +1395,7 @@ translations11 = expandTranslationGenerator $ combineGeneratorsUniformly [pi'o, 
         -- ciska
         , (["mi ciska sepi'o lo skami", "mi ciska fo lo skami"], ["I write using a computer."])
         , (["mi ciska sepi'o lo se dunda be do", "mi ciska fo lo se dunda be do"], ["I write using the gift that you gave."])
+        , (["mi ciska sepi'o lo se dunda be fi do", "mi ciska fo lo se dunda be fi do"], ["I wrote using the gift that you received."])
         , (["mi ciska sepi'o lo se dunda be do bei mi", "mi ciska fo lo se dunda be do bei mi"], ["I write using the gift that you gave me."])
         -- ctuca
         , (["mi ctuca sepi'o lo skami"], ["I teach using a computer."])
@@ -1470,6 +1471,16 @@ translations11 = expandTranslationGenerator $ combineGeneratorsUniformly [pi'o, 
         -- cmene
         , (["gau mi cmene lo gerku"], ["I named the dog."])
         , (["gau mi cmene lo mlatu"], ["I named the cat."])
+        ]
+    interesting = generatorFromList
+        [ (["mi dunda lo skami be sepi'o do", "mi dunda lo skami ku poi do pilno {ke'a}"], ["I will donate the computer used by you."])
+        , (["mi vecnu lo skami be sepi'o do", "mi vecnu lo skami ku poi do pilno {ke'a}"], ["I sold the computer used by you."])
+        , (["do tavla fi lo nu vecnu mu'i ma", "lo nu vecnu mu'i ma kei poi do tavla {fi ke'a}"], ["What was the motivation for the sale you are talking about?"])
+        , (["do tavla fi lo nu dunda mu'i ma", "lo nu dunda mu'i ma kei poi do tavla {fi ke'a}"], ["What was the motivation for the donation you are talking about?"])
+        , (["xu do nelci lo nu dunda mu'i lo (nu|ka|li'i) gleki"], ["Do you like donations motivated by happiness?"])
+        , (["mi tavla fi lo nu gleki mu'i lo nu lo gerku cu pendo"], ["I am talking about the event of happiness motivated by the dog being friendly."])
+        , (["mi tavla fi lo nu mi gleki mu'i lo nu lo gerku cu pendo"], ["I am talking about the event of my happiness motivated by the dog being friendly."])
+        , (["mi tavla fi lo nu do gleki gau lo gerku"], ["I am talking about the event of the dog making you happy."])
         ]
 
 -- * Lesson 12: Tenses 1
