@@ -1401,8 +1401,10 @@ translations11 = expandTranslationGenerator $ combineGenerators [(3, pi'o), (3, 
         , (["mi ctuca sepi'o lo skami"], ["I teach using a computer."])
         , (["mi ctuca lo prenu sepi'o lo skami"], ["I teach people using a computer."])
         , (["mi ctuca sepi'o lo se dunda be do"], ["I teach using the gift that you gave."])
+        , (["mi ctuca sepi'o lo se dunda be fi mi"], ["I teach using the gift that I received."])
         , (["mi ctuca sepi'o lo se dunda be do bei mi"], ["I teach using the gift that you gave me."])
         , (["mi ctuca sepi'o lo se vecnu be do"], ["I teach using what you sold."])
+        , (["mi ctuca sepi'o lo se vecnu be fi mi"], ["I teach using what I bought."])
         , (["mi ctuca sepi'o lo se vecnu be do bei mi"], ["I teach using what you sold me."])
         , (["mi ctuca do sepi'o lo skami"], ["I taught you using a computers."])
         -- vecnu
