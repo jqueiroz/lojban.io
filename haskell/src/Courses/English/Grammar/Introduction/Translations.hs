@@ -416,12 +416,6 @@ translations4_sentences = expandTranslationGenerator $ combineGeneratorsUniforml
             --, (["xu do nelci lo gleki mlatu", "xu do nelci lo mlatu poi gleki"], ["Do you like happy cats?"])
             ]
 
--- TODO: use the following sentences
---translations99 :: [ExerciseGenerator]
---translations99 = generateTranslationExercise sentenceCanonicalizer sentenceComparer <$> generatorFromSingleton <$>
-    --[ (["lo prenu ku sutra tavla"], ["The person talks quickly.", "The person is talking quickly.", "A person is talking quickly.", "People talk quickly"])
-    --]
-
 -- * Lesson 5: Questions 1
 --
 -- | Overall translations for the fourth lesson (always involving "xu", "ma" or "mo").
