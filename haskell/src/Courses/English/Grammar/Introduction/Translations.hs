@@ -307,6 +307,7 @@ translations4_sentences = expandTranslationGenerator $ combineGeneratorsUniforml
             -- sutra tavla
             [ (["mi sutra tavla"], ["I talk quickly."])
             , (["do sutra tavla"], ["You talk quickly."])
+            , (["lo prenu ku sutra tavla"], ["The person talks quickly.", "People talk quickly."])
             , (["lo ctuca ku sutra tavla"], ["The teacher talks quickly."])
             , (["lo dunda ku sutra tavla"], ["The donor talks quickly."])
             , (["lo vecnu ku sutra tavla"], ["The seller talks quickly."])
