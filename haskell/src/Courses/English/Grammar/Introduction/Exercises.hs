@@ -224,7 +224,7 @@ translationExercises1to7_simplified = simplifyTerminatorsInCanonicalAnswer . com
 exercises9 :: ExerciseGenerator
 exercises9 =
     combineGenerators
-        -- TODO: also add contextualize brivla places exercises from the translations themselves
+        -- TODO: also add contextualized brivla places exercises from the translations themselves
         [ (20, generateIsolatedBrivlaPlacesExercise dictionary $ vocabularyBrivlaList vocabulary)
         , (70, translationExercises9)
         , (15, fillingBlanksExercises9)
@@ -243,7 +243,7 @@ fillingBlanksExercises9 = generateContextualizedFillingBlanksExerciseByAlternati
 exercises10 :: ExerciseGenerator
 exercises10 =
     combineGenerators
-        -- TODO: also add contextualize brivla places exercises from the translations themselves
+        -- TODO: also add contextualized brivla places exercises from the translations themselves
         [ (20, generateIsolatedBrivlaPlacesExercise dictionary $ vocabularyBrivlaList vocabulary)
         , (70, translationExercises10)
         ]
@@ -258,7 +258,7 @@ translationExercises10 = generateTranslationExercise sentenceCanonicalizer sente
 exercises11 :: ExerciseGenerator
 exercises11 =
     combineGenerators
-        -- TODO: also add contextualize brivla places exercises from the translations themselves
+        -- TODO: also add contextualized brivla places exercises from the translations themselves
         [ (20, generateIsolatedBrivlaPlacesExercise dictionary $ vocabularyBrivlaList vocabulary)
         , (80, translationExercises11)
         ]
@@ -273,7 +273,7 @@ translationExercises11 = generateTranslationExercise sentenceCanonicalizer sente
 exercises12 :: ExerciseGenerator
 exercises12 =
     combineGenerators
-        -- TODO: also add contextualize brivla places exercises from the translations themselves
+        -- TODO: also add contextualized brivla places exercises from the translations themselves
         [ (10, generateIsolatedBrivlaPlacesExercise dictionary $ vocabularyBrivlaList vocabulary)
         , (70, translationExercises12_restricted)
         , (15, translationExercises12_unrestricted)
@@ -296,7 +296,7 @@ fillingBlanksExercises12 = generateContextualizedFillingBlanksExerciseByAlternat
 exercises9to12 :: ExerciseGenerator
 exercises9to12 =
     combineGenerators
-        -- TODO: also add contextualize brivla places exercises from the translations themselves
+        -- TODO: also add contextualized brivla places exercises from the translations themselves
         [ (10, generateIsolatedBrivlaPlacesExercise dictionary $ vocabularyBrivlaList vocabulary)
         , (70, translationExercises9to12)
         ]
