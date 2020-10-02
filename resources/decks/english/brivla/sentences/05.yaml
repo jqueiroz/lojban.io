@@ -545,7 +545,7 @@ zdile:
 
     # Sentence complexity: 3.109
     - lojban_sentences:
-        - lo nu cilre fi le cnino bangu cu zdile
+        - lo nu cilre fi lo cnino bangu cu zdile
       translated_sentences:
         - Learning a new language is fun.
 
