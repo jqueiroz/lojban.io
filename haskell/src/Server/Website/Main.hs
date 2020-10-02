@@ -18,8 +18,6 @@ import Server.Website.Views.Home (displayHome)
 import Server.Website.Views.Courses (displayCoursesHome)
 import Server.Website.Views.Decks (displayDecksHome)
 import Server.Website.Views.Deck (displayDeckHome, displayDeckExercise)
-import Server.Website.Views.Grammar (displayGrammarHome)
-import Server.Website.Views.Vocabulary (displayVocabularyHome)
 import Server.Website.Views.Resources (displayResourcesHome)
 import Server.Website.Views.Offline (displayOfflineHome)
 import Server.Website.Views.NotFound (displayNotFoundHome)
@@ -47,8 +45,6 @@ handleRoot serverConfiguration serverResources = do
         [ forceSlash $ handleHome serverConfiguration userIdentityMaybe
         , dir "courses" $ handleCourses serverConfiguration userIdentityMaybe
         , dir "decks" $ handleDecks serverConfiguration serverResources userIdentityMaybe
-        , dir "grammar" $ handleGrammar serverConfiguration userIdentityMaybe
-        , dir "vocabulary" $ handleVocabulary serverConfiguration userIdentityMaybe
         , dir "resources" $ handleResources serverConfiguration userIdentityMaybe
         , dir "offline" $ handleOffline serverConfiguration userIdentityMaybe
         , anyPath $ handleNotFound serverConfiguration userIdentityMaybe
@@ -71,22 +67,6 @@ handleDecks :: ServerConfiguration -> ServerResources -> Maybe UserIdentity -> S
 handleDecks serverConfiguration serverResources userIdentityMaybe = msum
     [ forceSlash . ok . toResponse $ displayDecksHome serverConfiguration userIdentityMaybe
     , dir "contextualized-brivla" $ handleDeck serverConfiguration serverResources userIdentityMaybe Decks.English.ContextualizedBrivla.deck
-    , anyPath $ handleNotFound serverConfiguration userIdentityMaybe
-    ]
-
-handleGrammar :: ServerConfiguration -> Maybe UserIdentity -> ServerPart Response
-handleGrammar serverConfiguration userIdentityMaybe = msum
-    [ forceSlash . ok . toResponse $ displayGrammarHome serverConfiguration userIdentityMaybe
-    , dir "introduction" $ handleCourse serverConfiguration userIdentityMaybe TopbarCourses Courses.English.Grammar.Introduction.Course.course
-    , dir "crash" $ handleCourse serverConfiguration userIdentityMaybe TopbarCourses Courses.English.Grammar.Crash.Course.course
-    , anyPath $ handleNotFound serverConfiguration userIdentityMaybe
-    ]
-
-handleVocabulary :: ServerConfiguration -> Maybe UserIdentity -> ServerPart Response
-handleVocabulary serverConfiguration userIdentityMaybe = msum
-    [ forceSlash . ok . toResponse $ displayVocabularyHome serverConfiguration userIdentityMaybe
-    , dir "attitudinals" $ handleCourse serverConfiguration userIdentityMaybe TopbarCourses Courses.English.Vocabulary.Attitudinals.Course.course
-    , dir "brivla" $ handleCourse serverConfiguration userIdentityMaybe TopbarCourses Courses.English.Vocabulary.Brivla.Course.course
     , anyPath $ handleNotFound serverConfiguration userIdentityMaybe
     ]
 

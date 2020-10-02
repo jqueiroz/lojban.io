@@ -121,14 +121,11 @@ library
                      , Server.Website.Views.Courses
                      , Server.Website.Views.Decks
                      , Server.Website.Views.Deck
-                     , Server.Website.Views.Grammar
                      , Server.Website.Views.Home
                      , Server.Website.Views.Lesson
-                     , Server.Website.Views.Modules
                      , Server.Website.Views.Resources
                      , Server.Website.Views.Offline
                      , Server.Website.Views.NotFound
-                     , Server.Website.Views.Vocabulary
                      , Util
                      , Playground
 
