@@ -31,7 +31,6 @@ import qualified Language.Lojban.Parser.ZasniGerna as ZG
 ------------------------- ----------------------- Sentence canonicalizers
 --TODO: check whether se/te/ve/xe are left-associative or right-associative
 --ZasniGerna documentation: https://hackage.haskell.org/package/zasni-gerna-0.0.7/docs/Language-Lojban-Parser-ZasniGerna.html
---TODO: support tanru
 
 ---------- Types
 type StructuredSelbri = ZG.Text
