@@ -505,4 +505,5 @@ validateCanonicalization = hspec $ do
       it "supports complex sentences" $ do
         validateSentences
             [ ("mi nupre lo nu pilno lo skami poi do dunda ke'a mi", "mi nupre lo nu pilno lo skami ku poi do dunda ke'a mi ku'o kei ku")
+            , ("lo nu mu'i ma dunda kei ku te tavla fi do", "do tavla zo'e lo nu fi'o mukti fe'u ma dunda kei ku")
             ]
