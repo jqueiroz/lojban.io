@@ -35,9 +35,9 @@ sentenceComparer x y = (length xs == length ys) && (all wordComparer $ zip xs ys
     ys = T.words y
     isAssociationWord :: T.Text -> Bool
     isAssociationWord x = x `elem` [ "pe", "ne", "po", "po'e" ]
+    isNonNameGadri x = x `elem` [ "lo", "le", "loi", "lei", "lo'e", "le'e" ]
     wordComparer :: (T.Text, T.Text) -> Bool
-    wordComparer (x, y) = (wordComparer' x y) || (wordComparer' y x) || (isAssociationWord x && isAssociationWord y)
-    wordComparer' "lo" "le" = True
+    wordComparer (x, y) = (wordComparer' x y) || (wordComparer' y x) || (isAssociationWord x && isAssociationWord y) || (isNonNameGadri x && isNonNameGadri y)
     wordComparer' "lu" "lo'u" = True
     wordComparer' "li'u" "le'u" = True
     wordComparer' "nu" "su'u" = True
