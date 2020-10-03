@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 -- | This module provides automatic sentence generators.
-module Courses.Framework.SentenceGenerators
+module Study.Framework.SentenceGenerators
 ( generateNonbridi
 ) where
 

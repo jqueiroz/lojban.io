@@ -7,7 +7,7 @@ module Courses.English.Grammar.Crash.Course (course) where
 import Core
 import Courses.English.Grammar.Crash.Lessons
 import Language.Lojban.Dictionaries (englishDictionary)
-import Courses.Framework.DocumentBuilders (buildDocumentFromMarkdownCode)
+import Study.Framework.DocumentBuilders (buildDocumentFromMarkdownCode)
 import qualified Text.Pandoc as P
 import Data.FileEmbed (embedStringFile)
 

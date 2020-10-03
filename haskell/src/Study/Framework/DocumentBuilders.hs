@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 -- | This module provides utilities for building Pandoc documents.
-module Courses.Framework.DocumentBuilders
+module Study.Framework.DocumentBuilders
 ( buildDocumentFromMarkdownCode
 , buildGlossaryDocument
 ) where

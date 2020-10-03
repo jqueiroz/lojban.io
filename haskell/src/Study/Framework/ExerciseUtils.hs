@@ -1,5 +1,5 @@
 -- | This module provides utilities for manipulating exercises.
-module Courses.Framework.ExerciseUtils
+module Study.Framework.ExerciseUtils
 ( simplifyTerminatorsInCanonicalAnswer
 ) where
 

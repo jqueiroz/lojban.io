@@ -1,14 +1,14 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 -- | This module provides utilities for loading translations from files.
-module Courses.Framework.TranslationLoaders
+module Study.Framework.TranslationLoaders
 ( loadTranslationsFromYamlCode
 , loadTranslationGeneratorFromYamlCode
 , loadTranslationsByExpressionFromYamlCode
 ) where
 
 import Core
-import Courses.Framework.TranslationUtils (expandTranslation)
+import Study.Framework.TranslationUtils (expandTranslation)
 import Util (generatorFromList)
 import qualified Data.Map as M
 import qualified Data.Text as T

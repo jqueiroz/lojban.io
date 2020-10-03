@@ -11,7 +11,7 @@ import Server.Website.Views.Core
 import Control.Monad (when)
 import Data.Maybe (isJust, fromJust)
 import Data.Either.Unwrap (fromRight)
-import Courses.Framework.DocumentBuilders (buildGlossaryDocument)
+import Study.Framework.DocumentBuilders (buildGlossaryDocument)
 import qualified Data.Text as T
 import qualified Text.Pandoc as P
 import qualified Text.Pandoc.Writers.HTML as PWH

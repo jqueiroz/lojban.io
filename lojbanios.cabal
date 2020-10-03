@@ -57,14 +57,14 @@ library
   exposed-modules:     Core
                      , Serializer
                      , Courses.CourseStore
-                     , Courses.Framework.DocumentBuilders
-                     , Courses.Framework.ExerciseGenerators
-                     , Courses.Framework.ExerciseUtils
-                     , Courses.Framework.Extractors
-                     , Courses.Framework.SentenceGenerators
-                     , Courses.Framework.TranslationLoaders
-                     , Courses.Framework.TranslationUtils
-                     , Courses.Framework.VocabularyLoaders
+                     , Study.Framework.DocumentBuilders
+                     , Study.Framework.ExerciseGenerators
+                     , Study.Framework.ExerciseUtils
+                     , Study.Framework.Extractors
+                     , Study.Framework.SentenceGenerators
+                     , Study.Framework.TranslationLoaders
+                     , Study.Framework.TranslationUtils
+                     , Study.Framework.VocabularyLoaders
                      , Courses.English.Grammar.Introduction.Course
                      , Courses.English.Grammar.Introduction.Documents
                      , Courses.English.Grammar.Introduction.Exercises
@@ -155,19 +155,19 @@ test-suite language
                      , Language.Lojban.Presentation
                      , Util
 
-test-suite courses
+test-suite study
   import:              deps
   type:                exitcode-stdio-1.0
   main-is:             Main.hs
   ghc-options:         -Wno-missing-home-modules
-  hs-source-dirs:      haskell/tests/courses haskell/src
+  hs-source-dirs:      haskell/tests/study haskell/src
   build-depends:       hspec
                      , QuickCheck
   other-modules:       Core
-                     , Courses.Framework.ExerciseGenerators
-                     , Courses.Framework.TranslationUtils
-                     , Courses.Framework.ExerciseGenerators.Tests
-                     , Courses.Framework.SentenceGenerators
+                     , Study.Framework.ExerciseGenerators
+                     , Study.Framework.TranslationUtils
+                     , Study.Framework.ExerciseGenerators.Tests
+                     , Study.Framework.SentenceGenerators
                      , Language.Lojban.Canonicalization
                      , Language.Lojban.Canonicalization.Internals
                      , Language.Lojban.Core
@@ -198,14 +198,14 @@ test-suite exercises
                      , Language.Lojban.Presentation
                      , Language.Lojban.Refinement
                      , Courses.CourseStore
-                     , Courses.Framework.DocumentBuilders
-                     , Courses.Framework.ExerciseGenerators
-                     , Courses.Framework.ExerciseUtils
-                     , Courses.Framework.Extractors
-                     , Courses.Framework.SentenceGenerators
-                     , Courses.Framework.TranslationLoaders
-                     , Courses.Framework.TranslationUtils
-                     , Courses.Framework.VocabularyLoaders
+                     , Study.Framework.DocumentBuilders
+                     , Study.Framework.ExerciseGenerators
+                     , Study.Framework.ExerciseUtils
+                     , Study.Framework.Extractors
+                     , Study.Framework.SentenceGenerators
+                     , Study.Framework.TranslationLoaders
+                     , Study.Framework.TranslationUtils
+                     , Study.Framework.VocabularyLoaders
                      , Courses.English.Grammar.Introduction.Course
                      , Courses.English.Grammar.Introduction.Documents
                      , Courses.English.Grammar.Introduction.Exercises

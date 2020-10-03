@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 -- | This module provides utilities for loading vocabulary from files.
-module Courses.Framework.VocabularyLoaders
+module Study.Framework.VocabularyLoaders
 ( loadVocabularyFromYamlCode
 ) where
 

@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 -- | This module provides utilities for manipulating translations.
-module Courses.Framework.TranslationUtils
+module Study.Framework.TranslationUtils
 ( simplifyTerminatorsInTranslation
 , simplifyTerminatorsInTranslationGenerator
 , expandSentence
