@@ -217,6 +217,7 @@ I can also help integrate with our exercise scripts, to allow real-time preview 
 ### Adding support for alternative ortographies
 
 It would be nice to have a user-specific setting for switching all Lojban content to an alternative ortography, such as [la zbalermorna](https://jackhumbert.github.io/zbalermorna/write-up/) or [la krulermorna](http://lojban.pw/articles/krulermorna/).
+This could be done using some JavaScript code which looks for content tagged as Lojbanic and automatically converts it to the user's preferred ortography.
 
 ### Building something on top of our APIs
 
