@@ -11,11 +11,11 @@ import qualified Data.Text as T
 import qualified Text.Blaze as B
 import qualified Text.Blaze.Html5 as H
 import qualified Text.Blaze.Html5.Attributes as A
-import qualified Courses.English.Grammar.Introduction.Course
-import qualified Courses.English.Grammar.Crash.Course
-import qualified Courses.English.Vocabulary.Attitudinals.Course
---import qualified Courses.English.Vocabulary.Brivla.Course
-import qualified Decks.English.ContextualizedBrivla
+import qualified Study.Courses.English.Grammar.Introduction.Course
+import qualified Study.Courses.English.Grammar.Crash.Course
+import qualified Study.Courses.English.Vocabulary.Attitudinals.Course
+--import qualified Study.Courses.English.Vocabulary.Brivla.Course
+import qualified Study.Decks.English.ContextualizedBrivla
 
 -- TODO: link to official lojban wiki
 -- TODO: take more info from this brochure: https://mw.lojban.org/images/c/c5/lojbanbrochure.pdf
@@ -44,10 +44,10 @@ displayHome serverConfiguration userIdentityMaybe = do
                             H.div B.! A.class_ (H.textValue "previous") $ do
                                 H.span B.! A.class_ (H.textValue "material-icons") $ H.toHtml ("navigate_before" :: T.Text)
                             H.ul $ do
-                                displayCourse ("/courses/introduction", Courses.English.Grammar.Introduction.Course.course)
-                                --displayCourse ("/courses/crash", Courses.English.Grammar.Crash.Course.course)
-                                --displayCourse ("/courses/attitudinals", Courses.English.Vocabulary.Attitudinals.Course.course)
-                                --displayCourse ("/courses/brivla", Courses.English.Vocabulary.Brivla.Course.course)
+                                displayCourse ("/courses/introduction", Study.Courses.English.Grammar.Introduction.Course.course)
+                                --displayCourse ("/courses/crash", Study.Courses.English.Grammar.Crash.Course.course)
+                                --displayCourse ("/courses/attitudinals", Study.Courses.English.Vocabulary.Attitudinals.Course.course)
+                                --displayCourse ("/courses/brivla", Study.Courses.English.Vocabulary.Brivla.Course.course)
                             H.div B.! A.class_ (H.textValue "next") $ do
                                 H.span B.! A.class_ (H.textValue "material-icons") $ H.toHtml ("navigate_next" :: T.Text)
                     H.div B.! A.class_ (H.textValue "decks") $ do
@@ -56,10 +56,10 @@ displayHome serverConfiguration userIdentityMaybe = do
                             H.div B.! A.class_ (H.textValue "previous") $ do
                                 H.span B.! A.class_ (H.textValue "material-icons") $ H.toHtml ("navigate_before" :: T.Text)
                             H.ul $ do
-                                displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
-                                --displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
-                                --displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
-                                --displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
+                                displayDeck ("/decks/contextualized-brivla", Study.Decks.English.ContextualizedBrivla.deck)
+                                --displayDeck ("/decks/contextualized-brivla", Study.Decks.English.ContextualizedBrivla.deck)
+                                --displayDeck ("/decks/contextualized-brivla", Study.Decks.English.ContextualizedBrivla.deck)
+                                --displayDeck ("/decks/contextualized-brivla", Study.Decks.English.ContextualizedBrivla.deck)
                             H.div B.! A.class_ (H.textValue "next") $ do
                                 H.span B.! A.class_ (H.textValue "material-icons") $ H.toHtml ("navigate_next" :: T.Text)
                     displayFooter

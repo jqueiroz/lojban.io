@@ -56,7 +56,7 @@ library
   --ld-options: -static -pthread
   exposed-modules:     Core
                      , Serializer
-                     , Courses.CourseStore
+                     , Study.Courses.CourseStore
                      , Study.Framework.DocumentBuilders
                      , Study.Framework.ExerciseGenerators
                      , Study.Framework.ExerciseUtils
@@ -65,34 +65,34 @@ library
                      , Study.Framework.TranslationLoaders
                      , Study.Framework.TranslationUtils
                      , Study.Framework.VocabularyLoaders
-                     , Courses.English.Grammar.Introduction.Course
-                     , Courses.English.Grammar.Introduction.Documents
-                     , Courses.English.Grammar.Introduction.Exercises
-                     , Courses.English.Grammar.Introduction.Lessons
-                     , Courses.English.Grammar.Introduction.Strategies
-                     , Courses.English.Grammar.Introduction.Translations
-                     , Courses.English.Grammar.Introduction.Vocabulary
-                     , Courses.English.Grammar.Crash.Course
-                     , Courses.English.Grammar.Crash.Documents
-                     , Courses.English.Grammar.Crash.Exercises
-                     , Courses.English.Grammar.Crash.Lessons
-                     , Courses.English.Grammar.Crash.Translations
-                     , Courses.English.Grammar.Crash.Vocabulary
-                     , Courses.English.Vocabulary.Attitudinals.Course
-                     , Courses.English.Vocabulary.Attitudinals.Documents
-                     , Courses.English.Vocabulary.Attitudinals.Exercises
-                     , Courses.English.Vocabulary.Attitudinals.Glossary
-                     , Courses.English.Vocabulary.Attitudinals.Lessons
-                     , Courses.English.Vocabulary.Attitudinals.Model
-                     , Courses.English.Vocabulary.Attitudinals.Util
-                     , Courses.English.Vocabulary.Attitudinals.Vocabulary
-                     , Courses.English.Vocabulary.Brivla.Course
-                     , Courses.English.Vocabulary.Brivla.Exercises
-                     , Courses.English.Vocabulary.Brivla.Lessons
-                     , Courses.English.Vocabulary.Brivla.Translations
-                     , Courses.English.Vocabulary.Brivla.Vocabulary
-                     , Decks.DeckStore
-                     , Decks.English.ContextualizedBrivla
+                     , Study.Courses.English.Grammar.Introduction.Course
+                     , Study.Courses.English.Grammar.Introduction.Documents
+                     , Study.Courses.English.Grammar.Introduction.Exercises
+                     , Study.Courses.English.Grammar.Introduction.Lessons
+                     , Study.Courses.English.Grammar.Introduction.Strategies
+                     , Study.Courses.English.Grammar.Introduction.Translations
+                     , Study.Courses.English.Grammar.Introduction.Vocabulary
+                     , Study.Courses.English.Grammar.Crash.Course
+                     , Study.Courses.English.Grammar.Crash.Documents
+                     , Study.Courses.English.Grammar.Crash.Exercises
+                     , Study.Courses.English.Grammar.Crash.Lessons
+                     , Study.Courses.English.Grammar.Crash.Translations
+                     , Study.Courses.English.Grammar.Crash.Vocabulary
+                     , Study.Courses.English.Vocabulary.Attitudinals.Course
+                     , Study.Courses.English.Vocabulary.Attitudinals.Documents
+                     , Study.Courses.English.Vocabulary.Attitudinals.Exercises
+                     , Study.Courses.English.Vocabulary.Attitudinals.Glossary
+                     , Study.Courses.English.Vocabulary.Attitudinals.Lessons
+                     , Study.Courses.English.Vocabulary.Attitudinals.Model
+                     , Study.Courses.English.Vocabulary.Attitudinals.Util
+                     , Study.Courses.English.Vocabulary.Attitudinals.Vocabulary
+                     , Study.Courses.English.Vocabulary.Brivla.Course
+                     , Study.Courses.English.Vocabulary.Brivla.Exercises
+                     , Study.Courses.English.Vocabulary.Brivla.Lessons
+                     , Study.Courses.English.Vocabulary.Brivla.Translations
+                     , Study.Courses.English.Vocabulary.Brivla.Vocabulary
+                     , Study.Decks.DeckStore
+                     , Study.Decks.English.ContextualizedBrivla
                      , Language.Lojban.Canonicalization
                      , Language.Lojban.Canonicalization.Internals
                      , Language.Lojban.Core
@@ -197,7 +197,7 @@ test-suite exercises
                      , Language.Lojban.Parsing
                      , Language.Lojban.Presentation
                      , Language.Lojban.Refinement
-                     , Courses.CourseStore
+                     , Study.Courses.CourseStore
                      , Study.Framework.DocumentBuilders
                      , Study.Framework.ExerciseGenerators
                      , Study.Framework.ExerciseUtils
@@ -206,31 +206,31 @@ test-suite exercises
                      , Study.Framework.TranslationLoaders
                      , Study.Framework.TranslationUtils
                      , Study.Framework.VocabularyLoaders
-                     , Courses.English.Grammar.Introduction.Course
-                     , Courses.English.Grammar.Introduction.Documents
-                     , Courses.English.Grammar.Introduction.Exercises
-                     , Courses.English.Grammar.Introduction.Lessons
-                     , Courses.English.Grammar.Introduction.Strategies
-                     , Courses.English.Grammar.Introduction.Translations
-                     , Courses.English.Grammar.Introduction.Vocabulary
-                     , Courses.English.Grammar.Crash.Course
-                     , Courses.English.Grammar.Crash.Documents
-                     , Courses.English.Grammar.Crash.Exercises
-                     , Courses.English.Grammar.Crash.Lessons
-                     , Courses.English.Grammar.Crash.Translations
-                     , Courses.English.Grammar.Crash.Vocabulary
-                     , Courses.English.Vocabulary.Attitudinals.Course
-                     , Courses.English.Vocabulary.Attitudinals.Documents
-                     , Courses.English.Vocabulary.Attitudinals.Exercises
-                     , Courses.English.Vocabulary.Attitudinals.Glossary
-                     , Courses.English.Vocabulary.Attitudinals.Lessons
-                     , Courses.English.Vocabulary.Attitudinals.Model
-                     , Courses.English.Vocabulary.Attitudinals.Util
-                     , Courses.English.Vocabulary.Attitudinals.Vocabulary
-                     , Courses.English.Vocabulary.Brivla.Course
-                     , Courses.English.Vocabulary.Brivla.Exercises
-                     , Courses.English.Vocabulary.Brivla.Lessons
-                     , Courses.English.Vocabulary.Brivla.Translations
-                     , Courses.English.Vocabulary.Brivla.Vocabulary
-                     , Decks.DeckStore
-                     , Decks.English.ContextualizedBrivla
+                     , Study.Courses.English.Grammar.Introduction.Course
+                     , Study.Courses.English.Grammar.Introduction.Documents
+                     , Study.Courses.English.Grammar.Introduction.Exercises
+                     , Study.Courses.English.Grammar.Introduction.Lessons
+                     , Study.Courses.English.Grammar.Introduction.Strategies
+                     , Study.Courses.English.Grammar.Introduction.Translations
+                     , Study.Courses.English.Grammar.Introduction.Vocabulary
+                     , Study.Courses.English.Grammar.Crash.Course
+                     , Study.Courses.English.Grammar.Crash.Documents
+                     , Study.Courses.English.Grammar.Crash.Exercises
+                     , Study.Courses.English.Grammar.Crash.Lessons
+                     , Study.Courses.English.Grammar.Crash.Translations
+                     , Study.Courses.English.Grammar.Crash.Vocabulary
+                     , Study.Courses.English.Vocabulary.Attitudinals.Course
+                     , Study.Courses.English.Vocabulary.Attitudinals.Documents
+                     , Study.Courses.English.Vocabulary.Attitudinals.Exercises
+                     , Study.Courses.English.Vocabulary.Attitudinals.Glossary
+                     , Study.Courses.English.Vocabulary.Attitudinals.Lessons
+                     , Study.Courses.English.Vocabulary.Attitudinals.Model
+                     , Study.Courses.English.Vocabulary.Attitudinals.Util
+                     , Study.Courses.English.Vocabulary.Attitudinals.Vocabulary
+                     , Study.Courses.English.Vocabulary.Brivla.Course
+                     , Study.Courses.English.Vocabulary.Brivla.Exercises
+                     , Study.Courses.English.Vocabulary.Brivla.Lessons
+                     , Study.Courses.English.Vocabulary.Brivla.Translations
+                     , Study.Courses.English.Vocabulary.Brivla.Vocabulary
+                     , Study.Decks.DeckStore
+                     , Study.Decks.English.ContextualizedBrivla

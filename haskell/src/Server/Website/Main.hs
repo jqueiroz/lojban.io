@@ -6,11 +6,11 @@ module Server.Website.Main
 
 import Core
 import Serializer (exerciseToJSON, validateExerciseAnswer)
-import qualified Courses.English.Grammar.Introduction.Course
-import qualified Courses.English.Grammar.Crash.Course
-import qualified Courses.English.Vocabulary.Attitudinals.Course
-import qualified Courses.English.Vocabulary.Brivla.Course
-import qualified Decks.English.ContextualizedBrivla
+import qualified Study.Courses.English.Grammar.Introduction.Course
+import qualified Study.Courses.English.Grammar.Crash.Course
+import qualified Study.Courses.English.Vocabulary.Attitudinals.Course
+import qualified Study.Courses.English.Vocabulary.Brivla.Course
+import qualified Study.Decks.English.ContextualizedBrivla
 import Server.Core
 import Server.Util (forceSlash, getBody)
 import Server.Website.Views.Core
@@ -56,17 +56,17 @@ handleHome serverConfiguration userIdentityMaybe = ok . toResponse $ displayHome
 handleCourses :: ServerConfiguration -> Maybe UserIdentity -> ServerPart Response
 handleCourses serverConfiguration userIdentityMaybe = msum
     [ forceSlash . ok . toResponse $ displayCoursesHome serverConfiguration userIdentityMaybe
-    , dir "introduction" $ handleCourse serverConfiguration userIdentityMaybe TopbarCourses Courses.English.Grammar.Introduction.Course.course
-    , dir "crash" $ handleCourse serverConfiguration userIdentityMaybe TopbarCourses Courses.English.Grammar.Crash.Course.course
-    , dir "attitudinals" $ handleCourse serverConfiguration userIdentityMaybe TopbarCourses Courses.English.Vocabulary.Attitudinals.Course.course
-    , dir "brivla" $ handleCourse serverConfiguration userIdentityMaybe TopbarCourses Courses.English.Vocabulary.Brivla.Course.course
+    , dir "introduction" $ handleCourse serverConfiguration userIdentityMaybe TopbarCourses Study.Courses.English.Grammar.Introduction.Course.course
+    , dir "crash" $ handleCourse serverConfiguration userIdentityMaybe TopbarCourses Study.Courses.English.Grammar.Crash.Course.course
+    , dir "attitudinals" $ handleCourse serverConfiguration userIdentityMaybe TopbarCourses Study.Courses.English.Vocabulary.Attitudinals.Course.course
+    , dir "brivla" $ handleCourse serverConfiguration userIdentityMaybe TopbarCourses Study.Courses.English.Vocabulary.Brivla.Course.course
     , anyPath $ handleNotFound serverConfiguration userIdentityMaybe
     ]
 
 handleDecks :: ServerConfiguration -> ServerResources -> Maybe UserIdentity -> ServerPart Response
 handleDecks serverConfiguration serverResources userIdentityMaybe = msum
     [ forceSlash . ok . toResponse $ displayDecksHome serverConfiguration userIdentityMaybe
-    , dir "contextualized-brivla" $ handleDeck serverConfiguration serverResources userIdentityMaybe Decks.English.ContextualizedBrivla.deck
+    , dir "contextualized-brivla" $ handleDeck serverConfiguration serverResources userIdentityMaybe Study.Decks.English.ContextualizedBrivla.deck
     , anyPath $ handleNotFound serverConfiguration userIdentityMaybe
     ]
 

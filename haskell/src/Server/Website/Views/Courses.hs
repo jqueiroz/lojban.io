@@ -7,10 +7,10 @@ module Server.Website.Views.Courses
 import Core
 import Server.Core
 import Server.Website.Views.Core
-import qualified Courses.English.Grammar.Introduction.Course
-import qualified Courses.English.Grammar.Crash.Course
-import qualified Courses.English.Vocabulary.Attitudinals.Course
-import qualified Courses.English.Vocabulary.Brivla.Course
+import qualified Study.Courses.English.Grammar.Introduction.Course
+import qualified Study.Courses.English.Grammar.Crash.Course
+import qualified Study.Courses.English.Vocabulary.Attitudinals.Course
+import qualified Study.Courses.English.Vocabulary.Brivla.Course
 import qualified Data.Text as T
 import qualified Text.Blaze as B
 import qualified Text.Blaze.Html5 as H
@@ -41,21 +41,21 @@ displayCoursesHome serverConfiguration userIdentityMaybe = do
                     H.div B.! A.class_ (H.textValue "grammar") $ do
                         H.h2 $ H.toHtml ("Learn from the beginning" :: T.Text)
                         H.div B.! A.class_ (H.textValue "grid") $ do
-                            displayCourse ("/courses/introduction", Courses.English.Grammar.Introduction.Course.course)
-                            --displayCourse ("/courses/crash", Courses.English.Grammar.Crash.Course.course)
+                            displayCourse ("/courses/introduction", Study.Courses.English.Grammar.Introduction.Course.course)
+                            --displayCourse ("/courses/crash", Study.Courses.English.Grammar.Crash.Course.course)
                     H.div B.! A.class_ (H.textValue "vocabulary") $ do
                         H.h2 $ H.toHtml ("Learn by subject" :: T.Text)
                         H.div B.! A.class_ (H.textValue "grid") $ do
-                            displayCourse ("/courses/attitudinals", Courses.English.Vocabulary.Attitudinals.Course.course)
-                            --displayCourse ("/courses/brivla", Courses.English.Vocabulary.Brivla.Course.course)
-                            --displayCourse ("/courses/attitudinals", Courses.English.Vocabulary.Attitudinals.Course.course)
-                            --displayCourse ("/courses/attitudinals", Courses.English.Vocabulary.Attitudinals.Course.course)
-                            --displayCourse ("/courses/brivla", Courses.English.Vocabulary.Brivla.Course.course)
-                            --displayCourse ("/courses/brivla", Courses.English.Vocabulary.Brivla.Course.course)
-                            --displayCourse ("/courses/brivla", Courses.English.Vocabulary.Brivla.Course.course)
-                            --displayCourse ("/courses/brivla", Courses.English.Vocabulary.Brivla.Course.course)
-                            --displayCourse ("/courses/brivla", Courses.English.Vocabulary.Brivla.Course.course)
-                            --displayCourse ("/courses/brivla", Courses.English.Vocabulary.Brivla.Course.course)
+                            displayCourse ("/courses/attitudinals", Study.Courses.English.Vocabulary.Attitudinals.Course.course)
+                            --displayCourse ("/courses/brivla", Study.Courses.English.Vocabulary.Brivla.Course.course)
+                            --displayCourse ("/courses/attitudinals", Study.Courses.English.Vocabulary.Attitudinals.Course.course)
+                            --displayCourse ("/courses/attitudinals", Study.Courses.English.Vocabulary.Attitudinals.Course.course)
+                            --displayCourse ("/courses/brivla", Study.Courses.English.Vocabulary.Brivla.Course.course)
+                            --displayCourse ("/courses/brivla", Study.Courses.English.Vocabulary.Brivla.Course.course)
+                            --displayCourse ("/courses/brivla", Study.Courses.English.Vocabulary.Brivla.Course.course)
+                            --displayCourse ("/courses/brivla", Study.Courses.English.Vocabulary.Brivla.Course.course)
+                            --displayCourse ("/courses/brivla", Study.Courses.English.Vocabulary.Brivla.Course.course)
+                            --displayCourse ("/courses/brivla", Study.Courses.English.Vocabulary.Brivla.Course.course)
                     displayFooter
 
 displayCourse :: (T.Text, Course) -> H.Html

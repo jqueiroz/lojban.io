@@ -6,8 +6,8 @@ module Server.Api.V0.Main (handleRoot) where
 
 import Core
 import Server.Core
-import Courses.CourseStore (courseStore)
-import Decks.DeckStore (deckStore)
+import Study.Courses.CourseStore (courseStore)
+import Study.Decks.DeckStore (deckStore)
 import Server.Logic.Redis (runRedis)
 import Server.Logic.Decks (retrieveDeckPreferences, retrieveDeckProficiency, retrieveDeckActiveCards, updateDeckPreferencesByTogglingCard, updateDeckProficiencyByRegisteringExerciseAttempt)
 import Control.Monad (msum)

@@ -5,8 +5,8 @@ module Exercises.Tests
 ) where
 
 import Core
-import Courses.CourseStore (courseStore)
-import Decks.DeckStore (deckStore)
+import Study.Courses.CourseStore (courseStore)
+import Study.Decks.DeckStore (deckStore)
 import System.Random (mkStdGen)
 import Control.Monad (forM_)
 import Control.Applicative ((<$>))

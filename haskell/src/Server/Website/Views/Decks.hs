@@ -7,7 +7,7 @@ module Server.Website.Views.Decks
 import Core
 import Server.Core
 import Server.Website.Views.Core
-import qualified Decks.English.ContextualizedBrivla
+import qualified Study.Decks.English.ContextualizedBrivla
 import qualified Data.Text as T
 import qualified Text.Blaze as B
 import qualified Text.Blaze.Html5 as H
@@ -39,12 +39,12 @@ displayDecksHome serverConfiguration userIdentityMaybe = do
                     H.div B.! A.class_ (H.textValue "decks") $ do
                         H.h2 $ H.toHtml ("Learn from decks" :: T.Text)
                         H.div B.! A.class_ (H.textValue "grid") $ do
-                            displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
-                            --displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
-                            --displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
-                            --displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
-                            --displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
-                            --displayDeck ("/decks/contextualized-brivla", Decks.English.ContextualizedBrivla.deck)
+                            displayDeck ("/decks/contextualized-brivla", Study.Decks.English.ContextualizedBrivla.deck)
+                            --displayDeck ("/decks/contextualized-brivla", Study.Decks.English.ContextualizedBrivla.deck)
+                            --displayDeck ("/decks/contextualized-brivla", Study.Decks.English.ContextualizedBrivla.deck)
+                            --displayDeck ("/decks/contextualized-brivla", Study.Decks.English.ContextualizedBrivla.deck)
+                            --displayDeck ("/decks/contextualized-brivla", Study.Decks.English.ContextualizedBrivla.deck)
+                            --displayDeck ("/decks/contextualized-brivla", Study.Decks.English.ContextualizedBrivla.deck)
                     displayFooter
 
 displayDeck :: (T.Text, Deck) -> H.Html
