@@ -251,7 +251,7 @@ Also, I have many ideas about features I would like to see implemented, so pleas
 I started this project back in 2016, mostly because I wanted to learn and practice Haskell, and partly to learn Lojban as well.
 As a result, some parts of the code, particularly the ones written earliest, do not follow best practices.
 For example, there are several instances of partial functions.
-Less importantly, monad transformers are used directly instead of [mtl](https://hackage.haskell.org/package/mtl) or [freer monads](https://hackage.haskell.org/package/freer).
+Less importantly, monad transformers are used directly instead of e.g. [mtl](https://hackage.haskell.org/package/mtl) or [freer monads](https://hackage.haskell.org/package/freer).
 
 Feel free to make any code improvements you deem necessary or useful.
 They will be deeply appreciated.
