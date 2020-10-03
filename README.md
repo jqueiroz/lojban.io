@@ -169,7 +169,7 @@ Of course, also feel free to work on something else entirely!
 
   These concepts, combined with Haskell's high level abstractions, give rise to a very powerful way of defining exercises.
 
-  For an example of a course defined entirely in Haskell, see all files under [haskell/src/Courses/English/Grammar/Introduction](https://github.com/jqueiroz/lojban.io/tree/master/haskell/src/Courses/English/Grammar/Introduction), where we define the course "Getting started with Lojban".
+  For an example of a course defined entirely in Haskell, see all files under [haskell/src/Study/Courses/English/Grammar/Introduction](https://github.com/jqueiroz/lojban.io/tree/master/haskell/src/Study/Courses/English/Grammar/Introduction), where we define the course "Getting started with Lojban".
   We also recommend reading the documentation of
 
   * the exercise generator utilities in [Study.Framework.ExerciseGenerators](https://lojban.io/documentation/lojbanios-0.1.0.0/Study-Framework-ExerciseGenerators.html);
@@ -177,14 +177,14 @@ Of course, also feel free to work on something else entirely!
   * and maybe the extractor utilities in [Study.Framework.Extractors](https://lojban.io/documentation/lojbanios-0.1.0.0/Study-Framework-Extractors.html).
 
   The module [Language.Lojban.Canonicalization](https://lojban.io/documentation/lojbanios-0.1.0.0/Language-Lojban-Canonicalization.html) contains sensible general-purpose sentence canonicalizers, and [Language.Lojban.Presentation](https://lojban.io/documentation/lojbanios-0.1.0.0/Language-Lojban-Presentation.html) encloses multiple strategies for displaying bridi.
-  See also [haskell/src/Courses/English/Grammar/Introduction/Strategies.hs](https://github.com/jqueiroz/lojban.io/blob/master/haskell/src/Courses/English/Grammar/Introduction/Strategies.hs) for the definition of strategies used in the "Getting started with Lojban" course, including the custom sentence comparer.
+  See also [haskell/src/Study/Courses/English/Grammar/Introduction/Strategies.hs](https://github.com/jqueiroz/lojban.io/blob/master/haskell/src/Study/Courses/English/Grammar/Introduction/Strategies.hs) for the definition of strategies used in the "Getting started with Lojban" course, including the custom sentence comparer.
 
 #### 2. You may define the course in Haskell, but load translations from a separate YAML file
 
   This is a bit less flexible, in that translations may not be combined anymore using the generator algebra.
   But the advantage is that anyone will be able to contribute to your course by editing the (human-readable) translation files.
 
-  For an example of a course following this approach, see all files under [haskell/src/Courses/English/Grammar/Crash](https://github.com/jqueiroz/lojban.io/tree/master/haskell/src/Courses/English/Grammar/Crash), where we define a course based on a tiny subset of [The Crash Course](https://mw.lojban.org/papri/The_Crash_Course_(a_draft)) by [la gleki](https://github.com/lagleki).
+  For an example of a course following this approach, see all files under [haskell/src/Study/Courses/English/Grammar/Crash](https://github.com/jqueiroz/lojban.io/tree/master/haskell/src/Study/Courses/English/Grammar/Crash), where we define a course based on a tiny subset of [The Crash Course](https://mw.lojban.org/papri/The_Crash_Course_(a_draft)) by [la gleki](https://github.com/lagleki).
   Our version of this course is highly incomplete, and hence not listed on our website, but it is nevertheless available at [https://lojban.io/courses/crash/](https://lojban.io/courses/crash/).
   The corresponding translation files, which power the interactive exercises, are located in [resources/courses/english/grammar/crash/translations](https://github.com/jqueiroz/lojban.io/tree/master/resources/courses/english/grammar/crash/translations).
   Similarly, the vocabulary files are located in [resources/courses/english/grammar/crash/vocabulary](https://github.com/jqueiroz/lojban.io/tree/master/resources/courses/english/grammar/crash/vocabulary).
