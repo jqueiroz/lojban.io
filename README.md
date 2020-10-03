@@ -29,6 +29,7 @@ Well, you do need to install either [Nix](#quickstart-using-nix) or [docker](#qu
     - [2. You may define the course in Haskell, but load translations from a separate YAML file](#2-you-may-define-the-course-in-haskell-but-load-translations-from-a-separate-yaml-file)
     - [3. You may define the course entirely in a JSON file](#3-you-may-define-the-course-entirely-in-a-json-file)
   * [Building a separate platform for course creation](#building-a-separate-platform-for-course-creation)
+  * [Implementing alternative exercises for mobile](#implementing-alternative-exercises-for-mobile)
   * [Adding support for alternative ortographies](#adding-support-for-alternative-ortographies)
   * [Building something on top of our APIs](#building-something-on-top-of-our-apis)
 * [Contributing (as a Haskell programmer)](#contributing-as-a-haskell-programmer)
@@ -213,6 +214,17 @@ But more than that, it also enables the development of a separate, user-friendly
 
 I have a few ideas on this subject already, so if you are interested, please let me know and we can work closely on the design.
 I can also help integrate with our exercise scripts, to allow real-time preview of exercises being created, and expose APIs for validating solutions if needed.
+
+### Implementing alternative exercises for mobile
+
+Currently the exercises for mobile are the same as those for the desktop version.
+But typing on mobile is generally much less convenient than typing on a desktop.
+It would be nice to have a user-specific setting allowing sentences to be constructed by clicking on words in the correct order, instead of typing them.
+
+This will require a server-side change for the exercises API to return a list of words potentially useful in the answer (which I can make), and a client-side change to present this new interface to the user.
+Ideally, the client should display the words returned by the server as well as broadly used words such as the _FA_-series, the _SE_-series, _cu_, and some terminators.
+
+I have a few ideas already, so please let me know if you are interested and we can discuss.
 
 ### Adding support for alternative ortographies
 
