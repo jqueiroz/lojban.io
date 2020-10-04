@@ -129,6 +129,24 @@ displayResources = do
                 H.a "Mathematical expressions (mekso)"
                     B.! A.href "https://mw.lojban.org/images/1/1f/734.sip"
     H.div B.! A.class_ (H.textValue "resource-category") $ do
+        H.h2 $ H.toHtml ("Dialects" :: T.Text)
+        H.ul $ do
+            H.li $ do
+                H.a "The Lojban I speak (by la lalxu)"
+                    B.! A.href "https://gist.github.com/lynn/453a1ccc62aafbc24d2bfbd29bf5cabf"
+            H.li $ do
+                H.a "A simpler connective system"
+                    B.! A.href "https://solpahi.wordpress.com/2016/09/20/a-simpler-connective-system/"
+            H.li $ do
+                H.a "A simpler quantifier logic"
+                    B.! A.href "https://solpahi.wordpress.com/2016/09/25/a-simpler-quantifier-logic/"
+            H.li $ do
+                H.a "xorlo as seen by La Gleki"
+                    B.! A.href "https://mw.lojban.org/papri/User:Gleki/xorlo_as_seen_by_La_Gleki"
+            H.li $ do
+                H.a "zipcpi: Yet another gadri article"
+                    B.! A.href "https://mw.lojban.org/papri/zipcpi:_Yet_another_gadri_article"
+    H.div B.! A.class_ (H.textValue "resource-category") $ do
         H.h2 $ H.toHtml ("Discussion" :: T.Text)
         H.ul $ do
             H.li $ do
