@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE ScopedTypeVariables #-}
 
-module Server.OAuth2.Utils
+module Server.Authentication.Utils
 ( isAllowedReferer
 , redirectToCurrentRefererIfAllowed
 ) where
