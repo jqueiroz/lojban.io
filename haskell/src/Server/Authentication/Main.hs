@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Server.OAuth2.Main
+module Server.Authentication.Main
 ( handleRoot
 , readUserIdentityFromCookies
 ) where
@@ -8,8 +8,8 @@ module Server.OAuth2.Main
 import Control.Monad (msum)
 import Happstack.Server
 import Server.Core
-import qualified Server.OAuth2.Google as Google
-import qualified Server.OAuth2.Mock as Mock
+import qualified Server.Authentication.Google as Google
+import qualified Server.Authentication.Mock as Mock
 
 handleRoot :: ServerConfiguration -> ServerResources -> ServerPart Response
 handleRoot serverConfiguration serverResources = msum

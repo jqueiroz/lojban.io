@@ -27,7 +27,7 @@ import Control.Monad (msum, guard)
 import Control.Monad.IO.Class (liftIO)
 import System.Random (newStdGen, mkStdGen)
 import Data.ByteString.Builder (toLazyByteString)
-import qualified Server.OAuth2.Main as OAuth2
+import qualified Server.Authentication.Main as Authentication
 import qualified Data.Aeson as A
 import qualified Data.Text as T
 import qualified Data.Text.Encoding as TE
@@ -40,7 +40,7 @@ import Happstack.Server
 -- * Handlers
 handleRoot :: ServerConfiguration -> ServerResources -> ServerPart Response
 handleRoot serverConfiguration serverResources = do
-    userIdentityMaybe <- OAuth2.readUserIdentityFromCookies serverConfiguration serverResources
+    userIdentityMaybe <- Authentication.readUserIdentityFromCookies serverConfiguration serverResources
     msum
         [ forceSlash $ handleHome serverConfiguration userIdentityMaybe
         , dir "courses" $ handleCourses serverConfiguration userIdentityMaybe
@@ -100,7 +100,7 @@ handleDeck :: ServerConfiguration -> ServerResources -> Maybe UserIdentity -> De
 handleDeck serverConfiguration serverResources userIdentityMaybe deck = msum
     [ forceSlash . ok . toResponse $ displayDeckHome serverConfiguration userIdentityMaybe deck
     , dir "exercises" $ do
-        identityMaybe <- OAuth2.readUserIdentityFromCookies serverConfiguration serverResources
+        identityMaybe <- Authentication.readUserIdentityFromCookies serverConfiguration serverResources
         case identityMaybe of
             Nothing -> do
                 --tempRedirect ("./" :: T.Text) . toResponse $ ("You must be signed in." :: T.Text)

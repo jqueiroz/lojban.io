@@ -16,7 +16,7 @@ import qualified Data.Text as T
 import qualified Database.Redis as Redis
 import qualified Server.Website.Main as Website
 import qualified Server.Api.Main as Api
-import qualified Server.OAuth2.Main as OAuth2
+import qualified Server.Authentication.Main as Authentication
 
 -- TODO: consider adding breadcrumbs (https://getbootstrap.com/docs/4.0/components/breadcrumb/)
 
@@ -37,7 +37,7 @@ handleRoot serverConfiguration serverResources = do
         , dir "documentation" $ serveDirectory EnableBrowsing [] "documentation"
         , dir "static" $ cacheControlForAssets $ serveDirectory EnableBrowsing [] "static"
         , dir "api" $ Api.handleRoot serverConfiguration serverResources
-        , dir "oauth2" $ OAuth2.handleRoot serverConfiguration serverResources
+        , dir "oauth2" $ Authentication.handleRoot serverConfiguration serverResources
         , dir "favicon.ico" $ cacheControlForAssets $ serveFile (asContentType "image/png") "static/images/favicon.png"
         , dir "manifest.webmanifest" $ cacheControlForAssets $ serveFile (asContentType "text/json") "static/pwa/manifest.webmanifest"
         , dir "pwabuilder-sw.js" $ cacheControlForAssets $ serveFile (asContentType "text/javascript") "static/pwa/pwabuilder-sw.js"

@@ -4,12 +4,12 @@
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE QuasiQuotes #-}
 
-module Server.OAuth2.Google
+module Server.Authentication.Google
 ( handleRoot
 , readUserIdentityFromCookies
 ) where
 
-import Server.OAuth2.Utils (isAllowedReferer, redirectToCurrentRefererIfAllowed)
+import Server.Authentication.Utils (isAllowedReferer, redirectToCurrentRefererIfAllowed)
 import GHC.Generics
 import Server.Core
 import Happstack.Server
