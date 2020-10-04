@@ -1,12 +1,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE ScopedTypeVariables #-}
 
-module Server.OAuth2.Mock
+module Server.Authentication.Mock
 ( handleRoot
 , readUserIdentityFromCookies
 ) where
 
-import Server.OAuth2.Utils (redirectToCurrentRefererIfAllowed)
+import Server.Authentication.Utils (redirectToCurrentRefererIfAllowed)
 import Server.Core
 import Happstack.Server
 import Control.Monad (msum, mzero)
