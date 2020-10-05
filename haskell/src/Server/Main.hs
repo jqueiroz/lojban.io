@@ -38,6 +38,7 @@ handleRoot serverConfiguration serverResources = do
         , dir "static" $ cacheControlForAssets $ serveDirectory EnableBrowsing [] "static"
         , dir "api" $ Api.handleRoot serverConfiguration serverResources
         , dir "oauth2" $ Authentication.handleRoot serverConfiguration serverResources
+        , dir "authentication" $ Authentication.handleRoot serverConfiguration serverResources
         , dir "favicon.ico" $ cacheControlForAssets $ serveFile (asContentType "image/png") "static/images/favicon.png"
         , dir "manifest.webmanifest" $ cacheControlForAssets $ serveFile (asContentType "text/json") "static/pwa/manifest.webmanifest"
         , dir "pwabuilder-sw.js" $ cacheControlForAssets $ serveFile (asContentType "text/javascript") "static/pwa/pwabuilder-sw.js"
@@ -70,6 +71,12 @@ acquireServerResources serverConfiguration = do
         redisExceptionHandler :: SomeException -> IO Redis.Connection
         redisExceptionHandler ex = error $ "Connection to redis could not be established. If running locally, outside of Docker, please make sure to run './run-redis.sh'.\nException details: " ++ show ex
 
+lookupStringEnvironmentVariable :: String -> IO (Maybe String)
+lookupStringEnvironmentVariable environmentVariableName = lookupEnv environmentVariableName >>= \case
+    Nothing -> return Nothing
+    Just "" -> return Nothing
+    Just x -> return $ Just x
+
 readServerConfiguration :: IO ServerConfiguration
 readServerConfiguration = do
     environmentType <- lookupEnv "LOJBANIOS_ENVIRONMENT" >>= \case
@@ -80,7 +87,9 @@ readServerConfiguration = do
         Nothing -> return Nothing
         Just "" -> return Nothing
         Just x -> return $ Just x
+    openIdMicrosoftClientId <- lookupEnv "LOJBANIOS_OPENID_MICROSOFT_CLIENT_ID"
+    openIdMicrosoftClientSecret <- lookupEnv "LOJBANIOS_OPENID_MICROSOFT_CLIENT_SECRET"
     let identityProvider = case environmentType of
             EnvironmentTypeProd -> IdentityProvider ("google" :: T.Text)
             _ -> IdentityProvider ("mock" :: T.Text)
-    return $ ServerConfiguration environmentType identityProvider redisHostname
+    return $ ServerConfiguration environmentType identityProvider redisHostname openIdMicrosoftClientId openIdMicrosoftClientSecret
