@@ -20,6 +20,8 @@ data ServerConfiguration = ServerConfiguration
     { serverConfigurationEnvironmentType :: EnvironmentType
     , serverConfigurationIdentityProvider :: IdentityProvider
     , serverConfigurationRedisHostname :: Maybe String
+    , serverConfigurationOpenIdMicrosoftClientId :: Maybe String
+    , serverConfigurationOpenIdMicrosoftClientSecret :: Maybe String
     }
 
 data ServerResources = ServerResources
