@@ -198,7 +198,7 @@ displayUserProfile serverConfiguration userIdentityMaybe = do
                     B.! A.for "user-menu-input"
                     B.! A.tabindex "0"
                     B.! A.alt "Toggle user menu" $ do
-                        let finalPictureUrl = if (T.null pictureUrl) then "https://www.gravatar.com/avatar/00000000000000000000000000000000" else pictureUrl
+                        let finalPictureUrl = if (T.null pictureUrl) then "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y" else pictureUrl
                         H.img B.! A.class_ "picture" B.! A.src (H.textValue finalPictureUrl)
                 H.ul B.! A.class_ "user-menu" $ do
                     H.li $ do
