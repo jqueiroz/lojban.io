@@ -44,17 +44,14 @@ redirectToCurrentRefererIfAllowed :: ServerPart Response
 redirectToCurrentRefererIfAllowed = do
     refererMaybe <- getHeader "Referer" <$> askRq
     case refererMaybe of
-        Nothing -> do
-            -- Redirect the homepage
-            tempRedirect ("/" :: T.Text) $ toResponse ("" :: T.Text)
+        Nothing -> redirectToHomepage
         Just referer -> do
             let referer' = BSS8.unpack referer
             if isAllowedReferer referer' then
                 -- Redirect to referer
                 tempRedirect referer' $ toResponse ("" :: T.Text)
             else
-                -- Redirect the homepage
-                tempRedirect ("/" :: T.Text) $ toResponse ("" :: T.Text)
+                redirectToHomepage
 
 saveReferer :: T.Text -> ServerPart ()
 saveReferer refererCookieName = do
