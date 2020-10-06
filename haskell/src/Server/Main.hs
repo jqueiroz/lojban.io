@@ -83,12 +83,9 @@ readServerConfiguration = do
         Just "prod" -> return EnvironmentTypeProd
         Just "dev" -> return EnvironmentTypeDev
         _ -> error "Error: incorrect or unspecified environment type"
-    redisHostname <- lookupEnv "LOJBANIOS_REDIS_HOSTNAME" >>= \case
-        Nothing -> return Nothing
-        Just "" -> return Nothing
-        Just x -> return $ Just x
-    openIdMicrosoftClientId <- lookupEnv "LOJBANIOS_OPENID_MICROSOFT_CLIENT_ID"
-    openIdMicrosoftClientSecret <- lookupEnv "LOJBANIOS_OPENID_MICROSOFT_CLIENT_SECRET"
+    redisHostname <- lookupStringEnvironmentVariable "LOJBANIOS_REDIS_HOSTNAME"
+    openIdMicrosoftClientId <- lookupStringEnvironmentVariable "LOJBANIOS_OPENID_MICROSOFT_CLIENT_ID"
+    openIdMicrosoftClientSecret <- lookupStringEnvironmentVariable "LOJBANIOS_OPENID_MICROSOFT_CLIENT_SECRET"
     let identityProvider = case environmentType of
             EnvironmentTypeProd -> IdentityProvider ("google" :: T.Text)
             _ -> IdentityProvider ("mock" :: T.Text)
