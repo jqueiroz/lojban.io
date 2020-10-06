@@ -29,6 +29,7 @@ import qualified Jose.Jwt as JWT
 import qualified Web.OIDC.Client as OIDC
 import qualified Web.OIDC.Client.Settings as OIDCS
 import qualified Network.HTTP.Client as HC
+import qualified Network.HTTP.Types as HT
 import qualified Network.OAuth.OAuth2 as OA2
 
 -- * Data types
@@ -37,6 +38,7 @@ data KnownOpenIdProvider = KnownOpenIdProvider
     { knownProviderIdentifier :: T.Text
     , knownProviderClientId :: T.Text
     , knownProviderClientSecret :: T.Text
+    , knownProviderExtraScopes :: [T.Text]
     }
 
 data Claims = Claims
@@ -56,16 +58,20 @@ data UserInfo = UserInfo
 instance A.FromJSON UserInfo where
     parseJSON = A.genericParseJSON A.defaultOptions
 
+instance A.ToJSON UserInfo where
+    toEncoding = A.genericToEncoding A.defaultOptions
+
 -- * Known providers
 
 knownProviders :: ServerConfiguration -> [KnownOpenIdProvider]
 knownProviders serverConfiguration = catMaybes [maybeMicrosoft] where
     maybeMicrosoft :: Maybe KnownOpenIdProvider
-    maybeMicrosoft = (KnownOpenIdProvider "microsoft") <$> maybeClientId <*> maybeClientSecret where
+    maybeMicrosoft = (KnownOpenIdProvider "microsoft") <$> maybeClientId <*> maybeClientSecret <*> (Just extraScopes) where
         maybeClientId :: Maybe T.Text
         maybeClientId = (T.pack <$> serverConfigurationOpenIdMicrosoftClientId serverConfiguration)
         maybeClientSecret :: Maybe T.Text
         maybeClientSecret = (T.pack <$> serverConfigurationOpenIdMicrosoftClientSecret serverConfiguration)
+        extraScopes = ["User.Read"]
 
 -- * Handlers
 
@@ -85,7 +91,8 @@ handleLogin :: ServerConfiguration -> ServerResources -> KnownOpenIdProvider -> 
 handleLogin serverConfiguration serverResources knownProvider = do
     saveReferer (providerRefererCookieName knownProvider)
     discoveredProvider <- discoverProvider serverConfiguration serverResources knownProvider
-    authenticationUrl <- liftIO $ OIDC.getAuthenticationRequestUrl discoveredProvider [OIDC.email, OIDC.profile] Nothing []
+    let scopes = [OIDC.email, OIDC.profile] ++ (knownProviderExtraScopes knownProvider)
+    authenticationUrl <- liftIO $ OIDC.getAuthenticationRequestUrl discoveredProvider scopes Nothing []
     tempRedirect authenticationUrl $ toResponse ("" :: T.Text)
 
 handleLogout :: ServerConfiguration -> ServerResources -> KnownOpenIdProvider -> ServerPart Response
@@ -125,24 +132,30 @@ handleCallback serverConfiguration serverResources knownProvider = do
                                 Nothing -> unauthorized $ toResponse ("Decoding of identity token failed." :: T.Text)
                                 Just claims -> do
                                     -- Fetch user info
-                                    userInfoTextMaybe :: Maybe T.Text <- liftIO $ fetchUserInfo serverConfiguration serverResources knownProvider discoveredProvider accessToken
-                                    case userInfoTextMaybe of
+                                    originalUserInfoTextMaybe :: Maybe T.Text <- liftIO $ fetchUserInfo serverConfiguration serverResources knownProvider discoveredProvider accessToken
+                                    case originalUserInfoTextMaybe of
                                         Nothing -> unauthorized $ toResponse ("Fetching of user info failed." :: T.Text)
-                                        Just userInfoText -> do
+                                        Just originalUserInfoText -> do
                                             -- Validate user info
-                                            let userInfoMaybe = (A.decodeStrict . TE.encodeUtf8) userInfoText :: Maybe UserInfo
-                                            case userInfoMaybe of
+                                            let originalUserInfoMaybe = (A.decodeStrict . TE.encodeUtf8) originalUserInfoText :: Maybe UserInfo
+                                            case originalUserInfoMaybe of
                                                 Nothing -> unauthorized $ toResponse ("Decoding of user info failed." :: T.Text)
-                                                Just userInfo -> do
-                                                    -- TODO: download profile picture
-                                                    -- Save identity token and user info to cookies
-                                                    let cookieDuration = (MaxAge $ 30 * 86400)
-                                                    addCookies $ (cookieDuration,) <$>
-                                                        [ mkCookie (T.unpack $ providerIdentityTokenCookieName knownProvider) $ T.unpack identityTokenText
-                                                        , mkCookie (T.unpack $ providerUserInfoCookieName knownProvider) $ T.unpack . encodeUserInfoText $ userInfoText
-                                                        ]
-                                                    -- Redirect user back to eferer
-                                                    redirectToSavedRefererIfAllowed (providerRefererCookieName knownProvider)
+                                                Just originalUserInfo -> do
+                                                    -- Download profile picture
+                                                    profilePictureBase64UrlMaybe <- liftIO $ retrieveBase64PictureUrl serverConfiguration serverResources accessToken (picture originalUserInfo)
+                                                    case profilePictureBase64UrlMaybe of
+                                                        Left msg -> internalServerError $ toResponse ("Unable to fetch profile picture: " `T.append` (T.pack msg))
+                                                        Right profilePictureBase64Url -> do
+                                                            let userInfo = originalUserInfo { picture = profilePictureBase64Url }
+                                                            let userInfoText = TE.decodeUtf8 . BS8.toStrict . A.encode $ userInfo
+                                                            -- Save identity token and user info to cookies
+                                                            let cookieDuration = (MaxAge $ 30 * 86400)
+                                                            addCookies $ (cookieDuration,) <$>
+                                                                [ mkCookie (T.unpack $ providerIdentityTokenCookieName knownProvider) $ T.unpack identityTokenText
+                                                                , mkCookie (T.unpack $ providerUserInfoCookieName knownProvider) $ T.unpack . encodeUserInfoText $ userInfoText
+                                                                ]
+                                                            -- Redirect user back to eferer
+                                                            redirectToSavedRefererIfAllowed (providerRefererCookieName knownProvider)
 
 readUserIdentityFromCookies :: ServerConfiguration -> ServerResources -> ServerPart (Maybe UserIdentity)
 readUserIdentityFromCookies serverConfiguration serverResources = do
@@ -230,10 +243,33 @@ fetchUserInfo serverConfiguration serverResources knownProvider discoveredProvid
             initialRequest <- HC.parseRequest (T.unpack userInfoEndpoint)
             let request = initialRequest
                     { HC.method = "POST"
-                    , HC.requestHeaders = [("Authorization", TE.encodeUtf8 $ "Bearer "` T.append` accessTokenText)]
+                    , HC.requestHeaders = [("Authorization", TE.encodeUtf8 $ "Bearer " `T.append` accessTokenText)]
                     }
             response <- HC.httpLbs request tlsManager
             return $ Just $ TE.decodeUtf8 . BS8.toStrict $ HC.responseBody response
+
+retrieveBase64PictureUrl :: ServerConfiguration -> ServerResources -> OA2.AccessToken -> T.Text -> IO (Either String T.Text)
+retrieveBase64PictureUrl serverConfiguration serverResources accessToken originalPictureUrl = do
+    if originalPictureUrl == "https://graph.microsoft.com/v1.0/me/photo/$value" then
+        -- Unfortunately, Microsoft Graph's profile picture API no longer works for consumer accounts.
+        -- So there is no point in even calling it. Let's just pretend that the user lacks a profile picture.
+        return $ Right T.empty
+    else do
+        let tlsManager = serverResourcesTlsManager serverResources
+        let accessTokenText = OA2.atoken accessToken
+        initialRequest <- HC.parseRequest (T.unpack originalPictureUrl)
+        let request = initialRequest
+                { HC.method = "GET"
+                , HC.requestHeaders = [("Authorization", TE.encodeUtf8 $ "Bearer " `T.append` accessTokenText)]
+                }
+        response <- HC.httpLbs request tlsManager
+        case (HT.statusCode $ HC.responseStatus response) of
+            200 -> error "Not yet implemented!" -- TODO: we should return a base64-encoded image
+            404 -> do
+                -- If the user lacks a picture, then we just return an empty URL.
+                return $ Right T.empty
+            _ -> do
+                return $ Left "Profile picture for user could not be retrieved."
 
 -- * Cookies
 providerCookiePrefix :: KnownOpenIdProvider -> T.Text
