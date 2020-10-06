@@ -37,6 +37,7 @@ import qualified Network.OAuth.OAuth2 as OA2
 
 data KnownOpenIdProvider = KnownOpenIdProvider
     { knownProviderIdentifier :: T.Text
+    , knownProviderDiscoveryUrl :: T.Text
     , knownProviderClientId :: T.Text
     , knownProviderClientSecret :: T.Text
     , knownProviderExtraScopes :: [T.Text]
@@ -67,7 +68,8 @@ instance A.ToJSON UserInfo where
 knownProviders :: ServerConfiguration -> [KnownOpenIdProvider]
 knownProviders serverConfiguration = catMaybes [maybeMicrosoft] where
     maybeMicrosoft :: Maybe KnownOpenIdProvider
-    maybeMicrosoft = (KnownOpenIdProvider "microsoft") <$> maybeClientId <*> maybeClientSecret <*> (Just extraScopes) where
+    maybeMicrosoft = (KnownOpenIdProvider "microsoft" discoveryUrl) <$> maybeClientId <*> maybeClientSecret <*> (Just extraScopes) where
+        discoveryUrl = "https://login.microsoftonline.com/consumers/v2.0"
         maybeClientId :: Maybe T.Text
         maybeClientId = (T.pack <$> serverConfigurationOpenIdMicrosoftClientId serverConfiguration)
         maybeClientSecret :: Maybe T.Text
