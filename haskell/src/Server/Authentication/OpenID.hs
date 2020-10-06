@@ -110,13 +110,11 @@ handleCallback serverConfiguration serverResources knownProvider = do
     -- Acquire oauth2 token
     discoveredProvider <- discoverProvider serverConfiguration serverResources knownProvider
     oauth2ConfigEither <- getProviderOAuth2Config serverConfiguration serverResources knownProvider discoveredProvider
-    liftIO $ print oauth2ConfigEither
     case oauth2ConfigEither of
         Left _ -> unauthorized $ toResponse ("Acquisition of oauth2 config failed." :: T.Text)
         Right oauth2Config -> do
             let tlsManager = serverResourcesTlsManager serverResources
             oauth2TokenEither <- liftIO $ OA2.fetchAccessToken tlsManager oauth2Config exchangeToken
-            liftIO $ print oauth2TokenEither
             case oauth2TokenEither of
                 Left _ -> unauthorized $ toResponse ("Acquisition of oauth2 token failed." :: T.Text)
                 Right oauth2Token -> do
@@ -232,14 +230,6 @@ fetchUserInfo serverConfiguration serverResources knownProvider discoveredProvid
     case userInfoEndpointMaybe of
         Nothing -> return Nothing
         Just userInfoEndpoint -> do
-            --let userInfoUrl = userInfoEndpoint `T.append` "?access_token=" `T.append` accessTokenText
-            --liftIO $ print "User info url:"
-            --liftIO $ print userInfoUrl
-            --request <- HC.parseRequest (T.unpack userInfoUrl)
-            liftIO $ print "User info endpoint:"
-            liftIO $ print userInfoEndpoint
-            liftIO $ print "Access token text:"
-            liftIO $ print accessTokenText
             initialRequest <- HC.parseRequest (T.unpack userInfoEndpoint)
             let request = initialRequest
                     { HC.method = "POST"
