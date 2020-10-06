@@ -11,12 +11,18 @@ import Server.Core
 import qualified Server.Authentication.Google as Google
 import qualified Server.Authentication.OpenID as OpenID
 import qualified Server.Authentication.Mock as Mock
+import Server.Authentication.Utils (redirectToCurrentRefererIfAllowed)
 
 handleRoot :: ServerConfiguration -> ServerResources -> ServerPart Response
 handleRoot serverConfiguration serverResources = msum
     [ dir "google" $ Google.handleRoot serverConfiguration serverResources
     , dir "openid" $ OpenID.handleRoot serverConfiguration serverResources
     , dir "mock" $ Mock.handleRoot serverConfiguration serverResources
+    , dir "logout" $ do
+        Google.handleLogout serverConfiguration serverResources
+        OpenID.handleLogout serverConfiguration serverResources
+        Mock.handleLogout serverConfiguration serverResources
+        redirectToCurrentRefererIfAllowed
     ]
 
 readUserIdentityFromCookies :: ServerConfiguration -> ServerResources -> ServerPart (Maybe UserIdentity)

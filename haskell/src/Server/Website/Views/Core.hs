@@ -203,7 +203,7 @@ displayUserProfile serverConfiguration userIdentityMaybe = do
                 H.ul B.! A.class_ "user-menu" $ do
                     H.li $ do
                         H.a (H.toHtml ("Sign out" :: T.Text))
-                            B.! A.href (H.textValue $ "/oauth2/" `T.append` identityProvider `T.append` "/logout")
+                            B.! A.href (H.textValue $ "/authentication/logout/")
 
 displayTopbarMenu :: TopbarCategory -> H.Html
 displayTopbarMenu topbarCategory = do
