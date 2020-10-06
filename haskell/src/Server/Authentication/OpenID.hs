@@ -102,6 +102,7 @@ handleLogoutForProvider :: ServerConfiguration -> ServerResources -> KnownOpenId
 handleLogoutForProvider serverConfiguration serverResources knownProvider = do
     expireCookie (T.unpack $ providerIdentityTokenCookieName knownProvider)
     expireCookie (T.unpack $ providerUserInfoCookieName knownProvider)
+    expireCookie (T.unpack $ providerRefererCookieName knownProvider)
 
 -- TODO: simplify these pattern matches using ExceptionT
 handleCallback :: ServerConfiguration -> ServerResources -> KnownOpenIdProvider -> ServerPart Response

@@ -117,6 +117,7 @@ handleLogout :: ServerConfiguration -> ServerResources -> ServerPart ()
 handleLogout serverConfiguration serverResources = do
     expireCookie identityTokenCookieName
     expireCookie userInfoCookieName
+    expireCookie (T.unpack refererCookieName)
 
 handleCallback :: ServerConfiguration -> ServerResources -> ServerPart Response
 handleCallback serverConfiguration serverResources = do
