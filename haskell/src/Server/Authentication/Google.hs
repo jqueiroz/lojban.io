@@ -6,6 +6,7 @@
 
 module Server.Authentication.Google
 ( handleRoot
+, handleLogout
 , readUserIdentityFromCookies
 ) where
 
@@ -103,7 +104,6 @@ extractClaims serverConfiguration serverResources identityTokenText = do
 handleRoot :: ServerConfiguration -> ServerResources -> ServerPart Response
 handleRoot serverConfiguration serverResources = msum
     [ dir "login" $ handleLogin
-    , dir "logout" $ handleLogout
     , dir "callback" $ handleCallback serverConfiguration serverResources
     ]
 
@@ -113,11 +113,10 @@ handleLogin = do
     authorizationUrl <- getAuthorizationUrl
     tempRedirect authorizationUrl $ toResponse ("" :: T.Text)
 
-handleLogout :: ServerPart Response
-handleLogout = do
+handleLogout :: ServerConfiguration -> ServerResources -> ServerPart ()
+handleLogout serverConfiguration serverResources = do
     expireCookie identityTokenCookieName
     expireCookie userInfoCookieName
-    redirectToCurrentRefererIfAllowed
 
 handleCallback :: ServerConfiguration -> ServerResources -> ServerPart Response
 handleCallback serverConfiguration serverResources = do

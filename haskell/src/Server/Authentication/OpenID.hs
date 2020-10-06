@@ -5,6 +5,7 @@
 
 module Server.Authentication.OpenID
 ( handleRoot
+, handleLogout
 , readUserIdentityFromCookies
 ) where
 
@@ -14,7 +15,7 @@ import GHC.Generics
 import Happstack.Server
 import Data.Either.Combinators (rightToMaybe)
 import Data.Maybe (catMaybes, listToMaybe)
-import Control.Monad (msum, mzero)
+import Control.Monad (msum, mzero, forM_)
 import Control.Monad.Extra (liftMaybe)
 import Control.Monad.Trans (lift, liftIO)
 import Control.Monad.Trans.Maybe (MaybeT(..), runMaybeT)
@@ -84,7 +85,6 @@ handleRootForProvider :: ServerConfiguration -> ServerResources -> KnownOpenIdPr
 handleRootForProvider serverConfiguration serverResources provider = msum
     [ dir "login" $ handleLogin serverConfiguration serverResources provider
     , dir "callback" $ handleCallback serverConfiguration serverResources provider
-    , dir "logout" $ handleLogout serverConfiguration serverResources provider
     ]
 
 handleLogin :: ServerConfiguration -> ServerResources -> KnownOpenIdProvider -> ServerPart Response
@@ -95,11 +95,13 @@ handleLogin serverConfiguration serverResources knownProvider = do
     authenticationUrl <- liftIO $ OIDC.getAuthenticationRequestUrl discoveredProvider scopes Nothing []
     tempRedirect authenticationUrl $ toResponse ("" :: T.Text)
 
-handleLogout :: ServerConfiguration -> ServerResources -> KnownOpenIdProvider -> ServerPart Response
-handleLogout serverConfiguration serverResources knownProvider = do
+handleLogout :: ServerConfiguration -> ServerResources -> ServerPart ()
+handleLogout serverConfiguration serverResources = forM_ (knownProviders serverConfiguration) (handleLogoutForProvider serverConfiguration serverResources)
+
+handleLogoutForProvider :: ServerConfiguration -> ServerResources -> KnownOpenIdProvider -> ServerPart ()
+handleLogoutForProvider serverConfiguration serverResources knownProvider = do
     expireCookie (T.unpack $ providerIdentityTokenCookieName knownProvider)
     expireCookie (T.unpack $ providerUserInfoCookieName knownProvider)
-    redirectToCurrentRefererIfAllowed
 
 -- TODO: simplify these pattern matches using ExceptionT
 handleCallback :: ServerConfiguration -> ServerResources -> KnownOpenIdProvider -> ServerPart Response

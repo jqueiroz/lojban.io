@@ -3,6 +3,7 @@
 
 module Server.Authentication.Mock
 ( handleRoot
+, handleLogout
 , readUserIdentityFromCookies
 ) where
 
@@ -16,7 +17,6 @@ import Control.Monad.Trans.Maybe (MaybeT(..), runMaybeT)
 handleRoot :: ServerConfiguration -> ServerResources -> ServerPart Response
 handleRoot serverConfiguration serverResources = msum
     [ dir "login" $ handleLogin
-    , dir "logout" $ handleLogout
     ]
 
 signedInCookieName :: String
@@ -27,10 +27,9 @@ handleLogin = do
     addCookie Session $ mkCookie signedInCookieName "true"
     redirectToCurrentRefererIfAllowed
 
-handleLogout :: ServerPart Response
-handleLogout = do
+handleLogout :: ServerConfiguration -> ServerResources -> ServerPart ()
+handleLogout serverConfiguration serverResources = do
     expireCookie signedInCookieName
-    redirectToCurrentRefererIfAllowed
 
 readUserIdentityFromCookies :: ServerConfiguration -> ServerResources -> ServerPart (Maybe UserIdentity)
 readUserIdentityFromCookies serverConfiguration serverResources = runMaybeT $ do
