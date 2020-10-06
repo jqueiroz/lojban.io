@@ -11,6 +11,7 @@ module Server.Authentication.Utils
 
 import Happstack.Server
 import Data.List (isPrefixOf)
+import Control.Applicative (optional)
 import URI.ByteString (URI, parseURI, strictURIParserOptions)
 import qualified Data.Text as T
 import qualified Data.Text.Encoding as TE
@@ -71,10 +72,15 @@ saveReferer refererCookieName = do
 
 redirectToSavedRefererIfAllowed :: T.Text -> ServerPart Response
 redirectToSavedRefererIfAllowed refererCookieName = do
-    referer <- lookCookieValue (T.unpack refererCookieName)
-    if isAllowedReferer referer then
-        -- Redirect to referer
-        tempRedirect referer $ toResponse ("" :: T.Text)
-    else
-        -- Redirect the homepage
-        tempRedirect ("/" :: T.Text) $ toResponse ("" :: T.Text)
+    refererMaybe <- optional $ lookCookieValue (T.unpack refererCookieName)
+    case refererMaybe of
+        Nothing -> redirectToHomepage
+        Just referer ->
+            if isAllowedReferer referer then
+                -- Redirect to referer
+                tempRedirect referer $ toResponse ("" :: T.Text)
+            else
+                redirectToHomepage
+
+redirectToHomepage :: ServerPart Response
+redirectToHomepage = tempRedirect ("/" :: T.Text) $ toResponse ("" :: T.Text)
