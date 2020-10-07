@@ -189,7 +189,7 @@ getProviderCallbackUri knownProvider = getCallbackUri $ "/authentication/openid/
 discoverProvider :: ServerConfiguration -> ServerResources -> KnownOpenIdProvider -> ServerPart OIDC.OIDC
 discoverProvider serverConfiguration serverResources knownProvider = do
     let tlsManager = serverResourcesTlsManager serverResources
-    provider <- liftIO $ OIDC.discover "https://login.microsoftonline.com/consumers/v2.0" tlsManager
+    provider <- liftIO $ OIDC.discover (knownProviderDiscoveryUrl knownProvider) tlsManager
     let clientId = knownProviderClientId knownProvider
     let clientSecret = knownProviderClientSecret knownProvider
     callbackUri <- getProviderCallbackUri knownProvider
