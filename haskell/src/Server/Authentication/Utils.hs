@@ -19,6 +19,7 @@ import qualified Data.ByteString.Char8 as BSS8
 
 getCallbackUri :: T.Text -> ServerPart URI
 getCallbackUri callbackPath = do
+    -- TODO: allow list for hosts
     rq <- askRq
     case getHeader "host" rq of
         Nothing -> mempty
