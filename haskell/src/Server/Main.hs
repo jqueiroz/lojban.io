@@ -6,7 +6,7 @@ module Server.Main (runServer, acquireServerResources) where
 import Server.Core
 import Control.Monad (msum)
 import Control.Exception (SomeException, catch)
-import Data.Maybe (fromMaybe)
+import Data.Maybe (fromMaybe, isJust)
 import System.Environment (lookupEnv)
 import Happstack.Server
 import Happstack.Server.Compression (compressedResponseFilter)
@@ -86,7 +86,12 @@ readServerConfiguration = do
     redisHostname <- lookupStringEnvironmentVariable "LOJBANIOS_REDIS_HOSTNAME"
     openIdMicrosoftClientId <- lookupStringEnvironmentVariable "LOJBANIOS_OPENID_MICROSOFT_CLIENT_ID"
     openIdMicrosoftClientSecret <- lookupStringEnvironmentVariable "LOJBANIOS_OPENID_MICROSOFT_CLIENT_SECRET"
-    let identityProvider = case environmentType of
-            EnvironmentTypeProd -> IdentityProvider ("google" :: T.Text)
-            _ -> IdentityProvider ("mock" :: T.Text)
-    return $ ServerConfiguration environmentType identityProvider redisHostname openIdMicrosoftClientId openIdMicrosoftClientSecret
+    let identityProviders = concat
+            -- Mock
+            [ [IdentityProvider "mock" "mock" "/authentication/mock/login/" | environmentType == EnvironmentTypeDev]
+            -- Google
+            , [IdentityProvider "google" "Google" "/oauth2/google/login/"] -- TODO:only if the environment variables are set
+            -- Microsoft
+            , [(IdentityProvider "microsoft" "Microsoft" "/authentication/openid/microsoft/login/") | (isJust openIdMicrosoftClientId && isJust openIdMicrosoftClientSecret)]
+            ]
+    return $ ServerConfiguration environmentType identityProviders redisHostname openIdMicrosoftClientId openIdMicrosoftClientSecret
