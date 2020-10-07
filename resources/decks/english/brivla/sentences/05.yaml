@@ -170,7 +170,7 @@ bilga:
 
     # Sentence complexity: 3.086
     - lojban_sentences:
-        - do na bilga lo ka cusku fi mi fe lo cmene be ko'a
+        - do na bilga lo nu cusku fi mi fe lo cmene be ko'a
       translated_sentences:
         - You don't have to tell me his name.
 
@@ -182,19 +182,19 @@ bilga:
 
     # Sentence complexity: 4.213
     - lojban_sentences:
-        - do bilga lo ka sidju
+        - do bilga lo nu sidju
       translated_sentences:
         - You're required to help them.
 
     # Sentence complexity: 4.596
     - lojban_sentences:
-        - do bilga lo ka kansa mi
+        - do bilga lo nu kansa mi
       translated_sentences:
         - You must join me.
 
     # Sentence complexity: 4.646
     - lojban_sentences:
-        - do na bilga lo ka spuda lo preti
+        - do na bilga lo nu spuda lo preti
       translated_sentences:
         - You don't have to answer this question.
 
