@@ -181,13 +181,15 @@ displayTopbar serverConfiguration userIdentityMaybe topbarCategory = do
 
 displayUserProfile :: ServerConfiguration -> Maybe UserIdentity -> H.Html
 displayUserProfile serverConfiguration userIdentityMaybe = do
-    let identityProvider = identityProviderName $ serverConfigurationIdentityProvider serverConfiguration
     case userIdentityMaybe of
-        Nothing -> do
-            H.div B.! A.class_ "user-signin" $ do
-                H.a (H.toHtml ("sign in" :: String))
-                    B.! A.href (H.textValue $ "/oauth2/" `T.append` identityProvider `T.append` "/login")
-                    B.! A.title (H.stringValue "Sign in with Google")
+        Nothing ->
+            case (serverConfigurationIdentityProviders serverConfiguration) of
+                [] -> mempty
+                (identityProvidersHead : identityProvidersTail) -> do
+                    H.div B.! A.class_ "user-signin" $ do
+                        H.a (H.toHtml ("sign in" :: T.Text)) B.! A.class_ (H.textValue $ "provider-" `T.append` (identityProviderIdentifier identityProvidersHead))
+                            B.! A.href (H.textValue $ identityProviderLoginUrl identityProvidersHead)
+                            B.! A.title (H.textValue $ "Sign in with " `T.append` (identityProviderName identityProvidersHead))
         Just userIdentity -> do
             let pictureUrl = userPictureUrl userIdentity
             H.div B.! A.class_ "user-profile" $ do
