@@ -12,7 +12,7 @@ import Util (combineGenerators, combineGeneratorsUniformly, generatorFromSinglet
 
 -- | Translations for the first lesson.
 translations1 :: TranslationGenerator
-translations1 = combineGeneratorsUniformly [dunda, demonstrative, zdani] where
+translations1 = combineGeneratorsUniformly [dunda, demonstrative] where
     dunda = generatorFromList
         [ (["do dunda ti mi"], ["You give me this.", "You give us this."])
         , (["do dunda ta mi"], ["You give me that.", "You give us that."])
@@ -23,10 +23,6 @@ translations1 = combineGeneratorsUniformly [dunda, demonstrative, zdani] where
         [ (["ti pelxu"], ["This is yellow.", "These are yellow."])
         , (["ta pelxu"], ["That is yellow.", "Those are yellow."])
         , (["ta zdani"], ["That is a house.", "Those are houses."])
-        ]
-    zdani = generatorFromList
-        [ (["zdani mi"], ["I have a house.", "We have a house.", "We have houses."])
-        , (["zdani do"], ["You have a house.", "You have houses."])
         ]
 
 -- * Lesson 2: Basics 2
