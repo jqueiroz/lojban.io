@@ -191,3 +191,6 @@ curryUniformly f xs r0 =
         (p, r1) = random r0
         x = xs !! (p `mod` len)
     in f x
+
+isTextWhitespace :: T.Text -> Bool
+isTextWhitespace = T.null . T.strip
