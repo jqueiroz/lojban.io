@@ -188,7 +188,7 @@ generateSelbriIdentificationExercise :: SimpleBridiGenerator -> SimpleBridiDispl
 generateSelbriIdentificationExercise simpleBridiGenerator displayBridi r0 = SingleChoiceExercise title sentences correctAlternative incorrectAlternatives False where
     (bridi, r1) = simpleBridiGenerator r0
     correctAlternative = simpleBridiSelbri bridi
-    incorrectAlternatives = take 4 $ simpleBridiSumti bridi
+    incorrectAlternatives = take 4 . replace "" "zo'e" $ simpleBridiSumti bridi
     title = "Identify the <b>selbri</b>"
     (sentenceText, _) = displayBridi r1 bridi
     sentences = [ExerciseSentence True sentenceText]
