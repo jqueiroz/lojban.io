@@ -69,6 +69,10 @@ displayLessonHome serverConfiguration userIdentityMaybe topbarCategory course le
                                             H.span "If you believe you discovered an error, or if you have any criticism or suggestions, please consider "
                                             H.a B.! A.href (H.stringValue $ baseLessonUrl ++ "report") $ H.toHtml ("opening an issue" :: T.Text)
                                             H.span " in our GitHub repository."
+                                        H.p $ do
+                                            H.span "If you are interested, you may also edit this lesson directly. For more details, please refer to "
+                                            H.a B.! A.href (H.textValue $ "https://github.com/jqueiroz/lojban.io#improving-existing-lessons") $ H.toHtml ("Improving existing lessons" :: T.Text)
+                                            H.span "."
                     displayFooter
 
 displayLessonTabs :: Lesson -> H.Html
