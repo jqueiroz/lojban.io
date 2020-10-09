@@ -189,6 +189,16 @@ displayUserProfile serverConfiguration userIdentityMaybe = do
                 (identityProvidersHead : identityProvidersTail) -> do
                     H.div B.! A.class_ "user-signin" $ do
                         displayIdentityProviderSignInLink identityProvidersHead
+<<<<<<< HEAD
+                        unless (null identityProvidersTail) $ do
+                            H.input
+                                B.! A.id "signin-menu-input"
+                                B.! A.type_ "checkbox"
+                            H.label
+                                B.! A.for "signin-menu-input"
+                                B.! A.tabindex "0"
+                                B.! A.alt "Toggle sign-in menu" $ mempty
+=======
                         H.input
                             B.! A.id "signin-menu-input"
                             B.! A.type_ "checkbox"
@@ -198,6 +208,7 @@ displayUserProfile serverConfiguration userIdentityMaybe = do
                             B.! A.alt "Toggle sign-in menu"
                             B.! A.style (if null identityProvidersTail then "visibility: hidden;" else "") $ mempty
                         unless (null identityProvidersTail) $ do
+>>>>>>> 4c5adeb98ac34ad22ea1822c710246c226e97252
                             H.ul B.! A.class_ "signin-menu" $ do
                                 forM_ identityProvidersTail $ \identityProvider -> do
                                     H.li $ do
@@ -242,6 +253,8 @@ displayTopbarMenuItem selected text url = do
 
 displayFooter :: H.Html
 displayFooter = do
+    H.div B.! A.class_ "lesson-buttons" $ do
+        when (lessonSubpage /= LessonExercises) $ H.a B.! A.class_ (H.stringValue "button") B.! A.href (H.stringValue $ baseLessonUrl ++ "exercises") $ (H.toHtml ("Practice" :: String))
     H.div B.! A.class_ (H.textValue "footer") $ do
         H.div B.! A.class_ (H.textValue "links") $ do
             --H.a B.! A.href (H.textValue "/about") $ H.toHtml ("About" :: T.Text)
