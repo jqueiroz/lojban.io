@@ -96,7 +96,7 @@ translations3 =  combineGenerators [(1, translations3_nice), (10, translations3_
 --
 -- Defined separately so that they may be used in 'Translate without using "zo'e"' exercises.
 translations3_restricted :: TranslationGenerator
-translations3_restricted = combineGenerators [(2, talkingAbout), (1, gaveSomething)] where
+translations3_restricted = expandTranslationGenerator $ combineGenerators [(2, talkingAbout), (1, gaveSomething)] where
     talkingAbout = generatorFromList
         [ (["mi tavla fi mi", "mi tavla fi vo'a"], ["I was talking about myself.", "We were talking about ourselves.", "I will talk about myself."])
         , (["mi tavla fi do"], ["I was talking about you.", "We were talking about you.", "I am talking about you.", "We are talking about you.", "I will talk about you.", "We will talk about you."])
@@ -117,7 +117,7 @@ translations3_restricted = combineGenerators [(2, talkingAbout), (1, gaveSomethi
 --
 -- Defined separately so that they may be reused in the checkpoint lesson (Lesson 7).
 translations3_nice :: TranslationGenerator
-translations3_nice = combineGenerators $ [(2, translations3_restricted), (2, teaching)] ++ ((1,) <$> [hasHouse, niceGift, giftingAnimal, friends, pelxu, others]) where
+translations3_nice = expandTranslationGenerator $ combineGenerators $ [(2, translations3_restricted), (2, teaching)] ++ ((1,) <$> [hasHouse, niceGift, giftingAnimal, friends, pelxu, others]) where
     hasHouse = generatorFromList
         [ (["lo ctuca ku se zdani"], ["The instructor has a house."])
         , (["lo prenu ku se zdani"], ["The person has a house."])
@@ -422,7 +422,7 @@ translations5 = combineGenerators [(4, translations5_xu), (4, translations5_ma),
 --
 -- Defined separately so that they may be used in 'Translate without using "zo'e"' exercises.
 translations5_restricted_xu :: TranslationGenerator
-translations5_restricted_xu = combineGenerators [(2, talkingAbout), (1, gaveSomething), (4, writing), (2, know)] where
+translations5_restricted_xu = expandTranslationGenerator $ combineGenerators [(2, talkingAbout), (1, gaveSomething), (4, writing), (2, know)] where
     talkingAbout = generatorFromList
         [ (["xu do tavla fi do", "xu do tavla fi vo'a"], ["Are you talking about yourself?", "Were you talking about yourself?"])
         , (["xu do tavla fi mi"], ["Are you talking about me?", "Were you talking about me?"])
@@ -453,7 +453,7 @@ translations5_restricted_xu = combineGenerators [(2, talkingAbout), (1, gaveSome
 
 -- | Overall translations for the fourth lesson involving "xu".
 translations5_xu :: TranslationGenerator
-translations5_xu = combineGenerators $ [(3, translations5_restricted_xu), (3, writing), (2, know)] ++ ((1,) <$> [hasHouse, nice, talking, teaching, friends, others]) where
+translations5_xu = expandTranslationGenerator $ combineGenerators $ [(3, translations5_restricted_xu), (3, writing), (2, know)] ++ ((1,) <$> [hasHouse, nice, talking, teaching, friends, others]) where
     hasHouse = generatorFromList
         [ (["xu do se zdani"], ["Do you have a house?"])
         , (["xu lo prenu ku se zdani"], ["Does the person have a house?"])
