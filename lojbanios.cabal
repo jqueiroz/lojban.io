@@ -110,10 +110,11 @@ library
                      , Server.Logic.Decks
                      , Server.Logic.Redis
                      , Server.Main
-                     , Server.OAuth2.Main
-                     , Server.OAuth2.Google
-                     , Server.OAuth2.Mock
-                     , Server.OAuth2.Utils
+                     , Server.Authentication.Main
+                     , Server.Authentication.Google
+                     , Server.Authentication.OpenID
+                     , Server.Authentication.Mock
+                     , Server.Authentication.Utils
                      , Server.Util
                      , Server.Website.Main
                      , Server.Website.Views.Core

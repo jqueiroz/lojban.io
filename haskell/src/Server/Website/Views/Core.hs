@@ -22,6 +22,7 @@ module Server.Website.Views.Core
 import Core
 import Server.Core
 import Language.Lojban.Core
+import Control.Monad (unless, forM_)
 import qualified Data.Text as T
 import qualified Text.Blaze as B
 import qualified Text.Blaze.Html5 as H
@@ -181,13 +182,25 @@ displayTopbar serverConfiguration userIdentityMaybe topbarCategory = do
 
 displayUserProfile :: ServerConfiguration -> Maybe UserIdentity -> H.Html
 displayUserProfile serverConfiguration userIdentityMaybe = do
-    let identityProvider = identityProviderName $ serverConfigurationIdentityProvider serverConfiguration
     case userIdentityMaybe of
-        Nothing -> do
-            H.div B.! A.class_ "user-signin" $ do
-                H.a (H.toHtml ("sign in" :: String))
-                    B.! A.href (H.textValue $ "/oauth2/" `T.append` identityProvider `T.append` "/login")
-                    B.! A.title (H.stringValue "Sign in with Google")
+        Nothing ->
+            case (serverConfigurationIdentityProviders serverConfiguration) of
+                [] -> mempty
+                (identityProvidersHead : identityProvidersTail) -> do
+                    H.div B.! A.class_ "user-signin" $ do
+                        displayIdentityProviderSignInLink identityProvidersHead
+                        unless (null identityProvidersTail) $ do
+                            H.input
+                                B.! A.id "signin-menu-input"
+                                B.! A.type_ "checkbox"
+                            H.label
+                                B.! A.for "signin-menu-input"
+                                B.! A.tabindex "0"
+                                B.! A.alt "Toggle sign-in menu" $ mempty
+                            H.ul B.! A.class_ "signin-menu" $ do
+                                forM_ identityProvidersTail $ \identityProvider -> do
+                                    H.li $ do
+                                        displayIdentityProviderSignInLink identityProvider
         Just userIdentity -> do
             let pictureUrl = userPictureUrl userIdentity
             H.div B.! A.class_ "user-profile" $ do
@@ -198,11 +211,18 @@ displayUserProfile serverConfiguration userIdentityMaybe = do
                     B.! A.for "user-menu-input"
                     B.! A.tabindex "0"
                     B.! A.alt "Toggle user menu" $ do
-                        H.img B.! A.class_ "picture" B.! A.src (H.textValue pictureUrl)
+                        let finalPictureUrl = if (T.null pictureUrl) then "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y" else pictureUrl
+                        H.img B.! A.class_ "picture" B.! A.src (H.textValue finalPictureUrl)
                 H.ul B.! A.class_ "user-menu" $ do
                     H.li $ do
                         H.a (H.toHtml ("Sign out" :: T.Text))
-                            B.! A.href (H.textValue $ "/oauth2/" `T.append` identityProvider `T.append` "/logout")
+                            B.! A.href (H.textValue $ "/authentication/logout/")
+
+displayIdentityProviderSignInLink :: IdentityProvider -> H.Html
+displayIdentityProviderSignInLink identityProvider = do
+    H.a (H.toHtml ("sign in" :: T.Text)) B.! A.class_ (H.textValue $ "provider-" `T.append` (identityProviderIdentifier identityProvider))
+        B.! A.href (H.textValue $ identityProviderLoginUrl identityProvider)
+        B.! A.title (H.textValue $ "Sign in with " `T.append` (identityProviderName identityProvider))
 
 displayTopbarMenu :: TopbarCategory -> H.Html
 displayTopbarMenu topbarCategory = do

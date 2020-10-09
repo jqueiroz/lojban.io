@@ -18,7 +18,7 @@ import Control.Monad.Trans (liftIO)
 import System.Random (StdGen, mkStdGen, newStdGen)
 import Serializer (exerciseToJSON, validateExerciseAnswer)
 import Util (chooseItem, combineGenerators)
-import qualified Server.OAuth2.Main as OAuth2
+import qualified Server.Authentication.Main as Authentication
 import qualified Database.Redis as Redis
 import qualified Data.Text as T
 import qualified Data.Map as M
@@ -52,7 +52,7 @@ handleDeck serverConfiguration serverResources deckId =
 
 handleDeckRetrieve :: ServerConfiguration -> ServerResources -> Deck -> ServerPart Response
 handleDeckRetrieve serverConfiguration serverResources deck = do
-    identityMaybe <- OAuth2.readUserIdentityFromCookies serverConfiguration serverResources
+    identityMaybe <- Authentication.readUserIdentityFromCookies serverConfiguration serverResources
     let identifierMaybe = userIdentifier <$> identityMaybe
     deckPreferencesMaybe <- case identifierMaybe of
         Nothing -> return Nothing
@@ -71,7 +71,7 @@ handleDeckSetCardStatus serverConfiguration serverResources deck cardTitle = msu
 
 handleDeckSetCardStatus' :: ServerConfiguration -> ServerResources -> Deck -> T.Text -> CardStatus -> ServerPart Response
 handleDeckSetCardStatus' serverConfiguration serverResources deck cardTitle cardNewStatus = do
-    identityMaybe <- OAuth2.readUserIdentityFromCookies serverConfiguration serverResources
+    identityMaybe <- Authentication.readUserIdentityFromCookies serverConfiguration serverResources
     case identityMaybe of
         Nothing -> unauthorized . toResponse . A.encode $ ("You must be signed in." :: T.Text)
         Just identity -> do
@@ -82,7 +82,7 @@ handleDeckSetCardStatus' serverConfiguration serverResources deck cardTitle card
 
 handleDeckExercises :: ServerConfiguration -> ServerResources -> Deck -> Int -> ServerPart Response
 handleDeckExercises serverConfiguration serverResources deck exerciseId = do
-    identityMaybe <- OAuth2.readUserIdentityFromCookies serverConfiguration serverResources
+    identityMaybe <- Authentication.readUserIdentityFromCookies serverConfiguration serverResources
     case identityMaybe of
         Nothing -> unauthorized . toResponse . A.encode $ ("You must be signed in." :: T.Text)
         Just identity -> do

@@ -6,7 +6,7 @@ module Server.Main (runServer, acquireServerResources) where
 import Server.Core
 import Control.Monad (msum)
 import Control.Exception (SomeException, catch)
-import Data.Maybe (fromMaybe)
+import Data.Maybe (fromMaybe, isJust)
 import System.Environment (lookupEnv)
 import Happstack.Server
 import Happstack.Server.Compression (compressedResponseFilter)
@@ -16,7 +16,7 @@ import qualified Data.Text as T
 import qualified Database.Redis as Redis
 import qualified Server.Website.Main as Website
 import qualified Server.Api.Main as Api
-import qualified Server.OAuth2.Main as OAuth2
+import qualified Server.Authentication.Main as Authentication
 
 -- TODO: consider adding breadcrumbs (https://getbootstrap.com/docs/4.0/components/breadcrumb/)
 
@@ -37,7 +37,8 @@ handleRoot serverConfiguration serverResources = do
         , dir "documentation" $ serveDirectory EnableBrowsing [] "documentation"
         , dir "static" $ cacheControlForAssets $ serveDirectory EnableBrowsing [] "static"
         , dir "api" $ Api.handleRoot serverConfiguration serverResources
-        , dir "oauth2" $ OAuth2.handleRoot serverConfiguration serverResources
+        , dir "oauth2" $ Authentication.handleRoot serverConfiguration serverResources
+        , dir "authentication" $ Authentication.handleRoot serverConfiguration serverResources
         , dir "favicon.ico" $ cacheControlForAssets $ serveFile (asContentType "image/png") "static/images/favicon.png"
         , dir "manifest.webmanifest" $ cacheControlForAssets $ serveFile (asContentType "text/json") "static/pwa/manifest.webmanifest"
         , dir "pwabuilder-sw.js" $ cacheControlForAssets $ serveFile (asContentType "text/javascript") "static/pwa/pwabuilder-sw.js"
@@ -70,17 +71,27 @@ acquireServerResources serverConfiguration = do
         redisExceptionHandler :: SomeException -> IO Redis.Connection
         redisExceptionHandler ex = error $ "Connection to redis could not be established. If running locally, outside of Docker, please make sure to run './run-redis.sh'.\nException details: " ++ show ex
 
+lookupStringEnvironmentVariable :: String -> IO (Maybe String)
+lookupStringEnvironmentVariable environmentVariableName = lookupEnv environmentVariableName >>= \case
+    Nothing -> return Nothing
+    Just "" -> return Nothing
+    Just x -> return $ Just x
+
 readServerConfiguration :: IO ServerConfiguration
 readServerConfiguration = do
     environmentType <- lookupEnv "LOJBANIOS_ENVIRONMENT" >>= \case
         Just "prod" -> return EnvironmentTypeProd
         Just "dev" -> return EnvironmentTypeDev
         _ -> error "Error: incorrect or unspecified environment type"
-    redisHostname <- lookupEnv "LOJBANIOS_REDIS_HOSTNAME" >>= \case
-        Nothing -> return Nothing
-        Just "" -> return Nothing
-        Just x -> return $ Just x
-    let identityProvider = case environmentType of
-            EnvironmentTypeProd -> IdentityProvider ("google" :: T.Text)
-            _ -> IdentityProvider ("mock" :: T.Text)
-    return $ ServerConfiguration environmentType identityProvider redisHostname
+    redisHostname <- lookupStringEnvironmentVariable "LOJBANIOS_REDIS_HOSTNAME"
+    openIdMicrosoftClientId <- lookupStringEnvironmentVariable "LOJBANIOS_OPENID_MICROSOFT_CLIENT_ID"
+    openIdMicrosoftClientSecret <- lookupStringEnvironmentVariable "LOJBANIOS_OPENID_MICROSOFT_CLIENT_SECRET"
+    let identityProviders = concat
+            -- Mock
+            [ [IdentityProvider "mock" "mock" "/authentication/mock/login/" | environmentType == EnvironmentTypeDev]
+            -- Google
+            , [IdentityProvider "google" "Google" "/oauth2/google/login/"] -- TODO:only if the environment variables are set
+            -- Microsoft
+            , [(IdentityProvider "microsoft" "Microsoft" "/authentication/openid/microsoft/login/") | (isJust openIdMicrosoftClientId && isJust openIdMicrosoftClientSecret)]
+            ]
+    return $ ServerConfiguration environmentType identityProviders redisHostname openIdMicrosoftClientId openIdMicrosoftClientSecret

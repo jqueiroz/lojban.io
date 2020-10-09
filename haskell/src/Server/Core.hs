@@ -13,13 +13,17 @@ data EnvironmentType = EnvironmentTypeDev | EnvironmentTypeProd
     deriving (Eq, Show)
 
 data IdentityProvider = IdentityProvider
-    { identityProviderName :: T.Text
+    { identityProviderIdentifier :: T.Text
+    , identityProviderName :: T.Text
+    , identityProviderLoginUrl :: T.Text
     }
 
 data ServerConfiguration = ServerConfiguration
     { serverConfigurationEnvironmentType :: EnvironmentType
-    , serverConfigurationIdentityProvider :: IdentityProvider
+    , serverConfigurationIdentityProviders :: [IdentityProvider]
     , serverConfigurationRedisHostname :: Maybe String
+    , serverConfigurationOpenIdMicrosoftClientId :: Maybe String
+    , serverConfigurationOpenIdMicrosoftClientSecret :: Maybe String
     }
 
 data ServerResources = ServerResources

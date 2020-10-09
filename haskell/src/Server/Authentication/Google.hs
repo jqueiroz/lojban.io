@@ -4,12 +4,13 @@
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE QuasiQuotes #-}
 
-module Server.OAuth2.Google
+module Server.Authentication.Google
 ( handleRoot
+, handleLogout
 , readUserIdentityFromCookies
 ) where
 
-import Server.OAuth2.Utils (isAllowedReferer, redirectToCurrentRefererIfAllowed)
+import Server.Authentication.Utils (getCallbackUri, redirectToCurrentRefererIfAllowed, saveReferer, redirectToSavedRefererIfAllowed)
 import GHC.Generics
 import Server.Core
 import Happstack.Server
@@ -51,7 +52,7 @@ data UserInfo = UserInfo
 instance A.FromJSON UserInfo where
     parseJSON = A.genericParseJSON A.defaultOptions
 
-refererCookieName :: String
+refererCookieName :: T.Text
 refererCookieName = "google_referer"
 
 identityTokenCookieName :: String
@@ -103,45 +104,20 @@ extractClaims serverConfiguration serverResources identityTokenText = do
 handleRoot :: ServerConfiguration -> ServerResources -> ServerPart Response
 handleRoot serverConfiguration serverResources = msum
     [ dir "login" $ handleLogin
-    , dir "logout" $ handleLogout
     , dir "callback" $ handleCallback serverConfiguration serverResources
     ]
 
-saveReferer :: ServerPart ()
-saveReferer = do
-    rq <- askRq
-    let refererMaybe = do
-            originalReferer <- BSS8.unpack <$> getHeader "Referer" rq
-            if isAllowedReferer originalReferer then
-                return originalReferer
-            else
-                Nothing
-    case refererMaybe of
-        Just referer -> addCookie Session $ mkCookie refererCookieName referer
-        Nothing -> expireCookie refererCookieName
-    return ()
-
-redirectToSavedReferer :: ServerPart Response
-redirectToSavedReferer = do
-    referer <- lookCookieValue refererCookieName
-    if isAllowedReferer referer then
-        -- Redirect to referer
-        tempRedirect referer $ toResponse ("" :: T.Text)
-    else
-        -- Redirect the homepage
-        tempRedirect ("/" :: T.Text) $ toResponse ("" :: T.Text)
-
 handleLogin :: ServerPart Response
 handleLogin = do
-    saveReferer
+    saveReferer refererCookieName
     authorizationUrl <- getAuthorizationUrl
     tempRedirect authorizationUrl $ toResponse ("" :: T.Text)
 
-handleLogout :: ServerPart Response
-handleLogout = do
+handleLogout :: ServerConfiguration -> ServerResources -> ServerPart ()
+handleLogout serverConfiguration serverResources = do
     expireCookie identityTokenCookieName
     expireCookie userInfoCookieName
-    redirectToCurrentRefererIfAllowed
+    expireCookie (T.unpack refererCookieName)
 
 handleCallback :: ServerConfiguration -> ServerResources -> ServerPart Response
 handleCallback serverConfiguration serverResources = do
@@ -181,7 +157,7 @@ handleCallback serverConfiguration serverResources = do
                                         , mkCookie userInfoCookieName $ T.unpack . encodeUserInfoText $ userInfoText
                                         ]
                                     -- Redirect user back to referer
-                                    redirectToSavedReferer
+                                    redirectToSavedRefererIfAllowed refererCookieName
 
 fetchUserInfo :: ServerConfiguration -> ServerResources -> OA2.AccessToken -> IO T.Text
 fetchUserInfo serverConfiguration serverResources accessToken = do
@@ -202,7 +178,7 @@ getOAuth2Config = do
     clientId <- liftIO $ getEnv "LOJBANIOS_OAUTH2_GOOGLE_CLIENT_ID"
     clientSecret <- liftIO $ getEnv "LOJBANIOS_OAUTH2_GOOGLE_CLIENT_SECRET"
     let defaultCallbackUri = [uri|https://lojban.io/oauth2/google/callback|]
-    callbackUri <- msum [ getCallbackUri, return defaultCallbackUri ]
+    callbackUri <- msum [ getCallbackUri "/oauth2/google/callback", return defaultCallbackUri ]
     return $ OA2.OAuth2
         { OA2.oauthClientId = T.pack clientId
         , OA2.oauthClientSecret = T.pack clientSecret
@@ -210,18 +186,6 @@ getOAuth2Config = do
         , OA2.oauthOAuthorizeEndpoint = [uri|https://accounts.google.com/o/oauth2/auth|]
         , OA2.oauthAccessTokenEndpoint = [uri|https://www.googleapis.com/oauth2/v3/token|]
         }
-
-getCallbackUri :: ServerPart URI
-getCallbackUri = do
-    rq <- askRq
-    case getHeader "host" rq of
-        Nothing -> mempty
-        Just rawHost -> do
-            let host = TE.decodeUtf8 rawHost
-            let scheme = if (T.takeWhile (/= ':') host) `elem` ["localhost", "127.0.0.1"] then "http" else "https"
-            case parseURI strictURIParserOptions $ TE.encodeUtf8 $ T.concat [scheme, "://", host, "/oauth2/google/callback"] of
-                Left _ -> mempty
-                Right parsedURI -> return parsedURI
 
 getAuthorizationUrl :: ServerPart T.Text
 getAuthorizationUrl = do
