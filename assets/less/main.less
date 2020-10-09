@@ -109,13 +109,14 @@ h6 {
         }
     }
 
+    @picture-size: 2.5em;
+
     .user-signin {
         position: absolute;
         right: 0;
         display: inline-block;
 
         a {
-            margin-right: 4em;
             font-family: "Open Sans";
             font-weight: bold;
             font-size: 1.2em;
@@ -134,19 +135,29 @@ h6 {
             width: 0.9em;
             height: 0.9em;
 
-            /* Image: Google logo */
+            /* Image: provider logo */
             vertical-align: middle;
             content: "";
         }
 
         a.provider-google:before {
-            background: url(https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg)
+            background: url(https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg);
+            background-size: 100%;
+        }
+
+        a.provider-microsoft:before {
+            background: url(https://upload.wikimedia.org/wikipedia/commons/9/98/Microsoft_logo.jpg);
+            background-size: 100%;
+        }
+
+        label {
+            margin-right: 4em;
+            padding: 0;
+            cursor: pointer;
         }
     }
 
     .user-profile {
-        @picture-size: 2.5em;
-
         position: absolute;
         right: 0;
         display: inline-block;
@@ -161,7 +172,9 @@ h6 {
             border-radius: 50%;
             cursor: pointer;
         }
+    }
 
+    .user-profile, .user-signin {
         input {
             display: none;
         }
@@ -188,21 +201,59 @@ h6 {
             cursor: pointer;
         }
 
-        ul.user-menu {
-            /* Position */
+        ul {
             display: inline-block;
             position: absolute;
-            width: calc(12em - 0.5em);
-            right: 0;
-            top: 3em;
 
             a {
-                /* We need to ensure that the "sign out" link remains visible for a while leaving the user menu label, so that it can get focused 
-                   Otherwise focus will go directly to the next element, making the link inaccessible by tab navigation.
+                /* We need to ensure that the links in the menu remain visible for a while leaving the menu label, so that they can get focused.
+                   Otherwise focus will go directly to the next element, making the menu links inaccessible by tab navigation.
                  */
                 visibility: hidden;
                 transition: visibility 50ms;
             }
+        }
+
+        ul.signin-menu {
+            /* Position */
+            width: calc(12em - 0.5em);
+            right: 0;
+            top: 3em;
+            z-index: -1;
+
+            /* List */
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            font-size: 0.7em;
+
+            li:first-child {
+                position: relative;
+                top: 1em;
+            }
+
+            li {
+                position: relative;
+                width: 15em;
+            }
+
+            a {
+                background-color: #fff;
+                width: 12em;
+                box-sizing: border-box;
+                padding: 0.7em 2em;
+                /*border: solid 0.15em #999;*/
+                border: solid 0.10em #ccc;
+                box-shadow: 0 2px 4px #ccc;
+                /*border-radius: 0.5em;*/
+            }
+        }
+
+        ul.user-menu {
+            /* Position */
+            width: calc(12em - 0.5em);
+            right: 0;
+            top: 3em;
 
             /* List */
             list-style: none;
@@ -230,7 +281,7 @@ h6 {
             }
         }
 
-        input:checked ~ .user-menu a, label:hover ~ .user-menu a, label:focus ~ .user-menu a, .user-menu:hover a, ul.user-menu:focus a, ul.user-menu a:hover, ul.user-menu a:focus {
+        input:checked ~ ul a, label:hover ~ ul a, label:focus ~ ul a, ul:hover a, ul:focus a, ul a:hover, ul a:focus, ul a:hover ~ a, ul a:focus ~ a {
             visibility: visible;
         }
     }
