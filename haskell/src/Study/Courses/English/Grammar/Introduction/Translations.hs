@@ -100,12 +100,12 @@ translations3_restricted = combineGenerators [(2, talkingAbout), (1, gaveSomethi
     talkingAbout = generatorFromList
         [ (["mi tavla fi mi", "mi tavla fi vo'a"], ["I was talking about myself.", "We were talking about ourselves.", "I will talk about myself."])
         , (["mi tavla fi do"], ["I was talking about you.", "We were talking about you.", "I am talking about you.", "We are talking about you.", "I will talk about you.", "We will talk about you."])
-        , (["tavla fi mi"], ["Somebody was talking about me.", "Somebody was talking about us."])
-        , (["tavla fi do"], ["Somebody was talking about you."])
+        , (["(|lo prenu ku) tavla fi mi"], ["Somebody was talking about me.", "Somebody was talking about us."])
+        , (["(|lo prenu ku) tavla fi do"], ["Somebody was talking about you."])
         , (["mi tavla fi lo mlatu ku"], ["I was talking about the cat.", "I was talking about the cats.", "I was talking about cats", "I am talking about the cat.", "I am talking about the cats.", "I am talking about cats."])
-        , (["tavla fi lo mlatu ku"], ["Somebody was talking about the cat.", "Somebody was talking about the cats.", "Somebody was talking about cats."])
+        , (["(|lo prenu ku) tavla fi lo mlatu ku"], ["Somebody was talking about the cat.", "Somebody was talking about the cats.", "Somebody was talking about cats."])
         , (["mi tavla fi lo gerku ku"], ["I was talking about the dog.", "I was talking about the dogs.", "I was talking about dogs.", "I am talking about the dog.", "I am talking about the dogs.", "I am talking about dogs."])
-        , (["tavla fi lo gerku ku"], ["Somebody was talking about the dog.", "Somebody was talking about the dogs.", "Somebody was talking about dogs."])
+        , (["(|lo prenu ku) tavla fi lo gerku ku"], ["Somebody was talking about the dog.", "Somebody was talking about the dogs.", "Somebody was talking about dogs."])
         , (["mi tavla fi lo se dunda ku"], ["I was talking about the gift.", "We were talking about the gift.", "I am talking about the gift.", "We are talking about the gift."])
         ]
     gaveSomething = generatorFromList
@@ -140,15 +140,15 @@ translations3_nice = combineGenerators $ [(2, translations3_restricted), (2, tea
         -- mlatu
         [ (["mi dunda lo mlatu ku lo pendo ku"], ["I gave the cat to a friend.", "I gave the cats to a friend."])
         , (["mi te dunda lo mlatu ku"], ["I was given a cat.", "We were given a cat."])
-        , (["dunda lo mlatu ku lo ctuca ku"], ["Somebody gave a cat to the instructor", "Somebody gave the cat to the instructor.", "Somebody gave the cats to the instructor."])
+        , (["(|lo prenu ku) dunda lo mlatu ku lo ctuca ku"], ["Somebody gave a cat to the instructor", "Somebody gave the cat to the instructor.", "Somebody gave the cats to the instructor."])
         , (["lo ctuca ku dunda lo mlatu ku mi"], ["The instructor gave me a cat.", "The instructor gave me the cat.", "The instructor gave me the cats.", "The instructor gave us a cat.", "The instructor gave us the cat.", "The instructor gave us the cats."])
-        , (["dunda lo mlatu ku mi"], ["Somebody gave me a cat.", "Somebody gave me the cat.", "Somebody gave me the cats.", "Somebody gave us a cat.", "Someboy gave us the cat.", "Somebody gave us the cats."])
+        , (["(|lo prenu ku) dunda lo mlatu ku mi"], ["Somebody gave me a cat.", "Somebody gave me the cat.", "Somebody gave me the cats.", "Somebody gave us a cat.", "Someboy gave us the cat.", "Somebody gave us the cats."])
         -- gerku
         , (["mi dunda lo gerku ku lo pendo ku"], ["I gave the dog to a friend.", "I gave the dogs to a friend."])
         , (["mi te dunda lo gerku ku"], ["I was given a dog.", "We were given a dog."])
-        , (["dunda lo gerku ku lo ctuca ku"], ["Somebody gave a dog to the instructor", "Somebody gave the dog to the instructor.", "Somebody gave the dogs to the instructor."])
+        , (["(|lo prenu ku) dunda lo gerku ku lo ctuca ku"], ["Somebody gave a dog to the instructor", "Somebody gave the dog to the instructor.", "Somebody gave the dogs to the instructor."])
         , (["lo ctuca ku dunda lo gerku ku mi"], ["The instructor gave me a dog.", "The instructor gave me the dog.", "The instructor gave me the dogs.", "The instructor gave us a dog.", "The instructor gave us the dog.", "The instructor gave us the dogs."])
-        , (["dunda lo gerku ku mi"], ["Somebody gave me a dog.", "Somebody gave me the dog.", "Somebody gave me the dogs.", "Somebody gave us a dog.", "Someboy gave us the dog.", "Somebody gave us the dogs."])
+        , (["(|lo prenu ku) dunda lo gerku ku mi"], ["Somebody gave me a dog.", "Somebody gave me the dog.", "Somebody gave me the dogs.", "Somebody gave us a dog.", "Someboy gave us the dog.", "Somebody gave us the dogs."])
         ]
     teaching = generatorFromList
         [ (["mi ctuca lo mlatu ku"], ["I am teaching the cat.", "I am teaching the cats.", "I taught the cat.", "I taught the cats.", "We are teaching the cat.", "We are teaching the cats."])
@@ -156,8 +156,8 @@ translations3_nice = combineGenerators $ [(2, translations3_restricted), (2, tea
         , (["mi ctuca do"], ["I will teach you.", "We will teach you.", "I taught you.", "We taught you."])
         , (["do ctuca mi"], ["You will teach me.", "You will teach us.", "You taught me.", "You taught us."])
         , (["mi ctuca mi", "mi ctuca vo'a"], ["I taught myself."])
-        , (["ctuca mi"], ["Somebody taught me.", "Somebody taught us."])
-        , (["ctuca do"], ["Somebody taught you."])
+        , (["(|lo prenu ku) ctuca mi"], ["Somebody taught me.", "Somebody taught us."])
+        , (["(|lo prenu ku) ctuca do"], ["Somebody taught you."])
         ]
     friends = generatorFromList
         [ (["lo tavla ku pendo mi", "lo cusku ku pendo mi"], ["The speaker is my friend.", "The speakers are my friends."])
@@ -426,13 +426,13 @@ translations5_restricted_xu = combineGenerators [(2, talkingAbout), (1, gaveSome
     talkingAbout = generatorFromList
         [ (["xu do tavla fi do", "xu do tavla fi vo'a"], ["Are you talking about yourself?", "Were you talking about yourself?"])
         , (["xu do tavla fi mi"], ["Are you talking about me?", "Were you talking about me?"])
-        , (["xu tavla fi mi"], ["Was somebody talking about me?"])
+        , (["xu (|lo prenu ku) tavla fi mi"], ["Was somebody talking about me?"])
         , (["xu do tavla fi lo se dunda ku"], ["Are you talking about the gift?", "Did you talk about the gift?"])
         , (["xu do tavla fi lo mlatu ku"], ["Were you talking about the cat?", "Were you talking about the cats?", "Were you talking about cats?"])
         , (["xu do tavla fi lo gerku ku"], ["Were you talking about the dog?", "Were you talking about the dogs?", "Were you talking about dogs?"])
-        , (["xu tavla fi lo se dunda ku"], ["Did somebody talk about the gift?"])
-        , (["xu tavla do lo mlatu ku"], ["Did somebody talk to you about the cat?", "Did somebody talk to you about the cats?"])
-        , (["xu tavla do lo gerku ku"], ["Did somebody talk to you about the dog?", "Did somebody talk to you about the dogs?"])
+        , (["xu (|lo prenu ku) tavla fi lo se dunda ku"], ["Did somebody talk about the gift?"])
+        , (["xu (|lo prenu ku) tavla do lo mlatu ku"], ["Did somebody talk to you about the cat?", "Did somebody talk to you about the cats?"])
+        , (["xu (|lo prenu ku) tavla do lo gerku ku"], ["Did somebody talk to you about the dog?", "Did somebody talk to you about the dogs?"])
         ]
     gaveSomething = generatorFromList
         [ (["xu do dunda fi mi"], ["Did you give me something?", "Are you going to give me something?"])
@@ -441,8 +441,8 @@ translations5_restricted_xu = combineGenerators [(2, talkingAbout), (1, gaveSome
     writing = generatorFromList
         [ (["xu do ciska fi ti"], ["Did you write here?"])
         , (["xu do ciska fi ta"], ["Did you write there?"])
-        , (["xu ciska fi ti"], ["Did somebody write here?"])
-        , (["xu ciska fi ta"], ["Did somebody write there?"])
+        , (["xu (|lo prenu ku) ciska fi ti"], ["Did somebody write here?"])
+        , (["xu (|lo prenu ku) ciska fi ta"], ["Did somebody write there?"])
         , (["xu do ciska fo ti"], ["Do you write using this?", "Did you write something using this?"])
         , (["xu do ciska fo ta"], ["Do you write using that?", "Did you write something using that?"])
         ]
@@ -488,7 +488,7 @@ translations5_xu = combineGenerators $ [(3, translations5_restricted_xu), (3, wr
         , (["xu do ctuca lo gerku ku"], ["Are you teaching the dog?", "Did you teach the dog?"])
         , (["xu do ctuca mi"], ["Are you going to teach me?"])
         , (["xu do ctuca do", "xu do ctuca vo'a"], ["Did you teach yourself?"])
-        , (["xu ctuca do"], ["Did somebody teach you?"])
+        , (["xu (|lo prenu ku) ctuca do"], ["Did somebody teach you?"])
         ]
     friends = generatorFromList
         [ (["xu do pendo mi"], ["Are you my friend?"])
@@ -968,9 +968,9 @@ translations7_restricted = expandTranslationGenerator $ combineGenerators [(2, h
         mlatu = generatorFromList
             [ (["mi dunda lo mlatu lo pendo"], ["I gave the cat to a friend.", "I gave the cats to a friend."])
             , (["mi te dunda lo mlatu"], ["I was given a cat.", "We were given a cat."])
-            , (["dunda lo mlatu lo ctuca"], ["Somebody gave a cat to the instructor", "Somebody gave the cat to the instructor.", "Somebody gave the cats to the instructor."])
+            , (["(|lo prenu cu) dunda lo mlatu lo ctuca"], ["Somebody gave a cat to the instructor", "Somebody gave the cat to the instructor.", "Somebody gave the cats to the instructor."])
             , (["lo ctuca cu dunda lo mlatu mi"], ["The instructor gave me a cat.", "The instructor gave me the cat.", "The instructor gave me the cats.", "The instructor gave us a cat.", "The instructor gave us the cat.", "The instructor gave us the cats."])
-            , (["dunda lo mlatu mi"], ["Somebody gave me a cat.", "Somebody gave me the cat.", "Somebody gave me the cats.", "Somebody gave us a cat.", "Someboy gave us the cat.", "Somebody gave us the cats."])
+            , (["(|lo prenu cu) dunda lo mlatu mi"], ["Somebody gave me a cat.", "Somebody gave me the cat.", "Somebody gave me the cats.", "Somebody gave us a cat.", "Someboy gave us the cat.", "Somebody gave us the cats."])
             , (["ma te dunda lo mlatu"], ["Who was given a cat?"])
             , (["do dunda lo mlatu ma"], ["To whom did you give the cat?", "To whom did you give the cats?"])
             , (["ma dunda lo mlatu lo ctuca"], ["Who gave the cat to the instructor?"])
@@ -981,9 +981,9 @@ translations7_restricted = expandTranslationGenerator $ combineGenerators [(2, h
         gerku = generatorFromList
             [ (["mi dunda lo gerku lo pendo"], ["I gave the dog to a friend.", "I gave the dogs to a friend."])
             , (["mi te dunda lo gerku"], ["I was given a dog.", "We were given a dog."])
-            , (["dunda lo gerku lo ctuca"], ["Somebody gave a dog to the instructor", "Somebody gave the dog to the instructor.", "Somebody gave the dogs to the instructor."])
+            , (["(|lo prenu cu) dunda lo gerku lo ctuca"], ["Somebody gave a dog to the instructor", "Somebody gave the dog to the instructor.", "Somebody gave the dogs to the instructor."])
             , (["lo ctuca cu dunda lo gerku mi"], ["The instructor gave me a dog.", "The instructor gave me the dog.", "The instructor gave me the dogs.", "The instructor gave us a dog.", "The instructor gave us the dog.", "The instructor gave us the dogs."])
-            , (["dunda lo gerku mi"], ["Somebody gave me a dog.", "Somebody gave me the dog.", "Somebody gave me the dogs.", "Somebody gave us a dog.", "Someboy gave us the dog.", "Somebody gave us the dogs."])
+            , (["(|lo prenu cu) dunda lo gerku mi"], ["Somebody gave me a dog.", "Somebody gave me the dog.", "Somebody gave me the dogs.", "Somebody gave us a dog.", "Someboy gave us the dog.", "Somebody gave us the dogs."])
             , (["ma te dunda lo gerku"], ["Who was given a dog?"])
             , (["do dunda lo gerku ma"], ["To whom did you give the dog?", "To whom did you give the dogs?"])
             , (["ma dunda lo gerku lo ctuca"], ["Who gave the dog to the instructor?"])
