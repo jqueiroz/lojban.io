@@ -189,14 +189,15 @@ displayUserProfile serverConfiguration userIdentityMaybe = do
                 (identityProvidersHead : identityProvidersTail) -> do
                     H.div B.! A.class_ "user-signin" $ do
                         displayIdentityProviderSignInLink identityProvidersHead
+                        H.input
+                            B.! A.id "signin-menu-input"
+                            B.! A.type_ "checkbox"
+                        H.label
+                            B.! A.for "signin-menu-input"
+                            B.! A.tabindex "0"
+                            B.! A.alt "Toggle sign-in menu"
+                            B.! A.style (if null identityProvidersTail then "visibility: hidden;" else "") $ mempty
                         unless (null identityProvidersTail) $ do
-                            H.input
-                                B.! A.id "signin-menu-input"
-                                B.! A.type_ "checkbox"
-                            H.label
-                                B.! A.for "signin-menu-input"
-                                B.! A.tabindex "0"
-                                B.! A.alt "Toggle sign-in menu" $ mempty
                             H.ul B.! A.class_ "signin-menu" $ do
                                 forM_ identityProvidersTail $ \identityProvider -> do
                                     H.li $ do
