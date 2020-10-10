@@ -517,7 +517,7 @@ translations5_xu = expandTranslationGenerator $ combineGenerators $ [(3, transla
 translations5_restricted_ma :: TranslationGenerator
 translations5_restricted_ma = combineGenerators [(2, talkingAbout), (1, gaveSomething), (4, writing), (2, know)] where
     talkingAbout = generatorFromList
-        [ (["ma tavla fi mi"], ["Who is talking about me?", "Who is talking about us?", "Who was talking about me?", "Who was walking about us?"])
+        [ (["ma tavla fi mi"], ["Who is talking about me?", "Who is talking about us?", "Who was talking about me?", "Who was talking about us?"])
         , (["ma tavla fi do"], ["Who is talking about you?", "Who was talking about you?"])
         , (["ma tavla fi lo mlatu ku"], ["Who is talking about the cat?"])
         , (["ma tavla fi lo gerku ku"], ["Who is talking about the dog?"])
