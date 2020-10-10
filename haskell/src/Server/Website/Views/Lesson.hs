@@ -73,8 +73,8 @@ displayLessonHome serverConfiguration userIdentityMaybe topbarCategory course le
                                             H.span "If you are interested, you may also edit this lesson directly. For more details, please refer to "
                                             H.a B.! A.href (H.textValue $ "https://github.com/jqueiroz/lojban.io#improving-existing-lessons") $ H.toHtml ("Improving existing lessons" :: T.Text)
                                             H.span "."
-                        H.div B.! A.class_ "lesson-footer-buttons" $ do
-                            H.a B.! A.class_ (H.stringValue "button") B.! A.href (H.stringValue $ baseLessonUrl ++ "exercises") $ (H.toHtml ("Practice" :: String))
+                            H.div B.! A.class_ "lesson-footer-buttons" $ do
+                                H.a B.! A.class_ (H.stringValue "button") B.! A.href (H.stringValue $ baseLessonUrl ++ "exercises") $ (H.toHtml ("Practice" :: String))
                     displayFooter
 
 displayLessonTabs :: Lesson -> H.Html
