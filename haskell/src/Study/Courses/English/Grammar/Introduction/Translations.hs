@@ -955,7 +955,7 @@ translations7_restricted = expandTranslationGenerator $ combineGenerators [(2, h
             , (["xu do nelci lo se dunda"], ["Did you like the gift?"])
             , (["xu lo te dunda cu nelci lo se dunda"], ["Did the recipient like the gift?"])
             , (["xu lo ctuca cu nelci lo se dunda"], ["Did the instructor like the gift?"])
-            , (["xu do nelci lo ctuca ku"], ["Did you like the instructor?"])
+            , (["xu do nelci lo ctuca"], ["Did you like the instructor?"])
             , (["ma nelci lo se dunda"], ["Who liked the gift?", "Who likes the gift?"])
             , (["ma nelci lo mlatu"], ["Who likes cats?", "Who likes the cat?"])
             , (["ma nelci lo gerku"], ["Who likes dogs?", "Who likes the dog?"])
