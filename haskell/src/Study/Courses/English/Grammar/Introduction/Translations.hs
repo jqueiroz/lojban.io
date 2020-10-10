@@ -503,9 +503,9 @@ translations5_xu = expandTranslationGenerator $ combineGenerators $ [(3, transla
         , (["xu do ciska ta"], ["Did you write that?"])
         ]
     know = generatorFromList
-        [ (["xu do djuno lo se ciska ku"], ["Did you know that what was written is true?"]) -- probably not okay (du'u vs sedu'u)
-        , (["xu do djuno lo te ctuca ku"], ["Did you know that what was taught is true?"]) -- probably not okay (du'u vs sedu'u)
-        , (["xu do djuno"], ["Did you know?"])
+        [ (["xu do djuno"], ["Did you know?"])
+        --, (["xu do djuno lo se ciska ku"], ["Did you know that what was written is true?"]) -- bad sentence
+        --, (["xu do djuno lo te ctuca ku"], ["Did you know that what was taught is true?"]) -- bad sentence
         ]
     others = generatorFromList
         [ (["xu do nelci lo xe ctuca ku"], ["Do you like the teaching method?"])
