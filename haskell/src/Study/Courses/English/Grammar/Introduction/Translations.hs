@@ -285,13 +285,11 @@ translations4_expressions = expandTranslationGenerator $ combineGeneratorsUnifor
         , (["lo melbi ctuca ku"], ["The beautiful teacher."])
         , (["lo melbi gerku ku"], ["The beautiful dog."])
         , (["lo melbi mlatu ku"], ["The beautiful cat."])
-        , (["lo melbi skami ku"], ["The beautiful computer."])
         , (["lo melbi plise ku"], ["The beautiful apple."])
         ]
     others = generatorFromList
         [ (["lo nupre se dunda ku"], ["The promised gift."])
         , (["lo gerku zdani ku"], ["The dog house."])
-        , (["lo tavla skami ku"], ["The talking computer."])
         , (["lo tavla gerku ku"], ["The talking dog."])
         , (["lo tavla mlatu ku"], ["The talking cat."])
         ]
