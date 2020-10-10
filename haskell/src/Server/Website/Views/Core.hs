@@ -242,9 +242,6 @@ displayTopbarMenuItem selected text url = do
 
 displayFooter :: H.Html
 displayFooter = do
-    H.div B.! A.class_ "lesson-buttons" $ do
-        when (lessonSubpage /= LessonExercises) $ H.a B.! A.class_ (H.stringValue "button") B.! A.href (H.stringValue $ baseLessonUrl ++ "exercises") $ (H.toHtml ("Practice" :: String))
-
     H.div B.! A.class_ (H.textValue "footer") $ do
         H.div B.! A.class_ (H.textValue "links") $ do
             --H.a B.! A.href (H.textValue "/about") $ H.toHtml ("About" :: T.Text)
