@@ -459,7 +459,7 @@ translations5_xu = expandTranslationGenerator $ combineGenerators $ [(3, transla
         ]
     nice = combineGeneratorsUniformly [beautiful, like] where
         beautiful = generatorFromList
-            [ (["xu lo se dunda ku melbi do"], ["Is the gift beautiful to you?", "Are the gifts beatiful to you?"])
+            [ (["xu lo se dunda ku melbi do"], ["Is the gift beautiful to you?", "Are the gifts beautiful to you?"])
             , (["xu lo se dunda ku melbi"], ["Is the gift beautiful?", "Are the gifts beautiful?"])
             , (["xu lo ctuca ku melbi do"], ["Is the instructor beautiful to you?"])
             , (["xu lo ctuca ku melbi"], ["Is the instructor beautiful?"])
@@ -933,7 +933,7 @@ translations7_restricted = expandTranslationGenerator $ combineGenerators [(2, h
         beautiful = generatorFromList
             [ (["lo se dunda cu melbi mi"], ["The gift is beautiful to me.", "The gifts are beautiful to me."])
             , (["lo se dunda cu melbi"], ["The gift is beautiful.", "The gifts are beautiful."])
-            , (["xu lo se dunda cu melbi do"], ["Is the gift beautiful to you?", "Are the gifts beatiful to you?"])
+            , (["xu lo se dunda cu melbi do"], ["Is the gift beautiful to you?", "Are the gifts beautiful to you?"])
             , (["xu lo se dunda cu melbi"], ["Is the gift beautiful?", "Are the gifts beautiful?"])
             , (["xu lo ctuca cu melbi do"], ["Is the instructor beautiful to you?"])
             , (["xu lo ctuca cu melbi"], ["Is the instructor beautiful?"])
