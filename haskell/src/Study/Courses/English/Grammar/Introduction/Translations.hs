@@ -653,7 +653,7 @@ translations5_restricted = combineGeneratorsUniformly [translations5_restricted_
 -- * Lesson 6: Abstractions 1
 -- CHECK: Are events vs facts being used correctly?
 translations6_nu :: TranslationGenerator
-translations6_nu = combineGenerators [(2, gleki), (1, tavla), (2, nupre)] where
+translations6_nu = expandTranslationGenerator $ combineGenerators [(2, gleki), (1, tavla), (2, nupre)] where
     gleki = combineGeneratorsUniformly [talking, beautiful, givingAnimals, liking, teaching, owningHouse, know, other] where
         talking = generatorFromList
             -- talking to someone
@@ -735,9 +735,9 @@ translations6_nu = combineGenerators [(2, gleki), (1, tavla), (2, nupre)] where
         donatingAnimals = generatorFromList
             [ (["do nupre lo nu dunda lo mlatu ku kei ku", "do nupre lo nu do dunda lo mlatu ku kei ku"], ["You promised to donate the cat.", "You promised to donate the cats."])
             , (["do nupre lo nu dunda lo gerku ku kei ku", "do nupre lo nu do dunda lo gerku ku kei ku"], ["You promised to donate the dog.", "You promised to donate the dogs."])
-            , (["do nupre lo nu dunda lo mlatu ku mi kei ku", "do nupre lo nu do dunda lo mlatu ku mi kei ku"], ["You promised to donate the cat to me.", "You promised to donate the cats to me.", "You promised to donate the cats to us."])
-            , (["do nupre lo nu dunda lo gerku ku mi kei ku", "do nupre lo nu do dunda lo gerku ku mi kei ku"], ["You promised to donate the dog to me.", "You promised to donate the dogs to me.", "You promised to donate the dogs to us."])
--- preciso revisar a partir daqui (ver oq faz sentido)
+            , (["do nupre lo nu (|do) dunda lo mlatu ku mi kei ku", "do nupre lo nu (|do) dunda lo mlatu ku kei ku mi"], ["You promised to donate the cat to me.", "You promised to donate the cats to me.", "You promised to donate the cats to us."])
+            , (["do nupre lo nu (|do) dunda lo gerku ku mi kei ku", "do nupre lo nu (|do) dunda lo gerku ku kei ku mi"], ["You promised to donate the dog to me.", "You promised to donate the dogs to me.", "You promised to donate the dogs to us."])
+-- TODO: double-check the sentences below
             , (["do nupre lo nu dunda lo mlatu ku kei ku mi", "do nupre lo nu do dunda lo mlatu ku kei ku mi"], ["You promised me to donate the cat.", "You promised me to donate the cats.", "You promised us to donate the cat.", "You promised us to donate the cats."])
             , (["do nupre lo nu dunda lo gerku ku kei ku mi", "do nupre lo nu do dunda lo gerku ku kei ku mi"], ["You promised me to donate the dog.", "You promised me to donate the dogs.", "You promised us to donate the dog.", "You promised us to donate the dogs."])
             ]
