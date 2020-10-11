@@ -233,7 +233,7 @@ translations3_normal = combineGeneratorsUniformly [talkingToAnimal, likingAnimal
 
 -- * Lesson 4: Tanru
 translations4_expressions :: TranslationGenerator
-translations4_expressions = expandTranslationGenerator $ combineGeneratorsUniformly [sutra, lojbo, pendo, gleki, melbi, others] where
+translations4_expressions = expandTranslationGenerator $ combineGeneratorsUniformly [sutra, lojbo, pendo, melbi, others] where
     sutra = generatorFromList
         [ (["lo sutra prenu ku"], ["The fast person."])
         , (["lo sutra tavla ku"], ["The fast speaker."])
@@ -297,7 +297,7 @@ translations4_sentences = expandTranslationGenerator $ combineGeneratorsUniforml
             , (["do sutra ctuca lo prenu ku"], ["You taught the person quickly."])
             , (["do sutra ctuca lo gerku ku"], ["You taught the dog quickly."])
             ]
-    adjective = combineGeneratorsUniformly [lojbo, gleki] where
+    adjective = combineGeneratorsUniformly [lojbo, pendo] where
         lojbo = generatorFromList
             -- tavla (mi)
             [ (["mi tavla lo lojbo prenu ku", "mi tavla lo prenu ku poi lojbo"], ["I talked to the Lojbanic person."])
