@@ -142,13 +142,13 @@ translations3_nice = expandTranslationGenerator $ combineGenerators $ [(2, trans
         , (["mi te dunda lo mlatu ku"], ["I was given a cat.", "We were given a cat."])
         , (["(|lo prenu ku) dunda lo mlatu ku lo ctuca ku"], ["Somebody gave a cat to the instructor", "Somebody gave the cat to the instructor.", "Somebody gave the cats to the instructor."])
         , (["lo ctuca ku dunda lo mlatu ku mi"], ["The instructor gave me a cat.", "The instructor gave me the cat.", "The instructor gave me the cats.", "The instructor gave us a cat.", "The instructor gave us the cat.", "The instructor gave us the cats."])
-        , (["(|lo prenu ku) dunda lo mlatu ku mi"], ["Somebody gave me a cat.", "Somebody gave me the cat.", "Somebody gave me the cats.", "Somebody gave us a cat.", "Someboy gave us the cat.", "Somebody gave us the cats."])
+        , (["(|lo prenu ku) dunda lo mlatu ku mi"], ["Somebody gave me a cat.", "Somebody gave me the cat.", "Somebody gave me the cats.", "Somebody gave us a cat.", "Somebody gave us the cat.", "Somebody gave us the cats."])
         -- gerku
         , (["mi dunda lo gerku ku lo pendo ku"], ["I gave the dog to a friend.", "I gave the dogs to a friend."])
         , (["mi te dunda lo gerku ku"], ["I was given a dog.", "We were given a dog."])
         , (["(|lo prenu ku) dunda lo gerku ku lo ctuca ku"], ["Somebody gave a dog to the instructor", "Somebody gave the dog to the instructor.", "Somebody gave the dogs to the instructor."])
         , (["lo ctuca ku dunda lo gerku ku mi"], ["The instructor gave me a dog.", "The instructor gave me the dog.", "The instructor gave me the dogs.", "The instructor gave us a dog.", "The instructor gave us the dog.", "The instructor gave us the dogs."])
-        , (["(|lo prenu ku) dunda lo gerku ku mi"], ["Somebody gave me a dog.", "Somebody gave me the dog.", "Somebody gave me the dogs.", "Somebody gave us a dog.", "Someboy gave us the dog.", "Somebody gave us the dogs."])
+        , (["(|lo prenu ku) dunda lo gerku ku mi"], ["Somebody gave me a dog.", "Somebody gave me the dog.", "Somebody gave me the dogs.", "Somebody gave us a dog.", "Somebody gave us the dog.", "Somebody gave us the dogs."])
         ]
     teaching = generatorFromList
         [ (["mi ctuca lo mlatu ku"], ["I am teaching the cat.", "I am teaching the cats.", "I taught the cat.", "I taught the cats.", "We are teaching the cat.", "We are teaching the cats."])
@@ -968,7 +968,7 @@ translations7_restricted = expandTranslationGenerator $ combineGenerators [(2, h
             , (["mi te dunda lo mlatu"], ["I was given a cat.", "We were given a cat."])
             , (["(|lo prenu cu) dunda lo mlatu lo ctuca"], ["Somebody gave a cat to the instructor", "Somebody gave the cat to the instructor.", "Somebody gave the cats to the instructor."])
             , (["lo ctuca cu dunda lo mlatu mi"], ["The instructor gave me a cat.", "The instructor gave me the cat.", "The instructor gave me the cats.", "The instructor gave us a cat.", "The instructor gave us the cat.", "The instructor gave us the cats."])
-            , (["(|lo prenu cu) dunda lo mlatu mi"], ["Somebody gave me a cat.", "Somebody gave me the cat.", "Somebody gave me the cats.", "Somebody gave us a cat.", "Someboy gave us the cat.", "Somebody gave us the cats."])
+            , (["(|lo prenu cu) dunda lo mlatu mi"], ["Somebody gave me a cat.", "Somebody gave me the cat.", "Somebody gave me the cats.", "Somebody gave us a cat.", "Somebody gave us the cat.", "Somebody gave us the cats."])
             , (["ma te dunda lo mlatu"], ["Who was given a cat?"])
             , (["do dunda lo mlatu ma"], ["To whom did you give the cat?", "To whom did you give the cats?"])
             , (["ma dunda lo mlatu lo ctuca"], ["Who gave the cat to the instructor?"])
@@ -981,7 +981,7 @@ translations7_restricted = expandTranslationGenerator $ combineGenerators [(2, h
             , (["mi te dunda lo gerku"], ["I was given a dog.", "We were given a dog."])
             , (["(|lo prenu cu) dunda lo gerku lo ctuca"], ["Somebody gave a dog to the instructor", "Somebody gave the dog to the instructor.", "Somebody gave the dogs to the instructor."])
             , (["lo ctuca cu dunda lo gerku mi"], ["The instructor gave me a dog.", "The instructor gave me the dog.", "The instructor gave me the dogs.", "The instructor gave us a dog.", "The instructor gave us the dog.", "The instructor gave us the dogs."])
-            , (["(|lo prenu cu) dunda lo gerku mi"], ["Somebody gave me a dog.", "Somebody gave me the dog.", "Somebody gave me the dogs.", "Somebody gave us a dog.", "Someboy gave us the dog.", "Somebody gave us the dogs."])
+            , (["(|lo prenu cu) dunda lo gerku mi"], ["Somebody gave me a dog.", "Somebody gave me the dog.", "Somebody gave me the dogs.", "Somebody gave us a dog.", "Somebody gave us the dog.", "Somebody gave us the dogs."])
             , (["ma te dunda lo gerku"], ["Who was given a dog?"])
             , (["do dunda lo gerku ma"], ["To whom did you give the dog?", "To whom did you give the dogs?"])
             , (["ma dunda lo gerku lo ctuca"], ["Who gave the dog to the instructor?"])
