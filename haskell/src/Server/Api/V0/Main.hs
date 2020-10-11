@@ -116,13 +116,17 @@ selectCardWithBiasTowardsLowScoreOnes cards = combineGenerators [(probabilityOfS
     lowScoreCards = filter hasLowScore cards
     -- | Probability of selecting low-score cards.
     probabilityOfSelectingLowScoreCards = decideProbabilityOfSelectingLowScoreCardsGivenTheirCount (length lowScoreCards)
-    -- | Devices the probability of selecting low-score cards.
+    -- | Decides the probability of selecting low-score cards.
     decideProbabilityOfSelectingLowScoreCardsGivenTheirCount :: Int -> Int
     decideProbabilityOfSelectingLowScoreCardsGivenTheirCount 0 = 0
     decideProbabilityOfSelectingLowScoreCardsGivenTheirCount 1 = 10
-    decideProbabilityOfSelectingLowScoreCardsGivenTheirCount 2 = 20
-    decideProbabilityOfSelectingLowScoreCardsGivenTheirCount 3 = 30
-    decideProbabilityOfSelectingLowScoreCardsGivenTheirCount 4 = 40
+    decideProbabilityOfSelectingLowScoreCardsGivenTheirCount 2 = 15
+    decideProbabilityOfSelectingLowScoreCardsGivenTheirCount 3 = 20
+    decideProbabilityOfSelectingLowScoreCardsGivenTheirCount 4 = 25
+    decideProbabilityOfSelectingLowScoreCardsGivenTheirCount 5 = 30
+    decideProbabilityOfSelectingLowScoreCardsGivenTheirCount 6 = 35
+    decideProbabilityOfSelectingLowScoreCardsGivenTheirCount 7 = 40
+    decideProbabilityOfSelectingLowScoreCardsGivenTheirCount 8 = 45
     decideProbabilityOfSelectingLowScoreCardsGivenTheirCount _ = 50
     -- | Decides whether the given card has low score.
     hasLowScore :: (Card, Int, Double) -> Bool
