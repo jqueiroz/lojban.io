@@ -1050,7 +1050,7 @@ translations9_noi = expandTranslationGenerator $ combineGeneratorsUniformly [com
         ]
     knower = generatorFromList
         [ (["lo djuno noi {ke'a} (nelci|se pluka) lo nu ke'a tavla (ke'a|vo'a) ku'o pendo", "lo djuno noi {ke'a} (nelci|se pluka) lo nu (|ke'a) tavla vo'a ku'o pendo"], ["The knower, who enjoys talking to himself, is friendly."])
-        , (["lo djuno noi {ke'a} (nelci|se pluka) lo nu ke'a tavla (ke'a|vo'a) ku'o ciska ta", "lo djuno noi {ke'a} (nelci|se pluka) lo nu (|ke'a) tavla vo'a ku'ciska ta pendo"], ["The knower, who enjoys talking to himself, wrote tath."])
+        , (["lo djuno noi {ke'a} (nelci|se pluka) lo nu ke'a tavla (ke'a|vo'a) ku'o ciska ta", "lo djuno noi {ke'a} (nelci|se pluka) lo nu (|ke'a) tavla vo'a ku'ciska ta pendo"], ["The knower, who enjoys talking to himself, wrote that."])
         , (["lo djuno noi {ke'a} (nelci|se pluka) lo nu ke'a tavla (ke'a|vo'a) ku'o ctuca mi", "lo djuno noi {ke'a} (nelci|se pluka) lo nu (|ke'a) tavla vo'a ku'o ctuca mi"], ["The knower, who enjoys talking to himself, taught us."])
         , (["lo djuno noi {ke'a} (nelci|se pluka) lo nu ke'a tavla (ke'a|vo'a) ku'o pilno lo skami", "lo djuno noi {ke'a} (nelci|se pluka) lo nu (|ke'a) tavla vo'a ku'o pilno lo skami"], ["The knower, who enjoys talking to himself, uses computers."])
         ]
