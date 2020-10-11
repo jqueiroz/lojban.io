@@ -252,7 +252,7 @@ translations4_expressions = expandTranslationGenerator $ combineGeneratorsUnifor
     pendo = generatorFromList
         [ (["lo pendo prenu ku"], ["The friendly person."])
         , (["lo pendo dunda ku"], ["The friendly donor."])
-        , (["lo pendo te dunda  ku"], ["The friendly recipient."])
+        --, (["lo pendo te dunda ku"], ["The friendly recipient."])
         , (["lo pendo tavla ku"], ["The friendly speaker."])
         , (["lo pendo ctuca ku"], ["The friendly teacher."])
         , (["lo pendo gerku ku"], ["The friendly dog."])
@@ -261,7 +261,7 @@ translations4_expressions = expandTranslationGenerator $ combineGeneratorsUnifor
     melbi = generatorFromList
         [ (["lo melbi prenu ku"], ["The beautiful person."])
         , (["lo melbi dunda ku"], ["The beautiful donor."])
-        , (["lo melbi te dunda  ku"], ["The beautiful recipient."])
+        --, (["lo melbi te dunda ku"], ["The beautiful recipient."])
         , (["lo melbi tavla ku"], ["The beautiful speaker."])
         , (["lo melbi ctuca ku"], ["The beautiful teacher."])
         , (["lo melbi gerku ku"], ["The beautiful dog."])
@@ -308,7 +308,7 @@ translations4_sentences = expandTranslationGenerator $ combineGeneratorsUniforml
             -- tavla (mi)
             [ (["mi tavla lo pendo prenu ku", "mi tavla lo prenu ku poi pendo"], ["I talked to the friendly person."])
             , (["mi tavla lo pendo dunda ku", "mi tavla lo dunda ku poi pendo"], ["I talked to the friendly donor."])
-            , (["mi tavla lo pendo te dunda ku", "mi tavla lo te dunda ku poi pendo"], ["I talked to the friendly recipient."])
+            --, (["mi tavla lo pendo te dunda ku", "mi tavla lo te dunda ku poi pendo"], ["I talked to the friendly recipient."])
             , (["mi tavla lo pendo ctuca ku", "mi tavla lo ctuca ku poi pendo"], ["I talked to the friendly teacher."])
             -- tavla (xu do)
             --, (["xu do tavla lo pendo prenu", "xu do tavla lo prenu poi pendo"], ["Did you talk to the friendly person?"])
@@ -318,7 +318,7 @@ translations4_sentences = expandTranslationGenerator $ combineGeneratorsUniforml
             -- nelci (mi)
             , (["mi nelci lo pendo prenu ku", "mi nelci lo prenu ku poi pendo"], ["I like friendly people."])
             , (["mi nelci lo pendo dunda ku", "mi nelci lo dunda ku poi pendo"], ["I like friendly donors."])
-            , (["mi nelci lo pendo te dunda ku", "mi nelci lo te dunda ku poi pendo"], ["I like friendly recipients."])
+            --, (["mi nelci lo pendo te dunda ku", "mi nelci lo te dunda ku poi pendo"], ["I like friendly recipients."])
             , (["mi nelci lo pendo ctuca ku", "mi nelci lo ctuca ku poi pendo"], ["I like friendly teachers."])
             , (["mi nelci lo pendo gerku ku", "mi nelci lo gerku ku poi pendo"], ["I like friendly dogs."])
             , (["mi nelci lo pendo mlatu ku", "mi nelci lo mlatu ku poi pendo"], ["I like friendly cats."])
@@ -1648,7 +1648,7 @@ translations15_expressions = expandTranslationGenerator $ combineGeneratorsUnifo
         , (["lo gerku pe lo pendo"], ["The friend's dog."])
         , (["lo gerku pe lo nupre"], ["The promisor's dog."])
         , (["lo gerku pe lo dunda"], ["The donor's dog."])
-        , (["lo gerku pe lo te dunda"], ["The recipient's dog."])
+        --, (["lo gerku pe lo te dunda"], ["The recipient's dog."])
         , (["lo gerku pe lo vecnu"], ["The seller's dog."])
         , (["lo gerku pe lo te vecnu"], ["The buyer's dog."])
         ]
@@ -1658,7 +1658,7 @@ translations15_expressions = expandTranslationGenerator $ combineGeneratorsUnifo
         , (["lo mlatu pe lo pendo"], ["The friend's cat."])
         , (["lo mlatu pe lo nupre"], ["The promisor's cat."])
         , (["lo mlatu pe lo dunda"], ["The donor's cat."])
-        , (["lo mlatu pe lo te dunda"], ["The recipient's cat."])
+        --, (["lo mlatu pe lo te dunda"], ["The recipient's cat."])
         , (["lo mlatu pe lo vecnu"], ["The seller's cat."])
         , (["lo mlatu pe lo te vecnu"], ["The buyer's cat."])
         ]
