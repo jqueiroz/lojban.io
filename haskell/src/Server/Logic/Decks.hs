@@ -30,9 +30,9 @@ computeCardProficiencyScore cardProficiency = min 1 $ (fromIntegral $ length suc
     attempts = take numberOfAttemptsUsedInProficiencyScoreCalculation $ lastAttempts cardProficiency ++ repeat False
     successfulAttempts = filter (== True) attempts
 
--- TODO: implement logic here
 computeCardProficiencyWeight :: CardProficiency -> Int
-computeCardProficiencyWeight cardProficiency = 1 + totalWeightOfFailedAttempts where
+computeCardProficiencyWeight cardProficiency = assert (universalBaseWeight >= 1) $ universalBaseWeight + totalWeightOfFailedAttempts where
+    universalBaseWeight = 100 -- For context, the maximum possible `totalWeightOfFailedAttempts` (i.e. the weight for a completely new card) is 20^2 + 19^2 + ... + 1^2 = 2871
     baseWeightOfMostRecentAttempt = 20
     attempts = lastAttempts cardProficiency
     weightedAttempts = assert (baseWeightOfMostRecentAttempt >= numberOfAttemptsTracked) $ zip [baseWeightOfMostRecentAttempt,baseWeightOfMostRecentAttempt-1..] attempts
