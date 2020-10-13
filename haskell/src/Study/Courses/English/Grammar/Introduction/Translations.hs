@@ -1312,8 +1312,7 @@ translations11 = expandTranslationGenerator $ combineGenerators [(3, pi'o), (3, 
         , (["mi ctuca sepi'o lo se vecnu be do bei mi"], ["I teach using what you sold me."])
         , (["mi ctuca do sepi'o lo skami"], ["I taught you using a computers."])
         -- vecnu
-        , (["mi vecnu lo gerku (be|pe) mi sepi'o lo skami"], ["I sold my dog using a computer."])
-        , (["mi vecnu lo mlatu (be|pe) mi sepi'o lo skami"], ["I sold my cat using a computer."])
+        , (["mi vecnu lo zdani (be|pe) mi sepi'o lo skami"], ["I sold my house using a computer."])
         ]
     mu'i = generatorFromList
         -- tavla
