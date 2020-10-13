@@ -1202,19 +1202,19 @@ translations10 = expandTranslationGenerator $ combineGeneratorsUniformly [requir
         , (["mi nelci lo bangu (be do be'o|pe do ge'u) noi mi nupre lo nu {mi} ctuca fo (ke'a|zo'e)"], ["I like your language, which I promised to teach."])
         ]
     cmene_complex = generatorFromList
-        [ (["ma se cmene lo dunda be lo mlatu bei do"], ["What is the name of the one who gave you the cat?"])
-        , (["ma se cmene lo dunda be lo mlatu"], ["What is the name of the one who donated the cat?"])
-        , (["ma se cmene lo vecnu be lo mlatu"], ["What is the name of the one who sold the cat?"])
-        , (["ma se cmene lo vecnu be lo mlatu bei do"], ["What is the name of the one who sold you the cat?"])
+        [ (["ma cmene lo dunda be lo mlatu bei do"], ["What is the name of the one who gave you the cat?"])
+        , (["ma cmene lo dunda be lo mlatu"], ["What is the name of the one who donated the cat?"])
+        , (["ma cmene lo vecnu be lo mlatu"], ["What is the name of the one who sold the cat?"])
+        , (["ma cmene lo vecnu be lo mlatu bei do"], ["What is the name of the one who sold you the cat?"])
 
-        , (["ma se cmene lo dunda be lo gerku bei do"], ["What is the name of the one who gave you the dog?"])
-        , (["ma se cmene lo dunda be lo gerku"], ["What is the name of the one who donated the dog?"])
-        , (["ma se cmene lo vecnu be lo gerku"], ["What is the name of the one who sold the dog?"])
-        , (["ma se cmene lo vecnu be lo gerku bei do"], ["What is the name of the one who sold you the dog?"])
+        , (["ma cmene lo dunda be lo gerku bei do"], ["What is the name of the one who gave you the dog?"])
+        , (["ma cmene lo dunda be lo gerku"], ["What is the name of the one who donated the dog?"])
+        , (["ma cmene lo vecnu be lo gerku"], ["What is the name of the one who sold the dog?"])
+        , (["ma cmene lo vecnu be lo gerku bei do"], ["What is the name of the one who sold you the dog?"])
 
-        , (["ma se cmene lo tavla be do"], ["What is the name of the one who talked to you?"])
-        , (["ma se cmene lo tavla be do bei lo zdani"], ["What is the name of the one who talked to you about the house?"])
-        , (["ma se cmene lo tavla be fi lo zdani"], ["What is the name of the one who talked about the house?"])
+        , (["ma cmene lo tavla be do"], ["What is the name of the one who talked to you?"])
+        , (["ma cmene lo tavla be do bei lo zdani"], ["What is the name of the one who talked to you about the house?"])
+        , (["ma cmene lo tavla be fi lo zdani"], ["What is the name of the one who talked about the house?"])
         ]
     general = generatorFromList
         [ (["mi nelci lo se nupre be do"], ["I like the promise that you made."])
