@@ -120,8 +120,9 @@ readUserIdentityFromCookies serverConfiguration serverResources = do
 -- * Redis bindings
 registeredHandleKey :: T.Text -> T.Text
 registeredHandleKey handle = "RegisteredHandle" `T.append` handleKey where
+    normalizedHandle = T.toLower handle
     handleKey = encodeRedisKey
-        [ ("handle", handle)
+        [ ("handle", normalizedHandle)
         ]
 
 isHandleRegistered :: T.Text -> Redis.Redis (Either Redis.Reply Bool)
