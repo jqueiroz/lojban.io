@@ -216,6 +216,7 @@ displayUserProfile serverConfiguration userIdentityMaybe = do
                         H.img B.! A.class_ "picture" B.! A.src (H.textValue finalPictureUrl)
                 H.ul B.! A.class_ "user-menu" $ do
                     H.li $ do
+                        -- TODO: fontawesome icon for sign out
                         H.a (H.toHtml ("Sign out" :: T.Text))
                             B.! A.href (H.textValue $ "/authentication/logout/")
 
