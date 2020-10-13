@@ -45,6 +45,8 @@ displaySignIn uuid = do
     -- TODO: remember to use check for empty (more generally, invalid) handles
     -- TODO: remember to use allow only alphanumeric + a few special symbols
     -- TODO: helper utility to present a message (alert + html text if javascript is disabled, then redirect)
+    -- TODO: message indicating that only alphanumeric characters, dashes, underlines and dots are allowed (JS as well to enforce this)
+    -- TODO: captcha
     H.div B.! A.class_ (H.textValue "login-main") $ do
         H.input B.! A.type_ (H.textValue "radio") B.! A.name (H.textValue "login-input") B.! A.id (H.textValue "login-input-existing") B.! A.class_ (H.textValue "login-input-existing") B.! A.checked (H.textValue "checked")
         H.input B.! A.type_ (H.textValue "radio") B.! A.name (H.textValue "login-input") B.! A.id (H.textValue "login-input-register") B.! A.class_ (H.textValue "login-input-register")

@@ -6,6 +6,7 @@ module Server.Authentication.Utils
 , redirectToCurrentRefererIfAllowed
 , saveReferer
 , redirectToSavedRefererIfAllowed
+, redirectToBodyRefererIfAllowed
 , isAllowedReferer
 ) where
 
@@ -16,6 +17,7 @@ import URI.ByteString (URI, parseURI, strictURIParserOptions)
 import qualified Data.Text as T
 import qualified Data.Text.Encoding as TE
 import qualified Data.ByteString.Char8 as BSS8
+import qualified Data.Text.Lazy as TL
 
 getCallbackUri :: T.Text -> ServerPart URI
 getCallbackUri callbackPath = do
@@ -48,6 +50,19 @@ redirectToCurrentRefererIfAllowed = do
         Nothing -> redirectToHomepage
         Just referer -> do
             let referer' = BSS8.unpack referer
+            if isAllowedReferer referer' then
+                -- Redirect to referer
+                tempRedirect referer' $ toResponse ("" :: T.Text)
+            else
+                redirectToHomepage
+
+redirectToBodyRefererIfAllowed :: ServerPart Response
+redirectToBodyRefererIfAllowed = do
+    refererMaybe <- optional $ (body $ lookText "referer")
+    case refererMaybe of
+        Nothing -> redirectToHomepage
+        Just referer -> do
+            let referer' = T.unpack . TL.toStrict $ referer
             if isAllowedReferer referer' then
                 -- Redirect to referer
                 tempRedirect referer' $ toResponse ("" :: T.Text)

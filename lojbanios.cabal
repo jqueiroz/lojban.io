@@ -118,6 +118,7 @@ library
                      , Server.Authentication.Main
                      , Server.Authentication.Google
                      , Server.Authentication.OpenID
+                     , Server.Authentication.Handle
                      , Server.Authentication.Mock
                      , Server.Authentication.Utils
                      , Server.Util
