@@ -25,6 +25,7 @@ module Study.Framework.ExerciseGenerators
 import Core
 import Language.Lojban.Core
 import Language.Lojban.Numbers
+import Language.Lojban.Canonicalization (normalizeText)
 import Util (isSubexpressionOf, replace, replaceFirstSubexpression, replaceSubexpression, chooseItemUniformly, combineGenerators, combineGeneratorsUniformly, generatorWithRetries, isWordOf)
 import Text.Read (readMaybe)
 import System.Random (StdGen, random)
@@ -181,7 +182,7 @@ generateFillingBlanksExerciseByExpression translationGeneratorByExpression r0 = 
     title = "Complete the translation"
     redactedLojbanSentenceText = replaceSubexpression expression "____" lojbanSentenceText
     sentences = [ExerciseSentence False englishSentenceText, ExerciseSentence True redactedLojbanSentenceText]
-    validator = (== expression)
+    validator attemptedSolution = (normalizeText . T.toLower $ attemptedSolution) == (normalizeText . T.toLower $ expression)
 
 -- Exercise: identify the selbri
 generateSelbriIdentificationExercise :: SimpleBridiGenerator -> SimpleBridiDisplayer -> ExerciseGenerator
@@ -275,7 +276,7 @@ generateLexiconProvidingExercise lexiconCategory dictionary wordGenerator r0 = T
     wordDefinition = fromMaybe (error $ "Definition not found in dictionary: " ++ (T.unpack word)) (dictValsiDefinition dictionary M.!? word)
     title = "Provide the " `T.append` lexiconCategory
     sentences = [ExerciseSentence True wordDefinition]
-    validator = (== word)
+    validator attemptedSolution = (normalizeText . T.toLower $ attemptedSolution) == (normalizeText . T.toLower $ word)
     canonicalAnswer = word
 
 -- Exercise: choose the lexicon
