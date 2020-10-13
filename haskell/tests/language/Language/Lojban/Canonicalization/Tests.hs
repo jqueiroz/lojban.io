@@ -371,6 +371,10 @@ validateCanonicalization = hspec $ do
             , "lo dunda be fi lo prenu"
             , "lo dunda befi lo prenu"
             ]
+      it "supports apostrophes" $ do
+        validateSentences
+            [ ("mi nelci lo cmene be mi be’o", "mi nelci lo cmene be mi be'o ku")
+            ]
       it "supports NOI" $ do
         validateSentences
             [ ("mi citka lo se dunda ku poi plise", "mi citka lo se dunda ku poi plise ku'o")

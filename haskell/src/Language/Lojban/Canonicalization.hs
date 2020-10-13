@@ -4,6 +4,7 @@ module Language.Lojban.Canonicalization
 ( basicSentenceCanonicalizer
 , extendedSentenceCanonicalizer
 , extractSimpleBridi
+, normalizeText
 ) where
 
 import Language.Lojban.Core
