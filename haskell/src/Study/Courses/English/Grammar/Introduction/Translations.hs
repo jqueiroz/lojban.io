@@ -1178,7 +1178,7 @@ translations9_poi = expandTranslationGenerator $ combineGeneratorsUniformly [com
         , (["mi tavla fi lo plise poi do vecnu"], ["I am talking about the apple that you sold."])
         , (["xu lo gerku cu nelci lo plise poi do dunda {ke'a}"], ["Did the dog like the apple that you gave?"])
         , (["mi tavla lo prenu poi {ke'a} dunda lo plise"], ["I talked to the person who donated the apple."])
-        , (["mi tavla fi lo prenu poi {ke'a} dunda lo plise"], ["I talked about person who donated the apple."])
+        , (["mi tavla fi lo prenu poi {ke'a} dunda lo plise"], ["I talked about the person who donated the apple."])
         , (["xu do tavla lo prenu poi {ke'a} dunda lo plise"], ["Did you talk to the person who donated the apple?"])
         , (["mi dunda lo plise poi do tavla fi ke'a"], ["I donated the apple that you were talking about."])
         , (["mi nupre lo nu {mi} tavla lo prenu poi {ke'a} dunda lo plise"], ["I promised to talk to the person who donated the apple."])
