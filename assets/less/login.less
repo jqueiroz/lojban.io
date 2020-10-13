@@ -1,0 +1,112 @@
+@import "main.less";
+
+.login-main {
+    text-align: center;
+    font-family: "Helvetica", "Arial", "sans-serif";
+
+    h2 {
+        font-size: 1.3em;
+
+        span {
+            padding-right: 0.4em;
+        }
+    }
+
+    button {
+        padding: 0.4em 1.2em;
+    }
+
+    input.login-input-existing, input.login-input-register {
+        display: none;
+    }
+
+    label[for="login-input-existing"], label[for="login-input-register"] {
+        /* Position */
+        display: inline-block;
+        position: relative;
+        min-width: 10em;
+        margin-bottom: 1.5em;
+
+        /* Style */
+        padding: 15px 25px;
+        font-weight: 600;
+        text-align: center;
+        background-color: hsl(260, 0.05, 0.9);
+        color: #333;
+        border: 1px solid transparent;
+        cursor: pointer;
+    }
+
+    input.login-input-existing:checked ~ label[for="login-input-existing"], input.login-input-register:checked ~ label[for="login-input-register"] {
+        background-color: hsl(260, 0.05, 0.4);
+        color: #fff;
+    }
+
+    .login-existing, .login-register {
+        display: none;
+        font-family: "Varela Round";
+        font-size: 1.1em;
+
+        label {
+            margin-right: 1em;
+        }
+
+        h3 {
+            font-size: 1em;
+        }
+
+        input[type="radio"] {
+            margin-right: 0.5em;
+        }
+    }
+
+    .login-existing {
+        label {
+            margin-top: 1.5em;
+        }
+
+        .buttons {
+            margin-top: 0.5em;
+        }
+    }
+
+    .login-register {
+        text-align: left;
+        margin-left: auto;
+        margin-right: auto;
+        width: 35em;
+
+        .buttons {
+            margin-top: 0.5em;
+            text-align: center;
+        }
+
+        label {
+            margin-top: 0.5em;
+        }
+
+        p {
+            margin-top: 0.5em;
+            font-size: 0.83em;
+        }
+    }
+
+    .login-register-random, .login-register-custom {
+        display: none;
+    }
+
+    input.login-register-input-random:checked ~ .login-register-random, input.login-register-input-custom:checked ~ .login-register-custom {
+        display: block;
+    }
+
+    input.login-input-existing:checked ~ .login-existing, input.login-input-register:checked ~ .login-register {
+        display: block;
+    }
+
+    .login-register-random input {
+        width: 22em;
+        text-align: center;
+    }
+}
+
+/* TODO: mobile */

@@ -20,6 +20,7 @@ import Server.Website.Views.Courses (displayCoursesHome)
 import Server.Website.Views.Decks (displayDecksHome)
 import Server.Website.Views.Deck (displayDeckHome, displayDeckExercise)
 import Server.Website.Views.Resources (displayResourcesHome)
+import Server.Website.Views.Login (displayLoginHome)
 import Server.Website.Views.Offline (displayOfflineHome)
 import Server.Website.Views.NotFound (displayNotFoundHome)
 import Server.Website.Views.Course (displayCourseHome)
@@ -34,6 +35,7 @@ import qualified Data.Text as T
 import qualified Data.Text.Encoding as TE
 import qualified Data.ByteString.Lazy as BS
 import qualified Network.HTTP.Types.URI as URI
+import qualified Data.UUID.V4 as UUIDv4
 import Happstack.Server
 
 -- TODO: consider adding breadcrumbs (https://getbootstrap.com/docs/4.0/components/breadcrumb/)
@@ -47,6 +49,7 @@ handleRoot serverConfiguration serverResources = do
         , dir "courses" $ handleCourses serverConfiguration userIdentityMaybe
         , dir "decks" $ handleDecks serverConfiguration serverResources userIdentityMaybe
         , dir "resources" $ handleResources serverConfiguration userIdentityMaybe
+        , dir "login" $ handleLogin serverConfiguration userIdentityMaybe
         , dir "offline" $ handleOffline serverConfiguration userIdentityMaybe
         , anyPath $ handleNotFound serverConfiguration userIdentityMaybe
         ]
@@ -77,6 +80,17 @@ handleResources serverConfiguration userIdentityMaybe = msum
     [ forceSlash . ok . toResponse $ displayResourcesHome serverConfiguration userIdentityMaybe
     , anyPath $ handleNotFound serverConfiguration userIdentityMaybe
     ]
+
+handleLogin :: ServerConfiguration -> Maybe UserIdentity -> ServerPart Response
+handleLogin serverConfiguration userIdentityMaybe = msum
+    [ handleLogin'
+    , anyPath $ handleNotFound serverConfiguration userIdentityMaybe
+    ] where
+        handleLogin' = forceSlash $ case userIdentityMaybe of
+            Nothing -> do
+                uuid <- liftIO $ UUIDv4.nextRandom
+                ok . toResponse $ displayLoginHome serverConfiguration userIdentityMaybe uuid
+            _ -> tempRedirect ("/" :: T.Text) . toResponse $ ("You are already signed in." :: T.Text)
 
 handleOffline :: ServerConfiguration -> Maybe UserIdentity -> ServerPart Response
 handleOffline serverConfiguration userIdentityMaybe = msum

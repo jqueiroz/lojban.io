@@ -44,6 +44,7 @@ common deps
                      , http-types
                      , jose-jwt
                      , oidc-client
+                     , uuid
                      , papillon
                      , zasni-gerna
 
@@ -129,6 +130,7 @@ library
                      , Server.Website.Views.Home
                      , Server.Website.Views.Lesson
                      , Server.Website.Views.Resources
+                     , Server.Website.Views.Login
                      , Server.Website.Views.Offline
                      , Server.Website.Views.NotFound
                      , Util
