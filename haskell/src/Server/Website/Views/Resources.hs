@@ -165,6 +165,9 @@ displayResources = do
                 H.a "Lojban wiki"
                     B.! A.href "https://mw.lojban.org/papri/Lojban"
             H.li $ do
+                H.a "Lojban made easy"
+                    B.! A.href "https://lojban.pw"
+            H.li $ do
                 H.a "Pronunciation guides"
                     B.! A.href "https://mw.lojban.org/papri/pronunciation"
             H.li $ do
