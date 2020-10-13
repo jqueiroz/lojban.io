@@ -480,9 +480,9 @@ pensi:
 
     # Sentence complexity: 2.709
     - lojban_sentences:
-        - ju'o do pu pensi da
+        - ju'o do pu pensi lo mlatu
       translated_sentences:
-        - You must have thought of something.
+        - You must have been thinking about cats.
 
     # Sentence complexity: 3.684
     - lojban_sentences:
