@@ -188,6 +188,9 @@ displayResources = do
             H.li $ do
                 H.a "Multimedia"
                     B.! A.href "https://mw.lojban.org/papri/multimedia"
+            H.li $ do
+                H.a "cniglic"
+                    B.! A.href "https://mw.lojban.org/papri/cniglic"
     H.div B.! A.class_ (H.textValue "resource-category") $ do
         H.h2 $ H.toHtml ("Music" :: T.Text)
         H.ul $ do
