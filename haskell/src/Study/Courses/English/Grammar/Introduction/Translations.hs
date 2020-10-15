@@ -1534,12 +1534,12 @@ translations12_ba = expandTranslationGenerator $ combineGeneratorsUniformly [fan
 translations12_unrestricted :: TranslationGenerator
 translations12_unrestricted = expandTranslationGenerator $ combineGeneratorsUniformly [cmene, vecnu] where
     cmene = generatorFromList
-        [ (["mi nelci lo pu cmene (be|pe) do"], ["I like your former name."])
-        , (["xu do nelci lo pu cmene (be|pe) do"], ["Did you like your former name?"])
+        [ (["mi (|ca) nelci lo pu cmene (be|pe) do"], ["I like your former name."])
+        , (["xu do (|ca) nelci lo pu cmene (be|pe) do"], ["Do you like your former name?"])
         ]
     vecnu = generatorFromList
-        [ (["lo pu vecnu cu gleki"], ["The former seller is happy."])
-        , (["lo ba te vecnu cu gleki"], ["The future buyer is happy."])
+        [ (["lo pu vecnu cu (|ca) gleki"], ["The former seller is happy."])
+        , (["lo ba te vecnu cu (|ca) gleki"], ["The future buyer is happy."])
         ]
 
 translations12_restricted :: TranslationGenerator
