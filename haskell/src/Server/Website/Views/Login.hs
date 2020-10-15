@@ -41,11 +41,7 @@ displayLoginHome serverConfiguration userIdentityMaybe uuid = do
 displaySignIn :: UUID.UUID -> H.Html
 displaySignIn uuid = do
     -- TODO: referer in the forms
-    -- TODO: remember to use case insensitive handles (for persisting at least)
-    -- TODO: remember to use check for empty (more generally, invalid) handles
-    -- TODO: remember to use allow only alphanumeric + a few special symbols
-    -- TODO: helper utility to present a message (alert + html text if javascript is disabled, then redirect)
-    -- TODO: message indicating that only alphanumeric characters, dashes, underlines and dots are allowed (JS as well to enforce this)
+    -- TODO: JS code enforcing that only alphanumeric characters, dashes, underlines and dots can be typed
     -- TODO: captcha
     -- TODO: check "#login" and "#register" to determine the initially selected value of the radio button
     H.div B.! A.class_ (H.textValue "login-main") $ do
