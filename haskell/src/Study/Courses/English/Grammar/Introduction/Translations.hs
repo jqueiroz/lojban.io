@@ -1408,8 +1408,8 @@ translations12_pu = expandTranslationGenerator $ combineGeneratorsUniformly [fan
         , (["mi pu fanva fo lo (lojbo|jbobau)"], ["I translated from Lojban."])
         , (["mi pu fanva ti"], ["I translated this."])
         , (["mi pu fanva ti lo (lojbo|jbobau)"], ["I translated this to Lojban."])
-        , (["xu do pu fanva fi ma"], ["To what language did you translate?"])
-        , (["xu do pu fanva fo ma"], ["From what language did you translate?"])
+        , (["do pu fanva fi ma"], ["To what language did you translate?"])
+        , (["do pu fanva fo ma"], ["From what language did you translate?"])
         ]
     dunda = generatorFromList
         [ (["mi pu dunda lo mlatu"], ["I donated the cat."])
