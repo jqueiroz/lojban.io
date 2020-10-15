@@ -47,6 +47,7 @@ displaySignIn uuid = do
     -- TODO: helper utility to present a message (alert + html text if javascript is disabled, then redirect)
     -- TODO: message indicating that only alphanumeric characters, dashes, underlines and dots are allowed (JS as well to enforce this)
     -- TODO: captcha
+    -- TODO: check "#login" and "#register" to determine the initially selected value of the radio button
     H.div B.! A.class_ (H.textValue "login-main") $ do
         H.input B.! A.type_ (H.textValue "radio") B.! A.name (H.textValue "login-input") B.! A.id (H.textValue "login-input-existing") B.! A.class_ (H.textValue "login-input-existing") B.! A.checked (H.textValue "checked")
         H.input B.! A.type_ (H.textValue "radio") B.! A.name (H.textValue "login-input") B.! A.id (H.textValue "login-input-register") B.! A.class_ (H.textValue "login-input-register")

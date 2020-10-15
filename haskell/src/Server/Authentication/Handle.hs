@@ -9,7 +9,7 @@ module Server.Authentication.Handle
 , readUserIdentityFromCookies
 ) where
 
-import Server.Authentication.Utils (redirectToBodyRefererIfAllowed)
+import Server.Authentication.Utils (redirectToBodyRefererIfAllowed, presentMessageAndRedirectToTargetUrl)
 import Server.Core
 import Happstack.Server
 import Server.Logic.Redis (runRedis, encodeRedisKey)
@@ -54,12 +54,12 @@ handleLogin serverConfiguration serverResources = do
     handle <- TL.toStrict <$> (body $ lookText "existing-handle")
     -- Validate the handle
     case validateHandle handle of
-        Left msg -> badRequest $ toResponse $ "Invalid handle: " `T.append` (T.pack msg)
+        Left msg -> presentMessageAndRedirectToTargetUrl ("/login#existing" :: T.Text) $ "Invalid handle: " `T.append` (T.pack msg)
         Right () -> do
             -- Check if the handle exists
             (liftIO $ runRedis serverConfiguration serverResources $ isHandleRegistered handle) >>= \case
                 Left _ -> internalServerError $ toResponse $ ("Failed to connect to the database." :: T.Text)
-                Right False -> badRequest $ toResponse $ ("This handle does not exist. If you would like to use it, please register it first." :: T.Text)
+                Right False -> presentMessageAndRedirectToTargetUrl ("/login#existing" :: T.Text) ("This handle does not exist. If you would like to use it, please register it first." :: T.Text)
                 Right True -> do
                     -- If the sign-in attempt was successful, then register the cookie and return the user to the previous page
                     addCookies $ (cookieDuration,) <$>
@@ -80,12 +80,12 @@ handleRegister serverConfiguration serverResources = do
     handle <- TL.toStrict <$> (body $ lookText "new-handle")
     -- Validate the handle
     case validateHandle handle of
-        Left msg -> badRequest $ toResponse $ "Invalid handle: " `T.append` (T.pack msg)
+        Left msg -> presentMessageAndRedirectToTargetUrl ("/login#register" :: T.Text) $ "Invalid handle: " `T.append` (T.pack msg)
         Right () -> do
             -- Attempt to register the handle
             (liftIO $ runRedis serverConfiguration serverResources $ registerHandle handle) >>= \case
                 Left _ -> internalServerError $ toResponse $ ("Failed to connect to the database." :: T.Text)
-                Right False -> badRequest $ toResponse $ ("This handle is not available. Please try a different one." :: T.Text)
+                Right False -> presentMessageAndRedirectToTargetUrl ("/login#register" :: T.Text) ("This handle is not available. Please try a different one." :: T.Text)
                 Right True -> do
                     -- If the handle was successfully registered, then register the cookie and return the user to the previous page
                     addCookies $ (cookieDuration,) <$>
