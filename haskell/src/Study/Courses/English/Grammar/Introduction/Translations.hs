@@ -1227,7 +1227,7 @@ translations10 = expandTranslationGenerator $ combineGeneratorsUniformly [requir
         [ (["mi tavla lo vecnu be lo zdani"], ["I talked to the one who sold the house."])
         , (["mi tavla lo vecnu be lo zdani (be|pe) do"], ["I talked to the one who sold your house."])
         , (["mi tavla lo vecnu be lo zdani bei do"], ["I talked to the one who sold the house to you."])
-        , (["mi tavla lo vecnu be lo zdani (be|pe) do bei mi"], ["I talked to the one who sold me your house."])
+        , (["mi tavla lo vecnu be lo zdani be do be'o bei mi", "mi tavla lo vecnu be lo zdani pe do bei mi"], ["I talked to the one who sold me your house."])
         , (["xu do tavla lo vecnu be lo zdani"], ["Did you talk to the one who sold the house?"])
         , (["xu do tavla lo vecnu be lo zdani be do"], ["Did you talk to the one who sold your house?"])
         , (["xu do tavla lo vecnu be lo zdani bei do"], ["Did you talk to the one who sold you the house?"])
