@@ -11,6 +11,9 @@ module Server.Authentication.Utils
 , presentMessageAndRedirectToBodyRefererIfAllowed
 , presentMessageAndRedirectToCookieRefererIfAllowed
 , isAllowedReferer
+, retrieveRequestHeaderRefererIfAllowed
+, retrieveBodyRefererIfAllowed
+, retrieveCookieRefererIfAllowed
 ) where
 
 import Happstack.Server

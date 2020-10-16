@@ -14,6 +14,7 @@ import qualified Study.Decks.English.ContextualizedBrivla
 import qualified Study.Decks.Eberban.English.Roots
 import Server.Core
 import Server.Util (forceSlash, getBody)
+import Server.Authentication.Utils (retrieveRequestHeaderRefererIfAllowed)
 import Server.Website.Views.Core
 import Server.Website.Views.Home (displayHome)
 import Server.Website.Views.Courses (displayCoursesHome)
@@ -88,8 +89,9 @@ handleLogin serverConfiguration userIdentityMaybe = msum
     ] where
         handleLogin' = forceSlash $ case userIdentityMaybe of
             Nothing -> do
+                refererMaybe <- retrieveRequestHeaderRefererIfAllowed -- TODO: from cookie OR request header (if there is an error, and /authentication/(register|login) redirects back to /login)
                 uuid <- liftIO $ UUIDv4.nextRandom
-                ok . toResponse $ displayLoginHome serverConfiguration userIdentityMaybe uuid
+                ok . toResponse $ displayLoginHome serverConfiguration userIdentityMaybe refererMaybe uuid
             _ -> tempRedirect ("/" :: T.Text) . toResponse $ ("You are already signed in." :: T.Text)
 
 handleOffline :: ServerConfiguration -> Maybe UserIdentity -> ServerPart Response
