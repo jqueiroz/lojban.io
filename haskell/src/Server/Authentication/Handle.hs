@@ -28,6 +28,8 @@ validateHandle handle =
         Left "the handle must not be empty"
     else if (not $ T.all isValidCharacterForHandle handle) then
         Left "the handle contains invalid characters"
+    else if T.length handle > 60 then
+        Left "the handle is too long"
     else
         Right ()
     where
