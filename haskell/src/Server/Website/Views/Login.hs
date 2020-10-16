@@ -40,9 +40,10 @@ displayLoginHome serverConfiguration userIdentityMaybe refererMaybe uuid = do
 
 displaySignIn :: Maybe T.Text -> UUID.UUID -> H.Html
 displaySignIn refererMaybe uuid = do
-    -- TODO: JS code enforcing that only alphanumeric characters, dashes, underlines and dots can be typed
     -- TODO: captcha
     -- TODO: check "#login" and "#register" to determine the initially selected value of the radio button
+    let handlePattern = "[a-zA-Z0-9-_.]+" :: T.Text
+    let maxHandleLength = "60" :: T.Text
     let refererTag = case refererMaybe of
             Nothing -> mempty
             Just referer ->
@@ -66,7 +67,7 @@ displaySignIn refererMaybe uuid = do
             H.form B.! A.action (H.textValue "/authentication/handle/login") B.! A.method (H.textValue "POST") $ do
                 refererTag
                 H.label B.! A.for (H.textValue "existing-handle") $ H.toHtml ("Handle" :: T.Text)
-                H.input B.! A.name (H.textValue "existing-handle") B.! A.id (H.textValue "existing-handle")
+                H.input B.! A.class_ (H.textValue "handle") B.! A.name (H.textValue "existing-handle") B.! A.id (H.textValue "existing-handle") B.! A.pattern (H.textValue handlePattern) B.! A.maxlength (H.textValue maxHandleLength)
                 H.div B.! A.class_ (H.textValue "buttons") $ do
                     H.button $ H.toHtml $ ("Sign in" :: T.Text)
         H.div B.! A.class_ (H.textValue "login-register") $ do
@@ -79,7 +80,7 @@ displaySignIn refererMaybe uuid = do
                 H.form B.! A.action (H.textValue "/authentication/handle/register") B.! A.method (H.textValue "POST") $ do
                     refererTag
                     H.label B.! A.for (H.textValue "new-handle-random") $ H.toHtml ("Generated handle" :: T.Text)
-                    H.input B.! A.name (H.textValue "new-handle") B.! A.id (H.textValue "new-handle-random") B.! A.value (H.textValue $ UUID.toText uuid) B.! A.readonly mempty
+                    H.input B.! A.class_ (H.textValue "handle") B.! A.name (H.textValue "new-handle") B.! A.id (H.textValue "new-handle-random") B.! A.value (H.textValue $ UUID.toText uuid) B.! A.readonly mempty B.! A.pattern (H.textValue handlePattern) B.! A.maxlength (H.textValue maxHandleLength)
                     H.p $ do
                         H.b $ H.toHtml ("Remark: " :: T.Text)
                         H.span $ H.toHtml ("Please safely store a copy of this randomly generated identifier." :: T.Text)
@@ -90,7 +91,7 @@ displaySignIn refererMaybe uuid = do
                 H.form B.! A.action (H.textValue "/authentication/handle/register") B.! A.method (H.textValue "POST") $ do
                     refererTag
                     H.label B.! A.for (H.textValue "new-handle-custom") $ H.toHtml ("Custom handle" :: T.Text)
-                    H.input B.! A.name (H.textValue "new-handle") B.! A.id (H.textValue "new-handle-custom")
+                    H.input B.! A.class_ (H.textValue "handle") B.! A.name (H.textValue "new-handle") B.! A.id (H.textValue "new-handle-custom") B.! A.pattern (H.textValue handlePattern) B.! A.maxlength (H.textValue maxHandleLength)
                     H.p $ do
                         H.b $ H.toHtml ("Warning: " :: T.Text)
                         H.span $ H.toHtml ("For your convenience, we accept the use of a custom identifier in lieu of a randomly generated one." :: T.Text)
