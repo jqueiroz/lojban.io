@@ -28,7 +28,7 @@ displayLoginHome serverConfiguration userIdentityMaybe refererMaybe uuid = do
             includeInternalStylesheet "login.css"
             includeInternalScript "login.js"
         H.body $ do
-            displayTopbar serverConfiguration userIdentityMaybe TopbarResources
+            displayTopbar serverConfiguration userIdentityMaybe TopbarNone
             H.div B.! A.class_ (H.textValue "main") $ do
                 H.div B.! A.class_ (H.textValue "header") $ do
                     H.div B.! A.class_ (H.textValue "header-bg") $ H.toHtml ("" :: T.Text)
