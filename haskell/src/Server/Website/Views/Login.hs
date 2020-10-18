@@ -81,6 +81,7 @@ displaySignIn refererMaybe uuid = do
                     refererTag
                     H.label B.! A.for (H.textValue "new-handle-random") $ H.toHtml ("Generated handle" :: T.Text)
                     H.input B.! A.class_ (H.textValue "handle") B.! A.name (H.textValue "new-handle") B.! A.id (H.textValue "new-handle-random") B.! A.value (H.textValue $ UUID.toText uuid) B.! A.readonly mempty B.! A.pattern (H.textValue handlePattern) B.! A.maxlength (H.textValue maxHandleLength)
+                    -- TODO: side button for easily copying the handle
                     H.p $ do
                         H.b $ H.toHtml ("Remark: " :: T.Text)
                         H.span $ H.toHtml ("Please safely store a copy of this randomly generated identifier." :: T.Text)
