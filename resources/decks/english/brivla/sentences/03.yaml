@@ -485,10 +485,10 @@ pensi:
         - You must have been thinking about cats.
 
     # Sentence complexity: 3.684
-    - lojban_sentences:
-        - mi pensi lo du'u makau finti
-      translated_sentences:
-        - I wonder who invented it.
+    #- lojban_sentences:
+        #- mi pensi lo du'u makau finti
+      #translated_sentences:
+        #- I wonder who invented it.
 
 
 
