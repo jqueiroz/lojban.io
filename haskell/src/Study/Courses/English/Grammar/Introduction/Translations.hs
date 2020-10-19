@@ -1286,8 +1286,8 @@ translations11 = expandTranslationGenerator $ combineGenerators [(3, pi'o), (3, 
     pi'o = generatorFromList
         -- fanva
         [ (["mi fanva sepi'o lo skami"], ["I translated using the computer."])
-        , (["mi fanva sepi'o lo te ctuca be fi do"], ["I translated using what you taught."])
-        , (["mi fanva sepi'o lo te ctuca be mi bei do"], ["I translated using what you taught me."])
+        --, (["mi fanva sepi'o lo te ctuca be fi do"], ["I translated using what you taught."])
+        --, (["mi fanva sepi'o lo te ctuca be mi bei do"], ["I translated using what you taught me."])
         -- tavla (mi)
         , (["mi tavla sepi'o lo skami"], ["I talk using a computer."])
         , (["mi tavla lo pendo sepi'o lo skami"], ["I talk to friends using a computer."])
