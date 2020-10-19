@@ -1846,8 +1846,8 @@ translations17_na'e = expandTranslationGenerator $ combineGeneratorsUniformly [n
         , (["mi na'e nelci lo se dunda be do"], ["I other-than-like the gift that you gave."])
         ]
     dunda = generatorFromList
-        [ (["mi na'e dunda lo mlatu"], ["I other-than-donated the computer."])
-        , (["xu do na'e dunda lo mlatu"], ["Did you other-than-donate the computer?"])
+        [ (["mi na'e dunda lo skami"], ["I other-than-donated the computer."])
+        , (["xu do na'e dunda lo skami"], ["Did you other-than-donate the computer?"])
         , (["lo na'e dunda mlatu cu melbi"], ["The other-than-donated cat is beautiful."])
         ]
     melbi = generatorFromList
