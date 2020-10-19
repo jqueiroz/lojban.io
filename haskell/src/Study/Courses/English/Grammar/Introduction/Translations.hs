@@ -1853,8 +1853,8 @@ translations17_na'e = expandTranslationGenerator $ combineGeneratorsUniformly [n
     melbi = generatorFromList
         [ (["do na'e melbi"], ["You are other-than-beautiful."])
         , (["mi na'e melbi"], ["I am other-than-beautiful."])
-        , (["lo mlatu na'e melbi"], ["Cats are other-than-beautiful.", "The cat is other-than-beautiful."])
-        , (["lo bangu na'e melbi"], ["Languages are other-than-beautiful.", "The language is other-than-beautiful."])
+        , (["lo mlatu cu na'e melbi"], ["Cats are other-than-beautiful.", "The cat is other-than-beautiful."])
+        , (["lo bangu cu na'e melbi"], ["Languages are other-than-beautiful.", "The language is other-than-beautiful."])
         ]
 
 translations17_no'e :: TranslationGenerator
@@ -1872,8 +1872,8 @@ translations17_no'e = expandTranslationGenerator $ combineGeneratorsUniformly [n
     melbi = generatorFromList
         [ (["do no'e melbi"], ["You are not really beautiful."])
         , (["mi no'e melbi"], ["I am not really beautiful."])
-        , (["lo mlatu no'e melbi"], ["Cats are not really beautiful.", "The cat is not really beautiful."])
-        , (["lo bangu no'e melbi"], ["Languages are not really beautiful.", "The language is not really beautiful."])
+        , (["lo mlatu cu no'e melbi"], ["Cats are not really beautiful.", "The cat is not really beautiful."])
+        , (["lo bangu cu no'e melbi"], ["Languages are not really beautiful.", "The language is not really beautiful."])
         ]
 
 translations17_to'e :: TranslationGenerator
@@ -1891,8 +1891,8 @@ translations17_to'e = expandTranslationGenerator $ combineGeneratorsUniformly [n
     melbi = generatorFromList
         [ (["do to'e melbi"], ["You are ugly."])
         , (["mi to'e melbi"], ["I am ugly."])
-        , (["lo mlatu to'e melbi"], ["Cats are ugly.", "The cat is ugly."])
-        , (["lo bangu to'e melbi"], ["Languages are ugly.", "The language is ugly."])
+        , (["lo mlatu cu to'e melbi"], ["Cats are ugly.", "The cat is ugly."])
+        , (["lo bangu cu to'e melbi"], ["Languages are ugly.", "The language is ugly."])
         ]
 
 translations17 :: TranslationGenerator
