@@ -1390,8 +1390,8 @@ translations11 = expandTranslationGenerator $ combineGenerators [(3, pi'o), (3, 
         , (["gau lo ctuca do fanva fo lo (lojbo|jbobau)"], ["The instructor is making you translate from Lojban.", "The instructor made you translate from Lojban."])
         ]
     interesting = generatorFromList
-        [ (["mi dunda lo skami be sepi'o do", "mi dunda lo skami ku poi do pilno {ke'a}"], ["I will donate the computer used by you."])
-        , (["mi vecnu lo skami be sepi'o do", "mi vecnu lo skami ku poi do pilno {ke'a}"], ["I sold the computer used by you."])
+        [ (["mi dunda lo skami be pi'o do", "mi dunda lo skami ku poi do pilno {ke'a}"], ["I will donate the computer used by you."])
+        , (["mi vecnu lo skami be pi'o do", "mi vecnu lo skami ku poi do pilno {ke'a}"], ["I sold the computer used by you."])
         , (["do tavla fi lo nu vecnu mu'i ma", "lo nu vecnu mu'i ma kei poi do tavla {fi ke'a}"], ["What was the motivation for the sale you are talking about?"])
         , (["do tavla fi lo nu dunda mu'i ma", "lo nu dunda mu'i ma kei poi do tavla {fi ke'a}"], ["What was the motivation for the donation you are talking about?"])
         , (["xu do nelci lo nu dunda mu'i lo (nu|ka|li'i) gleki"], ["Do you like donations motivated by happiness?"])
