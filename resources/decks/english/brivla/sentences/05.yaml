@@ -606,12 +606,6 @@ ciska:
       translated_sentences:
         - Who wrote this sentence?
 
-    # Sentence complexity: 5.421
-    - lojban_sentences:
-        - ko'a finti lo cukta
-      translated_sentences:
-        - He writes books.
-
     # Sentence complexity: 6.685
     - lojban_sentences:
         - ma pu ciska ta
