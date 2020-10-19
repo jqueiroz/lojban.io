@@ -117,7 +117,7 @@ translations3_restricted = expandTranslationGenerator $ combineGenerators [(2, t
 --
 -- Defined separately so that they may be reused in the checkpoint lesson (Lesson 7).
 translations3_nice :: TranslationGenerator
-translations3_nice = expandTranslationGenerator $ combineGenerators $ [(2, translations3_restricted), (2, teaching)] ++ ((1,) <$> [hasHouse, niceGift, giftingAnimal, friends, pelxu, others]) where
+translations3_nice = expandTranslationGenerator $ combineGenerators $ [(2, translations3_restricted), (2, teaching)] ++ ((1,) <$> [hasHouse, niceGift, giftingAnimal, friends, gleki, pelxu, others]) where
     hasHouse = generatorFromList
         [ (["lo ctuca ku se zdani"], ["The instructor has a house."])
         , (["lo prenu ku se zdani"], ["The person has a house."])
@@ -165,11 +165,13 @@ translations3_nice = expandTranslationGenerator $ combineGenerators $ [(2, trans
         , (["lo dunda ku pendo mi"], ["The donor is my friend.", "The donors are my friends."])
         , (["lo te dunda ku pendo mi"], ["The beneficiary is my friend.", "The beneficiaries are my friends."])
         , (["lo ctuca ku pendo mi"], ["The instructor is my friend.", "The instructors are my friends."])
-        , (["lo tavla ku pendo", "lo cusku ku pendo"], ["The speaker is friendly.", "The speakers are friendly."])
-        , (["lo se tavla ku pendo"], ["The listener is friendly.", "The listeners are friendly."])
-        , (["lo dunda ku pendo"], ["The donor is friendly.", "The donors are friendly."])
-        , (["lo te dunda ku pendo"], ["The beneficiary is friendly.", "The beneficiaries are friendly."])
-        , (["lo ctuca ku pendo"], ["The instructor is friendly.", "The instructors are friendly."])
+        ]
+    gleki = generatorFromList
+        [ (["lo tavla ku gleki", "lo cusku ku gleki"], ["The speaker is happy.", "The speakers are happy."])
+        , (["lo se tavla ku gleki"], ["The listener is happy.", "The listeners are happy."])
+        , (["lo dunda ku gleki"], ["The donor is happy.", "The donors are happy."])
+        , (["lo te dunda ku gleki"], ["The beneficiary is happy.", "The beneficiaries are happy."])
+        , (["lo ctuca ku gleki"], ["The instructor is happy.", "The instructors are happy."])
         ]
     pelxu = generatorFromList
         [ (["lo zdani ku pelxu"], ["The house is yellow.", "The houses are yellow."])
@@ -199,8 +201,6 @@ translations3_normal = combineGeneratorsUniformly [talkingToAnimal, likingAnimal
         animalFriends = generatorFromList
             [ (["lo mlatu ku pendo mi"], ["The cat is my friend."])
             , (["lo gerku ku pendo mi"], ["The dog is my friend."])
-            , (["lo mlatu ku pendo"], ["The cat is friendly.", "Cats are friendly."])
-            , (["lo gerku ku pendo"], ["The dog is friendly.", "Dogs are friendly."])
             ]
         beautiful = generatorFromList
             [ (["lo zdani ku melbi"], ["The house is beautiful.", "The houses are beautiful."])
@@ -233,7 +233,7 @@ translations3_normal = combineGeneratorsUniformly [talkingToAnimal, likingAnimal
 
 -- * Lesson 4: Tanru
 translations4_expressions :: TranslationGenerator
-translations4_expressions = expandTranslationGenerator $ combineGeneratorsUniformly [sutra, lojbo, pendo, melbi, others] where
+translations4_expressions = expandTranslationGenerator $ combineGeneratorsUniformly [sutra, lojbo, melbi, others] where
     sutra = generatorFromList
         [ (["lo sutra prenu ku"], ["The fast person."])
         , (["lo sutra tavla ku"], ["The fast speaker."])
@@ -248,15 +248,6 @@ translations4_expressions = expandTranslationGenerator $ combineGeneratorsUnifor
         , (["lo lojbo ctuca ku"], ["The Lojbanic teacher."])
         , (["lo lojbo gerku ku"], ["The Lojbanic dog."])
         , (["lo lojbo mlatu ku"], ["The Lojbanic cat."])
-        ]
-    pendo = generatorFromList
-        [ (["lo pendo prenu ku"], ["The friendly person."])
-        , (["lo pendo dunda ku"], ["The friendly donor."])
-        --, (["lo pendo te dunda ku"], ["The friendly recipient."])
-        , (["lo pendo tavla ku"], ["The friendly speaker."])
-        , (["lo pendo ctuca ku"], ["The friendly teacher."])
-        , (["lo pendo gerku ku"], ["The friendly dog."])
-        , (["lo pendo mlatu ku"], ["The friendly cat."])
         ]
     melbi = generatorFromList
         [ (["lo melbi prenu ku"], ["The beautiful person."])
@@ -297,38 +288,24 @@ translations4_sentences = expandTranslationGenerator $ combineGeneratorsUniforml
             , (["do sutra ctuca lo prenu ku"], ["You taught the person quickly."])
             , (["do sutra ctuca lo gerku ku"], ["You taught the dog quickly."])
             ]
-    adjective = combineGeneratorsUniformly [lojbo, pendo] where
+    adjective = combineGeneratorsUniformly [lojbo, melbi] where
         lojbo = generatorFromList
             -- tavla (mi)
             [ (["mi tavla lo lojbo prenu ku", "mi tavla lo prenu ku poi lojbo"], ["I talked to the Lojbanic person."])
             , (["mi tavla lo lojbo dunda ku", "mi tavla lo dunda ku poi lojbo"], ["I talked to the Lojbanic donor."])
             , (["mi tavla lo lojbo ctuca ku", "mi tavla lo ctuca ku poi lojbo"], ["I talked to the Lojbanic teacher."])
-            ]
-        pendo = generatorFromList
-            -- tavla (mi)
-            [ (["mi tavla lo pendo prenu ku", "mi tavla lo prenu ku poi pendo"], ["I talked to the friendly person."])
-            , (["mi tavla lo pendo dunda ku", "mi tavla lo dunda ku poi pendo"], ["I talked to the friendly donor."])
-            --, (["mi tavla lo pendo te dunda ku", "mi tavla lo te dunda ku poi pendo"], ["I talked to the friendly recipient."])
-            , (["mi tavla lo pendo ctuca ku", "mi tavla lo ctuca ku poi pendo"], ["I talked to the friendly teacher."])
-            -- tavla (xu do)
-            --, (["xu do tavla lo pendo prenu", "xu do tavla lo prenu poi pendo"], ["Did you talk to the friendly person?"])
-            --, (["xu do tavla lo pendo dunda", "xu do tavla lo dunda poi pendo"], ["Did you talk to the friendly donor?"])
-            --, (["xu do tavla lo pendo te dunda ", "xu do tavla lo te dunda poi pendo"], ["Did you talk to the friendly recipient?"])
-            --, (["xu do tavla lo pendo ctuca", "xu do tavla lo ctuca poi pendo"], ["Did you talk to the friendly teacher?"])
             -- nelci (mi)
-            , (["mi nelci lo pendo prenu ku", "mi nelci lo prenu ku poi pendo"], ["I like friendly people."])
-            , (["mi nelci lo pendo dunda ku", "mi nelci lo dunda ku poi pendo"], ["I like friendly donors."])
-            --, (["mi nelci lo pendo te dunda ku", "mi nelci lo te dunda ku poi pendo"], ["I like friendly recipients."])
-            , (["mi nelci lo pendo ctuca ku", "mi nelci lo ctuca ku poi pendo"], ["I like friendly teachers."])
-            , (["mi nelci lo pendo gerku ku", "mi nelci lo gerku ku poi pendo"], ["I like friendly dogs."])
-            , (["mi nelci lo pendo mlatu ku", "mi nelci lo mlatu ku poi pendo"], ["I like friendly cats."])
-            -- nelci (xu do)
-            --, (["xu do nelci lo pendo prenu", "xu do nelci lo prenu poi pendo"], ["Do you like friendly people?"])
-            --, (["xu do nelci lo pendo dunda", "xu do nelci lo dunda poi pendo"], ["Do you like friendly donors?"])
-            --, (["xu do nelci lo pendo te dunda", "xu do nelci lo te dunda poi pendo"], ["Do you like friendly recipients?"])
-            --, (["xu do nelci lo pendo ctuca", "xu do nelci lo ctuca poi pendo"], ["Do you like friendly teachers?"])
-            --, (["xu do nelci lo pendo gerku", "xu do nelci lo gerku poi pendo"], ["Do you like friendly dogs?"])
-            --, (["xu do nelci lo pendo mlatu", "xu do nelci lo mlatu poi pendo"], ["Do you like friendly cats?"])
+            , (["mi nelci lo lojbo prenu ku", "mi nelci lo prenu ku poi lojbo"], ["I like Lojbanic people."])
+            , (["mi nelci lo lojbo dunda ku", "mi nelci lo dunda ku poi lojbo"], ["I like Lojbanic donors."])
+            , (["mi nelci lo lojbo ctuca ku", "mi nelci lo ctuca ku poi lojbo"], ["I like Lojbanic teachers."])
+            , (["mi nelci lo lojbo gerku ku", "mi nelci lo gerku ku poi lojbo"], ["I like Lojbanic dogs."])
+            , (["mi nelci lo lojbo mlatu ku", "mi nelci lo mlatu ku poi lojbo"], ["I like Lojbanic cats."])
+            ]
+        melbi = generatorFromList
+            -- tavla (mi)
+            [ (["mi tavla lo melbi prenu ku", "mi tavla lo prenu ku poi melbi"], ["I talked to the beautiful person."])
+            , (["mi tavla lo melbi dunda ku", "mi tavla lo dunda ku poi melbi"], ["I talked to the beautiful donor."])
+            , (["mi tavla lo melbi ctuca ku", "mi tavla lo ctuca ku poi melbi"], ["I talked to the beautiful teacher."])
             ]
 
 -- * Lesson 5: Questions 1
@@ -652,7 +629,7 @@ translations6_nu = expandTranslationGenerator $ combineGenerators [(2, gleki), (
             --, (["lo te nupre ku tavla mi lo gerku ku"], ["The promisee talked to me about the dog.", "The promisee talked to me about the dogs."])
             --, (["lo te nupre ku tavla mi lo zdani ku"], ["The promisee talked to me about the house.", "The promisee talked to me about the houses."])
             --]
-    nupre = combineGeneratorsUniformly [donatingAnimals, donatingHouses, teaching, beingFriendly] where
+    nupre = combineGeneratorsUniformly [donatingAnimals, donatingHouses, teaching, beingFriend] where
         donatingAnimals = generatorFromList
             [ (["do nupre lo nu dunda lo mlatu ku kei ku", "do nupre lo nu do dunda lo mlatu ku kei ku"], ["You promised to donate the cat.", "You promised to donate the cats."])
             , (["do nupre lo nu dunda lo gerku ku kei ku", "do nupre lo nu do dunda lo gerku ku kei ku"], ["You promised to donate the dog.", "You promised to donate the dogs."])
@@ -670,23 +647,25 @@ translations6_nu = expandTranslationGenerator $ combineGenerators [(2, gleki), (
             [ (["do nupre lo nu ctuca mi kei ku", "do nupre lo nu do ctuca mi kei ku"], ["You promised to teach me.", "You promised to teach us."])
             , (["mi nupre lo nu ctuca do kei ku", "mi nupre lo nu mi ctuca do kei ku"], ["I promised to teach you."])
             ]
-        beingFriendly = generatorFromList
-            [ (["do nupre lo nu pendo kei ku", "do nupre lo nu do pendo kei ku"], ["You promised to be friendly."])
-            , (["lo ciska ku nupre lo nu pendo kei ku"], ["The writer promised to be friendly."])
+        beingFriend = generatorFromList
+            [ (["do nupre lo nu pendo kei ku", "do nupre lo nu do pendo kei ku"], ["You promised to be a friend."])
+            , (["lo ciska ku nupre lo nu pendo kei ku"], ["The writer promised to be a friend."])
             ]
 
 translations6_du'u :: TranslationGenerator
 translations6_du'u = combineGenerators [(2, djuno)] where
-    djuno = combineGeneratorsUniformly [teaching, friend, donating, promising, liking, talking, writing] where
+    djuno = combineGeneratorsUniformly [teaching, friend, beautiful, donating, promising, liking, talking, writing] where
         teaching = generatorFromList
             [ (["mi djuno lo du'u do ctuca mi kei ku"], ["I know that you taught me."])
             ]
         friend = generatorFromList
             [ (["mi djuno lo du'u do pendo mi kei ku"], ["I know that you are my friend."])
-            , (["mi djuno lo du'u mi pendo kei ku"], ["I know that I am friendly."])
-            , (["mi djuno lo du'u do pendo kei ku"], ["I know that you are friendly."])
             , (["mi djuno lo du'u lo ciska ku pendo do kei ku"], ["I know the writer is your friend."])
-            , (["mi djuno lo du'u lo ciska ku pendo kei ku"], ["I know that the writer is friendly."])
+            ]
+        beautiful = generatorFromList
+            [ (["mi djuno lo du'u mi pendo kei ku"], ["I know that I am beautiful."])
+            , (["mi djuno lo du'u do pendo kei ku"], ["I know that you are beautiful."])
+            , (["mi djuno lo du'u lo ciska ku pendo kei ku"], ["I know that the writer is beautiful."])
             ]
         donating = generatorFromList
             [ (["mi djuno lo du'u do dunda kei ku"], ["I know that you made a donation.", "I know that you made donations."])
@@ -733,7 +712,7 @@ translations6_du'u = combineGenerators [(2, djuno)] where
 
 translations6_sedu'u :: TranslationGenerator
 translations6_sedu'u = combineGenerators [(2, cusku)] where
-    cusku = combineGeneratorsUniformly [beautiful, likingPeople, likingAnimals, donatingAnimals, beingFriendly] where
+    cusku = combineGeneratorsUniformly [beautiful, likingPeople, likingAnimals, donatingAnimals, beingFriend] where
         beautiful = generatorFromList
             [ (["mi cusku lo se du'u do melbi kei ku"], ["I said that you are beautiful."])
             , (["mi cusku lo se du'u lo prenu ku melbi kei ku"], ["I said that the person is beautiful."])
@@ -782,11 +761,11 @@ translations6_sedu'u = combineGenerators [(2, cusku)] where
             , (["lo prenu ku cusku lo se du'u do dunda lo mlatu ku mi kei ku"], ["The person said that you would give me the cat.", "The person said that you would give me the cats."])
             , (["lo prenu ku cusku lo se du'u do dunda lo gerku ku mi kei ku"], ["The person said that you would give me the dog.", "The person said that you would give me the dogs."])
             ]
-        beingFriendly = generatorFromList
-            [ (["mi cusku lo se du'u pendo kei ku", "mi cusku lo se du'u mi pendo kei ku"], ["I said that I would be friendly."])
-            , (["do cusku lo se du'u pendo kei ku", "do cusku lo se du'u do pendo kei ku"], ["You said that you would be friendly."])
-            , (["mi cusku lo se du'u do pendo kei ku"], ["I said that you would be friendly."])
-            , (["mi cusku lo se du'u lo ciska ku pendo kei ku"], ["I said that the writer would be friendly."])
+        beingFriend = generatorFromList
+            [ (["mi cusku lo se du'u pendo kei ku", "mi cusku lo se du'u mi pendo kei ku"], ["I said that I would be a friend."])
+            , (["do cusku lo se du'u pendo kei ku", "do cusku lo se du'u do pendo kei ku"], ["You said that you would be a friend."])
+            , (["mi cusku lo se du'u do pendo kei ku"], ["I said that you would be a friend."])
+            , (["mi cusku lo se du'u lo ciska ku pendo kei ku"], ["I said that the writer would be a friend."])
             ]
         -- TODO: find out where the following sentences belong
             --[ (["mi nelci lo nu tavla do kei ku", "mi nelci lo nu mi tavla do kei ku"], ["I like to talk to you."]) -- is nelci really adequate?
@@ -1015,7 +994,7 @@ translations7_restricted = expandTranslationGenerator $ combineGenerators [(2, h
             , (["lo prenu cu cusku lo se du'u do dunda lo gerku mi"], ["The person said that you would give me the dog.", "The person said that you would give me the dogs."])
             ]
         others = generatorFromList
-            [ (["mi cusku lo se du'u lo ciska cu pendo"], ["I said that the writer would be friendly."])
+            [ (["mi cusku lo se du'u lo ciska cu pendo"], ["I said that the writer would be a friend."])
             , (["mi cusku lo se du'u mi nelci lo nu {mi} tavla do", "mi cusku lo se du'u mi nelci lo nu mi tavla do"], ["I said that I like to talk to you."]) -- is nelci really adequate?
             , (["mi cusku lo se du'u do nelci lo nu {do} tavla mi"], ["I said that you like to talk to me."]) -- is nelci really adequate?
             , (["xu do cusku lo se du'u mi melbi do", "xu do cusku lo se du'u mi melbi"], ["Did you say that you find me beautiful?"])
@@ -1035,7 +1014,7 @@ translations1to7 = simplifyTerminatorsInTranslationGenerator $ combineGenerators
 translations9_noi :: TranslationGenerator
 translations9_noi = expandTranslationGenerator $ combineGeneratorsUniformly [computer, uses, knower, instructor, friend, house, animals] where
     usesComputers =
-        [ (["lo ctuca noi {ke'a} pilno lo skami cu pendo"], ["The instructor, who uses computers, is friendly."])
+        [ (["lo ctuca noi {ke'a} pilno lo skami cu lojbo"], ["The instructor, who uses computers, is Lojbanic."])
         , (["lo ctuca noi {ke'a} pilno lo skami cu tavla mi"], ["The instructor, who uses computers, talked to me."])
         , (["lo ctuca noi {ke'a} pilno lo skami cu tavla fi do"], ["The instructor, who uses computers, is talking about you.", "The instructor, who uses computers, talked about you."])
         , (["xu lo ctuca noi {ke'a} pilno lo skami cu tavla mi"], ["Is the instructor, who uses computers, talking to me?"])
@@ -1046,10 +1025,10 @@ translations9_noi = expandTranslationGenerator $ combineGeneratorsUniformly [com
         , (["lo tavla noi {ke'a} dunda lo skami cu se zdani"], ["The speaker, who donated the computer, has a house."])
         ]
     uses = generatorFromList $ usesComputers ++
-        [ (["lo ctuca noi {ke'a} pendo cu cusku lo se du'u lo skami cu se pilno"], ["The instructor, who is friendly, said that computers are useful."])
+        [ (["lo ctuca noi {ke'a} lojbo cu cusku lo se du'u lo skami cu se pilno"], ["The instructor, who is Lojbanic, said that computers are useful."])
         ]
     knower = generatorFromList
-        [ (["lo djuno noi {ke'a} (nelci|se pluka) lo nu ke'a tavla (ke'a|vo'a) ku'o pendo", "lo djuno noi {ke'a} (nelci|se pluka) lo nu (|ke'a) tavla vo'a ku'o pendo"], ["The knower, who enjoys talking to himself, is friendly."])
+        [ (["lo djuno noi {ke'a} (nelci|se pluka) lo nu ke'a tavla (ke'a|vo'a) ku'o lojbo", "lo djuno noi {ke'a} (nelci|se pluka) lo nu (|ke'a) tavla vo'a ku'o lojbo"], ["The knower, who enjoys talking to himself, is Lojbanic."])
         , (["lo djuno noi {ke'a} (nelci|se pluka) lo nu ke'a tavla (ke'a|vo'a) ku'o ciska ta", "lo djuno noi {ke'a} (nelci|se pluka) lo nu (|ke'a) tavla vo'a ku'ciska ta pendo"], ["The knower, who enjoys talking to himself, wrote that."])
         , (["lo djuno noi {ke'a} (nelci|se pluka) lo nu ke'a tavla (ke'a|vo'a) ku'o ctuca mi", "lo djuno noi {ke'a} (nelci|se pluka) lo nu (|ke'a) tavla vo'a ku'o ctuca mi"], ["The knower, who enjoys talking to himself, taught us."])
         , (["lo djuno noi {ke'a} (nelci|se pluka) lo nu ke'a tavla (ke'a|vo'a) ku'o pilno lo skami", "lo djuno noi {ke'a} (nelci|se pluka) lo nu (|ke'a) tavla vo'a ku'o pilno lo skami"], ["The knower, who enjoys talking to himself, uses computers."])
@@ -1062,7 +1041,6 @@ translations9_noi = expandTranslationGenerator $ combineGeneratorsUniformly [com
         , (["lo ctuca noi {ke'a} pendo mi cu cusku lo se du'u {ri} nelci lo mlatu"], ["The instructor, who is my friend, said that he likes cats."])
         ]
     friend = generatorFromList
-        -- [ (["mi nelci lo nu lo dunda noi {ke'a} simsa lo ctuca cu pendo"], ["I am happy that the donor, who looked like a teacher, was friendly."])
         [ (["lo dunda noi {ke'a} pendo mi cu gleki"], ["The donor, who is my friend, is happy."])
         , (["lo te dunda noi {ke'a} pendo mi cu gleki"], ["The beneficiary, who is my friend, is happy."])
         , (["lo vecnu noi {ke'a} pendo mi cu gleki"], ["The seller, who is my friend, is happy."])
@@ -1122,12 +1100,12 @@ translations9_poi = expandTranslationGenerator $ combineGeneratorsUniformly [com
         , (["xu do nelci lo skami poi mi vecnu (ke'a|)"], ["Did you like the computer that I sold?"])
         ]
     uses = generatorFromList $ usesComputers ++
-        [ (["lo ctuca noi {ke'a} pendo cu cusku lo se du'u lo skami cu se pilno"], ["The instructor, who is friendly, said that computers are useful."])
-        , (["lo ctuca noi {ke'a} pendo cu gleki lo nu do dunda lo se pilno mi"], ["The instructor, who is friendly, is happy that you gave me the tool."])
-        , (["lo ctuca noi {ke'a} pendo cu gleki lo nu do vecnu lo se pilno mi"], ["The instructor, who is friendly, is happy that you sold me the tool."])
-        , (["xu lo ctuca noi {ke'a} pendo cu gleki lo nu do te vecnu lo se pilno"], ["Is the instructor, who is friendly, happy that you bought the tool?"])
-        , (["xu lo ctuca noi {ke'a} pendo cu gleki lo nu mi dunda lo se pilno do"], ["Is the instructor, who is friendly, happy that I gave you the tool?"])
-        , (["xu lo ctuca noi {ke'a} pendo cu gleki lo nu mi vecnu lo se pilno do"], ["Is the instructor, who is friendly, happy that I sold you the tool?"])
+        [ (["lo ctuca noi {ke'a} lojbo cu cusku lo se du'u lo skami cu se pilno"], ["The instructor, who is Lojbanic, said that computers are useful."])
+        , (["lo ctuca noi {ke'a} lojbo cu gleki lo nu do dunda lo se pilno mi"], ["The instructor, who is Lojbanic, is happy that you gave me the tool."])
+        , (["lo ctuca noi {ke'a} lojbo cu gleki lo nu do vecnu lo se pilno mi"], ["The instructor, who is Lojbanic, is happy that you sold me the tool."])
+        , (["xu lo ctuca noi {ke'a} lojbo cu gleki lo nu do te vecnu lo se pilno"], ["Is the instructor, who is Lojbanic, happy that you bought the tool?"])
+        , (["xu lo ctuca noi {ke'a} lojbo cu gleki lo nu mi dunda lo se pilno do"], ["Is the instructor, who is Lojbanic, happy that I gave you the tool?"])
+        , (["xu lo ctuca noi {ke'a} lojbo cu gleki lo nu mi vecnu lo se pilno do"], ["Is the instructor, who is Lojbanic, happy that I sold you the tool?"])
         ]
     house = generatorFromList
         [ (["lo zdani poi {ke'a} melbi do cu se dunda fi mi"], ["The house that you found beautiful was donated to me."])
@@ -1141,13 +1119,13 @@ translations9_poi = expandTranslationGenerator $ combineGeneratorsUniformly [com
     animals = combineGeneratorsUniformly [mlatu, gerku] where
         mlatu = generatorFromList
             -- [ (["mi nelci lo mlatu poi {ke'a} simsa lo gerku"], ["I like cats that look like dogs."])
-            [ (["mi nelci lo mlatu poi {ke'a} pendo lo gerku"], ["I like cats that are friendly to dogs."])
+            [ (["mi nelci lo mlatu poi {ke'a} ctuca lo gerku"], ["I like cats that teach dogs."])
             , (["mi nelci lo mlatu poi {ke'a} nelci lo plise"], ["I like cats that like apples."])
             , (["mi nelci lo plise poi {ke'a} melbi lo mlatu"], ["I like apples that are beautiful to cats."])
             , (["mi nelci lo mlatu poi {ke'a} melbi", "mi nelci lo melbi mlatu"], ["I like the beautiful cat."])
             , (["mi tavla lo prenu poi {ke'a} dunda lo mlatu"], ["I talked to the person who donated the cat."])
             , (["mi tavla lo prenu poi {ke'a} dunda lo mlatu ku mi"], ["I talked to the person who gave me the cat.", "I talked to the person who gave me the cats."])
-            , (["mi djuno lo du'u lo mlatu poi do dunda (ke'a|fi) mi ku'o pendo"], ["I know that the cat you gave me is friendly."])
+            , (["mi djuno lo du'u lo mlatu poi do dunda (ke'a|fi) mi ku'o melbi"], ["I know that the cat you gave me is beautiful."])
             , (["mi dunda lo mlatu poi do tavla fi ke'a"], ["I donated the cat that you were talking about."])
             , (["mi nelci lo mlatu poi do tavla fi ke'a"], ["I like the cat that you were talking about."])
             , (["mi nupre lo nu {mi} tavla lo prenu poi {ke'a} dunda lo mlatu"], ["I promised to talk to the person who donated the cat."])
@@ -1155,14 +1133,13 @@ translations9_poi = expandTranslationGenerator $ combineGeneratorsUniformly [com
             , (["mi djuno lo du'u do nupre fi lo pendo poi {ke'a} dunda lo mlatu"], ["I know that you made a promise to the friend who donated the cat."])
             ]
         gerku = generatorFromList
-            -- [ (["mi nelci lo gerku poi {ke'a} simsa lo mlatu"], ["I like dogs that look like cats."])
-            [ (["mi nelci lo gerku poi {ke'a} pendo lo mlatu"], ["I like dogs that are friendly to cats."])
+            [ (["mi nelci lo gerku poi {ke'a} ctuca lo mlatu"], ["I like dogs that teach cats."])
             , (["mi nelci lo gerku poi {ke'a} nelci lo plise"], ["I like dogs that like apples."])
             , (["mi nelci lo plise poi {ke'a} melbi lo gerku"], ["I like apples that are beautiful to dogs."])
             , (["mi nelci lo gerku poi {ke'a} melbi", "mi nelci lo melbi gerku"], ["I like the beautiful dog."])
             , (["mi tavla lo prenu poi {ke'a} dunda lo gerku"], ["I talked to the person who donated the dog."])
             , (["mi tavla lo prenu poi {ke'a} dunda lo gerku ku mi"], ["I talked to the person who gave me the dog.", "I talked to the person who gave me the dogs."])
-            , (["mi djuno lo du'u lo gerku poi do dunda (ke'a|fi) mi ku'o pendo"], ["I know that the dog you gave me is friendly."])
+            , (["mi djuno lo du'u lo gerku poi do dunda (ke'a|fi) mi ku'o melbi"], ["I know that the dog you gave me is beautiful."])
             , (["mi dunda lo gerku poi do tavla fi ke'a"], ["I donated the dog that you were talking about."])
             , (["mi nelci lo gerku poi do tavla fi ke'a"], ["I like the dog that you were talking about."])
             , (["mi nupre lo nu {mi} tavla lo prenu poi {ke'a} dunda lo gerku"], ["I promised to talk to the person who donated the dog."])
@@ -1339,7 +1316,7 @@ translations11 = expandTranslationGenerator $ combineGenerators [(3, pi'o), (3, 
         , (["mu'i ma do ciska ta"], ["Why did you write that?"])
         -- others
         , (["mu'i ma lo prenu cu se zdani"], ["Why do people have houses?"])
-        , (["mu'i ma do pendo"], ["Why are you friendly?"])
+        , (["mu'i ma do gleki"], ["Why are you happy?"])
         -- fanva
         , (["mu'i ma do fanva"], ["Why do you translate?"])
         , (["mu'i ma lo prenu cu fanva"], ["Why do people translate?"])
@@ -1395,8 +1372,8 @@ translations11 = expandTranslationGenerator $ combineGenerators [(3, pi'o), (3, 
         , (["do tavla fi lo nu vecnu mu'i ma", "lo nu vecnu mu'i ma kei poi do tavla {fi ke'a}"], ["What was the motivation for the sale you are talking about?"])
         , (["do tavla fi lo nu dunda mu'i ma", "lo nu dunda mu'i ma kei poi do tavla {fi ke'a}"], ["What was the motivation for the donation you are talking about?"])
         , (["xu do nelci lo nu dunda mu'i lo (nu|ka|li'i) gleki"], ["Do you like donations motivated by happiness?"])
-        , (["mi tavla fi lo nu gleki mu'i lo nu lo gerku cu pendo"], ["I am talking about the event of happiness motivated by the dog being friendly."])
-        , (["mi tavla fi lo nu mi gleki mu'i lo nu lo gerku cu pendo"], ["I am talking about the event of my happiness motivated by the dog being friendly."])
+        , (["mi tavla fi lo nu gleki mu'i lo nu lo gerku cu melbi"], ["I am talking about the event of happiness motivated by the dog being beautiful."])
+        , (["mi tavla fi lo nu mi gleki mu'i lo nu lo gerku cu melbi"], ["I am talking about the event of my happiness motivated by the dog being beautiful."])
         , (["mi tavla fi lo nu do gleki gau lo gerku"], ["I am talking about the event of the dog making you happy."])
         ]
 
@@ -1676,15 +1653,15 @@ translations15_sentences :: TranslationGenerator
 translations15_sentences = expandTranslationGenerator $ combineGeneratorsUniformly [gerku, mlatu, pendo] where
     gerku = generatorFromList
         [ (["mi dunda lo mi gerku"], ["I donated my dog."])
-        , (["lo mi gerku cu pendo"], ["My dog is friendly."])
+        , (["lo mi gerku cu gleki"], ["My dog is happy."])
         , (["xu do dunda lo do gerku"], ["Did you donate your dog?"])
-        , (["xu lo do gerku cu pendo"], ["Is your dog friendly?"])
+        , (["xu lo do gerku cu gleki"], ["Is your dog happy?"])
         ]
     mlatu = generatorFromList
         [ (["mi dunda lo mi mlatu"], ["I donated my cat."])
-        , (["lo mi mlatu cu pendo"], ["My cat is friendly."])
+        , (["lo mi mlatu cu gleki"], ["My cat is happy."])
         , (["xu do dunda lo do mlatu"], ["Did you donate your cat?"])
-        , (["xu lo do mlatu cu pendo"], ["Is your cat friendly?"])
+        , (["xu lo do mlatu cu gleki"], ["Is your cat happy?"])
         ]
     pendo = generatorFromList
         -- mi
@@ -1823,7 +1800,7 @@ translations17_na = expandTranslationGenerator $ combineGeneratorsUniformly [nel
         , (["na ku gau do mi tavla fi lo mlatu"], ["Not true: you made me talk about the cat."])
         ]
     pendo = generatorFromList
-        [ (["do na pendo"], ["Not true: you are friendly."])
+        [ (["do na gleki"], ["Not true: you are happy."])
         , (["do na pendo mi"], ["Not true: you are my friend."])
         ]
     melbi = generatorFromList
@@ -2088,7 +2065,7 @@ translations27_sentences :: TranslationGenerator
 translations27_sentences = expandTranslationGenerator $ combineGenerators [(1, inside_sumti), (3, outside_sumti)] where
     inside_sumti = combineGeneratorsUniformly [vi, va, vu, zu'a, ri'u, ca'u, bu'u] where
         vi = generatorFromList
-            [ (["lo vi gerku cu pendo"], ["The nearby dog is friendly."])
+            [ (["lo vi gerku cu gleki"], ["The nearby dog is happy."])
             , (["lo vi mlatu cu melbi"], ["The nearby cat is beautiful."])
             , (["mi tavla lo vi prenu"], ["I am talking to the nearby person."])
             , (["mi ctuca lo vi prenu"], ["I am teaching the nearby person."])
@@ -2110,7 +2087,7 @@ translations27_sentences = expandTranslationGenerator $ combineGenerators [(1, i
             , (["mi nelci lo vi gerku"], ["I like the nearby dogs."])
             ]
         va = generatorFromList
-            [ (["lo va gerku cu pendo"], ["The moderately distant dog is friendly."])
+            [ (["lo va gerku cu gleki"], ["The moderately distant dog is happy."])
             , (["lo va mlatu cu melbi"], ["The moderately distant cat is beautiful."])
             , (["mi tavla lo va prenu"], ["I am talking to the moderately distant person."])
             , (["mi ctuca lo va prenu"], ["I am teaching the moderately distant person."])
@@ -2132,7 +2109,7 @@ translations27_sentences = expandTranslationGenerator $ combineGenerators [(1, i
             , (["mi nelci lo va gerku"], ["I like the moderately distant dogs."])
             ]
         vu = generatorFromList
-            [ (["lo vu gerku cu pendo"], ["The far away dog is friendly."])
+            [ (["lo vu gerku cu gleki"], ["The far away dog is happy."])
             , (["lo vu mlatu cu melbi"], ["The far away cat is beautiful."])
             , (["mi tavla lo vu prenu"], ["I am talking to the far away person."])
             , (["mi ctuca lo vu prenu"], ["I am teaching the far away person."])
@@ -2154,7 +2131,7 @@ translations27_sentences = expandTranslationGenerator $ combineGenerators [(1, i
             , (["mi nelci lo vu gerku"], ["I like the far away dogs."])
             ]
         zu'a = generatorFromList
-            [ (["lo zu'a gerku cu pendo"], ["The dog to the left is friendly."])
+            [ (["lo zu'a gerku cu gleki"], ["The dog to the left is happy."])
             , (["lo zu'a mlatu cu melbi"], ["The cat to the left is beautiful."])
             , (["mi tavla lo zu'a prenu"], ["I am talking to the person to the left."])
             , (["mi ctuca lo zu'a prenu"], ["I am teaching the person to the left."])
@@ -2176,7 +2153,7 @@ translations27_sentences = expandTranslationGenerator $ combineGenerators [(1, i
             , (["mi nelci lo zu'a gerku"], ["I like the dogs to the left."])
             ]
         ri'u = generatorFromList
-            [ (["lo ri'u gerku cu pendo"], ["The dog to the right is friendly."])
+            [ (["lo ri'u gerku cu gleki"], ["The dog to the right is happy."])
             , (["lo ri'u mlatu cu melbi"], ["The cat to the right is beautiful."])
             , (["mi tavla lo ri'u prenu"], ["I am talking to the person to the right."])
             , (["mi ctuca lo ri'u prenu"], ["I am teaching the person to the right."])
@@ -2198,7 +2175,7 @@ translations27_sentences = expandTranslationGenerator $ combineGenerators [(1, i
             , (["mi nelci lo ri'u gerku"], ["I like the dogs to the right."])
             ]
         ca'u = generatorFromList
-            [ (["lo ca'u gerku cu pendo"], ["The dog to the front is friendly."])
+            [ (["lo ca'u gerku cu gleki"], ["The dog to the front is happy."])
             , (["lo ca'u mlatu cu melbi"], ["The cat to the front is beautiful."])
             , (["mi tavla lo ca'u prenu"], ["I am talking to the person to the front."])
             , (["mi ctuca lo ca'u prenu"], ["I am teaching the person to the front."])
