@@ -188,9 +188,9 @@ tadni:
 
     # Sentence complexity: 1.809
     - lojban_sentences:
-        - do xamgu tadni
+        - do cnino tadni
       translated_sentences:
-        - You are a good student.
+        - You are a new student.
 
     # Sentence complexity: 1.853
     - lojban_sentences:
