@@ -170,7 +170,7 @@ translations3_nice = expandTranslationGenerator $ combineGenerators $ [(2, trans
         [ (["lo tavla ku gleki", "lo cusku ku gleki"], ["The speaker is happy.", "The speakers are happy."])
         , (["lo se tavla ku gleki"], ["The listener is happy.", "The listeners are happy."])
         , (["lo dunda ku gleki"], ["The donor is happy.", "The donors are happy."])
-        , (["lo te dunda ku gleki"], ["The beneficiary is happy.", "The beneficiaries (of the gift) are happy."])
+        , (["lo te dunda ku gleki"], ["The beneficiary (of the gift) is happy.", "The beneficiaries (of the gift) are happy."])
         , (["lo ctuca ku gleki"], ["The instructor is happy.", "The instructors are happy."])
         ]
     pelxu = generatorFromList
