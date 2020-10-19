@@ -96,9 +96,9 @@ viska:
 
     # Sentence complexity: 1.300
     - lojban_sentences:
-        - mi djica lo nu viska do kei ji'a
+        - mi djica lo nu viska do kei
       translated_sentences:
-        - I wanted to see you, too.
+        - I wanted to see you.
 
     # Sentence complexity: 1.409
     - lojban_sentences:
