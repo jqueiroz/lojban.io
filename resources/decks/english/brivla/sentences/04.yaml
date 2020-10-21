@@ -794,12 +794,6 @@ xabju:
       translated_sentences:
         - Where would you like to live?
 
-    # Sentence complexity: 1.883
-    - lojban_sentences:
-        - do xabju ma
-      translated_sentences:
-        - Where are you from?
-
     # Sentence complexity: 2.102
     - lojban_sentences:
         - ma poi zdani cu pu se xabju do
