@@ -117,7 +117,7 @@ translations3_restricted = expandTranslationGenerator $ combineGenerators [(2, t
 --
 -- Defined separately so that they may be reused in the checkpoint lesson (Lesson 7).
 translations3_nice :: TranslationGenerator
-translations3_nice = expandTranslationGenerator $ combineGenerators $ [(2, translations3_restricted), (2, teaching)] ++ ((1,) <$> [hasHouse, niceGift, giftingAnimal, friends, gleki, pelxu, others]) where
+translations3_nice = expandTranslationGenerator $ combineGenerators $ [(2, translations3_restricted), (2, teaching)] ++ ((1,) <$> [hasHouse, niceGift, giftingAnimal, friends, pelxu, others]) where
     hasHouse = generatorFromList
         [ (["lo ctuca ku se zdani"], ["The instructor has a house."])
         , (["lo prenu ku se zdani"], ["The person has a house."])
@@ -165,13 +165,6 @@ translations3_nice = expandTranslationGenerator $ combineGenerators $ [(2, trans
         , (["lo dunda ku pendo mi"], ["The donor is my friend.", "The donors are my friends."])
         , (["lo te dunda ku pendo mi"], ["The beneficiary (of the gift) is my friend.", "The beneficiaries (of the gift) are my friends."])
         , (["lo ctuca ku pendo mi"], ["The instructor is my friend.", "The instructors are my friends."])
-        ]
-    gleki = generatorFromList
-        [ (["lo tavla ku gleki", "lo cusku ku gleki"], ["The speaker is happy.", "The speakers are happy."])
-        , (["lo se tavla ku gleki"], ["The listener is happy.", "The listeners are happy."])
-        , (["lo dunda ku gleki"], ["The donor is happy.", "The donors are happy."])
-        , (["lo te dunda ku gleki"], ["The beneficiary (of the gift) is happy.", "The beneficiaries (of the gift) are happy."])
-        , (["lo ctuca ku gleki"], ["The instructor is happy.", "The instructors are happy."])
         ]
     pelxu = generatorFromList
         [ (["lo zdani ku pelxu"], ["The house is yellow.", "The houses are yellow."])
