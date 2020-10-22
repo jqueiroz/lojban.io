@@ -1122,7 +1122,7 @@ translations9_poi = expandTranslationGenerator $ combineGeneratorsUniformly [com
             , (["mi dunda lo mlatu poi do tavla fi ke'a"], ["I donated the cat that you were talking about."])
             , (["mi nelci lo mlatu poi do tavla fi ke'a"], ["I like the cat that you were talking about."])
             , (["mi nupre lo nu {mi} tavla lo prenu poi {ke'a} dunda lo mlatu"], ["I promised to talk to the person who donated the cat."])
-            , (["mi tavla fi lo mlatu poi do nupre lo nu {do} dunda"], ["I talked about the cat that you promised to donate."])
+            , (["mi tavla fi lo mlatu poi do nupre lo nu {do} dunda (|ke'a)"], ["I talked about the cat that you promised to donate."])
             , (["mi djuno lo du'u do nupre fi lo pendo poi {ke'a} dunda lo mlatu"], ["I know that you made a promise to the friend who donated the cat."])
             ]
         gerku = generatorFromList
@@ -1136,16 +1136,16 @@ translations9_poi = expandTranslationGenerator $ combineGeneratorsUniformly [com
             , (["mi dunda lo gerku poi do tavla fi ke'a"], ["I donated the dog that you were talking about."])
             , (["mi nelci lo gerku poi do tavla fi ke'a"], ["I like the dog that you were talking about."])
             , (["mi nupre lo nu {mi} tavla lo prenu poi {ke'a} dunda lo gerku"], ["I promised to talk to the person who donated the dog."])
-            , (["mi tavla fi lo gerku poi do nupre lo nu {do} dunda"], ["I talked about the dog that you promised to donate."])
+            , (["mi tavla fi lo gerku poi do nupre lo nu {do} dunda (|ke'a)"], ["I talked about the dog that you promised to donate."])
             , (["mi djuno lo du'u do nupre fi lo pendo poi {ke'a} dunda lo gerku"], ["I know that you made a promise to the friend who donated the dog."])
             ]
     general = generatorFromList
         [ (["mi tavla lo prenu poi {ke'a} nupre fi do"], ["I talked to the person who promised you."])
         , (["xu do tavla lo prenu poi {ke'a} nupre fi mi"], ["Did you talk to the person who promised me?"])
-        , (["mi tavla fi lo zdani poi do nupre lo nu {do} dunda"], ["I talked about the house that you promised to donate."])
-        , (["xu do tavla fi lo zdani poi do nupre lo nu {do} dunda"], ["Did you talk about the house that you promised to donate?"])
+        , (["mi tavla fi lo zdani poi do nupre lo nu {do} dunda (|ke'a)"], ["I talked about the house that you promised to donate."])
+        , (["xu do tavla fi lo zdani poi do nupre lo nu {do} dunda (|ke'a)"], ["Did you talk about the house that you promised to donate?"])
         , (["mi tavla fi lo plise poi do dunda ke'a lo mlatu"], ["I am talking about the apple that you gave to the cat."])
-        , (["mi tavla fi lo plise poi do vecnu"], ["I am talking about the apple that you sold."])
+        , (["mi tavla fi lo plise poi do vecnu (|ke'a)"], ["I am talking about the apple that you sold."])
         , (["xu lo gerku cu nelci lo plise poi do dunda {ke'a}"], ["Did the dog like the apple that you gave?"])
         , (["mi tavla lo prenu poi {ke'a} dunda lo plise"], ["I talked to the person who donated the apple."])
         , (["mi tavla fi lo prenu poi {ke'a} dunda lo plise"], ["I talked about the person who donated the apple."])
@@ -1167,8 +1167,8 @@ translations9 = combineGeneratorsUniformly [translations9_noi, translations9_poi
 translations10 :: TranslationGenerator
 translations10 = expandTranslationGenerator $ combineGeneratorsUniformly [required_terminator, cmene_complex, general, vecnu_zdani, ctuca, tavla, bangu, zdani, cmene] where
     required_terminator = generatorFromList
-        [ (["mi nelci lo cmene (be do be'o|pe do ge'u) noi melbi"], ["I like your name, which is beautiful."])
-        , (["mi nelci lo zdani (be do be'o|pe do ge'u) noi melbi"], ["I like your house, which is beautiful."])
+        [ (["mi nelci lo cmene (be do be'o|pe do ge'u) noi (ke'a|) melbi"], ["I like your name, which is beautiful."])
+        , (["mi nelci lo zdani (be do be'o|pe do ge'u) noi (ke'a|) melbi"], ["I like your house, which is beautiful."])
         , (["mi nelci lo bangu (be do be'o|pe do ge'u) noi mi nupre lo nu {mi} ctuca fo (ke'a|zo'e)"], ["I like your language, which I promised to teach."])
         ]
     cmene_complex = generatorFromList
