@@ -373,7 +373,7 @@ translations5_xu = expandTranslationGenerator $ combineGenerators $ [(3, transla
         , (["xu do tavla lo gerku ku"], ["Are you talking to the dog?"])
         ]
     teaching = generatorFromList
-        [ (["xu mi ctuca lo mlatu ku"], ["Are you teaching the cat?", "Did you teach the cat?"])
+        [ (["xu do ctuca lo mlatu ku"], ["Are you teaching the cat?", "Did you teach the cat?"])
         , (["xu do ctuca lo gerku ku"], ["Are you teaching the dog?", "Did you teach the dog?"])
         , (["xu do ctuca mi"], ["Are you going to teach me?"])
         , (["xu do ctuca do", "xu do ctuca vo'a"], ["Did you teach yourself?"])
