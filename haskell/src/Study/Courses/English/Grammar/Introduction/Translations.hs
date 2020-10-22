@@ -656,9 +656,9 @@ translations6_du'u = combineGenerators [(2, djuno)] where
             , (["mi djuno lo du'u lo ciska ku pendo do kei ku"], ["I know the writer is your friend."])
             ]
         beautiful = generatorFromList
-            [ (["mi djuno lo du'u mi pendo kei ku"], ["I know that I am beautiful."])
-            , (["mi djuno lo du'u do pendo kei ku"], ["I know that you are beautiful."])
-            , (["mi djuno lo du'u lo ciska ku pendo kei ku"], ["I know that the writer is beautiful."])
+            [ (["mi djuno lo du'u mi melbi kei ku"], ["I know that I am beautiful."])
+            , (["mi djuno lo du'u do melbi kei ku"], ["I know that you are beautiful."])
+            , (["mi djuno lo du'u lo ciska ku melbi kei ku"], ["I know that the writer is beautiful."])
             ]
         donating = generatorFromList
             [ (["mi djuno lo du'u do dunda kei ku"], ["I know that you made a donation.", "I know that you made donations."])
