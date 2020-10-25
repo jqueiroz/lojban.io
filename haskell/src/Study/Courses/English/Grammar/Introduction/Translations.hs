@@ -1941,7 +1941,7 @@ translations23 = expandTranslationGenerator $ combineGeneratorsUniformly [pu'o, 
         , (["xu do ca'o fanva"], ["Are you currently translating?"])
         ]
     ba'o = generatorFromList
-        [ (["do ba'o citka lo plise"], ["You are have finished eating the apple."])
+        [ (["do ba'o citka lo plise"], ["You have finished eating the apple."])
         , (["do ba'o pendo mi"], ["You have ceased to be my friend."])
         , (["mi ba'o tavla lo vecnu"], ["I have finished talking to the seller."])
         , (["mi ba'o tavla lo te vecnu"], ["I have finished talking to the buyer."])
