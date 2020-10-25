@@ -1917,7 +1917,7 @@ translations23 = expandTranslationGenerator $ combineGeneratorsUniformly [pu'o, 
         , (["lo prenu pu'o gleki"], ["The person is about to be happy."])
         , (["lo vecnu pu'o gleki"], ["The seller is about to be happy."])
         , (["lo te vecnu pu'o gleki"], ["The buyer is about to be happy."])
-        , (["xu do pu'o citka"], ["Are you about to write?"])
+        , (["xu do pu'o ciska"], ["Are you about to write?"])
         , (["xu do pu'o tavla"], ["Are you about to talk?"])
         , (["xu do pu'o fanva"], ["Are you about to translate?"])
         ]
@@ -1936,7 +1936,7 @@ translations23 = expandTranslationGenerator $ combineGeneratorsUniformly [pu'o, 
         , (["lo prenu ca'o gleki"], ["The person is currently happy."])
         , (["lo vecnu ca'o gleki"], ["The seller is currently happy."])
         , (["lo te vecnu ca'o gleki"], ["The buyer is currently happy."])
-        , (["xu do ca'o citka"], ["Are you currently writing?"])
+        , (["xu do ca'o ciska"], ["Are you currently writing?"])
         , (["xu do ca'o tavla"], ["Are you currently talking?"])
         , (["xu do ca'o fanva"], ["Are you currently translating?"])
         ]
@@ -1955,7 +1955,7 @@ translations23 = expandTranslationGenerator $ combineGeneratorsUniformly [pu'o, 
         , (["lo prenu ba'o gleki"], ["The person has ceased to be happy."])
         , (["lo vecnu ba'o gleki"], ["The seller has ceased to be happy."])
         , (["lo te vecnu ba'o gleki"], ["The buyer has ceased to be happy."])
-        , (["xu do ba'o citka"], ["Have you finished writing?"])
+        , (["xu do ba'o ciska"], ["Have you finished writing?"])
         , (["xu do ba'o tavla"], ["Have you finished talking?"])
         , (["xu do ba'o fanva"], ["Have you finished translating?"])
         ]
@@ -1974,7 +1974,7 @@ translations23 = expandTranslationGenerator $ combineGeneratorsUniformly [pu'o, 
         , (["lo prenu co'a gleki"], ["The person just became happy."])
         , (["lo vecnu co'a gleki"], ["The seller just became happy."])
         , (["lo te vecnu co'a gleki"], ["The buyer just became happy."])
-        , (["xu do co'a citka"], ["Did you just start writing?"])
+        , (["xu do co'a ciska"], ["Did you just start writing?"])
         , (["xu do co'a tavla"], ["Did you just start talking?"])
         , (["xu do co'a fanva"], ["Did you just start translating?"])
         ]
@@ -1993,7 +1993,7 @@ translations23 = expandTranslationGenerator $ combineGeneratorsUniformly [pu'o, 
         , (["lo prenu co'u gleki"], ["The person just ceased to be happy."])
         , (["lo vecnu co'u gleki"], ["The seller just ceased to be happy."])
         , (["lo te vecnu co'u gleki"], ["The buyer just ceased to be happy."])
-        , (["xu do co'u citka"], ["Did you just finish writing?"])
+        , (["xu do co'u ciska"], ["Did you just finish writing?"])
         , (["xu do co'u tavla"], ["Did you just finish talking?"])
         , (["xu do co'u fanva"], ["Did you just finish translating?"])
         ]
