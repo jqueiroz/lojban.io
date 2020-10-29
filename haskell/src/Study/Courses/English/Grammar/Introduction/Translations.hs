@@ -1800,7 +1800,7 @@ translations17_na = expandTranslationGenerator $ combineGeneratorsUniformly [nel
         [ (["do na melbi"], ["Not true: you are beautiful."])
         , (["mi na melbi"], ["Not true: I am beautiful."])
         , (["lo mlatu na melbi"], ["Not true: cats are beautiful.", "Not true: the cat is beautiful"])
-        , (["lo bangu na melbi"], ["Not true: languages are beautiful.", "Not true: the language "])
+        , (["lo bangu na melbi"], ["Not true: languages are beautiful.", "Not true: the language is beautiful"])
         ]
 
 translations17_na'e :: TranslationGenerator
