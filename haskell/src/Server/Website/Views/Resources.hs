@@ -78,6 +78,9 @@ displayResources = do
                 H.a "Lojban for Beginners"
                     B.! A.href "https://mw.lojban.org/papri/Lojban_For_Beginners,_The_Book"
             H.li $ do
+                H.a "My First Lojban"
+                    B.! A.href "http://foldr.moe/hajiloji/"
+            H.li $ do
                 H.a "la stika"
                     B.! A.href "https://mw.lojban.org/papri/Learning_with_context"
     H.div B.! A.class_ (H.textValue "resource-category") $ do
