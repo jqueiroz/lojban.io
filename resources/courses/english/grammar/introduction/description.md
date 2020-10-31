@@ -21,7 +21,8 @@ Lojban pronunciation is quite regular, and should not take long to get used to.
 We recommend reading [The Wave Lessons &ndash; Lesson 0: Sounds](https://mw.lojban.org/papri/Lojban_Wave_Lessons/Introduction#Lesson_0:_Sounds) and playing with the interactive pronunciation guide in [la sutysisku](https://la-lojban.github.io/sutysisku/sance/) (at the very bottom of the page).
 
 If you have any questions, feel free to ask them on [#ckule](https://mw.lojban.org/papri/Lojban_Live_Chat).
-Also check out [additional resources](/resources) from the Lojbanic community.
+Also consider joining the [roljbogu'e](https://discord.com/channels/771781383361921024/771781461774041100/771782365760323614) Discord server, which tends to be a more friendly place to newcomers.
+Finally, you should definitely check out [additional resources](/resources) from the Lojbanic community.
 
 Have fun :)
 
