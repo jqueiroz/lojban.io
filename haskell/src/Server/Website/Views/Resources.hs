@@ -156,6 +156,9 @@ displayResources = do
                 H.a "Lojban live chat"
                     B.! A.href "https://mw.lojban.org/papri/Lojban_Live_Chat"
             H.li $ do
+                H.a "la roljbogu'e"
+                    B.! A.href "https://discord.com/channels/771781383361921024/771781461774041100/771782365760323614"
+            H.li $ do
                 H.a "Lojban Google group"
                     B.! A.href "https://groups.google.com/g/lojban"
             H.li $ do
