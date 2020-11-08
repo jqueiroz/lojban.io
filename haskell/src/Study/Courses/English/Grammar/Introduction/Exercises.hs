@@ -411,11 +411,13 @@ exercises20 = combineGenerators [(1, generateMorphologicalClassExercise vocabula
 -- * Lesson 21: Gadri 1
 -- | Exercises for the lesson.
 exercises21 :: ExerciseGenerator
-exercises21 = combineGenerators [(1, gadriProvidingExercise), (3, gadriChoosingExercise)] where
+exercises21 = combineGenerators [(1, gadriProvidingExercise), (3, gadriChoosingExercise), (3, translationExercises21)] where
     gadriProvidingExercise = generateLexiconProvidingExercise "gadri" dictionary gadriGenerator where
     gadriChoosingExercise = generateLexiconChoosingExercise "gadri" dictionary gadriList
     gadriList = ["lo", "le", "la"]
     gadriGenerator = generatorFromList gadriList
+translationExercises21 :: ExerciseGenerator
+translationExercises21 = generateTranslationExerciseWithCustomTitle "Translate this sentence using <b>gadri</b>" sentenceCanonicalizer sentenceComparer translations21
 
 -- * Lesson 22: Numbers 1
 -- | Exercises for the lesson.
@@ -444,12 +446,14 @@ translationExercises23 = generateTranslationExerciseWithCustomTitle "Translate <
 -- * Lesson 24: Gadri 2
 -- | Exercises for the lesson.
 exercises24 :: ExerciseGenerator
-exercises24 = combineGenerators [(1, gadriProvidingExercise), (1, gadriChoosingExercise)] where
+exercises24 = combineGenerators [(1, gadriProvidingExercise), (1, gadriChoosingExercise), (3, translationExercises24)] where
     gadriProvidingExercise = generateLexiconProvidingExercise "gadri" dictionary completeGadriGenerator where
     gadriChoosingExercise = generateLexiconChoosingExercise "gadri" dictionary newGadriList
     completeGadriList = ["lo", "le", "la"] ++ newGadriList
     newGadriList = ["loi", "lei", "lai", "lo'e", "le'e"]
     completeGadriGenerator = generatorFromList completeGadriList
+translationExercises24 :: ExerciseGenerator
+translationExercises24 = generateTranslationExerciseWithCustomTitle "Translate this sentence using <b>gadri</b>" sentenceCanonicalizer sentenceComparer translations24
 
 -- * Lesson 25: Checkpoint -- Lessons 20-24
 -- | Exercises for the lesson.

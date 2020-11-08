@@ -1899,6 +1899,30 @@ translations18 = expandTranslationGenerator $ combineGeneratorsUniformly [djica,
         , (["tu'a mi mukti fi do", "mi jai mukti fi do"], ["[Something about] me motivates you."])
         ]
 
+-- * Lesson 21: Gadri 1
+translations21 :: TranslationGenerator
+translations21 = expandTranslationGenerator $ combineGeneratorsUniformly [lo, le, la, mix] where
+    lo = generatorFromList
+        [ (["mi nelci lo mlatu", "mi cu nelci lo mlatu"], ["I like cats."])
+        , (["lo ctuca cu tavla mi", "lo ctuca ku tavla mi"], ["Instructors talk to me."])
+        , (["mi djica lo plise"], ["I want an apple."])
+        ]
+    le = generatorFromList
+        [ (["le zdani cu pelxu", "le zdani ku pelxu"], ["The house is yellow."])
+        , (["mi tavla le gerku"], ["I am talking to the dog."])
+        , (["le pendo cu vecnu ma", "le pendo ku cu vecnu ma"], ["What did the friend sell?"])
+        ]
+    la = generatorFromList
+        [ (["la .djan. gleki", "la .djan. cu melbi"], ["John is happy."])
+        , (["la gleki cu tavla mi", "la gleki ku tavla mi"], ["(someone named) Happy talked to me."])
+        , (["mi se cmene la mlatu", "la mlatu cu cmene mi"], ["My name is Cat."])
+        ]
+    mix = generatorFromList
+        [ (["la .djan. cusku sedu'u nelci lo plise", "la .djan. cusku se du'u nelci lo plise"], ["John said that he liked apples."])
+        , (["le fanva cu melbi lo gerku", "le fanva ku melbi lo gerku"], ["The translator is beautiful to dogs."])
+        , (["ma djuno du'u lo mlatu cu nelci le plise", "ma djuno du'u lo mlatu ku nelci le plise"], ["Who knows that cats like the apple?"])
+        ]
+
 -- * Lesson 23: Tenses 2
 translations23 :: TranslationGenerator
 translations23 = expandTranslationGenerator $ combineGeneratorsUniformly [pu'o, ca'o, ba'o, co'a, co'u] where
@@ -1996,6 +2020,40 @@ translations23 = expandTranslationGenerator $ combineGeneratorsUniformly [pu'o, 
         , (["xu do co'u ciska"], ["Did you just finish writing?"])
         , (["xu do co'u tavla"], ["Did you just finish talking?"])
         , (["xu do co'u fanva"], ["Did you just finish translating?"])
+        ]
+
+-- * Lesson 24: Gadri 2
+translations24 :: TranslationGenerator
+translations24 = expandTranslationGenerator $ combineGeneratorsUniformly [loi, lei, lai, lo_e, le_e, mix] where
+    loi = generatorFromList
+        [ (["mi nelci loi mlatu", "mi cu nelci loi mlatu"], ["I like a mass of cats."])
+        , (["loi ctuca cu tavla mi", "loi ctuca ku tavla mi"], ["A mass of instructors talk to me."])
+        , (["mi djica loi plise"], ["I want a bunch of apples."])
+        , (["xu do tavla fi loi gerku", "xu do tavla fi loi gerku ku"], ["Are you talking about the dogs?"])
+        ]
+    lei = generatorFromList
+        [ (["lei zdani cu pelxu", "lei zdani ku pelxu"], ["The houses are yellow."])
+        , (["mi tavla lei gerku"], ["I am talking to the mass of dogs."])
+        , (["lei pendo cu vecnu ma", "lei pendo ku cu vecnu ma"], ["What did the friends sell?"])
+        ]
+    lai = generatorFromList
+        [ (["lai .djan. gleki", "lai .djan cu melbi"], ["The Johns are happy."])
+        , (["lai gleki cu tavla mi", "lai gleki ku tavla mi"], ["(beings named) Happy talk to me."])
+        , (["lai mlatu cu cmene", "lai mlatu ku cmene", "lai mlatu cu cmene zo'e", "lai mlatu ku cmene zo'e"], ["Cats are the name of (something)."])
+        ]
+    lo_e = generatorFromList
+        [ (["xu lo'e prenu se zdani", "xu lo'e prenu ku se zdani"], ["Do typical people have a house?"])
+        , (["lo'e prenu cu melbi", "lo'e prenu ku melbi"], ["The typical person is beautiful."])
+        , (["lo'i gerku cu kakne lo nu citka", "lo'i gerku ku kakne lo nu citka"], ["The typical dog is capable of eating."])
+        , (["xu lo'e prenu se zdani", "xu zdani lo'e prenu"], ["Do typical people have a house?"])
+       ]
+    le_e = generatorFromList
+        [ (["le'e mlatu cu pelxu"], ["The stereotypical cat is yellow."])
+        , (["mi gleki lo nu le'e prenu cu nelci mi", "mi gleki lo nu le'e prenu ku nelci mi"], ["I am happy that the stereotypical person likes me."])
+        ]
+    mix = generatorFromList
+        [
+        (["mi djuno lo du'u lo'e gerku cu nelci lo'e prenu", "mi djuno lo du'u lo'e gerku ku nelci lo'e prenu"], ["I know that typical dogs like people."])
         ]
 
 -- * Lesson 26: Quantifying sumti 1
