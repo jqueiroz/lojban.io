@@ -1353,8 +1353,8 @@ translations11 = expandTranslationGenerator $ combineGenerators [(3, pi'o), (3, 
         , (["gau mi cmene lo mlatu"], ["I named the cat."])
         -- fanva
         , (["gau ma do fanva"], ["Who makes you translate?", "Who is making you translate?", "Who made you translate?"])
-        , (["gau ma do fanva fi lo (lojbo|jbobau)"], ["Who made you you translate to Lojban?"])
-        , (["gau ma do fanva fo lo (lojbo|jbobau)"], ["Who made you you translate from Lojban?"])
+        , (["gau ma do fanva fi lo (lojbo|jbobau)"], ["Who made you translate to Lojban?"])
+        , (["gau ma do fanva fo lo (lojbo|jbobau)"], ["Who made you translate from Lojban?"])
         , (["gau lo ctuca do fanva"], ["The instructor is making you translate.", "The instructor made you translate."])
         , (["gau lo ctuca do fanva fi lo (lojbo|jbobau)"], ["The instructor is making you translate to Lojban.", "The instructor made you translate to Lojban."])
         , (["gau lo ctuca do fanva fo lo (lojbo|jbobau)"], ["The instructor is making you translate from Lojban.", "The instructor made you translate from Lojban."])
