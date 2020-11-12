@@ -1578,8 +1578,8 @@ translations14_lu = expandTranslationGenerator $ combineGeneratorsUniformly [cus
             , (["mi cusku lu do se zdani li'u"], ["I said \"do se zdani\".", "I said \"You have a house\"."])
 
             , (["mi cusku lu ma cusku zo do li'u"], ["I said \"ma cusku zo do\"", "I said \"Who said 'you'?\"."])
-            , (["mi cusku lu ma cusku zo zdani li'u"], ["I said \"ma cusku zo zdani\"", "I said \"Who said 'house'?\"."])
-            , (["mi cusku lu ma cusku zo mlatu li'u"], ["I said \"ma cusku zo mlatu\"", "I said \"Who said 'cat'?\"."])
+            , (["mi cusku lu ma cusku (zo zdani|lu lo zdani li'u) li'u"], ["I said \"ma cusku zo zdani\"", "I said \"Who said 'house'?\"."])
+            , (["mi cusku lu ma cusku (zo mlatu|lu lo mlatu li'u) li'u"], ["I said \"ma cusku zo mlatu\"", "I said \"Who said 'cat'?\"."])
             -- Questions
             , (["xu do cusku lu mi nelci do li'u"], ["Did you say \"mi nelci do\"?", "Did you say \"I like you\"?"])
             , (["xu do cusku lu mi dunda lo mlatu li'u"], ["Did you say \"mi dunda lo mlatu\"?", "Did you say \"I donated the cat\"?"])
@@ -1598,8 +1598,8 @@ translations14_lu = expandTranslationGenerator $ combineGeneratorsUniformly [cus
             , (["lo fanva cu cusku lu do se zdani li'u"], ["The translator said \"do se zdani\".", "The translator said \"You have a house\"."])
 
             , (["lo fanva cu cusku lu ma cusku zo do li'u"], ["The translator said \"ma cusku zo do\"", "The translator said \"Who said 'you'?\"."])
-            , (["lo fanva cu cusku lu ma cusku zo zdani li'u"], ["The translator said \"ma cusku zo zdani\"", "The translator said \"Who said 'house'?\"."])
-            , (["lo fanva cu cusku lu ma cusku zo mlatu li'u"], ["The translator said \"ma cusku zo mlatu\"", "The translator said \"Who said 'cat'?\"."])
+            , (["lo fanva cu cusku lu ma cusku (zo zdani|lu lo zdani li'u) li'u"], ["The translator said \"ma cusku zo zdani\"", "The translator said \"Who said 'house'?\"."])
+            , (["lo fanva cu cusku lu ma cusku (zo mlatu|lu lo mlatu li'u) li'u"], ["The translator said \"ma cusku zo mlatu\"", "The translator said \"Who said 'cat'?\"."])
             -- Questions
             , (["xu lo fanva cu cusku lu mi nelci do li'u"], ["Did the translator say \"mi nelci do\"?", "Did the translator say \"I like you\"?"])
             , (["xu lo fanva cu cusku lu mi dunda lo mlatu li'u"], ["Did the translator say \"mi dunda lo mlatu\"?", "Did the translator say \"I donated the cat\"?"])
