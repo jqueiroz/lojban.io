@@ -299,7 +299,7 @@ First, rebuilding after making small changes will be quicker as it will not be n
 Second, you will be able to use helper scripts to run development tools such as ghci and code linters.
 
 All you need is to install the [Nix package manager](https://nixos.org/nix/).
-On most Linux distributions, this can be achieved by running `curl https://nixos.org/nix/install | sh` and following the instructions, if any (see also [Getting Nix](https://nixos.org/nix/download.html)).
+On most Linux distributions, this can be achieved by running `curl -L https://nixos.org/nix/install | sh` and following the instructions, if any (see also [Getting Nix](https://nixos.org/nix/download.html)).
 
 Once you have installed Nix, you should be able to start the project by running the following two commands:
 1. `./run-redis.sh`: start a redis server listening to a unix socket at _/tmp/lojbanios-redis-dev.sock_.
