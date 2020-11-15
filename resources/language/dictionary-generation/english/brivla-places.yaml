@@ -344,7 +344,7 @@ fonxa:
     x2: system/network
 
 morji:
-    x1: tntity
+    x1: entity
     x2: facts
     x3: subject
 
