@@ -11,12 +11,12 @@ import qualified Data.Text as T
 import qualified Data.Text.Encoding as TE
 import qualified Data.Map as M
 import qualified Data.Yaml as Y
-import Data.FileEmbed (embedStringFile)
+import Data.FileEmbed (embedFile)
 
 -- | Official Dictionary
 officialDictionary :: Dictionary
 officialDictionary = Dictionary "official" entryMap where
-    entryList = loadEntriesFromYamlText $ T.pack $(embedStringFile "resources/language/eberban/words.yaml")
+    entryList = loadEntriesFromYamlText $ TE.decodeUtf8 $(embedFile "resources/language/eberban/words.yaml")
     entryMap = M.fromList $ map (\entry -> (entryText entry, entry)) entryList
 
 -- | Loads entries from yaml-encoded text.
