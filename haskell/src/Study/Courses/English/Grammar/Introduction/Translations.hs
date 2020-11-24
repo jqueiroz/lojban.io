@@ -2237,9 +2237,9 @@ translations27_sentences = expandTranslationGenerator $ combineGenerators [(1, i
             , (["vu ku lo gerku cu citka"], ["Far away, the dog is eating.", "Far away, the dogs are eating."])
             , (["vu ku lo mlatu cu citka"], ["Far away, the cat is eating.", "Far away, the cats are eating."])
             , (["vu ku lo mi pendo cu citka"], ["Far away, my friend is eating.", "Far away, my friends are eating."])
-            , (["mi vu vecnu lo skami"], ["I am selling the computer far away."])
-            , (["mi vu vecnu lo plise"], ["I am selling the apple far away."])
-            , (["mi vu dunda lo plise"], ["I am donating the apple far away."])
+            , (["mi vu vecnu lo skami"], ["Far away, I am selling the computer."])
+            , (["mi vu vecnu lo plise"], ["Far away, I am selling the apple."])
+            , (["mi vu dunda lo plise"], ["Far away, I am donating the apple."])
             ]
         zu'a = generatorFromList
             [ (["zu'a ku lo gerku cu citka"], ["To the left, the dog is eating.", "To the left, the dogs are eating."])
