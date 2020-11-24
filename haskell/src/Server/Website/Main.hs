@@ -11,6 +11,7 @@ import qualified Study.Courses.English.Grammar.Crash.Course
 import qualified Study.Courses.English.Vocabulary.Attitudinals.Course
 import qualified Study.Courses.English.Vocabulary.Brivla.Course
 import qualified Study.Decks.English.ContextualizedBrivla
+import qualified Study.Decks.Eberban.English.Roots
 import Server.Core
 import Server.Util (forceSlash, getBody)
 import Server.Website.Views.Core
@@ -67,6 +68,7 @@ handleDecks :: ServerConfiguration -> ServerResources -> Maybe UserIdentity -> S
 handleDecks serverConfiguration serverResources userIdentityMaybe = msum
     [ forceSlash . ok . toResponse $ displayDecksHome serverConfiguration userIdentityMaybe
     , dir "contextualized-brivla" $ handleDeck serverConfiguration serverResources userIdentityMaybe Study.Decks.English.ContextualizedBrivla.deck
+    , dir "eberban-roots" $ handleDeck serverConfiguration serverResources userIdentityMaybe Study.Decks.Eberban.English.Roots.deck
     , anyPath $ handleNotFound serverConfiguration userIdentityMaybe
     ]
 

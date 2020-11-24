@@ -20,7 +20,7 @@ import qualified Text.Pandoc as P
 
 -- | Deck description.
 longDescription :: P.Pandoc
-Right longDescription = buildDocumentFromMarkdownCode $(embedStringFile "resources/decks/english/brivla/description.md")
+Right longDescription = buildDocumentFromMarkdownCode $(embedStringFile "resources/decks/eberban/english/roots/description.md")
 
 -- | Deck credits.
 credits :: P.Pandoc

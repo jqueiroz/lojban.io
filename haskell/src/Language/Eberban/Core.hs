@@ -1,9 +1,11 @@
 module Language.Eberban.Core
 ( Dictionary (..)
 , Entry (..)
+, EntryGenerator
 , dictFindEntry
 ) where
 
+import System.Random (StdGen)
 import qualified Data.Text as T
 import qualified Data.Map as M
 
@@ -24,6 +26,8 @@ data Entry = Entry
 
 instance Eq Entry where
     x == y = (entryText x) == (entryText y)
+
+type EntryGenerator = StdGen -> (Entry, StdGen)
 
 -- * Helper functions
 

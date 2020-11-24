@@ -58,6 +58,7 @@ library
                      , Serializer
                      , Study.Courses.CourseStore
                      , Study.Framework.DocumentBuilders
+                     , Study.Framework.Eberban.ExerciseGenerators
                      , Study.Framework.Lojban.ExerciseGenerators
                      , Study.Framework.Lojban.ExerciseUtils
                      , Study.Framework.Lojban.Extractors
@@ -93,6 +94,7 @@ library
                      , Study.Courses.English.Vocabulary.Brivla.Vocabulary
                      , Study.Decks.DeckStore
                      , Study.Decks.English.ContextualizedBrivla
+                     , Study.Decks.Eberban.English.Roots
                      , Language.Eberban.Core
                      , Language.Eberban.Dictionaries
                      , Language.Lojban.Canonicalization
@@ -167,6 +169,7 @@ test-suite study
   build-depends:       hspec
                      , QuickCheck
   other-modules:       Core
+                     , Study.Framework.Eberban.ExerciseGenerators
                      , Study.Framework.Lojban.ExerciseGenerators
                      , Study.Framework.Lojban.TranslationUtils
                      , Study.Framework.Lojban.ExerciseGenerators.Tests
@@ -202,6 +205,7 @@ test-suite exercises
                      , Language.Lojban.Refinement
                      , Study.Courses.CourseStore
                      , Study.Framework.DocumentBuilders
+                     , Study.Framework.Eberban.ExerciseGenerators
                      , Study.Framework.Lojban.ExerciseGenerators
                      , Study.Framework.Lojban.ExerciseUtils
                      , Study.Framework.Lojban.Extractors
@@ -237,3 +241,4 @@ test-suite exercises
                      , Study.Courses.English.Vocabulary.Brivla.Vocabulary
                      , Study.Decks.DeckStore
                      , Study.Decks.English.ContextualizedBrivla
+                     , Study.Decks.Eberban.English.Roots
