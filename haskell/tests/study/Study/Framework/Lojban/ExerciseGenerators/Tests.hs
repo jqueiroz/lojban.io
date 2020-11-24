@@ -1,11 +1,11 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Study.Framework.ExerciseGenerators.Tests
+module Study.Framework.Lojban.ExerciseGenerators.Tests
 ( tests
 ) where
 
-import Study.Framework.ExerciseGenerators
-import Study.Framework.TranslationUtils (expandSentence)
+import Study.Framework.Lojban.ExerciseGenerators
+import Study.Framework.Lojban.TranslationUtils (expandSentence)
 import Test.Hspec
 import Data.List (sort)
 import qualified Data.Text as T

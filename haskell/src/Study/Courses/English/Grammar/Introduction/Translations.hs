@@ -5,7 +5,7 @@
 module Study.Courses.English.Grammar.Introduction.Translations where
 
 import Core
-import Study.Framework.TranslationUtils
+import Study.Framework.Lojban.TranslationUtils
 import Util (combineGenerators, combineGeneratorsUniformly, generatorFromSingleton, generatorFromList)
 
 -- * Lesson 1: Basics 1

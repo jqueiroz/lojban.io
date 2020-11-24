@@ -5,7 +5,7 @@
 module Study.Courses.English.Grammar.Crash.Translations where
 
 import Core
-import Study.Framework.TranslationLoaders (loadTranslationGeneratorFromYamlCode)
+import Study.Framework.Lojban.TranslationLoaders (loadTranslationGeneratorFromYamlCode)
 import Data.FileEmbed (embedStringFile)
 
 -- | Translations for the corresponding lesson.

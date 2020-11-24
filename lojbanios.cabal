@@ -58,13 +58,14 @@ library
                      , Serializer
                      , Study.Courses.CourseStore
                      , Study.Framework.DocumentBuilders
-                     , Study.Framework.ExerciseGenerators
-                     , Study.Framework.ExerciseUtils
-                     , Study.Framework.Extractors
-                     , Study.Framework.SentenceGenerators
-                     , Study.Framework.TranslationLoaders
-                     , Study.Framework.TranslationUtils
-                     , Study.Framework.VocabularyLoaders
+                     , Study.Framework.Eberban.ExerciseGenerators
+                     , Study.Framework.Lojban.ExerciseGenerators
+                     , Study.Framework.Lojban.ExerciseUtils
+                     , Study.Framework.Lojban.Extractors
+                     , Study.Framework.Lojban.SentenceGenerators
+                     , Study.Framework.Lojban.TranslationLoaders
+                     , Study.Framework.Lojban.TranslationUtils
+                     , Study.Framework.Lojban.VocabularyLoaders
                      , Study.Courses.English.Grammar.Introduction.Course
                      , Study.Courses.English.Grammar.Introduction.Documents
                      , Study.Courses.English.Grammar.Introduction.Exercises
@@ -93,6 +94,9 @@ library
                      , Study.Courses.English.Vocabulary.Brivla.Vocabulary
                      , Study.Decks.DeckStore
                      , Study.Decks.English.ContextualizedBrivla
+                     , Study.Decks.Eberban.English.Roots
+                     , Language.Eberban.Core
+                     , Language.Eberban.Dictionaries
                      , Language.Lojban.Canonicalization
                      , Language.Lojban.Canonicalization.Internals
                      , Language.Lojban.Core
@@ -165,10 +169,11 @@ test-suite study
   build-depends:       hspec
                      , QuickCheck
   other-modules:       Core
-                     , Study.Framework.ExerciseGenerators
-                     , Study.Framework.TranslationUtils
-                     , Study.Framework.ExerciseGenerators.Tests
-                     , Study.Framework.SentenceGenerators
+                     , Study.Framework.Eberban.ExerciseGenerators
+                     , Study.Framework.Lojban.ExerciseGenerators
+                     , Study.Framework.Lojban.TranslationUtils
+                     , Study.Framework.Lojban.ExerciseGenerators.Tests
+                     , Study.Framework.Lojban.SentenceGenerators
                      , Language.Lojban.Canonicalization
                      , Language.Lojban.Canonicalization.Internals
                      , Language.Lojban.Core
@@ -200,13 +205,14 @@ test-suite exercises
                      , Language.Lojban.Refinement
                      , Study.Courses.CourseStore
                      , Study.Framework.DocumentBuilders
-                     , Study.Framework.ExerciseGenerators
-                     , Study.Framework.ExerciseUtils
-                     , Study.Framework.Extractors
-                     , Study.Framework.SentenceGenerators
-                     , Study.Framework.TranslationLoaders
-                     , Study.Framework.TranslationUtils
-                     , Study.Framework.VocabularyLoaders
+                     , Study.Framework.Eberban.ExerciseGenerators
+                     , Study.Framework.Lojban.ExerciseGenerators
+                     , Study.Framework.Lojban.ExerciseUtils
+                     , Study.Framework.Lojban.Extractors
+                     , Study.Framework.Lojban.SentenceGenerators
+                     , Study.Framework.Lojban.TranslationLoaders
+                     , Study.Framework.Lojban.TranslationUtils
+                     , Study.Framework.Lojban.VocabularyLoaders
                      , Study.Courses.English.Grammar.Introduction.Course
                      , Study.Courses.English.Grammar.Introduction.Documents
                      , Study.Courses.English.Grammar.Introduction.Exercises
@@ -235,3 +241,4 @@ test-suite exercises
                      , Study.Courses.English.Vocabulary.Brivla.Vocabulary
                      , Study.Decks.DeckStore
                      , Study.Decks.English.ContextualizedBrivla
+                     , Study.Decks.Eberban.English.Roots

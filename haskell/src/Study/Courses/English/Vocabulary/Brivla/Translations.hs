@@ -5,7 +5,7 @@
 module Study.Courses.English.Vocabulary.Brivla.Translations where
 
 import Core
-import Study.Framework.TranslationLoaders (loadTranslationsByExpressionFromYamlCode)
+import Study.Framework.Lojban.TranslationLoaders (loadTranslationsByExpressionFromYamlCode)
 import Data.FileEmbed (embedStringFile)
 
 -- | Translations for the corresponding lesson.

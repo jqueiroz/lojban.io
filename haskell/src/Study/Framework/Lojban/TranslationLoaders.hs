@@ -1,14 +1,14 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 -- | This module provides utilities for loading translations from files.
-module Study.Framework.TranslationLoaders
+module Study.Framework.Lojban.TranslationLoaders
 ( loadTranslationsFromYamlCode
 , loadTranslationGeneratorFromYamlCode
 , loadTranslationsByExpressionFromYamlCode
 ) where
 
 import Core
-import Study.Framework.TranslationUtils (expandTranslation)
+import Study.Framework.Lojban.TranslationUtils (expandTranslation)
 import Util (generatorFromList)
 import qualified Data.Map as M
 import qualified Data.Text as T
