@@ -470,7 +470,7 @@ var createExercisesManager = function(holder) {
                     }
                     exercise_validationPayload = response.data;
                     if (response.data.correct) {
-                        if (textarea.val() === response.data.canonicalAnswer)
+                        if (textarea.val().toString().trim() === response.data.canonicalAnswer.trim())
                             displayFeedbackFooter({correct: true});
                         else
                             displayFeedbackFooter({
