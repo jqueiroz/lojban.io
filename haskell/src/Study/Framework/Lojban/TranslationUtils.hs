@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 -- | This module provides utilities for manipulating translations.
-module Study.Framework.TranslationUtils
+module Study.Framework.Lojban.TranslationUtils
 ( simplifyTerminatorsInTranslation
 , simplifyTerminatorsInTranslationGenerator
 , expandSentence

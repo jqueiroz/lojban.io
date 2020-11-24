@@ -1,5 +1,5 @@
 -- | This module provides utilities for extracting a desired entity from a broader one.
-module Study.Framework.Extractors
+module Study.Framework.Lojban.Extractors
 ( extractTrivialBridiGeneratorFromVocabulary
 , extractSimpleBridiGeneratorFromTranslationGenerator
 , extractLojbanSentencesFromTranslationGenerator
@@ -10,7 +10,7 @@ import Core
 import Language.Lojban.Core
 import Util (chooseItemUniformly)
 import Language.Lojban.Canonicalization (extractSimpleBridi)
-import Study.Framework.TranslationUtils (narrowTranslationGenerator)
+import Study.Framework.Lojban.TranslationUtils (narrowTranslationGenerator)
 import qualified Data.Text as T
 
 -- | Produces trivial bridi (i.e. bridi with no sumti) from the vocabulary.

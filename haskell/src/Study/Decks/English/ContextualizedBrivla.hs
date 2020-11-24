@@ -9,7 +9,7 @@ module Study.Decks.English.ContextualizedBrivla
 import Core
 import Language.Lojban.Core
 import Language.Lojban.Dictionaries (englishDictionary)
-import Study.Framework.ExerciseGenerators (generateFillingBlanksExerciseByExpression, generateIsolatedBrivlaPlacesExercise, generateLexiconProvidingExercise)
+import Study.Framework.Lojban.ExerciseGenerators (generateFillingBlanksExerciseByExpression, generateIsolatedBrivlaPlacesExercise, generateLexiconProvidingExercise)
 import Study.Courses.English.Vocabulary.Brivla.Translations (translationsByExpression)
 import Study.Framework.DocumentBuilders (buildDocumentFromMarkdownCode)
 import Data.FileEmbed (embedStringFile)

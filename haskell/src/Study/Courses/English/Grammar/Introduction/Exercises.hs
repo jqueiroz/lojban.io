@@ -4,11 +4,11 @@
 module Study.Courses.English.Grammar.Introduction.Exercises where
 
 import Core
-import Study.Framework.SentenceGenerators (generateNonbridi)
-import Study.Framework.Extractors (extractSimpleBridiGeneratorFromTranslationGenerator, extractTrivialBridiGeneratorFromVocabulary)
-import Study.Framework.ExerciseGenerators
-import Study.Framework.ExerciseUtils (simplifyTerminatorsInCanonicalAnswer)
-import Study.Framework.TranslationUtils (simplifyTerminatorsInTranslationGenerator, narrowTranslationGenerator)
+import Study.Framework.Lojban.SentenceGenerators (generateNonbridi)
+import Study.Framework.Lojban.Extractors (extractSimpleBridiGeneratorFromTranslationGenerator, extractTrivialBridiGeneratorFromVocabulary)
+import Study.Framework.Lojban.ExerciseGenerators
+import Study.Framework.Lojban.ExerciseUtils (simplifyTerminatorsInCanonicalAnswer)
+import Study.Framework.Lojban.TranslationUtils (simplifyTerminatorsInTranslationGenerator, narrowTranslationGenerator)
 import Language.Lojban.Core
 import Language.Lojban.Dictionaries (englishDictionary)
 import Language.Lojban.Presentation (displayStandardSimpleBridi, displayVariantSimpleBridi, displayReorderedStandardSimpleBridi)

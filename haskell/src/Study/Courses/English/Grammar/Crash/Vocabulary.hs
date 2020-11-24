@@ -5,7 +5,7 @@
 module Study.Courses.English.Grammar.Crash.Vocabulary where
 
 import Core
-import Study.Framework.VocabularyLoaders (loadVocabularyFromYamlCode)
+import Study.Framework.Lojban.VocabularyLoaders (loadVocabularyFromYamlCode)
 import Data.FileEmbed (embedStringFile)
 
 -- | Vocabulary for the first lesson.

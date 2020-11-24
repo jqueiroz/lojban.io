@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 -- | This module provides utilities for constructing exercise generators.
-module Study.Framework.ExerciseGenerators
+module Study.Framework.Lojban.ExerciseGenerators
 ( generateTranslationExercise
 , generateTranslationExerciseWithCustomTitle
 , generateBlacklistedWordTranslationExercise
