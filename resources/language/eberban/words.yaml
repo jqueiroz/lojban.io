@@ -1,0 +1,1496 @@
+---
+a:
+  _family: A
+  eng_long: prefix a 1 word long lexeme
+  eng_short: ''
+  jbo_similar: lujvo making
+a'y:
+  _family: BY
+  eng_long: letter A
+  eng_short: A
+  jbo_similar: a'y/abu
+a.a:
+  _family: L
+  _signature: .0.
+  eng_long: '___ is a lexeme meaning [___] with components ___'
+  eng_short: lexeme
+  jbo_similar: lujvo
+aba:
+  _family: L
+  _signature: "0"
+  eng_long: '[___] is a proposition expressed in sentence ___ (text)'
+  eng_short: proposition
+ada:
+  _family: L
+  _signature: ..
+  eng_long: ___ is a paragraph composed of sentence(s) ___
+  eng_short: paragraph
+  jbo_similar: jufmei
+ade:
+  _family: L
+  _signature: 0T.
+  eng_long: '[___] is a proposition with predicate {___} among arguments ___'
+  eng_short: proposition
+  jbo_similar: bridi
+ado:
+  _family: L
+  _signature: .0T.
+  eng_long: '___ is a proposition-tail of proposition [___] with predicate {___} among arguments ___'
+  eng_short: proposition-tail
+  jbo_similar: brirebla
+asa:
+  _family: L
+  _signature: ...
+  eng_long: ___ (<sa> / quoted words) is a name of ___ given by ___
+  eng_short: name
+  jbo_similar: cmene
+azi:
+  _family: L
+  _signature: '.0'
+  eng_long: '___ is a word meaning [___]'
+  eng_short: word
+  jbo_similar: valsi
+ba:
+  _family: BA
+  eng_long: '[___] is [proposition] expressed in sentence ___ (text). if places are made open with one or more <ma>, the abstraction have to place structure discribed by them'
+  eng_short: abstraction
+  jbo_similar: du'u/ka
+bai:
+  _family: BAI
+  eng_long: abstraction elidible terminator
+  eng_short: ''
+  jbo_similar: kei
+ban:
+  _family: R
+  _signature: .
+  eng_long: ___ is a language
+  eng_short: language
+  jbo_similar: bangu
+be:
+  _family: BA
+  eng_long: '___ is the event of [proposition]'
+  eng_short: event
+  jbo_similar: nu
+ben:
+  _family: R
+  _signature: '0'
+  eng_long: '[___] is an event that happens/occurs/takes place'
+  eng_short: occurs
+  jbo_similar: fasnu
+ber:
+  _family: R
+  _signature: '.1'
+  eng_long: '___ reflects eberbanic language/culture/nationality/community is aspect/property [___1]'
+  eng_short: eberbanic
+bla:
+  _family: R
+  _signature: '00'
+  eng_long: '[___] (event) is in the future/after [___] (event)'
+  eng_short: future
+  jbo_similar: balvi
+bria:
+  _family: R
+  _signature: ..
+  eng_long: ___ is a/the arm of ___
+  eng_short: arm
+  jbo_similar: cabna
+broi:
+  _family: R
+  _signature: '.0'
+  eng_long: '___ wants/desires/hopes/wishes for [___] is true'
+  eng_short: want
+  jbo_similar: pacna
+bun:
+  _family: R
+  _signature: .
+  eng_long: |-
+    ___ is a instant/point in time. 
+    When used as a unit, the number can have the form of digits followed by the literal for each time unit (<byn> <dyn> <gyn> <vyn> <xyn> <zyn> <jyn>)
+    Example: {2020jy11zy23vy} = 23th November 2020
+  eng_short: instant
+by:
+  _family: BY
+  eng_long: letter B
+  eng_short: B
+  jbo_similar: by
+byn:
+  _family: R
+  _signature: .
+  eng_long: ___ is a second
+  eng_short: second
+ca:
+  _family: CA
+  eng_long: '[left] OR [right]. keep place structure of the right one'
+  eng_short: or
+  jbo_similar: ja
+ce:
+  _family: CA
+  eng_long: '[left] AND [right]. keep place structure of the right one'
+  eng_short: and
+  jbo_similar: je
+cfa:
+  _family: R
+  _signature: ..1
+  eng_long: '___ requests to ___ that they satisfy property [___2]'
+  eng_short: request
+ci:
+  _family: CA
+  eng_long: predicate connective question
+  eng_short: connective ?
+  jbo_similar: je'i
+cia:
+  _family: CA
+  eng_long: 'perform predicate chaining with [left] x1 place instead of rightmost'
+  eng_short: x1 chaining
+cie:
+  _family: CA
+  eng_long: 'perform predicate chaining with [left] x2 place instead of rightmost'
+  eng_short: x2 chaining
+cii:
+  _family: CA
+  eng_long: 'perform predicate chaining with [left] x3 place instead of rightmost'
+  eng_short: x3 chaining
+cil:
+  _family: R
+  _signature: "0"
+  eng_long: '___ learns fact [___]'
+  eng_short: learn
+cio:
+  _family: CA
+  eng_long: 'perform predicate chaining with [left] x4 place instead of rightmost'
+  eng_short: x4 chaining
+ciu:
+  _family: CA
+  eng_long: 'perform predicate chaining with [left] x5 place instead of rightmost'
+  eng_short: x5 chaining
+cna:
+  _family: R
+  _signature: '00'
+  eng_long: '[___] (event) is in the present of/simultaneous with [___] (event)'
+  eng_short: present
+  jbo_similar: birka
+co:
+  _family: CA
+  eng_long: '[left] if and only if [right]. keep place structure of the right one'
+  eng_short: iif
+  jbo_similar: jo
+cpei:
+  _family: R
+  _signature: ..
+  eng_long: ___ eats ___
+  eng_short: eat
+  jbo_similar: citka
+cty:
+  _family: R
+  _signature: '.1'
+  eng_long: '___ begins to satisfy property [___1] (default = being true/occurs) '
+  eng_short: begin
+  jbo_similar: zvati
+cu:
+  _family: CA
+  eng_long: '[left] whether or not [right]. keep place structure of the right one'
+  eng_short: whether-or-not
+  jbo_similar: ju
+cy:
+  _family: BY
+  eng_long: letter C
+  eng_short: C
+  jbo_similar: cy
+da:
+  _family: DA
+  eng_long: 'paragraph break, introduce new topic'
+  eng_short: (paragraph)
+  jbo_similar: ni'o
+de:
+  _family: DE
+  eng_long: proposition-tail elidible starter
+  eng_short: ''
+  jbo_similar: i
+dei:
+  _family: DEI
+  eng_long: proposition-tail elidible terminator
+  eng_short: ''
+  jbo_similar: iau
+di:
+  _family: DI
+  eng_long: define which dialect/version the text is in
+  eng_short: ''
+  jbo_similar: jo'au
+dju:
+  _family: R
+  _signature: '.0'
+  eng_long: '___ knows fact(s) [___]'
+  eng_short: know
+  jbo_similar: djuno
+djyi:
+  _family: R
+  _signature: ..
+  eng_long: ___ is a friend of ___
+  eng_short: friend
+  jbo_similar: pendo
+do:
+  _family: DO
+  eng_long: 'proposition-tail elidible starter, prefix the main predicate of a proposition'
+  eng_short: ''
+  jbo_similar: cu
+doi:
+  _family: DO
+  eng_long: proposition-tail elidible terminator
+  eng_short: ''
+  jbo_similar: vau
+don:
+  _family: R
+  _signature: ...
+  eng_long: ___ (donor) gives/donates gift/present ___ to recipient ___ (without payment/exchange)
+  eng_short: give
+  jbo_similar: dunda
+du:
+  _family: DU
+  eng_long: import 1st place of following predicate (non compound)
+  eng_short: ''
+  jbo_similar: fi'o
+dul:
+  _family: R
+  _signature: '.0'
+  eng_long: '___ likes proposition/event [___]'
+  eng_short: like
+dy:
+  _family: BY
+  eng_long: letter D
+  eng_short: D
+  jbo_similar: dy
+dyn:
+  _family: R
+  _signature: .
+  eng_long: ___ is a minute
+  eng_short: minute
+dzo:
+  _family: R
+  _signature: ..
+  eng_long: ___ is an animal/creature of species ___
+  eng_short: animal
+  jbo_similar: danlu
+e:
+  _family: E
+  eng_long: prefix a 2 words long lexeme
+  eng_short: ''
+  jbo_similar: lujvo making
+e'y:
+  _family: BY
+  eng_long: letter E
+  eng_short: E
+  jbo_similar: e'y/ebu
+eberban:
+  _family: L
+  _signature: .
+  eng_long: ___ is the eberban language
+  eng_short: eberban
+ecnavyn:
+  _family: L
+  _signature: .
+  eng_long: ___ is today
+  eng_short: today
+eglunjgai:
+  _family: L
+  _signature: ..
+  eng_long: ___ hugs ___
+  eng_short: hug
+  jbo_similar: birjai
+ekanmer:
+  _family: L
+  _signature: .
+  eng_long: ___ is a man/men
+  eng_short: man
+  jbo_similar: nanmu
+ekanprei:
+  _family: L
+  _signature: ..
+  eng_long: ___ is a father of ___
+  eng_short: father
+  jbo_similar: patfu
+esfemer:
+  _family: L
+  _signature: .
+  eng_long: ___ is a woman/women
+  eng_short: woman
+  jbo_similar: ninmu
+esfeprei:
+  _family: L
+  _signature: ..
+  eng_long: ___ is a mother of ___
+  eng_short: mother
+  jbo_similar: mamta
+etatai:
+  _family: L
+  _signature: '.1'
+  eng_long: '___ is a number in dimension/cardinality/property [___1] (default = unit)'
+  eng_short: number
+  jbo_similar: namcu
+etiavyn:
+  _family: L
+  _signature: .
+  eng_long: ___ is a Monday
+  eng_short: Monday
+etiazyn:
+  _family: L
+  _signature: .
+  eng_long: ___ is a January
+  eng_short: January
+etievyn:
+  _family: L
+  _signature: .
+  eng_long: ___ is a Tuesday
+  eng_short: Tuesday
+etiezyn:
+  _family: L
+  _signature: .
+  eng_long: ___ is a February
+  eng_short: February
+etiivyn:
+  _family: L
+  _signature: .
+  eng_long: ___ is a Wednesday
+  eng_short: Wednesday
+etiizyn:
+  _family: L
+  _signature: .
+  eng_long: ___ is a March
+  eng_short: March
+etiovyn:
+  _family: L
+  _signature: .
+  eng_long: ___ is a Thursday
+  eng_short: Thursday
+etiozyn:
+  _family: L
+  _signature: .
+  eng_long: ___ is an April
+  eng_short: April
+etiuvyn:
+  _family: L
+  _signature: .
+  eng_long: ___ is a Friday
+  eng_short: Friday
+etiuzyn:
+  _family: L
+  _signature: .
+  eng_long: ___ is a May
+  eng_short: May
+etu'azyn:
+  _family: L
+  _signature: .
+  eng_long: ___ is a November
+  eng_short: November
+etu'ezyn:
+  _family: L
+  _signature: .
+  eng_long: ___ is a December
+  eng_short: December
+etuavyn:
+  _family: L
+  _signature: .
+  eng_long: ___ is a Saturday
+  eng_short: Saturday
+etuazyn:
+  _family: L
+  _signature: .
+  eng_long: ___ is a June
+  eng_short: June
+etuevyn:
+  _family: L
+  _signature: .
+  eng_long: ___ is a Sunday
+  eng_short: Sunday
+etuezyn:
+  _family: L
+  _signature: .
+  eng_long: ___ is a July
+  eng_short: July
+etuizyn:
+  _family: L
+  _signature: .
+  eng_long: ___ is an August
+  eng_short: August
+etuozyn:
+  _family: L
+  _signature: .
+  eng_long: ___ is a September
+  eng_short: September
+etuuzyn:
+  _family: L
+  _signature: .
+  eng_long: ___ is an October
+  eng_short: October
+fa:
+  _family: FA
+  eng_long: 'tag proposition place #1'
+  eng_short: x1
+  jbo_similar: fa
+fai:
+  _family: FA
+  eng_long: next proposition place tag
+  eng_short: x+
+  jbo_similar: sumti chaining
+fe:
+  _family: FA
+  eng_long: 'tag proposition place #2'
+  eng_short: x2
+  jbo_similar: fe
+fei:
+  _family: FA
+  eng_long: proposition place tag question
+  eng_short: x?
+  jbo_similar: fi'a
+fi:
+  _family: FA
+  eng_long: 'tag proposition place #3'
+  eng_short: x3
+  jbo_similar: fi
+fie:
+  _family: FA
+  eng_long: 'restrictive adverbial. the first place of the provided predicate is claimed to occur in conjunction with the outer proposition ({mia fue mie} = {fa bi mia do fa''un je do mie})'
+  eng_short: restrictive adverbial
+  jbo_similar: poi'a
+fii:
+  _family: FA
+  eng_long: 'non-restrictive adverbial. the first place of the provided predicate is claimed to be such that the outer proposition satisfies it, and the outer proposition is claimed ({mia fui mie} = {fa bi mia bai va mua do fa''un de fa mua do mie})'
+  eng_short: non-restrictive adverbial
+  jbo_similar: noi'a
+fin:
+  _family: R
+  _signature: ..
+  eng_long: ___ invents/creates/composes/authors ___
+  eng_short: create
+  jbo_similar: finti
+fio:
+  _family: FA
+  eng_long: 'subordinating adverbial. the outer proposition is claimed to satisfy the first place of the provided predicate, but is not itself claimed to occur ({mia fuo mie} = {fa bi mia do mie})'
+  eng_short: subordinating adverbial
+  jbo_similar: soi'a
+flan:
+  _family: R
+  _signature: ...
+  eng_long: ___ writes ___ on ___
+  eng_short: write
+  jbo_similar: ciska
+flun:
+  _family: R
+  _signature: ..1
+  eng_long: '___ inspires ___ to satisfy property [___2]'
+  eng_short: inspire
+fo:
+  _family: FA
+  eng_long: 'tag proposition place #4'
+  eng_short: x4
+  jbo_similar: fo
+foi:
+  _family: FA
+  eng_long: don't fill a place. can be used to provide a topic or declare quantification and/or value of a variable
+  eng_short: prenex
+  jbo_similar: fai'i
+foil:
+  _family: R
+  _signature: .
+  eng_long: ___ is a book
+  eng_short: book
+  jbo_similar: cukta
+fu:
+  _family: FA
+  eng_long: 'tag proposition place #5'
+  eng_short: x5
+  jbo_similar: fu
+fua:
+  _family: FA
+  eng_long: 'tag proposition place #6'
+  eng_short: x6
+fue:
+  _family: FA
+  eng_long: 'tag proposition place #7'
+  eng_short: x7
+fui:
+  _family: FA
+  eng_long: 'tag proposition place #8'
+  eng_short: x8
+fuo:
+  _family: FA
+  eng_long: 'tag proposition place #9'
+  eng_short: x9
+fuu:
+  _family: FA
+  eng_long: 'tag proposition place #10'
+  eng_short: x10
+fy:
+  _family: BY
+  eng_long: letter F
+  eng_short: F
+  jbo_similar: fy
+ga:
+  _family: GA
+  eng_long: forethought connective starter
+  eng_short: ''
+  jbo_similar: ga
+gai:
+  _family: GAI
+  eng_long: forethought connective elidible terminator
+  eng_short: ''
+  jbo_similar: zantufa gi'i
+gi:
+  _family: GI
+  eng_long: forethought connective separator
+  eng_short: ''
+  jbo_similar: zantufa gi
+glun:
+  _family: R
+  _signature: ..
+  eng_long: ___ is affectionate towards ___
+  eng_short: affectionate
+  jbo_similar: xrotu
+go:
+  _family: GO
+  eng_long: priority scope starter
+  eng_short: ''
+  jbo_similar: ke
+goi:
+  _family: GOI
+  eng_long: priority scope elidible terminator
+  eng_short: ''
+  jbo_similar: ke'e
+guar:
+  _family: R
+  _signature: .
+  eng_long: ___ is a dog (canine)
+  eng_short: dog
+  jbo_similar: gerku
+gy:
+  _family: BY
+  eng_long: letter G
+  eng_short: G
+  jbo_similar: gy
+gyn:
+  _family: R
+  _signature: .
+  eng_long: ___ is an hour
+  eng_short: hour
+i:
+  _family: I
+  eng_long: prefix a 3 words long lexeme
+  eng_short: ''
+  jbo_similar: lujvo making
+i'y:
+  _family: BY
+  eng_long: letter I
+  eng_short: I
+  jbo_similar: i'y/ibu
+iy'y:
+  _family: BY
+  eng_long: letter Q/i semi-vowel
+  eng_short: Q
+  jbo_similar: ky.bu
+ja:
+  _family: JA
+  eng_long: distributive connective or
+  eng_short: or
+  jbo_similar: '.a / gi''a / ja [cu]'
+jai:
+  _family: JAI
+  eng_long: 'non-logical connective: mixed conjunction, mixed with'
+  eng_short: with
+  jbo_similar: joi
+jby:
+  _family: R
+  _signature: ..
+  eng_long: ___ has purpose ___
+  eng_short: purpose
+je:
+  _family: JA
+  eng_long: distributive connective and
+  eng_short: and
+  jbo_similar: '.e / gi''e / je [cu]'
+jgai:
+  _family: R
+  _signature: ..
+  eng_long: ___ graps/holds ___
+  eng_short: hold
+  jbo_similar: jgari
+ji:
+  _family: JA
+  eng_long: distributive connective question
+  eng_short: connective ?
+  jbo_similar: 'ji / gi''i / ji [cu]'
+jil:
+  _family: R
+  _signature: .
+  eng_long: ___ is good (<sa'ijil> for bad)
+  eng_short: good
+jo:
+  _family: JA
+  eng_long: distributive connective if-and-only-if
+  eng_short: iif
+  jbo_similar: '.o / gi''o / jo [cu]'
+ju:
+  _family: JA
+  eng_long: distributive connective whether-or-not
+  eng_short: whether-or-not
+  jbo_similar: '.u / gi''u / ju [cu]'
+jvan:
+  _family: R
+  _signature: ...
+  eng_long: ___ welcomes ___ to ___
+  eng_short: welcome
+jy:
+  _family: BY
+  eng_long: letter J
+  eng_short: J
+  jbo_similar: jy
+jyn:
+  _family: R
+  _signature: .
+  eng_long: ___ is a year
+  eng_short: year
+ka:
+  _family: KA
+  eng_long: proposition negation / logically negates some particles
+  eng_short: negation
+  jbo_similar: na
+kai:
+  _family: KAI
+  eng_long: attached to particles to negate them
+  eng_short: negation
+  jbo_similar: nai
+kan:
+  _family: R
+  _signature: .
+  eng_long: ___ is male
+  eng_short: male
+  jbo_similar: nakni
+kol:
+  _family: R
+  _signature: '.1'
+  eng_long: '___ increases in how much it satisfies property [___1]'
+  eng_short: increase
+kual:
+  _family: R
+  _signature: .
+  eng_long: ___ walks
+  eng_short: walk
+  jbo_similar: cadzu
+ky:
+  _family: BY
+  eng_long: letter K
+  eng_short: K
+  jbo_similar: ky
+ma:
+  _family: MA
+  eng_long: binds a variable within an abstraction that represents an open space (such as <bo> properties)
+  eng_short: (open)
+ma'i:
+  _family: MA
+  _signature: .
+  eng_long: ___ is this here near speaker
+  eng_short: this
+  jbo_similar: ti
+ma'o:
+  _family: MA
+  _signature: .
+  eng_long: ___ is that here near listener
+  eng_short: that
+  jbo_similar: ta
+ma'u:
+  _family: MA
+  _signature: .
+  eng_long: '___ is that younder, far from speaker and listener'
+  eng_short: that younder
+  jbo_similar: tu
+me:
+  _family: MA
+  eng_long: 'predicate question, fill the blank'
+  eng_short: '?'
+  jbo_similar: ma / mo
+mer:
+  _family: R
+  _signature: .
+  eng_long: ___ is human
+  eng_short: human
+  jbo_similar: remna
+mi:
+  _family: MA
+  _signature: .
+  eng_long: ___ is me/we/the speaker(s)/authors(s)
+  eng_short: me
+  jbo_similar: mi
+mi'i:
+  _family: MA
+  _signature: .
+  eng_long: ___ is me/we/the the speaker(s)/authors(s) & others but no you the listener(s)
+  eng_short: me & others
+  jbo_similar: mi'a
+mi'o:
+  _family: MA
+  _signature: .
+  eng_long: ___ is me/we/the the speaker(s)/authors(s) & you the listener(s)
+  eng_short: me & you
+  jbo_similar: mi'o
+mi'oi:
+  _family: MA
+  _signature: .
+  eng_long: ___ is me/we/the speaker(s)/authors(s) & you the listener(s) & others
+  eng_short: me & you & others
+  jbo_similar: ma'a
+mia:
+  _family: MA
+  eng_long: affectable/contextual variable I-1
+  eng_short: var I-1
+  jbo_similar: ko'a
+mia'a:
+  _family: MA
+  eng_long: affectable/contextual variable I-6
+  eng_short: var I-6
+  jbo_similar: fo'a
+mia'e:
+  _family: MA
+  eng_long: affectable/contextual variable I-7
+  eng_short: var I-7
+  jbo_similar: fo'e
+mia'i:
+  _family: MA
+  eng_long: affectable/contextual variable I-8
+  eng_short: var I-8
+  jbo_similar: fo'i
+mia'o:
+  _family: MA
+  eng_long: affectable/contextual variable I-9
+  eng_short: var I-9
+  jbo_similar: fo'o
+mia'u:
+  _family: MA
+  eng_long: affectable/contextual variable I-10
+  eng_short: var I-10
+  jbo_similar: fo'u
+mian:
+  _family: R
+  _signature: .
+  eng_long: ___ is a cat (feline)
+  eng_short: cat
+  jbo_similar: mlatu
+mie:
+  _family: MA
+  eng_long: affectable/contextual variable I-2
+  eng_short: var I-2
+  jbo_similar: ko'e
+mii:
+  _family: MA
+  eng_long: affectable/contextual variable I-3
+  eng_short: var I-3
+  jbo_similar: ko'i
+mio:
+  _family: MA
+  eng_long: affectable/contextual variable I-4
+  eng_short: var I-4
+  jbo_similar: ko'o
+miu:
+  _family: MA
+  eng_long: affectable/contextual variable I-5
+  eng_short: var I-5
+  jbo_similar: ko'u
+mo:
+  _family: MA
+  _signature: .
+  eng_long: ___ is you listener(s)
+  eng_short: you
+  jbo_similar: do
+mo'a:
+  _family: MA
+  _signature: .
+  eng_long: '___ is you (imperative), make it true for you, the listener'
+  eng_short: you!
+  jbo_similar: ko
+mo'i:
+  _family: MA
+  _signature: .
+  eng_long: ___ is you listener(s) & others
+  eng_short: you & others
+  jbo_similar: do'o
+mrin:
+  _family: R
+  _signature: .
+  eng_long: ___ is milk
+  eng_short: milk
+  jbo_similar: ladru
+mu:
+  _family: MA
+  eng_long: elliptical/unspecified predicate
+  eng_short: (elliptical)
+mu'a:
+  _family: MA
+  eng_long: 'when the content of a place is overritten, it represents the previous content of the place'
+  eng_short: (previous value)
+mu'e:
+  _family: MA
+  eng_long: binds to the relativized object of a relative clause
+  eng_short: (object of relative clause)
+  jbo_similar: ke'a
+mu'i:
+  _family: MA
+  eng_long: referers to the current topic (most recent unquantified predicate in a prenex)
+  eng_short: (topic)
+  jbo_similar: zoi'i
+mua:
+  _family: MA
+  eng_long: affectable/contextual variable U-1
+  eng_short: var U-1
+  jbo_similar: broda
+mue:
+  _family: MA
+  eng_long: affectable/contextual variable U-2
+  eng_short: var U-2
+  jbo_similar: brode
+mui:
+  _family: MA
+  eng_long: affectable/contextual variable U-3
+  eng_short: var U-3
+  jbo_similar: brodi
+muo:
+  _family: MA
+  eng_long: affectable/contextual variable U-4
+  eng_short: var U-4
+  jbo_similar: brodo
+muu:
+  _family: MA
+  eng_long: affectable/contextual variable U-5
+  eng_short: var U-5
+  jbo_similar: brodu
+my:
+  _family: BY
+  eng_long: letter M
+  eng_short: M
+  jbo_similar: my
+o:
+  _family: O
+  eng_long: prefix a 4 words long lexeme
+  eng_short: ''
+  jbo_similar: lujvo making
+o'y:
+  _family: BY
+  eng_long: letter O
+  eng_short: O
+  jbo_similar: o'y/obu
+pa:
+  _family: PA
+  eng_long: begin free suffix scope (matching end is not checked)
+  eng_short: '{'
+  jbo_similar: fu'e
+pa'a:
+  _family: PA
+  eng_long: 'emphasis indicator, the next word is especially emphasized'
+  eng_short: (emphasis)
+  jbo_similar: ba'e
+pa'e:
+  _family: PA
+  eng_long: 'nonce-word indicator, indicates next word (lexeme) may be nonstandard'
+  eng_short: (non-standard)
+  jbo_similar: za'e
+pa'i:
+  _family: PA
+  eng_long: next word is a metadata tag / hashtag
+  eng_short: (hashtag)
+  jbo_similar: ci'a
+pa'o:
+  _family: PA
+  eng_long: 'rebind following variable, discarding its previous value (can be omitted inside of <va>)'
+  eng_short: (rebind)
+pai:
+  _family: PAI
+  eng_long: end free suffix scope (matching start is not checked). following free suffix will apply to the scope instead of the preceding word
+  eng_short: '}'
+  jbo_similar: fu'o
+pan:
+  _family: R
+  _signature: '.1'
+  eng_long: '___ is able to do/be/capable of satisfying property [___1]'
+  eng_short: able
+  jbo_similar: kakne
+pe:
+  _family: PE
+  eng_long: discursive starter
+  eng_short: (discurive)
+  jbo_similar: sei
+pei:
+  _family: PE
+  eng_long: define who is the listener
+  eng_short: (vocative)
+  jbo_similar: doi
+piin:
+  _family: R
+  _signature: .
+  eng_long: ___ is a bird
+  eng_short: bird
+pin:
+  _family: R
+  _signature: ..
+  eng_long: ___ drinks liquid ___
+  eng_short: drink
+  jbo_similar: pinxe
+pli:
+  _family: R
+  _signature: '.1'
+  eng_long: '___ is a tool for satisfying property [___1]'
+  eng_short: tool
+  jbo_similar: pilno
+  toaq_similar: chuo
+plie:
+  _family: R
+  _signature: .
+  eng_long: ___ is an apple
+  eng_short: apple
+  jbo_similar: plise
+  toaq_similar: shamū
+po:
+  _family: PO
+  eng_long: parenthetical note starter
+  eng_short: (
+  jbo_similar: to
+poi:
+  _family: POI
+  eng_long: parenthetical note terminator
+  eng_short: )
+  jbo_similar: toi
+pre:
+  _family: R
+  _signature: .
+  eng_long: ___ is a person
+  eng_short: person
+  jbo_similar: prenu
+  toaq_similar: poq
+prei:
+  _family: R
+  _signature: ..
+  eng_long: ___ is a parent of/raises ___
+  eng_short: parent
+  jbo_similar: rirni/preri
+  toaq_similar: pao
+pru:
+  _family: R
+  _signature: '00'
+  eng_long: '[___] (event) is in the past of/before [___] (event) (default = now)'
+  eng_short: past
+  jbo_similar: purci
+prul:
+  _family: R
+  _signature: .
+  eng_long: ___ is a chicken
+  eng_short: chicken
+pu:
+  _family: PU
+  eng_long: subscript marker
+  eng_short: ''
+  jbo_similar: xi
+py:
+  _family: BY
+  eng_long: letter P
+  eng_short: P
+  jbo_similar: py
+sa:
+  _family: SA
+  _signature: .
+  eng_long: '___ is named [predicate]'
+  eng_short: name
+  jbo_similar: la
+sa'a:
+  _family: SA
+  eng_long: 'contrary scalar negator : other than .. (scale or set is implied)'
+  eng_short: other than
+  jbo_similar: na'e
+sa'e:
+  _family: SA
+  eng_long: 'polar opposite scalar negator : not a ..'
+  eng_short: not
+  jbo_similar: to'e
+sa'i:
+  _family: SA
+  eng_long: 'midpoint scalar negator : not really'
+  eng_short: not really
+  jbo_similar: no'e
+sai:
+  _family: SA
+  _signature: .
+  eng_long: '___ is related to [predicate] (vague transformation, expands to {ba mu fa [predicate] bai})'
+  eng_short: related to
+  jbo_similar: tu'a
+sal:
+  _family: R
+  _signature: e1
+  eng_long: ___ tries to satisfy property ___
+  eng_short: try
+se:
+  _family: SA
+  eng_long: switch 1st and 2nd places
+  eng_short: x1 &#8652; x2
+  jbo_similar: se
+sei:
+  _family: SA
+  eng_long: SA question
+  eng_short: (SA ?)
+  jbo_similar: se'u'o
+sfe:
+  _family: R
+  _signature: e
+  eng_long: ___ is female
+  eng_short: female
+  jbo_similar: fetsi
+si:
+  _family: SA
+  eng_long: switch 1st and 3rd places
+  eng_short: x1 &#8652; x3
+  jbo_similar: te
+si'a:
+  _family: SA
+  eng_long: use the predicate as a predicate variable name (instead of using <mia>)
+  eng_short: (named variable)
+  jbo_similar: ilmen's dau'u
+sia:
+  _family: SA
+  eng_long: 'transform the [predicate] into a property with only its 1st place (all other have default value)'
+  eng_short: property x1
+sie:
+  _family: SA
+  eng_long: 'transform the [predicate] into a relation with only its 1st and 2nd place (all other have default value)'
+  eng_short: relation x1 x2
+sii:
+  _family: SA
+  eng_long: 'transform the [predicate] into a relation with only its 1st and 3nd place (all other have default value)'
+  eng_short: relation x1 x3
+sio:
+  _family: SA
+  eng_long: 'transform the [predicate] into a relation with only its 1st and 4nd place (all other have default value)'
+  eng_short: relation x1 x4
+siu:
+  _family: SA
+  eng_long: 'transform the [predicate] into a relation with only its 1st and 5nd place (all other have default value)'
+  eng_short: relation x1 x5
+skai:
+  _family: R
+  _signature: e
+  eng_long: ___ is a computer
+  eng_short: computer
+  jbo_similar: skami
+sku:
+  _family: R
+  _signature: eee
+  eng_long: ___ says ___ (quote) to ___
+  eng_short: express
+  jbo_similar: cusku
+sna:
+  _family: R
+  _signature: '00'
+  eng_long: '[___] is a reason why [___] is the case'
+  eng_short: reason
+so:
+  _family: SA
+  eng_long: switch 1st and 4th places
+  eng_short: x1 &#8652; x4
+  jbo_similar: ve
+soi:
+  _family: SA
+  eng_long: the referent of (indirect pointer)
+  eng_short: referent of
+  jbo_similar: la'e
+spi:
+  _family: R
+  _signature: ee
+  eng_long: ___ talks to ___
+  eng_short: talk
+spu:
+  _family: R
+  _signature: ee
+  eng_long: ___ is a nest/house/home of ___
+  eng_short: home
+  jbo_similar: zdani
+su:
+  _family: SA
+  eng_long: switch 1st and 5th places
+  eng_short: x1 &#8652; x5
+  jbo_similar: xe
+suin:
+  _family: R
+  _signature: eE
+  eng_long: ___ is happy about ___ (event)
+  eng_short: happy
+  jbo_similar: gleki
+sy:
+  _family: BY
+  eng_long: letter S
+  eng_short: S
+  jbo_similar: sy
+ta:
+  _family: TA
+  eng_long: 'number/digit: 0'
+  eng_short: '0'
+  jbo_similar: 'no'
+ta'a:
+  _family: TA
+  eng_long: 'number: few'
+  eng_short: few
+  jbo_similar: so'u
+ta'e:
+  _family: TA
+  eng_long: 'number: several'
+  eng_short: several
+  jbo_similar: so'o
+ta'i:
+  _family: TA
+  eng_long: 'number: many'
+  eng_short: many
+  jbo_similar: so'i
+ta'o:
+  _family: TA
+  eng_long: 'number: most'
+  eng_short: most
+  jbo_similar: so'e
+ta'u:
+  _family: TA
+  eng_long: 'number: each/all'
+  eng_short: each/all
+  jbo_similar: ro
+tai:
+  _family: TAI
+  eng_long: number/letter string elidible terminator
+  eng_short: ''
+  jbo_similar: ''
+tai'a:
+  _family: TA
+  eng_long: too few (subjective)
+  eng_short: too few
+  jbo_similar: mo'a
+tai'e:
+  _family: TA
+  eng_long: enough (subjective)
+  eng_short: enough
+  jbo_similar: rau
+tai'i:
+  _family: TA
+  eng_long: too many (subjective)
+  eng_short: too many
+  jbo_similar: du'e
+tan:
+  _family: R
+  _signature: '.11'
+  eng_long: '___ comes early in the sequence (sorted by property [___1]) of things satisfying property [___1]'
+  eng_short: Xth
+tca:
+  _family: R
+  _signature: '.1'
+  eng_long: '___ is a group of things sharing property [___1]'
+  eng_short: group
+te:
+  _family: TA
+  eng_long: decimal separator
+  eng_short: .
+  jbo_similar: pi
+te'a:
+  _family: TA
+  eng_long: (base | number) separator
+  eng_short: number base
+  jbo_similar: vu'ai?
+te'e:
+  _family: TA
+  eng_long: thousands separator / number comma
+  eng_short: thousands
+  jbo_similar: ki'o
+te'i:
+  _family: TA
+  eng_long: 'approximately, (precise | approximate) separator'
+  eng_short: approximatly
+  jbo_similar: ji'i
+te'o:
+  _family: TA
+  eng_long: at least ... (default = some) / no less then
+  eng_short: at least
+  jbo_similar: su'o
+te'u:
+  _family: TA
+  eng_long: at most ... (default = all) / no more than
+  eng_short: at most
+  jbo_similar: su'e
+tia:
+  _family: TA
+  eng_long: 'number/digit: 1'
+  eng_short: '1'
+  jbo_similar: pa
+tie:
+  _family: TA
+  eng_long: 'number/digit: 2'
+  eng_short: '2'
+  jbo_similar: re
+tii:
+  _family: TA
+  eng_long: 'number/digit: 3'
+  eng_short: '3'
+  jbo_similar: ci
+tio:
+  _family: TA
+  eng_long: 'number/digit: 4'
+  eng_short: '4'
+  jbo_similar: vo
+tiu:
+  _family: TA
+  eng_long: 'number/digit: 5'
+  eng_short: '5'
+  jbo_similar: mu
+to:
+  _family: TA
+  eng_long: digit/number question
+  eng_short: number ?
+  jbo_similar: xo
+triu:
+  _family: R
+  _signature: "0.1"
+  eng_long: '___ succeeds at satisfying property [___1]'
+  eng_short: succeed
+tu'a:
+  _family: TA
+  eng_long: 'number/digit: B (11)'
+  eng_short: B (11)
+  jbo_similar: dau
+tu'e:
+  _family: TA
+  eng_long: 'number/digit: C (12)'
+  eng_short: C (12)
+  jbo_similar: fei
+tu'i:
+  _family: TA
+  eng_long: 'number/digit: D (13)'
+  eng_short: D (13)
+  jbo_similar: gai
+tu'o:
+  _family: TA
+  eng_long: 'number/digit: E (14)'
+  eng_short: E (14)
+  jbo_similar: rei/xei
+tu'u:
+  _family: TA
+  eng_long: 'number/digit: F (15)'
+  eng_short: F (15)
+  jbo_similar: vai
+tua:
+  _family: TA
+  eng_long: 'number/digit: 6'
+  eng_short: '6'
+  jbo_similar: xa
+tue:
+  _family: TA
+  eng_long: 'number/digit: 7'
+  eng_short: '7'
+  jbo_similar: ze
+tui:
+  _family: TA
+  eng_long: 'number/digit: 8'
+  eng_short: '8'
+  jbo_similar: bi
+tuo:
+  _family: TA
+  eng_long: 'number/digit: 9'
+  eng_short: '9'
+  jbo_similar: so
+tuu:
+  _family: TA
+  eng_long: 'number/digit: A (10)'
+  eng_short: A (10)
+  jbo_similar: dau
+ty:
+  _family: BY
+  eng_long: letter T
+  eng_short: T
+  jbo_similar: ty
+u:
+  _family: U
+  eng_long: prefix and suffix an arbitrary words long lexeme
+  eng_short: ''
+  jbo_similar: lujvo making
+u'y:
+  _family: BY
+  eng_long: letter U
+  eng_short: U
+  jbo_similar: u'y/ubu
+uy'y:
+  _family: BY
+  eng_long: letter W/u semi-vowel
+  eng_short: W
+  jbo_similar: vy.bu
+va:
+  _family: VA
+  eng_long: 'predicate affectation. one side should be affectable [MA]. if both sides are, right is now equal left'
+  eng_short: '='
+  jbo_similar: goi
+vai:
+  _family: VAI
+  eng_long: predicate link elidible terminator
+  eng_short: ''
+  jbo_similar: ge'u/kei
+val:
+  _family: R
+  _signature: ...
+  eng_long: ___ goes to ___ from ___
+  eng_short: go
+ve:
+  _family: VA
+  eng_long: which is associated with ...
+  eng_short: associated with
+  jbo_similar: pe
+vie:
+  _family: VA
+  eng_long: restrictive relative clause
+  eng_short: restrictive
+  jbo_similar: poi
+vii:
+  _family: VA
+  eng_long: non-restrictive relative clause
+  eng_short: non-restrictive
+  jbo_similar: noi
+vy:
+  _family: BY
+  eng_long: letter V
+  eng_short: V
+  jbo_similar: vy
+vyn:
+  _family: R
+  _signature: .
+  eng_long: ___ is a day
+  eng_short: day
+  jbo_similar: djedi
+xa'a:
+  _family: XA
+  eng_long: laughter. additional 'a may be added
+  eng_short: (haha)
+  jbo_similar: xa'a
+xa'a'a:
+  _family: XA
+  eng_long: same as <xa'a>
+  eng_short: (haha)
+  jbo_similar: xa'a
+xu:
+  _family: XA
+  eng_long: true/false question marker
+  eng_short: true ?
+  jbo_similar: xu
+xu'a:
+  _family: XA
+  eng_long: indirect question marker
+  eng_short: (indirect ?)
+  jbo_similar: kau
+xy:
+  _family: BY
+  eng_long: letter X
+  eng_short: X
+  jbo_similar: xy
+xyn:
+  _family: R
+  _signature: .
+  eng_long: ___ is a week
+  eng_short: week
+y'a:
+  _family: BY
+  eng_long: pause character / .
+  eng_short: dot
+  jbo_similar: denpabu
+y'e:
+  _family: BY
+  eng_long: letter H/'
+  eng_short: H
+  jbo_similar: xy.bu
+y'i:
+  _family: BY
+  eng_long: letter L
+  eng_short: L
+  jbo_similar: ly
+y'o:
+  _family: BY
+  eng_long: letter N
+  eng_short: 'N'
+  jbo_similar: ny
+y'u:
+  _family: BY
+  eng_long: letter R
+  eng_short: R
+  jbo_similar: ry
+y'y:
+  _family: BY
+  eng_long: letter Y
+  eng_short: 'Y'
+  jbo_similar: y'y/ybu
+za:
+  _family: ZA
+  _signature: .
+  eng_long: 'prefix a foreign word, meaning ''___ is a [word]'''
+  eng_short: (simple)
+  jbo_similar: cmevla/fu'ivla
+zai:
+  _family: ZA
+  eng_long: 'prefix a foreign word, place structure is infered from context'
+  eng_short: (complex)
+  jbo_similar: fu'ivla
+zdei:
+  _family: R
+  _signature: .
+  eng_long: ___ is amusing/fun
+  eng_short: amusing
+  jbo_similar: zdile
+zdua:
+  _family: R
+  _signature: .
+  eng_long: ___ is complicated/complex
+  eng_short: complex
+ze:
+  _family: ZE
+  _signature: .
+  eng_long: 'start grammatical quote. ___ is quote [quote]'
+  eng_short: '&#12317;'
+  jbo_similar: lu
+zei:
+  _family: ZEI
+  eng_long: end grammatical quote
+  eng_short: '&#12318;'
+  jbo_similar: li'u
+zi:
+  _family: ZI
+  _signature: .
+  eng_long: 'quote the following word. ___ is word [word]'
+  eng_short: '&#34;'
+  jbo_similar: zo
+zo:
+  _family: ZO
+  _signature: .
+  eng_long: 'start ungrammatical quote. ___ is quote [quote]'
+  eng_short: '&#12317;'
+  jbo_similar: lo'u
+zoi:
+  _family: ZOI
+  eng_long: end ungrammatical quote
+  eng_short: '&#12318;'
+  jbo_similar: le'u
+zon:
+  _family: R
+  _signature: ..
+  eng_long: ___ pertains to/is about subject ___
+  eng_short: about
+zu:
+  _family: ZU
+  _signature: .
+  eng_long: 'prefix a foreign word quote surrounded by the same 1 native word. ___ is quote [quote]'
+  eng_short: ''
+  jbo_similar: zoi
+zva:
+  _family: R
+  _signature: ..
+  eng_long: ___ is at ___ (location)
+  eng_short: attending
+  jbo_similar: zvati
+zy:
+  _family: BY
+  eng_long: letter Z
+  eng_short: Z
+  jbo_similar: zy
+zyn:
+  _family: R
+  _signature: .
+  eng_long: ___ is a month
+  eng_short: month

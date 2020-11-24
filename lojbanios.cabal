@@ -93,6 +93,8 @@ library
                      , Study.Courses.English.Vocabulary.Brivla.Vocabulary
                      , Study.Decks.DeckStore
                      , Study.Decks.English.ContextualizedBrivla
+                     , Language.Eberban.Core
+                     , Language.Eberban.Dictionaries
                      , Language.Lojban.Canonicalization
                      , Language.Lojban.Canonicalization.Internals
                      , Language.Lojban.Core
