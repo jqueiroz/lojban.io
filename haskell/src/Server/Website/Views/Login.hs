@@ -75,6 +75,7 @@ displaySignIn refererMaybe uuid = do
             H.input B.! A.type_ (H.textValue "radio") B.! A.name (H.textValue "login-register-input") B.! A.id (H.textValue "login-register-input-random") B.! A.class_ (H.textValue "login-register-input-random") B.! A.checked (H.textValue "checked")
             H.label B.! A.for (H.textValue "login-register-input-random") $ H.toHtml ("Use a randomly generated handle" :: T.Text)
             H.input B.! A.type_ (H.textValue "radio") B.! A.name (H.textValue "login-register-input") B.! A.id (H.textValue "login-register-input-custom") B.! A.class_ (H.textValue "login-register-input-custom")
+            -- TODO: button for easy copy-pasting
             H.label B.! A.for (H.textValue "login-register-input-custom") $ H.toHtml ("Choose a custom handle" :: T.Text)
             H.div B.! A.class_ ("login-register-random") $ do
                 H.form B.! A.action (H.textValue "/authentication/handle/register") B.! A.method (H.textValue "POST") $ do
