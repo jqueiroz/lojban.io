@@ -260,8 +260,8 @@ nitcu:
     x3: purpose
 
 pendo:
-    x1: friendly entity
-    x2: friendliness experiencer
+    x1: friend
+    x2: befriended one(s)
 
 pensi:
     x1: thinking entity
