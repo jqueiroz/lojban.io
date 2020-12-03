@@ -3,7 +3,7 @@ import sys
 import os
 import csv
 import json
-import yaml
+#import yaml
 import copy
 import csv
 
@@ -135,6 +135,7 @@ def load_all_lujvo():
 
 def load_brivla_from_yaml_file(filename):
     ret = []
+    return ret
     with open(filename, "r") as f:
         data = yaml.load(f, Loader=yaml.CLoader)
         for brivla, translations in data.items():
@@ -222,6 +223,7 @@ def run(cmd):
         print("Frequent words: %d" % len(frequent_words))
     def retrieve_top_brivla():
         blacklist = set(["selpa'i", "broda", "gerna", "lojbo", "tsani", "zmadu", "gerna", "binxo", "terdatni", "srana", "binxo", "casnu", "jbopre", "cmavo", "lujvo", "gismu", "nuzba", "dukse", "ninmu", "nanmu", "kampu", "broda", "brode", "brodi", "brodo", "brodu", "sumti"])
+        blacklist = set()
         taught = set(load_taught_brivla())
         words = frequency_table.items()
         brivla = filter(lambda x: x[0] in gismu or x[0] in lujvo, words)
@@ -232,7 +234,7 @@ def run(cmd):
         return brivla
     def display_top_brivla():
         brivla = retrieve_top_brivla()
-        interesting_brivla = brivla[:20]
+        interesting_brivla = brivla[:200]
         print("Brivla: %d" % len(brivla))
         for w, f in interesting_brivla:
                 print("%7d    %s" % (f, w))
