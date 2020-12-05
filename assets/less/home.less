@@ -81,7 +81,7 @@
         &:extend(.foreground-gradient1-hack);
     }
 
-    .why-lojban a.external:before {
+    .why-lojban a.external:before, .why-lojban a.discord:before {
         /* Position */
         padding-right: 0.3em;
         display: inline-block;
@@ -89,7 +89,15 @@
         /* Style */
         vertical-align: top;
         font-family: 'Material Icons';
+    }
+
+    .why-lojban a.external:before {
         content: "launch";
+    }
+
+    .why-lojban a.discord:before {
+        margin-left: 1.5em;
+        content: "chat";
     }
 
     .speak-lojban {

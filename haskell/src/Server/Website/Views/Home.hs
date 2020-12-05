@@ -112,6 +112,9 @@ displayWhy = do
         H.a (H.toHtml ("Find out more" :: T.Text))
             B.! A.href (H.textValue "https://mw.lojban.org/papri/Lojban")
             B.! A.class_ (H.textValue "external")
+        H.a (H.toHtml ("Join the community Discord server" :: T.Text))
+            B.! A.href "https://discord.com/invite/dGP5A6Fpj7"
+            B.! A.class_ (H.textValue "discord")
 
 displayLearn :: H.Html
 displayLearn = do
