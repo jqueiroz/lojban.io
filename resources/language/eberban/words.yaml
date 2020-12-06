@@ -121,6 +121,11 @@ cfar:
   _signature: "..[2]"
   eng_long: "___ requests to ___ that they satisfy property [___2]"
   eng_short: request
+cfer:
+  _family: "R"
+  _signature: "..[2]"
+  eng_long: "___ suggests ___ that they satisfy property [___2]"
+  eng_short: suggest
 ci:
   _family: "CA"
   eng_long: predicate connective question
@@ -318,6 +323,11 @@ esfeprei:
   eng_long: ___ is a mother of ___
   eng_short: mother
   jbo_similar: mamta
+eskaikle:
+  _family: "L"
+  _signature: ".."
+  eng_long: ___ plays video game/computer game ___
+  eng_short: play video game
 etarvyn:
   _family: "C"
   _signature: "."
@@ -521,6 +531,11 @@ fy:
   eng_long: letter F
   eng_short: F
   jbo_similar: fy
+gli:
+  _family: "R"
+  _signature: ".."
+  eng_long: ___ is modified/altered/changed/transformed/converted into ___
+  eng_short: transformed
 glu:
   _family: "R"
   _signature: ".."
@@ -593,6 +608,11 @@ jgai:
   eng_long: ___ graps/holds ___
   eng_short: hold
   jbo_similar: jgari
+jgan:
+  _family: "R"
+  _signature: ".0"
+  eng_long: "___ causes [___] to be true"
+  eng_short: cause
 ji:
   _family: "JA"
   eng_long: distributive connective question
@@ -621,10 +641,15 @@ jmar:
   _signature: ".[1]"
   eng_long: ___ is new in property [___1]
   eng_short: new
+jnei:
+  _family: "R"
+  _signature: "."
+  eng_long: ___ is an inspiration
+  eng_short: inspiration
 jner:
   _family: "R"
   _signature: ".0"
-  eng_long: "___ acknowledges/confirms of receipt and understanging of [___]"
+  eng_long: "___ acknowledges/confirms of receipt and understanding of [___]"
   eng_short: confirm
   jbo_similar: jenje
 jo:
@@ -651,7 +676,7 @@ jve:
 jvir:
   _family: "R"
   _signature: "..[1]"
-  eng_long: ___ is good (<sahijil> for bad) according to ___ in property [___1]
+  eng_long: ___ is good (<sanajil> for bad) according to ___ in property [___1]
   eng_short: good
 jy:
   _family: "BY"
@@ -684,6 +709,11 @@ klar:
   _signature: ".[1]"
   eng_long: "___ increases in how much it satisfies property [___1]"
   eng_short: increase
+kle:
+  _family: "R"
+  _signature: ".."
+  eng_long: ___ plays with ___
+  eng_short: play
 klia:
   _family: "ZU"
   _signature: "."
@@ -696,6 +726,12 @@ klie:
   eng_long: ___ thanks ___
   eng_short: thank
   jbo_similar: ki'e
+kra:
+  _family: "R"
+  _signature: ".."
+  eng_long: ___ is the source/origin of ___
+  eng_short: source
+  jbo_similar: krasi
 krin:
   _family: "R"
   _signature: ".0"
@@ -718,18 +754,18 @@ laha:
   jbo_similar: ba'e
 lahe:
   _family: "LA"
+  eng_long: "rebind following variable, discarding its previous value"
+  eng_short: (rebind)
+lahi:
+  _family: "LA"
   eng_long: "nonce-word indicator, indicates next word (compound) may be nonstandard"
   eng_short: (non-standard)
   jbo_similar: za'e
-lahi:
+laho:
   _family: "LA"
   eng_long: next word is a metadata tag / hashtag
   eng_short: (hashtag)
   jbo_similar: ci'a
-laho:
-  _family: "LA"
-  eng_long: "rebind following variable, discarding its previous value (can be omitted inside of <va>)"
-  eng_short: (rebind)
 lai:
   _family: "LAI"
   eng_long: end free suffix scope (matching start is not checked). following free suffix will apply to the scope instead of the preceding word
@@ -738,13 +774,48 @@ lai:
 le:
   _family: "LE"
   eng_long: discursive starter
-  eng_short: (discurive)
+  eng_short: ""
   jbo_similar: sei
-lei:
-  _family: "LE"
-  eng_long: define who is the listener
-  eng_short: (vocative)
-  jbo_similar: doi
+liha:
+  _family: "LI"
+  eng_long: marker variable 1
+  eng_short: (marker var 1)
+lihe:
+  _family: "LI"
+  eng_long: marker variable 2
+  eng_short: (marker var 2)
+lihi:
+  _family: "LI"
+  eng_long: marker variable 3
+  eng_short: (marker var 3)
+liho:
+  _family: "LI"
+  eng_long: marker variable 4
+  eng_short: (marker var 4)
+lihu:
+  _family: "LI"
+  eng_long: marker variable 5
+  eng_short: (marker var 5)
+lina:
+  _family: "LI"
+  eng_long: true/false question marker
+  eng_short: true ?
+  jbo_similar: xu
+line:
+  _family: "LI"
+  eng_long: indirect question marker
+  eng_short: (indirect question)
+  jbo_similar: kau
+lira:
+  _family: "LI"
+  eng_long: however/but/in constrast
+  eng_short: however
+  jbo_similar: ku'i
+lire:
+  _family: "LI"
+  eng_long: also/additionally
+  eng_short: additionally
+  jbo_similar: ji'a
 lo:
   _family: "LO"
   eng_long: parenthetical note starter
@@ -792,11 +863,6 @@ me:
   eng_long: "predicate question, fill the blank"
   eng_short: "?"
   jbo_similar: ma / mo
-mel:
-  _family: "ZU"
-  _signature: "."
-  eng_long: ___ is water
-  eng_short: water
 mi:
   _family: "MA"
   _signature: "."
@@ -888,6 +954,17 @@ mlir:
   _signature: ".[1]"
   eng_long: "___ is mild/non-extreme/gentle/somewhat in property [___1]"
   eng_short: mild
+mlo:
+  _family: ZU
+  _signature: "."
+  eng_long: ___ is water
+  eng_short: water
+mlu:
+  _family: "R"
+  _signature: ".."
+  eng_long: ___ touches ___
+  eng_short: touch
+  jbo_similar: pencu
 mo:
   _family: "MA"
   _signature: "."
@@ -1060,35 +1137,40 @@ sa:
   jbo_similar: la
 saha:
   _family: "SA"
-  eng_long: "contrary scalar negator : other than .. (scale or set is implied)"
-  eng_short: other than
-  jbo_similar: na'e
-sahe:
-  _family: "SA"
-  eng_long: "polar opposite scalar negator : not a .."
-  eng_short: not
-  jbo_similar: to'e
-sahi:
-  _family: "SA"
-  eng_long: "midpoint scalar negator : not really"
-  eng_short: not really
-  jbo_similar: no'e
-sai:
-  _family: "SA"
   _signature: "."
   eng_long: "___ is related to [predicate] (vague transformation, expands to {ba mu fa [predicate] bai})"
   eng_short: related to
   jbo_similar: tu'a
+sahe:
+  _family: "SA"
+  eng_long: the referent of (indirect pointer)
+  eng_short: referent of
+  jbo_similar: la'e
+sai:
+  _family: "SA"
+  eng_long: SA question
+  eng_short: (SA ?)
+  jbo_similar: se'u'o
+sana:
+  _family: "SA"
+  eng_long: "contrary scalar negator : other than .. (scale or set is implied)"
+  eng_short: other than
+  jbo_similar: na'e
+sane:
+  _family: "SA"
+  eng_long: "polar opposite scalar negator : not a .."
+  eng_short: not
+  jbo_similar: to'e
+sani:
+  _family: "SA"
+  eng_long: "midpoint scalar negator : not really"
+  eng_short: not really
+  jbo_similar: no'e
 se:
   _family: "SA"
   eng_long: switch 1st and 2nd places
   eng_short: x1 &#8652; x2
   jbo_similar: se
-sei:
-  _family: "SA"
-  eng_long: SA question
-  eng_short: (SA ?)
-  jbo_similar: se'u'o
 sfe:
   _family: "R"
   _signature: "."
@@ -1131,6 +1213,10 @@ siu:
   _family: "SA"
   eng_long: "transform the [predicate] into a relation with only its 1st and 5nd place (all other have default value)"
   eng_short: relation x1 x5
+siy:
+  _family: "SA"
+  eng_long: "transform the [predicate] into a proposition with all its places filled with default values"
+  eng_short: proposition
 skai:
   _family: "R"
   _signature: "."
@@ -1146,8 +1232,9 @@ sku:
 slar:
   _family: "R"
   _signature: ".[1]"
-  eng_long: ___ tries to satisfy property ___
+  eng_long: ___ tries to satisfy property [___1]
   eng_short: try
+  jbo_similar: troci
 snan:
   _family: "R"
   _signature: "00"
@@ -1168,11 +1255,6 @@ so:
   eng_long: switch 1st and 4th places
   eng_short: x1 &#8652; x4
   jbo_similar: ve
-soi:
-  _family: "SA"
-  eng_long: the referent of (indirect pointer)
-  eng_short: referent of
-  jbo_similar: la'e
 spar:
   _family: "R"
   _signature: ".[1]"
@@ -1205,6 +1287,12 @@ stir:
   _signature: ".[1][1]"
   eng_long: "___ comes early in the sequence (sorted by property [___1]) of things satisfying property [___1]"
   eng_short: Xth
+ston:
+  _family: "R"
+  _signature: ".0"
+  eng_long: "___ approves of [___] being true"
+  eng_short: approve
+  jbo_similar: zanru
 stun:
   _family: "R"
   _signature: "..0"
@@ -1476,6 +1564,11 @@ tcer:
   _signature: "0"
   eng_long: "[___] is intense"
   eng_short: much
+tci:
+  _family: "R"
+  _signature: "..0"
+  eng_long: ___ teaches to ___ about [___]
+  eng_short: teach
 tcur:
   _family: "R"
   _signature: ".[1]"
@@ -1866,31 +1959,6 @@ vyn:
   eng_long: ___ is a day
   eng_short: day
   jbo_similar: djedi
-xaha:
-  _family: "XA"
-  eng_long: laughter. additional ha may be added
-  eng_short: (haha)
-  jbo_similar: xa'a
-xahaha:
-  _family: "XA"
-  eng_long: same as <xaha>
-  eng_short: (haha)
-  jbo_similar: xa'a
-xu:
-  _family: "XA"
-  eng_long: true/false question marker
-  eng_short: true ?
-  jbo_similar: xu
-xuha:
-  _family: "XA"
-  eng_long: indirect question marker
-  eng_short: (indirect ?)
-  jbo_similar: kau
-xuhi:
-  _family: "XA"
-  eng_long: however/but/in constrast
-  eng_short: however
-  jbo_similar: ku'i
 xy:
   _family: "BY"
   eng_long: letter X
@@ -1922,6 +1990,11 @@ za:
   eng_long: 'prefix a foreign word, meaning "___ is a [word]"'
   eng_short: (simple)
   jbo_similar: cmevla/fu'ivla
+zaha:
+  _family: ZA
+  _signature: "."
+  eng_long: 'prefix a foreign word as an onomatopea, meaning "___ is the onomatopea [word]"'
+  eng_short: (onomatopea)
 zai:
   _family: "ZA"
   eng_long: "prefix a foreign word, place structure is infered from context"
@@ -1986,7 +2059,7 @@ zno:
 zu:
   _family: "ZU"
   _signature: "."
-  eng_long: "prefix a foreign word quote surrounded by the same 1 native word. ___ is quote [quote]"
+  eng_long: "prefix a foreign word quote surrounded by the same 1 native word. ___ is quote [quote] in language/format ___"
   eng_short: ""
   jbo_similar: zoi
 zva:
