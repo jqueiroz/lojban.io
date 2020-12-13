@@ -26,3 +26,7 @@ server:
 	./buildscripts/make-server.sh
 	./buildscripts/make-css.sh
 	./buildscripts/make-javascript.sh
+
+server-minus-js:
+	./buildscripts/make-server.sh
+	./buildscripts/make-css.sh
