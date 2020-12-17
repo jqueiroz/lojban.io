@@ -1,4 +1,37 @@
 ---
+.:
+  _family: "TA"
+  eng_short: "te"
+0:
+  _family: "TA"
+  eng_short: "ta"
+1:
+  _family: "TA"
+  eng_short: "tia"
+2:
+  _family: "TA"
+  eng_short: "tie"
+3:
+  _family: "TA"
+  eng_short: "tii"
+4:
+  _family: "TA"
+  eng_short: "tio"
+5:
+  _family: "TA"
+  eng_short: "tiu"
+6:
+  _family: "TA"
+  eng_short: "tua"
+7:
+  _family: "TA"
+  eng_short: "tue"
+8:
+  _family: "TA"
+  eng_short: "tui"
+9:
+  _family: "TA"
+  eng_short: "tuo"
 a:
   _family: "A"
   eng_long: prefix a 1 word long compound
@@ -12,9 +45,19 @@ a'a:
   jbo_similar: lujvo
 abe:
   _family: "C"
-  _signature: "0"
+  _signature: "0."
   eng_long: "[___] is a proposition expressed in sentence ___ (text)"
   eng_short: proposition
+abi:
+  _family: "C"
+  _signature: "00"
+  eng_long: "[___] is an event expressed by proposition [___]"
+  eng_short: event
+aca:
+  _family: "C"
+  _signature: "0."
+  eng_long: "[___] is a predicate chain with components ___"
+  eng_short: predicate chain
 ada:
   _family: "C"
   _signature: ".."
@@ -184,6 +227,11 @@ ctar:
   eng_long: "___ begins to satisfy property [___1] (default = being true/occurs) "
   eng_short: begin
   jbo_similar: zvati
+ctua:
+  _family: "R"
+  _signature: "."
+  eng_long: ___ is a rabbit
+  eng_short: rabbit
 cu:
   _family: "CA"
   eng_long: "[left] whether or not [right]"
@@ -220,6 +268,12 @@ djo:
   eng_long: ___ (donor) gives/donates gift/present ___ to recipient ___ (without payment/exchange)
   eng_short: give
   jbo_similar: dunda
+dju:
+  _family: "R"
+  _signature: ".."
+  eng_long: "___ knows ___"
+  eng_short: know
+  jbo_similar: djuno
 djun:
   _family: "R"
   _signature: ".0"
@@ -232,10 +286,15 @@ dlan:
   eng_long: "___ discovers [___] is true"
   eng_short: discover
   jbo_similar: facki
-dlur:
+dlu:
   _family: "R"
-  _signature: "..[2]"
-  eng_long: "___ likes that ___ satisfies property [___2] (default = exist/occurs/is true)"
+  _signature: ".."
+  eng_long: "___ likes ___"
+  eng_short: like
+dlun:
+  _family: "R"
+  _signature: ".0"
+  eng_long: "___ likes [___]"
   eng_short: like
 do:
   _family: "DO"
@@ -305,7 +364,7 @@ eklacke:
   eng_long: ___ is a man
   eng_short: man
   jbo_similar: nanmu
-eklaprei:
+eklaprai:
   _family: "C"
   _signature: ".."
   eng_long: ___ is a father of ___
@@ -317,7 +376,7 @@ esfecke:
   eng_long: ___ is a woman
   eng_short: woman
   jbo_similar: ninmu
-esfeprei:
+esfeprai:
   _family: "C"
   _signature: ".."
   eng_long: ___ is a mother of ___
@@ -501,6 +560,12 @@ foi:
   eng_long: don't fill a place. can be used to provide a topic or declare quantification and/or value of a variable
   eng_short: prenex
   jbo_similar: fai'i
+fra:
+  _family: "R"
+  _signature: ".."
+  eng_long: ___ smells/scents ___
+  eng_short: smell
+  jbo_similar: sumne
 fu:
   _family: "FA"
   eng_long: "tag proposition place #5"
@@ -987,6 +1052,7 @@ mu:
   _family: "MA"
   eng_long: elliptical/unspecified predicate
   eng_short: (elliptical)
+  jbo_similar: co'e, zo'e
 mua:
   _family: "MA"
   eng_long: repeats the next to last proposition
@@ -1146,6 +1212,11 @@ sahe:
   eng_long: the referent of (indirect pointer)
   eng_short: referent of
   jbo_similar: la'e
+sahi:
+  _family: "SA"
+  eng_long: use the predicate as a predicate variable name (instead of using <mia>)
+  eng_short: (named variable)
+  jbo_similar: ilmen's dau'u
 sai:
   _family: "SA"
   eng_long: SA question
@@ -1196,11 +1267,6 @@ sie:
   _family: "SA"
   eng_long: "transform the [predicate] into a relation with only its 1st and 2nd place (all other have default value)"
   eng_short: relation x1 x2
-siha:
-  _family: "SA"
-  eng_long: use the predicate as a predicate variable name (instead of using <mia>)
-  eng_short: (named variable)
-  jbo_similar: ilmen's dau'u
 sii:
   _family: "SA"
   eng_long: "transform the [predicate] into a relation with only its 1st and 3nd place (all other have default value)"
@@ -1316,9 +1382,9 @@ ta:
   jbo_similar: "no"
 taha:
   _family: "TA"
-  eng_long: "number: few"
-  eng_short: few
-  jbo_similar: so'u
+  eng_long: "number/digit: 0"
+  eng_short: "0"
+  jbo_similar: "no"
 tahal:
   _family: "R"
   _signature: "[X][X]"
@@ -1594,6 +1660,10 @@ tehi:
   eng_long: "approximately, (precise | approximate) separator"
   eng_short: approximatly
   jbo_similar: ji'i
+teho:
+  _family: "TA"
+  eng_long: "repeating digits, (number | repeating part) separator"
+  eng_short: repeating digits
 tenan:
   _family: "R"
   _signature: "00"
@@ -1784,6 +1854,10 @@ to:
   eng_long: digit/number question
   eng_short: number ?
   jbo_similar: xo
+toha:
+  _family: "TA"
+  eng_long: negative sign
+  eng_short: negative
 trir:
   _family: "R"
   _signature: ".[1]"
@@ -1920,7 +1994,7 @@ uy:
   eng_short: u-
 va:
   _family: "VA"
-  eng_long: "predicate variable affectation. one side should be prefixed with <paho>"
+  eng_long: "predicate variable affectation. one side should be prefixed with <lahe>"
   eng_short: "="
   jbo_similar: goi
 vai:
@@ -1948,6 +2022,19 @@ vla:
   _signature: "..."
   eng_long: ___ goes to ___ from ___
   eng_short: go
+  jbo_similar: klama
+vri:
+  _family: "R"
+  _signature: ".."
+  eng_long: ___ see/views/perceives visually ___
+  eng_short: see
+  jbo_similar: viska
+vro:
+  _family: "R"
+  _signature: ".."
+  eng_long: ___ hears ___
+  eng_short: hear
+  jbo_similar: tirna
 vy:
   _family: "BY"
   eng_long: letter V
