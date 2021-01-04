@@ -4,6 +4,8 @@ set -e
 # Change directory to the script's location
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
+# TODO: before stopping any containers, first ensure that all required images exist locally
+
 # Stop: redis
 echo "Stopping: lojban-redis-server..."
 if [ -n "`./docker.sh ps -a | grep lojban-redis-server$`" ]; then
@@ -49,7 +51,11 @@ echo -e "Generating certificates..."
 ./docker.sh run -it --rm --name lojban-letsencrypt-server \
     -v /lojban-letsencrypt-certificates:/etc/letsencrypt \
     -v /lojban-letsencrypt-challenge:/letsencrypt-challenge \
-    lojban-letsencrypt-server
+    certbot/certbot certonly \
+        --keep-until-expiring --agree-tos --webroot --expand --rsa-key-size 4096 \
+        --email contact@lojban.io \
+        --webroot-path /letsencrypt-challenge \
+        -d lojban.io
 
 # Stop: master-https
 echo "Stopping: lojban-master-https-server..."
