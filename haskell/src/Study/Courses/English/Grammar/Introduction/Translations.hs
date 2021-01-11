@@ -1364,7 +1364,7 @@ translations11 = expandTranslationGenerator $ combineGenerators [(3, pi'o), (3, 
         , (["mi vecnu lo skami be pi'o do", "mi vecnu lo skami ku poi do pilno {ke'a}"], ["I sold the computer used by you."])
         , (["do tavla fi lo nu vecnu mu'i ma", "lo nu vecnu mu'i ma kei poi do tavla {fi ke'a}"], ["What was the motivation for the sale you are talking about?"])
         , (["do tavla fi lo nu dunda mu'i ma", "lo nu dunda mu'i ma kei poi do tavla {fi ke'a}"], ["What was the motivation for the donation you are talking about?"])
-        , (["xu do nelci lo nu dunda mu'i lo (nu|ka|li'i) gleki"], ["Do you like donations motivated by happiness?"])
+        , (["xu do nelci lo nu dunda mu'i lo (nu|ka|li'i) gleki"], ["Do you like events of donations motivated by happiness?"])
         , (["mi tavla fi lo nu gleki mu'i lo nu lo gerku cu melbi"], ["I am talking about the event of happiness motivated by the dog being beautiful."])
         , (["mi tavla fi lo nu mi gleki mu'i lo nu lo gerku cu melbi"], ["I am talking about the event of my happiness motivated by the dog being beautiful."])
         , (["mi tavla fi lo nu do gleki gau lo gerku"], ["I am talking about the event of the dog making you happy."])
