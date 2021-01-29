@@ -1,6 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 module Serializer
 ( exerciseToJSON
+, personalizedExerciseToJSON
 , validateExerciseAnswer
 ) where
 
@@ -12,7 +13,14 @@ import qualified Data.Aeson as A
 import Data.List (sort)
 import System.Random (StdGen)
 
--- Serialization of exercises
+-- * Serialization of personalized exercises
+personalizedExerciseToJSON :: PersonalizedExercise -> StdGen -> A.Value
+personalizedExerciseToJSON (PersonalizedExercise exercise shouldDisplayHint) r0 = A.object
+    [ "exercise" A..= (exerciseToJSON exercise r0)
+    , "shouldDisplayHint" A..= shouldDisplayHint
+    ]
+
+-- * Serialization of exercises
 exerciseToJSON :: Exercise -> StdGen -> A.Value
 
 exerciseToJSON (MultipleChoiceExercise title sentences correctAlternatives incorrectAlternatives fixedOrdering) r0 = A.object
@@ -37,10 +45,11 @@ exerciseToJSON (MatchingExercise title sentences items) r0 = A.object
     , "right_items" A..= shuffle_ r0 (map snd items)
     ]
 
-exerciseToJSON (TypingExercise title sentences _ _) r0 = A.object
+exerciseToJSON (TypingExercise title sentences _ canonicalAnswer) r0 = A.object
     [ "type" A..= ("typing" :: T.Text)
     , "title" A..= title
     , "sentences" A..= (map exerciseSentenceToJSON sentences)
+    , "canonicalAnswer" A..= canonicalAnswer
     ]
 
 exerciseSentenceToJSON :: ExerciseSentence -> A.Value

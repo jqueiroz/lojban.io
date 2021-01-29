@@ -2,6 +2,7 @@
 
 module Server.Core where
 
+import Core
 import GHC.Generics
 import Network.HTTP.Client (Manager)
 import qualified Database.Redis as Redis
@@ -61,6 +62,13 @@ data DeckProficiency = DeckProficiency
 data CardProficiency = CardProficiency
     { lastAttempts :: [Bool]
     } deriving (Generic, Show)
+
+data CardWithUserFeatures = CardWithUserFeatures
+    { card :: Card
+    , cardProficiencyWeight :: Int
+    , cardProficiencyScore :: Double
+    , cardShouldDisplayHint :: Bool
+    }
 
 instance A.FromJSON DeckPreferences where
     parseJSON = A.genericParseJSON A.defaultOptions
