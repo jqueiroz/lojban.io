@@ -94,6 +94,12 @@ type TranslationGeneratorByExpression = [(T.Text, TranslationGenerator)]
 type SentenceComparer = LojbanSentence -> LojbanSentence -> Bool
 
 -- * Exercises
+data PersonalizedExercise =
+    PersonalizedExercise
+        { peExercise :: Exercise
+        , peShouldDisplayHint :: Bool
+        }
+
 data Exercise =
     MultipleChoiceExercise
         { mceTitle :: T.Text

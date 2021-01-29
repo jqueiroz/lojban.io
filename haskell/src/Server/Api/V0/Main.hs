@@ -16,7 +16,7 @@ import Server.Api.V0.Serializers (serializeCourse, serializeDeck)
 import Happstack.Server
 import Control.Monad.Trans (liftIO)
 import System.Random (StdGen, mkStdGen, newStdGen)
-import Serializer (exerciseToJSON, validateExerciseAnswer)
+import Serializer (personalizedExerciseToJSON, validateExerciseAnswer)
 import Util (chooseItem, combineGenerators)
 import qualified Server.Authentication.Main as Authentication
 import qualified Database.Redis as Redis
@@ -86,12 +86,14 @@ handleDeckExercises serverConfiguration serverResources deck exerciseId = do
     case identityMaybe of
         Nothing -> unauthorized . toResponse . A.encode $ ("You must be signed in." :: T.Text)
         Just identity -> do
-            cards <- liftIO $ runRedis serverConfiguration serverResources $ retrieveDeckActiveCards (userIdentifier identity) deck
+            cardsWithUserFeatures <- liftIO $ runRedis serverConfiguration serverResources $ retrieveDeckActiveCards (userIdentifier identity) deck
             let r0 = mkStdGen exerciseId
-            let (selectedCard, r1) = selectCardWithBiasTowardsLowScoreOnes cards r0
+            let (selectedCardWithUserFeatures, r1) = selectCardWithBiasTowardsLowScoreOnes cardsWithUserFeatures r0
+            let selectedCard = card selectedCardWithUserFeatures
             let selectedExercise = (cardExercises selectedCard) r1
+            let personalizedExercise = PersonalizedExercise selectedExercise (cardShouldDisplayHint selectedCardWithUserFeatures)
             msum
-                [ dir "get" $ (liftIO $ newStdGen) >>= ok . toResponse . A.encode . exerciseToJSON selectedExercise
+                [ dir "get" $ (liftIO $ newStdGen) >>= ok . toResponse . A.encode . personalizedExerciseToJSON personalizedExercise
                 , dir "submit" $ getBody >>= \body -> do
                     let errorResponse = ok . toResponse . A.encode . A.object $ [("success", A.Bool False)]
                     case validateExerciseAnswer selectedExercise body of
@@ -110,7 +112,7 @@ handleDeckExercises serverConfiguration serverResources deck exerciseId = do
                                     ok . toResponse . A.encode . A.object $ [("success", A.Bool True), ("data", responseData)]
                 ]
 
-selectCardWithBiasTowardsLowScoreOnes :: [(Card, Int, Double)] -> StdGen -> (Card, StdGen)
+selectCardWithBiasTowardsLowScoreOnes :: [CardWithUserFeatures] -> StdGen -> (CardWithUserFeatures, StdGen)
 selectCardWithBiasTowardsLowScoreOnes cards = combineGenerators [(probabilityOfSelectingLowScoreCards, selectLowScoreCard), (100-probabilityOfSelectingLowScoreCards, selectGeneralCard)] where
     -- | Low-score cards.
     lowScoreCards = filter hasLowScore cards
@@ -129,12 +131,12 @@ selectCardWithBiasTowardsLowScoreOnes cards = combineGenerators [(probabilityOfS
     decideProbabilityOfSelectingLowScoreCardsGivenTheirCount 8 = 45
     decideProbabilityOfSelectingLowScoreCardsGivenTheirCount _ = 50
     -- | Decides whether the given card has low score.
-    hasLowScore :: (Card, Int, Double) -> Bool
-    hasLowScore (card, cardProficiencyWeight, cardProficiencyScore) = cardProficiencyScore <= 0.4
+    hasLowScore :: CardWithUserFeatures -> Bool
+    hasLowScore cardWithUserFeatures = (cardProficiencyScore cardWithUserFeatures) <= 0.4
     -- | Randomly selects a card among those with low score.
     selectLowScoreCard = selectCard lowScoreCards
     -- | Randomly selects a card among all of them.
     selectGeneralCard = selectCard cards
 
-selectCard :: [(Card, Int, Double)] -> StdGen -> (Card, StdGen)
-selectCard cards r0 = chooseItem r0 $ map (\(card, cardProficiencyWeight, cardProficiencyScore) -> (cardProficiencyWeight, card)) cards
+selectCard :: [CardWithUserFeatures] -> StdGen -> (CardWithUserFeatures, StdGen)
+selectCard cardsWithUserFeatures r0 = chooseItem r0 $ map (\cardWithUserFeatures -> (cardProficiencyWeight cardWithUserFeatures, cardWithUserFeatures)) cardsWithUserFeatures

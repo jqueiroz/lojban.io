@@ -39,6 +39,11 @@ computeCardProficiencyWeight cardProficiency = assert (universalBaseWeight >= 1)
     weightedFailedAttempts = filter (not . snd) weightedAttempts
     totalWeightOfFailedAttempts = sum $ map (\x -> x*x) $ map fst weightedFailedAttempts
 
+computeCardLastAttemptCorrectness :: CardProficiency -> Bool
+computeCardLastAttemptCorrectness cardProficiency = lastAttempt where
+    attempts = lastAttempts cardProficiency
+    lastAttempt = if null attempts then False else head attempts
+
 -- * Configuration
 
 -- | Last X attempts will be saved into the database.
@@ -124,7 +129,7 @@ updateDeckPreferencesByTogglingCard userIdentifier deck cardTitle cardNewStatus 
         let newDeckPreferences = DeckPreferences newCardPreferences
         saveDeckPreferences userIdentifier deck newDeckPreferences
 
-retrieveDeckActiveCards :: UserIdentifier -> Deck -> Redis.Redis [(Card, Int, Double)]
+retrieveDeckActiveCards :: UserIdentifier -> Deck -> Redis.Redis [CardWithUserFeatures]
 retrieveDeckActiveCards userIdentifier deck = do
     -- Retrieve enabled cards
     preferencesMap <- cardPreferences <$> retrieveDeckPreferences userIdentifier deck
@@ -143,8 +148,11 @@ retrieveDeckActiveCards userIdentifier deck = do
                 proficiency = M.lookup title proficiencyMap
                 proficiencyWeight = maybe 0 computeCardProficiencyWeight proficiency
                 proficiencyScore = maybe 0 computeCardProficiencyScore proficiency
+                shouldDisplayHint = case proficiency of
+                    Nothing -> True
+                    Just proficiency' -> (not $ computeCardLastAttemptCorrectness proficiency') && (proficiencyWeight >= 1800)
             in
-                (card, proficiencyWeight, proficiencyScore)
+                CardWithUserFeatures card proficiencyWeight proficiencyScore shouldDisplayHint
 
 isCardEnabled :: CardPreferences -> Bool
 isCardEnabled = (== CardCurrentlyLearning) . cardStatus

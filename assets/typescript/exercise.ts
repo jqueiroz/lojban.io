@@ -188,7 +188,8 @@ var createExercisesManager = function(holder) {
         }
     };
 
-    var displayExercise = function(data) {
+    var displayExercise = function(personalized_data) {
+        var data = personalized_data.exercise;
         // Footer
         footer.empty();
         var btnSkip = $("<button/>")
@@ -461,6 +462,9 @@ var createExercisesManager = function(holder) {
             var textarea = $("<textarea/>");
             table.append(textarea);
             textarea.focus();
+            if (personalized_data.shouldDisplayHint) {
+                textarea.attr("placeholder", data.canonicalAnswer);
+            }
             // Submit
             var send = function() {
                 submit({text: textarea.val()}).done(function(response) {

@@ -10,7 +10,6 @@ import Language.Eberban.Core
 import Util (combineGenerators, combineGeneratorsUniformly)
 import System.Random (StdGen)
 import qualified Data.Text as T
-import qualified Data.Map as M
 
 -- Exercise: provide the lexicon
 generateLexiconProvidingExercise :: T.Text -> EntryGenerator -> ExerciseGenerator

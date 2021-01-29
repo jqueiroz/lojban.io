@@ -5,7 +5,7 @@ module Server.Website.Main
 ) where
 
 import Core
-import Serializer (exerciseToJSON, validateExerciseAnswer)
+import Serializer (personalizedExerciseToJSON, validateExerciseAnswer)
 import qualified Study.Courses.English.Grammar.Introduction.Course
 import qualified Study.Courses.English.Grammar.Crash.Course
 import qualified Study.Courses.English.Vocabulary.Attitudinals.Course
@@ -137,8 +137,10 @@ handleLesson serverConfiguration userIdentityMaybe topbarCategory course lessonN
             let
                 lesson = (courseLessons course) !! (lessonNumber - 1)
                 exercise = lessonExercises lesson (mkStdGen n)
+                shouldDisplayHint = False
+                personalizedExercise = PersonalizedExercise exercise shouldDisplayHint
             in msum
-                [ dir "get" $ (liftIO $ newStdGen) >>= ok . toResponse . A.encode . exerciseToJSON exercise
+                [ dir "get" $ (liftIO $ newStdGen) >>= ok . toResponse . A.encode . personalizedExerciseToJSON personalizedExercise
                 , dir "submit" $ getBody >>= \body -> ok . toResponse . A.encode . A.object $
                     case validateExerciseAnswer exercise body of
                         Nothing -> [("success", A.Bool False)]
