@@ -138,6 +138,9 @@ displayResources = do
                 H.a "The Lojban I speak (by la lalxu)"
                     B.! A.href "https://gist.github.com/lynn/453a1ccc62aafbc24d2bfbd29bf5cabf"
             H.li $ do
+                H.a "Modern lojban concepts"
+                    B.! A.href "https://wiki.lojban.io/Modern_Lojban_concepts"
+            H.li $ do
                 H.a "A simpler connective system"
                     B.! A.href "https://solpahi.wordpress.com/2016/09/20/a-simpler-connective-system/"
             H.li $ do
