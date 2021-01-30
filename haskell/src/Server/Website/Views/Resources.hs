@@ -177,6 +177,9 @@ displayResources = do
                 H.a "Pronunciation guides"
                     B.! A.href "https://mw.lojban.org/papri/pronunciation"
             H.li $ do
+                H.a "CLL – the essentials"
+                    B.! A.href "https://uacai-uecai.blogspot.com/2021/01/cll-essentials.html"
+            H.li $ do
                 H.a "More learning materials"
                     B.! A.href "https://mw.lojban.org/papri/Learning_materials._Secondary_links"
             H.li $ do
