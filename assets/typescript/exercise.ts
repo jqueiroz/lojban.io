@@ -262,15 +262,22 @@ var createExercisesManager = function(holder) {
                 );
             }
             // Logic
+            var currentlySubmitting = false;
             var send = function() {
                 var chosenAlternative = radioGroup
                     .find("input:checked")
                     .attr("value");
                 if (chosenAlternative === undefined) return;
+                if (currentlySubmitting) {
+                    return;
+                } else {
+                    currentlySubmitting = true;
+                }
                 keyMap.clearNumber();
                 submit({correctAlternative: chosenAlternative}).done(function(
                     response
                 ) {
+                    currentlySubmitting = false;
                     if (!response.success) {
                         console.log("Failure to submit answer");
                         return;
@@ -342,6 +349,7 @@ var createExercisesManager = function(holder) {
                 };
             };
 
+            var currentlySubmitting = false;
             var send = function() {
                 var orderedAlternatives = new Array(len);
                 for (var i = 0; i < len; ++i) {
@@ -356,8 +364,14 @@ var createExercisesManager = function(holder) {
                         .text();
                 }
                 if (orderedAlternatives !== null) {
+                    if (currentlySubmitting) {
+                        return;
+                    } else {
+                        currentlySubmitting = true;
+                    }
                     submit({orderedAlternatives: orderedAlternatives}).done(
                         function(response) {
+                            currentlySubmitting = false;
                             exercise_validationPayload = response.data;
                             displayFeedbackFooter({
                                 correct: response.data.correct,
@@ -466,8 +480,15 @@ var createExercisesManager = function(holder) {
                 textarea.attr("placeholder", data.canonicalAnswer);
             }
             // Submit
+            var currentlySubmitting = false;
             var send = function() {
+                if (currentlySubmitting) {
+                    return;
+                } else {
+                    currentlySubmitting = true;
+                }
                 submit({text: textarea.val()}).done(function(response) {
+                    currentlySubmitting = false;
                     if (!response.success) {
                         console.log("Failure to submit answer");
                         return;
