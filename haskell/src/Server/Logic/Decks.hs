@@ -150,7 +150,7 @@ retrieveDeckActiveCards userIdentifier deck = do
                 proficiencyScore = maybe 0 computeCardProficiencyScore proficiency
                 shouldDisplayHint = case proficiency of
                     Nothing -> True
-                    Just proficiency' -> (not $ computeCardLastAttemptCorrectness proficiency') && (proficiencyWeight >= 1800)
+                    Just proficiency' -> (not $ computeCardLastAttemptCorrectness proficiency') && (proficiencyWeight >= 1500)
             in
                 CardWithUserFeatures card proficiencyWeight proficiencyScore shouldDisplayHint
 
