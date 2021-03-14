@@ -10,12 +10,6 @@ echo ">>>>>>>>>>>>>> backup"
 echo ""
 echo ""
 
-# Build: letsencrypt
-echo ">>>>>>>>>>>>>> letsencrypt"
-./docker.sh $DOCKER_OPTS build -t lojban-letsencrypt-server -f letsencrypt/Dockerfile letsencrypt
-echo ""
-echo ""
-
 # Build: master-http
 echo ">>>>>>>>>>>>>> master-http"
 ./docker.sh $DOCKER_OPTS build -t lojban-master-http-server -f master-http/Dockerfile master-http
