@@ -247,7 +247,7 @@ instance (SourceList c) => Source [c] where
 
 instanceSrcStr _ =
 	instanceD (cxt [classP sourceList [varT c]]) (conT source `appT` listC) [
-		tySynInstD tokenN $ tySynEqn [listC] (varT c),
+		tySynInstD $ tySynEqn Nothing listC (varT c),
 		flip (newtypeInstD (cxt []) posN [listC] Nothing) [] $
 			normalC listPosN [strictType notStrict $
 				conT listPosN `appT` varT c],

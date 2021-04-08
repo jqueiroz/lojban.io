@@ -206,7 +206,7 @@ getProviderOAuth2Config serverConfiguration serverResources knownProvider discov
         accessTokenEndpoint <- withExceptT (const "Failed to parse OAuth2 access token endpoint.") <$> except <$> parseURI strictURIParserOptions . TE.encodeUtf8 $ OIDCS.oidcTokenEndpoint discoveredProvider
         return $ OA2.OAuth2
             { OA2.oauthClientId = clientId
-            , OA2.oauthClientSecret = clientSecret
+            , OA2.oauthClientSecret = (Just clientSecret)
             , OA2.oauthCallback = Just callbackUri
             , OA2.oauthOAuthorizeEndpoint = authorizeEndpoint
             , OA2.oauthAccessTokenEndpoint = accessTokenEndpoint

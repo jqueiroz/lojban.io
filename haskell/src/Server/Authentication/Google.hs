@@ -181,7 +181,7 @@ getOAuth2Config = do
     callbackUri <- msum [ getCallbackUri "/oauth2/google/callback", return defaultCallbackUri ]
     return $ OA2.OAuth2
         { OA2.oauthClientId = T.pack clientId
-        , OA2.oauthClientSecret = T.pack clientSecret
+        , OA2.oauthClientSecret = Just $ T.pack clientSecret
         , OA2.oauthCallback = Just callbackUri
         , OA2.oauthOAuthorizeEndpoint = [uri|https://accounts.google.com/o/oauth2/auth|]
         , OA2.oauthAccessTokenEndpoint = [uri|https://www.googleapis.com/oauth2/v3/token|]

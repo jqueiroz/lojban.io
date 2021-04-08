@@ -20,9 +20,11 @@ ENV \
 COPY stack.yaml /lojbanios/stack.yaml
 COPY lojbanios.cabal /lojbanios/lojbanios.cabal
 
+# Copy libraries
+COPY haskell/libs /lojbanios/haskell/libs
+
 # Setup GHC
 RUN cd /lojbanios && stack setup
 
 # Install dependencies
-COPY haskell/libs /lojbanios/haskell/libs
 RUN cd /lojbanios && stack install --only-dependencies

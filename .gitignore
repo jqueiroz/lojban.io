@@ -3,5 +3,5 @@
 **/.stack-work
 **/node_modules
 assets/package-lock.json
-stack.yaml.lock
+#stack.yaml.lock
 .redis-dev.database
