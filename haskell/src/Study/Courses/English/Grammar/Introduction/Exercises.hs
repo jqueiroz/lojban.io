@@ -266,7 +266,7 @@ exercises11 =
         vocabulary = vocabulary11_cumulative
 
 translationExercises11 :: ExerciseGenerator
-translationExercises11 = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations11
+translationExercises11 = generateTranslationExerciseWithCustomTitle "Translate using sumtcita" sentenceCanonicalizer sentenceComparer translations11
 
 -- * Lesson 12: Tenses 1
 -- | Exercises for the lesson.
