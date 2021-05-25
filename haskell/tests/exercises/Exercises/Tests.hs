@@ -31,7 +31,7 @@ validateExercise exercise =
 
 validateExerciseGenerator :: ExerciseGenerator -> IO ()
 validateExerciseGenerator exerciseGenerator = do
-    let exercises = exerciseGenerator . mkStdGen <$> [1..5000]
+    let exercises = exerciseGenerator . mkStdGen <$> [1..1]
     forM_ exercises validateExercise
     seq (length . show $ exercises) $ return ()
 

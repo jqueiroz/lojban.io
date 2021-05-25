@@ -506,6 +506,13 @@ validateCanonicalization = hspec $ do
             , "mi se pi'o lo skami cu fanva ta"
             , "se pi'o lo skami ku mi fanva ta"
             ]
+      it "supports BAI" $ do
+        validateEquivalentSentences
+            "fi'o gasnu fe'u mi cmene lo mlatu ku"
+            [ "gau mi cmene lo mlatu"
+            , "cmene lo mlatu ku gau mi"
+            , "cmene lo mlatu gau mi"
+            ]
       it "supports complex sentences" $ do
         validateSentences
             [ ("mi nupre lo nu pilno lo skami poi do dunda ke'a mi", "mi nupre lo nu pilno lo skami ku poi do dunda ke'a mi ku'o kei ku")

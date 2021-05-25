@@ -34,7 +34,7 @@ computeCardProficiencyWeight :: CardProficiency -> Int
 computeCardProficiencyWeight cardProficiency = assert (universalBaseWeight >= 1) $ universalBaseWeight + totalWeightOfFailedAttempts where
     universalBaseWeight = 100 -- For context, the maximum possible `totalWeightOfFailedAttempts` (i.e. the weight for a completely new card) is 20^2 + 19^2 + ... + 1^2 = 2871
     baseWeightOfMostRecentAttempt = 20
-    attempts = lastAttempts cardProficiency
+    attempts = take numberOfAttemptsTracked $ (lastAttempts cardProficiency) ++ (repeat False)
     weightedAttempts = assert (baseWeightOfMostRecentAttempt >= numberOfAttemptsTracked) $ zip [baseWeightOfMostRecentAttempt,baseWeightOfMostRecentAttempt-1..] attempts
     weightedFailedAttempts = filter (not . snd) weightedAttempts
     totalWeightOfFailedAttempts = sum $ map (\x -> x*x) $ map fst weightedFailedAttempts
