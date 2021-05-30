@@ -6,6 +6,10 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 # TODO: before stopping any containers, first ensure that all required images exist locally
 
+# Fetch images
+echo "Fetching images..."
+./docker.sh pull certbot/certbot
+
 # Stop: redis
 echo "Stopping: lojban-redis-server..."
 if [ -n "`./docker.sh ps -a | grep lojban-redis-server$`" ]; then
