@@ -72,7 +72,7 @@ cizra:
 
     # Sentence complexity: 0.458
     - lojban_sentences:
-        - la cizra cu cmene mi
+        - zo cizra cu cmene mi
       translated_sentences:
         - I am called "Strange".
 
@@ -107,7 +107,7 @@ cmene:
 
     # Sentence complexity: 0.458
     - lojban_sentences:
-        - la cizra cu cmene mi
+        - zo cizra cu cmene mi
       translated_sentences:
         - I am called "Strange".
 
