@@ -347,6 +347,12 @@ body {
         padding-right: 0.6em;
     }
 
+    button.retry {
+        position: absolute;
+        right: 25em;
+        color: hsl(0, 0%, 30%);
+    }
+
     button.success:disabled, button.continue:disabled {
         background-color: #bbb !important;
         color: #fff;
@@ -450,6 +456,10 @@ body {
                 position: relative;
                 top: 0.5em;
                 left: calc(100% - 11em);
+            }
+
+            button.retry {
+                display: none;
             }
         }
     }

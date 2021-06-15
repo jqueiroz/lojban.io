@@ -110,6 +110,14 @@ var createExercisesManager = function(holder) {
         show();
     };
 
+    var retryExercise = function() {
+        exercise_payload = null;
+        exercise_attemptedSolution = null;
+        exercise_attemptedSolutionWasCorrect = null;
+        exercise_validationPayload = null;
+        show();
+    };
+
     var reportExercise = function() {
         var universal_exercise_id = getUniversalExerciseIdentifier();
         var title = "Incorrect exercise: " + universal_exercise_id;
@@ -162,6 +170,13 @@ var createExercisesManager = function(holder) {
             contents.append(correct_answer);
         }
         // Buttons
+        var btnRetry = $("<button/>")
+            .addClass("retry")
+            .text("Retry")
+            .attr("alt", "Retry this exercise")
+            .attr("title", "Retry this exercise");
+        footer.append(btnRetry);
+
         var btnReport = $("<button/>")
             .addClass("report")
             .text("Report")
@@ -177,6 +192,7 @@ var createExercisesManager = function(holder) {
         // Events
         btnContinue.click(nextExercise);
         btnReport.click(reportExercise);
+        btnRetry.click(retryExercise);
         keyMap.enter(nextExercise);
         // Sound
         if (data.correct) {
