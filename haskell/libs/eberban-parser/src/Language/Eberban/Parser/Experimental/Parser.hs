@@ -203,7 +203,10 @@ vei :: String = &_:particle                                           x:(v:v e:e
 
 zi  :: String = &_:particle                                           x:(z:z hieaou:hieaou { concat [z, hieaou] })                      &_:post_word        { x }
 
--- TODO: Foreign text quoting
+-- Foreign text quoting
+foreign_quote_open :: NativeWord = native_word:native_word {native_word}
+foreign_quote_word :: String = x:(!_:pause_char c {c})+ { x }
+foreign_quote_close :: NativeWord = native_word:native_word {native_word}
 
 -- Compounds
 compound :: Compound = x:(compound_2:compound_2{compound_2} / compound_3:compound_3{compound_3} / compound_n:compound_n{compound_n}) {x}
