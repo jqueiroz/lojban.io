@@ -11,7 +11,7 @@ import Prelude hiding (Word)
 import Text.Papillon
 import Data.Maybe
 
-type Result = Predicate
+type Result = PredicateWithTransformationsAndFree
 
 parse :: String -> Either String Result
 parse src
@@ -55,18 +55,12 @@ pauseChars= ['’']
 data EberbanText = EberbanText -- the entire text (pending)
     deriving (Show)
 
-data TransformedPredicateWithFree = TransformedPredicateWithFree -- pending
-    deriving (Show)
-
-data TransformedPredicate = TransformedPredicate -- pending
-    deriving (Show)
-
 data Scope = Scope -- pending
     deriving (Show)
 
 data ChainingItem
     = ChainingNegation BI [ChainingItem]
-    | ChainingPredicate Predicate [VeScope]
+    | ChainingPredicate PredicateWithTransformationsAndFree [VeScope]
 
 data VeScope = VeScope VeScopeFirst [VeScopeNext] (Maybe VEI)
     deriving (Show)
@@ -75,6 +69,17 @@ data VeScopeFirst = VeScopeFirst (Maybe BI) VE Scope
     deriving (Show)
 
 data VeScopeNext = VeScopeNext (Maybe BI) FE Scope
+    deriving (Show)
+
+data PredicateWithTransformationsAndFree = PredicateWithTransformationsAndFree PredicateWithTransformations [Free]
+    deriving (Show)
+
+data PredicateWithTransformations = PredicateWithTransformations [PredicateTransformation] Predicate
+    deriving (Show)
+
+data PredicateTransformation
+    = PredicateTransformationSe SE
+    | PredicateTransformationZi ZI
     deriving (Show)
 
 -- maybe rename to SimplePredicate?
@@ -112,14 +117,14 @@ data Variable
     | VariableFreeform String
     deriving (Show)
 
-data Override = Override DU TransformedPredicate
+data Override = Override DU PredicateWithTransformations
     deriving (Show)
 
 data Free
     = FreeMetadata DA
     | FreeSubscript DI Number
     | FreeParenthetical DO EberbanText DOI
-    | FreeInterjection DE TransformedPredicate
+    | FreeInterjection DE PredicateWithTransformations
     deriving (Show)
 
 data Compound = Compound [Word]
@@ -211,7 +216,7 @@ prefix: "gerna_"
 -- Define the final result
 --result :: Result = eberban_text
 --result :: Result = i:initial_pair { i } / _:eof { "empty input" }
-result :: Result = predicate:predicate { predicate }
+result :: Result = predicate_with_transformations_and_free:predicate_with_transformations_and_free { predicate_with_transformations_and_free }
 
 -- Overall text
 eberban_text :: EberbanText = !_ { EberbanText } -- not yet implemented
@@ -226,19 +231,18 @@ chaining :: [ChainingItem] = x:chaining_item+ {x}
 chaining_item :: ChainingItem = chaining_negation:chaining_negation{chaining_negation} / chaining_predicate:chaining_predicate{chaining_predicate}
 chaining_negation :: ChainingItem = bi_clause:bi_clause chaining:chaining { ChainingNegation bi_clause chaining }
 -- "chaining_predicate" was originally named "chaining_unit"
-chaining_predicate :: ChainingItem = predicate:predicate ve_scope:ve_scope* { ChainingPredicate predicate ve_scope }
+chaining_predicate :: ChainingItem = predicate_with_transformations_and_free:predicate_with_transformations_and_free ve_scope:ve_scope* { ChainingPredicate predicate_with_transformations_and_free ve_scope }
 
 ve_scope :: VeScope = ve_scope_first:ve_scope_first ve_scope_next:ve_scope_next* vei_clause_elidible:vei_clause_elidible { VeScope ve_scope_first ve_scope_next vei_clause_elidible }
 ve_scope_first :: VeScopeFirst = bi_clause:bi_clause? ve_clause:ve_clause scope:scope { VeScopeFirst bi_clause ve_clause scope }
 ve_scope_next :: VeScopeNext = bi_clause:bi_clause? fe_clause:fe_clause scope:scope { VeScopeNext bi_clause fe_clause scope }
 
--- Predicate unit (TODO)
--- "transformed_predicate_with_free" originally named "predicate"
-transformed_predicate_with_free :: TransformedPredicateWithFree = !_ { TransformedPredicateWithFree }
+-- Predicate unit
+-- "predicate_with_transformations_and_free" originally named "predicate"
+predicate_with_transformations_and_free :: PredicateWithTransformationsAndFree = predicate_with_transformations:predicate_with_transformations free:free* { PredicateWithTransformationsAndFree predicate_with_transformations free }
 
--- "transformed_predicate" was originally named "predicate_1"
--- Consider renaming to "predicate_with_transformations", or "predicate_with_switches"
-transformed_predicate :: TransformedPredicate = !_ { TransformedPredicate }
+-- "predicate_with_transformations" was originally named "predicate_1"
+predicate_with_transformations :: PredicateWithTransformations = transformations:(se_clause:se_clause !_:se_clause { PredicateTransformationSe se_clause} / zi_clause:zi_clause {PredicateTransformationZi zi_clause})* predicate:predicate { PredicateWithTransformations transformations predicate }
 
 -- "predicate" was originally named "predicate_2"
 predicate :: Predicate = x:(predicate_ba:predicate_ba{predicate_ba} / predicate_mi:predicate_mi{predicate_mi} / predicate_quote:predicate_quote{predicate_quote} / predicate_variable:predicate_variable{predicate_variable} / predicate_scope:predicate_scope{predicate_scope} / predicate_borrowing:predicate_borrowing{predicate_borrowing} / predicate_root:predicate_root{predicate_root} / predicate_number:predicate_number {predicate_number} / predicate_compound:predicate_compound{predicate_compound}) {x}
@@ -272,9 +276,9 @@ free :: Free = x:(free_metadata:free_metadata{free_metadata} / free_subscript:fr
 free_metadata :: Free = da_clause:da_clause { FreeMetadata da_clause }
 free_subscript :: Free = di_clause:di_clause number:number { FreeSubscript di_clause number }
 free_parenthetical :: Free = do_clause:do_clause eberban_text:eberban_text doi_clause:doi_clause { FreeParenthetical do_clause eberban_text doi_clause }
-free_interjection :: Free = de_clause:de_clause transformed_predicate:transformed_predicate { FreeInterjection de_clause transformed_predicate }
+free_interjection :: Free = de_clause:de_clause predicate_with_transformations:predicate_with_transformations { FreeInterjection de_clause predicate_with_transformations }
 
-override :: Override = du_clause:du_clause transformed_predicate:transformed_predicate { Override du_clause transformed_predicate }
+override :: Override = du_clause:du_clause predicate_with_transformations:predicate_with_transformations { Override du_clause predicate_with_transformations }
 
 -- Particle clauses
 ba_clause :: BA = _:spaces? ba:ba { BA ba }
