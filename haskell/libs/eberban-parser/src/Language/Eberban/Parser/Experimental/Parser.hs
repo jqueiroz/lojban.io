@@ -213,7 +213,7 @@ quote :: Quote = grammatical_quote:grammatical_quote{grammatical_quote} / one_wo
 grammatical_quote :: Quote = ca_clause:ca_clause eberban_text:eberban_text cai_clause:cai_clause { GrammaticalQuote ca_clause eberban_text cai_clause }
 one_word_quote :: Quote = ce_clause:ce_clause _:spaces? word:(native_word:native_word{Native native_word} / borrowing:borrowing{Borrowing borrowing}) { OneWordQuote ce_clause word }
 one_compound_quote :: Quote = ce_clause:ce_clause _:spaces? compound:compound { OneCompoundQuote ce_clause compound }
-foreign_quote :: Quote = co_clause:co_clause _:spaces? foreign_quote_open:foreign_quote_open _:space_char foreign_quote_content:foreign_quote_content _:pause_char foreign_quote_close:foreign_quote_close { ForeignQuote co_clause (ForeignQuoteDelimiter foreign_quote_open) (ForeignQuoteContent foreign_quote_content)} -- TODO: is this really correct? foreign_quote_open is not necessarily equal to foreign_quote_close
+foreign_quote :: Quote = co_clause:co_clause _:spaces? foreign_quote_open:foreign_quote_open _:space_char foreign_quote_content:foreign_quote_content _:pause_char foreign_quote_close:foreign_quote_close { ForeignQuote co_clause (ForeignQuoteDelimiter foreign_quote_open) (ForeignQuoteContent foreign_quote_content)} -- TOCONFIRM: is this really correct? foreign_quote_open is not necessarily equal to foreign_quote_close
 foreign_quote_content :: String = x:(!_:(_:pause_char _:foreign_quote_close) c {c})* { x }
 
 -- Numbers
@@ -313,10 +313,10 @@ vei :: String = &_:particle                                           x:(v:v e:e
 
 zi  :: String = &_:particle                                           x:(z:z hieaou:hieaou { concat [z, hieaou] })                      &_:post_word        { x }
 
- -- TODO: is the definition of ti correct?
+ -- TOCONFIRM: is the definition of ti correct?
 ti :: String = ti_v1:ti_v1{ti_v1} / ti_v2:ti_v2{ti_v2}
 ti_v1 :: String = &_:particle x:(t:t hieaou:hieaou { concat [t, hieaou] }) &_:post_word { x }
-ti_v2 :: String = digit_char:digit_char &_:post_word { [digit_char] } -- TODO: specifically double-check if ti_v2 is correct
+ti_v2 :: String = digit_char:digit_char &_:post_word { [digit_char] } -- TOCONFIRM: specifically double-check if ti_v2 is correct
 
 -- Foreign text quoting
 foreign_quote_open :: NativeWord = native_word:native_word {native_word}
