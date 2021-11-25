@@ -87,6 +87,7 @@ data Predicate
     | PredicateBa BA
     | PredicateMi MI
     | PredicateVariable (Maybe BO) Variable
+    | PredicateScope PE Scope (Maybe PEI)
     deriving (Show)
 
 data Number = Number [TI] (Maybe BE)
@@ -236,14 +237,16 @@ ve_scope_next :: VeScopeNext = bi_clause:bi_clause? fe_clause:fe_clause scope:sc
 transformed_predicate_with_free :: TransformedPredicateWithFree = !_ { TransformedPredicateWithFree }
 
 -- "transformed_predicate" was originally named "predicate_1"
+-- Consider renaming to "predicate_with_transformations", or "predicate_with_switches"
 transformed_predicate :: TransformedPredicate = !_ { TransformedPredicate }
 
--- "predicate" was originally named "predicate_2" (pending: predicate_scope)
-predicate :: Predicate = x:(predicate_ba:predicate_ba{predicate_ba} / predicate_mi:predicate_mi{predicate_mi} / predicate_quote:predicate_quote{predicate_quote} / predicate_variable:predicate_variable{predicate_variable} / predicate_borrowing:predicate_borrowing{predicate_borrowing} / predicate_root:predicate_root{predicate_root} / predicate_number:predicate_number {predicate_number} / predicate_compound:predicate_compound{predicate_compound}) {x}
+-- "predicate" was originally named "predicate_2"
+predicate :: Predicate = x:(predicate_ba:predicate_ba{predicate_ba} / predicate_mi:predicate_mi{predicate_mi} / predicate_quote:predicate_quote{predicate_quote} / predicate_variable:predicate_variable{predicate_variable} / predicate_scope:predicate_scope{predicate_scope} / predicate_borrowing:predicate_borrowing{predicate_borrowing} / predicate_root:predicate_root{predicate_root} / predicate_number:predicate_number {predicate_number} / predicate_compound:predicate_compound{predicate_compound}) {x}
 predicate_ba :: Predicate = ba_clause:ba_clause { PredicateBa ba_clause }
 predicate_mi :: Predicate = mi_clause:mi_clause { PredicateMi mi_clause }
 predicate_quote :: Predicate = quote:quote { PredicateQuote quote }
 predicate_variable :: Predicate = bo_clause:bo_clause? variable:variable { PredicateVariable bo_clause variable }
+predicate_scope :: Predicate = pe_clause:pe_clause scope:scope pei_clause_elidible:pei_clause_elidible { PredicateScope pe_clause scope pei_clause_elidible }
 predicate_borrowing :: Predicate = x:(_:spaces? borrowing:borrowing {borrowing})+ y:be_clause_elidible { PredicateBorrowing x y }
 predicate_root :: Predicate = _:spaces? root:root { PredicateRoot root }
 predicate_number :: Predicate = _:spaces? number:number { PredicateNumber number }
