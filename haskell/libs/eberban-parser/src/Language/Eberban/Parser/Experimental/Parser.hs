@@ -18,7 +18,7 @@ parse src
     | Right (r, _) <- parsed = Right r
     | Left l <- parsed = Left $ showParseError l
     where
-        parsed = runError $ gerna_textAll $ gerna_parse src
+        parsed = runError $ gerna_result $ gerna_parse src
 
 showParseError :: ParseError (Pos String) Gerna_Derivs -> String
 showParseError pe =
@@ -52,10 +52,49 @@ pauseChars :: [Char]
 pauseChars= ['’']
 
 -- Data types
+data EberbanText = EberbanText -- the entire text (pending)
+    deriving (Show)
+
+data TransformedPredicateWithFree = TransformedPredicateWithFree -- pending
+    deriving (Show)
+
+data TransformedPredicate = TransformedPredicate -- pending
+    deriving (Show)
+
 data Predicate
     = PredicateRoot String
     | PredicateCompound Compound
     | PredicateBorrowing [String] (Maybe BE)
+    | PredicateQuote Quote
+    | PredicateNumber Number
+    | PredicateBa BA
+    | PredicateMi MI
+    deriving (Show)
+
+data Number = Number [TI] (Maybe BE)
+    deriving (Show)
+
+newtype ForeignQuoteDelimiter = ForeignQuoteDelimiter NativeWord
+    deriving (Show)
+
+newtype ForeignQuoteContent = ForeignQuoteContent String
+    deriving (Show)
+
+data Quote
+    = GrammaticalQuote CA EberbanText CAI
+    | OneWordQuote CE Word
+    | OneCompoundQuote CE Compound
+    | ForeignQuote CO ForeignQuoteDelimiter ForeignQuoteContent
+    deriving (Show)
+
+data Override = Override DU TransformedPredicate
+    deriving (Show)
+
+data Free
+    = FreeMetadata DA
+    | FreeSubscript DI Number
+    | FreeParenthetical DO EberbanText DOI
+    | FreeInterjection DE TransformedPredicate
     deriving (Show)
 
 data Compound = Compound [Word]
@@ -63,7 +102,7 @@ data Compound = Compound [Word]
 
 data Word
     = Borrowing String
-    | NativeWord NativeWord
+    | Native NativeWord
     deriving (Show)
 
 data NativeWord
@@ -140,35 +179,56 @@ data CO = CO String
 data CU = CU String
     deriving (Show)
 
-data Free = Free
-    deriving (Show)
-data Override = Override
-    deriving (Show)
-
 -- Definition of the grammar
 [papillon|
-
 prefix: "gerna_"
 
---textAll :: String = i:initial_pair { i } / _:eof { "empty input" }
-textAll :: Result = predicate_2:predicate_2 { predicate_2 }
+-- Define the final result
+--result :: Result = eberban_text
+--result :: Result = i:initial_pair { i } / _:eof { "empty input" }
+result :: Result = predicate:predicate { predicate }
+
+-- Overall text
+eberban_text :: EberbanText = !_ { EberbanText } -- not yet implemented
 
 -- Predicate unit (TODO)
-predicate_2 :: Predicate = x:(predicate_borrowing:predicate_borrowing{predicate_borrowing} / predicate_root:predicate_root{predicate_root} / predicate_compound:predicate_compound{predicate_compound}) {x}
+-- originally named "predicate"
+transformed_predicate_with_free :: TransformedPredicateWithFree = !_ { TransformedPredicateWithFree }
+
+-- originally named "predicate_1"
+transformed_predicate :: TransformedPredicate = !_ { TransformedPredicate }
+
+-- originally named "predicate_2" (pending: predicate_variable, predicate_scope)
+predicate :: Predicate = x:(predicate_ba:predicate_ba{predicate_ba} / predicate_mi:predicate_mi{predicate_mi} / predicate_quote:predicate_quote{predicate_quote} / predicate_borrowing:predicate_borrowing{predicate_borrowing} / predicate_root:predicate_root{predicate_root} / predicate_number:predicate_number {predicate_number} / predicate_compound:predicate_compound{predicate_compound}) {x}
+predicate_ba :: Predicate = ba_clause:ba_clause { PredicateBa ba_clause }
+predicate_mi :: Predicate = mi_clause:mi_clause { PredicateMi mi_clause }
+predicate_quote :: Predicate = quote:quote { PredicateQuote quote }
 predicate_borrowing :: Predicate = x:(_:spaces? borrowing:borrowing {borrowing})+ y:be_clause_elidible { PredicateBorrowing x y }
 predicate_root :: Predicate = _:spaces? root:root { PredicateRoot root }
+predicate_number :: Predicate = _:spaces? number:number { PredicateNumber number }
 predicate_compound :: Predicate = _:spaces? compound:compound { PredicateCompound compound }
 
--- Quotes (TODO)
+-- Quotes
+quote :: Quote = grammatical_quote:grammatical_quote{grammatical_quote} / one_word_quote:one_word_quote{one_word_quote} / one_compound_quote:one_compound_quote{one_compound_quote} / foreign_quote:foreign_quote{foreign_quote}
+grammatical_quote :: Quote = ca_clause:ca_clause eberban_text:eberban_text cai_clause:cai_clause { GrammaticalQuote ca_clause eberban_text cai_clause }
+one_word_quote :: Quote = ce_clause:ce_clause _:spaces? word:(native_word:native_word{Native native_word} / borrowing:borrowing{Borrowing borrowing}) { OneWordQuote ce_clause word }
+one_compound_quote :: Quote = ce_clause:ce_clause _:spaces? compound:compound { OneCompoundQuote ce_clause compound }
+foreign_quote :: Quote = co_clause:co_clause _:spaces? foreign_quote_open:foreign_quote_open _:space_char foreign_quote_content:foreign_quote_content _:pause_char foreign_quote_close:foreign_quote_close { ForeignQuote co_clause (ForeignQuoteDelimiter foreign_quote_open) (ForeignQuoteContent foreign_quote_content)} -- TODO: is this really correct? foreign_quote_open is not necessarily equal to foreign_quote_close
+foreign_quote_content :: String = x:(!_:(_:pause_char _:foreign_quote_close) c {c})* { x }
 
--- Numbers (TODO)
+-- Numbers
+number :: Number = x:ti_clause+ y:be_clause_elidible { Number x y }
 
 -- Variables (TODO)
 
--- Free afixes (TODO)
-free :: Free = !_ { Free } -- not yet supported
+-- Free afixes
+free :: Free = x:(free_metadata:free_metadata{free_metadata} / free_subscript:free_subscript{free_subscript} / free_parenthetical:free_parenthetical{free_parenthetical} / free_interjection:free_interjection{free_interjection}) {x}
+free_metadata :: Free = da_clause:da_clause { FreeMetadata da_clause }
+free_subscript :: Free = di_clause:di_clause number:number { FreeSubscript di_clause number }
+free_parenthetical :: Free = do_clause:do_clause eberban_text:eberban_text doi_clause:doi_clause { FreeParenthetical do_clause eberban_text doi_clause }
+free_interjection :: Free = de_clause:de_clause transformed_predicate:transformed_predicate { FreeInterjection de_clause transformed_predicate }
 
-override :: Override = !_ { Override } -- not yet supported
+override :: Override = du_clause:du_clause transformed_predicate:transformed_predicate { Override du_clause transformed_predicate }
 
 -- Particle clauses
 ba_clause :: BA = _:spaces? ba:ba { BA ba }
@@ -201,7 +261,7 @@ pi_clause :: PI = _:spaces? pi:pi { PI pi }
 po_clause :: PO = _:spaces? po:po free:free* { PO po free }
 pu_clause :: PU = _:spaces? pu:pu free:free* { PU pu free }
 
---ti_clause :: TI = _:spaces? ti:ti { TI ti } -- TODO
+ti_clause :: TI = _:spaces? ti:ti { TI ti }
 
 ca_clause :: CA = _:spaces? ca:ca { CA ca }
 cai_clause :: CAI = _:spaces? cai:cai { CAI cai }
@@ -247,12 +307,16 @@ po  :: String = &_:particle                                           x:(p:p &_:
 pu  :: String = &_:particle                                           x:(p:p &_:u hieaou:hieaou { concat [p, hieaou] })                 &_:post_word        { x }
 
 se  :: String = &_:particle                                           x:(s:s hieaou:hieaou { concat [s, hieaou] })                      &_:post_word        { x }
---ti  :: String = &_:particle                                           x:(t:t hieaou:hieaou { concat [s, hieaou] })                      &_:post_word        { x } -- TODO: is the definition of ti correct in the reference grammar?
 
 ve  :: String = &_:particle         !_:(vei:vei &_:post_word)         x:(v:v hieaou:hieaou { concat [v, hieaou] })                      &_:post_word        { x }
 vei :: String = &_:particle                                           x:(v:v e:e i:i { concat [v, e, i] })                              &_:post_word        { x }
 
 zi  :: String = &_:particle                                           x:(z:z hieaou:hieaou { concat [z, hieaou] })                      &_:post_word        { x }
+
+ -- TODO: is the definition of ti correct?
+ti :: String = ti_v1:ti_v1{ti_v1} / ti_v2:ti_v2{ti_v2}
+ti_v1 :: String = &_:particle x:(t:t hieaou:hieaou { concat [t, hieaou] }) &_:post_word { x }
+ti_v2 :: String = digit_char:digit_char &_:post_word { [digit_char] } -- TODO: specifically double-check if ti_v2 is correct
 
 -- Foreign text quoting
 foreign_quote_open :: NativeWord = native_word:native_word {native_word}
@@ -265,7 +329,7 @@ compound_2 :: Compound = e:e x:compound_word y:compound_word { Compound [x, y] }
 compound_3 :: Compound = a:a x:compound_word y:compound_word z:compound_word { Compound [x, y, z] }
 compound_n :: Compound = o:o x:(!_:compound_n_end compound_word:compound_word {compound_word})+ compound_n_end { Compound x }
 compound_n_end :: String = _:spaces o:o _:spaces { o }
-compound_word :: Word = _:spaces? x:(borrowing:borrowing{Borrowing borrowing} / native_word:native_word{NativeWord native_word}) {x}
+compound_word :: Word = _:spaces? x:(borrowing:borrowing{Borrowing borrowing} / native_word:native_word{Native native_word}) {x}
 
 -- Free-form words
 freeform_variable :: String = i:i x:(spaces:spaces &_:i {spaces} / hyphen:hyphen !_:i {hyphen}) freeform_content:freeform_content freeform_end:freeform_end { concat [i, x, freeform_content, freeform_end] }
