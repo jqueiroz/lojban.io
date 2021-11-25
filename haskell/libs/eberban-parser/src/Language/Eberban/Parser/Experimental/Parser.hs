@@ -199,7 +199,11 @@ zi  :: String = &_:particle                                           x:(z:z hie
 
 -- TODO: Compounds
 
--- TODO: Free-form words
+-- Free-form words
+freeform_variable :: String = i:i x:(spaces:spaces &_:i {spaces} / hyphen:hyphen !_:i {hyphen}) freeform_content:freeform_content freeform_end:freeform_end { concat [i, x, freeform_content, freeform_end] }
+borrowing :: String = u:u x:(spaces:spaces &_:u {spaces} / hyphen:hyphen !_:u {hyphen}) freeform_content:freeform_content freeform_end:freeform_end { concat [u, x, freeform_content, freeform_end] }
+freeform_content :: String = x:(ip:initial_pair{ip} / consonant:consonant{consonant} / h:h{h})? hieaou:hieaou y:(consonant_cluster:consonant_cluster hieaou:hieaou {concat [consonant_cluster, hieaou]})* z:sonorant? { concat [fromMaybe [] x, hieaou, concat y, fromMaybe [] z] }
+freeform_end :: String = pause_char:pause_char{[pause_char]} / space_char:space_char{[space_char]} / _:eof{""}
 
 -- Native words
 native_word :: NativeWord = x:(root:root {Root root} / particle:particle {Particle particle}) {x}
