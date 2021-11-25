@@ -57,6 +57,47 @@ data NativeWord
     | Particle String
     deriving (Show)
 
+data BA = BA String
+data BE = BE String
+data BI = BI String [Free]
+data BO = BO String
+data BU = BU String
+
+data DA = DA String
+data DE = DE String
+data DI = DI String
+data DO = DO String
+data DOI = DOI String
+data DU = DU String
+
+data SE = SE String (Maybe Override)
+data ZI = ZI String (Maybe Override)
+data VE = VE String (Maybe Override) [Free]
+data FE = FE String (Maybe Override) [Free]
+data VEI = VEI String
+
+data GI = GI String
+data KI = KI String
+data MI = MI String
+
+data PA = PA String [Free]
+data PE = PE String [Free]
+data PEI = PEI String
+data PI = PI String
+data PO = PO String [Free]
+data PU = PU String [Free]
+
+data TI = TI String
+
+data CA = CA String
+data CAI = CAI String
+data CE = CE String
+data CO = CO String
+data CU = CU String
+
+data Free = Free
+data Override = Override
+
 -- Definition of the grammar
 [papillon|
 
@@ -64,6 +105,55 @@ prefix: "gerna_"
 
 --textAll :: String = i:initial_pair { i } / _:eof { "empty input" }
 textAll :: Result = native_word:native_word { native_word }
+
+-- Free afixes (TODO)
+free :: Free = !_ { Free } -- not yet supported
+
+override :: Override = !_ { Override } -- not yet supported
+
+-- Particle clauses
+ba_clause :: BA = _:spaces? ba:ba { BA ba }
+be_clause :: BE = _:spaces? be:be { BE be }
+bi_clause :: BI = _:spaces? bi:bi free:free* { BI bi free }
+bo_clause :: BO = _:spaces? bo:bo { BO bo }
+bu_clause :: BU = _:spaces? bu:bu { BU bu }
+
+da_clause :: DA = _:spaces? da:da { DA da }
+de_clause :: DE = _:spaces? de:de { DE de }
+di_clause :: DI = _:spaces? di:di { DI di }
+do_clause :: DO = _:spaces? do_:do_ { DO do_ }
+doi_clause :: DOI = _:spaces? doi:doi { DOI doi }
+du_clause :: DU = _:spaces? du:du { DU du }
+
+se_clause :: SE = _:spaces? se:se override:override? { SE se override }
+zi_clause :: ZI = _:spaces? zi:zi override:override? { ZI zi override }
+ve_clause :: VE = _:spaces? ve:ve override:override? free:free* { VE ve override free }
+fe_clause :: FE = _:spaces? fe:fe override:override? free:free* { FE fe override free }
+vei_clause :: VEI = _:spaces? vei:vei { VEI vei }
+
+gi_clause :: GI = _:spaces? gi:gi { GI gi }
+ki_clause :: KI = _:spaces? ki:ki { KI ki }
+mi_clause :: MI = _:spaces? mi:mi { MI mi }
+
+pa_clause :: PA = _:spaces? pa:pa free:free* { PA pa free }
+pe_clause :: PE = _:spaces? pe:pe free:free* { PE pe free }
+pei_clause :: PEI = _:spaces? pei:pei { PEI pei }
+pi_clause :: PI = _:spaces? pi:pi { PI pi }
+po_clause :: PO = _:spaces? po:po free:free* { PO po free }
+pu_clause :: PU = _:spaces? pu:pu free:free* { PU pu free }
+
+--ti_clause :: TI = _:spaces? ti:ti { TI ti } -- TODO
+
+ca_clause :: CA = _:spaces? ca:ca { CA ca }
+cai_clause :: CAI = _:spaces? cai:cai { CAI cai }
+ce_clause :: CE = _:spaces? ce:ce { CE ce }
+co_clause :: CO = _:spaces? co:co { CO co }
+cu_clause :: CU = _:spaces? cu:cu { CU cu }
+
+be_clause_elidible :: Maybe BE = be_clause:be_clause? { be_clause }
+pa_clause_elidible :: Maybe PA = pa_clause:pa_clause? { pa_clause }
+pei_clause_elidible :: Maybe PEI = pei_clause:pei_clause? { pei_clause }
+vei_clause_elidible :: Maybe VEI = vei_clause:vei_clause? { vei_clause }
 
 -- Particle families
 ba  :: String = &_:particle                                           x:(b:b a:a { concat [b, a] })                                     &_:post_word        { x }
@@ -81,7 +171,7 @@ cu  :: String = &_:particle                                           x:(c:c u:u
 da  :: String = &_:particle                                           x:(d:d &_:a hieaou:hieaou { concat [d, hieaou] })                 &_:post_word        { x }
 de  :: String = &_:particle                                           x:(d:d &_:e hieaou:hieaou { concat [d, hieaou] })                 &_:post_word        { x }
 di  :: String = &_:particle                                           x:(d:d i:i { concat [d, i] })                                     &_:post_word        { x }
-do  :: String = &_:particle                                           x:(d:d o:o { concat [d, o] })                                     &_:post_word        { x }
+do_ :: String = &_:particle                                           x:(d:d o:o { concat [d, o] })                                     &_:post_word        { x }
 doi :: String = &_:particle                                           x:(d:d o:o i:i { concat [d, o, i] })                              &_:post_word        { x }
 du  :: String = &_:particle                                           x:(d:d u:u { concat [d, u] })                                     &_:post_word        { x }
 
