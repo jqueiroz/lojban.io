@@ -1,0 +1,26 @@
+cabal-version:     >= 1.8
+name:              eberban-parser
+version:           0.0.1.0
+synopsis:          Eberban parser
+description:       Experimental parser for the artificial language Eberban.
+homepage:          None
+license:           NONE
+-- license-file:      LICENSE
+author:            Jonathan Queiroz <dev@johnjq.com>
+maintainer:        Jonathan Queiroz <dev@johnjq.com>
+copyright:         2021 Jonathan Queiroz
+category:          Language
+build-type:        Simple
+stability:         Experimental
+
+library
+  hs-source-dirs:   src
+  exposed-modules:  Language.Eberban.Parser.Experimental
+  other-modules:    Language.Eberban.Parser.Experimental.Parser
+  build-depends:    base > 3 && < 5, papillon
+  ghc-options:      -Wall
+
+  -- override
+  --ghc-options: -j8 -O2 -static -Wall -Wno-unused-pattern-binds
+  --cc-options: -j8 -static
+  --ld-options: -static -pthread

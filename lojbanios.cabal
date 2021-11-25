@@ -47,6 +47,7 @@ common deps
                      , uuid
                      , papillon
                      , zasni-gerna
+                     , eberban-parser
 
 library
   import:              deps
@@ -98,6 +99,7 @@ library
                      , Study.Decks.Eberban.English.Roots
                      , Language.Eberban.Core
                      , Language.Eberban.Dictionaries
+                     , Language.Eberban.Parsing
                      , Language.Lojban.Canonicalization
                      , Language.Lojban.Canonicalization.Internals
                      , Language.Lojban.Core
