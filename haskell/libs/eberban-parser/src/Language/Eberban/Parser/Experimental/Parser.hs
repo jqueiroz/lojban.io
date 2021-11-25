@@ -66,7 +66,7 @@ data Scope = Scope -- pending
 
 data ChainingItem
     = ChainingNegation BI [ChainingItem]
-    | ChainingPredicate Predicate (Maybe VeScope)
+    | ChainingPredicate Predicate [VeScope]
 
 data VeScope = VeScope VeScopeFirst [VeScopeNext] (Maybe VEI)
     deriving (Show)
@@ -225,7 +225,7 @@ chaining :: [ChainingItem] = x:chaining_item+ {x}
 chaining_item :: ChainingItem = chaining_negation:chaining_negation{chaining_negation} / chaining_predicate:chaining_predicate{chaining_predicate}
 chaining_negation :: ChainingItem = bi_clause:bi_clause chaining:chaining { ChainingNegation bi_clause chaining }
 -- "chaining_predicate" was originally named "chaining_unit"
-chaining_predicate :: ChainingItem = predicate:predicate ve_scope:ve_scope? { ChainingPredicate predicate ve_scope }
+chaining_predicate :: ChainingItem = predicate:predicate ve_scope:ve_scope* { ChainingPredicate predicate ve_scope }
 
 ve_scope :: VeScope = ve_scope_first:ve_scope_first ve_scope_next:ve_scope_next* vei_clause_elidible:vei_clause_elidible { VeScope ve_scope_first ve_scope_next vei_clause_elidible }
 ve_scope_first :: VeScopeFirst = bi_clause:bi_clause? ve_clause:ve_clause scope:scope { VeScopeFirst bi_clause ve_clause scope }
