@@ -222,6 +222,7 @@ quote :: Quote = grammatical_quote:grammatical_quote{grammatical_quote} / one_wo
 grammatical_quote :: Quote = ca_clause:ca_clause eberban_text:eberban_text cai_clause:cai_clause { GrammaticalQuote ca_clause eberban_text cai_clause }
 one_word_quote :: Quote = ce_clause:ce_clause _:spaces? word:(native_word:native_word{Native native_word} / borrowing:borrowing{Borrowing borrowing}) { OneWordQuote ce_clause word }
 one_compound_quote :: Quote = ce_clause:ce_clause _:spaces? compound:compound { OneCompoundQuote ce_clause compound }
+-- Future: consider consuming _:spaces? (or at least _:space_char) before "pause_char foreign_quote_close" to get rid of undesired (I think) spaces?
 foreign_quote :: Quote = co_clause:co_clause _:spaces? foreign_quote_open:foreign_quote_open _:space_char foreign_quote_content:foreign_quote_content _:pause_char foreign_quote_close:foreign_quote_close { ForeignQuote co_clause (ForeignQuoteDelimiter foreign_quote_open) (ForeignQuoteContent foreign_quote_content)} -- TOCONFIRM: is this really correct? foreign_quote_open is not necessarily equal to foreign_quote_close
 foreign_quote_content :: String = x:(!_:(_:pause_char _:foreign_quote_close) c {c})* { x }
 
