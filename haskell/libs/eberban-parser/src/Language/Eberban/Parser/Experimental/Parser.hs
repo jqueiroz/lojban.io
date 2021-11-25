@@ -2,6 +2,11 @@
 
 module Language.Eberban.Parser.Experimental.Parser where
 
+-- Reference grammar: https://github.com/eberban/eberban/blob/master/node/grammar/eberban.peg
+-- TODO: ParserConfig controlling for example whether to coalesce consecutive identical characters, whether to convert everything to lowercase, whether to treat all hyphens as the same, etc (canonicalHyphen :: Maybe Char)
+-- TODO: unit tests at different layers (e.g. particles, consonant pairs, individual letters, etc)
+-- TODO: handle EOF
+
 import Prelude hiding (Word)
 import Text.Papillon
 import Data.Maybe
@@ -28,10 +33,148 @@ showReading d n
     | n == "char", Right (c, _) <- runError $ gerna_char d = show c
     | otherwise = "yet: " ++ n
 
+-- Constants
+hyphenChars :: [Char]
+hyphenChars = ['\x2010', '\x2014', '\x002D']
+
+linebreakChars :: [Char]
+linebreakChars= ['\r', '\b']
+
+-- Definition of the grammar
 [papillon|
 
 prefix: "gerna_"
 
-textAll :: (String) = 'a' { "some string" }
+textAll :: String = i:initial_pair { i }
+
+-- Legal clusters
+hieaou :: String = ieaou:ieaou x:(hyphen:hyphen h:h ieaou:ieaou { concat [hyphen, h, ieaou ] })* { concat [ieaou, concat x] }
+ieaou :: String = vowel:vowel x:(hyphen:hyphen vowel:vowel { concat [hyphen, vowel] })* { concat [vowel, concat x] }
+
+consonant_cluster :: String = x:(consonant_cluster1:consonant_cluster1{consonant_cluster1} / consonant_cluster2:consonant_cluster2{consonant_cluster2} / consonant_cluster3:consonant_cluster3{consonant_cluster3} / consonant_cluster4:consonant_cluster4{consonant_cluster4}) !_:consonant { x }
+consonant_cluster1 :: String = &_:medial_pair !_:sonorant consonant:consonant hyphen:hyphen ip:initial_pair { concat [consonant, hyphen, ip] }
+consonant_cluster2 :: String = medial_pair:medial_pair {medial_pair}
+consonant_cluster3 :: String = x:sonorant? hyphen:hyphen y:(ip:initial_pair{ip} / !_:sonorant consonant:consonant{consonant}) { concat [fromMaybe [] x, hyphen, y] }
+consonant_cluster4 :: String = sonorant:sonorant hyphen:hyphen { concat [sonorant, hyphen] }
+
+medial_pair :: String = !_:initial medial_patterns:medial_patterns {medial_patterns}
+medial_patterns :: String = x:(medial_n1:medial_n1{medial_n1} / medial_n2:medial_n2{medial_n2} / medial_fv:medial_fv{medial_fv} / medial_plosive:medial_plosive{medial_plosive}) {x}
+medial_n1 :: String = x:(m:m{m} / liquid:liquid{liquid}) hyphen:hyphen n:n { concat [x, hyphen, n] }
+medial_n2 :: String = n:n hyphen:hyphen liquid:liquid { concat [n, hyphen, liquid] }
+medial_fv :: String = x:(f:f{f} / v:v{v}) hyphen:hyphen y:(plosive:plosive{plosive} / sibilant:sibilant{sibilant} / m:m{m}) { concat [x, hyphen, y] }
+medial_plosive :: String = plosive:plosive hyphen:hyphen x:(f:f{f} / v:v{v} / plosive:plosive{plosive} / m:m{m}) { concat [plosive, hyphen, x] }
+
+initial_pair :: String = &_:initial c1:consonant c2:consonant !_:consonant { concat [c1, c2] }
+
+initial :: String =
+    plosive_or_f_or_v:(plosive:plosive {plosive} / f:f {f} / v:v {v}) hyphen:hyphen sibilant:sibilant { concat [plosive_or_f_or_v, hyphen, sibilant] } /
+    sibilant:sibilant hyphen:hyphen other:other { concat [sibilant, hyphen, other] } /
+    sibilant:sibilant hyphen:hyphen sonorant:sonorant { concat [sibilant, hyphen, sonorant] } /
+    other:other hyphen:hyphen sonorant:sonorant { concat [other, hyphen, sonorant] }
+
+other :: String =
+    p:p !_:n {p} /
+    b:b !_:n {b} /
+    t:t !_:n !_:l {t} /
+    d:d !_:n !_:l {d} /
+    v:v {v} /
+    f:f {f} /
+    k:k {k} /
+    g:g {g} /
+    m:m {m} /
+    n:n !_:liquid {n}
+
+plosive :: String =
+    t:t {t} /
+    d:d {d} /
+    k:k {k} /
+    g:g {g} /
+    p:p {p} /
+    b:b {b}
+
+sibilant :: String =
+    c:c {c} /
+    s:s {s} /
+    j:j {j} /
+    z:z {z}
+
+sonorant :: String =
+    n:n {n} /
+    r:r {r} /
+    l:l {l}
+
+consonant :: String =
+    voiced:voiced {voiced} /
+    unvoiced:unvoiced {unvoiced} /
+    liquid:liquid {liquid} /
+    nasal:nasal {nasal}
+
+nasal :: String =
+    m:m {m} /
+    n:n {n}
+
+liquid :: String =
+    l:l {l} /
+    r:r {r}
+
+voiced :: String =
+    b:b {b} /
+    d:d {d} /
+    g:g {g} /
+    v:v {v} /
+    z:z {z} /
+    j:j {j}
+
+unvoiced :: String =
+    p:p {p} /
+    t:t {t} /
+    k:k {k} /
+    f:f {f} /
+    s:s {s} /
+    c:c {c}
+
+vowel :: String =
+    i:i {i} /
+    e:e {e} /
+    a:a {a} /
+    o:o {o} /
+    u:u {u}
+
+-- Legal Letters
+i :: String = is:('i' {'i'} / 'I' {'I'})+ { is }
+e :: String = es:('e' {'e'} / 'E' {'E'})+ { es }
+a :: String = as:('a' {'a'} / 'A' {'A'})+ { as }
+o :: String = os:('o' {'o'} / 'O' {'O'})+ { os }
+u :: String = us:('u' {'u'} / 'U' {'U'})+ { us }
+
+h :: String = hs:('h' {'h'} / 'H' {'H'})+ { hs }
+n :: String = ns:('n' {'n'} / 'N' {'N'})+ { ns }
+r :: String = rs:('r' {'r'} / 'R' {'R'})+ { rs }
+l :: String = ls:('l' {'l'} / 'L' {'L'})+ { ls }
+
+m :: String = ms:('m' {'m'} / 'M' {'M'})+ { ms }
+p :: String = ps:('p' {'p'} / 'P' {'P'})+ !_:voiced { ps }
+b :: String = bs:('b' {'b'} / 'B' {'B'})+ !_:unvoiced { bs }
+f :: String = fs:('f' {'f'} / 'F' {'F'})+ !_:voiced { fs }
+v :: String = vs:('v' {'v'} / 'V' {'V'})+ !_:unvoiced { vs }
+t :: String = ts:('t' {'t'} / 'T' {'T'})+ !_:voiced { ts }
+d :: String = ds:('d' {'d'} / 'D' {'D'})+ !_:unvoiced { ds }
+
+s :: String = ss:('s' {'s'} / 'S' {'S'})+ !_:c !_:voiced { ss }
+z :: String = zs:('z' {'z'} / 'Z' {'Z'})+ !_:j !_:unvoiced { zs }
+c :: String = cs:('c' {'c'} / 'C' {'C'})+ !_:s !_:voiced { cs }
+j :: String = js:('j' {'j'} / 'J' {'J'})+ !_:z !_:unvoiced { js }
+
+g :: String = gs:('g' {'g'} / 'G' {'G'})+ !_:unvoiced { gs }
+k :: String = ks:('k' {'k'} / 'K' {'K'})+ !_:voiced { ks }
+
+-- Spaces / pauses (TODO)
+
+-- Special characters (TODO)
+hyphen :: String = h:hyphen_req? {fromMaybe [] h}
+hyphen_req :: String = h:hyphen_char lbs:(lb:linebreak_char {lb})* { concat [[h], lbs] }
+
+hyphen_char :: Char = h:[h `elem` hyphenChars] { h }
+linebreak_char :: Char = lb:[lb `elem` linebreakChars] { lb }
 
 |]
