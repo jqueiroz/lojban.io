@@ -61,6 +61,7 @@ data TransformedPredicateWithFree = TransformedPredicateWithFree -- pending
 data TransformedPredicate = TransformedPredicate -- pending
     deriving (Show)
 
+-- maybe rename to SimplePredicate?
 data Predicate
     = PredicateRoot String
     | PredicateCompound Compound
@@ -69,6 +70,7 @@ data Predicate
     | PredicateNumber Number
     | PredicateBa BA
     | PredicateMi MI
+    | PredicateVariable (Maybe BO) Variable
     deriving (Show)
 
 data Number = Number [TI] (Maybe BE)
@@ -85,6 +87,12 @@ data Quote
     | OneWordQuote CE Word
     | OneCompoundQuote CE Compound
     | ForeignQuote CO ForeignQuoteDelimiter ForeignQuoteContent
+    deriving (Show)
+
+data Variable
+    = VariableKi KI
+    | VariableGi GI
+    | VariableFreeform String
     deriving (Show)
 
 data Override = Override DU TransformedPredicate
@@ -198,11 +206,12 @@ transformed_predicate_with_free :: TransformedPredicateWithFree = !_ { Transform
 -- originally named "predicate_1"
 transformed_predicate :: TransformedPredicate = !_ { TransformedPredicate }
 
--- originally named "predicate_2" (pending: predicate_variable, predicate_scope)
-predicate :: Predicate = x:(predicate_ba:predicate_ba{predicate_ba} / predicate_mi:predicate_mi{predicate_mi} / predicate_quote:predicate_quote{predicate_quote} / predicate_borrowing:predicate_borrowing{predicate_borrowing} / predicate_root:predicate_root{predicate_root} / predicate_number:predicate_number {predicate_number} / predicate_compound:predicate_compound{predicate_compound}) {x}
+-- originally named "predicate_2" (pending: predicate_scope)
+predicate :: Predicate = x:(predicate_ba:predicate_ba{predicate_ba} / predicate_mi:predicate_mi{predicate_mi} / predicate_quote:predicate_quote{predicate_quote} / predicate_variable:predicate_variable{predicate_variable} / predicate_borrowing:predicate_borrowing{predicate_borrowing} / predicate_root:predicate_root{predicate_root} / predicate_number:predicate_number {predicate_number} / predicate_compound:predicate_compound{predicate_compound}) {x}
 predicate_ba :: Predicate = ba_clause:ba_clause { PredicateBa ba_clause }
 predicate_mi :: Predicate = mi_clause:mi_clause { PredicateMi mi_clause }
 predicate_quote :: Predicate = quote:quote { PredicateQuote quote }
+predicate_variable :: Predicate = bo_clause:bo_clause? variable:variable { PredicateVariable bo_clause variable }
 predicate_borrowing :: Predicate = x:(_:spaces? borrowing:borrowing {borrowing})+ y:be_clause_elidible { PredicateBorrowing x y }
 predicate_root :: Predicate = _:spaces? root:root { PredicateRoot root }
 predicate_number :: Predicate = _:spaces? number:number { PredicateNumber number }
@@ -219,7 +228,8 @@ foreign_quote_content :: String = x:(!_:(_:pause_char _:foreign_quote_close) c {
 -- Numbers
 number :: Number = x:ti_clause+ y:be_clause_elidible { Number x y }
 
--- Variables (TODO)
+-- Variables
+variable :: Variable = ki_clause:ki_clause {VariableKi ki_clause} / gi_clause:gi_clause {VariableGi gi_clause} / _:spaces? freeform_variable:freeform_variable {VariableFreeform freeform_variable}
 
 -- Free afixes
 free :: Free = x:(free_metadata:free_metadata{free_metadata} / free_subscript:free_subscript{free_subscript} / free_parenthetical:free_parenthetical{free_parenthetical} / free_interjection:free_interjection{free_interjection}) {x}
