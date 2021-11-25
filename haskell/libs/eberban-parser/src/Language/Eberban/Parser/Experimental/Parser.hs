@@ -65,6 +65,46 @@ prefix: "gerna_"
 --textAll :: String = i:initial_pair { i } / _:eof { "empty input" }
 textAll :: Result = native_word:native_word { native_word }
 
+-- Particle families
+ba  :: String = &_:particle                                           x:(b:b a:a { concat [b, a] })                                     &_:post_word        { x }
+be  :: String = &_:particle                                           x:(b:b &_:e hieaou:hieaou { concat [b, hieaou] })                 &_:post_word        { x }
+bi  :: String = &_:particle                                           x:(b:b i:i { concat [b, i] })                                     &_:post_word        { x }
+bo  :: String = &_:particle                                           x:(b:b o:o { concat [b, o] })                                     &_:post_word        { x }
+bu  :: String = &_:particle                                           x:(b:b &_:u hieaou:hieaou { concat [b, hieaou] })                 &_:post_word        { x }
+
+ca  :: String = &_:particle         !_:(cai:cai &_:post_word)         x:(c:c &_:a hieaou:hieaou { concat [c, hieaou] })                 &_:post_word        { x }
+cai :: String = &_:particle                                           x:(c:c a:a i:i { concat [c, a, i] })                              &_:post_word        { x }
+ce  :: String = &_:particle                                           x:(c:c &_:e hieaou:hieaou { concat [c, hieaou] })                 &_:post_word        { x }
+co  :: String = &_:particle                                           x:(c:c &_:o hieaou:hieaou { concat [c, hieaou] })                 &_:post_word        { x }
+cu  :: String = &_:particle                                           x:(c:c u:u { concat [c, u] })                                     &_:post_word        { x }
+
+da  :: String = &_:particle                                           x:(d:d &_:a hieaou:hieaou { concat [d, hieaou] })                 &_:post_word        { x }
+de  :: String = &_:particle                                           x:(d:d &_:e hieaou:hieaou { concat [d, hieaou] })                 &_:post_word        { x }
+di  :: String = &_:particle                                           x:(d:d i:i { concat [d, i] })                                     &_:post_word        { x }
+do  :: String = &_:particle                                           x:(d:d o:o { concat [d, o] })                                     &_:post_word        { x }
+doi :: String = &_:particle                                           x:(d:d o:o i:i { concat [d, o, i] })                              &_:post_word        { x }
+du  :: String = &_:particle                                           x:(d:d u:u { concat [d, u] })                                     &_:post_word        { x }
+
+fe  :: String = &_:particle                                           x:(f:f hieaou:hieaou { concat [f, hieaou] })                      &_:post_word        { x }
+gi  :: String = &_:particle                                           x:(g:g hieaou:hieaou { concat [g, hieaou] })                      &_:post_word        { x }
+ki  :: String = &_:particle                                           x:(k:k hieaou:hieaou { concat [k, hieaou] })                      &_:post_word        { x }
+mi  :: String = &_:particle                                           x:(m:m hieaou:hieaou { concat [m, hieaou] })                      &_:post_word        { x }
+
+pa  :: String = &_:particle                                           x:(p:p &_:a hieaou:hieaou { concat [p, hieaou] })                 &_:post_word        { x }
+pe  :: String = &_:particle                                           x:(p:p e:e { concat [p, e] })                                     &_:post_word        { x }
+pei :: String = &_:particle                                           x:(p:p e:e i:i { concat [p, e, i] })                              &_:post_word        { x }
+pi  :: String = &_:particle                                           x:(p:p &_:i hieaou:hieaou { concat [p, hieaou] })                 &_:post_word        { x }
+po  :: String = &_:particle                                           x:(p:p &_:o hieaou:hieaou { concat [p, hieaou] })                 &_:post_word        { x }
+pu  :: String = &_:particle                                           x:(p:p &_:u hieaou:hieaou { concat [p, hieaou] })                 &_:post_word        { x }
+
+se  :: String = &_:particle                                           x:(s:s hieaou:hieaou { concat [s, hieaou] })                      &_:post_word        { x }
+--ti  :: String = &_:particle                                           x:(t:t hieaou:hieaou { concat [s, hieaou] })                      &_:post_word        { x } -- TODO: is the definition of ti correct in the reference grammar?
+
+ve  :: String = &_:particle         !_:(vei:vei &_:post_word)         x:(v:v hieaou:hieaou { concat [v, hieaou] })                      &_:post_word        { x }
+vei :: String = &_:particle                                           x:(v:v e:e i:i { concat [v, e, i] })                              &_:post_word        { x }
+
+zi  :: String = &_:particle                                           x:(z:z hieaou:hieaou { concat [z, hieaou] })                      &_:post_word        { x }
+
 -- TODO: Foreign text quoting
 
 -- TODO: Compounds
