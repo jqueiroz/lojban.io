@@ -11,7 +11,9 @@ import Prelude hiding (Word)
 import Text.Papillon
 import Data.Maybe
 
-parse :: String -> Either String String
+type Result = NativeWord
+
+parse :: String -> Either String Result
 parse src
     | Right (r, _) <- parsed = Right r
     | Left l <- parsed = Left $ showParseError l
@@ -34,18 +36,52 @@ showReading d n
     | otherwise = "yet: " ++ n
 
 -- Constants
+alphaChars :: [Char]
+alphaChars= "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+digitChars :: [Char]
+digitChars= "0123456789"
+
 hyphenChars :: [Char]
 hyphenChars = ['\x2010', '\x2014', '\x002D']
 
 linebreakChars :: [Char]
 linebreakChars= ['\r', '\b']
 
+pauseChars :: [Char]
+pauseChars= ['’']
+
+-- Data types
+data NativeWord
+    = Root String
+    | Particle String
+    deriving (Show)
+
 -- Definition of the grammar
 [papillon|
 
 prefix: "gerna_"
 
-textAll :: String = i:initial_pair { i }
+--textAll :: String = i:initial_pair { i } / _:eof { "empty input" }
+textAll :: Result = native_word:native_word { native_word }
+
+-- TODO: Foreign text quoting
+
+-- TODO: Compounds
+
+-- TODO: Free-form words
+
+-- Native words
+native_word :: NativeWord = x:(root:root {Root root} / particle:particle {Particle particle}) {x}
+
+particle :: String = !_:sonorant particle_1:particle_1 &_:post_word { particle_1 }
+particle_1 :: String = consonant:consonant hieaou:hieaou !_:medial_pair { concat [consonant, hieaou ] }
+
+root :: String = !_:sonorant x:(r1:root_1{r1} / r2:root_2{r2} / r3:root_3{r3}) &_:post_word { x }
+root_1 :: String = consonant:consonant hieaou:hieaou x:root_loop+ y:sonorant? { concat [consonant, hieaou, concat x, fromMaybe [] y] }
+root_2 :: String = consonant:consonant hieaou:hieaou sonorant:sonorant { concat [consonant, hieaou, sonorant] }
+root_3 :: String = ip:initial_pair hieaou:hieaou x:root_loop* y:sonorant? { concat [ip, hieaou, concat x, fromMaybe [] y] }
+root_loop :: String = x:(medial_pair:medial_pair{medial_pair} / hyphen:hyphen sonorant:sonorant { concat [hyphen, sonorant] }) hieaou:hieaou { concat [x, hieaou] }
 
 -- Legal clusters
 hieaou :: String = ieaou:ieaou x:(hyphen:hyphen h:h ieaou:ieaou { concat [hyphen, h, ieaou ] })* { concat [ieaou, concat x] }
@@ -168,13 +204,29 @@ j :: String = js:('j' {'j'} / 'J' {'J'})+ !_:z !_:unvoiced { js }
 g :: String = gs:('g' {'g'} / 'G' {'G'})+ !_:unvoiced { gs }
 k :: String = ks:('k' {'k'} / 'K' {'K'})+ !_:voiced { ks }
 
--- Spaces / pauses (TODO)
+-- Spaces / pauses
+post_word :: String = x:(pause_char:pause_char &_:vowel { [pause_char] } / !_:sonorant &_:consonant { "" } / spaces:spaces {spaces}) {x}
 
--- Special characters (TODO)
-hyphen :: String = h:hyphen_req? {fromMaybe [] h}
-hyphen_req :: String = h:hyphen_char lbs:(lb:linebreak_char {lb})* { concat [[h], lbs] }
+spaces :: String = x:(spaces_1:spaces_1{spaces_1} / spaces_2:spaces_2{spaces_2} / spaces_3:spaces_3{spaces_3}) {x}
+spaces_1 :: String = x:space_char+ y:hesitation? z:spaces_2? { concat [x, fromMaybe [] y, fromMaybe [] z] }
+spaces_2 :: String = pause_char:pause_char &_:vowel { [pause_char] }
+spaces_3 :: String = _:eof { "" }
 
+hesitation :: String = x:hesitation_loop+ { concat x }
+hesitation_loop :: String = n:n x:(y:space_char+ { y } / _:eof { "" }) { concat [n, x] }
+
+-- Special characters
+hyphen :: String = h:hyphen_required? {fromMaybe [] h}
+hyphen_required :: String = h:hyphen_char lbs:(lb:linebreak_char {lb})* { h : lbs }
+
+pause_char :: Char = p:[p `elem` pauseChars] !_:pause_char { p }
+space_char :: Char = !_:(pause_char:pause_char{pause_char} / digit_char:digit_char{digit_char} / hyphen_char:hyphen_char{hyphen_char} / alpha_char:alpha_char{alpha_char}) c {c}
+
+alpha_char :: Char = a:[a `elem` alphaChars] { a }
+digit_char :: Char = d:[d `elem` digitChars] { d }
 hyphen_char :: Char = h:[h `elem` hyphenChars] { h }
 linebreak_char :: Char = lb:[lb `elem` linebreakChars] { lb }
+
+eof :: () = !_ { () }
 
 |]
