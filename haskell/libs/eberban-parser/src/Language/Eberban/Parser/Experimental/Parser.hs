@@ -61,6 +61,22 @@ data TransformedPredicateWithFree = TransformedPredicateWithFree -- pending
 data TransformedPredicate = TransformedPredicate -- pending
     deriving (Show)
 
+data Scope = Scope -- pending
+    deriving (Show)
+
+data ChainingItem
+    = ChainingNegation BI [ChainingItem]
+    | ChainingPredicate Predicate (Maybe VeScope)
+
+data VeScope = VeScope VeScopeFirst [VeScopeNext] (Maybe VEI)
+    deriving (Show)
+
+data VeScopeFirst = VeScopeFirst (Maybe BI) VE Scope
+    deriving (Show)
+
+data VeScopeNext = VeScopeNext (Maybe BI) FE Scope
+    deriving (Show)
+
 -- maybe rename to SimplePredicate?
 data Predicate
     = PredicateRoot String
@@ -199,14 +215,30 @@ result :: Result = predicate:predicate { predicate }
 -- Overall text
 eberban_text :: EberbanText = !_ { EberbanText } -- not yet implemented
 
+-- Text structure (TODO)
+
+-- Scope (TODO)
+scope :: Scope = !_ { Scope } -- not yet implemented
+
+-- Chaining and explicit switches
+chaining :: [ChainingItem] = x:chaining_item+ {x}
+chaining_item :: ChainingItem = chaining_negation:chaining_negation{chaining_negation} / chaining_predicate:chaining_predicate{chaining_predicate}
+chaining_negation :: ChainingItem = bi_clause:bi_clause chaining:chaining { ChainingNegation bi_clause chaining }
+-- "chaining_predicate" was originally named "chaining_unit"
+chaining_predicate :: ChainingItem = predicate:predicate ve_scope:ve_scope? { ChainingPredicate predicate ve_scope }
+
+ve_scope :: VeScope = ve_scope_first:ve_scope_first ve_scope_next:ve_scope_next* vei_clause_elidible:vei_clause_elidible { VeScope ve_scope_first ve_scope_next vei_clause_elidible }
+ve_scope_first :: VeScopeFirst = bi_clause:bi_clause? ve_clause:ve_clause scope:scope { VeScopeFirst bi_clause ve_clause scope }
+ve_scope_next :: VeScopeNext = bi_clause:bi_clause? fe_clause:fe_clause scope:scope { VeScopeNext bi_clause fe_clause scope }
+
 -- Predicate unit (TODO)
--- originally named "predicate"
+-- "transformed_predicate_with_free" originally named "predicate"
 transformed_predicate_with_free :: TransformedPredicateWithFree = !_ { TransformedPredicateWithFree }
 
--- originally named "predicate_1"
+-- "transformed_predicate" was originally named "predicate_1"
 transformed_predicate :: TransformedPredicate = !_ { TransformedPredicate }
 
--- originally named "predicate_2" (pending: predicate_scope)
+-- "predicate" was originally named "predicate_2" (pending: predicate_scope)
 predicate :: Predicate = x:(predicate_ba:predicate_ba{predicate_ba} / predicate_mi:predicate_mi{predicate_mi} / predicate_quote:predicate_quote{predicate_quote} / predicate_variable:predicate_variable{predicate_variable} / predicate_borrowing:predicate_borrowing{predicate_borrowing} / predicate_root:predicate_root{predicate_root} / predicate_number:predicate_number {predicate_number} / predicate_compound:predicate_compound{predicate_compound}) {x}
 predicate_ba :: Predicate = ba_clause:ba_clause { PredicateBa ba_clause }
 predicate_mi :: Predicate = mi_clause:mi_clause { PredicateMi mi_clause }
