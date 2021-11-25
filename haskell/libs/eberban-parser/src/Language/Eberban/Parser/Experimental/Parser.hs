@@ -11,7 +11,7 @@ import Prelude hiding (Word)
 import Text.Papillon
 import Data.Maybe
 
-type Result = Compound
+type Result = Predicate
 
 parse :: String -> Either String Result
 parse src
@@ -52,6 +52,12 @@ pauseChars :: [Char]
 pauseChars= ['’']
 
 -- Data types
+data Predicate
+    = PredicateRoot String
+    | PredicateCompound Compound
+    | PredicateBorrowing [String] (Maybe BE)
+    deriving (Show)
+
 data Compound = Compound [Word]
     deriving (Show)
 
@@ -66,45 +72,78 @@ data NativeWord
     deriving (Show)
 
 data BA = BA String
+    deriving (Show)
 data BE = BE String
+    deriving (Show)
 data BI = BI String [Free]
+    deriving (Show)
 data BO = BO String
+    deriving (Show)
 data BU = BU String
+    deriving (Show)
 
 data DA = DA String
+    deriving (Show)
 data DE = DE String
+    deriving (Show)
 data DI = DI String
+    deriving (Show)
 data DO = DO String
+    deriving (Show)
 data DOI = DOI String
+    deriving (Show)
 data DU = DU String
+    deriving (Show)
 
 data SE = SE String (Maybe Override)
+    deriving (Show)
 data ZI = ZI String (Maybe Override)
+    deriving (Show)
 data VE = VE String (Maybe Override) [Free]
+    deriving (Show)
 data FE = FE String (Maybe Override) [Free]
+    deriving (Show)
 data VEI = VEI String
+    deriving (Show)
 
 data GI = GI String
+    deriving (Show)
 data KI = KI String
+    deriving (Show)
 data MI = MI String
+    deriving (Show)
 
 data PA = PA String [Free]
+    deriving (Show)
 data PE = PE String [Free]
+    deriving (Show)
 data PEI = PEI String
+    deriving (Show)
 data PI = PI String
+    deriving (Show)
 data PO = PO String [Free]
+    deriving (Show)
 data PU = PU String [Free]
+    deriving (Show)
 
 data TI = TI String
+    deriving (Show)
 
 data CA = CA String
+    deriving (Show)
 data CAI = CAI String
+    deriving (Show)
 data CE = CE String
+    deriving (Show)
 data CO = CO String
+    deriving (Show)
 data CU = CU String
+    deriving (Show)
 
 data Free = Free
+    deriving (Show)
 data Override = Override
+    deriving (Show)
 
 -- Definition of the grammar
 [papillon|
@@ -112,7 +151,19 @@ data Override = Override
 prefix: "gerna_"
 
 --textAll :: String = i:initial_pair { i } / _:eof { "empty input" }
-textAll :: Result = compound:compound { compound }
+textAll :: Result = predicate_2:predicate_2 { predicate_2 }
+
+-- Predicate unit (TODO)
+predicate_2 :: Predicate = x:(predicate_borrowing:predicate_borrowing{predicate_borrowing} / predicate_root:predicate_root{predicate_root} / predicate_compound:predicate_compound{predicate_compound}) {x}
+predicate_borrowing :: Predicate = x:(_:spaces? borrowing:borrowing {borrowing})+ y:be_clause_elidible { PredicateBorrowing x y }
+predicate_root :: Predicate = _:spaces? root:root { PredicateRoot root }
+predicate_compound :: Predicate = _:spaces? compound:compound { PredicateCompound compound }
+
+-- Quotes (TODO)
+
+-- Numbers (TODO)
+
+-- Variables (TODO)
 
 -- Free afixes (TODO)
 free :: Free = !_ { Free } -- not yet supported
