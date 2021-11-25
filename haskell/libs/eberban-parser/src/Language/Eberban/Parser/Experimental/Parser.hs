@@ -11,7 +11,7 @@ import Prelude hiding (Word)
 import Text.Papillon
 import Data.Maybe
 
-type Result = NativeWord
+type Result = Compound
 
 parse :: String -> Either String Result
 parse src
@@ -52,6 +52,14 @@ pauseChars :: [Char]
 pauseChars= ['’']
 
 -- Data types
+data Compound = Compound [Word]
+    deriving (Show)
+
+data Word
+    = Borrowing String
+    | NativeWord NativeWord
+    deriving (Show)
+
 data NativeWord
     = Root String
     | Particle String
@@ -104,7 +112,7 @@ data Override = Override
 prefix: "gerna_"
 
 --textAll :: String = i:initial_pair { i } / _:eof { "empty input" }
-textAll :: Result = native_word:native_word { native_word }
+textAll :: Result = compound:compound { compound }
 
 -- Free afixes (TODO)
 free :: Free = !_ { Free } -- not yet supported
@@ -197,7 +205,13 @@ zi  :: String = &_:particle                                           x:(z:z hie
 
 -- TODO: Foreign text quoting
 
--- TODO: Compounds
+-- Compounds
+compound :: Compound = x:(compound_2:compound_2{compound_2} / compound_3:compound_3{compound_3} / compound_n:compound_n{compound_n}) {x}
+compound_2 :: Compound = e:e x:compound_word y:compound_word { Compound [x, y] }
+compound_3 :: Compound = a:a x:compound_word y:compound_word z:compound_word { Compound [x, y, z] }
+compound_n :: Compound = o:o x:(!_:compound_n_end compound_word:compound_word {compound_word})+ compound_n_end { Compound x }
+compound_n_end :: String = _:spaces o:o _:spaces { o }
+compound_word :: Word = _:spaces? x:(borrowing:borrowing{Borrowing borrowing} / native_word:native_word{NativeWord native_word}) {x}
 
 -- Free-form words
 freeform_variable :: String = i:i x:(spaces:spaces &_:i {spaces} / hyphen:hyphen !_:i {hyphen}) freeform_content:freeform_content freeform_end:freeform_end { concat [i, x, freeform_content, freeform_end] }
