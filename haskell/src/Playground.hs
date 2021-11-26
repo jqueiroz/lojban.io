@@ -4,6 +4,7 @@ module Playground where
 import Language.Lojban.Core
 import Language.Lojban.Dictionaries (englishDictionary)
 import Language.Lojban.Canonicalization (basicSentenceCanonicalizer)
+import Language.Eberban.Parser.Mercury.Samples as EberbanParserSamples
 import Control.Applicative ((<$>))
 import Control.Monad (sequence_)
 import Data.Maybe (mapMaybe)
@@ -63,3 +64,6 @@ saveDictionary :: FilePath -> Dictionary -> IO ()
 saveDictionary filePath dictionary = do
     let contents = "let dictionary=" `T.append` TL.toStrict (TLE.decodeUtf8 $ A.encode dictionary)
     TIO.writeFile filePath contents
+
+displayEberbanParseSamples :: IO ()
+displayEberbanParseSamples = EberbanParserSamples.displaySamples
