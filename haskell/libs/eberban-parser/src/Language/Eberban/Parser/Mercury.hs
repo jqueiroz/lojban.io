@@ -1,5 +1,6 @@
 module Language.Eberban.Parser.Mercury
-( parseText
+( Parser
+, parseText
 , parseParagraphUnit
 , parseDefinition
 , parseSentence

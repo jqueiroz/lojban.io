@@ -3,13 +3,16 @@ module Language.Eberban.Parser.Mercury.Samples where
 import Prelude hiding (Word)
 import Language.Eberban.Parser.Mercury
 
-displayText :: String -> IO ()
-displayText input = do
+display :: Show a => Parser a -> String -> IO ()
+display parser input = do
     putStrLn $ concat ["Input text: ", if '\n' `elem` input then "\n" else "", input]
-    let parsingOutput = case (parseText input) of
+    let parsingOutput = case (parser input) of
             Left msg -> "FAILURE!"
             Right tree -> show tree
     putStrLn $ "Parsing output: " ++ parsingOutput
+
+displayText = display parseText
+displaySentence = display parseSentence
 
 peanoAxioms :: String
 peanoAxioms =
@@ -50,5 +53,5 @@ peanoAxioms =
 
 displaySamples :: IO ()
 displaySamples = do
-    displayText "mi don eberban"
     displayText peanoAxioms
+    displaySentence "mi don eberban"
