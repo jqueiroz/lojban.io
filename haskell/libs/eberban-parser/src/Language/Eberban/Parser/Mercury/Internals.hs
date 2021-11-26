@@ -5,6 +5,7 @@ module Language.Eberban.Parser.Mercury.Internals where
 import Language.Eberban.Parser.Mercury.DataTypes
 
 -- Reference grammar: https://github.com/eberban/eberban/blob/master/node/grammar/eberban.peg
+
 -- TODO: ParserConfig controlling for example whether to coalesce consecutive identical characters, whether to convert everything to lowercase, whether to treat all hyphens as the same, etc (canonicalHyphen :: Maybe Char)
 -- TODO: unit tests at different layers (e.g. particles, consonant pairs, individual letters, etc)
 -- TODO: search for haskell pretty-print (use it instead of Show); and serialize to json as well (then pprint the json)
@@ -12,7 +13,7 @@ import Language.Eberban.Parser.Mercury.DataTypes
 
 import Prelude hiding (Word)
 import Text.Papillon
-import Data.Maybe
+import Data.Maybe (fromMaybe, maybeToList)
 
 type Parser a = String -> Either String a
 
