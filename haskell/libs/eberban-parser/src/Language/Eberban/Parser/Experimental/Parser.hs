@@ -105,7 +105,7 @@ data Defined
 data Sentence = Sentence (Maybe PA) Scope
     deriving (Show)
 
-data Scope = Scope (Maybe ArgumentList) Chaining [(BU, Chaining)]
+data Scope = Scope (Maybe ArgumentList) [(Chaining, Maybe BU)]
     deriving (Show)
 
 data Chaining = Chaining [ChainingItem]
@@ -310,8 +310,11 @@ defined :: Defined
 sentence :: Sentence = pa_clause_elidible:pa_clause_elidible scope:scope { Sentence pa_clause_elidible scope }
 
 -- Scope
--- I deviated a bit from the reference grammar here, but this should be equivalent (I just flattened stuff). Hopefully my changes did not impact associativity.
-scope :: Scope = argument_list:argument_list? first_chaining:chaining next_chainings:(bu_clause:bu_clause chaining:chaining { (bu_clause, chaining) })* { Scope argument_list first_chaining next_chainings}
+-- I deviated a bit from the reference grammar here, but this should be equivalent (I just flattened stuff). Hopefully my changes did not have any subtle impact, e.g. on associativity.
+scope :: Scope = argument_list:argument_list? scope_pseudosequence:scope_pseudosequence { Scope argument_list scope_pseudosequence}
+scope_pseudosequence :: [(Chaining, Maybe BU)]
+    = first_chainings:(chaining:chaining bu_clause:bu_clause { (chaining, Just bu_clause) })+ last_chaining:chaining? { concat [first_chainings, map (\x->(x,Nothing)) $ maybeToList last_chaining] }
+    / chaining:chaining { [(chaining, Nothing)] }
 
 -- Chaining and explicit switches
 chaining :: Chaining = chaining_items:chaining_item+ {Chaining chaining_items}
