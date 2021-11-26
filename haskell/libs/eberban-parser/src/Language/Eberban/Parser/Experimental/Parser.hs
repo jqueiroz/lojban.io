@@ -28,7 +28,7 @@ parseSentence = buildParser eberban_sentence
 
 -- Utility functions from building parsers (mostly taken from zasni-gerna)
 
---buildParser :: _ -> Parser _
+buildParser :: _ -> Parser _
 buildParser subparser src
     | Right (r, _) <- parsed = Right r
     | Left l <- parsed = Left $ showParseError l
