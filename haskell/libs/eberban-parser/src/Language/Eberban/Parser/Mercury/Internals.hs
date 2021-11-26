@@ -29,7 +29,7 @@ parseDefinition = buildParser eberban_definition
 parseSentence :: Parser Sentence
 parseSentence = buildParser eberban_sentence
 
--- Utility functions from building parsers (mostly taken from zasni-gerna)
+-- Utility functions for building parsers (mostly taken from zasni-gerna)
 
 buildParser :: _ -> Parser _
 buildParser subparser src
