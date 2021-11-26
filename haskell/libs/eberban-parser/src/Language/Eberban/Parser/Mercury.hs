@@ -6,4 +6,4 @@ module Language.Eberban.Parser.Mercury
 ) where
 
 import Prelude hiding (Word)
-import Language.Eberban.Parser.Mercury.Parser
+import Language.Eberban.Parser.Mercury.Internals
