@@ -5,11 +5,11 @@ module Language.Eberban.Parsing
 ) where
 
 import qualified Data.Text as T
-import qualified Language.Eberban.Parser.Experimental as ExperimentalParser
+import qualified Language.Eberban.Parser.Mercury as MercuryParser
 
--- | Parses Eberban text using "Language.Eberban.Parser.Experimental".
+-- | Parses Eberban text using "Language.Eberban.Parser.Mercury".
 parseText :: T.Text -> Either String _
-parseText = ExperimentalParser.parseText . T.unpack
+parseText = MercuryParser.parseText . T.unpack
 
 parseSentence :: T.Text -> Either String _
-parseSentence = ExperimentalParser.parseSentence . T.unpack
+parseSentence = MercuryParser.parseSentence . T.unpack

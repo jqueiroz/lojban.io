@@ -15,8 +15,8 @@ stability:         Experimental
 
 library
   hs-source-dirs:   src
-  exposed-modules:  Language.Eberban.Parser.Experimental
-  other-modules:    Language.Eberban.Parser.Experimental.Parser
+  exposed-modules:  Language.Eberban.Parser.Mercury
+  other-modules:    Language.Eberban.Parser.Mercury.Parser
   build-depends:    base > 3 && < 5, papillon
   ghc-options:      -Wall -Wno-unused-pattern-binds -Wno-unused-matches -Wno-partial-type-signatures
 

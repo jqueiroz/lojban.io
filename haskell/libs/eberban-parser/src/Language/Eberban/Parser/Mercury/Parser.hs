@@ -1,6 +1,6 @@
 {-# LANGUAGE TypeFamilies, QuasiQuotes, PatternGuards, PartialTypeSignatures #-}
 
-module Language.Eberban.Parser.Experimental.Parser where
+module Language.Eberban.Parser.Mercury.Parser where
 
 -- Reference grammar: https://github.com/eberban/eberban/blob/master/node/grammar/eberban.peg
 -- TODO: ParserConfig controlling for example whether to coalesce consecutive identical characters, whether to convert everything to lowercase, whether to treat all hyphens as the same, etc (canonicalHyphen :: Maybe Char)

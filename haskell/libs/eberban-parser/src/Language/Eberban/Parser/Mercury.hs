@@ -1,4 +1,4 @@
-module Language.Eberban.Parser.Experimental
+module Language.Eberban.Parser.Mercury
 ( parseText
 , parseParagraphUnit
 , parseDefinition
@@ -6,4 +6,4 @@ module Language.Eberban.Parser.Experimental
 ) where
 
 import Prelude hiding (Word)
-import Language.Eberban.Parser.Experimental.Parser
+import Language.Eberban.Parser.Mercury.Parser
