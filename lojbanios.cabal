@@ -52,7 +52,7 @@ common deps
 library
   import:              deps
   hs-source-dirs:      haskell/src
-  ghc-options: -j +RTS -A128m -RTS -Wall -Wcompat -Wincomplete-record-updates -Wredundant-constraints -Wno-incomplete-patterns -Wno-unused-top-binds -Wno-unused-matches -Wno-unused-local-binds -Wno-name-shadowing -Wno-type-defaults
+  ghc-options: -j +RTS -A128m -RTS -Wall -Wcompat -Wincomplete-record-updates -Wredundant-constraints -Wno-incomplete-patterns -Wno-unused-top-binds -Wno-unused-matches -Wno-unused-local-binds -Wno-name-shadowing -Wno-type-defaults -Wno-partial-type-signatures
   --ghc-options: -j8 -O2 -static -threaded -Wall
   --cc-options: -j8 -static
   --ld-options: -static -pthread

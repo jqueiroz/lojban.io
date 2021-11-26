@@ -18,9 +18,9 @@ library
   exposed-modules:  Language.Eberban.Parser.Experimental
   other-modules:    Language.Eberban.Parser.Experimental.Parser
   build-depends:    base > 3 && < 5, papillon
-  ghc-options:      -Wall
+  ghc-options:      -Wall -Wno-unused-pattern-binds -Wno-unused-matches -Wno-partial-type-signatures
 
   -- override
-  --ghc-options: -j8 -O2 -static -Wall -Wno-unused-pattern-binds
-  --cc-options: -j8 -static
-  --ld-options: -static -pthread
+  -- ghc-options: -j8 -O2 -static ...
+  -- cc-options: -j8 -static
+  -- ld-options: -static -pthread
