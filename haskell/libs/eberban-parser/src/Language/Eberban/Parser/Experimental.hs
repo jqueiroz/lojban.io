@@ -1,5 +1,8 @@
 module Language.Eberban.Parser.Experimental
-( parse
+( parseText
+, parseParagraphUnit
+, parseDefinition
+, parseSentence
 ) where
 
 import Prelude hiding (Word)

@@ -1,26 +1,39 @@
-{-# LANGUAGE TypeFamilies, QuasiQuotes, PatternGuards #-}
+{-# LANGUAGE TypeFamilies, QuasiQuotes, PatternGuards, PartialTypeSignatures #-}
 
 module Language.Eberban.Parser.Experimental.Parser where
 
 -- Reference grammar: https://github.com/eberban/eberban/blob/master/node/grammar/eberban.peg
 -- TODO: ParserConfig controlling for example whether to coalesce consecutive identical characters, whether to convert everything to lowercase, whether to treat all hyphens as the same, etc (canonicalHyphen :: Maybe Char)
 -- TODO: unit tests at different layers (e.g. particles, consonant pairs, individual letters, etc)
--- TODO: handle EOF
 
 import Prelude hiding (Word)
 import Text.Papillon
 import Data.Maybe
 
-type Result = EberbanText
+type Parser a = String -> Either String a
 
-parse :: String -> Either String Result
-parse src
+parseText :: Parser EberbanText
+parseText = buildParser eberban_text
+
+parseParagraphUnit :: Parser ParagraphUnit
+parseParagraphUnit = buildParser eberban_paragraph_unit
+
+parseDefinition :: Parser Definition
+parseDefinition = buildParser eberban_definition
+
+parseSentence :: Parser Sentence
+parseSentence = buildParser eberban_sentence
+
+-- Utility functions from building parsers (mostly taken from zasni-gerna)
+
+--buildParser :: _ -> Parser _
+buildParser subparser src
     | Right (r, _) <- parsed = Right r
     | Left l <- parsed = Left $ showParseError l
     where
-        parsed = runError $ gerna_result $ gerna_parse src
+        parsed = runError $ subparser $ eberban_parse src
 
-showParseError :: ParseError (Pos String) Gerna_Derivs -> String
+showParseError :: ParseError (Pos String) Eberban_Derivs -> String
 showParseError pe =
     unwords (map (showReading d) ns) ++ (if null ns then "" else " ") ++
     m ++ c ++ " at position: " ++ show p
@@ -30,9 +43,9 @@ showParseError pe =
         d = peDerivs pe
         p = pePositionS pe
 
-showReading :: Gerna_Derivs -> String -> String
+showReading :: Eberban_Derivs -> String -> String
 showReading d n
-    | n == "char", Right (c, _) <- runError $ gerna_char d = show c
+    | n == "char", Right (c, _) <- runError $ eberban_char d = show c
     | otherwise = "yet: " ++ n
 
 -- Constants
@@ -260,18 +273,15 @@ data CU = CU String
 
 -- Definition of the grammar
 [papillon|
-prefix: "gerna_"
-
--- Define the final result
-result :: Result = eberban_text:eberban_text {eberban_text}
+prefix: "eberban_"
 
 -- Overall text
-eberban_text :: EberbanText = preamble:preamble paragraphs:paragraphs? _:spaces? _:eof? { EberbanText preamble paragraphs }
+text :: EberbanText = preamble:preamble paragraphs:paragraphs? _:spaces? _:eof? { EberbanText preamble paragraphs }
 
 preamble :: Preamble = preamble_units:preamble_unit* { Preamble preamble_units }
 preamble_unit :: PreambleUnit
     = de_clause:de_clause predicate_with_transformations:predicate_with_transformations { PreambleUnitInterjection de_clause predicate_with_transformations }
-    / do_clause:do_clause eberban_text:eberban_text doi_clause:doi_clause { PreambleUnitParenthetical do_clause eberban_text doi_clause }
+    / do_clause:do_clause text:text doi_clause:doi_clause { PreambleUnitParenthetical do_clause text doi_clause }
 
 -- Text structure
 paragraphs :: Paragraphs = first_paragraph:paragraph next_paragraphs:(&_:pu_clause paragraph:paragraph {paragraph})* { Paragraphs (first_paragraph : next_paragraphs) }
@@ -335,7 +345,7 @@ predicate_compound :: Predicate = _:spaces? compound:compound { PredicateCompoun
 
 -- Quotes
 quote :: Quote = grammatical_quote:grammatical_quote{grammatical_quote} / one_word_quote:one_word_quote{one_word_quote} / one_compound_quote:one_compound_quote{one_compound_quote} / foreign_quote:foreign_quote{foreign_quote}
-grammatical_quote :: Quote = ca_clause:ca_clause eberban_text:eberban_text cai_clause:cai_clause { GrammaticalQuote ca_clause eberban_text cai_clause }
+grammatical_quote :: Quote = ca_clause:ca_clause text:text cai_clause:cai_clause { GrammaticalQuote ca_clause text cai_clause }
 one_word_quote :: Quote = ce_clause:ce_clause _:spaces? word:(native_word:native_word{Native native_word} / borrowing:borrowing{Borrowing borrowing}) { OneWordQuote ce_clause word }
 one_compound_quote :: Quote = ce_clause:ce_clause _:spaces? compound:compound { OneCompoundQuote ce_clause compound }
 -- Future: consider consuming _:spaces? (or at least _:space_char) before "pause_char foreign_quote_close" to get rid of undesired (I think) spaces?
@@ -352,7 +362,7 @@ variable :: Variable = ki_clause:ki_clause {VariableKi ki_clause} / gi_clause:gi
 free :: Free = x:(free_metadata:free_metadata{free_metadata} / free_subscript:free_subscript{free_subscript} / free_parenthetical:free_parenthetical{free_parenthetical} / free_interjection:free_interjection{free_interjection}) {x}
 free_metadata :: Free = da_clause:da_clause { FreeMetadata da_clause }
 free_subscript :: Free = di_clause:di_clause number:number { FreeSubscript di_clause number }
-free_parenthetical :: Free = do_clause:do_clause eberban_text:eberban_text doi_clause:doi_clause { FreeParenthetical do_clause eberban_text doi_clause }
+free_parenthetical :: Free = do_clause:do_clause text:text doi_clause:doi_clause { FreeParenthetical do_clause text doi_clause }
 free_interjection :: Free = de_clause:de_clause predicate_with_transformations:predicate_with_transformations { FreeInterjection de_clause predicate_with_transformations }
 
 override :: Override = du_clause:du_clause predicate_with_transformations:predicate_with_transformations { Override du_clause predicate_with_transformations }
