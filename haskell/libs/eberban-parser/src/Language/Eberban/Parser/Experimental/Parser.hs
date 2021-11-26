@@ -5,6 +5,8 @@ module Language.Eberban.Parser.Experimental.Parser where
 -- Reference grammar: https://github.com/eberban/eberban/blob/master/node/grammar/eberban.peg
 -- TODO: ParserConfig controlling for example whether to coalesce consecutive identical characters, whether to convert everything to lowercase, whether to treat all hyphens as the same, etc (canonicalHyphen :: Maybe Char)
 -- TODO: unit tests at different layers (e.g. particles, consonant pairs, individual letters, etc)
+-- TODO: search for haskell pretty-print (use it instead of Show); and serialize to json as well (then pprint the json)
+-- TODO: human tests (i.e. just print the parsing output)
 
 import Prelude hiding (Word)
 import Text.Papillon
