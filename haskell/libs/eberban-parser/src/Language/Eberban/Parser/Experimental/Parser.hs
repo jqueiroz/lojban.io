@@ -11,7 +11,7 @@ import Prelude hiding (Word)
 import Text.Papillon
 import Data.Maybe
 
-type Result = PredicateWithTransformationsAndFree
+type Result = EberbanText
 
 parse :: String -> Either String Result
 parse src
@@ -52,15 +52,56 @@ pauseChars :: [Char]
 pauseChars= ['’']
 
 -- Data types
-data EberbanText = EberbanText -- the entire text (pending)
+data Preamble = Preamble [PreambleUnit]
     deriving (Show)
 
-data Scope = Scope -- pending
+data PreambleUnit
+    = PreambleUnitInterjection DE PredicateWithTransformations
+    | PreambleUnitParenthetical DO EberbanText DOI
+    deriving (Show)
+
+data EberbanText = EberbanText Preamble (Maybe Paragraphs)
+    deriving (Show)
+
+data Paragraphs = Paragraphs [Paragraph]
+    deriving (Show)
+
+data Paragraph = Paragraph (Maybe PU) [ParagraphUnit]
+    deriving (Show)
+
+data ParagraphUnitWithErasureBoolean
+    = ParagraphUnitErased ParagraphUnit CU
+    | ParagraphUnitNotErased ParagraphUnit
+    deriving (Show)
+
+data ParagraphUnit
+    = ParagraphUnitDefinition Definition
+    | ParagraphUnitSentence Sentence
+    deriving (Show)
+
+data Definition = Definition PO Defined Scope
+    deriving (Show)
+
+data Defined
+    = DefinedGi GI
+    | DefinedFreeformVariable String
+    | DefinedCompound Compound
+    | DefinedRoot String
+    deriving (Show)
+
+data Sentence = Sentence (Maybe PA) Scope
+    deriving (Show)
+
+data Scope = Scope (Maybe ArgumentList) Chaining [(BU, Chaining)]
+    deriving (Show)
+
+data Chaining = Chaining [ChainingItem]
     deriving (Show)
 
 data ChainingItem
-    = ChainingNegation BI [ChainingItem]
+    = ChainingNegation BI Chaining
     | ChainingPredicate PredicateWithTransformationsAndFree [VeScope]
+    deriving (Show)
 
 data VeScope = VeScope VeScopeFirst [VeScopeNext] (Maybe VEI)
     deriving (Show)
@@ -115,6 +156,14 @@ data Variable
     = VariableKi KI
     | VariableGi GI
     | VariableFreeform String
+    deriving (Show)
+
+data Argument
+    = ArgumentKi KI
+    | ArgumentGi GI
+    deriving (Show)
+
+data ArgumentList = ArgumentList [Argument] PI
     deriving (Show)
 
 data Override = Override DU PredicateWithTransformations
@@ -214,20 +263,48 @@ data CU = CU String
 prefix: "gerna_"
 
 -- Define the final result
---result :: Result = eberban_text
---result :: Result = i:initial_pair { i } / _:eof { "empty input" }
-result :: Result = predicate_with_transformations_and_free:predicate_with_transformations_and_free { predicate_with_transformations_and_free }
+result :: Result = eberban_text:eberban_text {eberban_text}
 
 -- Overall text
-eberban_text :: EberbanText = !_ { EberbanText } -- not yet implemented
+eberban_text :: EberbanText = preamble:preamble paragraphs:paragraphs? _:spaces? _:eof? { EberbanText preamble paragraphs }
 
--- Text structure (TODO)
+preamble :: Preamble = preamble_units:preamble_unit* { Preamble preamble_units }
+preamble_unit :: PreambleUnit
+    = de_clause:de_clause predicate_with_transformations:predicate_with_transformations { PreambleUnitInterjection de_clause predicate_with_transformations }
+    / do_clause:do_clause eberban_text:eberban_text doi_clause:doi_clause { PreambleUnitParenthetical do_clause eberban_text doi_clause }
 
--- Scope (TODO)
-scope :: Scope = !_ { Scope } -- not yet implemented
+-- Text structure
+paragraphs :: Paragraphs = first_paragraph:paragraph next_paragraphs:(&_:pu_clause paragraph:paragraph {paragraph})* { Paragraphs (first_paragraph : next_paragraphs) }
+
+paragraph :: Paragraph = pu_clause:pu_clause? first_paragraph_unit:paragraph_unit more_paragraph_units:(&_:(pa_clause / po_clause) paragraph_unit:paragraph_unit {paragraph_unit})* { Paragraph pu_clause (first_paragraph_unit : more_paragraph_units) }
+
+paragraph_unit_with_erasure_boolean :: ParagraphUnitWithErasureBoolean
+    = paragraph_unit:paragraph_unit cu_clause:cu_clause { ParagraphUnitErased paragraph_unit cu_clause }
+    / paragraph_unit:paragraph_unit { ParagraphUnitNotErased paragraph_unit }
+
+paragraph_unit :: ParagraphUnit
+    = definition:definition { ParagraphUnitDefinition definition }
+    / sentence:sentence { ParagraphUnitSentence sentence }
+
+argument_list :: ArgumentList = arguments:argument* pi_clause:pi_clause { ArgumentList arguments pi_clause }
+argument :: Argument = ki_clause:ki_clause { ArgumentKi ki_clause } / gi_clause:gi_clause { ArgumentGi gi_clause }
+
+definition :: Definition = po_clause:po_clause defined:defined scope:scope { Definition po_clause defined scope }
+
+defined :: Defined
+    = gi_clause:gi_clause { DefinedGi gi_clause }
+    / _:spaces? freeform_variable:freeform_variable { DefinedFreeformVariable freeform_variable }
+    / _:spaces? compound:compound { DefinedCompound compound }
+    / _:spaces? root:root { DefinedRoot root }
+
+sentence :: Sentence = pa_clause_elidible:pa_clause_elidible scope:scope { Sentence pa_clause_elidible scope }
+
+-- Scope
+-- I deviated a bit from the reference grammar here, but this should be equivalent (I just flattened stuff). Hopefully my changes did not impact associativity.
+scope :: Scope = argument_list:argument_list? first_chaining:chaining next_chainings:(bu_clause:bu_clause chaining:chaining { (bu_clause, chaining) })* { Scope argument_list first_chaining next_chainings}
 
 -- Chaining and explicit switches
-chaining :: [ChainingItem] = x:chaining_item+ {x}
+chaining :: Chaining = chaining_items:chaining_item+ {Chaining chaining_items}
 chaining_item :: ChainingItem = chaining_negation:chaining_negation{chaining_negation} / chaining_predicate:chaining_predicate{chaining_predicate}
 chaining_negation :: ChainingItem = bi_clause:bi_clause chaining:chaining { ChainingNegation bi_clause chaining }
 -- "chaining_predicate" was originally named "chaining_unit"
