@@ -51,8 +51,7 @@ instance A.FromJSON Claims where
     parseJSON = A.genericParseJSON A.defaultOptions
 
 data UserInfo = UserInfo
-    { given_name :: T.Text
-    , family_name :: T.Text
+    { name :: T.Text
     , picture :: T.Text
     , email :: T.Text
     } deriving (Generic, Show)
@@ -178,9 +177,8 @@ readUserIdentityFromCookiesForProvider serverConfiguration serverResources known
     -- Build response
     let userIdentifier = UserIdentifier ("openid_" `T.append` (knownProviderIdentifier knownProvider)) (sub claims)
     let userPictureUrl = picture userInfo
-    let userGivenName = given_name userInfo
-    let userFamilyName = family_name userInfo
-    return $ UserIdentity userIdentifier userPictureUrl userGivenName userFamilyName
+    let userName = name userInfo
+    return $ UserIdentity userIdentifier userPictureUrl userName
 
 -- * Helper functions
 getProviderCallbackUri :: KnownOpenIdProvider -> ServerPart URI
