@@ -40,8 +40,7 @@ data UserIdentifier = UserIdentifier
 data UserIdentity = UserIdentity
     { userIdentifier :: UserIdentifier
     , userPictureUrl :: T.Text
-    , userGivenName :: T.Text
-    , userFamilyName :: T.Text
+    , userName :: T.Text
     }
 
 data DeckPreferences = DeckPreferences

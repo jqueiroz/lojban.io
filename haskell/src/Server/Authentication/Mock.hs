@@ -37,9 +37,8 @@ readUserIdentityFromCookies serverConfiguration serverResources = runMaybeT $ do
     if isSignedIn == "true" then do
         let userIdentifier = UserIdentifier "mock" "testuser1"
         let userPictureUrl = "https://lojban.io/favicon.ico"
-        let userGivenName = "Arthur"
-        let userFamilyName = "Dent"
-        return $ UserIdentity userIdentifier userPictureUrl userGivenName userFamilyName
+        let userName = "Arthur Dent"
+        return $ UserIdentity userIdentifier userPictureUrl userName
     else
         mzero
 

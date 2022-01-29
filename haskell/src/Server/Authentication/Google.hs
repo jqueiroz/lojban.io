@@ -44,8 +44,7 @@ instance A.FromJSON Claims where
     parseJSON = A.genericParseJSON A.defaultOptions
 
 data UserInfo = UserInfo
-    { given_name :: T.Text
-    , family_name :: T.Text
+    { name :: T.Text
     , picture :: T.Text
     } deriving (Generic, Show)
 
@@ -80,9 +79,8 @@ readUserIdentityFromCookies serverConfiguration serverResources = runMaybeT $ do
     -- Build response
     let userIdentifier = UserIdentifier "google" (sub claims)
     let userPictureUrl = picture userInfo
-    let userGivenName = given_name userInfo
-    let userFamilyName = family_name userInfo
-    return $ UserIdentity userIdentifier userPictureUrl userGivenName userFamilyName
+    let userName = name userInfo
+    return $ UserIdentity userIdentifier userPictureUrl userName
 
 extractClaims :: ServerConfiguration -> ServerResources -> T.Text -> MaybeT IO Claims
 extractClaims serverConfiguration serverResources identityTokenText = do
@@ -148,7 +146,7 @@ handleCallback serverConfiguration serverResources = do
                             -- Validate user info
                             let userInfoMaybe = A.decodeStrict (TE.encodeUtf8 userInfoText) :: Maybe UserInfo
                             case userInfoMaybe of
-                                Nothing -> unauthorized $ toResponse ("Decoding of user info failed." :: T.Text)
+                                Nothing -> unauthorized $ toResponse (T.concat [("Decoding of user info failed." :: T.Text), userInfoText])
                                 Just userInfo -> do
                                     -- Save identity token and user info to cookies
                                     let cookieDuration = (MaxAge $ 30 * 86400)

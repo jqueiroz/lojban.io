@@ -115,9 +115,8 @@ readUserIdentityFromCookies serverConfiguration serverResources = do
             Right True -> do
                 let userIdentifier = UserIdentifier "handle" handle
                 let userPictureUrl = T.empty
-                let userGivenName = T.empty
-                let userFamilyName = T.empty
-                return . Just $ UserIdentity userIdentifier userPictureUrl userGivenName userFamilyName
+                let userName = T.empty
+                return . Just $ UserIdentity userIdentifier userPictureUrl userName
 
 -- * Redis bindings
 registeredHandleKey :: T.Text -> T.Text
