@@ -351,3 +351,4 @@ Similarly, when you run `make server`, the webserver executable will be placed i
 However, the preferred method for running the webserver is to use the helper script `./run-server.sh`.
 This script automatically builds the server by running `make server` and then executes it by running `stack exec server` in an isolated nix-shell environment, with the appropriate environment variables.
 Upon running `./run-server.sh`, you should be able to access the webserver at [http://localhost:8000](http://localhost:8000).
+
