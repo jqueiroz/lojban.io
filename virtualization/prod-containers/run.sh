@@ -49,7 +49,11 @@ echo -e "Generating certificates..."
 ./docker.sh run -it --rm --name lojban-letsencrypt-server \
     -v /lojban-letsencrypt-certificates:/etc/letsencrypt \
     -v /lojban-letsencrypt-challenge:/letsencrypt-challenge \
-    lojban-letsencrypt-server
+    certbot/certbot certonly \
+    --keep-until-expiring --agree-tos --webroot --expand --rsa-key-size 4096 \
+    --email contact@lojban.io \
+    --webroot-path /letsencrypt-challenge \
+    -d lojban.io
 
 # Stop: master-https
 echo "Stopping: lojban-master-https-server..."
