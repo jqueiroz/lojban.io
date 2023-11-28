@@ -3,8 +3,7 @@ set -e
 
 # Function to run commands inside a Nix shell
 run_command(){
-    # nixos-23.05's version of haskell-language-server doesn't support ghc-8.8.4, so we need to use nixos-22.11 instead
-    nix-shell -I nixpkgs=https://github.com/NixOS/nixpkgs/archive/nixos-22.11.tar.gz "./buildscripts/environments/haskell.nix" --run "$1"
+    nix-shell -I nixpkgs=https://github.com/NixOS/nixpkgs/archive/nixos-23.05.tar.gz "./buildscripts/environments/haskell.nix" --run "$1"
 }
 
 COMMAND="haskell-language-server-wrapper "$(printf "%q " "$@")""
