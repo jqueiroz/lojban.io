@@ -1571,7 +1571,7 @@ parse = parse1632_0 initialPos
                                                      _ -> StateT position >>= (throwError . mkParseError "WCParen" "not match pattern: " "" d396_402 ["hsw"])
                                                  let WCParen = t890_403
                                                  return ()
-                                                 lift (lift (return $ TupE et)),
+                                                 lift (lift (return $ case et of {[x] -> x; _ -> TupE $ fmap Just et})),
                                               do d397_404 <- get
                                                  t891_405 <- StateT hsw
                                                  case t891_405 of

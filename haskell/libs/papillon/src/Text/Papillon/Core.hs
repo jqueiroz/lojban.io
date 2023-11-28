@@ -162,7 +162,7 @@ mkParseCore th prefix rets rules = do
 	return $ Clause [VarP p, VarP s] (NormalB $ VarE d) $ [
 		flip (ValD $ VarP d) [] $ NormalB $ foldl1 AppE $
 			ConE (mkPrUName prefix "Derivs") : map VarE rets ++ [VarE ch,
-				VarE (mkName "return") `AppE` TupE [VarE p, VarE d]]
+				VarE (mkName "return") `AppE` TupE [Just $ VarE p, Just $ VarE d]]
 	 ] ++ zipWith def rets rules ++ [pc]
 
 parseChar :: Bool -> String -> State Variables Dec

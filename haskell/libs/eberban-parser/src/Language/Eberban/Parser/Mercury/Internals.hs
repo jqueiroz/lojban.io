@@ -1,4 +1,4 @@
-{-# LANGUAGE TypeFamilies, QuasiQuotes, PatternGuards, PartialTypeSignatures #-}
+{-# LANGUAGE TypeFamilies, QuasiQuotes, PatternGuards, PartialTypeSignatures, TupleSections #-}
 
 module Language.Eberban.Parser.Mercury.Internals where
 

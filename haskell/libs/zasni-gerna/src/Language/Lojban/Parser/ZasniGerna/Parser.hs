@@ -1,4 +1,4 @@
-{-# LANGUAGE TypeFamilies, QuasiQuotes, PatternGuards #-}
+{-# LANGUAGE TypeFamilies, QuasiQuotes, PatternGuards, TupleSections #-}
 
 module Language.Lojban.Parser.ZasniGerna.Parser where
 
