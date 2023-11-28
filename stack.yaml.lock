@@ -5,15 +5,15 @@
 
 packages:
 - completed:
-    hackage: oidc-client-0.6.0.0@sha256:2079dc5c9dfb5b3e2fa93098254ca16787c01a0cd3634b1d84afe84c9a6c4825,3368
+    hackage: oidc-client-0.7.0.1@sha256:557341f7521e62c09abddf0d06c8e8acce119d3a9a4c4ffac1ab8ca3fc0e5067,3382
     pantry-tree:
+      sha256: 51cfcd6c170923db24ba297ac9937961f6b26e041ceec8ff09500e61017b433b
       size: 1298
-      sha256: c8dac64944a1e60d14958067e1992732effe723d60353690720c34b4d126af48
   original:
-    hackage: oidc-client-0.6.0.0
+    hackage: oidc-client-0.7.0.1
 snapshots:
 - completed:
+    sha256: 637fb77049b25560622a224845b7acfe81a09fdb6a96a3c75997a10b651667f6
     size: 534126
     url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/16/31.yaml
-    sha256: 637fb77049b25560622a224845b7acfe81a09fdb6a96a3c75997a10b651667f6
   original: lts-16.31
