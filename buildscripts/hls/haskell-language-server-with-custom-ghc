@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -e
+
+# Identify the directory where this script is located
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+# Update PATH (so that 'ghc' gets mapped to 'stack exec ghc')
+export PATH="$DIR":$PATH
+
+# Run hsl
+haskell-language-server-wrapper
