@@ -1,18 +1,13 @@
 #!/usr/bin/env bash
 set -e
 
-# Identify the directory where this script is located
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-
-# Update PATH (so that 'haskell-language-server-with-custom-ghc' is found)
-export PATH="$DIR":$PATH
-
 # Function to run commands inside a Nix shell
 run_command(){
-    nix-shell -I nixpkgs=https://github.com/NixOS/nixpkgs/archive/nixos-23.05.tar.gz "./buildscripts/environments/haskell.nix" --run "$1" --keep LOJBANIOS_ENVIRONMENT --keep LOJBANIOS_OAUTH2_GOOGLE_CLIENT_ID --keep LOJBANIOS_OAUTH2_GOOGLE_CLIENT_SECRET --keep LOJBANIOS_OPENID_MICROSOFT_CLIENT_ID --keep LOJBANIOS_OPENID_MICROSOFT_CLIENT_SECRET --keep LOJBANIOS_REDIS_HOSTNAME
+    # nixos-23.05's version of haskell-language-server doesn't support ghc-8.8.4, so we need to use nixos-22.11 instead
+    nix-shell -I nixpkgs=https://github.com/NixOS/nixpkgs/archive/nixos-22.11.tar.gz "./buildscripts/environments/haskell.nix" --run "$1"
 }
 
-COMMAND="haskell-language-server-with-custom-ghc"
+COMMAND="haskell-language-server-8.8.4"
 
 LOJBANIOS_BYPASS_NIX="" # Never bypass nix
 if [[ -n "$LOJBANIOS_BYPASS_NIX" ]]; then

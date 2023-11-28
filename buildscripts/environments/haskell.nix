@@ -9,9 +9,8 @@ stdenv.mkDerivation {
   buildInputs = [
     stack
     haskellPackages.hoogle hlint
-    (haskellPackages.haskell-language-server.overrideAttrs (oldAttrs: {
-      #supportedGhcVersions = [ ];
+    (haskell-language-server.override {
       supportedGhcVersions = [ "884" ]; # lts-16.31
-    }))
+    })
   ];
 }

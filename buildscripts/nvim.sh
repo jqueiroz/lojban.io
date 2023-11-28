@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 set -e
 
-# Change directory to the project's root
+# Identify the directory where this script is located
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+# Change directory to the project's root
 cd "$DIR/.."
 
-export PATH="$DIR/hls":$PATH
+export NVIM_HLS_EXE="$DIR/hls/haskell-language-server-42"
 nvim $*
