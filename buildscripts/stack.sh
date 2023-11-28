@@ -7,7 +7,7 @@ cd "$DIR/.."
 
 # Function to run commands inside a Nix shell
 run_command(){
-    nix-shell -I nixpkgs=https://github.com/NixOS/nixpkgs-channels/archive/nixos-20.03.tar.gz "./buildscripts/environments/haskell.nix" --run "$1" --keep LOJBANIOS_ENVIRONMENT --keep LOJBANIOS_OAUTH2_GOOGLE_CLIENT_ID --keep LOJBANIOS_OAUTH2_GOOGLE_CLIENT_SECRET --keep LOJBANIOS_OPENID_MICROSOFT_CLIENT_ID --keep LOJBANIOS_OPENID_MICROSOFT_CLIENT_SECRET --keep LOJBANIOS_REDIS_HOSTNAME
+    nix-shell -I nixpkgs=https://github.com/NixOS/nixpkgs/archive/nixos-23.05.tar.gz "./buildscripts/environments/haskell.nix" --run "$1" --keep LOJBANIOS_ENVIRONMENT --keep LOJBANIOS_OAUTH2_GOOGLE_CLIENT_ID --keep LOJBANIOS_OAUTH2_GOOGLE_CLIENT_SECRET --keep LOJBANIOS_OPENID_MICROSOFT_CLIENT_ID --keep LOJBANIOS_OPENID_MICROSOFT_CLIENT_SECRET --keep LOJBANIOS_REDIS_HOSTNAME
 }
 
 COMMAND="stack --no-nix-pure $*"

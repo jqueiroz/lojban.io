@@ -2,10 +2,11 @@ FROM nixos/nix:latest
 
 ####################### Install dependencies #######################
 
+RUN echo 2023-11-27
 RUN mkdir -p /etc/nix && echo 'sandbox = false' > /etc/nix/nix.conf
-RUN nix-channel --add https://nixos.org/channels/nixos-20.03 nixpkgs
+RUN nix-channel --add https://nixos.org/channels/nixos-23.05 nixpkgs
 RUN nix-channel --update
-RUN nix-env -iA nixpkgs.bash nixpkgs.stack nixpkgs.coreutils nixpkgs.lessc nixpkgs.findutils nixpkgs.redis nixpkgs.nodejs-10_x
+RUN nix-env -iA nixpkgs.bash nixpkgs.stack nixpkgs.coreutils nixpkgs.lessc nixpkgs.findutils nixpkgs.redis nixpkgs.nodejs
 
 ####################### Set locale #######################
 
@@ -20,11 +21,13 @@ ENV \
 COPY stack.yaml /lojbanios/stack.yaml
 COPY lojbanios.cabal /lojbanios/lojbanios.cabal
 
+# Copy libraries
+COPY haskell/libs /lojbanios/haskell/libs
+
 # Setup GHC
 RUN cd /lojbanios && stack setup
 
 # Install dependencies
-COPY haskell/libs /lojbanios/haskell/libs
 RUN cd /lojbanios && stack install --only-dependencies
 
 # Copy source code
@@ -65,5 +68,4 @@ RUN cd /lojbanios && LOJBANIOS_BYPASS_NIX=true ./buildscripts/make-javascript.sh
 EXPOSE 8000/tcp
 
 ####################### Default command #######################
-CMD echo "hosts: files dns" > /etc/nsswitch.conf && (redis-server >/dev/null 2>/dev/null &) && cd /lojbanios && .stack-work/install/x86_64-linux-nix/*/*/bin/server
-
+CMD echo "hosts: files dns" > /etc/nsswitch.conf && (redis-server >/dev/null 2>/dev/null &) && cd /lojbanios && sleep 3 && .stack-work/install/x86_64-linux-nix/*/*/bin/server
