@@ -7,7 +7,7 @@ run_command(){
     nix-shell -I nixpkgs=https://github.com/NixOS/nixpkgs/archive/nixos-22.11.tar.gz "./buildscripts/environments/haskell.nix" --run "$1"
 }
 
-COMMAND="haskell-language-server-8.8.4"
+COMMAND="haskell-language-server-wrapper "$(printf "%q " "$@")""
 
 LOJBANIOS_BYPASS_NIX="" # Never bypass nix
 if [[ -n "$LOJBANIOS_BYPASS_NIX" ]]; then
