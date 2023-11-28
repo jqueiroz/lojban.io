@@ -2,7 +2,7 @@ FROM johnjq/lojbanios-dependencies:latest
 
 ####################### Configure the project #######################
 
-# Copy project configuration files
+# Copy project configuration files (again)
 COPY stack.yaml /lojbanios/stack.yaml
 COPY lojbanios.cabal /lojbanios/lojbanios.cabal
 
