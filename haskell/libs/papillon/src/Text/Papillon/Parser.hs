@@ -41,7 +41,7 @@ import "monads-tf" Control.Monad.State
 import "monads-tf" Control.Monad.Error
 import Control.Applicative(Applicative, (<$>), (<*>))
 
-import Language.Haskell.TH {- (
+import Language.Haskell.TH hiding (Code) {- (
 	Name, TypeQ, PatQ, ExpQ, mkName,
 	conT, tupleT, listT, appT, arrowT,
 	wildP, litP, varP, conP, tupP, listP, uInfixP,

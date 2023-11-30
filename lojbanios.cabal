@@ -48,6 +48,7 @@ common deps
                      , papillon
                      , zasni-gerna
                      , eberban-parser
+  pkgconfig-depends: zlib
 
 library
   import:              deps
@@ -147,6 +148,7 @@ executable server
   build-depends:       base
                      , optparse-applicative
                      , lojbanios
+  pkgconfig-depends: zlib
 
 test-suite language
   import:              deps

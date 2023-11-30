@@ -6,7 +6,7 @@ RUN echo 2023-11-27
 RUN mkdir -p /etc/nix && echo 'sandbox = false' > /etc/nix/nix.conf
 RUN nix-channel --add https://nixos.org/channels/nixos-23.05 nixpkgs
 RUN nix-channel --update
-RUN nix-env -iA nixpkgs.bash nixpkgs.stack nixpkgs.coreutils nixpkgs.lessc nixpkgs.findutils nixpkgs.redis nixpkgs.nodejs
+RUN nix-env -iA nixpkgs.bash nixpkgs.stack nixpkgs.haskellPackages.zlib nixpkgs.coreutils nixpkgs.lessc nixpkgs.findutils nixpkgs.redis nixpkgs.nodejs
 
 ####################### Set locale #######################
 
