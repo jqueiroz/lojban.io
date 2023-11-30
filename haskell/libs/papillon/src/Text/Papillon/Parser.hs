@@ -41,7 +41,7 @@ import "monads-tf" Control.Monad.State
 import "monads-tf" Control.Monad.Error
 import Control.Applicative(Applicative, (<$>), (<*>))
 
-import Language.Haskell.TH {- (
+import Language.Haskell.TH hiding (Code) {- (
 	Name, TypeQ, PatQ, ExpQ, mkName,
 	conT, tupleT, listT, appT, arrowT,
 	wildP, litP, varP, conP, tupP, listP, uInfixP,
@@ -1053,7 +1053,7 @@ parse = parse1632_0 initialPos
                                               let (WType [] t) = t781_284
                                               return ()
                                               ps <- StateT pats
-                                              lift (lift (return $ ConP (mkName t) ps)),
+                                              lift (lift (return $ ConP (mkName t) [] ps)),
                                            do d289_285 <- get
                                               t783_286 <- StateT hsw
                                               case t783_286 of
@@ -1076,7 +1076,7 @@ parse = parse1632_0 initialPos
                                               let WCParen = t785_290
                                               return ()
                                               ps <- StateT pats
-                                              lift (lift (return $ ConP (mkName o) ps)),
+                                              lift (lift (return $ ConP (mkName o) [] ps)),
                                            do p <- StateT pat1
                                               lift (lift (return p))]
                 pat1102_106 = foldl1 mplus [do d294_291 <- get
@@ -1102,7 +1102,7 @@ parse = parse1632_0 initialPos
                                                    _ -> StateT position >>= (throwError . mkParseError "(WType [] t)" "not match pattern: " "" d297_295 ["hsw"])
                                                let (WType [] t) = t791_296
                                                return ()
-                                               lift (lift (return $ ConP (mkName t) [])),
+                                               lift (lift (return $ ConP (mkName t) [] [])),
                                             do d298_297 <- get
                                                t792_298 <- StateT hsw
                                                case t792_298 of

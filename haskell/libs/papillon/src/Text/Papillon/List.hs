@@ -8,6 +8,7 @@ module Text.Papillon.List (
 import Language.Haskell.TH
 import Control.Applicative
 import Control.Monad
+import TemplateHaskell.Compat.V0208 (specifiedPlainTV)
 
 {-
 
@@ -39,10 +40,10 @@ listDec list list1 th = do
 	cp1 <- classP (monadPlusN th) [return vm]
 	cp2 <- classP (applicativeN th) [return vm]
 	return [
-		SigD list $ ForallT [PlainTV m, PlainTV a] [cp1, cp2] $
+		SigD list $ ForallT [specifiedPlainTV m, specifiedPlainTV a] [cp1, cp2] $
 			ArrowT	`AppT` (VarT m `AppT` VarT a)
 				`AppT` (VarT m `AppT` (ListT `AppT` VarT a)),
-		SigD list1 $ ForallT [PlainTV m, PlainTV a] [cp1, cp2] $
+		SigD list1 $ ForallT [specifiedPlainTV m, specifiedPlainTV a] [cp1, cp2] $
 			ArrowT	`AppT` (VarT m `AppT` VarT a)
 				`AppT` (VarT m `AppT` (ListT `AppT` VarT a)),
 		FunD list $ (: []) $ flip (Clause [VarP p]) [] $ NormalB $
@@ -79,7 +80,7 @@ optionalDec optionalN th = do
 	mplusAndApp x = do
 		cp1 <- classP (monadPlusN th) [return $ VarT m]
 		cp2 <- classP (applicativeN th) [return $ VarT m]
-		return $ ForallT [PlainTV m, PlainTV a] [cp1, cp2] x
+		return $ ForallT [specifiedPlainTV m, specifiedPlainTV a] [cp1, cp2] x
 	arrT f x = ArrowT `AppT` f `AppT` x
 	mplusE x = InfixE (Just x) (VarE $ mplusN th) . Just
 	returnNothing = VarE (mkName "return") `AppE` ConE (mkName "Nothing")
