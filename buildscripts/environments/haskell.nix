@@ -11,7 +11,7 @@ stdenv.mkDerivation {
     stack
     haskellPackages.hoogle hlint
     (haskell-language-server.override {
-      #supportedGhcVersions = [ "810" ]; # lts-18.28
+      supportedGhcVersions = [ "947" ]; # lts-21.21
     })
   ];
 }

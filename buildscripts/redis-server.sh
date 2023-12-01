@@ -7,7 +7,7 @@ cd "$DIR/.."
 
 # Function to run commands inside a Nix shell
 run_command(){
-    nix-shell -I nixpkgs=https://github.com/NixOS/nixpkgs/archive/nixos-23.05.tar.gz --pure "./buildscripts/environments/redis.nix" --run "$1"
+    nix-shell -I nixpkgs=https://github.com/NixOS/nixpkgs/archive/nixos-23.11.tar.gz --pure "./buildscripts/environments/redis.nix" --run "$1"
 }
 
 COMMAND="redis-server $*"

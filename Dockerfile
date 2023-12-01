@@ -44,4 +44,4 @@ RUN cd /lojbanios && LOJBANIOS_BYPASS_NIX=true ./buildscripts/make-javascript.sh
 EXPOSE 8000/tcp
 
 ####################### Default command #######################
-CMD echo "hosts: files dns" > /etc/nsswitch.conf && (redis-server >/dev/null 2>/dev/null &) && cd /lojbanios && sleep 3 && .stack-work/install/x86_64-linux-nix/*/*/bin/server
+CMD echo "hosts: files dns" > /etc/nsswitch.conf && (nix-shell -p glibcLocales --run "redis-server" >/dev/null 2>/dev/null &) && cd /lojbanios && sleep 3 && .stack-work/install/x86_64-linux-nix/*/*/bin/server
