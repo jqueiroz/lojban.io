@@ -30,3 +30,9 @@ server:
 server-minus-js:
 	./buildscripts/make-server.sh
 	./buildscripts/make-css.sh
+
+tests:
+	./verify-tests.sh
+
+lint:
+	./verify-lint.sh
