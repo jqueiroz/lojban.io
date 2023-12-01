@@ -118,7 +118,7 @@ handleCallback serverConfiguration serverResources knownProvider = do
         Left _ -> unauthorized $ toResponse ("Acquisition of oauth2 config failed." :: T.Text)
         Right oauth2Config -> do
             let tlsManager = serverResourcesTlsManager serverResources
-            oauth2TokenEither <- liftIO $ OA2.fetchAccessToken tlsManager oauth2Config exchangeToken
+            oauth2TokenEither <- runExceptT $ OA2.fetchAccessToken tlsManager oauth2Config exchangeToken
             case oauth2TokenEither of
                 Left _ -> unauthorized $ toResponse ("Acquisition of oauth2 token failed." :: T.Text)
                 Right oauth2Token -> do
@@ -203,11 +203,11 @@ getProviderOAuth2Config serverConfiguration serverResources knownProvider discov
         authorizeEndpoint <- withExceptT (const "Failed to parse OAuth2 authorization server url.") <$> except <$> parseURI strictURIParserOptions . TE.encodeUtf8 $ OIDCS.oidcAuthorizationServerUrl discoveredProvider
         accessTokenEndpoint <- withExceptT (const "Failed to parse OAuth2 access token endpoint.") <$> except <$> parseURI strictURIParserOptions . TE.encodeUtf8 $ OIDCS.oidcTokenEndpoint discoveredProvider
         return $ OA2.OAuth2
-            { OA2.oauthClientId = clientId
-            , OA2.oauthClientSecret = (Just clientSecret)
-            , OA2.oauthCallback = Just callbackUri
-            , OA2.oauthOAuthorizeEndpoint = authorizeEndpoint
-            , OA2.oauthAccessTokenEndpoint = accessTokenEndpoint
+            { OA2.oauth2ClientId = clientId
+            , OA2.oauth2ClientSecret = clientSecret
+            , OA2.oauth2RedirectUri = callbackUri
+            , OA2.oauth2AuthorizeEndpoint = authorizeEndpoint
+            , OA2.oauth2TokenEndpoint = accessTokenEndpoint
             }
 
 -- TODO: return Either instead of MaybeT

@@ -32,10 +32,11 @@ module Text.Papillon.Core (
 	runError
 ) where
 
-import Language.Haskell.TH hiding (infixApp, doE)
+import Language.Haskell.TH hiding (infixApp, doE, Code)
 import "monads-tf" Control.Monad.State
 import "monads-tf" Control.Monad.Identity
 import "monads-tf" Control.Monad.Error
+import qualified TemplateHaskell.Compat.V0208 as Compat
 
 import Control.Applicative
 
@@ -174,8 +175,8 @@ parseChar th prefix = do
 		np = VarE (mkName "updatePos") `AppE` VarE c `AppE` VarE p
 	return $ flip (ValD $ VarP ch) [] $ NormalB $ VarE (runStateTN th) `AppE`
 		CaseE (VarE (mkName "getToken") `AppE` VarE s) [
-			Match (mkName "Just" `ConP` [TupP [VarP c, VarP s']])
-				(NormalB $ DoE $ map NoBindS [
+			Match (mkName "Just" `Compat.conP` [TupP [VarP c, VarP s']])
+				(NormalB $ DoE Nothing $ map NoBindS [
 					VarE (putN th) `AppE`
 						(VarE prs `AppE` np
 							`AppE` VarE s'),
@@ -285,7 +286,7 @@ negative :: Bool -> String -> String -> String -> Name -> [String] -> Exp ->
 negative th prefix code com d ns act = do
 	err <- gets $ getVariable "err"
 	modify $ nextVariable "err"
-	return $ DoE [
+	return $ DoE Nothing [
 		BindS (VarP err) $ infixApp
 			(infixApp act (VarE $ mkName ">>")
 				(VarE (mkName "return") `AppE`
@@ -324,7 +325,7 @@ beforeMatch th prefix t nn d ns nc = [
 	NoBindS $ VarE (mkName "return") `AppE` TupE []]
 	where
 	vpw (VarP _) = WildP
-	vpw (ConP n ps) = ConP n $ map vpw ps
+	vpw (ConP n [] ps) = ConP n [] $ map vpw ps
 	vpw (InfixP p1 n p2) = InfixP (vpw p1) n (vpw p2)
 	vpw (UInfixP p1 n p2) = InfixP (vpw p1) n (vpw p2)
 	vpw (ListP ps) = ListP $ vpw `map` ps
@@ -407,7 +408,7 @@ showReading _ n = "yet: " ++ n
 
 doE :: [Stmt] -> Exp
 doE [NoBindS ex] = ex
-doE stmts = DoE stmts
+doE stmts = DoE Nothing stmts
 
 arrT :: Type -> Type -> Type
 arrT a r = ArrowT `AppT` a `AppT` r

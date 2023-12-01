@@ -22,8 +22,8 @@ import qualified Server.Authentication.Main as Authentication
 import qualified Database.Redis as Redis
 import qualified Data.Text as T
 import qualified Data.Map as M
-import qualified Data.HashMap.Strict as HM
 import qualified Data.Aeson as A
+import qualified Data.Aeson.KeyMap as AKM
 
 handleRoot :: ServerConfiguration -> ServerResources -> ServerPart Response
 handleRoot serverConfiguration serverResources = msum
@@ -101,7 +101,7 @@ handleDeckExercises serverConfiguration serverResources deck exerciseId = do
                         Just responseData -> do
                             let extractCorrect :: A.Value -> Maybe Bool = \case
                                     A.Object responseObject ->
-                                        case HM.lookup "correct" responseObject of
+                                        case AKM.lookup "correct" responseObject of
                                             Just (A.Bool correct) -> Just correct
                                             _ -> Nothing
                                     _ -> Nothing

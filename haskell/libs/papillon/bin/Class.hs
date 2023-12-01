@@ -26,7 +26,7 @@ runError = runIdentity . runErrorT
 
 runErrorTHT :: Bool -> DecQ
 runErrorTHT th =
-	sigD (mkName "runError") $ forallT [PlainTV err, PlainTV a] (cxt []) $
+	sigD (mkName "runError") $ forallT [PlainTV err SpecifiedSpec, PlainTV a SpecifiedSpec] (cxt []) $
 		conT (errorTNT th)
 			`appT` varT err
 			`appT` conT (identityNT th)
@@ -61,7 +61,7 @@ stringT = varT $ mkName "String"
 
 mkParseErrorTHT :: DecQ
 mkParseErrorTHT = sigD (mkName "mkParseError") $
-	forallT [PlainTV pos, PlainTV drv] (cxt []) $
+	forallT [PlainTV pos SpecifiedSpec, PlainTV drv SpecifiedSpec] (cxt []) $
 		stringT `arrT` stringT `arrT` stringT `arrT` varT drv `arrT`
 			listT `appT` stringT `arrT` varT pos `arrT` 
 		conT (mkName "ParseError") `appT` varT pos `appT` varT drv
@@ -75,7 +75,7 @@ mkParseErrorTH = flip (valD $ varP $ mkName "mkParseError") [] $ normalB $
 
 parseErrorT :: Bool -> DecQ
 parseErrorT _ = dataD (cxt []) (mkName "ParseError")
-		[PlainTV $ mkName "pos", PlainTV $ mkName "drv"] Nothing
+		[PlainTV (mkName "pos") (), PlainTV (mkName "drv") ()] Nothing
 	[	recC (mkName "ParseError") [
 			varStrictType c strT,
 			varStrictType m strT,
@@ -140,7 +140,7 @@ tupT ts = foldl appT (tupleT $ length ts) ts
 
 pePositionST :: DecQ
 pePositionST = sigD (mkName "pePositionS") $
-	forallT [PlainTV $ mkName "drv"] (cxt []) $
+	forallT [PlainTV (mkName "drv") SpecifiedSpec] (cxt []) $
 	conT (mkName "ParseError")
 		`appT` (conT (mkName "Pos") `appT` conT (mkName "String"))
 		`appT` varT (mkName "drv")
@@ -197,9 +197,9 @@ class Source sl where
 	updatePos :: Token sl -> Pos sl -> Pos sl
 -}
 
-classS th = classD (cxt []) source [PlainTV sl] [] [
-	openTypeFamilyD tokenN [PlainTV sl] NoSig Nothing,
-	dataFamilyD posN [PlainTV sl] Nothing,
+classS th = classD (cxt []) source [PlainTV sl ()] [] [
+	openTypeFamilyD tokenN [PlainTV sl ()] NoSig Nothing,
+	dataFamilyD posN [PlainTV sl ()] Nothing,
 	sigD getTokenN $ arrowT `appT` varT sl `appT`
 		(conT (maybeN th) `appT` tupleBody),
 	sigD initialPosN $ conT posN `appT` varT sl,
@@ -222,8 +222,8 @@ class SourceList c where
 	listUpdatePos :: c -> ListPos c -> ListPos c
 -}
 
-classSL th = classD (cxt []) sourceList [PlainTV c] [] [
-	dataFamilyD listPosN [PlainTV c] Nothing,
+classSL th = classD (cxt []) sourceList [PlainTV c ()] [] [
+	dataFamilyD listPosN [PlainTV c ()] Nothing,
 	sigD listTokenN $ arrowT `appT` (listT `appT` varT c) `appT`
 		(conT (maybeN th) `appT` tupleBody),
 	sigD listInitialPosN $ conT listPosN `appT` varT c,
