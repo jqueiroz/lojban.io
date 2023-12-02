@@ -8,7 +8,7 @@ run_command(){
 
 COMMAND="haskell-language-server-wrapper "$(printf "%q " "$@")""
 
-#LOJBANIOS_BYPASS_NIX="" # Never bypass nix
+LOJBANIOS_BYPASS_NIX="" # Never bypass nix
 if [[ -n "$LOJBANIOS_BYPASS_NIX" ]]; then
     echo "--> Runing: $COMMAND"
     $COMMAND
