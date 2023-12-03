@@ -17,8 +17,8 @@ library
   hs-source-dirs:   src
   exposed-modules:  Language.Eberban.Parser.Mercury
                     Language.Eberban.Parser.Mercury.Samples
-  other-modules:    Language.Eberban.Parser.Mercury.DataTypes
-                    Language.Eberban.Parser.Mercury.Internals
+                    Language.Eberban.Parser.Mercury.DataTypes
+  other-modules:    Language.Eberban.Parser.Mercury.Internals
   build-depends:    base > 3 && < 5, papillon
   ghc-options:      -Wall -Wno-unused-pattern-binds -Wno-unused-matches -Wno-partial-type-signatures -Wno-name-shadowing
 
