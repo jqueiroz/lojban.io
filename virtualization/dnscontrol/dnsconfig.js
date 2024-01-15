@@ -3,8 +3,8 @@ var provider = NewDnsProvider("cloudflare");
 
 D("lojban.io", registrar, DnsProvider(provider),
     // General
-    A   ("@"        , "40.87.15.42", CF_PROXY_OFF),
-    A   ("www"      , "40.87.15.42", CF_PROXY_OFF),
+    A   ("@"        , "40.90.251.221", CF_PROXY_OFF),
+    A   ("www"      , "40.90.251.221", CF_PROXY_OFF),
 
     // DNS
     NS  ("wiki", "ns.uakci.pl."),
