@@ -124,8 +124,14 @@ retrieveStructuredBridi (ZG.BRIVLA brivla) = Right $ (ZG.BRIVLA brivla, [], [])
 retrieveStructuredBridi (ZG.GOhA brivla) = Right $ (ZG.GOhA brivla, [], [])
 -- se prami / se go'i
 retrieveStructuredBridi (ZG.Prefix x y) = Right $ (ZG.Prefix x y, [], [])
--- prami do / se prami do (also go'i do / se go'i do)
-retrieveStructuredBridi (ZG.BridiTail selbri (ZG.Terms terms _)) = Right $ (selbri, zip [2..] terms, [])
+-- prami do / se prami do (also go'i do / se go'i do) / cmene lo mlatu gau mi
+retrieveStructuredBridi (ZG.BridiTail selbri (ZG.Terms terms _)) = Right $ (selbri, zip [2..] regularTerms, specialTerms) where
+    regularTerms = filter (not . isSpecialTerm) terms
+    specialTerms = filter isSpecialTerm terms
+    isSpecialTerm term = case term of
+        ZG.Tag x y -> True
+        ZG.TagKU x y -> True
+        _ -> False
 -- gau mi cmene lo mlatu
 retrieveStructuredBridi (ZG.Bridi (ZG.Terms ((ZG.Tag x y):more_terms) terms_terminator) z) = appendExtraTagToStructuredBridi (ZG.Tag x y) <$> retrieveStructuredBridi (ZG.Bridi (ZG.Terms more_terms terms_terminator) z)
 retrieveStructuredBridi (ZG.Bridi (ZG.Terms [] ZG.NT) (ZG.BridiTail x y)) = retrieveStructuredBridi (ZG.BridiTail x y)
