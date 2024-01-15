@@ -14,6 +14,7 @@ module Language.Lojban.Canonicalization.Internals
 , canonicalizeParsedTerm
 , retrieveSimpleBridi
 , extractSimpleBridi
+, retrieveStructuredBridi
 ) where
 
 import Language.Lojban.Core
@@ -123,8 +124,17 @@ retrieveStructuredBridi (ZG.BRIVLA brivla) = Right $ (ZG.BRIVLA brivla, [], [])
 retrieveStructuredBridi (ZG.GOhA brivla) = Right $ (ZG.GOhA brivla, [], [])
 -- se prami / se go'i
 retrieveStructuredBridi (ZG.Prefix x y) = Right $ (ZG.Prefix x y, [], [])
--- prami do / se prami do (also go'i do / se go'i do)
-retrieveStructuredBridi (ZG.BridiTail selbri (ZG.Terms terms _)) = Right $ (selbri, zip [2..] terms, [])
+-- prami do / se prami do (also go'i do / se go'i do) / cmene lo mlatu gau mi
+retrieveStructuredBridi (ZG.BridiTail selbri (ZG.Terms terms _)) = Right $ (selbri, zip [2..] regularTerms, specialTerms) where
+    regularTerms = filter (not . isSpecialTerm) terms
+    specialTerms = filter isSpecialTerm terms
+    isSpecialTerm term = case term of
+        ZG.Tag x y -> True
+        ZG.TagKU x y -> True
+        _ -> False
+-- gau mi cmene lo mlatu
+retrieveStructuredBridi (ZG.Bridi (ZG.Terms ((ZG.Tag x y):more_terms) terms_terminator) z) = appendExtraTagToStructuredBridi (ZG.Tag x y) <$> retrieveStructuredBridi (ZG.Bridi (ZG.Terms more_terms terms_terminator) z)
+retrieveStructuredBridi (ZG.Bridi (ZG.Terms [] ZG.NT) (ZG.BridiTail x y)) = retrieveStructuredBridi (ZG.BridiTail x y)
 ------- with x1
 -- mi prami / mi pu ku ca ku prami
 retrieveStructuredBridi (ZG.Bridi (ZG.Terms terms _) (ZG.Tanru brivlaList)) = constructStructuredBridiFromTerms <$> (ZG.BRIVLA <$> T.unpack <$> retrieveTanruFromBrivlaList brivlaList) <*> (Right $ terms)
@@ -195,7 +205,9 @@ convertStructuredTerm (ZG.Tag (ZG.TTags tagsList) y) = concatET $ extractedTags 
     extractedTags = intersperse (Right $ T.pack " ") $ map extractTag tagsList
     extractTag :: ZG.Tag -> Either String T.Text
     extractTag (ZG.NA x) = Right $ T.pack x
-    extractTag (ZG.BAI x) = Right $ T.pack x
+    extractTag (ZG.BAI x) = Right $ case expandBai x of
+        Just x' -> T.pack $ "fi'o " ++ x' ++ " fe'u"
+        Nothing -> T.pack x
     extractTag x = Left $ "Unrecognized pattern for extractTag: " ++ show x
 convertStructuredTerm (ZG.Rel x y) = concatET [convertStructuredTerm x, Right $ T.pack " ", convertRelative y]
 convertStructuredTerm (ZG.GOhA x) = Right $ T.pack x

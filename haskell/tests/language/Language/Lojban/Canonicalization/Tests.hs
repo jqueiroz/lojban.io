@@ -444,6 +444,11 @@ validateCanonicalization = hspec $ do
             , ("xu do cusku tu'a lo plise", "xu do cusku tu'a lo plise ku")
             , ("do gasnu tu'a lo skami", "do gasnu tu'a lo skami ku")
             ]
+      it "supports BAI" $ do
+        validateSentences
+            [ ("gau mi cmene lo mlatu", "fi'o gasnu fe'u mi cmene lo mlatu ku")
+            , ("cmene lo mlatu gau mi", "fi'o gasnu fe'u mi cmene lo mlatu ku")
+            ]
       it "supports sumtcita" $ do
         -- not followed by arguments; not containing prefix tag
         validateEquivalentSentences
