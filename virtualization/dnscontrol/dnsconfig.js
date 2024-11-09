@@ -7,7 +7,8 @@ D("lojban.io", registrar, DnsProvider(provider),
     A   ("www"      , "40.90.251.221", CF_PROXY_OFF),
 
     // DNS
-    NS  ("wiki", "ns.uakci.pl."),
+    NS  ("wiki", "ns2.uakci.space."),
+    NS  ("wiki", "ns1.uakci.space."),
 
     // Email records
     TXT("zohomail._domainkey", "v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDG6dRlC3PgbyzTRCMRS5Z8+WCKlzlWS3R9Ix7Vgc3jK4ECCrZoc5lWQOGMxp69kC11P52P6vMfmy6GELm79cDdzeSwnD7pBjjBsPzLYhTx1hYcwZCGcUdHeERW1jsjJn5QurAxsGL4RmYOSveKLZIQcQEbcQwoq3NEGF5oy2yUXwIDAQAB"),
