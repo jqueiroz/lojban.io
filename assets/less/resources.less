@@ -1,9 +1,26 @@
 @import "main.less";
 
 .body {
+    .table-of-contents {
+        //display: inline-block;
+        margin-bottom: 3em;
+        margin-right: 4em;
+        vertical-align: top;
+        background-color: #e8e8e8;
+        border-radius: 1em;
+        padding: 1em;
+    }
+
+    .table-of-contents-body {
+        margin-top: 0.5em;
+        columns: 20em;
+    }
+
     .resource-category {
-        display: inline-block;
-        min-width: 11em;
+        //display: inline-block;
+        min-width: 25em;
+        padding-top: 5.8em;
+        margin-top: -5.8em;
         margin-bottom: 3em;
         margin-right: 4em;
         vertical-align: top;
@@ -18,7 +35,19 @@
         font-family: Roboto;
         font-weight: 400;
         font-size: 1.9em;
-        text-align: center;
+        text-align: left;
+    }
+
+    h3 {
+        /* Position */
+        /*margin-top: 1em;*/
+
+        /* Style */
+        color: #444;
+        font-family: Roboto;
+        font-weight: 400;
+        font-size: 1.6em;
+        text-align: left;
     }
 
     ul {
@@ -26,6 +55,29 @@
         font-size: 1.2em;
         list-style-type: square;
     }
+    
+    p {
+        margin-top: 0.5em;
+        font-size: 1.2em;
+    }
+    
+    .listing {
+        margin-top: 0em;
+        margin-bottom: 0em;
+    }
+
+    .sublist {
+        margin-top: 0em;
+        /* for some reason the 1.2em in sublist is larger than 1.2em in upper levels */
+        font-size: inherit; 
+        line-height: inherit;
+    }   
+    
+    .additional-note {
+        font-size: 14px; 
+        line-height: inherit;
+    }
+
 }
 
 /* Mobile */
