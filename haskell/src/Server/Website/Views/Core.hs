@@ -169,7 +169,7 @@ includeLessonScript :: Int -> H.Html
 includeLessonScript lessonNumber = includeInlineScript $ "lessonNumber = \"" `T.append` (T.pack $ show lessonNumber) `T.append` "\";"
 
 -- * Topbar
-data TopbarCategory = TopbarHome | TopbarCourses | TopbarDecks | TopbarResources | TopbarNone deriving (Enum, Eq)
+data TopbarCategory = TopbarHome | TopbarCourses | TopbarDecks | TopbarResources | TopbarFAQ | TopbarNone deriving (Enum, Eq)
 
 displayTopbar :: ServerConfiguration -> Maybe UserIdentity -> TopbarCategory -> H.Html
 displayTopbar serverConfiguration userIdentityMaybe topbarCategory = do
@@ -229,9 +229,10 @@ displayIdentityProviderSignInLink identityProvider = do
 displayTopbarMenu :: TopbarCategory -> H.Html
 displayTopbarMenu topbarCategory = do
     H.ul $ do
+        displayTopbarMenuItem (topbarCategory == TopbarFAQ) "About" "/FAQ/"
+        displayTopbarMenuItem (topbarCategory == TopbarResources) "Resources" "/resources/"
         displayTopbarMenuItem (topbarCategory == TopbarCourses) "Courses" "/courses/"
         displayTopbarMenuItem (topbarCategory == TopbarDecks) "Decks" "/decks/"
-        displayTopbarMenuItem (topbarCategory == TopbarResources) "Resources" "/resources/"
 
 displayTopbarMenuItem :: Bool -> String -> String -> H.Html
 displayTopbarMenuItem selected text url = do
