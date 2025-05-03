@@ -21,6 +21,7 @@ import Server.Website.Views.Courses (displayCoursesHome)
 import Server.Website.Views.Decks (displayDecksHome)
 import Server.Website.Views.Deck (displayDeckHome, displayDeckExercise)
 import Server.Website.Views.Resources (displayResourcesHome)
+import Server.Website.Views.FAQ (displayFAQHome)
 import Server.Website.Views.Login (displayLoginHome)
 import Server.Website.Views.Offline (displayOfflineHome)
 import Server.Website.Views.NotFound (displayNotFoundHome)
@@ -50,6 +51,7 @@ handleRoot serverConfiguration serverResources = do
         , dir "courses" $ handleCourses serverConfiguration userIdentityMaybe
         , dir "decks" $ handleDecks serverConfiguration serverResources userIdentityMaybe
         , dir "resources" $ handleResources serverConfiguration userIdentityMaybe
+        , dir "FAQ" $ handleFAQ serverConfiguration userIdentityMaybe
         , dir "login" $ handleLogin serverConfiguration userIdentityMaybe
         , dir "offline" $ handleOffline serverConfiguration userIdentityMaybe
         , anyPath $ handleNotFound serverConfiguration userIdentityMaybe
@@ -79,6 +81,12 @@ handleDecks serverConfiguration serverResources userIdentityMaybe = msum
 handleResources :: ServerConfiguration -> Maybe UserIdentity -> ServerPart Response
 handleResources serverConfiguration userIdentityMaybe = msum
     [ forceSlash . ok . toResponse $ displayResourcesHome serverConfiguration userIdentityMaybe
+    , anyPath $ handleNotFound serverConfiguration userIdentityMaybe
+    ]
+
+handleFAQ :: ServerConfiguration -> Maybe UserIdentity -> ServerPart Response
+handleFAQ serverConfiguration userIdentityMaybe = msum
+    [ forceSlash . ok . toResponse $ displayFAQHome serverConfiguration userIdentityMaybe
     , anyPath $ handleNotFound serverConfiguration userIdentityMaybe
     ]
 

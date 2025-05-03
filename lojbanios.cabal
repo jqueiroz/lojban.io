@@ -133,6 +133,7 @@ library
                      , Server.Website.Views.Home
                      , Server.Website.Views.Lesson
                      , Server.Website.Views.Resources
+                     , Server.Website.Views.FAQ
                      , Server.Website.Views.Login
                      , Server.Website.Views.Offline
                      , Server.Website.Views.NotFound
