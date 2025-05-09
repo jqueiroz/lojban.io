@@ -394,7 +394,7 @@ displayResources = do
                 H.li $ do
                     H.div $ do
                         H.a "la nu farlu lo plini"
-                            B.! A.href "https://liputenpo.org/pdfs/0031.5kokosila.pdf"
+                            B.! A.href "https://liputenpo.org/toki/nanpa-kokosila/la-nu-farlu-lo-plini/"
                         " by la srasu"
                     H.div "A short story in Lojban featured in lipu tenpo, a Toki Pona magazine."
                 H.li $ do

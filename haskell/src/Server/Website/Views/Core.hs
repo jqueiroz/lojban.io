@@ -247,6 +247,6 @@ displayFooter = do
     H.div B.! A.class_ (H.textValue "footer") $ do
         H.div B.! A.class_ (H.textValue "links") $ do
             --H.a B.! A.href (H.textValue "/about") $ H.toHtml ("About" :: T.Text)
-            H.a B.! A.href (H.textValue "https://github.com/jqueiroz/lojban.io") $ H.toHtml ("About" :: T.Text)
+            --H.a B.! A.href (H.textValue "https://github.com/jqueiroz/lojban.io") $ H.toHtml ("About" :: T.Text)
             H.a B.! A.href (H.textValue "mailto:contact@lojban.io") $ H.toHtml ("Contact" :: T.Text)
             H.a B.! A.href (H.textValue "https://github.com/jqueiroz/lojban.io") $ H.toHtml ("Contribute" :: T.Text)
