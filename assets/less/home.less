@@ -30,7 +30,9 @@
 
 .welcome {
     /* Position */
-    margin-top: 7em;
+    padding-top: 4em;
+    padding-bottom: 4em;
+    background-image: linear-gradient(204.74deg, rgb(144, 84, 255) 0%, rgb(130, 85, 254) 48.63%, rgb(35, 95, 248) 135.27%);   
 
     /* Alignment */
     display: flex;
@@ -58,7 +60,7 @@
         /* Style */
         font-family: Roboto, "Varela Round";
         font-weight: 500;
-        color: #2C2C2C;
+        color: #FFFFFF;
 
         font-weight: 400;
     }
@@ -106,23 +108,28 @@
 
     p, ul {
         font-family: Roboto;
-        color: rgba(0, 0, 0, 0.74);
+        color: rgba(255, 255, 255, 0.84);
+        font-size: 1.1em;
+    }
+
+    .logo {
+        width: 100%;
     }
 
     .buttons {
-        margin-top: 4em;
+        // margin-top: 4em;
     }
 
     .buttons a {
         /* Position */
         display: inline-block;
-        margin-left: 1em;
-        width: 48%;
+        margin-top: 1em;
         padding: 1em 1.5em;
+        width: 100%;
         /* Style */
         font-family: Roboto;
         border-radius: 4px;
-        font-size: 1.1em;
+        font-size: 1.2em;
     }
 
     li a {
@@ -130,31 +137,35 @@
     }
 
     /* TODO: changes on mouse hover */
-    .buttons a:first-child {
-        /* Position */
-        margin-left: 0;
-        /* Border */
-        border-style: none;
-        padding-top: calc(1em + 1px);
-        padding-bottom: calc(1em + 1px);
-        /* Style */
-        &:extend(.background-gradient1);
-        color: #fff;
-    }
-
-    /* TODO: changes on mouse hover */
-    .buttons a:not(:first-child) {
+    .buttons .find-out-more {
         /* Border */
         border-style: solid;
         border-color: #8255FE;
         border-width: 2px;
 
+        /* Background */
+        background-color: #FFFFFF;
+
         /*border-color: linear-gradient(197.12deg, #9054FF 0%, #8255FE 48.63%, #235FF8 135.27%);*/
-        &:extend(.foreground-gradient1-hack);
+        // &:extend(.foreground-gradient1-hack);
+    }
+
+    /* TODO: changes on mouse hover */
+    .buttons .discord-server {
+        /* Border */
+        border-style: solid;
+        border-color: #FFFFFF;
+        border-width: 2px;
+        padding-top: calc(1em + 1px);
+        padding-bottom: calc(1em + 1px);
+        /* Style */
+        &:extend(.background-gradient1);
+        color: #fff;
+
     }
 
     .buttons a:not(:first-child):before {
-        -webkit-text-fill-color: #8255FE;
+        //-webkit-text-fill-color: #8255FE;
     }
 
     .buttons a:before {
@@ -272,7 +283,13 @@
     }
 }
 
-.courses, .decks {
+.news{
+    p {
+        font-size: 1.2em;
+    }
+}
+
+.courses, .decks, .news {
     h2 {
         /* Position */
         margin-bottom: 1.5em;
@@ -325,7 +342,7 @@
             display: block;
 
             /* Decrease top margin */
-            margin-top: -1em;
+            padding-top: -1em;
 
             .buttons {
                 /* Decrease top margin */
