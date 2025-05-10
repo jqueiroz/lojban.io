@@ -35,9 +35,48 @@ displayHome serverConfiguration userIdentityMaybe = do
         H.body $ do
             displayTopbar serverConfiguration userIdentityMaybe TopbarHome
             H.div B.! A.class_ (H.textValue "main") $ do
+                H.div B.! A.class_ (H.textValue "welcome") $ do
+                    displayWelcome3
                 H.div B.! A.class_ (H.textValue "body") $ do
-                    H.div B.! A.class_ (H.textValue "welcome") $ do
-                        displayWelcome2
+                    H.div B.! A.class_ (H.textValue "news") $ do
+                        H.h2 $ H.toHtml ("What's new in Lojban" :: T.Text)
+                        H.ul $ do
+                            H.li $ do
+                                H.p $ do
+                                    H.b "May 10, 2025: "
+                                    H.a "lojban.io"
+                                        B.! A.href "https://lojban.io"
+                                    " gets a new look! Check out "
+                                    H.a "the FAQ page"
+                                        B.! A.href "/FAQ"
+                                    " and "
+                                    H.a "the Resources page"
+                                        B.! A.href "/resources"
+                                    " to see the new, updated content!"
+                            H.li $ do
+                                H.p $ do
+                                    H.b "April 13, 2025: "
+                                    H.a "LCC11"
+                                        B.! A.href "https://conlang.org/language-creation-conference/lcc11/"
+                                    " has concluded! This conference includes a track on loglangs, of which Lojban is a member. You can watch the planery section on loglangs (and hear Lojban being spoken) "
+                                    H.a "here"
+                                        B.! A.href "https://www.youtube.com/watch?v=bZ7ozbMwaKo&t=22699s"
+                                    ". Check out "
+                                    H.a "LCC11's video playlist"
+                                        B.! A.href "https://www.youtube.com/playlist?list=PLOSXnL88bvWsAYkfMNeAr7SZI2_ShOVON"
+                                    " for more!"
+                            H.li $ do
+                                H.p $ do
+                                    H.b "April 1, 2025: "
+                                    H.i "la nu farlu lo plini"
+                                    ", a short story in Lojban, is featured in "
+                                    H.a "lipu tenpo"
+                                        B.! A.href "https://liputenpo.org/"
+                                    ", a magazine in Toki Pona! You can read the story "
+                                    H.a "here"
+                                        B.! A.href "https://liputenpo.org/toki/nanpa-kokosila/la-nu-farlu-lo-plini/"
+                                    "."
+
                     H.div B.! A.class_ (H.textValue "courses") $ do
                         H.h2 $ H.toHtml ("Courses" :: T.Text)
                         H.div B.! A.class_ (H.textValue "carousel") $ do
@@ -74,6 +113,34 @@ displayWelcome2 :: H.Html
 displayWelcome2 = do
     displaySpeak
     displayWhy
+
+displayWelcome3 :: H.Html
+displayWelcome3 = do
+    displayLogo
+    displayBlurb
+
+displayBlurb :: H.Html
+displayBlurb = do
+    H.div B.! A.class_ (H.textValue "speak-lojban") $ do
+        H.h1 $ do
+            H.span B.! A.class_ (H.textValue "speak") $ H.toHtml ("Speak Logically." :: T.Text)
+        H.p $ H.toHtml ("Lojban is a carefully constructed spoken language. It has been built for over 60 years by dozens of workers and hundreds of supporters." :: T.Text)
+        H.p $ H.toHtml ("Lojban's grammar is based on simple rules, and its linguistic features are inspired by predicate logic." :: T.Text)
+        H.div B.! A.class_ (H.textValue "buttons") $ do
+            H.a (H.toHtml ("Find out more" :: T.Text))
+                B.! A.href (H.textValue "/FAQ")
+                B.! A.class_ (H.textValue "find-out-more")
+        H.div B.! A.class_ (H.textValue "buttons") $ do
+            H.a (H.toHtml ("Join the community Discord server" :: T.Text))
+                B.! A.href (H.textValue "https://discord.com/invite/dGP5A6Fpj7")
+                B.! A.class_ (H.textValue "discord-server")
+
+displayLogo :: H.Html
+displayLogo = do
+    H.div B.! A.class_ (H.textValue "speak-lojban") $ do
+        H.img
+            B.! A.src (H.textValue "static/images/blank_logo.png")
+            B.! A.class_ (H.textValue "logo")
 
 -- TODO: url to official lojban website (with "external website" icon)
 displaySpeak :: H.Html
