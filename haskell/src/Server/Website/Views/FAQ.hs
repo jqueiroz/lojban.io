@@ -539,7 +539,9 @@ displayFAQ = do
         H.p $ do
             H.b "In short: "
             "Attitudinals are effectively emojis and tone indicators incorporated into the grammatical part of the language. If you can use emojis and tone indicators, attitudinals are familiar to you."
-
+    H.div B.! A.class_ (H.textValue "buttons") $ do
+        H.a (H.toHtml ("Go to Resources" :: T.Text))
+            B.! A.href (H.textValue "/resources")
 
 
 
