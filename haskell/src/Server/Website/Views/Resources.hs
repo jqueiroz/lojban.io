@@ -45,7 +45,7 @@ displayResources = do
                     H.a "Courses" B.! A.href "#courses"
                     H.ul B.! A.class_ (H.textValue "sublist") $ do
                         H.li $ do H.a "General Information" B.! A.href "#courses-general"
-                        H.li $ do H.a "Invividual Courses" B.! A.href "#courses-individual"
+                        H.li $ do H.a "Individual Courses" B.! A.href "#courses-individual"
                         H.li $ do H.a "Video Lectures" B.! A.href "#courses-video"
             H.ul B.! A.class_ (H.textValue "listing") $ do
                 H.li $ do
@@ -533,7 +533,7 @@ displayResources = do
                         " by la .cogas."
         H.div B.! A.id "works-other" B.! A.class_ (H.textValue "resource-category") $ do
             H.h3 $ H.toHtml ("Other Media" :: T.Text)
-            H.p $ H.toHtml ("Videos, recordings, any Lojban content that is neither text or songs go here." :: T.Text)
+            H.p $ H.toHtml ("Videos, recordings, any Lojban content that is neither text or songs goes here." :: T.Text)
             H.ul $ do
                 H.li $ do
                     H.a "Videos by la lunbe"
