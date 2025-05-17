@@ -143,7 +143,7 @@ displayFAQ = do
         H.p $ do 
             "The grammar may feel unfamiliar at first glance, but its regular, rule-based syntax makes it easier in the long run. Besides, the grammar you'll need to get by in a group chat can be explained in just "
             H.a "a page of A4 paper"
-                B.! A.href "https://cdn.discordapp.com/attachments/1368181996416798791/1368217974686744676/image.png?ex=68176bc9&is=68161a49&hm=3db5c97773dcf2fe194befb3302672704b9923e30a98a0c2e6ef6e58c918ca48&"
+                B.! A.href "/static/images/Primer2.pdf"
             ". Everything else is syntactic sugar. Actually, Lojban grammar is so easy that most Lojbanists find themselves having learned the grammar thoroughly before acquiring a working vocabulary."
 
     H.div B.! A.id "llm" B.! A.class_ (H.textValue "link-hook") $ do
@@ -161,10 +161,10 @@ displayFAQ = do
             H.i "content"
             " of an LLM's response can change drastically depending on how you ask the question. For example, you can get completely "
             H.a "different"
-                B.! A.href "https://cdn.discordapp.com/attachments/771818560162496553/1368006995734429828/GPT_log_1.png?ex=6817500c&is=6815fe8c&hm=f91387cf1b50d41d4849a3aaab355d19925b14e44454fedc1ba7fbb64699462a&"
+                B.! A.href "/static/images/GPT_log_1.png"
             " "
             H.a "answers"
-                B.! A.href "https://cdn.discordapp.com/attachments/771818560162496553/1368006996313509938/GPT_log_2.png?ex=6817500c&is=6815fe8c&hm=f79d5690802ed5370788651dc9e2fa9ade313e51330fb865fac7a6a6b79f5eb4&"
+                B.! A.href "/static/images/GPT_log_2.png"
             " for \"Can I drop the "
             H.code "cu"
             " in "
