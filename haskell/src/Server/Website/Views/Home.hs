@@ -43,6 +43,16 @@ displayHome serverConfiguration userIdentityMaybe = do
                         H.ul $ do
                             H.li $ do
                                 H.p $ do
+                                    H.b "May 18, 2025: "
+                                    "tetsusquared (la .tirprij.) releases "
+                                    H.i $ do
+                                        H.a "pluta bolci"
+                                            B.! A.href "https://www.youtube.com/watch?v=4aDrH3wEUtQ"
+                                    ", a cover of "
+                                    H.i "Route Sphere"
+                                    " (ルートスフィア) by Last Note."
+                            H.li $ do
+                                H.p $ do
                                     H.b "May 10, 2025: "
                                     H.a "lojban.io"
                                         B.! A.href "https://lojban.io"

@@ -444,7 +444,7 @@ displayResources = do
             H.ul $ do
                 H.li $ do
                     H.div $ do
-                        H.a "Covers by la .tirprij."
+                        H.a "Covers by tetsusquared (la .tirprij.)"
                             B.! A.href "https://www.youtube.com/playlist?list=PLPL5rPlw-AHvMtol3V0G8S9wmUdsMjIp9"
                     H.div "Vocaloid song covers in Lojban. Over 20 songs and counting."
                 H.li $ do
