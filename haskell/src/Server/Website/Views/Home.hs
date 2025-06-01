@@ -43,6 +43,13 @@ displayHome serverConfiguration userIdentityMaybe = do
                         H.ul $ do
                             H.li $ do
                                 H.p $ do
+                                    H.b "June 1, 2025: "
+                                    "la nalvai releases "
+                                    H.a "a translation of The Egg, a short story by Andy Weir"
+                                        B.! A.href "https://nalvai.neocities.org/translations/the-egg/"
+                                    "."
+                            H.li $ do
+                                H.p $ do
                                     H.b "May 18, 2025: "
                                     "tetsusquared (la .tirprij.) releases "
                                     H.i $ do
