@@ -898,6 +898,18 @@ nelci:
       translated_sentences:
         - I like you a lot.
 
+    # from tatoeba sentences
+    - lojban_sentences:
+        - mi nelci lo bangu be mi
+      translated_sentences:
+        - I like my language.
+
+    # from tatoeba sentences
+    - lojban_sentences:
+        - mi nelci lo nu cilre fi lo bangu
+      translated_sentences:
+        - I like learning languages.
+
     # from <la alis> translation by xorxes
     - lojban_sentences:
         - ko te cmene fi lo do se nelci
