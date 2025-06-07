@@ -43,6 +43,18 @@ displayHome serverConfiguration userIdentityMaybe = do
                         H.ul $ do
                             H.li $ do
                                 H.p $ do
+                                    H.b "June 7, 2025: "
+                                    "la nalvai publishes "
+                                    H.a "NALVAI"
+                                        B.! A.href "https://nalvai.github.io/"
+                                    ", a dictionary project that incorporates "
+                                    H.i "real-world quotations"
+                                    " as usage examples. Click "
+                                    H.a "here"
+                                        B.! A.href "https://github.com/nalvai/nalvai.github.io?tab=readme-ov-file#nalvai-nalvais-assemblage-of-lojban-vocabulary-attestation-instances"
+                                    " to learn more about the project!"
+                            H.li $ do
+                                H.p $ do
                                     H.b "June 1, 2025: "
                                     "la nalvai releases "
                                     H.a "a translation of The Egg, a short story by Andy Weir"
