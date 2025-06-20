@@ -218,7 +218,7 @@ cliva:
     - lojban_sentences:
         - .i lo jitro be lo te lanme ba'o cliva lo ra cmana
       translated_sentences:
-        - The shepherd of the flock has already left its hill.
+        - The shepherd of the flock has already left his hill.
 
     # from <la melbi e le ractu> by lalxu
     - lojban_sentences:
@@ -324,6 +324,12 @@ drata:
         - .i xe'o mi na kakne lo ka ciksi lo ca se cinmo be mi bau lo drata be le ma'a melbau
       translated_sentences:
         - I simply cannot explain my current feeling now with something other than our beautiful language. 
+
+    # from <la ckuzda pe la babel> translation by xorxes
+    - lojban_sentences:
+        - .i lo drata cu pensi lo te mifri
+      translated_sentences:
+        - Others are thinking about codes.
 
 
 
@@ -703,6 +709,17 @@ kakne:
       translated_sentences:
         - Thanks, I can read it without help.
 
+    # from roljbogu'e chatlog
+    - lojban_sentences:
+        - .i lo skami cu kakne lo nu skicu lo gerna stura
+      translated_sentences:
+        - A computer can describe the grammatical structure.
+
+    # adapted from roljbogu'e chatlog
+    - lojban_sentences:
+        - .i mi na tcidu lo se fanva gi'e mulno co kakne lo su'u jimpe fi lo xe fanva be fu do
+      translated_sentences:
+        - I didn't read the original, and I can understand your translation completely.
 
 
 
@@ -805,11 +822,11 @@ klaku:
       translated_sentences:
         - A spring no longer cold and crying tears for you, my beloved, and me.
 
-    # from roljbogu'e chatlog
+    # adapted from roljbogu'e chatlog
     - lojban_sentences:
-        - .i mi sanga le zgike gi'e culno cinmo gi'e cu troci lo ka rivbi co klaku lo kurki je ranxi
+        - .i mi sanga le zgike gi'e culno cinmo gi'e troci lo ka rivbi co klaku lo kurki je ranxi
       translated_sentences:
-        - I sang the music and became full of emotion andd tried to hold back the bitter and ironic tears.
+        - I sang the music and became full of emotion and tried to hold back the bitter and ironic tears.
 
 
 
@@ -1263,6 +1280,12 @@ valsi:
       translated_sentences:
         - Does what I'm feeling even have a word for?
 
+    # from roljbogu'e chatlog
+    - lojban_sentences:
+        - .i no slabu be mi cu valsi lo si'o me la'e zoi gy. pie .gy
+      translated_sentences:
+        - There's no word I know of that means "pie" in English.
+
 
 
 
@@ -1390,6 +1413,12 @@ zvati:
         - .i xu le zdani pe le do mamta cu se zvati do ca'o
       translated_sentences:
         - Are you currently at your mother's house?
+
+    # from tatoeba sentence for {mlatu}
+    - lojban_sentences:
+        - doi le mamta ma se zvati le mlatu
+      translated_sentences:
+        - Mom, where's the cat?
 
 
 
