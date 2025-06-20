@@ -458,6 +458,12 @@ rinka:
       translated_sentences:
         - Practice makes perfect.
 
+    # moved from tatoeba sentence of {gasnu}
+    - lojban_sentences:
+        - xu do djuno lo du'u ma rinka lo nabmi
+      translated_sentences:
+        - Do you know what's causing the problem?
+
 
 
 # Total sentences: 8

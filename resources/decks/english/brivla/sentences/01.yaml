@@ -303,6 +303,18 @@ cusku:
         - mi djica lo nu cusku lo se du'u mi mutce nelci le kibyse'u
       translated_sentences:
         - I wanted to say that I really like this server.
+        
+    # from <jbini canlu> by janbe 
+    - lojban_sentences:
+        - .i zgadi fa lo nu cusku fi do fe lo du'u lo xrani mi na cnino
+      translated_sentences:
+        - I really should tell you that the world's dangers are nothing new to me.
+
+    # from tatoeba sentences for {pendo}
+    - lojban_sentences:
+        - mi cusku lu coi pendo li'u
+      translated_sentences:
+        - I say "Hi, friend.".
 
 
 # I didn't find usage of {djica}'s x3
@@ -404,6 +416,12 @@ djica:
         - .i xu do djica co zgana lo mi zi larcu
       translated_sentences:
         - Do you want to see my recent art?
+
+    # from <la nicte cadzu> by robin # {ba'o} follows CLL interpretation - nalvai
+    - lojban_sentences:
+        - .i sy djica lo nu jimpe lo se pensi je se djica ba'o lo nu pilno
+      translated_sentences:
+        - She wanted to understand what was being thought of and wanted after using it.
 
 
 # Total sentences: 270
@@ -567,6 +585,12 @@ gleki:
       translated_sentences:
         - Be happy about the new year!
 
+    # from <le cmalu noltru> translation by xorxes
+    - lojban_sentences:
+        - .i lo makcu prenu cu mutce gleki lo nu se slabu lo nanmu poi tai racli
+      translated_sentences:
+        - And the grown-up would be greatly pleased to have known such a sensible man.
+
 
 # Total sentences: 81
 jimpe:
@@ -641,6 +665,12 @@ jimpe:
         - .i do terpa lo nu mi jai gau xrani do se pi'o lo se jimpe be mi
       translated_sentences:
         - You fear that I'll cause harm to you with my understandings.
+
+    # from <la nicte cadzu> by robin # {ba'o} follows CLL interpretation - nalvai
+    - lojban_sentences:
+        - .i sy djica lo nu jimpe lo se pensi je se djica ba'o lo nu pilno
+      translated_sentences:
+        - She wanted to understand what was being thought of and wanted after using it.
 
 
 # Total sentences: 489
@@ -871,6 +901,18 @@ mutce:
       translated_sentences:
         - I wanted to say that I really like this server.
 
+    # from <le cmalu noltru> translation by xorxes
+    - lojban_sentences:
+        - .i lo makcu prenu cu mutce gleki lo nu se slabu lo nanmu poi tai racli
+      translated_sentences:
+        - And the grown-up would be greatly pleased to have known such a sensible man.
+
+    # from roljbogu'e chatlog
+    - lojban_sentences:
+        - .i xe'o mi mutce lo ka se slabu
+      translated_sentences:
+        - I'm just so familiar with it.
+
 
 # Total sentences: 327
 nelci:
@@ -957,6 +999,12 @@ nelci:
         - mi djica lo nu cusku lo se du'u mi mutce nelci le kibyse'u
       translated_sentences:
         - I wanted to say that I really like this server.
+
+    # from <la alis> translation by xorxes
+    - lojban_sentences:
+        - .i pe'i do co'a nelci lo mlatu va'o lo nu da'i do dy. viska
+      translated_sentences:
+        - I think you'd take a fancy to cats if you could only see her (Dinah the cat). 
 
 
 # Total sentences: 61
@@ -1069,6 +1117,12 @@ pilno:
       translated_sentences:
         - The two were using it as a cushion.
 
+    # from <le me'oi egids gradu> translation by nalvai
+    - lojban_sentences:
+        - .i le bangu cu se pilno su'o so'o da va'o tu'a lo zdani lo fadni je voksa nu casnu
+      translated_sentences:
+        - The language is used for daily oral communication in the home domain by at least some.
+
 
 # Total sentences: 225
 prenu:
@@ -1136,7 +1190,7 @@ prenu:
     - lojban_sentences:
         - .i ko pensi ro lo se cilre be se va'u lo prenu poi jmive za'o
       translated_sentences:
-        - Think of all the things we learned for the people who are still alive
+        - Think of all the things [we] learned for the people who are still alive
 
     # from <jmive za'o> translation by solpahi
     - lojban_sentences:
@@ -1386,6 +1440,12 @@ xamgu:
         - .ie la serlaxi cu xamgu ro prenu
       translated_sentences:
         - Yeah, Shark is good for everyone.
+
+    # from roljbogu'e chatlog 
+    - lojban_sentences:
+        - xamgu fi lo nu drani lo ka lo slaka cu rilti
+      translated_sentences:
+        - It's good in the sense that its syllables make a rhythm properly.
 
 
 # Total sentences: 47
