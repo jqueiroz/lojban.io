@@ -1006,9 +1006,9 @@ simsa:
       translated_sentences:
         - Because one day, you'll become like me.
 
-    # from roljbogu'e chatlog
+    # adapted from roljbogu'e chatlog
     - lojban_sentences:
-        - .i ki'u by. simsa mi lo ka na certu lo nu tavla fo lo jugbau
+        - .i ki'u bo by. simsa mi lo ka na certu lo nu tavla fo lo jugbau
       translated_sentences:
         - Because he is like me in that he isn't proficient in speaking Chinese.
 
