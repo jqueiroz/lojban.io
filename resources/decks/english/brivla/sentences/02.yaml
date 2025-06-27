@@ -55,6 +55,12 @@ bangu:
       translated_sentences:
         - This page is always in English.
 
+    # from roljbogu'e chatlog
+    - lojban_sentences:
+        - mi na se bangu la .kalalisut. i ku'i mi pu su'o va'e lo ka tadni lo ky. gerna
+      translated_sentences:
+        - I don't speak Kalaallisut, but I've studied its grammar to some extent.
+
 
 
 # Total sentences: 32
@@ -1197,6 +1203,12 @@ tcidu:
       translated_sentences:
         - These were the verses read by the White Rabbit.
 
+    # from <la alis> translation by xorxes
+    - lojban_sentences:
+        - .i mi pu tcidu di'u lo cukta .i ku'i mi na morji lo du'u cy. mo kau
+      translated_sentences:
+        - I've read that in some book, but I don't remember where.
+
 
 
 
@@ -1214,9 +1226,9 @@ valsi:
       translated_sentences:
         - That word is very hard to translate.
 
-    # Sentence complexity: 2.490 # ti being at x_3 would be better - nalvai
+    # Sentence complexity: 2.490 # moved {ti} to x3 - nalvai
     - lojban_sentences:
-        - ko morji ti poi valsi
+        - ko morji fi ti poi valsi
       translated_sentences:
         - Commit these words to memory.
 

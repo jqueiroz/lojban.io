@@ -48,6 +48,54 @@ tsali:
       translated_sentences:
         - Everyone has strengths and weaknesses.
 
+    # from <la lisri be lo nanla joi lo cipnrfalko> by tsani
+    - lojban_sentences:
+        - .i lo'e cipnrfalko cu na'e ke prami ke danlu pendo gi'e tsali joi kusru
+      translated_sentences:
+        - Falcons aren't loving pets, but strong and cruel [animals].
+
+    # from jbobratca chatlog
+    - lojban_sentences:
+        - zo ko'ai tsali tu'a lo ce'u zei ricfu .astrato
+      translated_sentences:
+        - "\"ko'ai\" is strong for abstractions with many \"ce'u\"."
+
+    # from jbobratca chatlog
+    - lojban_sentences:
+        - lo uenzi be ki ku tsali sai lo ka jai rinka lo nu badri
+      translated_sentences:
+        - The text is so strong in making [me] sad.
+
+    # from jbobratca chatlog
+    - lojban_sentences:
+        - xu tsali lo ka te sluji fi lo vlipa
+      translated_sentences:
+        - Strong as in having powerful muscles?
+
+    # from roljbogu'e chatlog # I think the x2 use is a bit dubious but it has x3 - nalvai
+    - lojban_sentences:
+        - .i tsali lo ka gradu kei lo sarcu be lo nu jdenoi fi lo tsunami
+      translated_sentences:
+        - It's so strong in magnitude that it met the threshold for tsumani alerts.
+
+    # from <junla zbasu> translation by xorxes
+    - lojban_sentences:
+        - .i lo tcaci datni be lo solri cu co'a jdika lo ka tsali 
+      translated_sentences:
+        - The tradition of a sun had begun to decrease in strength.
+
+    # from <junla zbasu> translation by xorxes
+    - lojban_sentences:
+        - .i ku'i no da prali fi lo nu do tsali je certu
+      translated_sentences:
+        - Vain are your strength and cunning!
+
+    # from <lo se manci te makfa pe la oz> translation by solpahi
+    - lojban_sentences:
+        - .i lo xrula pu dukse lo ka tsali kei tu'a lo barda mutce danlu 
+      translated_sentences:
+        - The flowers had been too strong for the huge beast.
+
 
 
 # Total sentences: 190
@@ -106,6 +154,65 @@ viska:
       translated_sentences:
         - I want to see them all.
 
+    # from <la alis> translation by xorxes
+    - lojban_sentences:
+        - .i pe'i do co'a nelci lo mlatu va'o lo nu da'i do dy. viska
+      translated_sentences:
+        - I think you'd take a fancy to cats if you could only see her (Dinah the cat). 
+
+    # from <la melbi e le ractu> by lalxu
+    - lojban_sentences:
+        - .i catlu ro da gi'e ku'i viska no ka'e se citka
+      translated_sentences:
+        - They looked everywhere, but didn't see anything they could eat.
+
+    # from <tcila co tumla> by evar usar
+    - lojban_sentences:
+        - .i lo se viska cu se finti ta'i lo nu cunso zbasu
+      translated_sentences:
+        - What [you] see [now] is created by random generation.
+
+    # from <lo nu binxo> translation by xorxes
+    - lojban_sentences:
+        - .i gy. viska fi lo kunti bitmu fe lo pixra be lo ninmu poi se taxfu lo skapi
+      translated_sentences:
+        - He saw on the empty wall the picture of the lady dressed in fur. 
+
+    # from <le cmalu noltru> translation by xorxes
+    - lojban_sentences:
+        - mu no pa ki'o ki'o cmalu dacti poi su'o roi se viska fi lo tsani
+      translated_sentences:
+        - Five-hundred-and-one million of those little objects which one sometimes sees in the sky.
+
+    # from <lo cmalu> by solpahi
+    - lojban_sentences:
+        - .i lo pa moi be lo viska be la cmalu cu verba gi'e se cmene zo drakuci
+      translated_sentences:
+        - The first [person] to see Cmalu is a child named Drakuci.
+
+    # from <le saske smani> translation by xorxes
+    - lojban_sentences:
+        - .i le prije cu tcila ciksi lo se viska be bu'u lo skeku'a
+      translated_sentences:
+        - The doctor explained at great length what [he] had seen in the laboratory.
+
+    # from roljbogu'e chatlog
+    - lojban_sentences:
+        - .i ko se viska doi xekce monsuta
+      translated_sentences:
+        - Make yourself visible, Xekce Monster!
+
+    # from roljbogu'e chatlog
+    - lojban_sentences:
+        - .i je pe'i lo se viska be mi cu zabna
+      translated_sentences:
+        - ..., and I think what I saw is great.
+
+    # from <le cmalu noltru> translation by xorxes
+    - lojban_sentences:
+        - .i lo vajni na se viska 
+      translated_sentences:
+        - The thing that is important is the thing that is not seen.
 
 
 # Total sentences: 94
@@ -122,9 +229,9 @@ jinvi:
       translated_sentences:
         - I thought they wouldn't come.
 
-    # Sentence complexity: 1.442
+    # Sentence complexity: 1.442 # adjusted the sentence, {nai} cannot just be after a selbri - nalvai
     - lojban_sentences:
-        - mi pu jinvi lonu do djica nai lo ka klama
+        - mi pu jinvi lonu do na djica lo ka klama
       translated_sentences:
         - I thought you didn't want to come.
 
@@ -163,6 +270,72 @@ jinvi:
         - mi jinvi lo du'u le se cukta cu mutce cinri
       translated_sentences:
         - I found this book very interesting.
+
+    # from <lo nu binxo> translation by xorxes, x1 x2 x3
+    - lojban_sentences:
+        - .i gy co'a lo pa moi djedi pe lo cnino nu jmive cu djuno lo du'u lo patfu cu jinvi fi gy. fe lo du'u mapti fa lo po'o traji jursa
+      translated_sentences:
+        - He knew full well, right from the first day of his new life, that his father thought it fitting to always be extremely strict with him. 
+
+    # from <le cmalu noltru> translation by xorxes, x1 x2 x4
+    - lojban_sentences:
+        - mi jinvi fo lo se junri fe lo du'u lo plini poi terdi lo cmalu noltru cu me lo plinycma po'u li B612
+      translated_sentences:
+        - I have serious reason to believe that the planet from which the little prince came is the asteroid known as B-612.
+
+    # from <catni lojbo> by uakci, x2 x3
+    - lojban_sentences:
+        - vajni lo nabmi fa lo za'i lo se jinvi be fi lo du'u ma kau jbobau ku ku frica simxu
+      translated_sentences:
+        - The relevant part of this problem is the difference of opinions on what is considered a Lojban.
+
+    # from <lo se manci te makfa pe la oz> translation by solpahi, x2
+    - lojban_sentences:
+        - ju'o lo du'u ma kau se jinvi cu manri
+      translated_sentences:
+        - That must be a matter of opinion.
+
+    # adapted from <la alis> translation by xorxes, x2 # raised the x2 - nalvai
+    - lojban_sentences:
+        - no da cpedu tu'a lo ba'e do se jinvi
+      translated_sentences:
+        - Nobody asked "your" opinion.
+
+    # adapted from <junla zbasu> translation by xorxes, x2 # {se rai} for {rai} - nalvai
+    - lojban_sentences:
+        - lo di'u se jinvi se rai lo ka vlile cu se cusku lo cabna te pemci
+      translated_sentences:
+        - Such opinions found a more violent expression in the mouths of contemporary poets.
+
+    # from <le cmalu noltru> translation by xorxes, x4 # place structure for {ca'icpe} differs from that of JVS. I'll take the usage as correct - nalvai
+    - lojban_sentences:
+        - .i ku'i da ca'icpe fi lo tumfakli'u lo nu ty. dunda lo ve jinvi
+      translated_sentences:
+        - But one requires the explorer to furnish proofs. 
+
+    # from <le cmalu noltru> translation by xorxes, x4 
+    - lojban_sentences:
+        - .i da denpa lo nu lo tumfakli'u cu dunda lo ve jinvi kei fo lo nu xinmo ciska
+      translated_sentences:
+        - One waits until the explorer has furnished proofs, before putting them down in ink.
+
+    # adapted from roljbogu'e chatlog, x2 x3
+    - lojban_sentences:
+        - .i lo si'o xekce cu srana lo fadni se jinvi be fi lo'e jbopli
+      translated_sentences:
+        - The concept of "xekce" is releted to a common perception of Lojban users.
+
+    # adapted from roljbogu'e chatlog, x1 x2
+    - lojban_sentences:
+        - .i ku'i .e'u ko xusra lo se jinvi be do be'o pera'a le bangu .e nai lo pilno tadji pe lo datpre
+      translated_sentences:
+        - But you should assert your opinions about the language and not the usages of other people.
+
+    # from roljbogu'e chatlog, x4
+    - lojban_sentences:
+        - le ti pixra pe le kibypapri pe la zbalermorna cu ve jinvi
+      translated_sentences:
+        - This picture from the webpage of zbalermorna is the basis of [my] opinion.
 
 
 
@@ -222,6 +395,66 @@ tadni:
       translated_sentences:
         - I am a new student.
 
+    # from <lo nu binxo> translation by xorxes
+    - lojban_sentences:
+        - .i gy. surla tcidu lo karni gi'a tadni lo trene tcika
+      translated_sentences:
+        - He just reads the paper or studies train timetables.
+
+    # from <nicte cadzu> by robin
+    - lojban_sentences:
+        - .i mi bilga lo nu tadni so'o xe ctuca poi na srana lo ralju se tadni be mi
+      translated_sentences:
+        - I have to study several teaching methods that aren't related to my main subject area of study.
+
+    # from roljbogu'e chatlog
+    - lojban_sentences:
+        - ki'e mi'e tadni be la tokpona
+      translated_sentences:
+        - As a student of Toki Pona, thank you!
+
+    # from roljbogu'e chatlog
+    - lojban_sentences:
+        - .ijeku'i lo tadni be sa'u lo pu'u kelci pogyfinti cu se ctuca fi lo mintu
+      translated_sentences:
+        - ... and, however, a student of just game programming is taught the same thing.
+
+    # from roljbogu'e chatlog
+    - lojban_sentences:
+        - .i ca le cerni be lo cabdei mi tadni lo cmaci be lonu binxo
+      translated_sentences:
+        - This morning I studied mathematics of becoming.
+
+    # from roljbogu'e chatlog
+    - lojban_sentences:
+        - .i lo crecipra cu srana ma poi se tadni 
+      translated_sentences:
+        - What subject is the exam about?
+
+    # from roljbogu'e chatlog
+    - lojban_sentences:
+        - mi na se bangu la .kalalisut. i ku'i mi pu su'o va'e lo ka tadni lo ky. gerna
+      translated_sentences:
+        - I don't speak Kalaallisut, but I've studied its grammar to some extent.
+
+    # from roljbogu'e chatlog
+    - lojban_sentences:
+        - .i lo nu mi ve balcu'e zo'u mi tadni lo si'o kelproga finti
+      translated_sentences:
+        - When I was a university student, I studied video game development.
+
+    # from roljbogu'e chatlog
+    - lojban_sentences:
+        - .i ta'onai mi fengu fi lonu mi bai tadni lo palci pe'i
+      translated_sentences:
+        - Anyway, I'm angry that I'm forced to study the (what I think is) evil.
+
+    # from roljbogu'e chatlog
+    - lojban_sentences:
+        - .i mi milxe lo ka jugbau tadni
+      translated_sentences:
+        - I studied Chinese a bit.
+
 
 
 # Total sentences: 71
@@ -250,11 +483,11 @@ ponse:
       translated_sentences:
         - I own all the books.
 
-    # Sentence complexity: 3.864
-    - lojban_sentences:
-        - ma cukta poi do ponse
-      translated_sentences:
-        - Which is your book?
+    # Sentence complexity: 3.864 - This sentence is ungrammatical - nalvai
+    #- lojban_sentences:
+        #- ma cukta poi do ponse
+      #translated_sentences:
+        #- Which is your book?
 
     # Sentence complexity: 3.996
     - lojban_sentences:
@@ -286,6 +519,67 @@ ponse:
       translated_sentences:
         - That house belongs to me.
 
+    # adapted from roljbogu'e chatlog
+    - lojban_sentences:
+        - su'o da kelci se cau le ka ponse le selkei .e le skami be ri
+      translated_sentences:
+        - Several people [can] play without having the game and the computer for it.
+
+    # from <tcila co tumla> by evar usar
+    - lojban_sentences:
+        - .i drata fuzme fa lo remna jo'u lo lanme poi ry. ponse ke'a
+      translated_sentences:
+        - With the other [major] culprit being humans and their sheep.
+
+    # from <snime blabi> translation by solpahi
+    - lojban_sentences:
+        - .i ny. ponse lo se manci minra
+      translated_sentences:
+        - She possesses a marvelous mirror.
+
+    # from <la ckuzda pe la babel> translation by xorxes
+    - lojban_sentences:
+        - .i ro remna cu cinmo lo ka ponse lo curve je se mipri selcfu 
+      translated_sentences:
+        - All men felt themselves the possessors of an intact and secret treasure.
+
+    # from <tu'a loi cmalu> translation by Jordan DeLong
+    - lojban_sentences:
+        - .i ko'e djica lenu ponse ko'i goi le vi cifnu
+      translated_sentences:
+        - She would have it, this baby.
+
+    # from <le junla zbasu> translation by xorxes
+    - lojban_sentences:
+        - .i ro cinmo danlu pe lo botpi cu bredi lo nu dunda ro lo se ponse te zu'e lo nu selfu lo junla zbasu
+      translated_sentences:
+        - ..., and there was no sentient creature of the bottle who would not have sacrificed all that he possessed to do the Clockmaker a service.
+
+    # from <le saske smani> translation by xorxes
+    - lojban_sentences:
+        - .i ku'i lo remna cu mutce tsali gi'e ponse lo cecla xarci
+      translated_sentences:
+        - But men are so strong, and then they have these guns.
+
+    # adapted from <lo se manci te makfa pe la oz> translation by solpahi
+    - lojban_sentences:
+        - ri pa moi lo ponse be lo solji mapku
+      translated_sentences:
+        - He is the first owner of the Golden Cap.
+
+    # from <lo se manci te makfa pe la oz> translation by solpahi
+    - lojban_sentences:
+        - .i ki'u bo lo vi badydi'u .e la ri'ojme tcadu mi'o se ponse
+      translated_sentences:
+        - ..., for this Palace and the Emerald City belong to us.
+
+    # from jbobratca chatlog
+    - lojban_sentences:
+        - .i si'au ja'a ponse pe'anai fi so'i flalu ciste
+      translated_sentences:
+        - It feels like [you] literally "own" them according to many legal systems.
+
+
 
 
 # Total sentences: 41
@@ -314,17 +608,17 @@ bebna:
       translated_sentences:
         - Don't be silly.
 
-    # Sentence complexity: 1.869
-    - lojban_sentences:
-        - do bebna
-      translated_sentences:
-        - You are stupid.
+    # Sentence complexity: 1.869 # too unillustrative - nalvai
+    #- lojban_sentences:
+        #- do bebna
+      #translated_sentences:
+        #- You are stupid.
 
-    # Sentence complexity: 2.627
-    - lojban_sentences:
-        - bebna
-      translated_sentences:
-        - It's stupid.
+    # Sentence complexity: 2.627 # too unillustrative - nalvai
+    #- lojban_sentences:
+        #- bebna
+      #translated_sentences:
+        #- It's stupid.
 
     # Sentence complexity: 1.888
     - lojban_sentences:
@@ -350,6 +644,56 @@ bebna:
       translated_sentences:
         - She is far from a fool.
 
+    # from <sorxaizu'e sei catlu> translation by uakci
+    - lojban_sentences:
+        - .i le du'u xu kau bebna lo ka nerkla cu ba se facki ca le nu bevri fi le bartu
+      translated_sentences:
+        - Was [she] that dumb, did [she] go in or not, we'll see when they carry them out.
+
+    # from roljbogu'e chatlog
+    - lojban_sentences:
+        - .i .o'u no simsa se bebna pu fasnu
+      translated_sentences:
+        - No similar follies happened. Phew!
+
+    # from roljbogu'e chatlog
+    - lojban_sentences:
+        - .i lo'e certu se besna cu gasnu so'u se bebna
+      translated_sentences:
+        - Those with expert brains make few foolish acts.
+
+    # from roljbogu'e chatlog
+    - lojban_sentences:
+        - .i lo ka jai se bebna cu jai ralju
+      translated_sentences:
+        - Engaging in follies is the main thing [here].
+
+    # from <sruri fa lo tarci> by janbe
+    - lojban_sentences:
+        - .i mi bebna lo ka selpamju'o
+      translated_sentences:
+        - I'm a fool for [not] knowing what being loved felt like
+
+    # from <le cmalu noltru> translation by xorxes
+    - lojban_sentences:
+        - .i ku'i do mi dunli lo ka bebna 
+      translated_sentences:
+        - But you have been just as foolish as I.
+
+    # from <lo jgita jo'u lo ka sepli jo'u le blanu plini> translation by tirprij
+    - lojban_sentences:
+        - .i ku'i mi noi bebna cu po'o sanga
+      translated_sentences:
+        - Like the fool that I am, I merely sing.
+
+    # from <na fengu> by solpahi
+    - lojban_sentences:
+        - .i ko co'a xenru doi bebna
+      translated_sentences:
+        - Start feeling some remorse, idiot.
+
+
+
 
 
 # Total sentences: 51
@@ -360,9 +704,9 @@ pluka:
       translated_sentences:
         - Would that please you?
 
-    # Sentence complexity: 1.449
+    # Sentence complexity: 1.449 # removed the unneeded {kei} - nalvai
     - lojban_sentences:
-        - lo nu citka kei cu pluka mi
+        - lo nu citka cu pluka mi
       translated_sentences:
         - Eating pleases me.
 
@@ -372,11 +716,11 @@ pluka:
       translated_sentences:
         - I am very pleased.
 
-    # Sentence complexity: 1.864
-    - lojban_sentences:
-        - ko'a ba se pluka xu
-      translated_sentences:
-        - Will that please him?
+    # Sentence complexity: 1.864 # too unillustrative - nalvai
+    #- lojban_sentences:
+        #- ko'a ba se pluka xu
+      #translated_sentences:
+        #- Will that please him?
 
     # Sentence complexity: 1.896
     - lojban_sentences:
@@ -384,9 +728,9 @@ pluka:
       translated_sentences:
         - I am pleased to see you.
 
-    # Sentence complexity: 2.295
+    # Sentence complexity: 2.295 # removed the unneeded {cu} - nalvai
     - lojban_sentences:
-        - ti cu pluka mi
+        - ti pluka mi
       translated_sentences:
         - This pleases me.
 
@@ -396,11 +740,73 @@ pluka:
       translated_sentences:
         - I think that this will please you.
 
-    # Sentence complexity: 2.627
+    # Sentence complexity: 2.627 # too unillustrative - nalvai
+    #- lojban_sentences:
+        #- pluka
+      #translated_sentences:
+        #- It's pleasant.
+
+    # from <koi do mi na> by solpahi
     - lojban_sentences:
-        - pluka
+        - .i mutce lo ka pluka mi
       translated_sentences:
-        - It's pleasant.
+        - It pleased me very much.
+
+    # from <junla zbasu> translation by xorxes
+    - lojban_sentences:
+        - .i lo tarci saske cu traji lo ka pluka
+      translated_sentences:
+        - Their chief delight was in astronomy.
+
+    # from <le cmalu noltru> translation by xorxes
+    - lojban_sentences:
+        - .i ka'e batci mu'i lo nu pluka
+      translated_sentences:
+        - This one might bite you just for fun.
+
+    # from <le cmalu noltru> translation by xorxes
+    - lojban_sentences:
+        - .i va'o lo nu do prami lo xrula poi zvati lo tarci cu pluka fa lo nu catlu lo tsani ca lo nicte
+      translated_sentences:
+        - If you love a flower that lives on a star, it is pleasing to look at the sky at night. 
+
+    # from <le cmalu noltru> translation by xorxes
+    - lojban_sentences:
+        - .i ty va'o ro nu jicycma lo samcu a lo rozgu cu catke e'a tai lo pluka be ty
+      translated_sentences:
+        - If it is only a sprout of radish or the sprig of a rose-bush, one would let it push [the sprig] however it might wish.
+
+    # from <lo nu binxo> translation by xorxes
+    - lojban_sentences:
+        - .i gy se pluka lo nu dunda 
+      translated_sentences:
+        - ..., and he was glad to provide it.
+
+    # from <lo nu binxo> translation by xorxes
+    - lojban_sentences:
+        - .i ki'u bo li'a la gregor na te mukti lo nu gy sepli kei lo pluka
+      translated_sentences:
+        - ..., as it was clear enough that it was no pleasure for Gregor to cut himself off [so completely].
+
+    # from <lo se manci te makfa pe la oz> translation by solpahi
+    - lojban_sentences:
+        - .i lo vi gugde cu ricfu gi'e pluka
+      translated_sentences:
+        - The country here is rich and pleasant.
+
+    # from roljbogu'e chatlog
+    - lojban_sentences:
+        - coi fi'i .i mi pacna lonu do se pluka
+      translated_sentences:
+        - Hello, welcome, I hope you enjoy it [here].
+
+    # from roljbogu'e chatlog
+    - lojban_sentences:
+        - .i mi mutce se pluka lo ka zgike finti
+      translated_sentences:
+        - I really enjoy composing music.
+
+
 
 
 
@@ -418,27 +824,27 @@ nandu:
       translated_sentences:
         - That word is very hard to translate.
 
-    # Sentence complexity: 2.215
-    - lojban_sentences:
-        - mutce nandu
-      translated_sentences:
-        - This is very difficult.
+    # Sentence complexity: 2.215 # too unillustrative - nalvai
+    #- lojban_sentences:
+        #- mutce nandu
+      #translated_sentences:
+        #- This is very difficult.
 
-    # Sentence complexity: 2.685
-    - lojban_sentences:
-        - nandu
-      translated_sentences:
-        - This is difficult.
+    # Sentence complexity: 2.685 # too unillustrative - nalvai
+    #- lojban_sentences:
+        #- nandu
+      #translated_sentences:
+        #- This is difficult.
 
-    # Sentence complexity: 3.861
-    - lojban_sentences:
-        - nandu preti
-      translated_sentences:
-        - It's a hard question.
+    # Sentence complexity: 3.861 # too unillustrative - nalvai
+    #- lojban_sentences:
+        #- nandu preti
+      #translated_sentences:
+        #- It's a hard question.
 
-    # Sentence complexity: 5.409
+    # Sentence complexity: 5.409 # moved the {lo cmene} to x3 of morji - nalvai
     - lojban_sentences:
-        - lo nu morji lo cmene be ra cu nandu
+        - lo nu morji fi lo cmene be ra cu nandu
       translated_sentences:
         - His name is very difficult to remember.
 
@@ -448,63 +854,198 @@ nandu:
       translated_sentences:
         - All languages are hard to translate into.
 
-    # Sentence complexity: 6.810
+    # Sentence complexity: 6.810 # fixed place structure of {cilre} - nalvai
     - lojban_sentences:
-        - xu lo glico bangu cu jai nandu fai lo ka se cilre
+        - xu lo glico bangu cu jai nandu fai lo ka te cilre
       translated_sentences:
         - Is English a difficult language to learn?
+
+    # from <tizyklaji> by tirprij
+    - lojban_sentences:
+        - .i lo nu klama fo lo salpo cu nandu
+      translated_sentences:
+        - It's hard to go through a sloped path.
+
+    # from <nu farlu lo plini> by srasu
+    - lojban_sentences:
+        - .i ku'i mutce le ka nandu
+      translated_sentences:
+        - But it was very difficult.
+
+    # from <xatra selsa'a> translation by tirprij
+    - lojban_sentences:
+        - .i ju'o mi so'i roi klaku fi tu'a lo nandu gi'e badri
+      translated_sentences:
+        - I surely was sad and cried often because of the difficulties.
+
+    # from roljbogu'e chatlog
+    - lojban_sentences:
+        - mi na se nandu lo ka tcidu lo jbobau vlamei
+      translated_sentences:
+        - Reading Lojban texts isn't hard for me.
+
+    # from <prami simbi'o> by solpahi
+    - lojban_sentences:
+        - .i ku'i lo prami na'o troci ba'e ju certu lo nandu
+      translated_sentences:
+        - But people who love try difficult things no matter whether they are good at them.
+
+    # from <lo noltruti'u poi cpana lo dembi> translation by solpahi
+    - lojban_sentences:
+        - .i ku'i nandu fa lo nu facki lo du'u xu kau drani noltruti'u
+      translated_sentences:
+        - But it's hard to find out whether she's a real princess.
+
+    # from <jmiva za'o> translation by solpahi
+    - lojban_sentences:
+        - .i nandu fa lo ka du'eski lo mi nunmansa
+      translated_sentences:
+        - It's hard to overstate my satisfaction.
+
+    # adapted from <za'o> by solpahi # revert from JACU to old conn. system - nalvai
+    - lojban_sentences:
+        - .i mi se gu se nandu gi bilga lo ka sanli
+      translated_sentences:
+        - I have to stand up no matter whether I find it hard or not.
+
+    # from <nicte cadzu> by robin
+    - lojban_sentences:
+        - .i lo nu cinmo lo nu cinse djica cu nandu fi lo nu damba
+      translated_sentences:
+        - It's hard to feel sexual desire when fighting.
+
+    # from <la alis> translation by xorxes
+    - lojban_sentences:
+        - lo ralju be lo nandu be la .alis. ca lo cfari cu nu jitro lo fagycpi
+      translated_sentences:
+        - The chief difficulty Alice found at first was in managing her flamingo.
+
+    # from roljbogu'e chatlog
+    - lojban_sentences:
+        - .i so'i cnima'o cu fanva jai nandu
+      translated_sentences:
+        - Many attitudinals are difficult to translate.
+
+    # from roljbogu'e chatlog
+    - lojban_sentences:
+        - .i ru'a nandu fi lo nu smuvrici
+      translated_sentences:
+        - I assume it's hard when it's ambiguous.
+
 
 
 
 # Total sentences: 37
 preti:
-    # Sentence complexity: 1.386
+    # Sentence complexity: 1.386, x1
     - lojban_sentences:
         - mi na jimpe fi lo do preti
       translated_sentences:
         - I don't understand your question.
 
-    # Sentence complexity: 2.007
-    - lojban_sentences:
-        - mi ba pensi lo se preti
-      translated_sentences:
-        - I'll keep the question in mind.
+    # Sentence complexity: 2.007, x2?
+    #- lojban_sentences:
+        #- mi ba pensi lo se preti
+      #translated_sentences:
+        #- I'll keep the question in mind.
 
-    # Sentence complexity: 2.947
-    - lojban_sentences:
-        - cinri preti
-      translated_sentences:
-        - That's an interesting question.
+    # Sentence complexity: 2.947, none
+    #- lojban_sentences:
+        #- cinri preti
+      #translated_sentences:
+        #- That's an interesting question.
 
-    # Sentence complexity: 3.861
-    - lojban_sentences:
-        - nandu preti
-      translated_sentences:
-        - It's a hard question.
+    # Sentence complexity: 3.861, none
+    #- lojban_sentences:
+        #- nandu preti
+      #translated_sentences:
+        #- It's a hard question.
 
-    # Sentence complexity: 4.272
+    # Sentence complexity: 4.272, x1
     - lojban_sentences:
         - mi pu spuda le preti
       translated_sentences:
         - I answered the question.
 
-    # Sentence complexity: 4.646
+    # Sentence complexity: 4.646, x1
     - lojban_sentences:
         - do na bilga lo ka spuda lo preti
       translated_sentences:
         - You don't need to answer this question.
 
-    # Sentence complexity: 5.042
+    # Sentence complexity: 5.042, x1
     - lojban_sentences:
         - ko spuda loi mi preti
       translated_sentences:
         - Answer my questions.
 
-    # Sentence complexity: 5.221
+    # Sentence complexity: 5.221, x1
     - lojban_sentences:
         - no tadni pu ka'e spuda lo preti
       translated_sentences:
         - No students could answer the question.
+
+    # from <la liian e lo makfa cinta burcu> translation by darsi, x1 x3
+    - lojban_sentences:
+        - .i lu lo finpe cu zvati ma li'u cu preti fi lo balnoltru
+      translated_sentences:
+        - "\"Where are the fish?\" the emperor asked."
+
+    # from <la melbi e le ractu> by lalxu, x1 x3 x4
+    - lojban_sentences:
+        - .i lu lo se citka ku mo li'u preti fi la melbi la melbi
+      translated_sentences:
+        - "\"What happened to the stuff I was going to eat?\" Melbi asked themself."
+
+    # from <lo nenri be lo spati denmi> translation by guskant, x3 x4
+    - lojban_sentences:
+        - lisri fi lo poi lo pulji cu te preti fo ke'a ku'o tricu katna se jibri
+      translated_sentences:
+        - The Testimony of a Woodcutter, Questioned by a High Police Commissioner
+
+    # from <le me'oi egids gradu> translation by nalvai, x1 x2
+    - lojban_sentences:
+        - lo ca tcini be lo bangu cu ka'e jai se pajni ta'i lo nu dafyfa'i so'o ralju preti be lo by cecmu nunpli
+      translated_sentences:
+        - The current status of a language can be assessed by answering a few key questions about community language use.
+
+    # from <nicte cadzu> by robin, x1 x3 x4 # I have to guess what {djine titnanba} means .fau'u - nalvai
+    - lojban_sentences:
+        - .i la .axmed. te preti fo pa jibni pulji fi lu xu do ponse lo djine titnanba li'u
+      translated_sentences:
+        - Ahmed asked a nearby policeman, "Do you have a Bundt cake?"
+
+    # from <le cmalu noltru> translation by xorxes, x3 x4
+    - lojban_sentences:
+        - .i lo tedyskepre cu te preti fo lo tumfakli'u gi'e rejgau fi lo ri se morji 
+      translated_sentences:
+        - The geographer asks the explorers questions, and he notes down what they recall.
+
+    # from <lo nu binxo> translation by xorxes, x1 x3 x4
+    - lojban_sentences:
+        - lu nau mo li'u cu preti fi la .gregor. gy fau lo nu catlu lo sruri va'o lo manku 
+      translated_sentences:
+        - "\"What now, then?\", Gregor asked himself as he looked round in the darkness."
+
+    # from <la alis> translation by xorxes, x1 x2 x3
+    - lojban_sentences:
+        - .i ku'i ei mi te preti lo gugde lo du'u ma kau cmene
+      translated_sentences:
+        - But I shall have to ask them what the name of the country is.
+
+    # from <le cmalu noltru> translation by xorxes, x2 x3
+    - lojban_sentences:
+        - .i py. ca lo nu do py. tavla lo cnino pendo cu no roi te preti lo vajrai
+      translated_sentences:
+        - When you tell them about [your] new friend, they never ask [you] any questions about essential matters. 
+
+    # from <lo nu binxo> translation by xorxes, x2 x4
+    - lojban_sentences:
+        - .i ku'i da'i sy ny ba zukte la'e di'u va'o lo po'o nu sy ny ve preti lo mulno tcila
+      translated_sentences:
+        - But she would only do it if she was asked detailed questions. 
+
+
 
 
 
@@ -570,6 +1111,66 @@ prami:
       translated_sentences:
         - Who loved who?
 
+    # from <selpeisku be lo sampre> translation by tirprij
+    - lojban_sentences:
+        - lo jmive poi ka'e prami cu ca ca'o se cmene fi lo remna fa zo remna
+      translated_sentences:
+        - A living thing that can love is now being called "human" by mankind.
+
+    # from <prami simbi'o> by solpahi
+    - lojban_sentences:
+        - .i ku'i lo prami na'o troci ba'e ju certu lo nandu
+      translated_sentences:
+        - But people who love try difficult things no matter whether they are good at them.
+
+    # from <la lisri be lo nanla joi lo cipnrfalko> by tsani
+    - lojban_sentences:
+        - .i lo'e cipnrfalko cu na'e ke prami ke danlu pendo gi'e tsali joi kusru
+      translated_sentences:
+        - Falcons aren't loving pets, but strong and cruel [animals].
+
+    # adapted from <prami simbi'o> by solpahi
+    - lojban_sentences:
+        - .i ba ku ca su'o balvi djedi mi'o ze'u pensi lo nu mi'o simbi'o lo ka prami
+      translated_sentences:
+        - At some point in the future, we will think for a long time, about how we became mutual in love
+
+    # from <le cmalu noltru> translation by xorxes
+    - lojban_sentences:
+        - .i va'o lo nu do prami lo xrula poi zvati lo tarci cu pluka fa lo nu catlu lo tsani ca lo nicte
+      translated_sentences:
+        - If you love a flower that lives on a star, it is pleasing to look at the sky at night. 
+
+    # from <le cmalu noltru> translation by xorxes
+    - lojban_sentences:
+        - .i mi ba prami lo sance be lo brife be bu'u lo maxri 
+      translated_sentences:
+        - I shall love the sound of the wind in the wheat.
+
+    # from <le cmalu noltru> translation by xorxes
+    - lojban_sentences:
+        - .i mi ze'e prami lo kutytu'a
+      translated_sentences:
+        - I have always loved the desert. 
+
+    # from <almapamla> translation by guskant
+    - lojban_sentences:
+        - .i ko co'u tolckire gi'e prami mi
+      translated_sentences:
+        - Stop being thankless and love me.
+
+    # from <almapamla> translation by guskant
+    - lojban_sentences:
+        - .i mi do prami doi lo se prami be mi tai lo nu lo xrula cu prami lo gusni
+      translated_sentences:
+        - I love you, my beloved, like the flower loves the light of day
+
+    # from <lo jbobau cu mo> translation by solpahi
+    - lojban_sentences:
+        - .i .ia lo ka prami lo jbobau cu kampu lo jbopre
+      translated_sentences:
+        - I believe loving Lojban is common to all Lojbanists.
+
 
 
 # Total sentences: 55
@@ -611,10 +1212,10 @@ tatpi:
         - I'm very tired.
 
     # Sentence complexity: 1.992
-    - lojban_sentences:
-        - mi tatpi
-      translated_sentences:
-        - I'm tired.
+    #- lojban_sentences:
+        #- mi tatpi
+      #translated_sentences:
+        #- I'm tired.
 
     # Sentence complexity: 2.017
     - lojban_sentences:
@@ -623,16 +1224,76 @@ tatpi:
         - I'm tired of translating.
 
     # Sentence complexity: 1.646
-    - lojban_sentences:
-        - mi na tatpi
-      translated_sentences:
-        - I'm not tired.
+    #- lojban_sentences:
+        #- mi na tatpi
+      #translated_sentences:
+        #- I'm not tired.
 
     # Sentence complexity: 2.318
+    #- lojban_sentences:
+        #- tatpi sai
+      #translated_sentences:
+        #- So tired!
+
+    # from <le cmalu noltru> translation by xorxes
     - lojban_sentences:
-        - tatpi sai
+        - .i je tatpi fa lo verba lo nu ro roi ciksi 
       translated_sentences:
-        - So tired!
+        - ..., and it is tiresome for children to be always and forever explaining things to them.
+
+    # from <le cmalu noltru> translation by xorxes
+    - lojban_sentences:
+        - .i mi tatpi lo nu cadzu
+      translated_sentences:
+        - It tires me to walk.
+
+    # from <la alis> translation by xorxes
+    - lojban_sentences:
+        - la .alis. co'a tatpi lo nu zutse lo rirxe korbi re'o lo mensi gi'e zukte fi no da 
+      translated_sentences:
+        - Alice was beginning to get very tired of sitting by her sister on the bank, and of having nothing to do. 
+
+    # from <la alis> translation by xorxes
+    - lojban_sentences:
+        - .i .abu uu ca lo nu tatpi lo nu troci cu zutse gi'e klaku 
+      translated_sentences:
+        - When she had tired herself out with trying, the poor little thing sat down and cried.
+
+    # from <la alis> translation by xorxes
+    - lojban_sentences:
+        - .i mi tai ba'e mutce tatpi lo nu mi ti nonkansa
+      translated_sentences:
+        - I am so very tired of being all alone here!
+
+    # from <la alis> translation by xorxes
+    - lojban_sentences:
+        - .i mi mutce lo ka tatpi lo nu ru'u limna doi smacu
+      translated_sentences:
+        - I am very tired of swimming about here, O Mouse!
+
+    # from <nicte cadzu> by robin
+    - lojban_sentences:
+        - mi mutce tatpi lo nu za'o gunka
+      translated_sentences:
+        - I'm tired that [I'm] still working.
+
+    # from <lo se manci te makfa pe la oz> translation by solpahi
+    - lojban_sentences:
+        - .i je binxo lo ka se tatpi
+      translated_sentences:
+        - ..., and it gets tiresome. 
+
+    # from roljbogu'e chatlog
+    - lojban_sentences:
+        - .i lo nu kurji cu ja'a se tatpi .uu
+      translated_sentences:
+        - Taking care of someone is indeed tiring.
+
+    # adapted from roljbogu'e chatlog
+    - lojban_sentences:
+        - .i ji'a lo za jeftu cu mutce mutce jai se tatpi 
+      translated_sentences:
+        - And the other week is really really tiresome.
 
 
 
@@ -680,6 +1341,24 @@ fonxa:
       translated_sentences:
         - My cellphone has been stolen.
 
+    # from <nicte cadzu> by robin
+    - lojban_sentences:
+        - fi'i sai susan mi'e pal mi'o pu fonxa casnu
+      translated_sentences:
+        - Welcome Susan! I'm Pal, we talked on phone before.
+
+    # adapted from roljbogu'e chatlog
+    - lojban_sentences:
+        - .i mi .ainmo lo nu cusku lo'u lo ka daspo le'u kei gi'e se nandu .oi ru'e lo nu fonxa batkyciska
+      translated_sentences:
+        - I wanted to say "lo ka daspo" and found typing [it] on a phone difficult. 
+
+    # from jbobratca chatlog
+    - lojban_sentences:
+        - .i ca lo nu mi pilno lo fonxa cu to'e ku'i sutra
+      translated_sentences:
+        - When I use my phone though, it's really not fast.
+
 
 
 # Total sentences: 50
@@ -690,9 +1369,9 @@ morji:
       translated_sentences:
         - Do you remember me?
 
-    # Sentence complexity: 1.519
+    # Sentence complexity: 1.519 # moved {lo mi cmene} to x3 - nalvai
     - lojban_sentences:
-        - xu do morji lo mi cmene
+        - xu do morji fi lo mi cmene
       translated_sentences:
         - Do you remember my name?
 
@@ -738,11 +1417,65 @@ morji:
       translated_sentences:
         - Do you remember what she said?
 
-    # Sentence complexity: 2.490
+    # Sentence complexity: 2.490 # moved {ti} to x3 - nalvai
     - lojban_sentences:
-        - ko morji ti poi valsi
+        - ko morji fi ti poi valsi
       translated_sentences:
         - Commit these words to memory.
+
+    # from <pluta bolci> translation by tirprij
+    - lojban_sentences:
+        - .i ji'a loi jbilu'a cu na te morji ba'o lo mu'e go'i
+      translated_sentences:
+        - ..., and after it I've forgotten the shortcuts
+
+    # from <le pa cukta> translation by gleki
+    - lojban_sentences:
+        - le se morji be mi cu mutce le ka kalsa 
+      translated_sentences:
+        - My memories are very confused.
+
+    # from <lo se manci te makfa pe la oz> translation by solpahi
+    - lojban_sentences:
+        - .i ku'i lo prenu cu prami morji fi la .oz. gi'e simxu lo ka cusku
+      translated_sentences:
+        - But the people remembered him (= Oz) lovingly, and said to one another.
+
+    # from <le cmalu noltru> translation by xorxes
+    - lojban_sentences:
+        - .i lo tedyskepre cu te preti fo lo tumfakli'u gi'e rejgau fi lo ri se morji 
+      translated_sentences:
+        - The geographer asks the explorers questions, and he notes down what they recall.
+
+    # from <le cmalu noltru> translation by xorxes
+    - lojban_sentences:
+        - .i mi troci lo ka skicu py. vau te zu'e lo ka na to'e morji fi py.
+      translated_sentences:
+        - I try to describe him to make sure that I shall not forget him.
+
+    # from <la alis> translation by xorxes
+    - lojban_sentences:
+        - .i mi pu tcidu di'u lo cukta .i ku'i mi na morji lo du'u cy. mo kau
+      translated_sentences:
+        - I've read that in some book, but I don't remember where.
+
+    # from roljbogu'e chatlog
+    - lojban_sentences:
+        - .i mi morji lo du'u lo do pu zdani ba'o jelca
+      translated_sentences:
+        - I remember your (past) house burnt down.
+
+    # from roljbogu'e chatlog
+    - lojban_sentences:
+        - .i ko morji lo du'u ca so'o da la solpa'i cu pilno zo mi'o
+      translated_sentences:
+        - Remember that solpa'i used "mi'o" on several occasions.
+
+    # from <le sovda> translation by nalvai
+    - lojban_sentences:
+        - .i do prane ro zu'i fi'o morji le do panzi
+      translated_sentences:
+        - Your kids will remember you as perfect in every way.
 
 
 
@@ -783,6 +1516,78 @@ certu:
         - lo ka jai rapli cu rinka lo ka certu
       translated_sentences:
         - Practice makes perfect.
+
+    # from roljbogu'e chatlog
+    - lojban_sentences:
+        - .i ki'u by. simsa mi lo ka na certu lo nu tavla fo lo jugbau
+      translated_sentences:
+        - Because he is like me in that he isn't proficient in speaking Chinese.
+
+    # from <prami simbi'o> by solpahi
+    - lojban_sentences:
+        - .i ku'i lo prami na'o troci ba'e ju certu lo nandu
+      translated_sentences:
+        - But people who love try difficult things no matter whether they are good at them.
+
+    # from <prami simbi'o> by solpahi
+    - lojban_sentences:
+        - .i li'a mi na certu lo ka sanga
+      translated_sentences:
+        - Obviously I'm not good at singing.
+
+    # from roljbogu'e chatlog
+    - lojban_sentences:
+        - .i lo'e certu se besna cu gasnu so'u se bebna
+      translated_sentences:
+        - Those with expert brains make few foolish acts.
+
+    # from <junla zbasu> translation by xorxes
+    - lojban_sentences:
+        - .i ku'i no da prali fi lo nu do tsali je certu
+      translated_sentences:
+        - Vain are your strength and cunning!
+
+    # adapted from <clani kerlo> by fagri
+    - lojban_sentences:
+        - .uinai .e'enai pau do krici lo du'u mi certu tu'a lo cilta gi'a ba certu xu
+      translated_sentences:
+        - Ugh... do you think I'm good at sewing? Or that I ever will be good?
+
+    # from <lo se manci te makfa pe la oz> translation by solpa'i
+    - lojban_sentences:
+        - .i ki'u bo lo gerku cu certu lo ka viska ne'i lo manku
+      translated_sentences:
+        - ..., for some dogs see very well in the dark.
+
+    # from <la alis> translation by xorxes
+    - lojban_sentences:
+        - .i dy. tai certu lo nu kavbu lo smacu
+      translated_sentences:
+        - ..., and she's such a capital one for catching mice.
+
+    # from <la alis> translation by xorxes
+    - lojban_sentences:
+        - .i ma rinka lo nu do tai certu 
+      translated_sentences:
+        - What made you so awfully skilled?
+
+    # from <junla zbasu> translation by xorxes
+    - lojban_sentences:
+        - .i ja'e bo lo ralju jutsi be lo tcecmada'u cu binxo lo mutce tolci'o gi'e farvi lo mutce certu be lo saske
+      translated_sentences:
+        - The leading race of animalculae had thus attained a great antiquity and evolved to be far advanced in scientific studies.
+
+    # from <lo nu binxo> translation by xorxes
+    - lojban_sentences:
+        - .i my se cau nai lo nu jerna cu ba'o binxo lo simlu be lo ka certu be ro cuntu poi srana la .gregor. bei lo rirni
+      translated_sentences:
+        - She had become used to the idea, not without reason, that she is an expert to his parents about the things that concerned Gregor. 
+
+    # from <nicte cadzu> by robin
+    - lojban_sentences:
+        - .oi sai la'a lo nu frili ke cikna binxo cu vajni ke renvi se certu lo blupinxe
+      translated_sentences:
+        - Oww! Waking up easily is probably an important survival skill of a vampire. 
 
 
 
@@ -829,5 +1634,60 @@ xabju:
         - xu do da kansa le ka xabju
       translated_sentences:
         - Do you live with someone?
+
+    # from <lo cmalu> by solpahi
+    - lojban_sentences:
+        - .i cy. xabju lo darno be lo tcadu
+      translated_sentences:
+        - He lived far away from the city.
+
+    # from <ko'a marji lo rectu> translation by Pierre Abbot
+    - lojban_sentences:
+        - .i ko'a po'o cu sanji gi'e xabju le va pagbu
+      translated_sentences:
+        - These creatures are the only sentient race that live in that sector.
+
+    # from <le saske smani> translation by xorxes
+    - lojban_sentences:
+        - .i lo zdani cu se xabju lo mivyka'a
+      translated_sentences:
+        - In the house there dwelt a vivisectionist.
+
+    # from <la mu'e cuxna lo bradi> by blutolpinxe
+    - lojban_sentences:
+        - mi na djuno lo du'u mi ma kau zvati a lo du'u dargu lo se xabju fo ma kau
+      translated_sentences:
+        - I don't know where I am or where's the road to where [I] live.
+
+    # from <clani kerlo> by fagri
+    - lojban_sentences:
+        - .i ly. xabju le cecmu gi'e me le pa no ctuca
+      translated_sentences:
+        - She lived in the community and was one of the ten teachers. 
+
+    # from <clani kerlo> by fagri
+    - lojban_sentences:
+        - .i ly. sisku fi lo zvati be le cy se xabju
+      translated_sentences:
+        - She searched through things in her place of living. 
+
+    # from <junla zbasu> translation by xorxes
+    - lojban_sentences:
+        - .i no da poi na xabju lo djacu cu kakne lo nu te sidbo lo temci .e ji'a li'a lo junla
+      translated_sentences:
+        - No one not living in water could conceive the idea of time, how much less of a clock!
+
+    # from <junla zbasu> translation by xorxes
+    - lojban_sentences:
+        - .i ja'o lo danlu poi xabju lo djacu cu ca'o xabju lo bartu be lo djacu
+      translated_sentences:
+        - "..., and it comes to this: a creature that lives in water living out of water!"
+
+    # from <tcila co tumla> by evar usar
+    - lojban_sentences:
+        - .i su'o lo renvi remna poi se bloti cu farcri klamu'o lo cnino se xabju be ry.
+      translated_sentences:
+        - A few surviving humans on boats would find their way to their new home.
+
 
 

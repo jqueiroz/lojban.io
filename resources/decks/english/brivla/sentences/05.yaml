@@ -406,6 +406,12 @@ stidi:
       translated_sentences:
         - I accept this proposal.
 
+    # from <catni gerna> by uakci, original has {ru'a} instead of {ra'u}, which I think is a typo
+    - lojban_sentences:
+        - .i ja'o mi stidi ra'u lo du'u pilno fi lo ka te cmene kei fe lu jicmu lojbo li'u
+      translated_sentences:
+        - Thus, I main proposal is to use "Base Lojban" to name it.
+
 
 
 # Total sentences: 27
@@ -464,6 +470,23 @@ rinka:
       translated_sentences:
         - Do you know what's causing the problem?
 
+    # from <la alis> translation by xorxes
+    - lojban_sentences:
+        - .i ma rinka lo nu do tai certu 
+      translated_sentences:
+        - What made you so awfully skilled?
+
+    # from jbobratca chatlog
+    - lojban_sentences:
+        - lo uenzi be ki ku tsali sai lo ka jai rinka lo nu badri
+      translated_sentences:
+        - The text is so strong in making [me] sad.
+
+    # from <lo nu binxo> translation by xorxes
+    - lojban_sentences:
+        - .i ku'i la'e di'u na rinka lo mutce se gunka
+      translated_sentences:
+        - ..., althouh that didn't result in much work.
 
 
 # Total sentences: 8
@@ -491,6 +514,36 @@ jbobau:
         - tadni lo jbobau ta'i lo ka tcidu fi lo saske brafi'a
       translated_sentences:
         - He's studying the Lojban language by reading science novels.
+
+    # from <catni lojbo> by uakci
+    - lojban_sentences:
+        - vajni lo nabmi fa lo za'i lo se jinvi be fi lo du'u ma kau jbobau ku ku frica simxu
+      translated_sentences:
+        - The relevant part of this problem is the difference of opinions on what is considered a Lojban.
+
+    # from roljbogu'e chatlog
+    - lojban_sentences:
+        - mi na se nandu lo ka tcidu lo jbobau vlamei
+      translated_sentences:
+        - Reading Lojban texts isn't hard for me.
+
+    # from <lo jbobau cu mo> translation by solpahi
+    - lojban_sentences:
+        - .i .ia lo ka prami lo jbobau cu kampu lo jbopre
+      translated_sentences:
+        - I believe loving Lojban is common to all Lojbanists.
+
+    # from roljbogu'e chatlog 
+    - lojban_sentences:
+        - xu drani fo lo ka jbobau
+      translated_sentences:
+        - Is it correct by Lojban standards?
+
+    # adapted from roljbogu'e chatlog
+    - lojban_sentences:
+        - .i .ai ba za di'a gunka tu'a la jbobau
+      translated_sentences:
+        - I intend to resume working on Lojban.
 
 
 
@@ -531,6 +584,18 @@ mapti:
         - lo ra mapku cu mapti ra
       translated_sentences:
         - Her hat fits her.
+
+    # from <lo nu binxo> translation by xorxes
+    - lojban_sentences:
+        - .i gy co'a lo pa moi djedi pe lo cnino nu jmive cu djuno lo du'u lo patfu cu jinvi fi gy. fe lo du'u mapti fa lo po'o traji jursa
+      translated_sentences:
+        - He knew full well, right from the first day of his new life, that his father thought it fitting to always be extremely strict with him. 
+
+    # from <lo nenri be lo spati denmi> translation by guskant
+    - lojban_sentences:
+        - .i te zu'e lo nu snada lo mi te gunka kei no stuzi se mau ti mapti
+      translated_sentences:
+        - For achieving my goal, no places is better than here.
 
 
 
@@ -584,6 +649,19 @@ zdile:
       translated_sentences:
         - Dancing is fun.
 
+    # from <lo nu binxo> translation by xorxes
+    - lojban_sentences:
+        - .i gy. se zdile lo nu gunka tu'a lo greku
+      translated_sentences:
+        - He (Gregor) has fun in working on the frame.
+
+    # from roljbogu'e chatlog 
+    - lojban_sentences:
+        - .i mi cilre lo du'u ta'i ma kau zgipli lo flani kei mu'i lonu zdile
+      translated_sentences:
+        - I'm learning how to play a flute for fun.
+
+
 
 
 # Total sentences: 68
@@ -617,6 +695,31 @@ ciska:
         - ma pu ciska ta
       translated_sentences:
         - Who wrote that?
+
+    # from roljbogu'e chatlog
+    - lojban_sentences:
+        - .e'e ju'o ca le ba'e ca jeftu mi roldei tcidu ro se ciska be ro le mi jbope'o
+      translated_sentences:
+        - This week, I definitely can read every day what all my Lojban friends have written!
+
+    # from <pluta bolci> translation by tirprij
+    - lojban_sentences:
+        - .i le se ciska co'u kakne se tcidu
+      translated_sentences:
+        - The [words I'd] written became unreadable.
+
+    # from <le cmalu noltru> translation by xorxes
+    - lojban_sentences:
+        - .i da denpa lo nu lo tumfakli'u cu dunda lo ve jinvi kei fo lo nu xinmo ciska
+      translated_sentences:
+        - One waits until the explorer has furnished proofs, before putting them down in ink.
+
+    # from roljbogu'e chatlog
+    - lojban_sentences:
+        - .i ku'i .u'adai do kakne lo ka ciska bau lo na'e jai se jimpe
+      translated_sentences:
+        - However, gain for you that you can write in a language that isn't understood [by others].
+
 
 
 
@@ -669,6 +772,42 @@ vajni:
         - ua nai la'e di'u vajni fi ma
       translated_sentences:
         - Huh? How is that relevant?
+
+    # adapted from <xatra selsa'a> translation by tirprij
+    - lojban_sentences:
+        - xu lo prenu co vajni cu pu co'a cliva fi lo drata se litru
+      translated_sentences:
+        - Had the people important [to you] departed via their own paths?
+
+    # from <na fengu> by solpahi
+    - lojban_sentences:
+        - .i nu jundi lo te dunli poi na vajni
+      translated_sentences:
+        - ..., paying attention to commonalities that don't matter.
+
+    # from <la ckuzda pe la babel> translation by xorxes
+    - lojban_sentences:
+        - .i ku'i lo klaku be fi lo selcfu poi fenki se daspo cu nalju'i lo re vajni fatci
+      translated_sentences:
+        - But those who grieve over the richness destroyed in that frenzy overlook two important facts.
+
+    # from <nicte cadzu> by robin
+    - lojban_sentences:
+        - .oi sai la'a lo nu frili ke cikna binxo cu vajni ke renvi se certu lo blupinxe
+      translated_sentences:
+        - Oww! Waking up easily is probably an important survival skill of a vampire. 
+
+    # from <le cmalu noltru> translation by xorxes
+    - lojban_sentences:
+        - .i lo vajni na se viska 
+      translated_sentences:
+        - The thing that is important is the thing that is not seen.
+
+    # from <catni lojbo> by uakci
+    - lojban_sentences:
+        - vajni lo nabmi fa lo za'i lo se jinvi be fi lo du'u ma kau jbobau ku ku frica simxu
+      translated_sentences:
+        - The relevant part of this problem is the difference of opinions on what is considered a Lojban.
 
 
 
