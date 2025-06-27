@@ -43,6 +43,16 @@ displayHome serverConfiguration userIdentityMaybe = do
                         H.ul $ do
                             H.li $ do
                                 H.p $ do
+                                    H.b "June 28, 2025: "
+                                    "la xrula publishes "
+                                    H.a "lo vorme"
+                                        B.! A.href "https://hellopoetry.com/poem/5098495/lo-vorme/"
+                                    ", an original poem. You can also read the bilingual (English-Lojban) version "
+                                    H.a "here"
+                                        B.! A.href "https://thebrokenflower.neocities.org/poetry?title=The%20Doorway"
+                                    "."
+                            H.li $ do
+                                H.p $ do
                                     H.b "June 7, 2025: "
                                     "la nalvai publishes "
                                     H.a "NALVAI"
