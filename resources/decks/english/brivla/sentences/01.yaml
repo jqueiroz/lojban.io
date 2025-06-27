@@ -153,6 +153,12 @@ cizra: # I didn't find illustrative sentences for x3 of cizra
       translated_sentences:
         - Gregor found the various sounds of eating strange.
 
+    # from jbobratca chatlog
+    - lojban_sentences:
+        - .i marde cizra mi fa lo nu zo ponse tcita lo dalpe'o
+      translated_sentences:
+        - It's morally strange for me to apply the label "own" to pets.
+
 
 # The Tatoeba sentences are sufficient for {cmene}'s x2, added sentences mostly feature x3
 cmene:
@@ -509,6 +515,12 @@ djuno:
         - .i do platu lo na se djuno be mi
       translated_sentences:
         - You are planning somethig I don't know about.
+
+    # from <lo nu binxo> translation by xorxes, x1 x2 x3
+    - lojban_sentences:
+        - .i gy co'a lo pa moi djedi pe lo cnino nu jmive cu djuno lo du'u lo patfu cu jinvi fi gy. fe lo du'u mapti fa lo po'o traji jursa
+      translated_sentences:
+        - He knew full well, right from the first day of his new life, that his father thought it necessary to always be extremely strict with him. 
 
 
 # Total sentences: 112
