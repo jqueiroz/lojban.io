@@ -1,5 +1,6 @@
 *.swp
 *.prof
+**/.vscode/settings.json
 **/.stack-work
 **/node_modules
 assets/package-lock.json
