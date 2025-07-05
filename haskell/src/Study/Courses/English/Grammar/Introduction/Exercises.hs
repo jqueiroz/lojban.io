@@ -40,7 +40,7 @@ exercises1 =
         nonbridiGenerator = generateNonbridi vocabulary
         bridiGenerator = extractSimpleBridiGeneratorFromTranslationGenerator translations1
         trivialBridiGenerator = extractTrivialBridiGeneratorFromVocabulary vocabulary
-        bridiDisplayer = displayStandardSimpleBridi
+        bridiDisplayer = simplifyTerminatorsInBridiDisplayer $ displayStandardSimpleBridi
 
 -- | Translation exercises for the first lesson.
 translationExercises1 :: ExerciseGenerator
@@ -62,7 +62,7 @@ exercises2 =
         nonbridiGenerator = generateNonbridi vocabulary
         bridiGenerator = extractSimpleBridiGeneratorFromTranslationGenerator translations2
         trivialBridiGenerator = extractTrivialBridiGeneratorFromVocabulary vocabulary
-        bridiDisplayer = combineGenerators [(7, displayStandardSimpleBridi), (3, displayVariantSimpleBridi)]
+        bridiDisplayer = simplifyTerminatorsInBridiDisplayer $ combineGenerators [(7, displayStandardSimpleBridi), (3, displayVariantSimpleBridi)]
 
 -- | Translation exercises for the second lesson.
 translationExercises2 :: ExerciseGenerator
@@ -85,7 +85,7 @@ exercises3 =
         nonbridiGenerator = generateNonbridi vocabulary
         bridiGenerator = extractSimpleBridiGeneratorFromTranslationGenerator translations3
         trivialBridiGenerator = extractTrivialBridiGeneratorFromVocabulary vocabulary
-        bridiDisplayer = combineGenerators [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
+        bridiDisplayer = simplifyTerminatorsInBridiDisplayer $ combineGenerators [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
 
 -- | Interesting translation exercises for the third lesson: comprises regular exercises involving interesting translations, as well as "Translate without using zo'e" exercises involving restricted translations.
 --
@@ -119,7 +119,7 @@ exercises4 =
         vocabulary = vocabulary4_cumulative
         -- Narrowing the 'TranslationGenerator' is required to avoid alternative translations using "poi"
         bridiGenerator = extractSimpleBridiGeneratorFromTranslationGenerator $ narrowTranslationGenerator translations4_sentences
-        bridiDisplayer = combineGenerators [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
+        bridiDisplayer = simplifyTerminatorsInBridiDisplayer $ combineGenerators [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
 
 translationExercises4 :: ExerciseGenerator
 translationExercises4 = combineGenerators [(1, translationExercises4_expressions), (1, translationExercises4_sentences)] where
@@ -139,7 +139,7 @@ exercises5 =
     where
         vocabulary = vocabulary5_cumulative
         bridiGenerator = extractSimpleBridiGeneratorFromTranslationGenerator translations5
-        bridiDisplayer = combineGenerators [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
+        bridiDisplayer = simplifyTerminatorsInBridiDisplayer $ combineGenerators [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
 
 translationExercises5 :: ExerciseGenerator
 translationExercises5 = combineGenerators [(1, restricted), (5, unrestricted)] where
@@ -165,7 +165,7 @@ exercises6 =
     where
         vocabulary = vocabulary6_cumulative
         bridiGenerator = extractSimpleBridiGeneratorFromTranslationGenerator translations6
-        bridiDisplayer = combineGenerators [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
+        bridiDisplayer = simplifyTerminatorsInBridiDisplayer $ combineGenerators [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)]
 
 translationExercises6 :: ExerciseGenerator
 translationExercises6 = generateTranslationExercise sentenceCanonicalizer sentenceComparer translations6
@@ -190,7 +190,7 @@ exercises7 =
     where
         vocabulary = vocabulary6_cumulative
         bridiGenerator = extractSimpleBridiGeneratorFromTranslationGenerator translations7
-        bridiDisplayer = simplifyTerminatorsInBridiDisplayer $ (combineGenerators [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)])
+        bridiDisplayer = simplifyTerminatorsInBridiDisplayer $ simplifyTerminatorsInBridiDisplayer $ (combineGenerators [(7, displayStandardSimpleBridi), (2, displayVariantSimpleBridi), (1, displayReorderedStandardSimpleBridi)])
 
 translationExercises7_restricted :: ExerciseGenerator
 translationExercises7_restricted = generateBlacklistedWordTranslationExercise "ku" sentenceCanonicalizer sentenceComparer translations7_restricted

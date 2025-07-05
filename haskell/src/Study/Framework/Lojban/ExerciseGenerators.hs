@@ -31,10 +31,10 @@ import Text.Read (readMaybe)
 import System.Random (StdGen, random)
 import Control.Applicative (liftA2)
 import Control.Arrow (first)
-import Control.Exception (assert)
 import Data.Maybe (fromMaybe)
 import qualified Data.Text as T
 import qualified Data.Map as M
+import Language.Lojban.Refinement (simplifyTerminatorsInSentence)
 
 -- | Exercise: translate a given sentence into Lojban.
 --
@@ -224,10 +224,12 @@ generateContextualizedGismuPlaceMeaningExercise dictionary simpleBridiGenerator 
                     (place, r2) = chooseItemUniformly r1 places
                     correctAlternative = snd place
                     incorrectAlternatives = (simpleBridiSelbri bridi) : (filter (/= correctAlternative) . map snd $ places)
+                    simplifiedCorrectAlternative = simplifyTerminatorsInSentence correctAlternative
+                    simplifiedIncorrectAlternatives = simplifyTerminatorsInSentence <$> incorrectAlternatives
                     title = "Select the " `T.append` "<b>" `T.append` (fst place) `T.append` "</b>"
                     (sentenceText, r3) = displayBridi r2 bridi
                     sentences = [ExerciseSentence True sentenceText]
-                in (Just $ SingleChoiceExercise title sentences correctAlternative incorrectAlternatives False, r3)
+                in (Just $ SingleChoiceExercise title sentences simplifiedCorrectAlternative simplifiedIncorrectAlternatives False, r3)
 
 generateContextualizedGismuPlacePositionExercise :: Dictionary -> SimpleBridiGenerator -> SimpleBridiDisplayer -> ExerciseGenerator
 generateContextualizedGismuPlacePositionExercise dictionary simpleBridiGenerator displayBridi = combineGenerators [(1, f2)] where
@@ -240,10 +242,12 @@ generateContextualizedGismuPlacePositionExercise dictionary simpleBridiGenerator
             (place, r2) = chooseItemUniformly r1 places
             correctAlternative = snd place
             incorrectAlternatives = (simpleBridiSelbri bridi) : (filter (/= correctAlternative) . map snd $ places)
+            simplifiedCorrectAlternative = simplifyTerminatorsInSentence correctAlternative
+            simplifiedIncorrectAlternatives = simplifyTerminatorsInSentence <$> incorrectAlternatives
             title = "Select the <b>" `T.append` (fst place) `T.append` "</b>"
             (sentenceText, _) = displayBridi r2 bridi
             sentences = [ExerciseSentence True sentenceText]
-        in SingleChoiceExercise title sentences correctAlternative incorrectAlternatives False
+        in SingleChoiceExercise title sentences simplifiedCorrectAlternative simplifiedIncorrectAlternatives False
 
 -- Exercise: tell brivla places using se/te/ve/xe
 generateIsolatedBrivlaPlacesExercise :: Dictionary -> [T.Text] -> ExerciseGenerator
@@ -255,7 +259,8 @@ generateIsolatedBrivlaPlacesExercise dictionary brivlaList r0 =
                 error $ "There are no brivla with at least two places. Brivla list: " ++ show brivlaList
             else
                 chooseItemUniformly r0 brivlaWithAtLeastTwoPlaces
-        placesLojban = map (\x -> x `T.append` " " `T.append` brivla `T.append` " ku") ["lo", "lo se", "lo te", "lo ve", "lo xe"]
+        --placesLojban = map (\x -> x `T.append` " " `T.append` brivla `T.append` " ku") ["lo", "lo se", "lo te", "lo ve", "lo xe"]
+        placesLojban = map (\x -> x `T.append` " " `T.append` brivla) ["lo", "lo se", "lo te", "lo ve", "lo xe"]
         placesEnglish = retrieveBrivlaPlaces dictionary brivla
         places = zip placesLojban placesEnglish
         (place, _) =

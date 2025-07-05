@@ -12,7 +12,7 @@ import Util (combineGenerators, combineGeneratorsUniformly, generatorFromSinglet
 
 -- | Translations for the first lesson.
 translations1 :: TranslationGenerator
-translations1 = combineGeneratorsUniformly [dunda, demonstrative] where
+translations1 = simplifyTerminatorsInTranslationGenerator $ combineGeneratorsUniformly [dunda, demonstrative] where
     dunda = generatorFromList
         [ (["do dunda ti mi"], ["You give me this.", "You give us this."])
         , (["do dunda ta mi"], ["You give me that.", "You give us that."])
@@ -35,7 +35,7 @@ translations2 = combineGenerators [(1, translations2_nice), (4, translations2_no
 --
 -- Defined separately so that they may be reused in the third lesson.
 translations2_nice :: TranslationGenerator
-translations2_nice = combineGeneratorsUniformly [tavlaReflexive, dundaReordered] where
+translations2_nice = simplifyTerminatorsInTranslationGenerator $ combineGeneratorsUniformly [tavlaReflexive, dundaReordered] where
     tavlaReflexive = generatorFromList
         [ (["mi tavla mi", "mi tavla vo'a"], ["I am talking to myself.", "I was talking to myself.", "We were talking to ourselves."])
         , (["do tavla do", "do tavla vo'a"], ["You are talking to yourself."])
@@ -47,7 +47,7 @@ translations2_nice = combineGeneratorsUniformly [tavlaReflexive, dundaReordered]
 
 -- | Regular translations for the second lesson.
 translations2_normal :: TranslationGenerator
-translations2_normal = combineGeneratorsUniformly $ others ++ [talkingWithSecondPerson, pendo, prenu, dunda, demonstrative, zdani] where
+translations2_normal = simplifyTerminatorsInTranslationGenerator $ combineGeneratorsUniformly $ others ++ [talkingWithSecondPerson, pendo, prenu, dunda, demonstrative, zdani] where
     talkingWithSecondPerson = generatorFromList
         [ (["mi tavla do"], ["I am talking to you.", "I was talking to you.", "We are talking to you.", "We were talking to you."])
         , (["do tavla mi"], ["You are talking to me.", "You are talking to us."])
@@ -96,7 +96,7 @@ translations3 =  combineGenerators [(1, translations3_nice), (10, translations3_
 --
 -- Defined separately so that they may be used in 'Translate without using "zo'e"' exercises.
 translations3_restricted :: TranslationGenerator
-translations3_restricted = expandTranslationGenerator $ combineGenerators [(2, talkingAbout), (1, gaveSomething)] where
+translations3_restricted = simplifyTerminatorsInTranslationGenerator $ expandTranslationGenerator $ combineGenerators [(2, talkingAbout), (1, gaveSomething)] where
     talkingAbout = generatorFromList
         [ (["mi tavla fi mi", "mi tavla fi vo'a"], ["I was talking about myself.", "We were talking about ourselves.", "I will talk about myself."])
         , (["mi tavla fi do"], ["I was talking about you.", "We were talking about you.", "I am talking about you.", "We are talking about you.", "I will talk about you.", "We will talk about you."])
@@ -117,7 +117,7 @@ translations3_restricted = expandTranslationGenerator $ combineGenerators [(2, t
 --
 -- Defined separately so that they may be reused in the checkpoint lesson (Lesson 7).
 translations3_nice :: TranslationGenerator
-translations3_nice = expandTranslationGenerator $ combineGenerators $ [(2, translations3_restricted), (2, teaching)] ++ ((1,) <$> [hasHouse, niceGift, giftingAnimal, friends, pelxu, others]) where
+translations3_nice = simplifyTerminatorsInTranslationGenerator $ expandTranslationGenerator $ combineGenerators $ [(2, translations3_restricted), (2, teaching)] ++ ((1,) <$> [hasHouse, niceGift, giftingAnimal, friends, pelxu, others]) where
     hasHouse = generatorFromList
         [ (["lo ctuca ku se zdani"], ["The instructor has a house."])
         , (["lo prenu ku se zdani"], ["The person has a house."])
@@ -180,7 +180,7 @@ translations3_nice = expandTranslationGenerator $ combineGenerators $ [(2, trans
 -- | Regular translations for the third lesson.
 --
 translations3_normal :: TranslationGenerator
-translations3_normal = combineGeneratorsUniformly [talkingToAnimal, likingAnimals, animalFriends, beautiful, person, others] where
+translations3_normal = simplifyTerminatorsInTranslationGenerator $ combineGeneratorsUniformly [talkingToAnimal, likingAnimals, animalFriends, beautiful, person, others] where
         talkingToAnimal = generatorFromList
             [ (["lo prenu ku tavla lo mlatu ku"], ["A person is talking to a cat.", "The person talks to cats."])
             , (["lo prenu ku tavla lo gerku ku"], ["A person is talking to a dog.", "The person talks to dogs."])
@@ -226,7 +226,7 @@ translations3_normal = combineGeneratorsUniformly [talkingToAnimal, likingAnimal
 
 -- * Lesson 4: Tanru
 translations4_expressions :: TranslationGenerator
-translations4_expressions = expandTranslationGenerator $ combineGeneratorsUniformly [sutra, lojbo, melbi, others] where
+translations4_expressions = simplifyTerminatorsInTranslationGenerator $ expandTranslationGenerator $ combineGeneratorsUniformly [sutra, lojbo, melbi, others] where
     sutra = generatorFromList
         [ (["lo sutra prenu ku"], ["The fast person."])
         , (["lo sutra tavla ku"], ["The fast speaker."])
@@ -258,7 +258,7 @@ translations4_expressions = expandTranslationGenerator $ combineGeneratorsUnifor
         ]
 
 translations4_sentences :: TranslationGenerator
-translations4_sentences = expandTranslationGenerator $ combineGeneratorsUniformly [adverb, adjective] where
+translations4_sentences = simplifyTerminatorsInTranslationGenerator $ expandTranslationGenerator $ combineGeneratorsUniformly [adverb, adjective] where
     adverb = combineGeneratorsUniformly [sutra] where
         sutra = generatorFromList
             -- sutra tavla
@@ -305,13 +305,13 @@ translations4_sentences = expandTranslationGenerator $ combineGeneratorsUniforml
 --
 -- | Overall translations for the fourth lesson (always involving "xu", "ma" or "mo").
 translations5 :: TranslationGenerator
-translations5 = combineGenerators [(4, translations5_xu), (4, translations5_ma), (1, translations5_mo)]
+translations5 = simplifyTerminatorsInTranslationGenerator $ combineGenerators [(4, translations5_xu), (4, translations5_ma), (1, translations5_mo)]
 
 -- | Translations for the fourth lesson involving "xu", with the restriction that some intermediate place is missing.
 --
 -- Defined separately so that they may be used in 'Translate without using "zo'e"' exercises.
 translations5_restricted_xu :: TranslationGenerator
-translations5_restricted_xu = expandTranslationGenerator $ combineGenerators [(2, talkingAbout), (1, gaveSomething), (4, writing), (2, know)] where
+translations5_restricted_xu = simplifyTerminatorsInTranslationGenerator $ expandTranslationGenerator $ combineGenerators [(2, talkingAbout), (1, gaveSomething), (4, writing), (2, know)] where
     talkingAbout = generatorFromList
         [ (["xu do tavla fi do", "xu do tavla fi vo'a"], ["Are you talking about yourself?", "Were you talking about yourself?"])
         , (["xu do tavla fi mi"], ["Are you talking about me?", "Were you talking about me?"])
@@ -342,7 +342,7 @@ translations5_restricted_xu = expandTranslationGenerator $ combineGenerators [(2
 
 -- | Overall translations for the fourth lesson involving "xu".
 translations5_xu :: TranslationGenerator
-translations5_xu = expandTranslationGenerator $ combineGenerators $ [(3, translations5_restricted_xu), (3, writing), (2, know)] ++ ((1,) <$> [hasHouse, nice, talking, teaching, friends, others]) where
+translations5_xu = simplifyTerminatorsInTranslationGenerator $ expandTranslationGenerator $ combineGenerators $ [(3, translations5_restricted_xu), (3, writing), (2, know)] ++ ((1,) <$> [hasHouse, nice, talking, teaching, friends, others]) where
     hasHouse = generatorFromList
         [ (["xu do se zdani"], ["Do you have a house?"])
         , (["xu lo prenu ku se zdani"], ["Does the person have a house?"])
@@ -404,7 +404,7 @@ translations5_xu = expandTranslationGenerator $ combineGenerators $ [(3, transla
 --
 -- Defined separately so that they may be used in 'Translate without using "zo'e"' exercises.
 translations5_restricted_ma :: TranslationGenerator
-translations5_restricted_ma = combineGenerators [(2, talkingAbout), (1, gaveSomething), (4, writing), (2, know)] where
+translations5_restricted_ma = simplifyTerminatorsInTranslationGenerator $ combineGenerators [(2, talkingAbout), (1, gaveSomething), (4, writing), (2, know)] where
     talkingAbout = generatorFromList
         [ (["ma tavla fi mi"], ["Who is talking about me?", "Who is talking about us?", "Who was talking about me?", "Who was talking about us?"])
         , (["ma tavla fi do"], ["Who is talking about you?", "Who was talking about you?"])
@@ -443,7 +443,7 @@ translations5_restricted_ma = combineGenerators [(2, talkingAbout), (1, gaveSome
 
 -- | Overall translations for the fourth lesson involving "ma".
 translations5_ma :: TranslationGenerator
-translations5_ma = combineGenerators $ [(3, translations5_restricted_ma), (3, writing), (2, know)] ++ ((1,) <$> [hasHouse, nice, talking, giving, teaching]) where
+translations5_ma = simplifyTerminatorsInTranslationGenerator . combineGenerators $ [(3, translations5_restricted_ma), (3, writing), (2, know)] ++ ((1,) <$> [hasHouse, nice, talking, giving, teaching]) where
     hasHouse = generatorFromList
         [ (["ma se zdani"], ["Who has a house?"])
         , (["ta zdani ma", "zdani ma"], ["Whose house is that?"])
@@ -527,7 +527,7 @@ translations5_ma = combineGenerators $ [(3, translations5_restricted_ma), (3, wr
 
 -- | Translations for the fourth lesson involving "mo".
 translations5_mo :: TranslationGenerator
-translations5_mo = generatorFromList
+translations5_mo = simplifyTerminatorsInTranslationGenerator $ generatorFromList
     [ (["mi mo"], ["What am I doing?"])
     , (["do mo"], ["What are you doing?"])
     , (["lo prenu ku mo"], ["What is the person doing?"])
@@ -544,7 +544,7 @@ translations5_restricted = combineGeneratorsUniformly [translations5_restricted_
 -- * Lesson 6: Abstractions 1
 -- CHECK: Are events vs facts being used correctly?
 translations6_nu :: TranslationGenerator
-translations6_nu = expandTranslationGenerator $ combineGenerators [(2, gleki), (1, tavla), (2, nupre)] where
+translations6_nu = simplifyTerminatorsInTranslationGenerator $ expandTranslationGenerator $ combineGenerators [(2, gleki), (1, tavla), (2, nupre)] where
     gleki = combineGeneratorsUniformly [talking, beautiful, givingAnimals, liking, teaching, owningHouse, know, other] where
         talking = generatorFromList
             -- talking to someone
@@ -646,7 +646,7 @@ translations6_nu = expandTranslationGenerator $ combineGenerators [(2, gleki), (
             ]
 
 translations6_du'u :: TranslationGenerator
-translations6_du'u = combineGenerators [(2, djuno)] where
+translations6_du'u = simplifyTerminatorsInTranslationGenerator $ combineGenerators [(2, djuno)] where
     djuno = combineGeneratorsUniformly [teaching, friend, beautiful, donating, promising, liking, talking, writing] where
         teaching = generatorFromList
             [ (["mi djuno lo du'u do ctuca mi kei ku"], ["I know that you taught me."])
@@ -704,7 +704,7 @@ translations6_du'u = combineGenerators [(2, djuno)] where
             ]
 
 translations6_sedu'u :: TranslationGenerator
-translations6_sedu'u = combineGenerators [(2, cusku)] where
+translations6_sedu'u = simplifyTerminatorsInTranslationGenerator $ combineGenerators [(2, cusku)] where
     cusku = combineGeneratorsUniformly [beautiful, likingPeople, likingAnimals, donatingAnimals, beingFriend] where
         beautiful = generatorFromList
             [ (["mi cusku lo se du'u do melbi kei ku"], ["I said that you are beautiful."])
@@ -773,7 +773,7 @@ translations6_sedu'u = combineGenerators [(2, cusku)] where
             --]
 
 translations6_extra :: TranslationGenerator
-translations6_extra = combineGeneratorsUniformly [gleki, tavla, nupre, cusku, ciska] where
+translations6_extra = simplifyTerminatorsInTranslationGenerator $ combineGeneratorsUniformly [gleki, tavla, nupre, cusku, ciska] where
     gleki = generatorFromList
         [ (["mi gleki"], ["I am happy."])
         , (["lo prenu ku gleki"], ["The person is happy."])
@@ -811,7 +811,7 @@ translations7 :: TranslationGenerator
 translations7 = translations7_restricted
 
 translations7_restricted :: TranslationGenerator
-translations7_restricted = expandTranslationGenerator $ combineGenerators [(2, hasHouse), (3, nice), (3, giving), (2, talking), (3, gleki), (3, nupre), (3, djuno), (3, cusku)] where
+translations7_restricted = simplifyTerminatorsInTranslationGenerator $ expandTranslationGenerator $ combineGenerators [(2, hasHouse), (3, nice), (3, giving), (2, talking), (3, gleki), (3, nupre), (3, djuno), (3, cusku)] where
     hasHouse = generatorFromList
         [ (["lo ctuca cu se zdani"], ["The instructor has a house."])
         , (["lo prenu cu se zdani"], ["The person has a house."])
