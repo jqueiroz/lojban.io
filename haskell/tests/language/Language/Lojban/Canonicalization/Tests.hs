@@ -354,7 +354,8 @@ validateCanonicalization = hspec $ do
             ]
       it "supports FA" $ do
         validateSentences
-            [ ("mi tavla fi lo mlatu", "mi tavla zo'e lo mlatu ku")
+            [ ("tavla fi lo mlatu", "tavla zo'e lo mlatu ku")
+            , ("mi tavla fi lo mlatu", "mi tavla zo'e lo mlatu ku")
             , ("mi ctuca fo lo bangu", "mi ctuca zo'e zo'e lo bangu ku")
             ]
       it "supports BE" $ do
@@ -385,6 +386,7 @@ validateCanonicalization = hspec $ do
       it "supports XU" $ do
         validateSentences
             [ ("xu do nelci lo mlatu", "xu do nelci lo mlatu ku")
+            , ("xu tavla fi mi", "xu tavla zo'e mi")
             ]
       it "supports NA" $ do
         validateSentences
