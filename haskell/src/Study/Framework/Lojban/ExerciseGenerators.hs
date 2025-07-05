@@ -186,10 +186,12 @@ generateFillingBlanksExerciseByExpression translationGeneratorByExpression r0 = 
 
 -- Exercise: identify the selbri
 generateSelbriIdentificationExercise :: SimpleBridiGenerator -> SimpleBridiDisplayer -> ExerciseGenerator
-generateSelbriIdentificationExercise simpleBridiGenerator displayBridi r0 = SingleChoiceExercise title sentences correctAlternative incorrectAlternatives False where
+generateSelbriIdentificationExercise simpleBridiGenerator displayBridi r0 = SingleChoiceExercise title sentences simplifiedCorrectAlternative simplifiedIncorrectAlternatives False where
     (bridi, r1) = simpleBridiGenerator r0
     correctAlternative = simpleBridiSelbri bridi
     incorrectAlternatives = take 4 . replace "" "zo'e" $ simpleBridiSumti bridi
+    simplifiedCorrectAlternative = simplifyTerminatorsInSentence correctAlternative
+    simplifiedIncorrectAlternatives = simplifyTerminatorsInSentence <$> incorrectAlternatives
     title = "Identify the <b>selbri</b>"
     (sentenceText, _) = displayBridi r1 bridi
     sentences = [ExerciseSentence True sentenceText]
