@@ -43,6 +43,16 @@ displayHome serverConfiguration userIdentityMaybe = do
                         H.ul $ do
                             H.li $ do
                                 H.p $ do
+                                    H.b "July 5, 2025: "
+                                    "tetsusquared (la .tirprij.) releases "
+                                    H.i $ do
+                                        H.a "tamtigni"
+                                            B.! A.href "https://www.youtube.com/watch?v=mrEZtvFTKGc"
+                                    ", a cover of "
+                                    H.i "Model"
+                                    " (模特) by Li Ronghao (李荣浩)."
+                            H.li $ do
+                                H.p $ do
                                     H.b "June 28, 2025: "
                                     "la xrula publishes "
                                     H.a "lo vorme"
