@@ -90,7 +90,8 @@ generateEnglishOrLojbanBridiJufraExercise simpleBridiGenerator nonbridiGenerator
 generateLojbanBridiJufraExercise :: SimpleBridiGenerator -> TextGenerator -> SimpleBridiDisplayer -> ExerciseGenerator
 generateLojbanBridiJufraExercise simpleBridiGenerator nonbridiGenerator displayBridi r0 = SingleChoiceExercise title sentences correctAlternative incorrectAlternatives True where
     chooseLojbanSentence :: T.Text -> StdGen -> (T.Text, StdGen)
-    chooseLojbanSentence "only jufra" r0 = nonbridiGenerator r0
+    chooseLojbanSentence "only jufra" r0 = (simplifyTerminatorsInSentence jufra, r1) where
+        (jufra, r1) = nonbridiGenerator r0
     chooseLojbanSentence "bridi and jufra" r0 = displayBridi r1 simpleBridi where
         (simpleBridi, r1) = simpleBridiGenerator r0
     allAlternatives = ["only jufra", "bridi and jufra"]
