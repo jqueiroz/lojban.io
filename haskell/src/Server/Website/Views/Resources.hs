@@ -104,19 +104,8 @@ displayResources = do
         H.p $ H.toHtml ("Whether you're a beginner or looking to refine your skills, structured courses can provide guidance and practice. Here, you'll find courses that cover different aspects of the language. Note that all current courses teach grammar only, and you will need to learn the vocabulary separately." :: T.Text)
         H.div B.! A.id "courses-general" B.! A.class_ (H.textValue "resource-category") $ do
             H.h3 $ H.toHtml ("General Information" :: T.Text)
-            H.p $ H.toHtml ("This section contains things you might want to look at before jumping into one of the courses. Some discuss possible pitfalls in the courses that you should be aware of, and some are comparisons between the courses so you can figure out which one is best for you." :: T.Text)
+            H.p $ H.toHtml ("This section contains things you might want to look at before jumping into one of the courses. You can use them to figure out which course is the best for you." :: T.Text)
             H.ul $ do
-                H.li $ do
-                    H.div $ do
-                        H.a "A Note on Terminators"
-                            B.! A.href "https://gist.github.com/lasamflir/f8d0c8d7f68dcb064fdf5a41546769e8"
-                        " by la .samflir."
-                    H.div $ do
-                        "Some courses introduce terminators (words like "
-                        H.code "ku"
-                        ", "
-                        H.code "kei"
-                        " etc.) in a way that is not consistent with natural usage, which can hinder future progress. This article highlights them and provides guidance to help learners develop a more authentic and accurate understanding of the language."
                 H.li $ do
                     H.div $ do
                         H.a "Lojban Courses Grammar Point Comparison"
