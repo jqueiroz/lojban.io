@@ -71,7 +71,6 @@ displayFAQ = do
                             H.li $ do H.a "Lojban speakers are pedants who enjoy picking on other people's grammar." B.! A.href "#misconception-xekce"
                         H.li $ do H.a "Other Misconceptions" B.! A.href "#misconceptions-other"
                         H.ul B.! A.class_ (H.textValue "sublist") $ do
-                            H.li $ do H.a "Haha '42' is 'vore' in Lojban!" B.! A.href "#misconception-vore"
                             H.li $ do H.a "Attitudinals are weird" B.! A.href "#misconception-attitudinal"
 
     H.div B.! A.id "what-is-lojban" B.! A.class_ (H.textValue "link-hook") $ do
@@ -513,23 +512,7 @@ displayFAQ = do
 
     H.div B.! A.id "misconceptions-other" B.! A.class_ (H.textValue "link-hook") $ do
         H.h3 $ H.toHtml ("Other Misconceptions" :: T.Text)
-    H.div B.! A.id "misconception-vore" B.! A.class_ (H.textValue "link-hook") $ do
-        H.h4 $ H.toHtml ("Misconception: Haha '42' is 'vore' in Lojban!" :: T.Text)
-        H.p $ do
-            "Yes, the number 42 in Lojban is spelled as "
-            H.code "vo re"
-            ", which is like the English slang term \"vore\" — a coincidence that Conlang Critic implies makes Lojban inferior somehow. But this is just a quirk of spelling, not a reflection of the language's value or seriousness. Lojban's number words are based on a simple, regular system, and any resemblance to unrelated English words is purely accidental. Every language has false friends and unintended associations — it's nothing unique to Lojban."
-        H.p "To make you see how such semblance and comparison are absurd, let's consider some examples in natural languages, one to English and one from English:"
-        H.ul $ do
-            H.li $ do
-                H.div "In some European languages like Swedish and Latin, the number 6 is written and sounds like \"sex\" in English. Does it reflect anything about these languages? No. They are just coincidences that mean absolutely nothing."
-            H.li $ do
-                H.div "A very common English colloquial expression, \"What's up?\", sounds like a vulgarity in Mandarin Chinese. Does that make English an inferior language? Definitely not."
-        H.p "By the way, most Lojbanists learned the English slang term \"vore\" through the Conlang Critic video, which further shows how trivial and irrelevant the resemblance is."
-        H.p $ do
-            H.b "In short: "
-            "A coincidence — just like in any language — has no real impact on a language's structure or usefulness."
-        
+       
     H.div B.! A.id "misconception-attitudinal" B.! A.class_ (H.textValue "link-hook") $ do
         H.h4 $ H.toHtml ("Misconception: Attitudinals are weird." :: T.Text)
         H.p "One of the goals of Lojban is correspondence in speaking and writing: Everything conveyed through speaking can be perfectly conveyed in writing, and vice versa. This is not the case for natural languages: Natural languages make heavy use of suprasegmental features like pauses or intonations for a variety of uses: giving syntactic clues, expressing attitudes… just to name a few. However, suprasegmental features are not faithfully represented in writing: we use punctuation marks, but they aren't enough of them to encompass the wide range of possible intonation and the meaning behind them. An exclamation mark can mean surprise, excitement, anger, and so on, which are conveyed through different intonations."
