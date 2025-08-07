@@ -43,6 +43,13 @@ displayHome serverConfiguration userIdentityMaybe = do
                         H.ul $ do
                             H.li $ do
                                 H.p $ do
+                                    H.b "August 7, 2025: "
+                                    "la xrula publishes "
+                                    H.a "na se slabu"
+                                        B.! A.href "https://hellopoetry.com/poem/5132364/na-se-slabu/"
+                                    ", an original poem."
+                            H.li $ do
+                                H.p $ do
                                     H.b "July 5, 2025: "
                                     "tetsusquared (la .tirprij.) releases "
                                     H.i $ do
