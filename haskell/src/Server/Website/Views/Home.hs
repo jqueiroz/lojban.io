@@ -43,6 +43,18 @@ displayHome serverConfiguration userIdentityMaybe = do
                         H.ul $ do
                             H.li $ do
                                 H.p $ do
+                                    H.b "September 6, 2025: "
+                                    "tetsusquared (la .tirprij.) releases a Lojban × "
+                                    H.a "Sambahsa"
+                                        B.! A.href "http://sambahsa.pbworks.com/w/page/10183084/FrontPage"
+                                    " cover of "
+                                    H.i "NeapolitaN"
+                                    " by apolP. You can listen to the cover "
+                                    H.a "here"
+                                        B.! A.href "https://www.youtube.com/watch?v=cgvSes44y-g"
+                                    "."
+                            H.li $ do
+                                H.p $ do
                                     H.b "August 7, 2025: "
                                     "la xrula publishes "
                                     H.a "na se slabu"
