@@ -21,7 +21,7 @@ const VENDORS_STYLES_FILES = [
 var browserify = require('browserify');
 var buffer = require('vinyl-buffer');
 var concat = require("gulp-concat");
-var glob = require('glob');
+var { globSync } = require('glob');
 var gulp = require('gulp');
 var less = require('gulp-less');
 var react = require('gulp-react');
@@ -36,21 +36,31 @@ gulp.task("fonts", function () {
         .pipe(gulp.dest("../static/fonts"));
 });
 
-gulp.task("typescript", function () {
-    return glob(TYPESCRIPT_FILES, function(err, files){
-        if(err) return;
-        files.map(function(entry) {
-            browserify({ entries: [entry] })
-                .transform("babelify", { presets: ["es2015"] })
-                .plugin("tsify")
-                .bundle()
-                .pipe(source(entry.replace('/typescript', '').replace('ts', 'js')))
-                .pipe(buffer())
-                .pipe(sourcemaps.init({ loadMaps: true }))
-                .pipe(sourcemaps.write('./'))
-                .pipe(minify())
-                .pipe(gulp.dest('../static/scripts'));
-        })
+gulp.task("typescript", function (done) {
+    const files = globSync(TYPESCRIPT_FILES);
+    if (files.length === 0) {
+        done();
+        return;
+    }
+
+    let completed = 0;
+    files.forEach(function(entry) {
+        browserify({ entries: [entry] })
+            .transform("babelify", { presets: ["es2015"] })
+            .plugin("tsify")
+            .bundle()
+            .pipe(source(entry.replace('/typescript', '').replace('ts', 'js')))
+            .pipe(buffer())
+            .pipe(sourcemaps.init({ loadMaps: true }))
+            .pipe(sourcemaps.write('./'))
+            .pipe(minify())
+            .pipe(gulp.dest('../static/scripts'))
+            .on('end', function() {
+                completed++;
+                if (completed === files.length) {
+                    done();
+                }
+            });
     });
 });
 
