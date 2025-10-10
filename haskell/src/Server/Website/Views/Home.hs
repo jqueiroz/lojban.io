@@ -43,6 +43,15 @@ displayHome serverConfiguration userIdentityMaybe = do
                         H.ul $ do
                             H.li $ do
                                 H.p $ do
+                                    H.b "October 4, 2025: "
+                                    "tetsusquared (la .tirprij.) releases a Lojban cover of "
+                                    H.i "Chain Girl"
+                                    " by NoboruP. You can listen to the cover "
+                                    H.a "here"
+                                        B.! A.href "https://www.youtube.com/watch?v=hReCEhUi-Nk"
+                                    "."
+                            H.li $ do
+                                H.p $ do
                                     H.b "September 6, 2025: "
                                     "tetsusquared (la .tirprij.) releases a Lojban × "
                                     H.a "Sambahsa"
