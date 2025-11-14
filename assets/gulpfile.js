@@ -49,7 +49,7 @@ gulp.task("typescript", function (done) {
             .transform("babelify", { presets: ["es2015"] })
             .plugin("tsify")
             .bundle()
-            .pipe(source(entry.replace('/typescript', '').replace('ts', 'js')))
+            .pipe(source(entry.replace('typescript/', '').replace('.ts', '.js')))
             .pipe(buffer())
             .pipe(sourcemaps.init({ loadMaps: true }))
             .pipe(sourcemaps.write('./'))
