@@ -312,9 +312,9 @@ displayResources = do
             H.p $ H.toHtml ("Quick, accessible, and often packed with extra features, online dictionaries are useful tools for looking up words, checking usage, and exploring meanings. This section lists some of the most reliable ones available for the language." :: T.Text)
             H.ul $ do
                 H.li $ do
-                    H.a "la xlasisku"
-                        B.! A.href "https://mi2ebi.github.io/xlasisku/"
-                    H.div "A word search engine that supports searching by regex and rhymes, and also finding gismu conflicts."
+                    H.a "la traide sisku"
+                        B.! A.href "https://paclatkerlo.com"
+                    H.div "Similar to la lidysisku, but allows the user to view the notes on words."
                 H.li $ do
                     H.a "la lidysisku"
                         B.! A.href "https://sisku.org/?en"
