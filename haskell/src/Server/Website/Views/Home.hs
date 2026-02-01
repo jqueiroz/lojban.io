@@ -43,6 +43,13 @@ displayHome serverConfiguration userIdentityMaybe = do
                         H.ul $ do
                             H.li $ do
                                 H.p $ do
+                                    H.b "January 19, 2026: "
+                                    "la janbe publishes "
+                                    H.a "Speaking Lojban… at an Esperanto congress?"
+                                        B.! A.href "https://www.youtube.com/watch?v=jM2Eh7ZMvwI"
+                                    ", a video blog in Lojban and Esperanto."
+                            H.li $ do
+                                H.p $ do
                                     H.b "January 10, 2026: "
                                     "tetsusquared (la .tirprij.) releases a Lojban cover of "
                                     H.i "Zenzenzense"
